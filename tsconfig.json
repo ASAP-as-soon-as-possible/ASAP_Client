@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "esnext",
+    "module": "esnext",
     "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "module": "ESNext",
+    // "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "skipLibCheck": true,
 
     /* Bundler mode */
@@ -13,12 +14,19 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "outDir": "./dist", //컴파일시  ts파일을 dist폴더에 js파일로 변경
+    "rootDir": "src", //루트 디렉토리 src로 설정
 
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true, //console에서 경로 보이도록
+    "noImplicitAny": true, // any타입 금지여부
+    "strictNullChecks": true, // undefined와 null에게 구체적인 타입을 부여해 이 둘에 대한 참조를 막고 런타임전에 에러를 발생시킴
+    "allowJs": true, //   js 파일들 ts에서 import해서 쓸 수 있는지  (혹여나 필요할 수도 있어서?)
+    "allowSyntheticDefaultImports": true //ts에서 Synthetic기본 import허용
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

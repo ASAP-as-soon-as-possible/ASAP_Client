@@ -1,0 +1,15 @@
+{
+  "processors": ["stylelint-processor-styled-components"],
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-styled-components",
+    "postcss-syntax",
+    "postcss-html"
+  ],
+  "overrides": [
+    {
+      "files": ["**/*.tsx", "**/*.ts"],
+      "customSyntax": "@stylelint/postcss-css-in-js"
+    }
+  ]
+}
