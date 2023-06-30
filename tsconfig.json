@@ -2,6 +2,12 @@
   "compilerOptions": {
     "target": "esnext",
     "module": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "components/*": ["src/components/*"],
+      "hooks/*": ["src/hooks/*"],
+      "pages/*": ["src/pages/*"]
+    },
     "useDefineForClassFields": true,
     // "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -15,7 +21,7 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "outDir": "./dist", //컴파일시  ts파일을 dist폴더에 js파일로 변경
-    "rootDir": "src", //루트 디렉토리 src로 설정
+    // "rootDir": "src", //루트 디렉토리 src로 설정
 
     /* Linting */
     "strict": true,
