@@ -3,11 +3,13 @@
     "browser": true,
     "es2021": true
   },
+  "plugins": ["@typescript-eslint", "react", "react-hooks", "import", "jsx-a11y"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
-    "plugin:import/recommended"
+    "plugin:import/recommended",
+    "plugin:jsx-a11y/recommended" //jsx 접근성 규칙에 대한 검사기
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -17,7 +19,7 @@
     },
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint", "react", "react-hooks", "import"],
+
   "rules": {
     "react/jsx-filename-extension": ["warn", { "extensions": [".tsx"] }],
     "react-refresh/only-export-components": "warn",
@@ -33,6 +35,9 @@
     "arrow-parens": ["error", "always"], // arrow-function 인자가 2개 이상이면 괄호 필수
     "no-multi-spaces": "error" // 스페이스 여러개 금지
   },
+
+  "ignorePatterns": ["build", "dist", "public"], //lint 무시 파일 정하기
+
   "import/order": [
     "error",
     {
