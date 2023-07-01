@@ -2,8 +2,8 @@
 name: Feature request
 about: 기능 개발 템플릿
 title: "[Feat] 제목"
-labels: bug, documentation, enhancement, feat, fix
-assignees: simeunseo, ljh0608, Chanwoo-Jeong, eastlaw80
+labels: ''
+assignees: ''
 
 ---
 
