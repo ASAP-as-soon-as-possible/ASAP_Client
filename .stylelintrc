@@ -3,13 +3,16 @@
   "extends": [
     "stylelint-config-recommended",
     "stylelint-config-styled-components",
-    "postcss-syntax",
-    "postcss-html"
+    "stylelint-config-prettier",
+    "stylelint-config-concentric-order"
   ],
   "overrides": [
     {
-      "files": ["**/*.tsx", "**/*.ts"],
+      "files": ["**/*.{ts,tsx}"],
       "customSyntax": "@stylelint/postcss-css-in-js"
     }
-  ]
+  ],
+  "rules": {
+    "color-named": "never"
+  }
 }

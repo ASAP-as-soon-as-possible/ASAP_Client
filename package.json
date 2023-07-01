@@ -11,16 +11,13 @@
     "lint:css": "stylelint './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
-    "@stylelint/postcss-css-in-js": "^0.38.0",
     "axios": "^1.4.0",
     "postcss-syntax": "^0.36.2",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "stylelint-config-recommended": "^12.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "stylelint-processor-styled-components": "^1.10.0"
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@stylelint/postcss-css-in-js": "^0.38.0",
     "@types/node": "^20.3.2",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
@@ -34,9 +31,15 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "postcss": "^8.4.24",
     "prettier-plugin-style-order": "^0.2.2",
     "styled-components": "^6.0.1",
     "styled-components.macro": "^1.0.0",
+    "stylelint": "^15.9.0",
+    "stylelint-config-concentric-order": "^5.1.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-recommended": "^12.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
     "vite-plugin-babel-macros": "^1.0.6"

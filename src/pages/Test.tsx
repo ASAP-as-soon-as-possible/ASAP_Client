@@ -10,13 +10,13 @@ const Test = () => {
 };
 
 const TestWrapper = styled.div`
+  display: flex;
+
+  background-color: yellow;
   width: 20rem;
   height: 20rem;
 
-  background-color: yellow;
-
   color: white;
-  display: flex;
 `;
 
 export default Test;
