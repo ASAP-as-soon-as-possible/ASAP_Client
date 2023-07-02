@@ -16,7 +16,7 @@ const TestWrapper = styled.div`
   width: 20rem;
   height: 20rem;
 
-  color: white;
+  color: red;
 `;
 
 export default Test;
