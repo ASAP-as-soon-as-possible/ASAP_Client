@@ -1,43 +1,19 @@
-import { useState } from 'react';
-
-import ScrollerComponent from 'pages/ScrollerComponent';
 import styled from 'styled-components/macro';
 
 import GlobalStyle from './styles/globalStyles';
+import Test from 'pages/Test';
+import { ThemeProvider } from 'styled-components';
+import { theme } from './styles/theme';
 
 function App() {
-  const [selectedHour, setSelectedHour] = useState(1);
-  const [selectedMinute, setSelectedMinute] = useState(1);
-  const [selectedSecond, setSelectedSecond] = useState(1);
-
   return (
     <>
-      <GlobalStyle />
-      <MainContainer>
-        <ScrollerComponent
-          min={0}
-          max={24}
-          value={selectedHour}
-          setValue={setSelectedHour}
-          title="Hour"
-        />
-        <ColonSpan>:</ColonSpan>
-        <ScrollerComponent
-          min={0}
-          max={59}
-          value={selectedMinute}
-          setValue={setSelectedMinute}
-          title="Minute"
-        />
-        <ColonSpan>:</ColonSpan>
-        <ScrollerComponent
-          min={0}
-          max={59}
-          value={selectedSecond}
-          setValue={setSelectedSecond}
-          title="Second"
-        />
-      </MainContainer>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <MainContainer>
+          <Test />
+        </MainContainer>
+      </ThemeProvider>
     </>
   );
 }
@@ -50,8 +26,5 @@ const MainContainer = styled.div`
   margin: calc(50vh - 100px) 0px;
   width: 100vw;
   height: 200px;
-`;
-const ColonSpan = styled.span`
-  margin: 150px 0px 100px;
 `;
 export default App;
