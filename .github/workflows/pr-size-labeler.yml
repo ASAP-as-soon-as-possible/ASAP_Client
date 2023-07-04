@@ -1,27 +1,24 @@
-name: labeler
-
-on: [pull_request]
-
+name: size-label
+on: pull_request_target
 jobs:
-  labeler:
+  size-label:
+    permissions:
+      contents: read
+      pull-requests: write
     runs-on: ubuntu-latest
-    name: Label the PR size
     steps:
-    - name: Pull Request size labeler
-      uses: CodelyTV/pr-size-labeler@v1
-      with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        xs_label: 'size/XS'
-        xs_max_size: '10'
-        s_label: 'size/S'
-        s_max_size: '100'
-        m_label: 'size/M'
-        m_max_size: '500'
-        l_label: 'size/L'
-        l_max_size: '1000'
-        xl_label: 'size/XL'
-        fail_if_xl: 'false'
-        message_if_xl: >
-          1000줄 이상이 변경되었네요! PR 사이즈를 좀 더 세분화해보면 어때요?
-        github_api_url: 'api.github.com'
-        files_to_ignore: 'package-lock.json *.lock'
+      - name: size-label
+        uses: "pascalgn/size-label-action@v0.4.2"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          IGNORED: ".*\n!.gitignore\nyarn.lock\ngenerated/**\npackage-lock.json\n*.lock\n.gitignore"
+        with:
+          sizes: >
+            {
+              "0": "XS",
+              "10": "S",
+              "100": "M",
+              "500": "L",
+              "1000": "XL",
+              "2000": "XXL"
+            }
