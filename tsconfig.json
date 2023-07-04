@@ -6,7 +6,8 @@
     "paths": {
       "components/*": ["src/components/*"],
       "hooks/*": ["src/hooks/*"],
-      "pages/*": ["src/pages/*"]
+      "pages/*": ["src/pages/*"],
+      "assets/*": ["src/assets/*"]
     },
     "useDefineForClassFields": true,
     // "lib": ["ES2020", "DOM", "DOM.Iterable"],
