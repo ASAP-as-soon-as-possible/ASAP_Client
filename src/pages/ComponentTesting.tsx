@@ -1,4 +1,11 @@
-import { ExitIcon, HambergerIcon, InputCancelBtn, MainLogo } from 'components/Icon/icon';
+import {
+  ExitIcon,
+  HambergerIcon,
+  InputCancelBtn,
+  MainLogo,
+  RadioCheck,
+  RadioChecked,
+} from 'components/Icon/icon';
 import { styled } from 'styled-components';
 
 function ComponentTesting() {
@@ -13,7 +20,8 @@ function ComponentTesting() {
           <ExitIcon />
         </IconWrapper>
         <InputCancelBtn />
-
+        <RadioCheck />
+        <RadioChecked />
       </Wrapper>
     </>
   );
@@ -27,7 +35,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
 
-  gap:2rem;
+  gap: 2rem;
 `;
 
 const IconWrapper = styled.div`
