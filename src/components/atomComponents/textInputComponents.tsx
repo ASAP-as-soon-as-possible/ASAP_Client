@@ -1,14 +1,34 @@
+import { InputCancelBtn } from 'components/Icon/icon';
 import { styled } from 'styled-components';
 
 function TextInputComponents() {
   return (
     <>
-      <TextInput placeholder="서비스 기획 1차 회의" />
+      <Wrapper>
+        <TextInput placeholder="서비스 기획 1차 회의" />
+        <InputCancelBtn />
+      </Wrapper>
     </>
   );
 }
 
 export default TextInputComponents;
+
+const Wrapper = styled.div`
+  position: relative;
+
+  svg {
+    display: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+  }
+
+  input:focus + svg {
+    display: flex;
+  }
+`;
 
 const TextInput = styled.input`
   width: 303px;
@@ -21,6 +41,8 @@ const TextInput = styled.input`
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 
   caret-color: #3c49ff;
+
+  position: relative;
 
   &:focus {
     outline: none;
