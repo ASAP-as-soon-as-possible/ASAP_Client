@@ -6,6 +6,7 @@ import { ReactComponent as HambergerIcon } from 'assets/svgs/hambergerIcon.svg';
 import { ReactComponent as InputCancelBtn } from 'assets/svgs/inputCancelBtn.svg';
 import { ReactComponent as InputErrorBtn } from 'assets/svgs/inputErrorBtn.svg';
 import { ReactComponent as MainLogo } from 'assets/svgs/mainLogo.svg';
+import { ReactComponent as PasswordEye } from 'assets/svgs/passwordEye.svg';
 import { ReactComponent as PasswordOpenEye } from 'assets/svgs/passwordOpenEye.svg';
 import { ReactComponent as PlusBtn } from 'assets/svgs/plusBtn.svg';
 import { ReactComponent as RadioCheck } from 'assets/svgs/radioCheck.svg';
@@ -23,5 +24,6 @@ export {
   InputErrorBtn,
   DropDownBtn,
   DropUpBtn,
-  PasswordOpenEye
+  PasswordOpenEye,
+  PasswordEye
 };

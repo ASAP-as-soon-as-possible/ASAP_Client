@@ -7,6 +7,7 @@ import {
   InputCancelBtn,
   InputErrorBtn,
   MainLogo,
+  PasswordEye,
   PasswordOpenEye,
   PlusBtn,
   RadioCheck,
@@ -35,6 +36,7 @@ function ComponentTesting() {
         <PlusBtn />
         <DropDownBtn />
         <DropUpBtn />
+        <PasswordEye />
         <PasswordOpenEye />
       </Wrapper>
     </>
