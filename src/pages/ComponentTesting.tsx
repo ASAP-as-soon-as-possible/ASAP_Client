@@ -1,4 +1,4 @@
-import { HambergerIcon, MainLogo } from 'components/Icon/icon';
+import { ExitIcon, HambergerIcon, InputCancelBtn, MainLogo } from 'components/Icon/icon';
 import { styled } from 'styled-components';
 
 function ComponentTesting() {
@@ -6,9 +6,14 @@ function ComponentTesting() {
     <>
       <Wrapper>
         <MainLogo />
-        <HambergerWrapper>
+        <IconWrapper>
           <HambergerIcon />
-        </HambergerWrapper>
+        </IconWrapper>
+        <IconWrapper>
+          <ExitIcon />
+        </IconWrapper>
+        <InputCancelBtn />
+
       </Wrapper>
     </>
   );
@@ -25,7 +30,7 @@ const Wrapper = styled.div`
   gap:2rem;
 `;
 
-const HambergerWrapper = styled.div`
+const IconWrapper = styled.div`
   background-color: black;
   padding: 12.35px 11px;
 `;
