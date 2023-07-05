@@ -6,6 +6,7 @@ import {
   HambergerIcon,
   InputCancelBtn,
   InputErrorBtn,
+  LinkIcon,
   MainLogo,
   PasswordEye,
   PasswordOpenEye,
@@ -38,6 +39,9 @@ function ComponentTesting() {
         <DropUpBtn />
         <PasswordEye />
         <PasswordOpenEye />
+        <IconWrapper>
+          <LinkIcon />
+        </IconWrapper>
       </Wrapper>
     </>
   );
