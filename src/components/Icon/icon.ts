@@ -9,6 +9,7 @@ import { ReactComponent as LinkIcon } from 'assets/svgs/linkIcon.svg';
 import { ReactComponent as MainLogo } from 'assets/svgs/mainLogo.svg';
 import { ReactComponent as PasswordEye } from 'assets/svgs/passwordEye.svg';
 import { ReactComponent as PasswordOpenEye } from 'assets/svgs/passwordOpenEye.svg';
+import { ReactComponent as PlaceIcon } from 'assets/svgs/placeIcon.svg';
 import { ReactComponent as PlusBtn } from 'assets/svgs/plusBtn.svg';
 import { ReactComponent as RadioCheck } from 'assets/svgs/radioCheck.svg';
 import { ReactComponent as RadioChecked } from 'assets/svgs/radioChecked.svg';
@@ -27,5 +28,6 @@ export {
   DropUpBtn,
   PasswordOpenEye,
   PasswordEye,
-  LinkIcon
+  LinkIcon,
+  PlaceIcon
 };

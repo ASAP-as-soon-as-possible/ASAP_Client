@@ -10,6 +10,7 @@ import {
   MainLogo,
   PasswordEye,
   PasswordOpenEye,
+  PlaceIcon,
   PlusBtn,
   RadioCheck,
   RadioChecked,
@@ -42,6 +43,7 @@ function ComponentTesting() {
         <IconWrapper>
           <LinkIcon />
         </IconWrapper>
+        <PlaceIcon />
       </Wrapper>
     </>
   );
