@@ -4,6 +4,7 @@ import {
   HambergerIcon,
   InputCancelBtn,
   MainLogo,
+  PlusBtn,
   RadioCheck,
   RadioChecked,
 } from 'components/Icon/icon';
@@ -26,6 +27,7 @@ function ComponentTesting() {
         <IconWrapper>
           <BackBtn />
         </IconWrapper>
+        <PlusBtn />
       </Wrapper>
     </>
   );
