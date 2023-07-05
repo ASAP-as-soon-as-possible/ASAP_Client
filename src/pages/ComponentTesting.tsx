@@ -14,6 +14,7 @@ import {
   PlusBtn,
   RadioCheck,
   RadioChecked,
+  Clock
 } from 'components/Icon/icon';
 import { styled } from 'styled-components';
 
@@ -44,6 +45,7 @@ function ComponentTesting() {
           <LinkIcon />
         </IconWrapper>
         <PlaceIcon />
+        <Clock />
       </Wrapper>
     </>
   );

@@ -1,4 +1,5 @@
 import { ReactComponent as BackBtn } from 'assets/svgs/backBtn.svg';
+import { ReactComponent as Clock } from 'assets/svgs/clock.svg';
 import { ReactComponent as DropDownBtn } from 'assets/svgs/dropDownBtn.svg';
 import { ReactComponent as DropUpBtn } from 'assets/svgs/dropUpBtn.svg';
 import { ReactComponent as ExitIcon } from 'assets/svgs/exitIcon.svg';
@@ -29,5 +30,6 @@ export {
   PasswordOpenEye,
   PasswordEye,
   LinkIcon,
-  PlaceIcon
+  PlaceIcon,
+  Clock
 };
