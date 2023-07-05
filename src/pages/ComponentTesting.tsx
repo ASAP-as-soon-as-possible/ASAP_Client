@@ -1,9 +1,21 @@
-import React from 'react'
+import { MainLogo } from 'components/Icon/icon';
+import { styled } from 'styled-components';
 
 function ComponentTesting() {
   return (
-    <div>ComponentTesting</div>
-  )
+    <>
+      <Wrapper>
+        <MainLogo />
+      </Wrapper>
+    </>
+  );
 }
 
-export default ComponentTesting
+export default ComponentTesting;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
