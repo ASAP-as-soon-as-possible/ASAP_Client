@@ -27,6 +27,7 @@ const Wrapper = styled.div`
 
   input:focus + svg {
     display: flex;
+    cursor: pointer;
   }
 `;
 
