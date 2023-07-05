@@ -1,8 +1,10 @@
 import {
   BackBtn,
+  DropDownBtn,
   ExitIcon,
   HambergerIcon,
   InputCancelBtn,
+  InputErrorBtn,
   MainLogo,
   PlusBtn,
   RadioCheck,
@@ -22,12 +24,14 @@ function ComponentTesting() {
           <ExitIcon />
         </IconWrapper>
         <InputCancelBtn />
+        <InputErrorBtn />
         <RadioCheck />
         <RadioChecked />
         <IconWrapper>
           <BackBtn />
         </IconWrapper>
         <PlusBtn />
+        <DropDownBtn />
       </Wrapper>
     </>
   );
