@@ -1,6 +1,7 @@
 import {
   BackBtn,
   DropDownBtn,
+  DropUpBtn,
   ExitIcon,
   HambergerIcon,
   InputCancelBtn,
@@ -32,6 +33,7 @@ function ComponentTesting() {
         </IconWrapper>
         <PlusBtn />
         <DropDownBtn />
+        <DropUpBtn />
       </Wrapper>
     </>
   );

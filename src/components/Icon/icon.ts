@@ -1,5 +1,6 @@
 import { ReactComponent as BackBtn } from 'assets/svgs/backBtn.svg';
 import { ReactComponent as DropDownBtn } from 'assets/svgs/dropDownBtn.svg';
+import { ReactComponent as DropUpBtn } from 'assets/svgs/dropUpBtn.svg';
 import { ReactComponent as ExitIcon } from 'assets/svgs/exitIcon.svg';
 import { ReactComponent as HambergerIcon } from 'assets/svgs/hambergerIcon.svg';
 import { ReactComponent as InputCancelBtn } from 'assets/svgs/inputCancelBtn.svg';
@@ -19,5 +20,6 @@ export {
   BackBtn,
   PlusBtn,
   InputErrorBtn,
-  DropDownBtn
+  DropDownBtn,
+  DropUpBtn
 };
