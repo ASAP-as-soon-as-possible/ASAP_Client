@@ -1,0 +1,111 @@
+:root {
+  --rmdp-primary-yellow: #3253ff;
+  --rmdp-secondary-yellow: #3253ff;
+  --rmdp-shadow-yellow: skyblue;
+  --rmdp-today-yellow: blue;
+  --rmdp-hover-yellow: #3253ff;
+  --rmdp-deselect-yellow: #cca701;
+}
+
+.bg-dark.rmdp-wrapper,
+.bg-dark .rmdp-month-picker,
+.bg-dark .rmdp-year-picker,
+.bg-dark .rmdp-time-picker div input,
+.rmdp-container .bg-dark.ep-arrow::after {
+  background-color: black;
+  color: #c4c7ca;
+}
+
+.bg-dark .rmdp-day:not(.rmdp-deactive),
+.bg-dark .rmdp-time-picker div .rmdp-am,
+.bg-dark .rmdp-header-values,
+.bg-dark .rmdp-panel-header {
+  color: #c4c7ca;
+}
+
+.bg-dark .rmdp-day.rmdp-range {
+  color: white;
+}
+
+.bg-dark .rmdp-panel-body li {
+  color: #f5f5f5;
+}
+
+.bg-dark .rmdp-day.rmdp-deactive,
+.bg-dark .rmdp-day.rmdp-disabled {
+  color: #87898b;
+}
+
+.bg-dark .rmdp-wrapper {
+  border: 1px solid var(--rmdp-secondary-yellow);
+  box-shadow: 0 0 5px var(--rmdp-secondary-yellow);
+}
+
+.bg-dark .rmdp-panel-body li {
+  box-shadow: 0 0 2px var(--rmdp-secondary-yellow);
+  background-color: var(--rmdp-primary-yellow);
+}
+
+.bg-dark .rmdp-week-day {
+  /* 요일 */
+  color: #f5f5f5;
+}
+
+.bg-dark .rmdp-day.rmdp-deactive {
+  color: var(--rmdp-secondary-yellow);
+}
+
+.bg-dark .rmdp-range {
+  box-shadow: 0 0 3px var(--rmdp-shadow-yellow);
+  background-color: var(--rmdp-primary-yellow);
+}
+
+.bg-dark .rmdp-arrow {
+  /* 화살표 색 */
+  border: solid white;
+  border-width: 0 2px 2px 0;
+}
+
+.bg-dark .rmdp-arrow-container:hover {
+  box-shadow: 0 0 3px var(--rmdp-secondary-yellow);
+  background-color: var(--rmdp-primary-yellow);
+}
+
+.bg-dark .rmdp-panel-body::-webkit-scrollbar-thumb {
+  background: var(--rmdp-primary-yellow) !important;
+}
+
+.bg-dark .rmdp-day.rmdp-today span {
+  background-color: var(--rmdp-today-yellow);
+}
+
+.bg-dark .rmdp-rtl .rmdp-panel {
+  border-right: 1px solid var(--rmdp-secondary-yellow);
+  border-left: unset;
+}
+
+.yellow .rmdp-day.rmdp-selected span:not(.highlight) {
+  box-shadow: 0 0 3px var(--rmdp-shadow-yellow);
+  background-color: var(--rmdp-primary-yellow);
+}
+
+.bg-dark .rmdp-day:not(.rmdp-day-hidden) span:hover {
+  background-color: var(--rmdp-hover-yellow) !important;
+}
+
+.bg-dark .b-deselect {
+  background-color: white;
+  color: var(--rmdp-deselect-yellow);
+}
+
+.bg-dark .rmdp-action-button {
+  color: var(--rmdp-primary-yellow);
+}
+
+.bg-dark .rmdp-button:not(.rmdp-action-button) {
+  background-color: var(--rmdp-primary-yellow);
+}
+
+.bg-dark .rmdp-button:not(.rmdp-action-button):hover {
+  background-color: var(--rmdp-deselect-yellow);
+}
