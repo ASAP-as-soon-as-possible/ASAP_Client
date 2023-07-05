@@ -14,7 +14,7 @@ import {
   PlusBtn,
   RadioCheck,
   RadioChecked,
-  Clock
+  Clock,
 } from 'components/Icon/icon';
 import { styled } from 'styled-components';
 
@@ -58,6 +58,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  margin-top: 2rem;
 
   gap: 2rem;
 `;
