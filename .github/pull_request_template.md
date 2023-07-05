@@ -2,7 +2,7 @@
 <!-- PR 작성 후 우측에 Development에서 이슈 찾아서 연동하면 merge될때 이슈도 close됩니다 -->
 <!-- Reviewer, Assignees, Label, Milestone 붙이기 --> 
 
-### ✨ PR 타이틀 ✨
+### ✨ 해당 이슈 번호 ✨
 <!-- #{본인 이슈 번호} 치면 알아서 이슈 게시판 링크 걸려요 -->
 
 ### todo 
