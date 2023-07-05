@@ -1,20 +1,20 @@
 import {
-  BackBtn,
-  DropDownBtn,
-  DropUpBtn,
-  ExitIcon,
-  HambergerIcon,
-  InputCancelBtn,
-  InputErrorBtn,
-  LinkIcon,
-  MainLogo,
-  PasswordEye,
-  PasswordOpenEye,
-  PlaceIcon,
-  PlusBtn,
-  RadioCheck,
-  RadioChecked,
-  Clock,
+  MainLogoIc,
+  HambergerIc,
+  ExitIc,
+  InputCancelIc,
+  RadioCheckIc,
+  RadioCheckedIc,
+  BackIc,
+  PlusIc,
+  InputErrorIc,
+  DropDownIc,
+  DropUpIc,
+  PasswordOpenEyeIc,
+  PasswordEyeIc,
+  LinkIc,
+  PlaceIc,
+  ClockIc
 } from 'components/Icon/icon';
 import { styled } from 'styled-components';
 
@@ -22,30 +22,30 @@ function ComponentTesting() {
   return (
     <>
       <Wrapper>
-        <MainLogo />
+        <MainLogoIc />
         <IconWrapper>
-          <HambergerIcon />
+          <HambergerIc />
         </IconWrapper>
         <IconWrapper>
-          <ExitIcon />
+          <ExitIc />
         </IconWrapper>
-        <InputCancelBtn />
-        <InputErrorBtn />
-        <RadioCheck />
-        <RadioChecked />
+        <InputCancelIc />
+        <InputErrorIc />
+        <RadioCheckIc />
+        <RadioCheckedIc />
         <IconWrapper>
-          <BackBtn />
+          <BackIc />
         </IconWrapper>
-        <PlusBtn />
-        <DropDownBtn />
-        <DropUpBtn />
-        <PasswordEye />
-        <PasswordOpenEye />
+        <PlusIc />
+        <DropDownIc />
+        <DropUpIc />
+        <PasswordEyeIc />
+        <PasswordOpenEyeIc />
         <IconWrapper>
-          <LinkIcon />
+          <LinkIc />
         </IconWrapper>
-        <PlaceIcon />
-        <Clock />
+        <PlaceIc />
+        <ClockIc />
       </Wrapper>
     </>
   );
