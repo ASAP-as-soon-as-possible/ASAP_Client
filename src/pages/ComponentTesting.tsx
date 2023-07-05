@@ -1,4 +1,5 @@
 import {
+  BackBtn,
   ExitIcon,
   HambergerIcon,
   InputCancelBtn,
@@ -22,6 +23,9 @@ function ComponentTesting() {
         <InputCancelBtn />
         <RadioCheck />
         <RadioChecked />
+        <IconWrapper>
+          <BackBtn />
+        </IconWrapper>
       </Wrapper>
     </>
   );
