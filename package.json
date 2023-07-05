@@ -4,15 +4,13 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 0.0.0.0 --port 5173",
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "lint:css": "stylelint './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
-    "@mobiscroll/cli": "^1.12.0",
-    "@mobiscroll/react-lite": "^4.10.9",
     "axios": "^1.4.0",
     "postcss-syntax": "^0.36.2",
     "react": "^18.2.0",
