@@ -37,14 +37,14 @@ interface Font {
   lineHeight: number;
 }
 
-function FONT({ family, weight, size, lineHeight }: Font): string {
+const FONT = ({ family, weight, size, lineHeight }: Font): string => {
   return `
     font-family: ${family};
     font-weight : ${weight};
     font-size : ${size}rem;
     line-height : ${lineHeight}rem;
     `;
-}
+};
 
 const fonts = {
   head1: FONT({ family: 'Pretendard', weight: 600, size: 2.8, lineHeight: 3.4 }),

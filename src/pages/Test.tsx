@@ -69,7 +69,7 @@ const TestWrapper = styled.div`
   color: white;
 
   h1 {
-    ${({ theme }) => theme.fonts.head1};
-    color: ${({ theme }) => theme.colors.main1};
+    ${({ theme }) => theme.fonts.head1}
+    color: ${({ theme }) => theme.colors.main1}
   }
 `;
