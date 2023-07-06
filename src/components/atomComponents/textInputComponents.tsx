@@ -1,6 +1,6 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
-import { InputCancelBtn } from 'components/Icon/icon';
+import { InputCancelBtn, InputErrorBtn } from 'components/Icon/icon';
 import { styled } from 'styled-components';
 
 interface ValueProps {
@@ -14,13 +14,26 @@ function TextInputComponents({ value, setValue, placeholder }: ValueProps) {
     setValue(e.currentTarget.value);
   };
 
+  const [foucs, setFocus] = useState(false)
+
+
   return (
     <>
       <Wrapper>
-        <TextInput placeholder={placeholder} value={value} onChange={handleChange} />
-        <IconWrapper onClick={() => setValue("")}>
-          <InputCancelBtn />
-        </IconWrapper>
+        <TextInput
+          placeholder={placeholder}
+          value={value}
+          onChange={handleChange}
+          onFocus={() => setFocus(true)}
+          onBlur={() => setFocus(false)}
+          isError={value?.length > 15}
+        />
+        {foucs && (<IconWrapper>
+          {value?.length > 15 ? <InputErrorBtn /> : <InputCancelBtn />}
+        </IconWrapper>)
+
+        }
+
       </Wrapper>
     </>
   );
@@ -29,7 +42,6 @@ function TextInputComponents({ value, setValue, placeholder }: ValueProps) {
 export default TextInputComponents;
 
 const IconWrapper = styled.div`
-   
     width :fit-content;
     height :fit-content;
     display: flex;
@@ -44,14 +56,17 @@ const Wrapper = styled.div`
   position: relative;
 
   input:focus + div {
+    display: flex;
     svg{
     display: flex;
     cursor: pointer; 
+    width: fit-content;
+    height: fit-content;
     }
   }
 `;
 
-const TextInput = styled.input`
+const TextInput = styled.input<{ isError: boolean }>`
   width: 303px;
   padding: 10px 16px;
   height: 20px;
@@ -69,6 +84,6 @@ const TextInput = styled.input`
 
   &:focus {
     outline: none;
-    border: 2px solid #3c49ff;
+    border: 2px solid ${({ isError }) => (isError ? '#DE4B44' : '#3c49ff')};;
   }
 `;
