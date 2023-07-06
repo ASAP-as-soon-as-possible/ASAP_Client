@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import { InputCancelIc, InputErrorIc } from 'components/Icon/icon';
-import { styled } from 'styled-components';
+import { DefaultTheme, styled } from 'styled-components';
 
 interface ValueProps {
   value: any;
@@ -59,24 +59,24 @@ const Wrapper = styled.div`
 `;
 
 const TextInput = styled.input<{ iserror: boolean }>`
-  width: 303px;
-  padding: 10px 16px;
-  height: 20px;
+  width: 30.3rem;
+  padding: 1rem 1.6rem;
+  height: 2rem;
 
   z-index: 0;
 
-  border-radius: 8px;
-  border: 2px solid #000;
-  background: var(--asap-neutral-grey-7, #3f3f3f);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 0.8rem;
+  border: 2px solid ${({theme})=>theme.colors.black};
+  background: ${({theme})=>theme.colors.grey7};
+  box-shadow: 0 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.25);
 
-  caret-color: #3c49ff;
+  caret-color: ${({theme})=>theme.colors.main1};
 
   position: relative;
 
   &:focus {
     outline: none;
-    border: 2px solid ${({ iserror }) => (iserror ? '#DE4B44' : '#3c49ff')};;
+    border: 2px solid ${({ iserror, theme }) => (iserror ? theme.colors.red : theme.colors.main1)};
   }
 `;
 
@@ -87,6 +87,6 @@ const IconWrapper = styled.div`
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    right: 16px;
+    right: 1.6rem;
     cursor:pointer;
 `
