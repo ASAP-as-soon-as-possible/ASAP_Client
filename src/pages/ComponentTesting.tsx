@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import Button from 'components/atomComponents/button';
+import Text from 'components/atomComponents/Text';
 import TextInputComponents from 'components/atomComponents/textInputComponents';
 import {
   MainLogoIc,
@@ -60,6 +62,40 @@ function ComponentTesting() {
             value={inputValue}
             setValue={setInputValue}
             placeholder={"서비스 기획 1차 회의"} />
+        </CategorySection>
+        <CategorySection>
+          <h1>ReuseButton</h1>
+          <Button typeState={"primaryActive"}>
+            <Text font={"button2"}>약속 생성하기</Text>
+          </Button>
+          <Button typeState={"primaryDisabled"}>
+            <Text font={"button2"}>약속 생성하기</Text>
+          </Button>
+          <Button typeState={"secondaryActive"}>
+            <Text font={"button2"}>약속 생성하기</Text>
+          </Button>
+          <Button typeState={"secondaryDisabled"}>
+            <Text font={"button2"}>약속 생성하기</Text>
+          </Button>
+          <Button typeState={"tertiaryActive"}>
+            <Text font={"button2"}>약속 생성하기</Text>
+          </Button>
+          <Button typeState={"tertiaryDisabled"}>
+            <Text font={"button2"}>약속 생성하기</Text>
+          </Button>
+        </CategorySection>
+        <CategorySection>
+          <h1>TextComponents</h1>
+          <Text font={"head1"}>Hello</Text>
+          <Text font={"head2"}>Hello</Text>
+          <Text font={"title1"}>Hello</Text>
+          <Text font={"title2"}>Hello</Text>
+          <Text font={"body1"}>Hello</Text>
+          <Text font={"body2"}>Hello</Text>
+          <Text font={"body3"}>Hello</Text>
+          <Text font={"body4"}>Hello</Text>
+          <Text font={"button1"}>Hello</Text>
+          <Text font={"button2"}>Hello</Text>
         </CategorySection>
       </Wrapper>
     </>
