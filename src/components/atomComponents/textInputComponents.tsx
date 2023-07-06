@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
-import { InputCancelBtn, InputErrorBtn } from 'components/Icon/icon';
+import { InputCancelIc, InputErrorIc } from 'components/Icon/icon';
 import { styled } from 'styled-components';
 
 interface ValueProps {
@@ -16,6 +16,9 @@ function TextInputComponents({ value, setValue, placeholder }: ValueProps) {
 
   const [foucs, setFocus] = useState(false)
 
+  const iconClickFn = () => {
+    console.log("Im Clicked")
+  }
 
   return (
     <>
@@ -26,12 +29,13 @@ function TextInputComponents({ value, setValue, placeholder }: ValueProps) {
           onChange={handleChange}
           onFocus={() => setFocus(true)}
           onBlur={() => setFocus(false)}
-          isError={value?.length > 15}
+          iserror={value?.length > 15}
         />
-        {foucs && (<IconWrapper>
-          {value?.length > 15 ? <InputErrorBtn /> : <InputCancelBtn />}
-        </IconWrapper>)
-
+        {foucs && (
+          <IconWrapper onClick={iconClickFn}>
+            {value?.length > 15 ? <InputErrorIc /> : <InputCancelIc />}
+          </IconWrapper>
+        )
         }
 
       </Wrapper>
@@ -41,24 +45,12 @@ function TextInputComponents({ value, setValue, placeholder }: ValueProps) {
 
 export default TextInputComponents;
 
-const IconWrapper = styled.div`
-    width :fit-content;
-    height :fit-content;
-    display: flex;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 16px;
-    cursor:pointer;
-`
-
 const Wrapper = styled.div`
   position: relative;
 
   input:focus + div {
     display: flex;
     svg{
-    display: flex;
     cursor: pointer; 
     width: fit-content;
     height: fit-content;
@@ -66,7 +58,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const TextInput = styled.input<{ isError: boolean }>`
+const TextInput = styled.input<{ iserror: boolean }>`
   width: 303px;
   padding: 10px 16px;
   height: 20px;
@@ -84,6 +76,17 @@ const TextInput = styled.input<{ isError: boolean }>`
 
   &:focus {
     outline: none;
-    border: 2px solid ${({ isError }) => (isError ? '#DE4B44' : '#3c49ff')};;
+    border: 2px solid ${({ iserror }) => (iserror ? '#DE4B44' : '#3c49ff')};;
   }
 `;
+
+const IconWrapper = styled.div`
+    width :fit-content;
+    height :fit-content;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 16px;
+    cursor:pointer;
+`
