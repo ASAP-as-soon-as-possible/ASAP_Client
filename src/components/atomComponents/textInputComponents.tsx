@@ -1,12 +1,26 @@
+import React, { Dispatch, SetStateAction } from 'react';
+
 import { InputCancelBtn } from 'components/Icon/icon';
 import { styled } from 'styled-components';
 
-function TextInputComponents() {
+interface ValueProps {
+  value: any;
+  setValue: Dispatch<SetStateAction<any>>;
+  placeholder: string;
+}
+
+function TextInputComponents({ value, setValue, placeholder }: ValueProps) {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.currentTarget.value);
+  };
+
   return (
     <>
       <Wrapper>
-        <TextInput placeholder="서비스 기획 1차 회의" />
-        <InputCancelBtn />
+        <TextInput placeholder={placeholder} value={value} onChange={handleChange} />
+        <IconWrapper onClick={() => setValue("")}>
+          <InputCancelBtn />
+        </IconWrapper>
       </Wrapper>
     </>
   );
@@ -14,20 +28,26 @@ function TextInputComponents() {
 
 export default TextInputComponents;
 
-const Wrapper = styled.div`
-  position: relative;
-
-  svg {
-    display: none;
+const IconWrapper = styled.div`
+   
+    width :fit-content;
+    height :fit-content;
+    display: flex;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
     right: 16px;
-  }
+    cursor:pointer;
+`
 
-  input:focus + svg {
+const Wrapper = styled.div`
+  position: relative;
+
+  input:focus + div {
+    svg{
     display: flex;
-    cursor: pointer;
+    cursor: pointer; 
+    }
   }
 `;
 
@@ -35,6 +55,8 @@ const TextInput = styled.input`
   width: 303px;
   padding: 10px 16px;
   height: 20px;
+
+  z-index: 0;
 
   border-radius: 8px;
   border: 2px solid #000;

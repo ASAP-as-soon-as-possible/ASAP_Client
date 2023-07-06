@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import TextInputComponents from 'components/atomComponents/textInputComponents';
 import {
   BackBtn,
@@ -20,6 +22,8 @@ import {
 import { styled } from 'styled-components';
 
 function ComponentTesting() {
+  const [inputValue, setInputValue] = useState(``)
+
   return (
     <>
       <Wrapper>
@@ -52,7 +56,10 @@ function ComponentTesting() {
         </CategorySection>
         <CategorySection>
           <h1>ReuseComponents</h1>
-          <TextInputComponents />
+          <TextInputComponents
+            value={inputValue}
+            setValue={setInputValue}
+            placeholder={"서비스 기획 1차 회의"} />
         </CategorySection>
       </Wrapper>
     </>
