@@ -20,47 +20,47 @@ export default Button
 const buttonDefaultCSS = {
   basicCss : css`
   display: flex;
-  width: 303px;
-  height: 54px;
-  padding: 16px;
+  width: 30.3rem;
+  height: 5.4rem;
+  padding: 1.6rem;
   justify-content: center;
   align-items: center;
-  border-radius: 8px;
-  letter-spacing: -0.32px;
+  border-radius: 0.8rem;
+  letter-spacing: -0.032rem;
   `
 }
 
 const buttonCSS = {
   primaryActive: css`
       ${buttonDefaultCSS.basicCss};
-      background: var(--asap-main-1, #3253FF);
+      background: ${({theme})=>theme.colors.main1};
       color: #FFFFFF;
     `,
   primaryDisabled: css`
       ${buttonDefaultCSS.basicCss};
-      background: var(--asap-neutral-grey-7, #3F3F3F);
+      background: ${({theme})=>theme.colors.grey7};
       color: #A4A4A4;
     `,
   secondaryActive: css`
       ${buttonDefaultCSS.basicCss};
-      background: var(--asap-main-5, #B0BDFF);
+      background: ${({theme})=>theme.colors.main5};
       color: #252525;
     `,
   secondaryDisabled: css`
       ${buttonDefaultCSS.basicCss};
-      background: var(--asap-neutral-grey-7, #3F3F3F);
+      background: ${({theme})=>theme.colors.grey7};
       color: #787878;
     `,
   tertiaryActive: css`
     ${buttonDefaultCSS.basicCss};
     background-color: transparent;
-    border: 1px solid var(--asap-main-3, #667EFF);
+    border: 1px solid ${({theme})=>theme.colors.main3};
     color: #667EFF;
 `,
   tertiaryDisabled: css`
     ${buttonDefaultCSS.basicCss};
     background-color: transparent;
-    border: 1px solid var(--asap-neutral-grey-6, #555);
+    border: 1px solid ${({theme})=>theme.colors.grey6};
     color: #555555;
 `,
 };
