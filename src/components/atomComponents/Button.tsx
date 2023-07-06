@@ -45,36 +45,36 @@ const buttonCSS = {
   primaryDisabled: css`
       ${buttonDefaultCSS.basicCss};
       background: ${({theme})=>theme.colors.grey7};
-      color: #A4A4A4;
+      color: ${({theme})=>theme.colors.white};
     `,
   secondaryActive: css`
       ${buttonDefaultCSS.basicCss};
       background: ${({theme})=>theme.colors.main5};
-      color: #252525;
+      color:  ${({theme})=>theme.colors.grey9};
     `,
   secondaryDisabled: css`
       ${buttonDefaultCSS.basicCss};
       background: ${({theme})=>theme.colors.grey7};
-      color: #787878;
+      color: ${({theme})=>theme.colors.grey5};
     `,
   tertiaryActive: css`
     ${buttonDefaultCSS.basicCss};
     background-color: transparent;
     border: 1px solid ${({theme})=>theme.colors.main3};
-    color: #667EFF;
+    color: ${({theme})=>theme.colors.main3};
 `,
   halfTertiaryActive: css`
     ${buttonDefaultCSS.basicCss};
     width: 16rem;
     background-color: transparent;
     border: 1px solid ${({theme})=>theme.colors.main3};
-    color: #667EFF;
+    color: ${({theme})=>theme.colors.main3};
 `,
   tertiaryDisabled: css`
     ${buttonDefaultCSS.basicCss};
     background-color: transparent;
     border: 1px solid ${({theme})=>theme.colors.grey6};
-    color: #555555;
+    color: ${({theme})=>theme.colors.grey6};
 `,
 };
 
