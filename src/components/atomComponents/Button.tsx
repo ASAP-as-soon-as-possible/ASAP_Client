@@ -6,11 +6,12 @@ import { css, styled } from 'styled-components'
 interface ButtonProps {
     children: React.ReactNode,
     typeState: string
+    onClick?:()=>void
 }
 
-function Button({ children, typeState }: ButtonProps) {
+function Button({ children, typeState ,onClick }: ButtonProps) {
   return (
-    <StyledBtn type={typeState}>{children}</StyledBtn>
+    <StyledBtn type={typeState} onClick={onClick}>{children}</StyledBtn>
   )
 }
 
