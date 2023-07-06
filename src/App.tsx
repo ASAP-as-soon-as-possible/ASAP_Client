@@ -11,7 +11,7 @@ const MobileWrapper = styled.div`
   position: relative;
   margin-right: auto;
   margin-left: auto;
-  background-color: black;
+  background-color: ${({ theme }) => theme.colors.black};
 
   max-width: var(--app-max-width, 37.5rem);
 
