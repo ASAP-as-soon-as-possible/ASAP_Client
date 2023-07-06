@@ -68,6 +68,7 @@ const Div7 = styled.div`
 const Div8 = styled.div`
   background-color: #999999;
   width: 100%;
-  height: 10rem;
+  /* grid-template-columns: auto; */
+  height: 12rem;
 `;
 export default LibraryTP;
