@@ -11,9 +11,10 @@ const MobileWrapper = styled.div`
   position: relative;
   margin-right: auto;
   margin-left: auto;
+  background-color: black;
 
   max-width: var(--app-max-width, 37.5rem);
-  height: 100vh;
+
   min-height: calc(var(--vh, 1vh) * 100);
 `;
 
