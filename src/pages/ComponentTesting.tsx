@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Button from 'components/atomComponents/button';
 import Text from 'components/atomComponents/Text';
-import TextInputComponents from 'components/atomComponents/textInputComponents';
+import TextInput from 'components/atomComponents/TextInput';
 import {
   MainLogoIc,
   HambergerIc,
@@ -24,6 +24,8 @@ import {
 import { styled } from 'styled-components';
 
 function ComponentTesting() {
+
+  //TextInput component 사용시 useState 로 보내주기
   const [inputValue, setInputValue] = useState(``)
 
   return (
@@ -58,7 +60,7 @@ function ComponentTesting() {
         </CategorySection>
         <CategorySection>
           <h1>ReuseComponents</h1>
-          <TextInputComponents
+          <TextInput
             value={inputValue}
             setValue={setInputValue}
             placeholder={"서비스 기획 1차 회의"} />
@@ -113,26 +115,31 @@ export default ComponentTesting;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
   gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin-top:1rem;
+
+  width:100%;
+  height:80rem;
 `;
 
 const CategorySection = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  margin-top: 2rem;
-  padding: 1rem;
 
   gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 2rem;
 
-  border: 2px solid black;
+  border: 2px solid ${({ theme }) => theme.colors.black};
+  padding: 1rem;
+
+  height : 100%;
 `;
 
 const IconWrapper = styled.div`
-  background-color: black;
+  background-color: ${({ theme }) => theme.colors.black};
   padding: 12.35px 11px;
 `;
