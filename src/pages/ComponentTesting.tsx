@@ -14,7 +14,7 @@ import {
   PasswordEyeIc,
   LinkIc,
   PlaceIc,
-  ClockIc
+  ClockIc,
 } from 'components/Icon/icon';
 import { styled } from 'styled-components';
 
@@ -56,12 +56,12 @@ export default ComponentTesting;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  margin-top: 2rem;
 
   gap: 2rem;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 2rem;
 `;
 
 const IconWrapper = styled.div`
