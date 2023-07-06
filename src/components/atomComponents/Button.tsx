@@ -36,6 +36,12 @@ const buttonCSS = {
       background: ${({theme})=>theme.colors.main1};
       color: #FFFFFF;
     `,
+  halfPrimaryActive: css`
+  ${buttonDefaultCSS.basicCss};
+  width:16rem;
+  background: ${({theme})=>theme.colors.main1};
+  color: #FFFFFF;
+    `,
   primaryDisabled: css`
       ${buttonDefaultCSS.basicCss};
       background: ${({theme})=>theme.colors.grey7};
@@ -57,6 +63,13 @@ const buttonCSS = {
     border: 1px solid ${({theme})=>theme.colors.main3};
     color: #667EFF;
 `,
+  halfTertiaryActive: css`
+    ${buttonDefaultCSS.basicCss};
+    width: 16rem;
+    background-color: transparent;
+    border: 1px solid ${({theme})=>theme.colors.main3};
+    color: #667EFF;
+`,
   tertiaryDisabled: css`
     ${buttonDefaultCSS.basicCss};
     background-color: transparent;
@@ -70,6 +83,8 @@ ${({ type }) => {
     switch (type) {
     case "primaryActive":
       return buttonCSS.primaryActive;
+    case "halfPrimaryActive":
+      return buttonCSS.halfPrimaryActive;
     case "primaryDisabled":
       return buttonCSS.primaryDisabled;
     case "secondaryActive":
@@ -78,6 +93,8 @@ ${({ type }) => {
       return buttonCSS.secondaryDisabled;
     case "tertiaryActive":
       return buttonCSS.tertiaryActive;
+    case "halfTertiaryActive":
+      return buttonCSS.halfTertiaryActive;
     case "tertiaryDisabled":
       return buttonCSS.tertiaryDisabled;
     default:

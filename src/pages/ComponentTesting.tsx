@@ -83,6 +83,12 @@ function ComponentTesting() {
           <Button typeState={"tertiaryDisabled"}>
             <Text font={"button2"}>약속 생성하기</Text>
           </Button>
+          <Button typeState={"halfPrimaryActive"}>
+            <Text font={"button2"}>약속 생성하기</Text>
+          </Button>
+          <Button typeState={"halfTertiaryActive"}>
+            <Text font={"button2"}>약속 생성하기</Text>
+          </Button>
         </CategorySection>
         <CategorySection>
           <h1>TextComponents</h1>
