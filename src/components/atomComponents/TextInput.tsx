@@ -25,7 +25,7 @@ function TextInput({ value, setValue, placeholder }: ValueProps) {
 
   return (
     <>
-      <Wrapper>
+      <TextInputWrapper>
         <InputSection>
           <StyledTextInput
             placeholder={placeholder}
@@ -47,14 +47,14 @@ function TextInput({ value, setValue, placeholder }: ValueProps) {
           </SubTextSection>
         )
         }
-      </Wrapper>
+      </TextInputWrapper>
     </>
   );
 }
 
 export default TextInput;
 
-const Wrapper = styled.div``
+const TextInputWrapper = styled.div``
 
 const InputSection = styled.div`
   display: flex;
