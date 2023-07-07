@@ -19,7 +19,7 @@ import {
   PasswordEyeIc,
   LinkIc,
   PlaceIc,
-  ClockIc
+  ClockIc,
 } from 'components/Icon/icon';
 import { styled } from 'styled-components';
 
