@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Button from 'components/atomComponents/button';
+import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import {
@@ -67,7 +67,7 @@ function ComponentTesting() {
         </CategorySection>
         <CategorySection>
           <h1>ReuseButton</h1>
-          <Button typeState={"primaryActive"}>
+          <Button typeState={"primaryActive"} onClick={()=>console.log("Hello world")}>
             <Text font={"button2"}>약속 생성하기</Text>
           </Button>
           <Button typeState={"primaryDisabled"}>
