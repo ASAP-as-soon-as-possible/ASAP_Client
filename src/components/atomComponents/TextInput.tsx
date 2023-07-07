@@ -6,8 +6,8 @@ import { styled } from 'styled-components';
 
 
 interface ValueProps {
-  value: any;
-  setValue: Dispatch<SetStateAction<any>>;
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
   placeholder: string;
 }
 
@@ -45,7 +45,7 @@ function TextInput({ value, setValue, placeholder }: ValueProps) {
           <SubTextSection>
             <Text font={"body4"}>공백포함 최대 15자까지 입력가능해요</Text>
           </SubTextSection>
-         )
+        )
         }
       </Wrapper>
     </>
@@ -80,8 +80,9 @@ const StyledTextInput = styled.input<{ iserror: boolean }>`
   box-shadow: 0 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.25);
   background: ${({ theme }) => theme.colors.grey7};
   padding: 1rem 1.6rem;
-  width: 30.3rem;
-  height: 2rem;
+
+  width: 33.5rem;
+  height: 5.2rem;
 
   caret-color: ${({ theme }) => theme.colors.main1};
 
