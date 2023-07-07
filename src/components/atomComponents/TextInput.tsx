@@ -72,7 +72,6 @@ const InputSection = styled.div`
 `;
 
 const StyledTextInput = styled.input<{ iserror: boolean }>`
-
   position: relative;
   border: 2px solid ${({ theme }) => theme.colors.black};
 
@@ -85,6 +84,8 @@ const StyledTextInput = styled.input<{ iserror: boolean }>`
   height: 5.2rem;
 
   caret-color: ${({ theme }) => theme.colors.main1};
+
+  color : ${({ theme }) => theme.colors.white};
 
   &:focus {
     outline: none;
