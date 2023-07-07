@@ -35,13 +35,13 @@ const buttonCSS = {
   primaryActive: css`
       ${buttonDefaultCSS.basicCss};
       background: ${({ theme }) => theme.colors.main1};
-      color: #FFFFFF;
+      color: ${({ theme }) => theme.colors.white};
     `,
   halfPrimaryActive: css`
       ${buttonDefaultCSS.basicCss};
       background: ${({ theme }) => theme.colors.main1};
       width:16rem;
-      color: #FFFFFF;
+      color: ${({ theme }) => theme.colors.white};
     `,
   primaryDisabled: css`
       ${buttonDefaultCSS.basicCss};
