@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
-import TitleComponents from 'components/moleculesComponents/TitleComponents';
+import TitleComponents from 'components/moleculesComponents/TitleComponent';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
 
