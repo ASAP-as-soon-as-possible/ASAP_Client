@@ -7,5 +7,6 @@
   "semi": true,
   "useTabs": false,
   "endOfLine": "lf",
-  "bracketSameLine": false
+  "bracketSameLine": false,
+  "arrowParens": "always"
 }
