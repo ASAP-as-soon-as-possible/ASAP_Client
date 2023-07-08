@@ -96,7 +96,7 @@ function ComponentTesting() {
           {buttonType.map((type, i) => {
             return (
               <Button key={i} typeState={type} onClick={() => console.log(`${type}`)}>
-                <Text font={'button2'} color={`${theme.colors.black}`}>
+                <Text font={'button2'} >
                   약속 생성하기
                 </Text>
               </Button>
