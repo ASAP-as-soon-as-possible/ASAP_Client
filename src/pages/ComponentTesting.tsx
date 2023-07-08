@@ -22,11 +22,35 @@ import {
   ClockIc,
 } from 'components/Icon/icon';
 import { styled } from 'styled-components';
+import { theme } from 'styles/theme';
+
+const buttonType: string[] = [
+  'primaryActive',
+  'primaryDisabled',
+  'secondaryActive',
+  'secondaryDisabled',
+  'tertiaryActive',
+  'tertiaryDisabled',
+  'halfPrimaryActive',
+  'halfTertiaryActive',
+];
+
+const textComponentsType: string[] = [
+  'head2',
+  'title1',
+  'title2',
+  'body1',
+  'body2',
+  'body3',
+  'body4',
+  'head1',
+  'button1',
+  'button2',
+];
 
 function ComponentTesting() {
-
   //TextInput component 사용시 useState 로 보내주기
-  const [inputValue, setInputValue] = useState(``)
+  const [inputValue, setInputValue] = useState(``);
 
   return (
     <>
@@ -63,47 +87,31 @@ function ComponentTesting() {
           <TextInput
             value={inputValue}
             setValue={setInputValue}
-            placeholder={"서비스 기획 1차 회의"} />
+            placeholder={'서비스 기획 1차 회의'}
+          />
         </CategorySection>
         <CategorySection>
           <h1>ReuseButton</h1>
-          <Button typeState={"primaryActive"} onClick={()=>console.log("Hello world")}>
-            <Text font={"button2"}>약속 생성하기</Text>
-          </Button>
-          <Button typeState={"primaryDisabled"}>
-            <Text font={"button2"}>약속 생성하기</Text>
-          </Button>
-          <Button typeState={"secondaryActive"}>
-            <Text font={"button2"}>약속 생성하기</Text>
-          </Button>
-          <Button typeState={"secondaryDisabled"}>
-            <Text font={"button2"}>약속 생성하기</Text>
-          </Button>
-          <Button typeState={"tertiaryActive"}>
-            <Text font={"button2"}>약속 생성하기</Text>
-          </Button>
-          <Button typeState={"tertiaryDisabled"}>
-            <Text font={"button2"}>약속 생성하기</Text>
-          </Button>
-          <Button typeState={"halfPrimaryActive"}>
-            <Text font={"button2"}>약속 생성하기</Text>
-          </Button>
-          <Button typeState={"halfTertiaryActive"}>
-            <Text font={"button2"}>약속 생성하기</Text>
-          </Button>
+
+          {buttonType.map((type, i) => {
+            return (
+              <Button key={i} typeState={type} onClick={() => console.log(`${type}`)}>
+                <Text font={'button2'} color={`${theme.colors.black}`}>
+                  약속 생성하기
+                </Text>
+              </Button>
+            );
+          })}
         </CategorySection>
         <CategorySection>
           <h1>TextComponents</h1>
-          <Text font={"head1"}>Hello</Text>
-          <Text font={"head2"}>Hello</Text>
-          <Text font={"title1"}>Hello</Text>
-          <Text font={"title2"}>Hello</Text>
-          <Text font={"body1"}>Hello</Text>
-          <Text font={"body2"}>Hello</Text>
-          <Text font={"body3"}>Hello</Text>
-          <Text font={"body4"}>Hello</Text>
-          <Text font={"button1"}>Hello</Text>
-          <Text font={"button2"}>Hello</Text>
+          {textComponentsType.map((type, i) => {
+            return (
+              <Text key={i} font={type} color={`${theme.colors.black}`}>
+                Hello
+              </Text>
+            );
+          })}
         </CategorySection>
       </Wrapper>
     </>
@@ -118,10 +126,10 @@ const Wrapper = styled.div`
   gap: 2rem;
   align-items: center;
   justify-content: center;
-  margin-top:1rem;
+  margin-top: 1rem;
 
-  width:100%;
-  height:80rem;
+  width: 100%;
+  height: 80rem;
 `;
 
 const CategorySection = styled.section`
@@ -136,7 +144,7 @@ const CategorySection = styled.section`
   border: 2px solid ${({ theme }) => theme.colors.black};
   padding: 1rem;
 
-  height : 100%;
+  height: 100%;
 `;
 
 const IconWrapper = styled.div`
