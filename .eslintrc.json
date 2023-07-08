@@ -31,7 +31,7 @@
     "no-unused-vars": "error", //사용하지 않은 변수면 없애기
     "no-multiple-empty-lines": "error", //공백 금지
     "no-undef": "error", //정의 안 한 변수 사용 x
-    // "indent": ["error", 2], //들여쓰기 2칸!
+    "indent": "off", // 프리티어 충돌로 인한 OFF
     "no-trailing-spaces": "error", // 쓸데없는 공백 없애기
     "import/newline-after-import": ["error", { "count": 1 }], //import 구문들 뒤에 한 칸 띄우고 코드 작성
     "react-hooks/rules-of-hooks": "error", // 리액트 훅의 순서를 지키게끔 한다. (React는 Hook이 호출되는 순서에 의존하기 때문에)
