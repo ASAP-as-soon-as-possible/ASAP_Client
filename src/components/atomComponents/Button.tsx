@@ -10,9 +10,9 @@ interface ButtonProps {
 
 function Button({ children, typeState, onClick }: ButtonProps) {
   return (
-    <StyledBtn $type={typeState} onClick={onClick}>
+    <ButtonWrapper $type={typeState} onClick={onClick}>
       {children}
-    </StyledBtn>
+    </ButtonWrapper>
   );
 }
 
@@ -79,7 +79,7 @@ const buttonCSS = {
   `,
 };
 
-const StyledBtn = styled.button<{ $type: string }>`
+const ButtonWrapper = styled.button<{ $type: string }>`
   ${({ $type }) => {
     switch ($type) {
       case 'primaryActive':

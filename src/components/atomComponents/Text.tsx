@@ -6,12 +6,12 @@ interface ValueProps {
 }
 
 function Text({ children, font }: ValueProps) {
-  return <StyledSpan $font={font}>{children}</StyledSpan>;
+  return <TextWrapper $font={font}>{children}</TextWrapper>;
 }
 
 export default Text;
 
-const StyledSpan = styled.span<{ $font: string }>`
+const TextWrapper = styled.span<{ $font: string }>`
   ${({ $font, theme }) => {
     switch ($font) {
       case 'head1':
