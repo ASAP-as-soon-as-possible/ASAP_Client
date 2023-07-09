@@ -4,19 +4,30 @@ import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import Header from 'components/moleculesComponents/Header';
-import TitleComponents from 'components/moleculesComponents/TitleComponent';
+import ReturnTitleComponent from 'hooks/ReturnTitleComponent';
 import styled from 'styled-components/macro';
 
+// 차후 이용계획
+// const funnelStep = [
+//   'title',
+//   'availableDates',
+//   'preferTimes',
+//   'place',
+//   'duration',
+//   'hostInfo',
+//   'additionalInfo',
+// ];
+
 function ViewTesting() {
+  const [step, setStep] = useState(0);
   const [inputValue, setInputValue] = useState(``);
   return (
     <>
       <ViewTestingWrapper>
-        <Header />
-        <TitleComponents
-          main={'어떤 회의를 계획중인가요?'}
-          sub={'회의 이름을 지어주세요 (최대 15자)'}
-        />
+        <Header setStep={setStep} />
+
+        <ReturnTitleComponent step={step} />
+
         <TextInput
           value={inputValue}
           setValue={setInputValue}
@@ -26,12 +37,10 @@ function ViewTesting() {
           <Button
             typeState={inputValue && inputValue.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-              inputValue && inputValue.length < 16 ? () => console.log('im clickable') : undefined
+              inputValue && inputValue.length < 16 ? () => setStep((prev) => prev + 1) : undefined
             }
           >
-            <Text font={'button2'} >
-              약속 생성하기
-            </Text>
+            <Text font={'button2'}>약속 생성하기</Text>
           </Button>
         </StyledBtnWrapper>
       </ViewTestingWrapper>
