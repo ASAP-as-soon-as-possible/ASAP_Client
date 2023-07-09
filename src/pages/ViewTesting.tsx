@@ -4,7 +4,7 @@ import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import Header from 'components/moleculesComponents/Header';
-import ReturnTitleComponent from 'hooks/ReturnTitleComponent';
+import ReturnTitleComponent from 'src/hooks/ReturnTitleComponent';
 import styled from 'styled-components/macro';
 
 // 차후 이용계획
@@ -37,7 +37,7 @@ function ViewTesting() {
           <Button
             typeState={inputValue && inputValue.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-              inputValue && inputValue.length < 16 ? () => setStep(prev => prev + 1) : undefined
+              inputValue && inputValue.length < 16 ? () => setStep((prev) => prev + 1) : undefined
             }
           >
             <Text font={'button2'}>약속 생성하기</Text>
