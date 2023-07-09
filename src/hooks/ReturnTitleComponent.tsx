@@ -1,16 +1,6 @@
 
 import TitleComponents from 'components/moleculesComponents/TitleComponent';
 
-const funnelStep = [
-  'title',
-  'availableDates',
-  'preferTimes',
-  'place',
-  'duration',
-  'hostInfo',
-  'additionalInfo',
-];
-
 interface FunnelSteps {
     [key: string]: {
       main: string;
@@ -49,11 +39,11 @@ const funnelSteps:FunnelSteps = {
   };
 
   interface ReturnProps {
-    step: number;
+    step: string;
   }
 
   function ReturnTitleComponent({ step }: ReturnProps) {
-    const currentStep = funnelSteps[funnelStep[step]];
+    const currentStep = funnelSteps[step];
 
     return (
       <TitleComponents main={currentStep?.main} sub={currentStep?.sub} />

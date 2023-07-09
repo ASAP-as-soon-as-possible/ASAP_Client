@@ -7,26 +7,27 @@ import Header from 'components/moleculesComponents/Header';
 import ReturnTitleComponent from 'hooks/ReturnTitleComponent';
 import styled from 'styled-components/macro';
 
-// 차후 이용계획
-// const funnelStep = [
-//   'title',
-//   'availableDates',
-//   'preferTimes',
-//   'place',
-//   'duration',
-//   'hostInfo',
-//   'additionalInfo',
-// ];
+const funnelStep = [
+  'title',
+  'availableDates',
+  'preferTimes',
+  'place',
+  'duration',
+  'hostInfo',
+  'additionalInfo',
+];
 
 function ViewTesting() {
   const [step, setStep] = useState(0);
   const [inputValue, setInputValue] = useState(``);
+
+  const currentStep = funnelStep[step]
   return (
     <>
       <ViewTestingWrapper>
         <Header setStep={setStep} />
 
-        <ReturnTitleComponent step={step} />
+        <ReturnTitleComponent step={currentStep} />
 
         <TextInput
           value={inputValue}
@@ -37,7 +38,12 @@ function ViewTesting() {
           <Button
             typeState={inputValue && inputValue.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-              inputValue && inputValue.length < 16 ? () => setStep((prev) => prev + 1) : undefined
+              inputValue && inputValue.length < 16 ? () => setStep((prev) => {
+                if (prev === 6) {
+                  return prev;
+                }
+                return prev + 1;
+              }): undefined
             }
           >
             <Text font={'button2'}>약속 생성하기</Text>
