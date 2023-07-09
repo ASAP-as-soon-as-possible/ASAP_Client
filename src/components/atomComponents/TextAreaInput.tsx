@@ -16,18 +16,18 @@ function TextAreaInput({ value, setValue, placeholder }: ValueProps) {
   };
 
   return (
-    <MultiLineInputWrapper>
+    <TextAreaWrapper>
       <StyledTextArea placeholder={placeholder} value={value} onChange={textOnChange} />
       <CountingLetterSection>
         <Text font={'body3'} color={`${theme.colors.grey5}`} >{`(${value?.length} / 50자)`}</Text>
       </CountingLetterSection>
-    </MultiLineInputWrapper>
+    </TextAreaWrapper>
   );
 }
 
 export default TextAreaInput;
 
-const MultiLineInputWrapper = styled.div`
+const TextAreaWrapper = styled.div`
   position:relative;
 `;
 
