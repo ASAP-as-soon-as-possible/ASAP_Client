@@ -15,9 +15,42 @@ const funnelStep = [
   'additionalInfo',
 ];
 
+interface MeetingInfo {
+  title: string;
+  availableDates: string[];
+  preferTimes: {
+    startTime: string;
+    endTime: string;
+  }[];
+  place: string;
+  placeDetail: string;
+  duration: string;
+  name: string;
+  password: string;
+  additionalInfo: string;
+}
+
 function CreateMetting() {
+
+  const initialMettingInfo : MeetingInfo = {
+    title: "",
+    availableDates: [""],
+    preferTimes: [
+      {
+        startTime: "",
+        endTime: ""
+      }
+    ],
+    place: "",
+    placeDetail: "",
+    duration: "",
+    name: "",
+    password: "",
+    additionalInfo: ""
+  };
+
   const [step, setStep] = useState(0);
-  const [inputValue, setInputValue] = useState(``);
+  const [meetingInfo, setMeetingInfo] = useState(initialMettingInfo);
 
   const currentStep = funnelStep[step];
   return (
@@ -29,8 +62,8 @@ function CreateMetting() {
 
         <ReturnBodyComponent
           currentStep={currentStep}
-          inputValue={inputValue}
-          setInputValue={setInputValue}
+          meetingInfo={meetingInfo}
+          setMeetingInfo={setMeetingInfo}
           setStep={setStep}
         />
       </ViewTestingWrapper>

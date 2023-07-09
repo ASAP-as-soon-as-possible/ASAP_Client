@@ -5,23 +5,41 @@ import { InputCancelIc, InputErrorIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
+interface MeetingInfo {
+  title: string;
+  availableDates: string[];
+  preferTimes: {
+    startTime: string;
+    endTime: string;
+  }[];
+  place: string;
+  placeDetail: string;
+  duration: string;
+  name: string;
+  password: string;
+  additionalInfo: string;
+}
 
 interface ValueProps {
   value: string;
-  setValue: Dispatch<SetStateAction<string>>;
+  setValue: Dispatch<SetStateAction<MeetingInfo>>;
   placeholder: string;
 }
 
 function TextInput({ value, setValue, placeholder }: ValueProps) {
   const textOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.value);
+    setValue((prev : MeetingInfo) => {
+      return { ...prev, title: e.target.value };
+    });
   };
 
   const [focus, setFocus] = useState(false)
 
   const resetOnClick = () => {
     setFocus(false)
-    setValue(``)
+    setValue((prev : MeetingInfo) => {
+      return { ...prev, title: ``};
+    });
   }
 
   return (

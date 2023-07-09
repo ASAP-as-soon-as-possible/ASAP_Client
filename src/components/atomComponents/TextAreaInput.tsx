@@ -4,22 +4,40 @@ import Text from 'components/atomComponents/Text';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
+interface MeetingInfo {
+  title: string;
+  availableDates: string[];
+  preferTimes: {
+    startTime: string;
+    endTime: string;
+  }[];
+  place: string;
+  placeDetail: string;
+  duration: string;
+  name: string;
+  password: string;
+  additionalInfo: string;
+}
+
+
 interface ValueProps {
-  value: string;
-  setValue: Dispatch<SetStateAction<string>>;
+  value: MeetingInfo;
+  setValue: Dispatch<SetStateAction<MeetingInfo>>;
   placeholder: string;
 }
 
 function TextAreaInput({ value, setValue, placeholder }: ValueProps) {
   const textOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.currentTarget.value);
+    setValue((prev : MeetingInfo) => {
+      return { ...prev, additionalInfo: e.target.value };
+    });
   };
 
   return (
     <TextAreaWrapper>
-      <StyledTextArea placeholder={placeholder} value={value} onChange={textOnChange} maxLength={49}/>
+      <StyledTextArea placeholder={placeholder} value={value.additionalInfo} onChange={textOnChange} maxLength={49}/>
       <CountingLetterSection>
-        <Text font={'body3'} color={`${theme.colors.grey5}`} >{`(${value?.length} / 50자)`}</Text>
+        <Text font={'body3'} color={`${theme.colors.grey5}`} >{`(${value?.additionalInfo.length} / 50자)`}</Text>
       </CountingLetterSection>
     </TextAreaWrapper>
   );

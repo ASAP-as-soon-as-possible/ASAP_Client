@@ -6,10 +6,25 @@ import TextAreaInput from 'components/atomComponents/TextAreaInput';
 import TextInput from 'components/atomComponents/TextInput';
 import styled from 'styled-components/macro';
 
+interface MeetingInfo {
+    title: string;
+    availableDates: string[];
+    preferTimes: {
+      startTime: string;
+      endTime: string;
+    }[];
+    place: string;
+    placeDetail: string;
+    duration: string;
+    name: string;
+    password: string;
+    additionalInfo: string;
+  }
+
 interface BodyProps {
   currentStep: string;
-  inputValue: string;
-  setInputValue: Dispatch<SetStateAction<string>>;
+  meetingInfo: MeetingInfo;
+  setMeetingInfo: Dispatch<SetStateAction<MeetingInfo>>;
   setStep: Dispatch<SetStateAction<number>>;
 }
 
@@ -17,20 +32,21 @@ type BodyType = {
   [key: string]: React.JSX.Element;
 };
 
-function ReturnBodyComponent({ currentStep, inputValue, setInputValue, setStep }: BodyProps) {
+function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep }: BodyProps) {
+
   const BodyType: BodyType = {
     title: (
       <>
         <TextInput
-          value={inputValue}
-          setValue={setInputValue}
+          value={meetingInfo.title}
+          setValue={setMeetingInfo}
           placeholder={'서비스 기획 1차 회의'}
         />
         <StyledBtnWrapper>
           <Button
-            typeState={inputValue && inputValue.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
+            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-              inputValue && inputValue.length < 16
+                meetingInfo?.title && meetingInfo?.title?.length < 16
                 ? () =>
                     setStep((prev) => {
                       if (prev === 6) {
@@ -47,12 +63,12 @@ function ReturnBodyComponent({ currentStep, inputValue, setInputValue, setStep }
       </>
     ),
     availableDates: (
-      <>
+        <>
         <StyledBtnWrapper>
           <Button
-            typeState={inputValue && inputValue.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
+            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-              inputValue && inputValue.length < 16
+                meetingInfo?.title && meetingInfo?.title?.length < 16
                 ? () =>
                     setStep((prev) => {
                       if (prev === 6) {
@@ -69,12 +85,12 @@ function ReturnBodyComponent({ currentStep, inputValue, setInputValue, setStep }
       </>
     ),
     preferTimes: (
-      <>
+        <>
         <StyledBtnWrapper>
           <Button
-            typeState={inputValue && inputValue.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
+            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-              inputValue && inputValue.length < 16
+                meetingInfo?.title && meetingInfo?.title?.length < 16
                 ? () =>
                     setStep((prev) => {
                       if (prev === 6) {
@@ -91,12 +107,12 @@ function ReturnBodyComponent({ currentStep, inputValue, setInputValue, setStep }
       </>
     ),
     place: (
-      <>
+        <>
         <StyledBtnWrapper>
           <Button
-            typeState={inputValue && inputValue.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
+            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-              inputValue && inputValue.length < 16
+                meetingInfo?.title && meetingInfo?.title?.length < 16
                 ? () =>
                     setStep((prev) => {
                       if (prev === 6) {
@@ -113,12 +129,12 @@ function ReturnBodyComponent({ currentStep, inputValue, setInputValue, setStep }
       </>
     ),
     duration: (
-      <>
+        <>
         <StyledBtnWrapper>
           <Button
-            typeState={inputValue && inputValue.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
+            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-              inputValue && inputValue.length < 16
+                meetingInfo?.title && meetingInfo?.title?.length < 16
                 ? () =>
                     setStep((prev) => {
                       if (prev === 6) {
@@ -135,12 +151,12 @@ function ReturnBodyComponent({ currentStep, inputValue, setInputValue, setStep }
       </>
     ),
     hostInfo: (
-      <>
+        <>
         <StyledBtnWrapper>
           <Button
-            typeState={inputValue && inputValue.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
+            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-              inputValue && inputValue.length < 16
+                meetingInfo?.title && meetingInfo?.title?.length < 16
                 ? () =>
                     setStep((prev) => {
                       if (prev === 6) {
@@ -159,15 +175,15 @@ function ReturnBodyComponent({ currentStep, inputValue, setInputValue, setStep }
     additionalInfo: (
       <>
         <TextAreaInput
-          value={inputValue}
-          setValue={setInputValue}
+          value={meetingInfo}
+          setValue={setMeetingInfo}
           placeholder={'회의 안건, 준비물 등 회의와 관련하여 알리고 싶은 추가 내용을 적어 보세요.'}
         />
         <StyledBtnWrapper>
           <Button
-            typeState={inputValue ? 'primaryActive' : 'tertiaryActive'}
+            typeState={meetingInfo.additionalInfo ? 'primaryActive' : 'tertiaryActive'}
             onClick={
-              inputValue && inputValue.length < 16
+                meetingInfo.additionalInfo
                 ? () =>
                     setStep((prev) => {
                       if (prev === 6) {
@@ -178,7 +194,7 @@ function ReturnBodyComponent({ currentStep, inputValue, setInputValue, setStep }
                 : undefined
             }
           >
-            <Text font={'button2'}>{inputValue ? `회의  생성하기`: `건너뛰기`}</Text>
+            <Text font={'button2'}>{meetingInfo.additionalInfo ? `회의  생성하기`: `건너뛰기`}</Text>
           </Button>
         </StyledBtnWrapper>
       </>
