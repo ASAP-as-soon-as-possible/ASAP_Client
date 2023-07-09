@@ -37,7 +37,7 @@ function ViewTesting() {
           <Button
             typeState={inputValue && inputValue.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-              inputValue && inputValue.length < 16 ? () => setStep((prev) => prev + 1) : undefined
+              inputValue && inputValue.length < 16 ? () => setStep(prev => prev + 1) : undefined
             }
           >
             <Text font={'button2'}>약속 생성하기</Text>
