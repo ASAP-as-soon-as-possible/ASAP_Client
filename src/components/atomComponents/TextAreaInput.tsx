@@ -17,7 +17,7 @@ function TextAreaInput({ value, setValue, placeholder }: ValueProps) {
 
   return (
     <TextAreaWrapper>
-      <StyledTextArea placeholder={placeholder} value={value} onChange={textOnChange} />
+      <StyledTextArea placeholder={placeholder} value={value} onChange={textOnChange} maxlength={50}/>
       <CountingLetterSection>
         <Text font={'body3'} color={`${theme.colors.grey5}`} >{`(${value?.length} / 50자)`}</Text>
       </CountingLetterSection>

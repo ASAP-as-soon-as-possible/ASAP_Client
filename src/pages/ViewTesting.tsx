@@ -4,7 +4,7 @@ import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import Header from 'components/moleculesComponents/Header';
-import ReturnTitleComponent from 'src/hooks/ReturnTitleComponent';
+import ReturnTitleComponent from 'hooks/ReturnTitleComponent';
 import styled from 'styled-components/macro';
 
 // 차후 이용계획
