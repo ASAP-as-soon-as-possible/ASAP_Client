@@ -5,10 +5,10 @@
     "baseUrl": ".",
     "paths": {
       "components/*": ["src/components/*"],
-      "hooks/*": ["src/hooks/*"],
+      "hooks/*": ["src/Hooks/*"],
       "pages/*": ["src/pages/*"],
       "assets/*": ["src/assets/*"],
-      "styles/*": ["src/styles/*"]
+      "styles/*": ["src/styles/*"],
     },
     "useDefineForClassFields": true,
     // "lib": ["ES2020", "DOM", "DOM.Iterable"],
