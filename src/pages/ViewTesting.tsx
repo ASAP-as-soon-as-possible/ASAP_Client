@@ -5,7 +5,7 @@ import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import Header from 'components/moleculesComponents/Header';
 import TitleComponents from 'components/moleculesComponents/TitleComponent';
-import { styled } from 'styled-components';
+import styled from 'styled-components/macro';
 
 function ViewTesting() {
   const [inputValue, setInputValue] = useState(``);

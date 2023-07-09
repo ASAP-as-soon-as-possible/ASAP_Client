@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from 'styled-components/macro';
 
 interface ValueProps {
   children: string;
@@ -8,7 +8,7 @@ interface ValueProps {
 
 function Text({ children, font, color }: ValueProps) {
   return (
-    <TextWrapper $font={font} $color={color || 'defaultColor' }>
+    <TextWrapper $font={font} $color={color || 'defaultColor'}>
       {children}
     </TextWrapper>
   );

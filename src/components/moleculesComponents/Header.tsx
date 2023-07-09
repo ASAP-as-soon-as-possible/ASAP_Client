@@ -1,8 +1,6 @@
-import React from 'react';
-
 import Text from 'components/atomComponents/Text';
 import { BackIc, HambergerIc } from 'components/Icon/icon';
-import { styled } from 'styled-components';
+import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 function Header() {

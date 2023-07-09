@@ -1,5 +1,5 @@
 import Text from 'components/atomComponents/Text';
-import { styled } from 'styled-components';
+import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 interface TextProps {

@@ -21,7 +21,7 @@ import {
   PlaceIc,
   ClockIc,
 } from 'components/Icon/icon';
-import { styled } from 'styled-components';
+import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 const buttonType: string[] = [
@@ -96,9 +96,7 @@ function ComponentTesting() {
           {buttonType.map((type, i) => {
             return (
               <Button key={i} typeState={type} onClick={() => console.log(`${type}`)}>
-                <Text font={'button2'} >
-                  약속 생성하기
-                </Text>
+                <Text font={'button2'}>약속 생성하기</Text>
               </Button>
             );
           })}
