@@ -58,6 +58,12 @@ const buttonCSS = {
     background: ${({ theme }) => theme.colors.grey7};
     color: ${({ theme }) => theme.colors.grey5};
   `,
+  halfsecondaryDisabled: css`
+    ${buttonDefaultCSS.basicCss};
+    background: ${({ theme }) => theme.colors.grey7};
+    width: 16rem;
+    color: ${({ theme }) => theme.colors.grey5};
+  `,
   tertiaryActive: css`
     ${buttonDefaultCSS.basicCss};
     border: 1px solid ${({ theme }) => theme.colors.main3};
@@ -92,6 +98,8 @@ const ButtonWrapper = styled.button<{ $type: string }>`
         return buttonCSS.secondaryActive;
       case 'secondaryDisabled':
         return buttonCSS.secondaryDisabled;
+      case 'halfsecondaryDisabled':
+        return buttonCSS.halfsecondaryDisabled;
       case 'tertiaryActive':
         return buttonCSS.tertiaryActive;
       case 'halfTertiaryActive':
