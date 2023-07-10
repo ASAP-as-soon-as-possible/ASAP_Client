@@ -61,7 +61,7 @@ const buttonCSS = {
   halfsecondaryDisabled: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.grey7};
-    width: 16rem;
+    width: 15.2rem;
     color: ${({ theme }) => theme.colors.grey5};
   `,
   tertiaryActive: css`
