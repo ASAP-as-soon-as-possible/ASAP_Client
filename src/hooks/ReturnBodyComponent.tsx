@@ -5,6 +5,7 @@ import Text from 'components/atomComponents/Text';
 import TextAreaInput from 'components/atomComponents/TextAreaInput';
 import TextInput from 'components/atomComponents/TextInput';
 import styled from 'styled-components/macro';
+import { theme } from 'styles/theme';
 
 interface MeetingInfo {
     title: string;
@@ -32,8 +33,18 @@ type BodyType = {
   [key: string]: React.JSX.Element;
 };
 
+const durationType = [
+  "30분",
+  "1시간",
+  "1시간 30분",
+  "2시간",
+  "2시간 30분",
+  "3시간"
+]
+
 function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep }: BodyProps) {
 
+  console.log(meetingInfo)
   const BodyType: BodyType = {
     title: (
       <>
@@ -130,6 +141,13 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
     ),
     duration: (
         <>
+        <DurationWrapper>
+          {durationType.map((duration , i)=>{
+            return (<Button key={i} typeState={`halfsecondaryDisabled`} >
+            <Text font={'button2'}>{duration}</Text>
+          </Button>)
+          })}
+        </DurationWrapper>
         <StyledBtnWrapper>
           <Button
             typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
@@ -152,6 +170,16 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
     ),
     hostInfo: (
         <>
+        <HostInfoWrapper>
+          <HostNameSection>
+          <Text font={`title2`} color={`${theme.colors.white}`}>방장 이름</Text>
+          <TextInput
+          value={meetingInfo.name}
+          setValue={setMeetingInfo}
+          placeholder={`호스트 이름`}
+          />
+          </HostNameSection>
+        </HostInfoWrapper>
         <StyledBtnWrapper>
           <Button
             typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
@@ -217,3 +245,21 @@ const StyledBtnWrapper = styled.section`
   bottom: 1.2rem;
   border-radius: 50%;
 `;
+
+const DurationWrapper = styled.div`
+  display:flex;
+  flex-wrap: wrap;
+  gap:1.1rem;
+
+  justify-content:center;
+`
+const HostNameSection =styled.section`
+  display: flex;
+  flex-direction: column;
+  gap:1rem;
+`
+
+
+const HostInfoWrapper = styled.div`
+
+`
