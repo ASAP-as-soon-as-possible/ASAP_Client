@@ -4,20 +4,18 @@ import Text from 'components/atomComponents/Text';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-
 interface ValueProps {
   value: string;
-  setValue:(e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  setValue: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder: string;
 }
 
 function TextAreaInput({ value, setValue, placeholder }: ValueProps) {
-
   return (
     <TextAreaWrapper>
-      <StyledTextArea placeholder={placeholder} value={value} onChange={setValue} maxLength={50}/>
+      <StyledTextArea placeholder={placeholder} value={value} onChange={setValue} maxLength={50} />
       <CountingLetterSection>
-        <Text font={'body3'} color={`${theme.colors.grey5}`} >{`(${value.length} / 50자)`}</Text>
+        <Text font={'body3'} color={`${theme.colors.grey5}`}>{`(${value.length} / 50자)`}</Text>
       </CountingLetterSection>
     </TextAreaWrapper>
   );
@@ -26,7 +24,7 @@ function TextAreaInput({ value, setValue, placeholder }: ValueProps) {
 export default TextAreaInput;
 
 const TextAreaWrapper = styled.div`
-  position:relative;
+  position: relative;
 `;
 
 const StyledTextArea = styled.textarea`
@@ -45,7 +43,7 @@ const StyledTextArea = styled.textarea`
 `;
 
 const CountingLetterSection = styled.section`
-  position:absolute;
-  right:1.8rem;
-  bottom:1.8rem;
+  position: absolute;
+  right: 1.8rem;
+  bottom: 1.8rem;
 `;
