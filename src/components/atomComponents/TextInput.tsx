@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 import Text from 'components/atomComponents/Text';
 import { InputCancelIc, InputErrorIc } from 'components/Icon/icon';
 import { styled } from 'styled-components';
+import { theme } from 'styles/theme';
 
 
 interface ValueProps {
@@ -43,7 +44,7 @@ function TextInput({ value, setValue, placeholder }: ValueProps) {
         </InputSection>
         {value?.length > 15 && (
           <SubTextSection>
-            <Text font={"body4"}>공백포함 최대 15자까지 입력가능해요</Text>
+            <Text font={"body4"} color={`${theme.colors.red}`}>공백포함 최대 15자까지 입력가능해요</Text>
           </SubTextSection>
         )
         }
@@ -108,7 +109,6 @@ const SubTextSection = styled.div`
   margin-top: 0.9rem;
 
   span {
-    color:${({ theme }) => theme.colors.red};
     font-weight: 600;
   }
 `
