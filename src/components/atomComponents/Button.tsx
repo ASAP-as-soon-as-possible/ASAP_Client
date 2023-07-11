@@ -3,15 +3,14 @@ import React from 'react';
 import { styled, css } from 'styled-components';
 
 interface ButtonProps {
-  name?:string,
   children: React.ReactNode;
   typeState: string;
   onClick?: (e:React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-function Button({ name, children, typeState, onClick }: ButtonProps) {
+function Button({ children, typeState, onClick }: ButtonProps) {
   return (
-    <ButtonWrapper $type={typeState} name={name} onClick={onClick}>
+    <ButtonWrapper $type={typeState} onClick={onClick}>
       {children}
     </ButtonWrapper>
   );
@@ -20,7 +19,7 @@ function Button({ name, children, typeState, onClick }: ButtonProps) {
 export default Button;
 
 const buttonDefaultCSS = {
-  basicCss: css`
+    basicCss: css`
     display: flex;
     align-items: center;
     justify-content: center;
