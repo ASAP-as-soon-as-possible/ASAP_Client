@@ -54,7 +54,7 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
 
   console.log(meetingInfo)
 
-  const handleButtonClick = (place: string) => {
+  const placeDetailClick = (place: string) => {
     setMeetingInfo((prev) => ({ ...prev, place ,placeDetail: ""}));
   };
 
@@ -135,7 +135,7 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
         <PlaceInfoWrapper>
           {placeType.map((type , i)=>{
             return (<PlaceSetion key={i+type}>
-                      <Button typeState={meetingInfo?.place === type ? 'primaryActive' : 'secondaryDisabled'} name={type} onClick={()=>handleButtonClick(type)}>
+                      <Button typeState={meetingInfo?.place === type ? 'primaryActive' : 'secondaryDisabled'} onClick={()=>placeDetailClick(type)}>
                           <Text font={'button2'}>{type === "ONLINE"?"온라인": type ==="OFFLINE"?"오프라인":"미정"}</Text>
                       </Button>
                       {type === "UNDEFIND" ? null : meetingInfo?.place === type ? <PlaceInput
