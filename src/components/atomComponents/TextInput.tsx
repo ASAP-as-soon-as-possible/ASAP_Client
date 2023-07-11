@@ -63,7 +63,7 @@ function TextInput({ data , value, setValue, placeholder }: ValueProps) {
           />
           {focus && (
             <IconContainer onClick={resetOnClick}>
-              {value?.length > 15 ? <InputErrorIc /> : <InputCancelIc />}
+              {value?.length > 15 ? <InputErrorIc />:<InputCancelIc />}
             </IconContainer>
           )
           }
@@ -92,8 +92,8 @@ const InputSection = styled.div`
     display: flex;
     svg{
       cursor: pointer; 
-      width: fit-content;
-      height: fit-content;
+      width: 2rem;
+      height: 2rem;
     }
   }
 `;
@@ -127,8 +127,8 @@ const IconContainer = styled.div`
     right: 1.6rem;
     transform: translateY(-50%);
     cursor:pointer;
-    width :fit-content;
-    height :fit-content;
+    width :2rem;
+    height :2rem;
 `
 
 const SubTextSection = styled.div` 
