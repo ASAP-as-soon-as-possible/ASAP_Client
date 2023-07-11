@@ -12,7 +12,7 @@ interface MeetingInfo {
     startTime: string;
     endTime: string;
   }[];
-  place: string;
+  place: string | undefined;
   placeDetail: string;
   duration: string;
   name: string;
