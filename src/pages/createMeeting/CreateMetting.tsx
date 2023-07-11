@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import Header from 'components/moleculesComponents/Header';
-import ReturnBodyComponent from 'hooks/ReturnBodyComponent';
-import ReturnTitleComponent from 'hooks/ReturnTitleComponent';
+import ReturnBodyComponent from 'pages/createMeeting/components/ReturnBodyComponent';
+import ReturnTitleComponent from 'pages/createMeeting/components/ReturnTitleComponent';
 import styled from 'styled-components/macro';
 
 const funnelStep = [

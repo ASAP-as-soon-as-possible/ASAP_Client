@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
+import PlaceInput from 'components/atomComponents/PlaceInput';
 import Text from 'components/atomComponents/Text';
 import TextAreaInput from 'components/atomComponents/TextAreaInput';
 import TextInput from 'components/atomComponents/TextInput';
@@ -24,7 +25,6 @@ import {
 } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import PlaceInput from 'components/atomComponents/PlaceInput';
 
 const buttonType: string[] = [
   'primaryActive',
@@ -101,7 +101,7 @@ function ComponentTesting() {
               '회의 안건, 준비물 등 회의와 관련하여 알리고 싶은 추가 내용을 적어 보세요.'
             }
           /> */}
-          <PlaceInput />
+          {/* <PlaceInput /> */}
         </CategorySection>
         <CategorySection>
           <h1>ReuseButton</h1>
