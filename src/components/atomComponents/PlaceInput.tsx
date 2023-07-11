@@ -1,22 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import { InputCancelIc } from 'components/Icon/icon';
+import { MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
-
-interface MeetingInfo {
-  title: string;
-  availableDates: string[];
-  preferTimes: {
-    startTime: string;
-    endTime: string;
-  }[];
-  place: string | undefined;
-  placeDetail: string;
-  duration: string;
-  name: string;
-  password: string;
-  additionalInfo: string;
-}
 
 interface ValueProps {
   data : string;

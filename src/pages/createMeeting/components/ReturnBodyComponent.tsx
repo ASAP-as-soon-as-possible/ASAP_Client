@@ -9,20 +9,7 @@ import TextInput from 'components/atomComponents/TextInput';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-interface MeetingInfo {
-    title: string;
-    availableDates: string[];
-    preferTimes: {
-      startTime: string;
-      endTime: string;
-    }[];
-    place: string | undefined;
-    placeDetail: string;
-    duration: string;
-    name: string;
-    password: string;
-    additionalInfo: string;
-}
+import { MeetingInfo } from '../types/useFunnelInterface';
 
 interface BodyProps {
   currentStep: string;

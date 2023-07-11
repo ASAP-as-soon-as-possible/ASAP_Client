@@ -1,23 +1,9 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
 import Text from 'components/atomComponents/Text';
+import { MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-
-interface MeetingInfo {
-  title: string;
-  availableDates: string[];
-  preferTimes: {
-    startTime: string;
-    endTime: string;
-  }[];
-  place: string | undefined;
-  placeDetail: string;
-  duration: string;
-  name: string;
-  password: string;
-  additionalInfo: string;
-}
 
 
 interface ValueProps {

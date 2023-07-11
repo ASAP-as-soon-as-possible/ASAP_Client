@@ -5,6 +5,8 @@ import ReturnBodyComponent from 'pages/createMeeting/components/ReturnBodyCompon
 import ReturnTitleComponent from 'pages/createMeeting/components/ReturnTitleComponent';
 import styled from 'styled-components/macro';
 
+import { MeetingInfo } from './types/useFunnelInterface';
+
 const funnelStep = [
   'title',
   'availableDates',
@@ -14,21 +16,6 @@ const funnelStep = [
   'hostInfo',
   'additionalInfo',
 ];
-
-interface MeetingInfo {
-  title: string;
-  availableDates: string[];
-  preferTimes: {
-    startTime: string;
-    endTime: string;
-  }[];
-  place: string | undefined;
-  placeDetail: string ;
-  duration: string;
-  name: string;
-  password: string;
-  additionalInfo: string;
-}
 
 function CreateMetting() {
 

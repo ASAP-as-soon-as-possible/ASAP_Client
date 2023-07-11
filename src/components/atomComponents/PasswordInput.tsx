@@ -5,20 +5,7 @@ import { PasswordEyeIc, PasswordOpenEyeIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-interface MeetingInfo {
-  title: string;
-  availableDates: string[];
-  preferTimes: {
-    startTime: string;
-    endTime: string;
-  }[];
-  place: string | undefined;
-  placeDetail: string;
-  duration: string;
-  name: string;
-  password: string;
-  additionalInfo: string;
-}
+import { MeetingInfo } from '../../pages/createMeeting/types/useFunnelInterface';
 
 interface ValueProps {
   value: string;
