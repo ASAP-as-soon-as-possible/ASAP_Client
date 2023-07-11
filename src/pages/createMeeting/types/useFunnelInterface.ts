@@ -1,3 +1,5 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface MeetingInfo {
     title: string;
     availableDates: string[];
@@ -11,4 +13,10 @@ export interface MeetingInfo {
     name: string;
     password: string;
     additionalInfo: string;
+}
+
+export interface funnelProps {
+  meetingInfo: MeetingInfo;
+  setMeetingInfo: Dispatch<SetStateAction<MeetingInfo>>;
+  setStep: Dispatch<SetStateAction<number>>;
 }

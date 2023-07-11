@@ -6,10 +6,11 @@ import PlaceInput from 'components/atomComponents/PlaceInput';
 import Text from 'components/atomComponents/Text';
 import TextAreaInput from 'components/atomComponents/TextAreaInput';
 import TextInput from 'components/atomComponents/TextInput';
+import { durationType, placeType } from 'pages/createMeeting/data/meetingInfoData'
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-import { durationType, placeType } from '../data/MeetingInfoData';
+import SetTitle from './useFunnel/SetTitle';
 import { MeetingInfo } from '../types/useFunnelInterface';
 
 interface BodyProps {
@@ -37,18 +38,6 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
     });
   };
 
-  const titleOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
-    setMeetingInfo((prev : MeetingInfo ) => {
-      return { ...prev, title: e.target.value };
-    });
-  };
-
-  const resetTitle = () => {
-    setMeetingInfo((prev : MeetingInfo ) => {
-      return { ...prev, title: "" };
-    });
-  };
-
   const hostOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
     setMeetingInfo((prev : MeetingInfo ) => {
       return { ...prev, name: e.target.value };
@@ -72,30 +61,7 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
   const BodyType: BodyType = {
     title: (
       <>
-        <TextInput
-          value={meetingInfo.title}
-          setValue={titleOnChange}
-          resetValue={resetTitle}
-          placeholder={'서비스 기획 1차 회의'}
-        />
-        <StyledBtnWrapper>
-          <Button
-            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
-            onClick={
-                meetingInfo?.title && meetingInfo?.title?.length < 16
-                ? () =>
-                    setStep((prev) => {
-                      if (prev === 6) {
-                        return prev;
-                      }
-                      return prev + 1;
-                    })
-                : undefined
-            }
-          >
-            <Text font={'button2'}>다음</Text>
-          </Button>
-        </StyledBtnWrapper>
+        <SetTitle meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
       </>
     )
     ,
