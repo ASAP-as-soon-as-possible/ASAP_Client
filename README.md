@@ -1,6 +1,8 @@
 # 🏃 당신이 회의 시작 전부터 지치지 않도록, ASAP 💨
 
-![스크린샷 2023-06-25 오전 10.39.11.png](https://file.notion.so/f/s/565ddabf-da39-4a5d-86cf-576ec9565c35/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-25_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_10.39.11.png?id=236bce01-c208-4cc0-bd95-99fb3e10f47f&table=block&spaceId=d69f1f1a-07df-4a11-a0c5-0f1d851fda9c&expirationTimestamp=1688932800000&signature=X77-3Ys2WBNyQmERhiaCUNvnAuCTQJ3arem2tXge4dE&downloadName=%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA+2023-06-25+%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB+10.39.11.png)
+![BRANDING 1_PLAN](https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/2526c8a1-21e7-471d-bce8-db8874a5cc5c)
+![BRANDING 3_PLAN](https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/ddf9b475-a825-4577-8e14-b8d190a864b2)
+
 
 ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽고 빠르고 간편하게 처리해주는 웹서비스입니다.
 
