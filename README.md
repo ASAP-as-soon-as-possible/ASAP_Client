@@ -164,7 +164,7 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
    |-- 📁 styles ( GlobalStyles , theme.ts )
    |-- 📁 utils ( 재사용이 높은 함수모음 폴더 )
        |-- 📁 apis
-       |-- 📁 mocks
+       |-- 📁 mocks
    |-- 📁 Routes
        |-- Router.tsx (라우터 파일)
 |-- App.tsx
