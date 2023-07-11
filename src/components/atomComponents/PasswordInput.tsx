@@ -54,7 +54,8 @@ function PasswordInput({ value, setValue, placeholder }: ValueProps) {
             </IconContainer>
         </InputSection>
           <SubTextSection>
-            <Text font={"body4"} color={`${theme.colors.sub1}`}>* 확정 후 비밀번호는 수정할 수 없으며, 비밀번호가 있어야 방장 페이지에 접속할 수 있으니 반드시 기억해주세요!</Text>
+          <Text font={"body4"} color={`${theme.colors.sub1}`}>*</Text>
+            <Text font={"body4"} color={`${theme.colors.sub1}`}>확정 후 비밀번호는 수정할 수 없으며, 비밀번호가 있어야 방장 페이지에 접속할 수 있으니 반드시 기억해주세요!</Text>
           </SubTextSection>
       </PasswordInputWrapper>
     </>
@@ -114,6 +115,9 @@ const IconContainer = styled.div`
 `
 
 const SubTextSection = styled.div` 
+  display: flex;
+  flex-direction: row;
+  gap:0.4rem;
   margin-top: 0.9rem;
 
   span {
