@@ -1,24 +1,17 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { PasswordEyeIc, PasswordOpenEyeIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-import { MeetingInfo } from '../../pages/createMeeting/types/useFunnelInterface';
-
 interface ValueProps {
   value: string;
-  setValue: Dispatch<SetStateAction<MeetingInfo>>;
   placeholder: string;
+  passWordOnChange:(e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-function PasswordInput({ value, setValue, placeholder }: ValueProps) {
-  const passWordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((prev : MeetingInfo) => {
-      return { ...prev, password: e.target.value };
-    });
-  };
+function PasswordInput({ value, placeholder , passWordOnChange}: ValueProps) {
 
   const [inputType , setInputType] = useState(true)
 

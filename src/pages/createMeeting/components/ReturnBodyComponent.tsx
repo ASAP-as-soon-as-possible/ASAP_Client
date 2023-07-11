@@ -31,6 +31,12 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
     setMeetingInfo((prev) => ({ ...prev, place ,placeDetail: ""}));
   };
 
+  const passWordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMeetingInfo((prev : MeetingInfo) => {
+      return { ...prev, password: e.target.value };
+    });
+  };
+
   const BodyType: BodyType = {
     title: (
       <>
@@ -192,8 +198,8 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
           <Text font={`title2`} color={`${theme.colors.white}`}>방 비밀번호</Text>
           <PasswordInput
           value={meetingInfo.password}
-          setValue={setMeetingInfo}
           placeholder={`비밀번호`}
+          passWordOnChange={passWordOnChange}
           />
           </HostNameSection>
         </HostInfoWrapper>
