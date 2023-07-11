@@ -22,7 +22,7 @@ interface MeetingInfo {
     name: string;
     password: string;
     additionalInfo: string;
-  }
+}
 
 interface BodyProps {
   currentStep: string;
@@ -59,8 +59,7 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
   };
 
   const BodyType: BodyType = {
-    title: (
-      <>
+    title: (<>
         <TextInput
           data={"title"}
           value={meetingInfo.title}
@@ -85,10 +84,10 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
             <Text font={'button2'}>다음</Text>
           </Button>
         </StyledBtnWrapper>
-      </>
-    ),
+      </>)
+    ,
     availableDates: (
-        <>
+      <>
         <StyledBtnWrapper>
           <Button
             typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
@@ -110,7 +109,7 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
       </>
     ),
     preferTimes: (
-        <>
+      <>
         <StyledBtnWrapper>
           <Button
             typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
@@ -132,10 +131,10 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
       </>
     ),
     place: (
-        <>
+      <>
         <PlaceInfoWrapper>
           {placeType.map((type , i)=>{
-            return (<PlaceSetion key={i}>
+            return (<PlaceSetion key={i+type}>
                       <Button typeState={meetingInfo?.place === type ? 'primaryActive' : 'secondaryDisabled'} name={type} onClick={()=>handleButtonClick(type)}>
                           <Text font={'button2'}>{type === "ONLINE"?"온라인": type ==="OFFLINE"?"오프라인":"미정"}</Text>
                       </Button>
@@ -146,7 +145,7 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
                         placeholder={type === "ONLINE"?"(선택) 화상 회의 툴을 입력해주세요":"(선택) 구체적인 장소명을 입력해주세요"}
                       /> : null
                       }
-            </PlaceSetion>)
+                </PlaceSetion>)
           })}
         </PlaceInfoWrapper>
         <StyledBtnWrapper>
@@ -170,10 +169,10 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
       </>
     ),
     duration: (
-        <>
+      <>
         <DurationWrapper>
           {durationType.map((duration , i)=>{
-            return (<Button key={i} typeState={meetingInfo.duration === duration ? `halfPrimaryActive`:`halfsecondaryDisabled`} onClick={()=>{
+            return (<Button key={i+duration} typeState={meetingInfo.duration === duration ? `halfPrimaryActive`:`halfsecondaryDisabled`} onClick={()=>{
               setMeetingInfo((prev : MeetingInfo) => {
                 return { ...prev, duration: duration };
               });
@@ -203,7 +202,7 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
       </>
     ),
     hostInfo: (
-        <>
+      <>
         <HostInfoWrapper>
           <HostNameSection>
           <Text font={`title2`} color={`${theme.colors.white}`}>방장 이름</Text>
@@ -302,7 +301,6 @@ const HostNameSection =styled.section`
   gap:1rem;
   
 `
-
 const HostInfoWrapper = styled.div`
   display:flex;
   flex-direction: column;
