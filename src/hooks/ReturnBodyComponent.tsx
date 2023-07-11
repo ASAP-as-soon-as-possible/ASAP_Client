@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import PasswordInput from 'components/atomComponents/PasswordInput';
+import PlaceInput from 'components/atomComponents/PlaceInput';
 import Text from 'components/atomComponents/Text';
 import TextAreaInput from 'components/atomComponents/TextAreaInput';
 import TextInput from 'components/atomComponents/TextInput';
@@ -15,7 +16,7 @@ interface MeetingInfo {
       startTime: string;
       endTime: string;
     }[];
-    place: string;
+    place: string | undefined;
     placeDetail: string;
     duration: string;
     name: string;
@@ -43,15 +44,25 @@ const durationType = [
   "3시간"
 ]
 
+const placeType = [
+  "ONLINE" ,
+  "OFFLINE" ,
+  "UNDEFIND"
+]
+
 function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep }: BodyProps) {
 
   console.log(meetingInfo)
+
+  const handleButtonClick = (place: string) => {
+    setMeetingInfo((prev) => ({ ...prev, place ,placeDetail: ""}));
+  };
 
   const BodyType: BodyType = {
     title: (
       <>
         <TextInput
-          data={`title`}
+          data={"title"}
           value={meetingInfo.title}
           setValue={setMeetingInfo}
           placeholder={'서비스 기획 1차 회의'}
@@ -122,11 +133,27 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
     ),
     place: (
         <>
+        <PlaceInfoWrapper>
+          {placeType.map((type , i)=>{
+            return (<PlaceSetion key={i}>
+                      <Button typeState={meetingInfo?.place === type ? 'primaryActive' : 'secondaryDisabled'} name={type} onClick={()=>handleButtonClick(type)}>
+                          <Text font={'button2'}>{type === "ONLINE"?"온라인": type ==="OFFLINE"?"오프라인":"미정"}</Text>
+                      </Button>
+                      {type === "UNDEFIND" ? null : meetingInfo?.place === type ? <PlaceInput
+                        data={type}
+                        value={meetingInfo.placeDetail}
+                        setValue={setMeetingInfo}
+                        placeholder={type === "ONLINE"?"(선택) 화상 회의 툴을 입력해주세요":"(선택) 구체적인 장소명을 입력해주세요"}
+                      /> : null
+                      }
+            </PlaceSetion>)
+          })}
+        </PlaceInfoWrapper>
         <StyledBtnWrapper>
           <Button
-            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
+            typeState={meetingInfo.place ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-                meetingInfo?.title && meetingInfo?.title?.length < 16
+                meetingInfo.place
                 ? () =>
                     setStep((prev) => {
                       if (prev === 6) {
@@ -281,4 +308,14 @@ const HostInfoWrapper = styled.div`
   flex-direction: column;
   gap:3.4rem;
   padding : 0 2rem;
+`
+
+const PlaceInfoWrapper = styled.div`
+  display:flex;
+  flex-direction: column;
+  gap:1rem;
+`
+
+const PlaceSetion = styled.section`
+
 `
