@@ -37,13 +37,37 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
     });
   };
 
+  const titleOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
+    setMeetingInfo((prev : MeetingInfo ) => {
+      return { ...prev, title: e.target.value };
+    });
+  };
+
+  const resetTitle = () => {
+    setMeetingInfo((prev : MeetingInfo ) => {
+      return { ...prev, title: "" };
+    });
+  };
+
+  const hostOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
+    setMeetingInfo((prev : MeetingInfo ) => {
+      return { ...prev, name: e.target.value };
+    });
+  };
+
+  const resetHost = () => {
+    setMeetingInfo((prev : MeetingInfo ) => {
+      return { ...prev, name: "" };
+    });
+  };
+
   const BodyType: BodyType = {
     title: (
       <>
         <TextInput
-          data={"title"}
           value={meetingInfo.title}
-          setValue={setMeetingInfo}
+          setValue={titleOnChange}
+          resetValue={resetTitle}
           placeholder={'서비스 기획 1차 회의'}
         />
         <StyledBtnWrapper>
@@ -188,18 +212,18 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
           <HostNameSection>
           <Text font={`title2`} color={`${theme.colors.white}`}>방장 이름</Text>
           <TextInput
-          data={`name`}
-          value={meetingInfo.name}
-          setValue={setMeetingInfo}
-          placeholder={`호스트 이름`}
+            value={meetingInfo.name}
+            setValue={hostOnChange}
+            resetValue={resetHost}
+            placeholder={'방장 이름'}
           />
           </HostNameSection>
           <HostNameSection>
           <Text font={`title2`} color={`${theme.colors.white}`}>방 비밀번호</Text>
           <PasswordInput
-          value={meetingInfo.password}
-          placeholder={`비밀번호`}
-          passWordOnChange={passWordOnChange}
+            value={meetingInfo.password}
+            placeholder={`방 비밀번호`}
+            passWordOnChange={passWordOnChange}
           />
           </HostNameSection>
         </HostInfoWrapper>

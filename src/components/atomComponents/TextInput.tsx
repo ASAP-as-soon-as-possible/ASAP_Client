@@ -1,39 +1,24 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { InputCancelIc, InputErrorIc } from 'components/Icon/icon';
-import { MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 interface ValueProps {
-  data : string;
   value: string;
-  setValue: Dispatch<SetStateAction<MeetingInfo>>;
+  setValue:( e: React.ChangeEvent<HTMLInputElement>)=>void;
+  resetValue: ()=>void;
   placeholder: string;
 }
 
-function TextInput({ data , value, setValue, placeholder }: ValueProps) {
-
-  const textOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((prev : MeetingInfo ) => {
-      return { ...prev, title: e.target.value };
-    });
-  };
-
-  const hostOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((prev : MeetingInfo ) => {
-      return { ...prev, name: e.target.value };
-    });
-  };
+function TextInput({ value, setValue, resetValue , placeholder }: ValueProps) {
 
   const [focus, setFocus] = useState(false)
 
   const resetOnClick = () => {
     setFocus(false)
-    setValue((prev : MeetingInfo) => {
-      return { ...prev, title: ``};
-    });
+    resetValue()
   }
 
   return (
@@ -43,7 +28,7 @@ function TextInput({ data , value, setValue, placeholder }: ValueProps) {
           <StyledTextInput
             placeholder={placeholder}
             value={value}
-            onChange={data === "title" ? textOnChange : hostOnChange}
+            onChange={setValue}
             onFocus={() => setFocus(true)}
             $iserror={value?.length > 15}
           />
