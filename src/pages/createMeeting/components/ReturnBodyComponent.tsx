@@ -15,6 +15,8 @@ import { MeetingInfo } from '../types/useFunnelInterface';
 import SetPlace from './useFunnel/SetPlace';
 import SetDates from './useFunnel/SetDates';
 import SetTimes from './useFunnel/SetTimes';
+import SetDuration from './useFunnel/SetDuration';
+import SetHostInfo from './useFunnel/SetHostInfo';
 
 interface BodyProps {
   currentStep: string;
@@ -30,24 +32,6 @@ type BodyType = {
 function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep }: BodyProps) {
 
   console.log(meetingInfo)
-
-  const passWordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMeetingInfo((prev : MeetingInfo) => {
-      return { ...prev, password: e.target.value };
-    });
-  };
-
-  const hostOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
-    setMeetingInfo((prev : MeetingInfo ) => {
-      return { ...prev, name: e.target.value };
-    });
-  };
-
-  const resetHost = () => {
-    setMeetingInfo((prev : MeetingInfo ) => {
-      return { ...prev, name: "" };
-    });
-  };
 
   const textAreaOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if(e.target.value.length < 51) {
@@ -81,76 +65,12 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
     ),
     duration: (
       <>
-        <DurationWrapper>
-          {durationType.map((duration , i)=>{
-            return (<Button key={i+duration} typeState={meetingInfo.duration === duration ? `halfPrimaryActive`:`halfsecondaryDisabled`} onClick={()=>{
-              setMeetingInfo((prev : MeetingInfo) => {
-                return { ...prev, duration: duration };
-              });
-            }} >
-            <Text font={'button2'}>{duration}</Text>
-          </Button>)
-          })}
-        </DurationWrapper>
-        <StyledBtnWrapper>
-          <Button
-            typeState={meetingInfo?.duration ? 'primaryActive' : 'secondaryDisabled'}
-            onClick={
-              meetingInfo?.duration
-                ? () =>
-                    setStep((prev) => {
-                      if (prev === 6) {
-                        return prev;
-                      }
-                      return prev + 1;
-                    })
-                : undefined
-            }
-          >
-            <Text font={'button2'}>다음</Text>
-          </Button>
-        </StyledBtnWrapper>
+        <SetDuration meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
       </>
     ),
     hostInfo: (
       <>
-        <HostInfoWrapper>
-          <HostNameSection>
-          <Text font={`title2`} color={`${theme.colors.white}`}>방장 이름</Text>
-          <TextInput
-            value={meetingInfo.name}
-            setValue={hostOnChange}
-            resetValue={resetHost}
-            placeholder={'방장 이름'}
-          />
-          </HostNameSection>
-          <HostNameSection>
-          <Text font={`title2`} color={`${theme.colors.white}`}>방 비밀번호</Text>
-          <PasswordInput
-            value={meetingInfo.password}
-            placeholder={`방 비밀번호`}
-            passWordOnChange={passWordOnChange}
-          />
-          </HostNameSection>
-        </HostInfoWrapper>
-        <StyledBtnWrapper>
-          <Button
-            typeState={meetingInfo?.name && meetingInfo?.password.length >= 4 ? 'primaryActive' : 'secondaryDisabled'}
-            onClick={
-              meetingInfo?.name && meetingInfo?.password.length >= 4
-                ? () =>
-                    setStep((prev) => {
-                      if (prev === 6) {
-                        return prev;
-                      }
-                      return prev + 1;
-                    })
-                : undefined
-            }
-          >
-            <Text font={'button2'}>다음</Text>
-          </Button>
-        </StyledBtnWrapper>
+       <SetHostInfo meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
       </>
     ),
     additionalInfo: (
