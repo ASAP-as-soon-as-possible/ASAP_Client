@@ -14,6 +14,7 @@ import SetTitle from './useFunnel/SetTitle';
 import { MeetingInfo } from '../types/useFunnelInterface';
 import SetPlace from './useFunnel/SetPlace';
 import SetDates from './useFunnel/SetDates';
+import SetTimes from './useFunnel/SetTimes';
 
 interface BodyProps {
   currentStep: string;
@@ -70,24 +71,7 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
     ),
     preferTimes: (
       <>
-        <StyledBtnWrapper>
-          <Button
-            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
-            onClick={
-                meetingInfo?.title && meetingInfo?.title?.length < 16
-                ? () =>
-                    setStep((prev) => {
-                      if (prev === 6) {
-                        return prev;
-                      }
-                      return prev + 1;
-                    })
-                : undefined
-            }
-          >
-            <Text font={'button2'}>다음</Text>
-          </Button>
-        </StyledBtnWrapper>
+        <SetTimes meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
       </>
     ),
     place: (
