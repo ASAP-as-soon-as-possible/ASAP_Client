@@ -145,19 +145,30 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 	|-- 📁 components 
 		|-- 📁 atomComponents (button , input , Text 등 재사용의 가장 작은 단위)
 		|-- 📁 moleculesComponents (Header , TitleComponents 등 재사용될만한 큼지막한 단위)
-		|-- 📁 Icon(React Icon Components)
+		|-- 📁 icons(React Icon Components)
 	|-- 📁 pages
-		|-- Onboarding.tsx 
-		|-- Onboarding.tsx 
-		|-- Onboarding.tsx 
-		|-- Onboarding.tsx
-		|-- Onboarding.tsx
+    |-- 📁Onboarding
+        |-- 📁components
+        |-- 📁types
+        |-- 📁hooks
+        |-- 📁utils
+        |-- Onboarding.tsx
+		|-- 📁UseFunnel
+        |-- 📁components
+        |-- 📁types
+        |-- 📁hooks
+        |-- 📁utils
+        |-- UseFunnel.tsx
 	|-- 📁 hooks (커스텀 훅을 담아두는 폴더)
 	|-- 📁 atoms (Recoil 전역적으로 사용될 상태 폴더)
 		|-- atom.ts (ex.유저정보 등 필요 atom)
+    |-- atom.ts (ex.시간표 등 필요 atom)
 	|-- 📁 styles ( GlobalStyles , theme.ts )
 	|-- 📁 utils ( 재사용이 높은 함수모음 폴더 )
-|-- Router.tsx (라우터 파일) 
+			|-- 📁 api
+	|-- 📁 Routes
+			|-- Router.tsx (라우터 파일)
+      |-- Router (라우터 파일)
 |-- App.tsx
 |-- main.tsx
 |-- .eslintrc.json
