@@ -28,9 +28,11 @@ interface ValueProps {
 
 function TextAreaInput({ value, setValue, placeholder }: ValueProps) {
   const textOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if(e.target.value.length < 51) {
     setValue((prev : MeetingInfo) => {
       return { ...prev, additionalInfo: e.target.value };
     });
+  }
   };
 
   return (
