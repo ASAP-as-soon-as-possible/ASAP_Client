@@ -40,7 +40,7 @@ const buttonCSS = {
   halfPrimaryActive: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.main1};
-    width: 16rem;
+    width: 15.2rem;
     color: ${({ theme }) => theme.colors.white};
   `,
   primaryDisabled: css`

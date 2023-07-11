@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
 import Button from 'components/atomComponents/Button';
+import PasswordInput from 'components/atomComponents/PasswordInput';
 import Text from 'components/atomComponents/Text';
 import TextAreaInput from 'components/atomComponents/TextAreaInput';
 import TextInput from 'components/atomComponents/TextInput';
@@ -45,10 +46,12 @@ const durationType = [
 function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep }: BodyProps) {
 
   console.log(meetingInfo)
+
   const BodyType: BodyType = {
     title: (
       <>
         <TextInput
+          data={`title`}
           value={meetingInfo.title}
           setValue={setMeetingInfo}
           placeholder={'서비스 기획 1차 회의'}
@@ -143,7 +146,11 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
         <>
         <DurationWrapper>
           {durationType.map((duration , i)=>{
-            return (<Button key={i} typeState={`halfsecondaryDisabled`} >
+            return (<Button key={i} typeState={meetingInfo.duration === duration ? `halfPrimaryActive`:`halfsecondaryDisabled`} onClick={()=>{
+              setMeetingInfo((prev : MeetingInfo) => {
+                return { ...prev, duration: duration };
+              });
+            }} >
             <Text font={'button2'}>{duration}</Text>
           </Button>)
           })}
@@ -174,9 +181,18 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
           <HostNameSection>
           <Text font={`title2`} color={`${theme.colors.white}`}>방장 이름</Text>
           <TextInput
+          data={`name`}
           value={meetingInfo.name}
           setValue={setMeetingInfo}
           placeholder={`호스트 이름`}
+          />
+          </HostNameSection>
+          <HostNameSection>
+          <Text font={`title2`} color={`${theme.colors.white}`}>방 비밀번호</Text>
+          <PasswordInput
+          value={meetingInfo.password}
+          setValue={setMeetingInfo}
+          placeholder={`비밀번호`}
           />
           </HostNameSection>
         </HostInfoWrapper>
@@ -257,9 +273,12 @@ const HostNameSection =styled.section`
   display: flex;
   flex-direction: column;
   gap:1rem;
+  
 `
 
-
 const HostInfoWrapper = styled.div`
-
+  display:flex;
+  flex-direction: column;
+  gap:3.4rem;
+  padding : 0 2rem;
 `
