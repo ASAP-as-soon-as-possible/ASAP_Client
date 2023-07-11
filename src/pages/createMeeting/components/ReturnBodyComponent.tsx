@@ -13,6 +13,7 @@ import { theme } from 'styles/theme';
 import SetTitle from './useFunnel/SetTitle';
 import { MeetingInfo } from '../types/useFunnelInterface';
 import SetPlace from './useFunnel/SetPlace';
+import SetDates from './useFunnel/SetDates';
 
 interface BodyProps {
   currentStep: string;
@@ -64,24 +65,7 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
     ,
     availableDates: (
       <>
-        <StyledBtnWrapper>
-          <Button
-            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
-            onClick={
-                meetingInfo?.title && meetingInfo?.title?.length < 16
-                ? () =>
-                    setStep((prev) => {
-                      if (prev === 6) {
-                        return prev;
-                      }
-                      return prev + 1;
-                    })
-                : undefined
-            }
-          >
-            <Text font={'button2'}>다음</Text>
-          </Button>
-        </StyledBtnWrapper>
+        <SetDates meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
       </>
     ),
     preferTimes: (
