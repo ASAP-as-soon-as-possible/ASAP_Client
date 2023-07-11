@@ -61,6 +61,14 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
     });
   };
 
+  const textAreaOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    if(e.target.value.length < 51) {
+      setMeetingInfo((prev : MeetingInfo) => {
+      return { ...prev, additionalInfo: e.target.value };
+    });
+  }
+  };
+
   const BodyType: BodyType = {
     title: (
       <>
@@ -250,8 +258,8 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
     additionalInfo: (
       <>
         <TextAreaInput
-          value={meetingInfo}
-          setValue={setMeetingInfo}
+          value={meetingInfo.additionalInfo}
+          setValue={textAreaOnChange}
           placeholder={'회의 안건, 준비물 등 회의와 관련하여 알리고 싶은 추가 내용을 적어 보세요.'}
         />
         <StyledBtnWrapper>

@@ -1,31 +1,23 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 
 import Text from 'components/atomComponents/Text';
-import { MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 
 interface ValueProps {
-  value: MeetingInfo;
-  setValue: Dispatch<SetStateAction<MeetingInfo>>;
+  value: string;
+  setValue:(e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder: string;
 }
 
 function TextAreaInput({ value, setValue, placeholder }: ValueProps) {
-  const textOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if(e.target.value.length < 51) {
-    setValue((prev : MeetingInfo) => {
-      return { ...prev, additionalInfo: e.target.value };
-    });
-  }
-  };
 
   return (
     <TextAreaWrapper>
-      <StyledTextArea placeholder={placeholder} value={value.additionalInfo} onChange={textOnChange} maxLength={50}/>
+      <StyledTextArea placeholder={placeholder} value={value} onChange={setValue} maxLength={50}/>
       <CountingLetterSection>
-        <Text font={'body3'} color={`${theme.colors.grey5}`} >{`(${value?.additionalInfo.length} / 50자)`}</Text>
+        <Text font={'body3'} color={`${theme.colors.grey5}`} >{`(${value.length} / 50자)`}</Text>
       </CountingLetterSection>
     </TextAreaWrapper>
   );
