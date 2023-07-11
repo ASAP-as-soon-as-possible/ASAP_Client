@@ -22,8 +22,8 @@ interface MeetingInfo {
     startTime: string;
     endTime: string;
   }[];
-  place: string;
-  placeDetail: string;
+  place: string | undefined;
+  placeDetail: string ;
   duration: string;
   name: string;
   password: string;
