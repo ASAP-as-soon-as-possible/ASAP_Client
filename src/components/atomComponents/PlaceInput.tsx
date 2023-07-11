@@ -1,9 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
-import Text from 'components/atomComponents/Text';
-import { InputCancelIc, InputErrorIc } from 'components/Icon/icon';
+import { InputCancelIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
-import { theme } from 'styles/theme';
 
 interface MeetingInfo {
   title: string;
