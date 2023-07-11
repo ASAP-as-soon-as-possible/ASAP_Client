@@ -80,8 +80,8 @@ const InputSection = styled.div`
     display: flex;
     svg{
       cursor: pointer; 
-      width: fit-content;
-      height: fit-content;
+      width: 2rem;
+      height: 2rem;
     }
   }
 `;
@@ -89,7 +89,7 @@ const InputSection = styled.div`
 const StyledTextInput = styled.input<{ $iserror: boolean }>`
   position: relative;
   outline: none;
-  /* border: 2px solid ${({ theme }) => theme.colors.black}; */
+  
   border:none;
   border-bottom :2px solid ${({ theme }) => theme.colors.grey4};
   background-color: transparent;
@@ -117,6 +117,6 @@ const IconContainer = styled.div`
     right: 1.6rem;
     transform: translateY(-50%);
     cursor:pointer;
-    width :fit-content;
-    height :fit-content;
+    width :2rem;
+    height :2rem;
 `
