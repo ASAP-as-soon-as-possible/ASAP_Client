@@ -9,6 +9,7 @@ import TextInput from 'components/atomComponents/TextInput';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
+import { durationType, placeType } from '../data/MeetingInfoData';
 import { MeetingInfo } from '../types/useFunnelInterface';
 
 interface BodyProps {
@@ -22,31 +23,17 @@ type BodyType = {
   [key: string]: React.JSX.Element;
 };
 
-const durationType = [
-  "30분",
-  "1시간",
-  "1시간 30분",
-  "2시간",
-  "2시간 30분",
-  "3시간"
-]
-
-const placeType = [
-  "ONLINE" ,
-  "OFFLINE" ,
-  "UNDEFIND"
-]
-
 function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep }: BodyProps) {
 
   console.log(meetingInfo)
 
-  const placeDetailClick = (place: string) => {
+  const setPlaceDetail = (place: string) => {
     setMeetingInfo((prev) => ({ ...prev, place ,placeDetail: ""}));
   };
 
   const BodyType: BodyType = {
-    title: (<>
+    title: (
+      <>
         <TextInput
           data={"title"}
           value={meetingInfo.title}
@@ -71,7 +58,8 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
             <Text font={'button2'}>다음</Text>
           </Button>
         </StyledBtnWrapper>
-      </>)
+      </>
+    )
     ,
     availableDates: (
       <>
@@ -122,7 +110,7 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
         <PlaceInfoWrapper>
           {placeType.map((type , i)=>{
             return (<PlaceSetion key={i+type}>
-                      <Button typeState={meetingInfo?.place === type ? 'primaryActive' : 'secondaryDisabled'} onClick={()=>placeDetailClick(type)}>
+                      <Button typeState={meetingInfo?.place === type ? 'primaryActive' : 'secondaryDisabled'} onClick={()=>setPlaceDetail(type)}>
                           <Text font={'button2'}>{type === "ONLINE"?"온라인": type ==="OFFLINE"?"오프라인":"미정"}</Text>
                       </Button>
                       {type === "UNDEFIND" ? null : meetingInfo?.place === type ? <PlaceInput
@@ -132,7 +120,7 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
                         placeholder={type === "ONLINE"?"(선택) 화상 회의 툴을 입력해주세요":"(선택) 구체적인 장소명을 입력해주세요"}
                       /> : null
                       }
-                </PlaceSetion>)
+                  </PlaceSetion>)
           })}
         </PlaceInfoWrapper>
         <StyledBtnWrapper>
@@ -170,9 +158,9 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
         </DurationWrapper>
         <StyledBtnWrapper>
           <Button
-            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
+            typeState={meetingInfo?.duration ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-                meetingInfo?.title && meetingInfo?.title?.length < 16
+              meetingInfo?.duration
                 ? () =>
                     setStep((prev) => {
                       if (prev === 6) {
@@ -211,9 +199,9 @@ function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep
         </HostInfoWrapper>
         <StyledBtnWrapper>
           <Button
-            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
+            typeState={meetingInfo?.name && meetingInfo?.password.length >= 4 ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-                meetingInfo?.title && meetingInfo?.title?.length < 16
+              meetingInfo?.name && meetingInfo?.password.length >= 4
                 ? () =>
                     setStep((prev) => {
                       if (prev === 6) {
