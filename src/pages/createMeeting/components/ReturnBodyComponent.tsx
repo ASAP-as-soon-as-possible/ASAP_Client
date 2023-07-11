@@ -18,54 +18,25 @@ interface BodyProps {
   setStep: Dispatch<SetStateAction<number>>;
 }
 
-type BodyType = {
-  [key: string]: React.JSX.Element;
+const BodyType: { [key: string]: React.JSXElementConstructor<any>} = {
+  title: SetTitle,
+  availableDates: SetDates,
+  preferTimes: SetTimes,
+  place: SetPlace,
+  duration: SetDuration,
+  hostInfo: SetHostInfo,
+  additionalInfo: SetAdditionalInfo,
 };
 
 function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep }: BodyProps) {
 
-  console.log(meetingInfo)
+  const CurrentComponent = BodyType[currentStep];
 
-  const BodyType: BodyType = {
-    title: (
-      <>
-        <SetTitle meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
-      </>
-    )
-    ,
-    availableDates: (
-      <>
-        <SetDates meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
-      </>
-    ),
-    preferTimes: (
-      <>
-        <SetTimes meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
-      </>
-    ),
-    place: (
-      <>
-        <SetPlace meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
-      </>
-    ),
-    duration: (
-      <>
-        <SetDuration meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
-      </>
-    ),
-    hostInfo: (
-      <>
-       <SetHostInfo meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
-      </>
-    ),
-    additionalInfo: (
-      <>
-        <SetAdditionalInfo meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
-      </>
-    ),
-  };
-
-  return <ReturnBodyComponentWrapper>{BodyType[currentStep]}</ReturnBodyComponentWrapper>;
+  return (
+    <ReturnBodyComponentWrapper>
+      <CurrentComponent meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
+    </ReturnBodyComponentWrapper>
+  );
 }
 
 export default ReturnBodyComponent;
