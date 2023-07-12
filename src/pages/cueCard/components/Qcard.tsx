@@ -1,61 +1,65 @@
+import React, { forwardRef } from 'react';
+
 import Text from 'components/atomComponents/Text';
 import { OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-function Qcard() {
+const Qcard = forwardRef((props, ref) => {
   return (
-      <QcardWrapper>
-        <TopCardSetcion>
-          <Text font={'head2'}>아삽 전체회의</Text>
-          <PlaceTimeSection>
-            <PlaceContainer>
-              <IconBox>
-                <OnlinePlaceIc />
-              </IconBox>
-              <Text font={'title2'}>신촌 마카닷 스터카페</Text>
-            </PlaceContainer>
-            <TimeContainer>
-              <IconBox>
-                <TimeIc />
-              </IconBox>
-              <Text font={'title2'}>6월 30 (금) 18:00-21:00</Text>
-            </TimeContainer>
-          </PlaceTimeSection>
-          <MemeberSection>
-            <HostMeberContainer>
-              <MemberTitle>
-                <Text font={'body2'} color={`${theme.colors.main1}`}>
-                  방장
-                </Text>
-              </MemberTitle>
-              <Text font={'body2'}>서지원</Text>
-            </HostMeberContainer>
-            <MemberContainer>
-              <MemberTitle>
-                <Text font={'body2'} color={`${theme.colors.main1}`}>
-                  참여
-                </Text>
-              </MemberTitle>
-              <Text font={'body2'}>
-                서지원, 서채원, 김태희, 강민서, 이재훈, 이동헌, 심은서, 정찬우, 강원용, 도소현
+    <QcardWrapper ref={ref}>
+      <TopCardSetcion>
+        <Text font={'head2'}>아삽 전체회의</Text>
+        <PlaceTimeSection>
+          <PlaceContainer>
+            <IconBox>
+              <OnlinePlaceIc />
+            </IconBox>
+            <Text font={'title2'}>신촌 마카닷 스터카페</Text>
+          </PlaceContainer>
+          <TimeContainer>
+            <IconBox>
+              <TimeIc />
+            </IconBox>
+            <Text font={'title2'}>6월 30 (금) 18:00-21:00</Text>
+          </TimeContainer>
+        </PlaceTimeSection>
+        <MemeberSection>
+          <HostMeberContainer>
+            <MemberTitle>
+              <Text font={'body2'} color={`${theme.colors.main1}`}>
+                방장
               </Text>
-            </MemberContainer>
-          </MemeberSection>
-        </TopCardSetcion>
-        <DashedSection>
-          {Array.from({ length: 15 }).map((_, i) => {
-            return <div key={i} />;
-          })}
-        </DashedSection>
-        <BottomCardSection>
-          <Text font={'body2'} color={`${theme.colors.grey4}`}>
-            별도의 공지사항은 없어요!
-          </Text>
-        </BottomCardSection>
-      </QcardWrapper>
+            </MemberTitle>
+            <Text font={'body2'}>서지원</Text>
+          </HostMeberContainer>
+          <MemberContainer>
+            <MemberTitle>
+              <Text font={'body2'} color={`${theme.colors.main1}`}>
+                참여
+              </Text>
+            </MemberTitle>
+            <Text font={'body2'}>
+              서지원, 서채원, 김태희, 강민서, 이재훈, 이동헌, 심은서, 정찬우, 강원용, 도소현
+            </Text>
+          </MemberContainer>
+        </MemeberSection>
+      </TopCardSetcion>
+      <DashedSection>
+        {Array.from({ length: 15 }).map((_, i) => {
+          return <div key={i} />;
+        })}
+      </DashedSection>
+      <BottomCardSection>
+        <Text font={'body2'} color={`${theme.colors.grey4}`}>
+          별도의 공지사항은 없어요!
+        </Text>
+      </BottomCardSection>
+    </QcardWrapper>
   );
-}
+});
+
+Qcard.displayName = 'Qcard';
 
 export default Qcard;
 
@@ -63,6 +67,8 @@ const QcardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-radius: 1rem;
+  background-color: ${theme.colors.black};
   width: 100%;
 `;
 
