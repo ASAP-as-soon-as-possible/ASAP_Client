@@ -5,7 +5,7 @@ import { styled, css } from 'styled-components';
 interface ButtonProps {
   children: React.ReactNode;
   typeState: string;
-  onClick?: () => void;
+  onClick?: (e:React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 function Button({ children, typeState, onClick }: ButtonProps) {
@@ -19,7 +19,7 @@ function Button({ children, typeState, onClick }: ButtonProps) {
 export default Button;
 
 const buttonDefaultCSS = {
-  basicCss: css`
+    basicCss: css`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,7 +40,7 @@ const buttonCSS = {
   halfPrimaryActive: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.main1};
-    width: 16rem;
+    width: 15.2rem;
     color: ${({ theme }) => theme.colors.white};
   `,
   primaryDisabled: css`
@@ -56,6 +56,12 @@ const buttonCSS = {
   secondaryDisabled: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.grey7};
+    color: ${({ theme }) => theme.colors.grey5};
+  `,
+  halfsecondaryDisabled: css`
+    ${buttonDefaultCSS.basicCss};
+    background: ${({ theme }) => theme.colors.grey7};
+    width: 15.2rem;
     color: ${({ theme }) => theme.colors.grey5};
   `,
   tertiaryActive: css`
@@ -92,6 +98,8 @@ const ButtonWrapper = styled.button<{ $type: string }>`
         return buttonCSS.secondaryActive;
       case 'secondaryDisabled':
         return buttonCSS.secondaryDisabled;
+      case 'halfsecondaryDisabled':
+        return buttonCSS.halfsecondaryDisabled;
       case 'tertiaryActive':
         return buttonCSS.tertiaryActive;
       case 'halfTertiaryActive':

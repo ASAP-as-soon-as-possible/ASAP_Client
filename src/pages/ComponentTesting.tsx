@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
+import PlaceInput from 'components/atomComponents/PlaceInput';
 import Text from 'components/atomComponents/Text';
 import TextAreaInput from 'components/atomComponents/TextAreaInput';
 import TextInput from 'components/atomComponents/TextInput';
@@ -34,6 +35,7 @@ const buttonType: string[] = [
   'tertiaryDisabled',
   'halfPrimaryActive',
   'halfTertiaryActive',
+  'halfsecondaryDisabled',
 ];
 
 const textComponentsType: string[] = [
@@ -51,9 +53,9 @@ const textComponentsType: string[] = [
 
 function ComponentTesting() {
   //TextInput component 사용시 useState 로 보내주기
-  const [inputValue, setInputValue] = useState(``);
+  // const [inputValue, setInputValue] = useState(``);
   //TextAreaInput component 사용시 useState 로 보내주기
-  const [textAreaValue, settextAreaValue] = useState(``);
+  // const [textAreaValue, settextAreaValue] = useState(``);
 
   return (
     <>
@@ -87,7 +89,7 @@ function ComponentTesting() {
         </CategorySection>
         <CategorySection>
           <h1>ReuseComponents</h1>
-          <TextInput
+          {/* <TextInput
             value={inputValue}
             setValue={setInputValue}
             placeholder={'서비스 기획 1차 회의'}
@@ -98,7 +100,8 @@ function ComponentTesting() {
             placeholder={
               '회의 안건, 준비물 등 회의와 관련하여 알리고 싶은 추가 내용을 적어 보세요.'
             }
-          />
+          /> */}
+          {/* <PlaceInput /> */}
         </CategorySection>
         <CategorySection>
           <h1>ReuseButton</h1>

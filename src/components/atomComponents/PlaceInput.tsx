@@ -1,9 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
-import Text from 'components/atomComponents/Text';
-import { InputCancelIc, InputErrorIc } from 'components/Icon/icon';
+import { InputCancelIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
-import { theme } from 'styles/theme';
 
 interface MeetingInfo {
   title: string;
@@ -27,17 +25,11 @@ interface ValueProps {
   placeholder: string;
 }
 
-function TextInput({ data , value, setValue, placeholder }: ValueProps) {
+function PlaceInput({ value, setValue, placeholder }: ValueProps) {
 
   const textOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
     setValue((prev : MeetingInfo ) => {
-      return { ...prev, title: e.target.value };
-    });
-  };
-
-  const hostOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((prev : MeetingInfo ) => {
-      return { ...prev, name: e.target.value };
+      return { ...prev, placeDetail: e.target.value };
     });
   };
 
@@ -46,42 +38,36 @@ function TextInput({ data , value, setValue, placeholder }: ValueProps) {
   const resetOnClick = () => {
     setFocus(false)
     setValue((prev : MeetingInfo) => {
-      return { ...prev, title: ``};
+      return { ...prev, placeDetail: ``};
     });
   }
 
   return (
     <>
-      <TextInputWrapper>
+      <PlaceInputWrapper>
         <InputSection>
           <StyledTextInput
             placeholder={placeholder}
             value={value}
-            onChange={data === "title" ? textOnChange : hostOnChange}
+            onChange={textOnChange}
             onFocus={() => setFocus(true)}
             $iserror={value?.length > 15}
           />
           {focus && (
             <IconContainer onClick={resetOnClick}>
-              {value?.length > 15 ? <InputErrorIc />:<InputCancelIc />}
+              <InputCancelIc />
             </IconContainer>
           )
           }
         </InputSection>
-        {value?.length > 15 && (
-          <SubTextSection>
-            <Text font={"body4"} color={`${theme.colors.red}`}>공백포함 최대 15자까지 입력가능해요</Text>
-          </SubTextSection>
-        )
-        }
-      </TextInputWrapper>
+      </PlaceInputWrapper>
     </>
   );
 }
 
-export default TextInput;
+export default PlaceInput;
 
-const TextInputWrapper = styled.div``
+const PlaceInputWrapper = styled.div``
 
 const InputSection = styled.div`
   display: flex;
@@ -100,23 +86,25 @@ const InputSection = styled.div`
 
 const StyledTextInput = styled.input<{ $iserror: boolean }>`
   position: relative;
-  border: 2px solid ${({ theme }) => theme.colors.black};
+  outline: none;
+  
+  border:none;
+  border-bottom :2px solid ${({ theme }) => theme.colors.grey4};
+  background-color: transparent;
 
-  border-radius: 0.8rem;
-  box-shadow: 0 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.25);
-  background: ${({ theme }) => theme.colors.grey7};
   padding: 1rem 1.6rem;
 
   width: 33.5rem;
   height: 5.2rem;
 
+  color : ${({ theme }) => theme.colors.white};
+
   caret-color: ${({ theme }) => theme.colors.main1};
 
-  color : ${({ theme }) => theme.colors.white};
 
   &:focus {
     outline: none;
-    border: 2px solid ${({ $iserror, theme }) => ($iserror ? theme.colors.red : theme.colors.main1)};
+    border-bottom: 2px solid ${({ $iserror, theme }) => ($iserror ? theme.colors.red : theme.colors.main1)};
   }
 `;
 
@@ -129,12 +117,4 @@ const IconContainer = styled.div`
     cursor:pointer;
     width :2rem;
     height :2rem;
-`
-
-const SubTextSection = styled.div` 
-  margin-top: 0.9rem;
-
-  span {
-    font-weight: 600;
-  }
 `

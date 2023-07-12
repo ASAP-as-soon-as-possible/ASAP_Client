@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
-import { InputCancelIc, InputErrorIc } from 'components/Icon/icon';
+import { PasswordEyeIc, PasswordOpenEyeIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -21,67 +21,50 @@ interface MeetingInfo {
 }
 
 interface ValueProps {
-  data : string;
   value: string;
   setValue: Dispatch<SetStateAction<MeetingInfo>>;
   placeholder: string;
 }
 
-function TextInput({ data , value, setValue, placeholder }: ValueProps) {
-
-  const textOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((prev : MeetingInfo ) => {
-      return { ...prev, title: e.target.value };
-    });
-  };
-
-  const hostOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((prev : MeetingInfo ) => {
-      return { ...prev, name: e.target.value };
-    });
-  };
-
-  const [focus, setFocus] = useState(false)
-
-  const resetOnClick = () => {
-    setFocus(false)
+function PasswordInput({ value, setValue, placeholder }: ValueProps) {
+  const passWordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue((prev : MeetingInfo) => {
-      return { ...prev, title: ``};
+      return { ...prev, password: e.target.value };
     });
-  }
+  };
 
+  const [inputType , setInputType] = useState(true)
+
+  const changePasswordType = () => {
+   setInputType((prev)=>!prev)
+  }
   return (
     <>
-      <TextInputWrapper>
+      <PasswordInputWrapper>
         <InputSection>
-          <StyledTextInput
+          <StyledPasswordInput
             placeholder={placeholder}
             value={value}
-            onChange={data === "title" ? textOnChange : hostOnChange}
-            onFocus={() => setFocus(true)}
-            $iserror={value?.length > 15}
+            onChange={passWordOnChange}
+            $iserror={value?.length < 4}
+            type={inputType ? `password` : undefined}
           />
-          {focus && (
-            <IconContainer onClick={resetOnClick}>
-              {value?.length > 15 ? <InputErrorIc />:<InputCancelIc />}
+            <IconContainer onClick={changePasswordType}>
+              {inputType ? <PasswordOpenEyeIc /> : <PasswordEyeIc />}
             </IconContainer>
-          )
-          }
         </InputSection>
-        {value?.length > 15 && (
           <SubTextSection>
-            <Text font={"body4"} color={`${theme.colors.red}`}>공백포함 최대 15자까지 입력가능해요</Text>
+          <Text font={"body4"} color={`${theme.colors.sub1}`}>*</Text>
+            <Text font={"body4"} color={`${theme.colors.sub1}`}>확정 후 비밀번호는 수정할 수 없으며, 비밀번호가 있어야 방장 페이지에 접속할 수 있으니 반드시 기억해주세요!</Text>
           </SubTextSection>
-        )
-        }
-      </TextInputWrapper>
+      </PasswordInputWrapper>
     </>
   );
 }
 
-export default TextInput;
+export default PasswordInput;
 
-const TextInputWrapper = styled.div``
+const PasswordInputWrapper = styled.div``
 
 const InputSection = styled.div`
   display: flex;
@@ -92,13 +75,13 @@ const InputSection = styled.div`
     display: flex;
     svg{
       cursor: pointer; 
-      width: 2rem;
-      height: 2rem;
+      width: fit-content;
+      height: fit-content;
     }
   }
 `;
 
-const StyledTextInput = styled.input<{ $iserror: boolean }>`
+const StyledPasswordInput = styled.input<{ $iserror: boolean }>`
   position: relative;
   border: 2px solid ${({ theme }) => theme.colors.black};
 
@@ -127,11 +110,14 @@ const IconContainer = styled.div`
     right: 1.6rem;
     transform: translateY(-50%);
     cursor:pointer;
-    width :2rem;
-    height :2rem;
+    width :fit-content;
+    height :fit-content;
 `
 
 const SubTextSection = styled.div` 
+  display: flex;
+  flex-direction: row;
+  gap:0.4rem;
   margin-top: 0.9rem;
 
   span {
