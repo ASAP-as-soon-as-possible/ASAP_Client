@@ -17,6 +17,8 @@ function Text({ children, font, color }: ValueProps) {
 export default Text;
 
 const TextWrapper = styled.span<{ $font: string; $color: string }>`
+  display: flex;
+  align-items: center;
   color: ${({ $color }) => $color};
   ${({ $font, theme }) => {
     switch ($font) {
