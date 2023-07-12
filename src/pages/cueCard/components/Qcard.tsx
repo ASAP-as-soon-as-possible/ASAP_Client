@@ -65,7 +65,7 @@ const TopCardSetcion = styled.section`
   position: relative;
   flex-direction: column;
   gap: 3.2rem;
-  /* margin: 0 2rem; */
+  border-bottom:2px dashed ${theme.colors.grey4};
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   background-color: ${theme.colors.white};
