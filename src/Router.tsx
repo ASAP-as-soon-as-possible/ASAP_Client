@@ -1,3 +1,4 @@
+import AvailableSchedule from 'components/AvailableSchedule/AvailableSchedule';
 import ComponentTesting from 'pages/ComponentTesting';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -6,6 +7,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/componenttest" element={<ComponentTesting />} />
+        <Route path="/scheduletest" element={<AvailableSchedule />} />
       </Routes>
     </BrowserRouter>
   );
