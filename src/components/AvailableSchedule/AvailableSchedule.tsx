@@ -66,7 +66,12 @@ const PREFER_TIMES = [
 ];
 
 function AvailableSchedule() {
-  console.log(getTimeSlots(PREFER_TIMES));
+  const timeSlots = getTimeSlots(PREFER_TIMES);
+  const formattedDates = AVAILABLE_DATES.map(
+    (date) => `${date.month}/${date.day} ${date.dayOfWeek}`,
+  );
+
+  console.log(timeSlots, formattedDates);
   return <div>AvailableSchedule</div>;
 }
 
