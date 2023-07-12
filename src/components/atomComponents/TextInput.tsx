@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { InputCancelIc, InputErrorIc } from 'components/Icon/icon';
-import { styled } from 'styled-components';
+import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 
@@ -33,7 +33,7 @@ function TextInput({ value, setValue, placeholder }: ValueProps) {
             value={value}
             onChange={textOnChange}
             onFocus={() => setFocus(true)}
-            iserror={value?.length > 15}
+            $iserror={value?.length > 15}
           />
           {focus && (
             <IconContainer onClick={resetOnClick}>
@@ -72,7 +72,7 @@ const InputSection = styled.div`
   }
 `;
 
-const StyledTextInput = styled.input<{ iserror: boolean }>`
+const StyledTextInput = styled.input<{ $iserror: boolean }>`
   position: relative;
   border: 2px solid ${({ theme }) => theme.colors.black};
 
@@ -90,7 +90,7 @@ const StyledTextInput = styled.input<{ iserror: boolean }>`
 
   &:focus {
     outline: none;
-    border: 2px solid ${({ iserror, theme }) => (iserror ? theme.colors.red : theme.colors.main1)};
+    border: 2px solid ${({ $iserror, theme }) => ($iserror ? theme.colors.red : theme.colors.main1)};
   }
 `;
 

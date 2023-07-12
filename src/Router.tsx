@@ -1,4 +1,5 @@
 import ComponentTesting from 'pages/ComponentTesting';
+import ViewTesting from 'pages/ViewTesting';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router = () => {
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="/host/:meetingId" element={<div>최적의 회의시간 페이지를 넣어주세요</div>} />
         <Route path="/q-card/:meetingId" element={<div>큐카드 페이지를 넣어주세요</div>} />
         <Route path="*" element={<div>not found</div>} />
+        <Route path="/viewtesting" element={<ViewTesting />} />
       </Routes>
     </BrowserRouter>
   );

@@ -8,9 +8,13 @@ import GlobalStyle from './styles/globalStyles';
 import { theme } from './styles/theme';
 
 const MobileWrapper = styled.div`
+  display: flex;
+
   position: relative;
-  margin-right: auto;
-  margin-left: auto;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 0 auto;
   background-color: ${({ theme }) => theme.colors.black};
   padding-right: 2rem;
   padding-left: 2rem;

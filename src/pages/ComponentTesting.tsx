@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
+import TextAreaInput from 'components/atomComponents/TextAreaInput';
 import TextInput from 'components/atomComponents/TextInput';
 import {
   MainLogoIc,
@@ -21,7 +22,7 @@ import {
   PlaceIc,
   ClockIc,
 } from 'components/Icon/icon';
-import { styled } from 'styled-components';
+import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 const buttonType: string[] = [
@@ -51,6 +52,8 @@ const textComponentsType: string[] = [
 function ComponentTesting() {
   //TextInput component 사용시 useState 로 보내주기
   const [inputValue, setInputValue] = useState(``);
+  //TextAreaInput component 사용시 useState 로 보내주기
+  const [textAreaValue, settextAreaValue] = useState(``);
 
   return (
     <>
@@ -89,6 +92,13 @@ function ComponentTesting() {
             setValue={setInputValue}
             placeholder={'서비스 기획 1차 회의'}
           />
+          <TextAreaInput
+            value={textAreaValue}
+            setValue={settextAreaValue}
+            placeholder={
+              '회의 안건, 준비물 등 회의와 관련하여 알리고 싶은 추가 내용을 적어 보세요.'
+            }
+          />
         </CategorySection>
         <CategorySection>
           <h1>ReuseButton</h1>
@@ -96,9 +106,7 @@ function ComponentTesting() {
           {buttonType.map((type, i) => {
             return (
               <Button key={i} typeState={type} onClick={() => console.log(`${type}`)}>
-                <Text font={'button2'} color={`${theme.colors.black}`}>
-                  약속 생성하기
-                </Text>
+                <Text font={'button2'}>약속 생성하기</Text>
               </Button>
             );
           })}
