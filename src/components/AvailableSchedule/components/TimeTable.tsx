@@ -52,8 +52,18 @@ const AVAILABLE_DATES = [
   },
   {
     month: '7',
-    day: '9',
+    day: '10',
     dayOfWeek: '금',
+  },
+  {
+    month: '7',
+    day: '11',
+    dayOfWeek: '토',
+  },
+  {
+    month: '7',
+    day: '12',
+    dayOfWeek: '일',
   },
 ];
 
@@ -77,7 +87,9 @@ function TimeTable() {
   console.log(timeSlots, formattedDates);
   return (
     <TimeTableWrapper>
-      {formattedDates.map((date) => <Column key={date} timeSlots={timeSlots} date={date} />)}
+      {formattedDates.map((date, idx) => (
+        <Column idx={idx} key={date} timeSlots={timeSlots} date={date} />
+      ))}
     </TimeTableWrapper>
   );
 }
@@ -86,4 +98,6 @@ export default TimeTable;
 
 const TimeTableWrapper = styled.div`
   display: flex;
+  justify-content: center;
+  padding-top: 5rem;
 `;
