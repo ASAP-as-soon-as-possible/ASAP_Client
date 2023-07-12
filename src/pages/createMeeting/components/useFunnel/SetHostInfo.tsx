@@ -4,11 +4,11 @@ import Button from 'components/atomComponents/Button';
 import PasswordInput from 'components/atomComponents/PasswordInput';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
-import { MeetingInfo, funnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
+function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const hostOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMeetingInfo((prev: MeetingInfo) => {
       return { ...prev, name: e.target.value };

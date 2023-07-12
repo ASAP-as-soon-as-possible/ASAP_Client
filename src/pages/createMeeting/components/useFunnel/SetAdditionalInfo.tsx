@@ -3,10 +3,10 @@ import React from 'react';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import TextAreaInput from 'components/atomComponents/TextAreaInput';
-import { MeetingInfo, funnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
-function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
+function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const textAreaOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length < 51) {
       setMeetingInfo((prev: MeetingInfo) => {

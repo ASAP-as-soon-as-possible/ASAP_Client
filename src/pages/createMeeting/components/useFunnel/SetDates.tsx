@@ -1,10 +1,10 @@
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
-import { funnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-function SetDates({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
+function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   return (
     <SetDatesWrapper>
       <Text font={'button2'} color={`${theme.colors.white}`}>

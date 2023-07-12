@@ -3,10 +3,10 @@ import React from 'react';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
-import { MeetingInfo, funnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
-function SetTitle({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
+function SetTitle({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const titleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMeetingInfo((prev: MeetingInfo) => {
       return { ...prev, title: e.target.value };

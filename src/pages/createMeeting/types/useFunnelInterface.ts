@@ -15,7 +15,7 @@ export interface MeetingInfo {
   additionalInfo: string;
 }
 
-export interface funnelProps {
+export interface FunnelProps {
   meetingInfo: MeetingInfo;
   setMeetingInfo: Dispatch<SetStateAction<MeetingInfo>>;
   setStep: Dispatch<SetStateAction<number>>;

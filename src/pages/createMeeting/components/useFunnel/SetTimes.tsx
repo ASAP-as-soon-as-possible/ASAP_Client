@@ -1,9 +1,9 @@
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
-import { funnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
-function SetTimes({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
+function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   return (
     <SetTimesWrapper>
       <StyledBtnSection>

@@ -1,10 +1,10 @@
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { durationType } from 'pages/createMeeting/data/meetingInfoData';
-import { MeetingInfo, funnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
-function SetDuration({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
+function SetDuration({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   return (
     <SetAdditionalInfoWrapper>
       <DurationWrapper>

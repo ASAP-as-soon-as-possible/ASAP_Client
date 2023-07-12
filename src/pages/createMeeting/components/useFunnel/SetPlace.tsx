@@ -2,10 +2,10 @@ import Button from 'components/atomComponents/Button';
 import PlaceInput from 'components/atomComponents/PlaceInput';
 import Text from 'components/atomComponents/Text';
 import { placeType } from 'pages/createMeeting/data/meetingInfoData';
-import { funnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
-function SetPlace({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
+function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const setPlaceDetail = (place: string) => {
     setMeetingInfo((prev) => ({ ...prev, place, placeDetail: '' }));
   };
