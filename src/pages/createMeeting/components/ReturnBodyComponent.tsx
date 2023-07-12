@@ -29,11 +29,11 @@ const BodyType: { [key: string]: React.JSXElementConstructor<any> } = {
 };
 
 function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep }: BodyProps) {
-  const CurrentComponent = BodyType[currentStep];
+  const FunnelComponent = BodyType[currentStep];
 
   return (
     <ReturnBodyComponentWrapper>
-      <CurrentComponent
+      <FunnelComponent
         meetingInfo={meetingInfo}
         setMeetingInfo={setMeetingInfo}
         setStep={setStep}
