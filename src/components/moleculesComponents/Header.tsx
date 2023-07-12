@@ -46,6 +46,5 @@ const IconSection = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 4.2rem;
   height: 4.2rem;
 `;
