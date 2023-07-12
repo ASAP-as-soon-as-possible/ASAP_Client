@@ -39,11 +39,28 @@ function Qcard() {
               </Text>
             </MemberTitle>
             <Text font={'body2'}>
-              서지원, 서채원, 강민서, 서지원, 서지원, 서채원, 강민서, 서지원
+              서지원, 서채원, 김태희, 강민서, 이재훈, 이동헌, 심은서, 정찬우, 강원용, 도소현
             </Text>
           </MemberContainer>
         </MemeberSection>
       </TopCardSetcion>
+      <DashedSection>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </DashedSection>
       <BottomCardSection>
         <Text font={'body2'} color={`${theme.colors.grey4}`}>별도의 공지사항은 없어요!</Text>
       </BottomCardSection>
@@ -57,6 +74,7 @@ export default Qcard;
 const QcardWrapper = styled.article`
   display: flex;
   flex-direction:column;
+  justify-content: center;
   width: 100%;
 `;
 
@@ -65,19 +83,18 @@ const TopCardSetcion = styled.section`
   position: relative;
   flex-direction: column;
   gap: 3.2rem;
-  border-bottom:2px dashed ${theme.colors.grey4};
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   background-color: ${theme.colors.white};
   padding: 4.6rem 2rem;
   width: 100%;
-  height: 30rem;
+  height: fit-content;
 
   &:before {
     display: block;
     position: absolute;
-    bottom: -0.8rem;
-    left:-0.8rem;
+    bottom: -1rem;
+    left:-1rem;
     border-radius: 50%;
     background-color: ${theme.colors.black};
     width: 2rem;
@@ -87,8 +104,8 @@ const TopCardSetcion = styled.section`
   &:after {
     display: block;
     position: absolute;
-    right:-0.8rem;
-    bottom: -0.8rem;
+    right:-1rem;
+    bottom: -1rem;
     border-radius: 50%;
     background-color: ${theme.colors.black};
     width: 2rem;
@@ -96,6 +113,19 @@ const TopCardSetcion = styled.section`
     content: '';
   }
 `;
+
+const DashedSection = styled.div`
+  display:flex;
+  flex-direction:row;
+  gap: 1rem;
+  justify-content:center;
+  background-color: ${theme.colors.white};
+  width:100%;
+  div{
+    border: 1px solid ${theme.colors.grey4};
+    width:1rem;
+  }
+`
 
 const PlaceTimeSection = styled.section``;
 const PlaceContainer = styled.section`
