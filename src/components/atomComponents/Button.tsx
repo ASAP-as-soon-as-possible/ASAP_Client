@@ -74,7 +74,7 @@ const buttonCSS = {
     ${buttonDefaultCSS.basicCss};
     border: 1px solid ${({ theme }) => theme.colors.main3};
     background-color: transparent;
-    width: 16rem;
+    width: 15.2rem;
     color: ${({ theme }) => theme.colors.main3};
   `,
   tertiaryDisabled: css`
