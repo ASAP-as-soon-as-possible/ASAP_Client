@@ -88,7 +88,13 @@ function TimeTable() {
   return (
     <TimeTableWrapper>
       {formattedDates.map((date, idx) => (
-        <Column idx={idx} key={date} timeSlots={timeSlots} date={date} />
+        <Column
+          idx={idx}
+          key={date}
+          timeSlots={timeSlots}
+          monthDay={date.split(' ')[0]}
+          dayOfWeek={date.split(' ')[1]}
+        />
       ))}
     </TimeTableWrapper>
   );

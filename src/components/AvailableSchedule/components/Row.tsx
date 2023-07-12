@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
 const Row = ({ timeSlot, $borderTop, $borderBottom }) => {
-  return (
-    <RowWrapper $borderTop={$borderTop} $borderBottom={$borderBottom}>
-      row
-    </RowWrapper>
-  );
+  return <RowWrapper $borderTop={$borderTop} $borderBottom={$borderBottom} />;
 };
 
 export default Row;

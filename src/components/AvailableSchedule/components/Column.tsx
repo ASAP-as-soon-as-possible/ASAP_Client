@@ -1,10 +1,21 @@
+import Text from 'components/atomComponents/Text';
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 import Row from './Row';
 
-const Column = ({ timeSlots, date }) => {
+const Column = ({ idx, timeSlots, monthDay, dayOfWeek }) => {
   return (
     <ColumnWrapper>
+      <DateWrapper>
+        <Text font={'body4'} color={`${theme.colors.grey6}`}>
+          {monthDay}
+        </Text>
+        <Text font={'body4'} color={`${theme.colors.grey4}`}>
+          {dayOfWeek}
+        </Text>
+      </DateWrapper>
+
       {timeSlots.map((slot) => (
         <Row
           key={slot}
@@ -22,4 +33,16 @@ export default Column;
 const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+const DateWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+
+  margin-bottom: 1rem;
 `;
