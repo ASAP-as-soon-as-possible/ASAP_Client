@@ -11,10 +11,10 @@ const Row = ({ timeSlot, $borderTop, $borderBottom }) => {
 export default Row;
 
 const RowWrapper = styled.div<{ $borderTop: string; $borderBottom: string }>`
-  border: 0.1rem solid ${({ theme }) => theme.colors.grey7};
+  border: 0.05rem solid ${({ theme }) => theme.colors.grey7};
   border-top: ${({ $borderTop }) => $borderTop};
   border-bottom: ${({ $borderBottom }) => $borderBottom};
 
   width: 4.4rem;
-  height: 2.4rem;
+  height: 1.2rem;
 `;
