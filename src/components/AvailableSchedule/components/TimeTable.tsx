@@ -26,7 +26,7 @@
 
 import { styled } from 'styled-components';
 
-import Column from './Column';
+import Row from './Row';
 import getTimeSlots from '../utils/getTimeSlots';
 
 const AVAILABLE_DATES = [
@@ -88,7 +88,7 @@ function TimeTable() {
   return (
     <TimeTableWrapper>
       {formattedDates.map((date, idx) => (
-        <Column
+        <Row
           idx={idx}
           key={date}
           timeSlots={timeSlots}

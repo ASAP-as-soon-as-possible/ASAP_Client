@@ -1,16 +1,48 @@
+import Text from 'components/atomComponents/Text';
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
-const Row = ({ timeSlot, $borderTop, $borderBottom }) => {
-  return <RowWrapper $borderTop={$borderTop} $borderBottom={$borderBottom} />;
+import Column from './Column';
+
+const Row = ({ idx, timeSlots, monthDay, dayOfWeek }) => {
+  return (
+    <ColumnWrapper>
+      <DateWrapper>
+        <Text font={'body4'} color={`${theme.colors.grey6}`}>
+          {monthDay}
+        </Text>
+        <Text font={'body4'} color={`${theme.colors.grey4}`}>
+          {dayOfWeek}
+        </Text>
+      </DateWrapper>
+
+      {timeSlots.map((slot) => (
+        <Column
+          key={slot}
+          timeSlot={slot}
+          $borderTop={slot.endsWith(':30') && 'none'}
+          $borderBottom={slot.endsWith(':00') && 'none'}
+        />
+      ))}
+    </ColumnWrapper>
+  );
 };
 
 export default Row;
 
-const RowWrapper = styled.div<{ $borderTop: string; $borderBottom: string }>`
-  border: 0.05rem solid ${({ theme }) => theme.colors.grey7};
-  border-top: ${({ $borderTop }) => $borderTop};
-  border-bottom: ${({ $borderBottom }) => $borderBottom};
+const ColumnWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  width: 4.4rem;
-  height: 1.2rem;
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+const DateWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  align-items: center;
+
+  margin-bottom: 1rem;
 `;
