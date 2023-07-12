@@ -7,6 +7,7 @@ export interface MeetingInfo {
       startTime: string;
       endTime: string;
     }[];
+    //undefined 왜 들어간거임?
     place: string | undefined;
     placeDetail: string;
     duration: string;

@@ -6,50 +6,53 @@ import TextInput from 'components/atomComponents/TextInput';
 import { MeetingInfo, funnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
-function SetTitle({meetingInfo,setMeetingInfo,setStep}:funnelProps) {
+function SetTitle({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
+  const titleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMeetingInfo((prev: MeetingInfo) => {
+      return { ...prev, title: e.target.value };
+    });
+  };
 
-    const titleOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
-        setMeetingInfo((prev : MeetingInfo ) => {
-          return { ...prev, title: e.target.value };
-        });
-      };
-
-      const resetTitle = () => {
-        setMeetingInfo((prev : MeetingInfo ) => {
-          return { ...prev, title: "" };
-        });
-      };
+  const resetTitle = () => {
+    setMeetingInfo((prev: MeetingInfo) => {
+      return { ...prev, title: '' };
+    });
+  };
   return (
-     <>
-        <TextInput
-          value={meetingInfo.title}
-          setValue={titleOnChange}
-          resetValue={resetTitle}
-          placeholder={'서비스 기획 1차 회의'}
-        />
-        <StyledBtnWrapper>
-          <Button
-            typeState={meetingInfo?.title && meetingInfo?.title.length < 16 ? 'primaryActive' : 'secondaryDisabled'}
-            onClick={
-                meetingInfo?.title && meetingInfo?.title?.length < 16
-                ? () =>
-                    setStep((prev) => {
-                      if (prev === 6) {
-                        return prev;
-                      }
-                      return prev + 1;
-                    })
-                : undefined
-            }
-          >
-            <Text font={'button2'}>다음</Text>
-          </Button>
-        </StyledBtnWrapper>
-      </>
-  )
+    <>
+      <TextInput
+        value={meetingInfo.title}
+        setValue={titleOnChange}
+        resetValue={resetTitle}
+        placeholder={'서비스 기획 1차 회의'}
+      />
+      <StyledBtnWrapper>
+        <Button
+          typeState={
+            meetingInfo.title && meetingInfo.title.length < 16
+              ? 'primaryActive'
+              : 'secondaryDisabled'
+          }
+          onClick={
+            meetingInfo.title && meetingInfo.title.length < 16
+              ? () =>
+                  setStep((prev) => {
+                    if (prev === 6) {
+                      return prev;
+                    }
+                    return prev + 1;
+                  })
+              : undefined
+          }
+        >
+          <Text font={'button2'}>다음</Text>
+        </Button>
+      </StyledBtnWrapper>
+    </>
+  );
 }
 
-export default SetTitle
+export default SetTitle;
 
 const StyledBtnWrapper = styled.section`
   position: fixed;

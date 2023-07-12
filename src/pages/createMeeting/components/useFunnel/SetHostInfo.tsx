@@ -50,9 +50,9 @@ function SetHostInfo({meetingInfo,setMeetingInfo,setStep}:funnelProps) {
         </HostInfoWrapper>
         <StyledBtnWrapper>
           <Button
-            typeState={meetingInfo?.name && meetingInfo?.password.length >= 4 ? 'primaryActive' : 'secondaryDisabled'}
+            typeState={meetingInfo.name && meetingInfo.password.length >= 4 ? 'primaryActive' : 'secondaryDisabled'}
             onClick={
-              meetingInfo?.name && meetingInfo?.password.length >= 4
+              meetingInfo.name && meetingInfo.password.length >= 4
                 ? () =>
                     setStep((prev) => {
                       if (prev === 6) {

@@ -8,50 +8,54 @@ import { theme } from 'styles/theme';
 interface ValueProps {
   value: string;
   placeholder: string;
-  passWordOnChange:(e: React.ChangeEvent<HTMLInputElement>) => void
+  passWordOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-function PasswordInput({ value, placeholder , passWordOnChange}: ValueProps) {
-
-  const [inputType , setInputType] = useState(true)
+function PasswordInput({ value, placeholder, passWordOnChange }: ValueProps) {
+  const [inputType, setInputType] = useState(true);
 
   const changePasswordType = () => {
-   setInputType((prev)=>!prev)
-  }
+    setInputType((prev) => !prev);
+  };
   return (
-      <PasswordInputWrapper>
-        <InputSection>
-          <StyledPasswordInput
-            placeholder={placeholder}
-            value={value}
-            onChange={passWordOnChange}
-            $iserror={value?.length < 4}
-            type={inputType ? `password` : undefined}
-          />
-            <IconContainer onClick={changePasswordType}>
-              {inputType ? <PasswordOpenEyeIc /> : <PasswordEyeIc />}
-            </IconContainer>
-        </InputSection>
-          <SubTextSection>
-          <Text font={"body4"} color={`${theme.colors.sub1}`}>*</Text>
-            <Text font={"body4"} color={`${theme.colors.sub1}`}>확정 후 비밀번호는 수정할 수 없으며, 비밀번호가 있어야 방장 페이지에 접속할 수 있으니 반드시 기억해주세요!</Text>
-          </SubTextSection>
-      </PasswordInputWrapper>
+    <PasswordInputWrapper>
+      <InputSection>
+        <StyledPasswordInput
+          placeholder={placeholder}
+          value={value}
+          onChange={passWordOnChange}
+          $iserror={value.length < 4}
+          type={inputType ? `password` : undefined}
+        />
+        <IconContainer onClick={changePasswordType}>
+          {inputType ? <PasswordOpenEyeIc /> : <PasswordEyeIc />}
+        </IconContainer>
+      </InputSection>
+      <SubTextSection>
+        <Text font={'body4'} color={`${theme.colors.sub1}`}>
+          *
+        </Text>
+        <Text font={'body4'} color={`${theme.colors.sub1}`}>
+          확정 후 비밀번호는 수정할 수 없으며, 비밀번호가 있어야 방장 페이지에 접속할 수 있으니
+          반드시 기억해주세요!
+        </Text>
+      </SubTextSection>
+    </PasswordInputWrapper>
   );
 }
 
 export default PasswordInput;
 
-const PasswordInputWrapper = styled.div``
+const PasswordInputWrapper = styled.div``;
 
 const InputSection = styled.div`
   display: flex;
   position: relative;
-  flex-direction:column;
+  flex-direction: column;
 
   input:focus + div {
     display: flex;
-    svg{
+    svg {
       cursor: pointer;
       width: fit-content;
       height: fit-content;
@@ -73,7 +77,7 @@ const StyledPasswordInput = styled.input<{ $iserror: boolean }>`
 
   caret-color: ${({ theme }) => theme.colors.main1};
 
-  color : ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.white};
 
   &:focus {
     outline: none;
@@ -82,23 +86,23 @@ const StyledPasswordInput = styled.input<{ $iserror: boolean }>`
 `;
 
 const IconContainer = styled.div`
-    display: flex;
-    position: absolute;
-    top: 50%;
-    right: 1.6rem;
-    transform: translateY(-50%);
-    cursor:pointer;
-    width :fit-content;
-    height :fit-content;
-`
+  display: flex;
+  position: absolute;
+  top: 50%;
+  right: 1.6rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: fit-content;
+  height: fit-content;
+`;
 
 const SubTextSection = styled.div`
   display: flex;
   flex-direction: row;
-  gap:0.4rem;
+  gap: 0.4rem;
   margin-top: 0.9rem;
 
   span {
     font-weight: 600;
   }
-`
+`;

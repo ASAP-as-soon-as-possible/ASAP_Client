@@ -7,19 +7,18 @@ import { theme } from 'styles/theme';
 
 interface ValueProps {
   value: string;
-  setValue:( e: React.ChangeEvent<HTMLInputElement>)=>void;
-  resetValue: ()=>void;
+  setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  resetValue: () => void;
   placeholder: string;
 }
 
-function TextInput({ value, setValue, resetValue , placeholder }: ValueProps) {
-
-  const [focus, setFocus] = useState(false)
+function TextInput({ value, setValue, resetValue, placeholder }: ValueProps) {
+  const [focus, setFocus] = useState(false);
 
   const resetOnClick = () => {
-    setFocus(false)
-    resetValue()
-  }
+    setFocus(false);
+    resetValue();
+  };
 
   return (
     <>
@@ -30,21 +29,21 @@ function TextInput({ value, setValue, resetValue , placeholder }: ValueProps) {
             value={value}
             onChange={setValue}
             onFocus={() => setFocus(true)}
-            $iserror={value?.length > 15}
+            $iserror={value.length > 15}
           />
           {focus && (
             <IconContainer onClick={resetOnClick}>
-              {value?.length > 15 ? <InputErrorIc />:<InputCancelIc />}
+              {value.length > 15 ? <InputErrorIc /> : <InputCancelIc />}
             </IconContainer>
-          )
-          }
+          )}
         </InputSection>
-        {value?.length > 15 && (
+        {value.length > 15 && (
           <SubTextSection>
-            <Text font={"body4"} color={`${theme.colors.red}`}>공백포함 최대 15자까지 입력가능해요</Text>
+            <Text font={'body4'} color={`${theme.colors.red}`}>
+              공백포함 최대 15자까지 입력가능해요
+            </Text>
           </SubTextSection>
-        )
-        }
+        )}
       </TextInputWrapper>
     </>
   );
@@ -52,17 +51,17 @@ function TextInput({ value, setValue, resetValue , placeholder }: ValueProps) {
 
 export default TextInput;
 
-const TextInputWrapper = styled.div``
+const TextInputWrapper = styled.div``;
 
 const InputSection = styled.div`
   display: flex;
   position: relative;
-  flex-direction:column;
+  flex-direction: column;
 
   input:focus + div {
     display: flex;
-    svg{
-      cursor: pointer; 
+    svg {
+      cursor: pointer;
       width: 2rem;
       height: 2rem;
     }
@@ -83,7 +82,7 @@ const StyledTextInput = styled.input<{ $iserror: boolean }>`
 
   caret-color: ${({ theme }) => theme.colors.main1};
 
-  color : ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.white};
 
   &:focus {
     outline: none;
@@ -92,20 +91,20 @@ const StyledTextInput = styled.input<{ $iserror: boolean }>`
 `;
 
 const IconContainer = styled.div`
-    display: flex;
-    position: absolute;
-    top: 50%;
-    right: 1.6rem;
-    transform: translateY(-50%);
-    cursor:pointer;
-    width :2rem;
-    height :2rem;
-`
+  display: flex;
+  position: absolute;
+  top: 50%;
+  right: 1.6rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+`;
 
-const SubTextSection = styled.div` 
+const SubTextSection = styled.div`
   margin-top: 0.9rem;
 
   span {
     font-weight: 600;
   }
-`
+`;
