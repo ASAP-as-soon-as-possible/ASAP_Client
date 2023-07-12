@@ -46,7 +46,11 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: funnelProps
 
 export default SetAdditionalInfo;
 
-const SetAdditionalInfoWrapper = styled.div``;
+const SetAdditionalInfoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const StyledBtnWrapper = styled.section`
   position: fixed;

@@ -5,8 +5,8 @@ import styled from 'styled-components/macro';
 
 function SetTimes({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
   return (
-    <>
-      <StyledBtnWrapper>
+    <SetTimesWrapper>
+      <StyledBtnSection>
         <Button
           typeState={
             meetingInfo.title && meetingInfo.title.length < 16
@@ -27,15 +27,20 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
         >
           <Text font={'button2'}>다음</Text>
         </Button>
-      </StyledBtnWrapper>
-    </>
+      </StyledBtnSection>
+    </SetTimesWrapper>
   );
 }
 
 export default SetTimes;
 
-const StyledBtnWrapper = styled.section`
+const SetTimesWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledBtnSection = styled.section`
   position: fixed;
   bottom: 1.2rem;
-  border-radius: 50%;
 `;

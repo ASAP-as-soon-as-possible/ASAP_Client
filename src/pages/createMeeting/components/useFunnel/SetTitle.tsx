@@ -19,14 +19,14 @@ function SetTitle({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
     });
   };
   return (
-    <>
+    <SetTitleWrapper>
       <TextInput
         value={meetingInfo.title}
         setValue={titleOnChange}
         resetValue={resetTitle}
         placeholder={'서비스 기획 1차 회의'}
       />
-      <StyledBtnWrapper>
+      <StyledBtnSection>
         <Button
           typeState={
             meetingInfo.title && meetingInfo.title.length < 16
@@ -47,14 +47,20 @@ function SetTitle({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
         >
           <Text font={'button2'}>다음</Text>
         </Button>
-      </StyledBtnWrapper>
-    </>
+      </StyledBtnSection>
+    </SetTitleWrapper>
   );
 }
 
 export default SetTitle;
 
-const StyledBtnWrapper = styled.section`
+const SetTitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledBtnSection = styled.section`
   position: fixed;
   bottom: 1.2rem;
   border-radius: 50%;

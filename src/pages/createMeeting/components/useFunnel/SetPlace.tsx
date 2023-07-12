@@ -10,11 +10,11 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
     setMeetingInfo((prev) => ({ ...prev, place, placeDetail: '' }));
   };
   return (
-    <>
-      <PlaceInfoWrapper>
+    <SetPlaceWrapper>
+      <PlaceInfoSection>
         {placeType.map((type, i) => {
           return (
-            <PlaceSetion key={i + type}>
+            <PlaceSection key={i + type}>
               <Button
                 typeState={meetingInfo.place === type ? 'primaryActive' : 'secondaryDisabled'}
                 onClick={() => setPlaceDetail(type)}
@@ -35,11 +35,11 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
                   }
                 />
               ) : null}
-            </PlaceSetion>
+            </PlaceSection>
           );
         })}
-      </PlaceInfoWrapper>
-      <StyledBtnWrapper>
+      </PlaceInfoSection>
+      <StyledBtnSection>
         <Button
           typeState={meetingInfo.place ? 'primaryActive' : 'secondaryDisabled'}
           onClick={
@@ -56,22 +56,24 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
         >
           <Text font={'button2'}>다음</Text>
         </Button>
-      </StyledBtnWrapper>
-    </>
+      </StyledBtnSection>
+    </SetPlaceWrapper>
   );
 }
 
 export default SetPlace;
 
-const StyledBtnWrapper = styled.section`
+const SetPlaceWrapper = styled.div``;
+
+const StyledBtnSection = styled.section`
   position: fixed;
   bottom: 1.2rem;
   border-radius: 50%;
 `;
 
-const PlaceInfoWrapper = styled.div`
+const PlaceInfoSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
 `;
-const PlaceSetion = styled.section``;
+const PlaceSection = styled.section``;

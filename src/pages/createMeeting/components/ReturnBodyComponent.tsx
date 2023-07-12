@@ -18,7 +18,7 @@ interface BodyProps {
   setStep: Dispatch<SetStateAction<number>>;
 }
 
-const BodyType: { [key: string]: React.JSXElementConstructor<any>} = {
+const BodyType: { [key: string]: React.JSXElementConstructor<any> } = {
   title: SetTitle,
   availableDates: SetDates,
   preferTimes: SetTimes,
@@ -29,12 +29,15 @@ const BodyType: { [key: string]: React.JSXElementConstructor<any>} = {
 };
 
 function ReturnBodyComponent({ currentStep, meetingInfo, setMeetingInfo, setStep }: BodyProps) {
-
   const CurrentComponent = BodyType[currentStep];
 
   return (
     <ReturnBodyComponentWrapper>
-      <CurrentComponent meetingInfo={meetingInfo} setMeetingInfo={setMeetingInfo} setStep={setStep} />
+      <CurrentComponent
+        meetingInfo={meetingInfo}
+        setMeetingInfo={setMeetingInfo}
+        setStep={setStep}
+      />
     </ReturnBodyComponentWrapper>
   );
 }

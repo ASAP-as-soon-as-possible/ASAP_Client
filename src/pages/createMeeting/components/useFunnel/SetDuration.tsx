@@ -6,7 +6,7 @@ import styled from 'styled-components/macro';
 
 function SetDuration({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
   return (
-    <>
+    <SetAdditionalInfoWrapper>
       <DurationWrapper>
         {durationType.map((duration, i) => {
           return (
@@ -44,18 +44,21 @@ function SetDuration({ meetingInfo, setMeetingInfo, setStep }: funnelProps) {
           <Text font={'button2'}>다음</Text>
         </Button>
       </StyledBtnWrapper>
-    </>
+    </SetAdditionalInfoWrapper>
   );
 }
 
 export default SetDuration;
 
-const SetAdditionalInfoWrapper = styled.div``;
+const SetAdditionalInfoWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 const StyledBtnWrapper = styled.section`
   position: fixed;
   bottom: 1.2rem;
-  border-radius: 50%;
 `;
 
 const DurationWrapper = styled.div`
