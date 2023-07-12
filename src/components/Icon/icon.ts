@@ -31,5 +31,5 @@ export {
   PasswordEyeIc,
   LinkIc,
   PlaceIc,
-  ClockIc
+  ClockIc,
 };

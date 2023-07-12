@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components';
+import { DefaultTheme } from 'styled-components/dist/types';
 
 const colors = {
   main1: '#3253FF',
