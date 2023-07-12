@@ -16,9 +16,10 @@ const MobileWrapper = styled.div`
 
   margin: 0 auto;
   background-color: ${({ theme }) => theme.colors.black};
+  padding-right: 2rem;
+  padding-left: 2rem;
 
   max-width: var(--app-max-width, 37.5rem);
-
   min-height: calc(var(--vh, 1vh) * 100);
 `;
 
