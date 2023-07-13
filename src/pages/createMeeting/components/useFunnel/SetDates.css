@@ -14,6 +14,9 @@
 .rmdp-container .bg-dark.ep-arrow::after {
   /* width: 36rem;
   height: 37.9rem; */
+  position: relative;
+  bottom: 2.2rem;
+  margin-bottom: 11.8rem;
   color: #c4c7ca;
   background-color: black;
 }

@@ -102,9 +102,15 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
       </DateSelectorWrapper>
       <StyledBtnSection>
         <Button
-          typeState={meetingInfo.availableDates.length > 0 ? 'primaryActive' : 'secondaryDisabled'}
+          typeState={
+            meetingInfo.availableDates.length > 1 ||
+            (meetingInfo.availableDates.length > 0 && multiple)
+              ? 'primaryActive'
+              : 'secondaryDisabled'
+          }
           onClick={
-            meetingInfo.availableDates.length > 0
+            meetingInfo.availableDates.length > 1 ||
+            (meetingInfo.availableDates.length > 0 && multiple)
               ? () =>
                   setStep((prev) => {
                     if (prev === 6) {
