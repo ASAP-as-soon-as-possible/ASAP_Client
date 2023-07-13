@@ -41,7 +41,7 @@ const cardInitData: CardData = {
   },
 };
 
-const Qcard = forwardRef((props, ref: ForwardedRef<HTMLDivElement>) => {
+const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   const [cardData, setCardData] = useState<CardData>(cardInitData);
 
   const {
@@ -63,13 +63,13 @@ const Qcard = forwardRef((props, ref: ForwardedRef<HTMLDivElement>) => {
   return (
     <QcardWrapper ref={ref}>
       <TopCardSetcion>
-        <Text font={'head2'}>{title}</Text>
+        <Text font={'head2'} color={`${theme.colors.white}`}>{title}</Text>
         <PlaceTimeSection>
           <PlaceContainer>
             <IconBox>
               {place === "ONLINE" ? <OnlinePlaceIc /> : <OfflinePlaceIc />}
             </IconBox>
-            <Text font={'title2'}>{placeDetail === null ?"미정":placeDetail}</Text>
+            <Text font={'title2'} color={`${theme.colors.white}`}>{placeDetail === null ?"미정":placeDetail}</Text>
           </PlaceContainer>
           <TimeContainer>
             <IconBox>
@@ -77,6 +77,7 @@ const Qcard = forwardRef((props, ref: ForwardedRef<HTMLDivElement>) => {
             </IconBox>
             <Text
               font={'title2'}
+              color={`${theme.colors.white}`}
             >{`${month}월 ${day} (${dayOfWeek}) ${startTime}-${endTime}`}</Text>
           </TimeContainer>
         </PlaceTimeSection>
@@ -88,7 +89,7 @@ const Qcard = forwardRef((props, ref: ForwardedRef<HTMLDivElement>) => {
               </Text>
             </MemberTitle>
             <UserMemberbox>
-              <Text font={'body2'}>{hostName}</Text>
+              <Text font={'body2'} color={`${theme.colors.white}`}>{hostName}</Text>
             </UserMemberbox>
           </HostMeberContainer>
           <MemberContainer>
@@ -99,7 +100,7 @@ const Qcard = forwardRef((props, ref: ForwardedRef<HTMLDivElement>) => {
             </MemberTitle>
             <UserMemberbox>
               {userNames.map((member, i) => (
-                <Text key={i + member} font={'body2'}>{`${member},`}</Text>
+                <Text key={i + member} font={'body2'} color={`${theme.colors.white}`}>{`${member},`}</Text>
               ))}
             </UserMemberbox>
           </MemberContainer>
@@ -139,7 +140,7 @@ const TopCardSetcion = styled.section`
   gap: 3.2rem;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
-  background-color: ${theme.colors.white};
+  background-color: ${theme.colors.grey9};
   padding: 4.6rem 2rem;
   width: 100%;
   height: fit-content;
@@ -173,10 +174,10 @@ const DashedSection = styled.div`
   flex-direction: row;
   gap: 1rem;
   justify-content: center;
-  background-color: ${theme.colors.white};
+  background-color: ${theme.colors.grey9};
   width: 100%;
   div {
-    border: 1px solid ${theme.colors.grey4};
+    border: 1px solid ${theme.colors.black};
     width: 1rem;
   }
 `;
@@ -233,6 +234,6 @@ const BottomCardSection = styled.section`
   justify-content: center;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  background-color: ${theme.colors.white};
+  background-color: ${theme.colors.grey9};
   height: 11rem;
 `;
