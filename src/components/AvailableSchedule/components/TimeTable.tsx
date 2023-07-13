@@ -101,15 +101,17 @@ function TimeTable() {
             ),
         )}
       </TimeSlotWrapper>
-      {formattedDates.map((date, idx) => (
-        <Row
-          idx={idx}
-          key={date}
-          timeSlots={timeSlots}
-          monthDay={date.split(' ')[0]}
-          dayOfWeek={date.split(' ')[1]}
-        />
-      ))}
+      {formattedDates
+        .concat(Array(7 - formattedDates.length).fill(''))
+        .map((date, idx) => (
+          <Row
+            idx={idx}
+            key={date}
+            timeSlots={timeSlots}
+            monthDay={date.split(' ')[0]}
+            dayOfWeek={date.split(' ')[1]}
+          />
+        ))}
     </TimeTableWrapper>
   );
 }

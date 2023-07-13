@@ -15,13 +15,13 @@ const Row = ({ idx, timeSlots, monthDay, dayOfWeek }) => {
           {dayOfWeek}
         </Text>
       </DateWrapper>
-
       {timeSlots.map((slot) => (
         <Column
           key={slot}
           timeSlot={slot}
           $borderTop={slot.endsWith(':30') && 'none'}
           $borderBottom={slot.endsWith(':00') && 'none'}
+          $isEmpty={!monthDay}
         />
       ))}
     </ColumnWrapper>
@@ -43,6 +43,6 @@ const DateWrapper = styled.div`
   flex-direction: column;
   gap: 0.2rem;
   align-items: center;
-
   margin-bottom: 1rem;
+  height: 3.4rem;
 `;
