@@ -23,9 +23,6 @@
     ]
 }
 */
-
-import { useState } from 'react';
-
 import Text from 'components/atomComponents/Text';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
@@ -77,18 +74,25 @@ const PREFER_TIMES = [
     endTime: '12:00',
   },
   {
-    startTime: '12:00',
-    endTime: '18:00',
+    startTime: '18:00',
+    endTime: '24:00',
   },
 ];
 
 function TimeTable() {
-  const timeSlots = getTimeSlots(PREFER_TIMES);
-  let formattedDates = AVAILABLE_DATES.map((date) => `${date.month}/${date.day} ${date.dayOfWeek}`);
-  formattedDates = formattedDates.concat(Array(7 - formattedDates.length).fill(''));
-  console.log(formattedDates);
+  const isMorningDinner =
+    PREFER_TIMES.length === 2 && PREFER_TIMES.every((time) => time.startTime !== '12:00');
 
-  //   console.log(timeSlots, formattedDates);
+  const PreferTimes = [...PREFER_TIMES];
+  isMorningDinner && PreferTimes.splice(1, 0, { startTime: '12:00', endTime: '18:00' }); // 오전, 저녁 선택시 오후 시간을 추가로 채움
+
+  const timeSlots = getTimeSlots(PreferTimes);
+
+  let formattedDates = AVAILABLE_DATES.map((date) => `${date.month}/${date.day} ${date.dayOfWeek}`);
+  formattedDates = formattedDates.concat(Array(7 - formattedDates.length).fill('')); // 7일 미만이라면 나머지를 빈 문자열로 채움
+
+  const lastElementBeforeEmpty = [...formattedDates].reverse().find((element) => element !== '');
+  console.log(timeSlots);
   return (
     <TimeTableWrapper>
       <TimeSlotWrapper>
@@ -110,6 +114,8 @@ function TimeTable() {
           timeSlots={timeSlots}
           monthDay={date.split(' ')[0]}
           dayOfWeek={date.split(' ')[1]}
+          isMorningDinner={isMorningDinner}
+          isLastofValidDate={lastElementBeforeEmpty === date}
         />
       ))}
     </TimeTableWrapper>

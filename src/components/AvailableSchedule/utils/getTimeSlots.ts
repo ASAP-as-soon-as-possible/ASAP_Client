@@ -5,7 +5,6 @@ const getTimeSlots = (preferTimes: PreferTime[]) => {
     const { startTime, endTime } = obj;
     const slots = [];
     let currentTime = startTime;
-
     while (currentTime !== endTime) {
       slots.push(currentTime);
       const [hour, minute] = currentTime.split(':');
@@ -16,8 +15,8 @@ const getTimeSlots = (preferTimes: PreferTime[]) => {
       currentTime = `${String(date.getHours()).padStart(2, '0')}:${String(
         date.getMinutes(),
       ).padStart(2, '0')}`;
+      currentTime = currentTime === '00:00' ? '24:00' : currentTime;
     }
-
     return slots;
   });
 

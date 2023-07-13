@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 import Column from './Column';
+import getTimeSlots from '../utils/getTimeSlots';
 
-const Row = ({ rowIdx, timeSlots, monthDay, dayOfWeek }) => {
+const Row = ({ rowIdx, timeSlots, monthDay, dayOfWeek, isMorningDinner, isLastofValidDate }) => {
   return (
     <ColumnWrapper>
       <DateWrapper>
@@ -24,6 +25,10 @@ const Row = ({ rowIdx, timeSlots, monthDay, dayOfWeek }) => {
           $isFirstRow={!rowIdx}
           $isFirstColumn={!columnIdx}
           $isLastColumn={columnIdx === arr.length - 1}
+          $isLastofValidDate={isLastofValidDate}
+          EmptyRange={
+            isMorningDinner ? getTimeSlots([{ startTime: '12:00', endTime: '18:00' }]) : undefined
+          }
         />
       ))}
     </ColumnWrapper>
