@@ -1,5 +1,6 @@
 import ComponentTesting from 'pages/ComponentTesting';
 import CreateMetting from 'pages/createMeeting/CreateMetting';
+import OnBoarding from 'pages/onBoarding/OnBoarding';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router = () => {
@@ -8,7 +9,7 @@ const Router = () => {
       <Routes>
         <Route path="/componenttest" element={<ComponentTesting />} />
         <Route path="/createmetting" element={<CreateMetting />} />
-        <Route path="/" element={<div>온보딩 페이지를 넣어주세요</div>} />
+        <Route path="/" element={<OnBoarding />} />
         <Route path="/meet/create" element={<div>회의 정보 입력페이지를 넣어주세요</div>} />
         <Route path="/meet/complete" element={<div>회의 생성 완료페이지를 넣어주세요</div>} />
         <Route path="/schedule/:meetingId" element={<div>가능 시간 입력페이지를 넣어주세요</div>} />
