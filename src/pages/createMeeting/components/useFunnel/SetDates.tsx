@@ -34,8 +34,8 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
     <SetDatesWrapper>
       <DateSelectorWrapper>
         <InputContianer>
-          <RangeInputBox $method={multiple}>
-            <RangeInput
+          <RangeInputBox $isClicked={multiple}>
+            <Input
               id="range"
               type="radio"
               name="method"
@@ -46,12 +46,12 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                   return { ...prev, availableDates: [] };
                 });
               }}
-              defaultChecked
+              checked={!multiple}
             />
             <Label htmlFor="range">기간 지정</Label>
           </RangeInputBox>
-          <MultipleInputBox>
-            <MultipleInput
+          <MultipleInputBox $isClicked={multiple}>
+            <Input
               id="multiple"
               type="radio"
               name="method"
@@ -100,13 +100,9 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
       </DateSelectorWrapper>
       <StyledBtnSection>
         <Button
-          typeState={
-            meetingInfo.title && meetingInfo.title.length < 16
-              ? 'primaryActive'
-              : 'secondaryDisabled'
-          }
+          typeState={meetingInfo.availableDates.length > 0 ? 'primaryActive' : 'secondaryDisabled'}
           onClick={
-            meetingInfo.title && meetingInfo.title.length < 16
+            meetingInfo.availableDates.length > 0
               ? () =>
                   setStep((prev) => {
                     if (prev === 6) {
@@ -143,62 +139,73 @@ const DateSelectorWrapper = styled.div`
   justify-content: center;
 `;
 
-const RangeInputBox = styled.div<{ multiple: boolean }>`
+const RangeInputBox = styled.div<{ $isClicked: boolean }>`
   display: flex;
   align-items: center;
   justify-content: left;
   border: 1px solid;
   border-radius: 0.8rem;
-  border-color: ${({ multiple, theme }) => (multiple ? theme.colors.red : theme.colors.grey1)};
+  border-color: ${({ $isClicked, theme }) =>
+    $isClicked ? theme.colors.grey5 : theme.colors.main1};
   width: 33.5rem;
   height: 5.2rem;
   color: white;
 `;
-const RangeInput = styled.input`
+const Input = styled.input`
   appearance: none;
-  margin-left: 1.6rem;
+  margin: 1.5rem 0 1.5rem 1.6rem;
   background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='10' stroke='%23D9D9D9' stroke-width='2'/%3E%3C/svg%3E%0A");
+  background-repeat: no-repeat;
   width: 2.2rem;
   height: 2.2rem;
 
   &:checked {
     background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='11' fill='%233C49FF'/%3E%3Ccircle cx='11' cy='11' r='4' fill='white'/%3E%3C/svg%3E ");
   }
+  &:checked + label {
+    color: white;
+  }
 `;
 const Label = styled.label`
-  margin-left: 1.2rem;
+  margin: 1.2rem;
   ${({ theme }) => theme.fonts.button1};
+  color: ${({ theme }) => theme.colors.grey6};
 `;
 
-const MultipleInputBox = styled.div`
+const MultipleInputBox = styled.div<{ $isClicked: boolean }>`
   display: flex;
   align-items: center;
   justify-content: left;
-  border: 1px solid blue;
+  border: 1px solid;
   border-radius: 0.8rem;
+  border-color: ${({ $isClicked, theme }) =>
+    $isClicked ? theme.colors.main1 : theme.colors.grey5};
   background-color: transparent;
   width: 33.5rem;
   height: 5.2rem;
   color: white;
 `;
-const MultipleInput = styled.input`
-  appearance: none;
-  margin-left: 1.6rem;
-  background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='10' stroke='%23D9D9D9' stroke-width='2'/%3E%3C/svg%3E%0A");
-  width: 2.2rem;
-  height: 2.2rem;
+// const MultipleInput = styled.input`
+//   appearance: none;
+//   margin-left: 1.6rem;
+//   background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='10' stroke='%23D9D9D9' stroke-width='2'/%3E%3C/svg%3E%0A");
+//   width: 2.2rem;
+//   height: 2.2rem;
 
-  &:checked {
-    background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='11' fill='%233C49FF'/%3E%3Ccircle cx='11' cy='11' r='4' fill='white'/%3E%3C/svg%3E ");
-  }
-`;
+//   &:checked {
+//     background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='11' fill='%233C49FF'/%3E%3Ccircle cx='11' cy='11' r='4' fill='white'/%3E%3C/svg%3E ");
+//   }
+//   &:checked + label {
+//     color: white;
+//   }
+// `;
 
 const InputContianer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
   margin-bottom: 3rem;
-  :first-child {
+  div:first-child {
     margin-bottom: 1.1rem;
   }
 `;
