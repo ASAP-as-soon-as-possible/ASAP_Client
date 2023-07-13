@@ -47,3 +47,11 @@ body {
 .swiper-button-next{
     display: none;
 }
+
+.swiper-pagination-bullet{
+    background-color: #A4A4A4;
+}
+
+.swiper-pagination-bullet-active{
+    background-color: #3253FF;
+}
