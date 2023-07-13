@@ -1,11 +1,11 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 
 import { methodStateAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import { Calendar, DateObject, getAllDatesInRange } from 'react-multi-date-picker';
-// import { useRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 
 import './SetDates.css';
@@ -27,8 +27,8 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   ];
   const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
   const dateRangeFormat = 'YYYY/MM/DD/ddd';
-  const [multiple, setMultiple] = useState(false);
-  // const [multiple, setMultiple] = useRecoilState(methodStateAtom);
+  // const [multiple, setMultiple] = useState(false);
+  const [multiple, setMultiple] = useRecoilState(methodStateAtom);
   console.log(meetingInfo);
   console.log(multiple);
   return (
@@ -47,7 +47,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                   return { ...prev, availableDates: [] };
                 });
               }}
-              defaultChecked
+              defaultChecked={!multiple}
             />
             <Label htmlFor="range">기간 지정</Label>
           </RangeInputBox>
@@ -63,6 +63,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                   return { ...prev, availableDates: [] };
                 });
               }}
+              defaultChecked={multiple}
             />
             <Label htmlFor="multiple">날짜 지정</Label>
           </MultipleInputBox>
