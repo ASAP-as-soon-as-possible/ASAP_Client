@@ -18,6 +18,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "6",
     "styled-reset": "^4.5.1",
+    "swiper": "^10.0.4",
     "vite-plugin-svgr": "^3.2.0"
   },
   "devDependencies": {
