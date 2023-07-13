@@ -1,6 +1,5 @@
-import { useEffect, Suspense } from 'react';
+import { useEffect } from 'react';
 
-import { ErrorBoundary } from 'react-error-boundary';
 import { ThemeProvider } from 'styled-components';
 import styled from 'styled-components/macro';
 
@@ -47,11 +46,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <MobileWrapper>
-          <ErrorBoundary fallback={<div>ErrorPage</div>}>
-            <Suspense fallback={<div>LoadingPage</div>}>
-              <Router />
-            </Suspense>
-          </ErrorBoundary>
+          <Router />
         </MobileWrapper>
       </ThemeProvider>
     </>
