@@ -2,6 +2,7 @@ import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { CardIc, InsertIc, MakeIc, PointIc } from 'components/Icon/icon';
 import Header from 'components/moleculesComponents/Header';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -71,9 +72,11 @@ function OnBoarding() {
           </SwiperContext>
         </SwiperSection>
         <ButtonSection>
+          <Link to={'/meet/create'}>
           <Button typeState={'primaryActive'}>
             <Text font={'button2'}>약속 생성하기</Text>
           </Button>
+          </Link>
         </ButtonSection>
       </OnboardingWrapper>
     </>
