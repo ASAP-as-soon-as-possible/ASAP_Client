@@ -7,9 +7,8 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/componenttest" element={<ComponentTesting />} />
-        <Route path="/createmetting" element={<CreateMetting />} />
         <Route path="/" element={<div>온보딩 페이지를 넣어주세요</div>} />
-        <Route path="/meet/create" element={<div>회의 정보 입력페이지를 넣어주세요</div>} />
+        <Route path="/meet/create" element={<CreateMetting />} />
         <Route path="/meet/complete" element={<div>회의 생성 완료페이지를 넣어주세요</div>} />
         <Route path="/schedule/:meetingId" element={<div>가능 시간 입력페이지를 넣어주세요</div>} />
         <Route path="/priority/:meetingId" element={<div>우선순위 선정페이지를 넣어주세요</div>} />

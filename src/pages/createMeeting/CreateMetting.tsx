@@ -5,50 +5,27 @@ import ReturnBodyComponent from 'pages/createMeeting/components/ReturnBodyCompon
 import ReturnTitleComponent from 'pages/createMeeting/components/ReturnTitleComponent';
 import styled from 'styled-components/macro';
 
-const funnelStep = [
-  'title',
-  'availableDates',
-  'preferTimes',
-  'place',
-  'duration',
-  'hostInfo',
-  'additionalInfo',
-];
+import { funnelStep } from './data/meetingInfoData';
+import { MeetingInfo } from './types/useFunnelInterface';
 
-interface MeetingInfo {
-  title: string;
-  availableDates: string[];
-  preferTimes: {
-    startTime: string;
-    endTime: string;
-  }[];
-  place: string | undefined;
-  placeDetail: string ;
-  duration: string;
-  name: string;
-  password: string;
-  additionalInfo: string;
-}
+const initialMettingInfo: MeetingInfo = {
+  title: '',
+  availableDates: [''],
+  preferTimes: [
+    {
+      startTime: '',
+      endTime: '',
+    },
+  ],
+  place: '',
+  placeDetail: '',
+  duration: '',
+  name: '',
+  password: '',
+  additionalInfo: '',
+};
 
 function CreateMetting() {
-
-  const initialMettingInfo : MeetingInfo = {
-    title: "",
-    availableDates: [""],
-    preferTimes: [
-      {
-        startTime: "",
-        endTime: ""
-      }
-    ],
-    place: "",
-    placeDetail: "",
-    duration: "",
-    name: "",
-    password: "",
-    additionalInfo: ""
-  };
-
   const [step, setStep] = useState(0);
   const [meetingInfo, setMeetingInfo] = useState(initialMettingInfo);
 
