@@ -1,12 +1,12 @@
-import { useRef , useState } from 'react';
+import { useRef } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import Header from 'components/moleculesComponents/Header';
 import html2canvas from 'html2canvas';
+import CueCardTitle from 'pages/cueCard/components/CueCardTitle';
 import styled from 'styled-components/macro';
 
-import CueCardTitle from './components/cueCardTitle';
 import Qcard from './components/Qcard';
 
 
@@ -26,7 +26,6 @@ const downLoadImage = () => {
 }
 
 const handleCopyClipBoard = async (text: string) => {
-  console.log(text)
   try {
     await navigator.clipboard.writeText(text);
     alert('복사 성공!');

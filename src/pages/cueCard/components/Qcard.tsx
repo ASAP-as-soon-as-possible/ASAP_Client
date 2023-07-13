@@ -128,7 +128,7 @@ const QcardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1rem 0 ;
+  padding: 1rem 2rem ;
   width: 100%;
 `;
 
@@ -137,33 +137,31 @@ const TopCardSetcion = styled.section`
   position: relative;
   flex-direction: column;
   gap: 3.2rem;
-  margin: 0 2rem ;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   background-color: ${theme.colors.grey9};
   padding: 4.6rem 2rem;
-  /* width: 100%; */
   height: fit-content;
 
   &:before {
     display: block;
     position: absolute;
     bottom: -1rem;
-    left: -1rem;
-    border-radius: 50%;
+    left: 0rem;
+    border-radius: 0 5rem 5rem 0;
     background-color: ${theme.colors.black};
-    width: 2rem;
+    width: 1rem;
     height: 2rem;
     content: '';
   }
   &:after {
     display: block;
     position: absolute;
-    right: -1rem;
+    right: 0rem;
     bottom: -1rem;
-    border-radius: 50%;
+    border-radius: 5rem 0 0 5rem;
     background-color: ${theme.colors.black};
-    width: 2rem;
+    width: 1rem;
     height: 2rem;
     content: '';
   }
@@ -175,7 +173,6 @@ const DashedSection = styled.div`
   gap: 1rem;
   justify-content: center;
   background-color: ${theme.colors.grey9};
-  /* width: 80%; */
   div {
     border: 1px solid ${theme.colors.black};
     width: 1rem;
@@ -232,7 +229,6 @@ const BottomCardSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 2rem ;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   background-color: ${theme.colors.grey9};
