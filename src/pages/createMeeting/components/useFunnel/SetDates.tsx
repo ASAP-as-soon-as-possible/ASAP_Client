@@ -69,36 +69,38 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           </MultipleInputBox>
           <InputNotice>회의 날짜는 최대 7일까지 선택할 수 있어요.</InputNotice>
         </InputContianer>
-        <Calendar
-          value={meetingInfo.availableDates}
-          months={months}
-          weekDays={weekDays}
-          className="bg-dark"
-          range={!multiple}
-          multiple={multiple}
-          onChange={(dateObjects) => {
-            if (dateObjects) {
-              if (multiple == false) {
-                const tmpArr = getAllDatesInRange(dateObjects as DateObject[]);
-                const newDate: string[] = [];
-                tmpArr.map((date) => {
-                  newDate.push((date as DateObject).format(dateRangeFormat));
-                });
-                setMeetingInfo((prev: MeetingInfo) => {
-                  return { ...prev, availableDates: newDate };
-                });
-              } else if (multiple == true) {
-                const newDate: string[] = [];
-                (dateObjects as DateObject[]).map((date: DateObject) => {
-                  newDate.push(date.format(dateRangeFormat));
-                });
-                setMeetingInfo((prev: MeetingInfo) => {
-                  return { ...prev, availableDates: newDate };
-                });
+        <CalendarWrapper>
+          <Calendar
+            value={meetingInfo.availableDates}
+            months={months}
+            weekDays={weekDays}
+            className="bg-dark"
+            range={!multiple}
+            multiple={multiple}
+            onChange={(dateObjects) => {
+              if (dateObjects) {
+                if (multiple == false) {
+                  const tmpArr = getAllDatesInRange(dateObjects as DateObject[]);
+                  const newDate: string[] = [];
+                  tmpArr.map((date) => {
+                    newDate.push((date as DateObject).format(dateRangeFormat));
+                  });
+                  setMeetingInfo((prev: MeetingInfo) => {
+                    return { ...prev, availableDates: newDate };
+                  });
+                } else if (multiple == true) {
+                  const newDate: string[] = [];
+                  (dateObjects as DateObject[]).map((date: DateObject) => {
+                    newDate.push(date.format(dateRangeFormat));
+                  });
+                  setMeetingInfo((prev: MeetingInfo) => {
+                    return { ...prev, availableDates: newDate };
+                  });
+                }
               }
-            }
-          }}
-        />
+            }}
+          />
+        </CalendarWrapper>
       </DateSelectorWrapper>
       <StyledBtnSection>
         <Button
@@ -139,6 +141,7 @@ const SetDatesWrapper = styled.div`
 const StyledBtnSection = styled.section`
   position: fixed;
   bottom: 1.2rem;
+  z-index: 3;
 `;
 const DateSelectorWrapper = styled.div`
   display: flex;
@@ -209,7 +212,6 @@ const InputNotice = styled.span`
   color: ${({ theme }) => theme.colors.sub1};
 `;
 
-// const DateSelector = styled(Calendar)`
-//   width: 36rem;
-//   height: 37.9rem;
-// `;
+const CalendarWrapper = styled.div`
+  z-index: 0;
+`;
