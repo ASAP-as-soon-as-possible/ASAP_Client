@@ -24,6 +24,8 @@
 }
 */
 
+import { useState } from 'react';
+
 import Text from 'components/atomComponents/Text';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
@@ -57,16 +59,16 @@ const AVAILABLE_DATES = [
     day: '10',
     dayOfWeek: '금',
   },
-  {
-    month: '7',
-    day: '11',
-    dayOfWeek: '토',
-  },
-  {
-    month: '7',
-    day: '12',
-    dayOfWeek: '일',
-  },
+  //   {
+  //     month: '7',
+  //     day: '11',
+  //     dayOfWeek: '토',
+  //   },
+  //   {
+  //     month: '7',
+  //     day: '12',
+  //     dayOfWeek: '일',
+  //   },
 ];
 
 const PREFER_TIMES = [
@@ -82,11 +84,11 @@ const PREFER_TIMES = [
 
 function TimeTable() {
   const timeSlots = getTimeSlots(PREFER_TIMES);
-  const formattedDates = AVAILABLE_DATES.map(
-    (date) => `${date.month}/${date.day} ${date.dayOfWeek}`,
-  );
+  let formattedDates = AVAILABLE_DATES.map((date) => `${date.month}/${date.day} ${date.dayOfWeek}`);
+  formattedDates = formattedDates.concat(Array(7 - formattedDates.length).fill(''));
+  console.log(formattedDates);
 
-  console.log(timeSlots, formattedDates);
+  //   console.log(timeSlots, formattedDates);
   return (
     <TimeTableWrapper>
       <TimeSlotWrapper>
@@ -101,17 +103,15 @@ function TimeTable() {
             ),
         )}
       </TimeSlotWrapper>
-      {formattedDates
-        .concat(Array(7 - formattedDates.length).fill(''))
-        .map((date, idx) => (
-          <Row
-            idx={idx}
-            key={date}
-            timeSlots={timeSlots}
-            monthDay={date.split(' ')[0]}
-            dayOfWeek={date.split(' ')[1]}
-          />
-        ))}
+      {formattedDates.map((date, idx) => (
+        <Row
+          rowIdx={idx}
+          key={date}
+          timeSlots={timeSlots}
+          monthDay={date.split(' ')[0]}
+          dayOfWeek={date.split(' ')[1]}
+        />
+      ))}
     </TimeTableWrapper>
   );
 }

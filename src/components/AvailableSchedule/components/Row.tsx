@@ -4,7 +4,7 @@ import { theme } from 'styles/theme';
 
 import Column from './Column';
 
-const Row = ({ idx, timeSlots, monthDay, dayOfWeek }) => {
+const Row = ({ rowIdx, timeSlots, monthDay, dayOfWeek }) => {
   return (
     <ColumnWrapper>
       <DateWrapper>
@@ -15,13 +15,15 @@ const Row = ({ idx, timeSlots, monthDay, dayOfWeek }) => {
           {dayOfWeek}
         </Text>
       </DateWrapper>
-      {timeSlots.map((slot) => (
+      {timeSlots.map((slot, columnIdx, arr) => (
         <Column
           key={slot}
           timeSlot={slot}
-          $borderTop={slot.endsWith(':30') && 'none'}
-          $borderBottom={slot.endsWith(':00') && 'none'}
+          $isHalf={slot.endsWith(':30')}
           $isEmpty={!monthDay}
+          $isFirstRow={!rowIdx}
+          $isFirstColumn={!columnIdx}
+          $isLastColumn={columnIdx === arr.length - 1}
         />
       ))}
     </ColumnWrapper>
