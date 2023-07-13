@@ -15,7 +15,7 @@ const MobileWrapper = styled.div`
   align-items: center;
 
   margin: 0 auto;
-  background-color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ theme }) => theme.colors.grey10};
   padding-right: 2rem;
   padding-left: 2rem;
 

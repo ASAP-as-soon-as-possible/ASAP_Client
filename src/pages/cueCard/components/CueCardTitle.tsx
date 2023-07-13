@@ -10,7 +10,7 @@ interface TextProps {
 function CueCardTitle ({ main, sub }: TextProps) {
   return (
     <TitleWrapper>
-      <Text font={'head2'} color={`${theme.colors.white}`}>
+      <Text font={'head1'} color={`${theme.colors.white}`}>
         {main}
       </Text>
       <Text font={'title2'} color={`${theme.colors.grey4}`}>

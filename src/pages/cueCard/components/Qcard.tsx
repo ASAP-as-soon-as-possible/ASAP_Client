@@ -128,7 +128,7 @@ const QcardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1rem 2rem ;
+  padding: 1rem 1.6rem ;
   width: 100%;
 `;
 
@@ -149,7 +149,7 @@ const TopCardSetcion = styled.section`
     bottom: -1rem;
     left: 0rem;
     border-radius: 0 5rem 5rem 0;
-    background-color: ${theme.colors.black};
+    background-color: ${theme.colors.grey10};
     width: 1rem;
     height: 2rem;
     content: '';
@@ -160,7 +160,7 @@ const TopCardSetcion = styled.section`
     right: 0rem;
     bottom: -1rem;
     border-radius: 5rem 0 0 5rem;
-    background-color: ${theme.colors.black};
+    background-color: ${theme.colors.grey10};
     width: 1rem;
     height: 2rem;
     content: '';

@@ -30,14 +30,14 @@ const handleCopyClipBoard = async (text: string) => {
     await navigator.clipboard.writeText(text);
     alert('복사 성공!');
   } catch (error) {
-    alert('복사 실패! 아무고토 못하죠!');
+    alert('복사실패! 아삽미쳤다 amugoto motaZo?!');
   }
 };
 
   return (
     <CueCardWrapper >
       <Header />
-      <CueCardTitle main={'일정 조율 완료'} sub={'이미 확정된 회의 일정입니다'} />
+      <CueCardTitle main={'일정 조율 완료!'} sub={'이미 확정된 회의 일정입니다'} />
       <Qcard ref={imageRef} />
       <ButtonSection>
         <Button typeState={'halfTertiaryActive'} onClick={() => handleCopyClipBoard('복사된 텍스트')}>

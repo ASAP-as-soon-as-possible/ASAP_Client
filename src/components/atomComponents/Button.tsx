@@ -73,7 +73,7 @@ const buttonCSS = {
   halfTertiaryActive: css`
     ${buttonDefaultCSS.basicCss};
     border: 1px solid ${({ theme }) => theme.colors.main3};
-    background-color: transparent;
+    background-color: ${({ theme }) => theme.colors.grey10};
     width: 15.2rem;
     color: ${({ theme }) => theme.colors.main3};
   `,
