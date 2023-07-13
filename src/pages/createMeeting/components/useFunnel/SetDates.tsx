@@ -1,15 +1,14 @@
-import { ReactComponentElement, useState } from 'react';
+import { useState } from 'react';
 
+import { methodStateAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import { Calendar, DateObject, getAllDatesInRange } from 'react-multi-date-picker';
+// import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
-import './SetDates.css';
-import { RadioCheckIc, RadioCheckedIc } from 'components/Icon/icon';
-import '../../../../assets/svgs/radioCheck.svg';
 
-// import { theme } from 'styles/theme';
+import './SetDates.css';
 
 function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const months = [
@@ -28,8 +27,10 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   ];
   const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
   const dateRangeFormat = 'YYYY/MM/DD/ddd';
-  const [multiple, setMultiple] = useState<boolean>(false);
+  const [multiple, setMultiple] = useState(false);
+  // const [multiple, setMultiple] = useRecoilState(methodStateAtom);
   console.log(meetingInfo);
+  console.log(multiple);
   return (
     <SetDatesWrapper>
       <DateSelectorWrapper>
@@ -46,7 +47,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                   return { ...prev, availableDates: [] };
                 });
               }}
-              checked={!multiple}
+              defaultChecked
             />
             <Label htmlFor="range">기간 지정</Label>
           </RangeInputBox>
@@ -185,20 +186,6 @@ const MultipleInputBox = styled.div<{ $isClicked: boolean }>`
   height: 5.2rem;
   color: white;
 `;
-// const MultipleInput = styled.input`
-//   appearance: none;
-//   margin-left: 1.6rem;
-//   background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='10' stroke='%23D9D9D9' stroke-width='2'/%3E%3C/svg%3E%0A");
-//   width: 2.2rem;
-//   height: 2.2rem;
-
-//   &:checked {
-//     background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='11' fill='%233C49FF'/%3E%3Ccircle cx='11' cy='11' r='4' fill='white'/%3E%3C/svg%3E ");
-//   }
-//   &:checked + label {
-//     color: white;
-//   }
-// `;
 
 const InputContianer = styled.div`
   display: flex;
@@ -211,5 +198,11 @@ const InputContianer = styled.div`
 `;
 const InputNotice = styled.span`
   margin-top: 1.2rem;
-  color: yellowgreen;
+  ${({ theme }) => theme.fonts.body3};
+  color: ${({ theme }) => theme.colors.sub1};
 `;
+
+// const DateSelector = styled(Calendar)`
+//   width: 36rem;
+//   height: 37.9rem;
+// `;
