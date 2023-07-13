@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { BackIc, HambergerIc, MainLogoIc } from 'components/Icon/icon';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -11,10 +12,13 @@ interface HeaderProps {
 }
 
 function Header({ position, setStep }: HeaderProps) {
+
+  const navigate = useNavigate()
   const backToFunnel = () => {
     if (setStep !== undefined) {
       setStep((prev) => {
         if (prev === 0) {
+          navigate('/')
           return prev;
         }
         return prev - 1;
