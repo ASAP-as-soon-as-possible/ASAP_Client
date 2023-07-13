@@ -2,7 +2,7 @@ import { ReactComponentElement, useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
-import { FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import { Calendar, DateObject, getAllDatesInRange } from 'react-multi-date-picker';
 import styled from 'styled-components/macro';
 import './SetDates.css';
@@ -28,13 +28,13 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   ];
   const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
   const dateRangeFormat = 'YYYY/MM/DD/ddd';
-  const [value, setValue] = useState<string[]>();
   const [multiple, setMultiple] = useState<boolean>(false);
+  console.log(meetingInfo);
   return (
     <SetDatesWrapper>
       <DateSelectorWrapper>
         <InputContianer>
-          <RangeInputBox $state={multiple}>
+          <RangeInputBox $method={multiple}>
             <RangeInput
               id="range"
               type="radio"
@@ -42,7 +42,9 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
               value="range"
               onClick={() => {
                 setMultiple(false);
-                setValue([]);
+                setMeetingInfo((prev: MeetingInfo) => {
+                  return { ...prev, availableDates: [] };
+                });
               }}
               defaultChecked
             />
@@ -56,7 +58,9 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
               value="multiple"
               onClick={() => {
                 setMultiple(true);
-                setValue([]);
+                setMeetingInfo((prev: MeetingInfo) => {
+                  return { ...prev, availableDates: [] };
+                });
               }}
             />
             <Label htmlFor="multiple">날짜 지정</Label>
@@ -64,7 +68,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           <InputNotice>회의 날짜는 최대 7일까지 선택할 수 있어요.</InputNotice>
         </InputContianer>
         <Calendar
-          value={value}
+          value={meetingInfo.availableDates}
           months={months}
           weekDays={weekDays}
           className="bg-dark"
@@ -78,13 +82,17 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                 tmpArr.map((date) => {
                   newDate.push((date as DateObject).format(dateRangeFormat));
                 });
-                setValue(newDate);
+                setMeetingInfo((prev: MeetingInfo) => {
+                  return { ...prev, availableDates: newDate };
+                });
               } else if (multiple == true) {
                 const newDate: string[] = [];
                 (dateObjects as DateObject[]).map((date: DateObject) => {
                   newDate.push(date.format(dateRangeFormat));
                 });
-                setValue(newDate);
+                setMeetingInfo((prev: MeetingInfo) => {
+                  return { ...prev, availableDates: newDate };
+                });
               }
             }
           }}
@@ -135,13 +143,13 @@ const DateSelectorWrapper = styled.div`
   justify-content: center;
 `;
 
-const RangeInputBox = styled.div`
+const RangeInputBox = styled.div<{ multiple: boolean }>`
   display: flex;
   align-items: center;
   justify-content: left;
   border: 1px solid;
   border-radius: 0.8rem;
-  border-color: ${({ state }: { $state: boolean }) => (state ? 'blue' : 'gray')};
+  border-color: ${({ multiple, theme }) => (multiple ? theme.colors.red : theme.colors.grey1)};
   width: 33.5rem;
   height: 5.2rem;
   color: white;
