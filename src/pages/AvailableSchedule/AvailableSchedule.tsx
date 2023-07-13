@@ -1,11 +1,7 @@
 import TimeTable from './components/TimeTable';
 
 const AvailableSchedule = () => {
-  return (
-    <div>
-      <TimeTable />
-    </div>
-  );
+  return <TimeTable />;
 };
 
 export default AvailableSchedule;

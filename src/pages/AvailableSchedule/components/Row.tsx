@@ -3,9 +3,11 @@ import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 import Column from './Column';
+import { RowProps } from '../types/AvailableScheduleType';
 import getTimeSlots from '../utils/getTimeSlots';
 
-const Row = ({ rowIdx, timeSlots, monthDay, dayOfWeek, isMorningDinner, isLastofValidDate }) => {
+const Row = (props: RowProps) => {
+  const { rowIdx, timeSlots, monthDay, dayOfWeek, isMorningDinner, isLastofValidDate } = props;
   return (
     <ColumnWrapper>
       <DateWrapper>

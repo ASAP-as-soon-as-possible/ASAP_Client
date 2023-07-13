@@ -1,15 +1,18 @@
 import styled from 'styled-components';
 
-const Column = ({
-  timeSlot,
-  $isHalf,
-  $isEmpty,
-  $isFirstRow,
-  $isFirstColumn,
-  $isLastColumn,
-  EmptyRange,
-  $isLastofValidDate,
-}) => {
+import { ColumnProps } from '../types/AvailableScheduleType';
+
+const Column = (props: ColumnProps) => {
+  const {
+    timeSlot,
+    $isHalf,
+    $isEmpty,
+    $isFirstRow,
+    $isFirstColumn,
+    $isLastColumn,
+    EmptyRange,
+    $isLastofValidDate,
+  } = props;
   return (
     <ColumnWrapper
       $isDateEmpty={$isEmpty}
@@ -26,16 +29,18 @@ const Column = ({
 
 export default Column;
 
-const ColumnWrapper = styled.div<{
-  $isDateEmpty: string;
-  $isTimeSlotEmpty: string;
-  $isHalf: string;
-  $isFirstRow: string;
-  $isFirstColumn: string;
-  $isLastColumn: string;
-  $isLastOfValidDate: string;
-  $is18ofEmptyTimeSlot: string;
-}>`
+interface ColumnWrapperProps {
+  $isDateEmpty: boolean;
+  $isTimeSlotEmpty: boolean | undefined;
+  $isHalf: boolean;
+  $isFirstRow: boolean;
+  $isFirstColumn: boolean;
+  $isLastColumn: boolean;
+  $isLastOfValidDate: boolean;
+  $is18ofEmptyTimeSlot: boolean | undefined;
+}
+
+const ColumnWrapper = styled.div<ColumnWrapperProps>`
   border-top: ${({ theme, $isFirstColumn, $is18ofEmptyTimeSlot, $isDateEmpty }) =>
     $isFirstColumn || ($is18ofEmptyTimeSlot && !$isDateEmpty)
       ? `0.1rem solid ${theme.colors.grey7}`
@@ -48,8 +53,6 @@ const ColumnWrapper = styled.div<{
     (($isDateEmpty || $isTimeSlotEmpty) && !$isLastColumn) || !$isHalf
       ? 'none'
       : `0.1rem solid ${theme.colors.grey7}`};
-  /* border-bottom: ${({ theme, $isHalf, $isLastColumn }) =>
-    $isLastColumn && !$isHalf && `0.1rem solid ${theme.colors.grey7}`}; */
   border-left: ${({ theme, $isFirstRow }) =>
     $isFirstRow ? `0.1rem solid ${theme.colors.grey7}` : 'none'};
 
