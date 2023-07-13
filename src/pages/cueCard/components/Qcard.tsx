@@ -128,8 +128,7 @@ const QcardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 1rem;
-  background-color: ${theme.colors.black};
+  padding: 1rem 0 ;
   width: 100%;
 `;
 
@@ -138,11 +137,12 @@ const TopCardSetcion = styled.section`
   position: relative;
   flex-direction: column;
   gap: 3.2rem;
+  margin: 0 2rem ;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   background-color: ${theme.colors.grey9};
   padding: 4.6rem 2rem;
-  width: 100%;
+  /* width: 100%; */
   height: fit-content;
 
   &:before {
@@ -175,7 +175,7 @@ const DashedSection = styled.div`
   gap: 1rem;
   justify-content: center;
   background-color: ${theme.colors.grey9};
-  width: 100%;
+  /* width: 80%; */
   div {
     border: 1px solid ${theme.colors.black};
     width: 1rem;
@@ -232,6 +232,7 @@ const BottomCardSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 2rem ;
   border-bottom-left-radius: 1rem;
   border-bottom-right-radius: 1rem;
   background-color: ${theme.colors.grey9};
