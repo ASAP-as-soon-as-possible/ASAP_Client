@@ -23,6 +23,7 @@
     ]
 }
 */
+
 import Text from 'components/atomComponents/Text';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
@@ -71,12 +72,16 @@ const AVAILABLE_DATES = [
 const PREFER_TIMES = [
   {
     startTime: '06:00',
-    endTime: '12:00',
+    endTime: '17:00',
   },
-  {
-    startTime: '18:00',
-    endTime: '24:00',
-  },
+  //   {
+  //     startTime: '12:00',
+  //     endTime: '18:00',
+  //   },
+  //   {
+  //     startTime: '18:00',
+  //     endTime: '24:00',
+  //   },
 ];
 
 function TimeTable() {
@@ -92,7 +97,7 @@ function TimeTable() {
   formattedDates = formattedDates.concat(Array(7 - formattedDates.length).fill('')); // 7일 미만이라면 나머지를 빈 문자열로 채움
 
   const lastElementBeforeEmpty = [...formattedDates].reverse().find((element) => element !== '');
-  console.log(timeSlots);
+
   return (
     <TimeTableWrapper>
       <TimeSlotWrapper>

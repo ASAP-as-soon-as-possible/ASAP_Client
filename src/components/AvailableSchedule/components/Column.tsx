@@ -13,7 +13,7 @@ const Column = ({
   return (
     <ColumnWrapper
       $isDateEmpty={$isEmpty}
-      $isTimeSlotEmpty={EmptyRange.includes(timeSlot)}
+      $isTimeSlotEmpty={EmptyRange ? EmptyRange.includes(timeSlot) : undefined}
       $isFirstRow={$isFirstRow}
       $isHalf={$isHalf}
       $isFirstColumn={$isFirstColumn}
@@ -48,6 +48,8 @@ const ColumnWrapper = styled.div<{
     (($isDateEmpty || $isTimeSlotEmpty) && !$isLastColumn) || !$isHalf
       ? 'none'
       : `0.1rem solid ${theme.colors.grey7}`};
+  /* border-bottom: ${({ theme, $isHalf, $isLastColumn }) =>
+    $isLastColumn && !$isHalf && `0.1rem solid ${theme.colors.grey7}`}; */
   border-left: ${({ theme, $isFirstRow }) =>
     $isFirstRow ? `0.1rem solid ${theme.colors.grey7}` : 'none'};
 
