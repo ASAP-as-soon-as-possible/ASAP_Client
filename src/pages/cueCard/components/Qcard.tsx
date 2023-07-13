@@ -1,27 +1,83 @@
-import React, { forwardRef } from 'react';
+import { forwardRef, useState , ForwardedRef } from 'react';
 
 import Text from 'components/atomComponents/Text';
-import { OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
+import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-const Qcard = forwardRef((props, ref) => {
+interface CardData {
+  status: number;
+  message: string;
+  data: {
+    title: string;
+    place: 'ONLINE' | 'OFFLINE' | 'UNDEFINED';
+    placeDetail: string | null;
+    month: string;
+    day: string;
+    dayOfWeek: string;
+    startTime: string;
+    endTime: string;
+    hostName: string;
+    userNames: string[];
+    additionalInfo: string | null;
+  };
+}
+
+const cardInitData: CardData = {
+  status: 200,
+  message: '큐카드 조회 성공입니다.',
+  data: {
+    title: 'ASAP 간챙겨',
+    place: 'OFFLINE',
+    placeDetail: '구글미트',
+    month: '7',
+    day: '30',
+    dayOfWeek: '월',
+    startTime: '06:00',
+    endTime: '12:00',
+    hostName: '서지원',
+    userNames: ['서지원', '도소현' , '도소현' , '도소현' , '도소현' , '도소현' , '도소현' , '도소현' , '도소현' , '도소현'],
+    additionalInfo: null,
+  },
+};
+
+const Qcard = forwardRef((props, ref: ForwardedRef<HTMLDivElement>) => {
+  const [cardData, setCardData] = useState<CardData>(cardInitData);
+
+  const {
+    data: {
+      title,
+      place,
+      placeDetail,
+      month,
+      day,
+      dayOfWeek,
+      startTime,
+      endTime,
+      hostName,
+      userNames,
+      additionalInfo,
+    },
+  } = cardData;
+
   return (
     <QcardWrapper ref={ref}>
       <TopCardSetcion>
-        <Text font={'head2'}>아삽 전체회의</Text>
+        <Text font={'head2'}>{title}</Text>
         <PlaceTimeSection>
           <PlaceContainer>
             <IconBox>
-              <OnlinePlaceIc />
+              {place === "ONLINE" ? <OnlinePlaceIc /> : <OfflinePlaceIc />}
             </IconBox>
-            <Text font={'title2'}>신촌 마카닷 스터카페</Text>
+            <Text font={'title2'}>{placeDetail === null ?"미정":placeDetail}</Text>
           </PlaceContainer>
           <TimeContainer>
             <IconBox>
               <TimeIc />
             </IconBox>
-            <Text font={'title2'}>6월 30 (금) 18:00-21:00</Text>
+            <Text
+              font={'title2'}
+            >{`${month}월 ${day} (${dayOfWeek}) ${startTime}-${endTime}`}</Text>
           </TimeContainer>
         </PlaceTimeSection>
         <MemeberSection>
@@ -31,7 +87,9 @@ const Qcard = forwardRef((props, ref) => {
                 방장
               </Text>
             </MemberTitle>
-            <Text font={'body2'}>서지원</Text>
+            <UserMemberbox>
+              <Text font={'body2'}>{hostName}</Text>
+            </UserMemberbox>
           </HostMeberContainer>
           <MemberContainer>
             <MemberTitle>
@@ -39,9 +97,11 @@ const Qcard = forwardRef((props, ref) => {
                 참여
               </Text>
             </MemberTitle>
-            <Text font={'body2'}>
-              서지원, 서채원, 김태희, 강민서, 이재훈, 이동헌, 심은서, 정찬우, 강원용, 도소현
-            </Text>
+            <UserMemberbox>
+              {userNames.map((member, i) => (
+                <Text key={i + member} font={'body2'}>{`${member},`}</Text>
+              ))}
+            </UserMemberbox>
           </MemberContainer>
         </MemeberSection>
       </TopCardSetcion>
@@ -52,7 +112,7 @@ const Qcard = forwardRef((props, ref) => {
       </DashedSection>
       <BottomCardSection>
         <Text font={'body2'} color={`${theme.colors.grey4}`}>
-          별도의 공지사항은 없어요!
+        {additionalInfo === null ?"별도의 공지사항은 없어요!":additionalInfo}
         </Text>
       </BottomCardSection>
     </QcardWrapper>
@@ -161,6 +221,12 @@ const MemberTitle = styled.div`
   min-width: 2.5rem;
 `;
 
+const UserMemberbox = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  gap: 0.3rem;
+`;
 const BottomCardSection = styled.section`
   display: flex;
   align-items: center;
