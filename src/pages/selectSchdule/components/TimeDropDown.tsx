@@ -47,6 +47,14 @@ const TimeDropDownWrapper = styled.div`
   width: 13.6rem;
   height: 14.4rem;
   overflow:auto;
+
+  //스크롤 없애기
+  /* -ms-overflow-style: none; // 인터넷 익스플로러
+  scrollbar-width: none; // 파이어폭스
+  &::-webkit-scrollbar { //크롬
+    display: none;
+  } */
+
 `;
 const TimeDropDownList = styled.li`
   display: flex;
