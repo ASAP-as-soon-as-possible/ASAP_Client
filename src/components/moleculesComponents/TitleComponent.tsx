@@ -28,6 +28,6 @@ const TitleWrapper = styled.div`
   flex-direction: column;
   gap: 1.2rem;
 
-  padding: 4.4rem 2rem 4.2rem 2rem;
+  padding: 4.4rem 0 4.2rem 0;
   width: 100%;
 `;
