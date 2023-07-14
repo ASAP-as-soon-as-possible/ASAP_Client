@@ -70,7 +70,9 @@ function Header({ position, setStep }: HeaderProps) {
 
 export default Header;
 
-const HeaderWrapper =styled.div``
+const HeaderWrapper = styled.div`
+  width: 100%;
+`;
 const HeaderSection = styled.div`
   display: flex;
   align-items: center;
@@ -115,17 +117,28 @@ const NavigationContainer = styled.div`
   padding: 20rem 2.4rem;
   width: 25.7rem;
   height: 100vh;
+  animation: fadeInRight 0.5s;
   span {
     display: flex;
     align-items: center;
     height: 5.2rem;
+  }
+  @keyframes fadeInRight {
+    0% {
+      transform: translate3d(100%, 0, 0);
+      opacity: 0.8;
+    }
+    to {
+      transform: translateZ(0);
+      opacity: 1;
+    }
   }
 `;
 
 const IconContainer = styled.div`
   display: flex;
   position: absolute;
-  top: 5.1rem;
+  top: 2rem;
   right: 0.8rem;
   align-items: center;
   justify-content: center;
