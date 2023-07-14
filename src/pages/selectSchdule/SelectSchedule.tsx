@@ -6,6 +6,8 @@ import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 import DropDown from './components/DropDown';
+import TimeDropDown from './components/TimeDropDown';
+import TimeSelect from './components/TimeSelect';
 import { DateStates } from './types/Schedule';
 
 interface PropTypes {
@@ -22,7 +24,7 @@ function SelectSchedule({ dataList, deleteData, handleDropDown }: PropTypes) {
           <SelectWrapper key={item.id}>
             <SelectSection>
               <SelectContainer>
-                <DateSelect onClick={() => handleDropDown(item.id)}>
+                <DateSelect $drop={item.dropDown} onClick={() => handleDropDown(item.id)}>
                   <Text font="button2" color={`${theme.colors.grey5}`}>
                     날짜 선택
                   </Text>
@@ -39,16 +41,8 @@ function SelectSchedule({ dataList, deleteData, handleDropDown }: PropTypes) {
               </ExitIconWrapper>
             </SelectSection>
             <TimeSelectSection>
-              <TimeSelect>
-                <Text font="button2" color={`${theme.colors.grey5}`}>
-                  시작 시간
-                </Text>
-              </TimeSelect>
-              <TimeSelect>
-                <Text font="button2" color={`${theme.colors.grey5}`}>
-                  종료 시간
-                </Text>
-              </TimeSelect>
+              <TimeSelect text="시작 시간" />
+              <TimeSelect text="종료 시간" />
             </TimeSelectSection>
           </SelectWrapper>
         ))}
@@ -66,9 +60,9 @@ const SelectWrapper = styled.div`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.grey8};
   padding-top: 1.2rem;
+  padding-right: 4rem;
   padding-bottom: 1.2rem;
   padding-left: 1.2rem;
-
   width: 33.5rem;
   height: 12.8rem;
 `;
@@ -84,11 +78,14 @@ const SelectContainer = styled.div`
   position: relative;
 `;
 
-const DateSelect = styled.ul`
+const DateSelect = styled.ul<{ $drop: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 0.8rem;
+  border-bottom-left-radius: ${(props) => (props.$drop ? '0.8rem' : '0rem')};
+  border-bottom-right-radius: ${(props) => (props.$drop ? '0.8rem' : '0rem')};
+
   background-color: ${({ theme }) => theme.colors.grey7};
 
   cursor: pointer;
@@ -112,23 +109,24 @@ const DropDownIconWrapper = styled.div`
   left: 25.5rem;
 `;
 
-const TimeSelect = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.8rem;
-  background-color: ${({ theme }) => theme.colors.grey7};
-  cursor: poniter;
+// const TimeSelect = styled.div`
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   border-radius: 0.8rem;
 
-  width: 13.6rem;
-  height: 4.8rem;
-`;
+//   background-color: ${({ theme }) => theme.colors.grey7};
+//   cursor: pointer;
+
+//   width: 13.6rem;
+//   height: 4.8rem;
+// `;
 
 const TimeSelectSection = styled.section`
   display: flex;
   gap: 0.8rem;
-
-  cursor: pointer;
 `;
+
+const TimeSelectContainer = styled.div``;
 
 export default React.memo(SelectSchedule);

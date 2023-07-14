@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { PlusIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 
+import TimeDropDown from './components/TimeDropDown';
 import SelectSchedule from './SelectSchedule';
 import { DateStates } from './types/Schedule';
 
@@ -17,17 +18,17 @@ function SelectPage() {
       priority: 0,
     },
   ]);
+  const dateRef = useRef<HTMLDivElement>(null);
+
   const nextID = useRef<number>(2);
 
   const addDateList = () => {
-
     const selectBox = {
       id: nextID.current,
       date: '',
       startTime: '',
       endTime: '',
       dropDown: true,
-      view: false,
     };
 
     setDateList([...dateList, selectBox]);

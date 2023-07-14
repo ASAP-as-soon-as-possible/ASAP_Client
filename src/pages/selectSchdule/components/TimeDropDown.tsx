@@ -4,51 +4,51 @@ import Text from 'components/atomComponents/Text';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-function DropDown() {
+function TimeDropDown() {
   return (
-    <DropDownWrapper>
-      <DropDownList>
+    <TimeDropDownWrapper>
+      <TimeDropDownList>
         <Text font="button1" color={`${theme.colors.white}`}>
           7월 13일 (일)
         </Text>
-      </DropDownList>
-      <DropDownList>
-        {' '}
-        <Text font="button1" color={`${theme.colors.white}`}>
-          7월 15일 (월)
-        </Text>
-      </DropDownList>
-      <DropDownList>
-        {' '}
-        <Text font="button1" color={`${theme.colors.white}`}>
-          7월 16일 (월)
-        </Text>
-      </DropDownList>
-      <DropDownList>
+      </TimeDropDownList>
+      <TimeDropDownList>
         {' '}
         <Text font="button1" color={`${theme.colors.white}`}>
           7월 14일 (월)
         </Text>
-      </DropDownList>
-      <DropDownList>
+      </TimeDropDownList>
+      <TimeDropDownList>
         {' '}
         <Text font="button1" color={`${theme.colors.white}`}>
           7월 14일 (월)
         </Text>
-      </DropDownList>
-    </DropDownWrapper>
+      </TimeDropDownList>
+      <TimeDropDownList>
+        {' '}
+        <Text font="button1" color={`${theme.colors.white}`}>
+          7월 14일 (월)
+        </Text>
+      </TimeDropDownList>
+      <TimeDropDownList>
+        {' '}
+        <Text font="button1" color={`${theme.colors.white}`}>
+          7월 14일 (월)
+        </Text>
+      </TimeDropDownList>
+    </TimeDropDownWrapper>
   );
 }
 
-const DropDownWrapper = styled.div`
+const TimeDropDownWrapper = styled.div`
   position: absolute; //drop down에서 아래 DOM을 밀고 싶을 땐 지워주기
 
-  z-index: 3;
-  width: 28rem;
+  z-index: 2;
+  width: 13.6rem;
   height: 14.4rem;
   overflow:auto;
 `;
-const DropDownList = styled.li`
+const TimeDropDownList = styled.li`
   display: flex;
 
   align-items: center;
@@ -63,4 +63,4 @@ const DropDownList = styled.li`
     background-color: ${({ theme }) => theme.colors.grey7};
   }
 `;
-export default DropDown;
+export default TimeDropDown;
