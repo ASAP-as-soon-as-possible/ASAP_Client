@@ -78,6 +78,7 @@ const StyledPasswordInput = styled.input<{ $iserror: boolean }>`
   caret-color: ${({ theme }) => theme.colors.main1};
 
   color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fonts.body3};
 
   &:focus {
     outline: none;
@@ -100,7 +101,7 @@ const SubTextSection = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.4rem;
-  margin-top: 0.9rem;
+  margin-top: 1.7rem;
 
   span {
     font-weight: 600;

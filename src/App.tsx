@@ -6,6 +6,7 @@ import styled from 'styled-components/macro';
 import Router from './Router';
 import GlobalStyle from './styles/globalStyles';
 import { theme } from './styles/theme';
+import "./App.css"
 
 const MobileWrapper = styled.div`
   display: flex;
