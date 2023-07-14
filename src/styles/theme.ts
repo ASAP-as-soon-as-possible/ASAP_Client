@@ -8,7 +8,7 @@ const colors = {
   main5: '#B0BDFF',
   main6: '#D3DBFF',
 
-  sub1: '#E0E5FF',
+  sub1: '#D1FF38',
 
   white: '#FFFFFF',
   grey1: '#EEEEEE',
