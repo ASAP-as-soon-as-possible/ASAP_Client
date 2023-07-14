@@ -67,6 +67,7 @@ const DateSelect = styled.select`
     calc(100% - 5px) center;
   background-color: ${({ theme }) => theme.colors.grey5};
   background-repeat: no-repeat;
+  padding: 5px;
   width: 100%;
   height: 4.8rem;
   text-align: center;

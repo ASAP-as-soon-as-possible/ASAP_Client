@@ -1,6 +1,7 @@
 import ComponentTesting from 'pages/ComponentTesting';
 import CreateMetting from 'pages/createMeeting/CreateMetting';
-import SelectSchedule from 'pages/selectSchdule/SelectSchedule';
+import SelectPage from 'pages/selectSchdule/SelectPage';
+//import SelectTime from 'pages/selectTime/SelectTime';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router = () => {
@@ -19,6 +20,7 @@ const Router = () => {
         <Route path="/host/:meetingId" element={<div>최적의 회의시간 페이지를 넣어주세요</div>} />
         <Route path="/q-card/:meetingId" element={<div>큐카드 페이지를 넣어주세요</div>} />
         <Route path="*" element={<div>not found</div>} />
+        <Route path="/select" element={<SelectPage />} />
       </Routes>
     </BrowserRouter>
   );
