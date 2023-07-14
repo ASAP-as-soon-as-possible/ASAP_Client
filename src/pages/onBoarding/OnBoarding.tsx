@@ -73,9 +73,9 @@ function OnBoarding() {
         </SwiperSection>
         <ButtonSection>
           <Link to={'/meet/create'}>
-          <Button typeState={'primaryActive'}>
-            <Text font={'button2'}>약속 생성하기</Text>
-          </Button>
+            <Button typeState={'primaryActive'}>
+              <Text font={'button2'}>약속 생성하기</Text>
+            </Button>
           </Link>
         </ButtonSection>
       </OnboardingWrapper>
