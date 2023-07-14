@@ -20,17 +20,14 @@ function SelectPage() {
   const nextID = useRef<number>(2);
 
   const addDateList = () => {
-    // const countArr = [...dateList];
-    // let counter = countArr.slice(-1)[0];
-    // counter += 1;
-    // countArr.push(counter); // index 사용 X
-    // setDateList(countArr);
+
     const selectBox = {
       id: nextID.current,
       date: '',
       startTime: '',
       endTime: '',
       dropDown: true,
+      view: false,
     };
 
     setDateList([...dateList, selectBox]);

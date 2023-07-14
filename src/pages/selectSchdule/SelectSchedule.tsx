@@ -5,6 +5,7 @@ import { DropDownIc, DropUpIc, ExitIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
+import DropDown from './components/DropDown';
 import { DateStates } from './types/Schedule';
 
 interface PropTypes {
@@ -29,6 +30,7 @@ function SelectSchedule({ dataList, deleteData, handleDropDown }: PropTypes) {
                     {item.dropDown ? <DropDownIcon /> : <DropUpIc />}
                   </DropDownIconWrapper>
                 </DateSelect>
+                {item.dropDown ? <div /> : <DropDown />}
               </SelectContainer>
               <ExitIconWrapper>
                 <ExitButton onClick={() => deleteData(item.id)}>
@@ -82,7 +84,7 @@ const SelectContainer = styled.div`
   position: relative;
 `;
 
-const DateSelect = styled.div`
+const DateSelect = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
