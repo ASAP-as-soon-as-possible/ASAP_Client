@@ -1,5 +1,5 @@
 import ComponentTesting from 'pages/ComponentTesting';
-import CreateMetting from 'pages/createMeeting/CreateMetting';
+import CreateMetting from 'pages/createMeeting/CreateMeeting';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router = () => {
