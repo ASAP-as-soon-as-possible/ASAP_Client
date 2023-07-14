@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
+const navigationOption = ['공지사항', 'ASAP family', '약속 생성하기', '피드백 보내기'];
+
 interface HeaderProps {
   position: string;
   setStep?: Dispatch<SetStateAction<number>>;
@@ -13,7 +15,7 @@ interface HeaderProps {
 
 function Header({ position, setStep }: HeaderProps) {
   const navigate = useNavigate();
-  const [isNaviOpen , setIsNaviOpen]=useState(false)
+  const [isNaviOpen, setIsNaviOpen] = useState(false);
   const backToFunnel = () => {
     if (setStep !== undefined) {
       setStep((prev) => {
@@ -42,29 +44,26 @@ function Header({ position, setStep }: HeaderProps) {
             회의정보입력
           </Text>
         )}
-        <IconSection onClick={()=>setIsNaviOpen((prev)=>!prev)}>
+        <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
           <HambergerIc />
         </IconSection>
       </HeaderWrapper>
-      {isNaviOpen ? <NavigationSection>
-        <IconContainer onClick={()=>setIsNaviOpen((prev)=>!prev)}>
-          <ExitIc />
-        </IconContainer>
-        <NavigationContainer>
-          <Text font={'title2'} color={`${theme.colors.white}`}>
-            공지사항
-          </Text>
-          <Text font={'title2'} color={`${theme.colors.white}`}>
-            ASAP family
-          </Text>
-          <Text font={'title2'} color={`${theme.colors.white}`}>
-            약속 생성하기
-          </Text>
-          <Text font={'title2'} color={`${theme.colors.white}`}>
-            피드백 보내기
-          </Text>
-        </NavigationContainer>
-      </NavigationSection> : null}
+      {isNaviOpen ? (
+        <NavigationSection>
+          <IconContainer onClick={() => setIsNaviOpen((prev) => !prev)}>
+            <ExitIc />
+          </IconContainer>
+          <NavigationContainer>
+            {navigationOption.map((option, i) => {
+              return (
+                <Text key={i + option} font={'title2'} color={`${theme.colors.white}`}>
+                  {option}
+                </Text>
+              );
+            })}
+          </NavigationContainer>
+        </NavigationSection>
+      ) : null}
     </>
   );
 }
@@ -75,7 +74,7 @@ const HeaderWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top:1.2rem;
+  margin-top: 1.2rem;
   width: 100%;
 `;
 
@@ -110,7 +109,7 @@ const NavigationContainer = styled.div`
   top: 0;
   right: 0;
   flex-direction: column;
-  z-index:2;
+  z-index: 2;
   background-color: ${({ theme }) => theme.colors.grey8};
   padding: 20rem 2.4rem;
   width: 25.7rem;
@@ -123,14 +122,14 @@ const NavigationContainer = styled.div`
 `;
 
 const IconContainer = styled.div`
-  display:flex;
-  position:absolute;
-  top:5.1rem;
-  right:0.8rem;
-  align-items:center;
+  display: flex;
+  position: absolute;
+  top: 5.1rem;
+  right: 0.8rem;
+  align-items: center;
   justify-content: center;
-  z-index:3;
-  cursor:pointer;
+  z-index: 3;
+  cursor: pointer;
   width: 4.2rem;
   height: 4.2rem;
 `;
