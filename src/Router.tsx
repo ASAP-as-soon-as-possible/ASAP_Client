@@ -1,6 +1,6 @@
 import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
 import ComponentTesting from 'pages/ComponentTesting';
-import CreateMetting from 'pages/createMeeting/CreateMetting';
+import CreateMetting from 'pages/createMeeting/CreateMeeting';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
