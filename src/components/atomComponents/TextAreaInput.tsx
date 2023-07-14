@@ -1,45 +1,21 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 
 import Text from 'components/atomComponents/Text';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-interface MeetingInfo {
-  title: string;
-  availableDates: string[];
-  preferTimes: {
-    startTime: string;
-    endTime: string;
-  }[];
-  place: string | undefined;
-  placeDetail: string;
-  duration: string;
-  name: string;
-  password: string;
-  additionalInfo: string;
-}
-
-
 interface ValueProps {
-  value: MeetingInfo;
-  setValue: Dispatch<SetStateAction<MeetingInfo>>;
+  value: string;
+  setValue: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   placeholder: string;
 }
 
 function TextAreaInput({ value, setValue, placeholder }: ValueProps) {
-  const textOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    if(e.target.value.length < 51) {
-    setValue((prev : MeetingInfo) => {
-      return { ...prev, additionalInfo: e.target.value };
-    });
-  }
-  };
-
   return (
     <TextAreaWrapper>
-      <StyledTextArea placeholder={placeholder} value={value.additionalInfo} onChange={textOnChange} maxLength={50}/>
+      <StyledTextArea placeholder={placeholder} value={value} onChange={setValue} maxLength={50} />
       <CountingLetterSection>
-        <Text font={'body3'} color={`${theme.colors.grey5}`} >{`(${value?.additionalInfo.length} / 50자)`}</Text>
+        <Text font={'body3'} color={`${theme.colors.grey5}`}>{`(${value.length} / 50자)`}</Text>
       </CountingLetterSection>
     </TextAreaWrapper>
   );
@@ -48,7 +24,7 @@ function TextAreaInput({ value, setValue, placeholder }: ValueProps) {
 export default TextAreaInput;
 
 const TextAreaWrapper = styled.div`
-  position:relative;
+  position: relative;
 `;
 
 const StyledTextArea = styled.textarea`
@@ -60,6 +36,7 @@ const StyledTextArea = styled.textarea`
   height: 20.8rem;
   resize: none;
   color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fonts.body3};
 
   &:focus {
     outline: none;
@@ -67,7 +44,7 @@ const StyledTextArea = styled.textarea`
 `;
 
 const CountingLetterSection = styled.section`
-  position:absolute;
-  right:1.8rem;
-  bottom:1.8rem;
+  position: absolute;
+  right: 1.8rem;
+  bottom: 1.8rem;
 `;

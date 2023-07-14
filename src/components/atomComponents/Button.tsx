@@ -5,7 +5,7 @@ import { styled, css } from 'styled-components';
 interface ButtonProps {
   children: React.ReactNode;
   typeState: string;
-  onClick?: (e:React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 function Button({ children, typeState, onClick }: ButtonProps) {
@@ -19,7 +19,7 @@ function Button({ children, typeState, onClick }: ButtonProps) {
 export default Button;
 
 const buttonDefaultCSS = {
-    basicCss: css`
+  basicCss: css`
     display: flex;
     align-items: center;
     justify-content: center;

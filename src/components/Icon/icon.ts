@@ -37,5 +37,5 @@ export {
   ClockIc,
   OnlinePlaceIc,
   OfflinePlaceIc,
-  TimeIc
+  TimeIc,
 };

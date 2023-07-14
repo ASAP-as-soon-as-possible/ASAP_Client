@@ -1,46 +1,31 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import { InputCancelIc } from 'components/Icon/icon';
+import { MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
-interface MeetingInfo {
-  title: string;
-  availableDates: string[];
-  preferTimes: {
-    startTime: string;
-    endTime: string;
-  }[];
-  place: string | undefined;
-  placeDetail: string;
-  duration: string;
-  name: string;
-  password: string;
-  additionalInfo: string;
-}
-
 interface ValueProps {
-  data : string;
+  data: string;
   value: string;
   setValue: Dispatch<SetStateAction<MeetingInfo>>;
   placeholder: string;
 }
 
 function PlaceInput({ value, setValue, placeholder }: ValueProps) {
-
-  const textOnChange = ( e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue((prev : MeetingInfo ) => {
+  const textOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue((prev: MeetingInfo) => {
       return { ...prev, placeDetail: e.target.value };
     });
   };
 
-  const [focus, setFocus] = useState(false)
+  const [focus, setFocus] = useState(false);
 
   const resetOnClick = () => {
-    setFocus(false)
-    setValue((prev : MeetingInfo) => {
-      return { ...prev, placeDetail: ``};
+    setFocus(false);
+    setValue((prev: MeetingInfo) => {
+      return { ...prev, placeDetail: `` };
     });
-  }
+  };
 
   return (
     <>
@@ -51,14 +36,13 @@ function PlaceInput({ value, setValue, placeholder }: ValueProps) {
             value={value}
             onChange={textOnChange}
             onFocus={() => setFocus(true)}
-            $iserror={value?.length > 15}
+            $iserror={value.length > 15}
           />
           {focus && (
             <IconContainer onClick={resetOnClick}>
               <InputCancelIc />
             </IconContainer>
-          )
-          }
+          )}
         </InputSection>
       </PlaceInputWrapper>
     </>
@@ -67,17 +51,17 @@ function PlaceInput({ value, setValue, placeholder }: ValueProps) {
 
 export default PlaceInput;
 
-const PlaceInputWrapper = styled.div``
+const PlaceInputWrapper = styled.div``;
 
 const InputSection = styled.div`
   display: flex;
   position: relative;
-  flex-direction:column;
+  flex-direction: column;
 
   input:focus + div {
     display: flex;
-    svg{
-      cursor: pointer; 
+    svg {
+      cursor: pointer;
       width: 2rem;
       height: 2rem;
     }
@@ -87,9 +71,9 @@ const InputSection = styled.div`
 const StyledTextInput = styled.input<{ $iserror: boolean }>`
   position: relative;
   outline: none;
-  
-  border:none;
-  border-bottom :2px solid ${({ theme }) => theme.colors.grey4};
+
+  border: none;
+  border-bottom: 2px solid ${({ theme }) => theme.colors.grey4};
   background-color: transparent;
 
   padding: 1rem 1.6rem;
@@ -97,24 +81,25 @@ const StyledTextInput = styled.input<{ $iserror: boolean }>`
   width: 33.5rem;
   height: 5.2rem;
 
-  color : ${({ theme }) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fonts.body3};
 
   caret-color: ${({ theme }) => theme.colors.main1};
 
-
   &:focus {
     outline: none;
-    border-bottom: 2px solid ${({ $iserror, theme }) => ($iserror ? theme.colors.red : theme.colors.main1)};
+    border-bottom: 2px solid
+      ${({ $iserror, theme }) => ($iserror ? theme.colors.red : theme.colors.main1)};
   }
 `;
 
 const IconContainer = styled.div`
-    display: flex;
-    position: absolute;
-    top: 50%;
-    right: 1.6rem;
-    transform: translateY(-50%);
-    cursor:pointer;
-    width :2rem;
-    height :2rem;
-`
+  display: flex;
+  position: absolute;
+  top: 50%;
+  right: 1.6rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 2rem;
+  height: 2rem;
+`;

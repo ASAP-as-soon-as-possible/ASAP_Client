@@ -18,8 +18,11 @@
     "prettier": "1.13",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.10",
     "react-router-dom": "6",
+    "recoil": "^0.7.7",
     "styled-reset": "^4.5.1",
+    "swiper": "^10.0.4",
     "vite-plugin-svgr": "^3.2.0"
   },
   "devDependencies": {
