@@ -6,7 +6,7 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/componenttest" element={<ComponentTesting />} />
+        <Route path="/scheduletest" element={<AvailableSchedule />} />
         <Route path="/" element={<div>온보딩 페이지를 넣어주세요</div>} />
         <Route path="/meet/create" element={<CreateMetting />} />
         <Route path="/meet/complete" element={<div>회의 생성 완료페이지를 넣어주세요</div>} />
