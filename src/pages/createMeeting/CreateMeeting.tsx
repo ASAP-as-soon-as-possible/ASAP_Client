@@ -8,7 +8,7 @@ import styled from 'styled-components/macro';
 import { funnelStep } from './data/meetingInfoData';
 import { MeetingInfo } from './types/useFunnelInterface';
 
-const initialMettingInfo: MeetingInfo = {
+const initialMeetingInfo: MeetingInfo = {
   title: '',
   availableDates: [''],
   preferTimes: [
@@ -27,7 +27,7 @@ const initialMettingInfo: MeetingInfo = {
 
 function CreateMetting() {
   const [step, setStep] = useState(0);
-  const [meetingInfo, setMeetingInfo] = useState(initialMettingInfo);
+  const [meetingInfo, setMeetingInfo] = useState(initialMeetingInfo);
 
   const currentStep = funnelStep[step];
   return (
