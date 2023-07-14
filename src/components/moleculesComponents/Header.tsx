@@ -28,8 +28,8 @@ function Header({ position, setStep }: HeaderProps) {
     }
   };
   return (
-    <>
-      <HeaderWrapper>
+    <HeaderWrapper>
+      <HeaderSection>
         {position === 'onBoarding' ? (
           <LogoIcSection>
             <MainLogoIc />
@@ -47,7 +47,7 @@ function Header({ position, setStep }: HeaderProps) {
         <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
           <HambergerIc />
         </IconSection>
-      </HeaderWrapper>
+      </HeaderSection>
       {isNaviOpen ? (
         <NavigationSection>
           <IconContainer onClick={() => setIsNaviOpen((prev) => !prev)}>
@@ -64,13 +64,14 @@ function Header({ position, setStep }: HeaderProps) {
           </NavigationContainer>
         </NavigationSection>
       ) : null}
-    </>
+    </HeaderWrapper>
   );
 }
 
 export default Header;
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper =styled.div``
+const HeaderSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
