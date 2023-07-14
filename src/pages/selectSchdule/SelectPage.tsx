@@ -18,7 +18,6 @@ function SelectPage() {
       priority: 0,
     },
   ]);
-  const dateRef = useRef<HTMLDivElement>(null);
 
   const nextID = useRef<number>(2);
 
