@@ -2,6 +2,7 @@ import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
 import ComponentTesting from 'pages/ComponentTesting';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
+import ErrorPage404 from 'pages/ErrorLoading/ErrorPage404';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -23,7 +24,7 @@ const Router = () => {
         <Route path="/host/:meetingId" element={<div>최적의 회의시간 페이지를 넣어주세요</div>} />
         <Route path="/q-card/:meetingId" element={<CueCard />} />
         <Route path="/loadingpage" element={<LoadingPage />} />
-        <Route path="*" element={<div>not found</div>} />
+        <Route path="*" element={<ErrorPage404 />} />
       </Routes>
     </BrowserRouter>
   );
