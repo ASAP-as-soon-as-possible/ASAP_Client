@@ -24,8 +24,7 @@ export interface RowProps {
   dayOfWeek: string;
   isMorningDinner: boolean;
   isLastofValidDate: boolean;
-  formattedDatesForSelectBox: string;
-  selectedTimes: SelectedSchedule[];
+  selectedSchedulePerDate: SelectedSchedule[];
 }
 
 export interface ColumnProps {
@@ -37,4 +36,5 @@ export interface ColumnProps {
   $isLastColumn: boolean;
   $isLastofValidDate: boolean;
   EmptyRange: string[] | undefined;
+  $isSelected: boolean;
 }

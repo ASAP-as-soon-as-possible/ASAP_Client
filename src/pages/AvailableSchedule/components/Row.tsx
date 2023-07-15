@@ -14,11 +14,16 @@ const Row = (props: RowProps) => {
     dayOfWeek,
     isMorningDinner,
     isLastofValidDate,
-    formattedDatesForSelectBox,
-    selectedTimes,
+    selectedSchedulePerDate,
   } = props;
 
-  console.log(selectedTimes);
+  // console.log(selectedSchedulePerDate);
+  const selectedTimeSlots = getTimeSlots(
+    selectedSchedulePerDate.map(({ startTime, endTime }) => ({
+      startTime,
+      endTime,
+    })),
+  );
 
   return (
     <ColumnWrapper>
@@ -43,6 +48,7 @@ const Row = (props: RowProps) => {
           EmptyRange={
             isMorningDinner ? getTimeSlots([{ startTime: '12:00', endTime: '18:00' }]) : undefined
           }
+          $isSelected={selectedTimeSlots.includes(slot)}
         />
       ))}
     </ColumnWrapper>

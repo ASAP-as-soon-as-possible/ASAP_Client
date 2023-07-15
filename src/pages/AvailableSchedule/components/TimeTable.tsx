@@ -123,21 +123,18 @@ function TimeTable({ selectedSchedule }: TimeTableProps) {
         )}
       </TimeSlotWrapper>
       {formattedDates.map((date, idx) => (
-        <>
-          <Row
-            rowIdx={idx}
-            key={date}
-            formattedDatesForSelectBox={formattedDatesForSelectBox[idx]}
-            selectedTimes={Array.from(selectedSchedule).filter(
-              (obj: SelectedSchedule) => obj.date === formattedDatesForSelectBox[idx],
-            )}
-            timeSlots={timeSlots}
-            monthDay={date.split(' ')[0]}
-            dayOfWeek={date.split(' ')[1]}
-            isMorningDinner={isMorningDinner}
-            isLastofValidDate={lastElementBeforeEmpty === date}
-          />
-        </>
+        <Row
+          rowIdx={idx}
+          key={date}
+          selectedSchedulePerDate={Array.from(selectedSchedule).filter(
+            (obj: SelectedSchedule) => obj.date === formattedDatesForSelectBox[idx],
+          )}
+          timeSlots={timeSlots}
+          monthDay={date.split(' ')[0]}
+          dayOfWeek={date.split(' ')[1]}
+          isMorningDinner={isMorningDinner}
+          isLastofValidDate={lastElementBeforeEmpty === date}
+        />
       ))}
     </TimeTableWrapper>
   );
