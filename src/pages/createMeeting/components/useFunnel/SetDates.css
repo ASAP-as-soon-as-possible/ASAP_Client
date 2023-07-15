@@ -20,7 +20,7 @@
 .rmdp-year-picker,.bg-dark .rmdp-month-picker {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 0.2rem;
   z-index: 1;
   background-color: black;
   height: 20rem;
@@ -29,6 +29,10 @@
 .rmdp-calendar {
   width: 36rem;
   height: 37.9rem;
+}
+
+.rmdp-day-picker {
+  justify-content: center;
 }
 
 .rmdp-day-picker > div {
