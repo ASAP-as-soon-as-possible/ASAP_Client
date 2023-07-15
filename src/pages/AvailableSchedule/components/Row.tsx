@@ -7,7 +7,16 @@ import { RowProps } from '../types/AvailableScheduleType';
 import getTimeSlots from '../utils/getTimeSlots';
 
 const Row = (props: RowProps) => {
-  const { rowIdx, timeSlots, monthDay, dayOfWeek, isMorningDinner, isLastofValidDate } = props;
+  const {
+    rowIdx,
+    timeSlots,
+    monthDay,
+    dayOfWeek,
+    isMorningDinner,
+    isLastofValidDate,
+    formattedDatesForSelectBox,
+  } = props;
+
   return (
     <ColumnWrapper>
       <DateWrapper>

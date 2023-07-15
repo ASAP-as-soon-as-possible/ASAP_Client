@@ -16,6 +16,7 @@ export interface RowProps {
   dayOfWeek: string;
   isMorningDinner: boolean;
   isLastofValidDate: boolean;
+  formattedDatesForSelectBox: string;
 }
 export interface ColumnProps {
   timeSlot: string;
