@@ -22,8 +22,11 @@ function SteppingLayout() {
           </Text>
         </SteppingMentSection>
         <StyledBtnSection>
-          <Button typeState={'primaryActive'}>
-            <Text font={'button2'}>다음</Text>
+          <Button typeState={'halfTertiaryActive'}>
+            <Text font={'button2'}>링크 복사하기</Text>
+          </Button>
+          <Button typeState={'halfPrimaryActive'}>
+            <Text font={'button2'}>나의 가능시간 입력</Text>
           </Button>
         </StyledBtnSection>
       </SteppingWrapper>
@@ -34,6 +37,10 @@ function SteppingLayout() {
 export default SteppingLayout;
 
 const SteppingWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
 `;
 
@@ -52,9 +59,14 @@ const ImageSection = styled.section`
 `;
 
 const StyledBtnSection = styled.section`
+  display: flex;
   position: fixed;
   bottom: 1.2rem;
+  flex-direction: row;
+  gap: 1.4rem;
+  justify-content: center;
   border-radius: 50%;
+  width: 100%;
 `;
 
 const SteppingMentSection = styled.section`
