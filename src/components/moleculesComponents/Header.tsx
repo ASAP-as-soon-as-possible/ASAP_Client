@@ -39,11 +39,11 @@ function Header({ position, setStep }: HeaderProps) {
             <BackIc />
           </IconSection>
         )}
-        {position === 'onBoarding' ? null : (
+        {position === 'createMeeting' ? (
           <Text font={'title2'} color={`${theme.colors.white}`}>
             회의정보입력
           </Text>
-        )}
+        ) : null}
         <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
           <HambergerIc />
         </IconSection>
@@ -77,7 +77,7 @@ const HeaderSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top:1.2rem;
+  margin-top: 1.2rem;
   width: 100%;
 `;
 
