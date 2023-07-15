@@ -73,6 +73,8 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           <Calendar
             value={meetingInfo.availableDates}
             months={months}
+            shadow={false}
+            showOtherDays
             weekDays={weekDays}
             className="bg-dark"
             range={!multiple}
@@ -208,6 +210,7 @@ const InputContianer = styled.div`
 `;
 const InputNotice = styled.span`
   margin-top: 1.2rem;
+  margin-bottom: 1rem;
   ${({ theme }) => theme.fonts.body3};
   color: ${({ theme }) => theme.colors.sub1};
 `;
