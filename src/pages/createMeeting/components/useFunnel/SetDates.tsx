@@ -29,8 +29,6 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const dateRangeFormat = 'YYYY/MM/DD/ddd';
   // const [multiple, setMultiple] = useState(false);
   const [multiple, setMultiple] = useRecoilState(methodStateAtom);
-  console.log(meetingInfo);
-  console.log(multiple);
   return (
     <SetDatesWrapper>
       <DateSelectorWrapper>
