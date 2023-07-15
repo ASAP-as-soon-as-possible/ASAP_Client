@@ -1,3 +1,5 @@
+import React from 'react';
+
 import stepingCheck from 'assets/images/steppingCheck.png';
 import stepingFinish from 'assets/images/steppingFinish.png';
 import stepingInsert from 'assets/images/steppingInsert.png';
@@ -6,12 +8,20 @@ import Text from 'components/atomComponents/Text';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-const bodyType = {
+interface BodyType {
+  [key: string]: {
+    img: React.JSX.Element;
+    main: string;
+    sub: React.JSX.Element;
+  };
+}
+
+const bodyType: BodyType = {
   meetCreate: {
     img: <img src={stepingCheck} alt="png" />,
     main: '회의 생성 완료!',
     sub: (
-      <Text font={'body4'} color={`${theme.colors.grey4}`}>
+      <Text font={'title2'} color={`${theme.colors.grey4}`}>
         이제 가능한 시간을 입력하러 가볼까요?
       </Text>
     ),
@@ -20,7 +30,7 @@ const bodyType = {
     img: <img src={stepingFinish} alt="png" />,
     main: '일정 입력 완료!',
     sub: (
-      <Text font={'body4'} color={`${theme.colors.grey4}`}>
+      <Text font={'title2'} color={`${theme.colors.grey4}`}>
         팀원에게 회의방 링크를 공유해주세요
       </Text>
     ),
@@ -30,10 +40,10 @@ const bodyType = {
     main: '에이셉 전체회의',
     sub: (
       <>
-        <Text font={'body4'} color={`${theme.colors.grey4}`}>
+        <Text font={'title2'} color={`${theme.colors.grey4}`}>
           일정 조율을 위해
         </Text>
-        <Text font={'body4'} color={`${theme.colors.grey4}`}>
+        <Text font={'title2'} color={`${theme.colors.grey4}`}>
           회의에 참여할 수 있는 시간을 알려주세요!
         </Text>
       </>
@@ -44,10 +54,10 @@ const bodyType = {
     main: '일정 입력 완료!',
     sub: (
       <>
-        <Text font={'body4'} color={`${theme.colors.grey4}`}>
+        <Text font={'title2'} color={`${theme.colors.grey4}`}>
           회의 일정이 확정되면
         </Text>
-        <Text font={'body4'} color={`${theme.colors.grey4}`}>
+        <Text font={'title2'} color={`${theme.colors.grey4}`}>
           방장이 큐카드를 공유해줄거에요
         </Text>
       </>
@@ -55,20 +65,20 @@ const bodyType = {
   },
 };
 
-function SteppingBody() {
+interface SteppingProps {
+  steppingType: string;
+}
+
+function SteppingBody({ steppingType }: SteppingProps) {
+  const stepInfo = bodyType[steppingType];
   return (
     <SteppingBodyWrapper>
-      <ImageSection>
-        <img src={stepingCheck} alt="png" />
-      </ImageSection>
+      <ImageSection>{stepInfo.img}</ImageSection>
       <SteppingMentSection>
         <Text font={'head1'} color={`${theme.colors.white}`}>
-          회의 생성 완료!
+          {stepInfo.main}
         </Text>
-        {/* <Text font={'body4'} color={`${theme.colors.grey4}`}>
-          이제 가능한 시간을 입력하러 가볼까요?
-        </Text> */}
-        <SubMentWrapper>{bodyType.memberScheduleComplete.sub}</SubMentWrapper>
+        <SubMentWrapper>{stepInfo.sub}</SubMentWrapper>
       </SteppingMentSection>
     </SteppingBodyWrapper>
   );
@@ -105,4 +115,5 @@ const SubMentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  align-items:center;
 `;
