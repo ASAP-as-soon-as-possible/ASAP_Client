@@ -22,6 +22,9 @@ import {
   LinkIc,
   PlaceIc,
   ClockIc,
+  OnlinePlaceIc,
+  OfflinePlaceIc,
+  TimeIc,
 } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
@@ -86,6 +89,9 @@ function ComponentTesting() {
           </IconWrapper>
           <PlaceIc />
           <ClockIc />
+          <OnlinePlaceIc />
+          <OfflinePlaceIc />
+          <TimeIc />
         </CategorySection>
         <CategorySection>
           <h1>ReuseComponents</h1>
