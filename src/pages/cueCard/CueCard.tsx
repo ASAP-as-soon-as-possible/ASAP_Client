@@ -36,7 +36,7 @@ const handleCopyClipBoard = async (text: string) => {
 
   return (
     <CueCardWrapper >
-      <Header />
+      <Header position={'cueCard'} />
       <CueCardTitle main={'일정 조율 완료!'} sub={'이미 확정된 회의 일정입니다'} />
       <Qcard ref={imageRef} />
       <ButtonSection>
