@@ -6,6 +6,7 @@ import styled from 'styled-components/macro';
 import Router from './Router';
 import GlobalStyle from './styles/globalStyles';
 import { theme } from './styles/theme';
+import "./App.css"
 
 const MobileWrapper = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ const MobileWrapper = styled.div`
   align-items: center;
 
   margin: 0 auto;
-  background-color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ theme }) => theme.colors.grey10};
   padding-right: 2rem;
   padding-left: 2rem;
 

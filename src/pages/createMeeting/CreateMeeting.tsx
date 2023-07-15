@@ -8,7 +8,7 @@ import styled from 'styled-components/macro';
 import { funnelStep } from './data/meetingInfoData';
 import { MeetingInfo } from './types/useFunnelInterface';
 
-const initialMettingInfo: MeetingInfo = {
+const initialMeetingInfo: MeetingInfo = {
   title: '',
   availableDates: [''],
   preferTimes: [
@@ -25,15 +25,15 @@ const initialMettingInfo: MeetingInfo = {
   additionalInfo: '',
 };
 
-function CreateMetting() {
+function CreateMeeting() {
   const [step, setStep] = useState(0);
-  const [meetingInfo, setMeetingInfo] = useState(initialMettingInfo);
+  const [meetingInfo, setMeetingInfo] = useState(initialMeetingInfo);
 
   const currentStep = funnelStep[step];
   return (
     <>
       <ViewTestingWrapper>
-        <Header setStep={setStep} />
+        <Header position={"createMeeting"} setStep={setStep} />
 
         <ReturnTitleComponent step={currentStep} />
 
@@ -48,7 +48,7 @@ function CreateMetting() {
   );
 }
 
-export default CreateMetting;
+export default CreateMeeting;
 
 const ViewTestingWrapper = styled.div`
   display: flex;

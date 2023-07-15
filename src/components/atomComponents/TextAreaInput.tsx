@@ -36,6 +36,7 @@ const StyledTextArea = styled.textarea`
   height: 20.8rem;
   resize: none;
   color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fonts.body3};
 
   &:focus {
     outline: none;

@@ -82,6 +82,7 @@ const StyledTextInput = styled.input<{ $iserror: boolean }>`
   height: 5.2rem;
 
   color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.fonts.body3};
 
   caret-color: ${({ theme }) => theme.colors.main1};
 
