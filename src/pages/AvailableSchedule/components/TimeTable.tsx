@@ -29,6 +29,7 @@ import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
 
 import Row from './Row';
+import { SelectedSchedule } from '../types/AvailableScheduleType';
 import getTimeSlots from '../utils/getTimeSlots';
 
 const AVAILABLE_DATES = [
@@ -84,7 +85,11 @@ const PREFER_TIMES = [
   },
 ];
 
-function TimeTable() {
+interface TimeTableProps {
+  selectedSchedule: SelectedSchedule[];
+}
+
+function TimeTable({ selectedSchedule }: TimeTableProps) {
   const isMorningDinner =
     PREFER_TIMES.length === 2 && PREFER_TIMES.every((time) => time.startTime !== '12:00');
 
@@ -118,16 +123,21 @@ function TimeTable() {
         )}
       </TimeSlotWrapper>
       {formattedDates.map((date, idx) => (
-        <Row
-          rowIdx={idx}
-          key={date}
-          formattedDatesForSelectBox={formattedDatesForSelectBox[idx]}
-          timeSlots={timeSlots}
-          monthDay={date.split(' ')[0]}
-          dayOfWeek={date.split(' ')[1]}
-          isMorningDinner={isMorningDinner}
-          isLastofValidDate={lastElementBeforeEmpty === date}
-        />
+        <>
+          <Row
+            rowIdx={idx}
+            key={date}
+            formattedDatesForSelectBox={formattedDatesForSelectBox[idx]}
+            selectedTimes={Array.from(selectedSchedule).filter(
+              (obj: SelectedSchedule) => obj.date === formattedDatesForSelectBox[idx],
+            )}
+            timeSlots={timeSlots}
+            monthDay={date.split(' ')[0]}
+            dayOfWeek={date.split(' ')[1]}
+            isMorningDinner={isMorningDinner}
+            isLastofValidDate={lastElementBeforeEmpty === date}
+          />
+        </>
       ))}
     </TimeTableWrapper>
   );

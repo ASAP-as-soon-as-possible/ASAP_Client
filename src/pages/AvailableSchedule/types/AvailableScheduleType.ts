@@ -9,6 +9,14 @@ export interface PreferTime {
   endTime: string;
 }
 
+export interface SelectedSchedule {
+  id: number;
+  date: string;
+  startTime: string;
+  endTime: string;
+  priority: number;
+}
+
 export interface RowProps {
   rowIdx: number;
   timeSlots: string[];
@@ -17,7 +25,9 @@ export interface RowProps {
   isMorningDinner: boolean;
   isLastofValidDate: boolean;
   formattedDatesForSelectBox: string;
+  selectedTimes: SelectedSchedule[];
 }
+
 export interface ColumnProps {
   timeSlot: string;
   $isHalf: boolean;

@@ -15,7 +15,10 @@ const Row = (props: RowProps) => {
     isMorningDinner,
     isLastofValidDate,
     formattedDatesForSelectBox,
+    selectedTimes,
   } = props;
+
+  console.log(selectedTimes);
 
   return (
     <ColumnWrapper>
