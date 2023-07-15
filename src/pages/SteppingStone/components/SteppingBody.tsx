@@ -17,7 +17,7 @@ interface BodyType {
 }
 
 const bodyType: BodyType = {
-  meetCreate: {
+  meetComplete: {
     img: <img src={stepingCheck} alt="png" />,
     main: '회의 생성 완료!',
     sub: (
@@ -115,5 +115,5 @@ const SubMentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  align-items:center;
+  align-items: center;
 `;

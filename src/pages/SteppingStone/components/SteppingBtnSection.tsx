@@ -9,7 +9,7 @@ interface ButtonType {
 }
 
 const ButtonSection: ButtonType = {
-  meetCreate: (
+  meetComplete: (
     <>
       <Button typeState={'halfTertiaryActive'}>
         <Text font={'button2'}>링크 복사하기</Text>
