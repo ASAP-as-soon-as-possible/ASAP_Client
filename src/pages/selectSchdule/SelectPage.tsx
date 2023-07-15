@@ -3,19 +3,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { PlusIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 
-import TimeDropDown from './components/TimeDropDown';
-import SelectSchedule from './SelectSchedule';
+import SelectSchedule from './components/SelectSchedule';
 import { DateStates } from './types/Schedule';
 
 function SelectPage() {
   const [dateList, setDateList] = useState<DateStates[]>([
     {
       id: 1,
-      date: '',
-      startTime: '',
-      endTime: '',
       dropDown: true,
-      priority: 0,
     },
   ]);
 
@@ -24,9 +19,6 @@ function SelectPage() {
   const addDateList = () => {
     const selectBox = {
       id: nextID.current,
-      date: '',
-      startTime: '',
-      endTime: '',
       dropDown: true,
     };
 
@@ -54,6 +46,7 @@ function SelectPage() {
 
   return (
     <SelectPageWrapper>
+      
       <SelectSchedule
         dataList={dateList}
         deleteData={deleteDataList}

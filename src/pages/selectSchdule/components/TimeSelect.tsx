@@ -4,9 +4,10 @@ import Text from 'components/atomComponents/Text';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
+import { dummyData, time } from './dummyData';
 import TimeDropDown from './TimeDropDown';
 
-function TimeSelect({ text }): string {
+function TimeSelect({ text }: string) {
   const [startTime, setStartTime] = useState(false);
   const [endTime, setEndTime] = useState(false);
 
@@ -15,17 +16,23 @@ function TimeSelect({ text }): string {
   };
   return (
     <TimeSelectWrapper>
-      <TimeSelectContainer $drop={startTime} onClick={handelStartTime}>
+      <TimeSelectSection $drop={startTime} onClick={handelStartTime}>
         <Text font="button2" color={`${theme.colors.grey5}`}>
           {text}
         </Text>
-      </TimeSelectContainer>
-      {startTime ? <TimeDropDown /> : <div />}
+      </TimeSelectSection>
+      {startTime && (
+        <TimeDropDownWrapper>
+          {time.map((item, i) => <TimeDropDown key={i} times={item} text={text} />)}
+        </TimeDropDownWrapper>
+      )}
     </TimeSelectWrapper>
   );
 }
-const TimeSelectWrapper = styled.div``;
-const TimeSelectContainer = styled.div<{ $drop: boolean }>`
+const TimeSelectWrapper = styled.div`
+  position: relative;
+`;
+const TimeSelectSection = styled.div<{ $drop: boolean }>`
   display: flex;
 
   align-items: center;
@@ -40,5 +47,20 @@ const TimeSelectContainer = styled.div<{ $drop: boolean }>`
   width: 13.6rem;
   height: 4.8rem;
 `;
+const TimeDropDownWrapper = styled.div`
+  position: absolute; //drop down에서 아래 DOM을 밀고 싶을 땐 지워주기
 
+  z-index: 2;
+  width: 13.6rem;
+  height: 14.4rem;
+  overflow:auto;
+
+  //스크롤 없애기
+  /* -ms-overflow-style: none; // 인터넷 익스플로러
+  scrollbar-width: none; // 파이어폭스
+  &::-webkit-scrollbar { //크롬
+    display: none;
+  } */
+
+`;
 export default TimeSelect;
