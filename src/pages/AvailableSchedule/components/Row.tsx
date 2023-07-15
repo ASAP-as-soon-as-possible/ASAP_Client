@@ -17,7 +17,6 @@ const Row = (props: RowProps) => {
     selectedSchedulePerDate,
   } = props;
 
-  // console.log(selectedSchedulePerDate);
   const selectedTimeSlots = getTimeSlots(
     selectedSchedulePerDate.map(({ startTime, endTime }) => ({
       startTime,
