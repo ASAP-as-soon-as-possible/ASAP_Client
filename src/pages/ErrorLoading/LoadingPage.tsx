@@ -21,35 +21,24 @@ const LoadingPageWrapper = styled.div`
   justify-content: center;
   background-color: #141414;
   width: 100%;
-  height: 50rem;
+  height: 100vh;
 `;
 
 const LoadingSection = styled.div`
   position: absolute;
 `;
 
-// const GapCircle = styled.div`
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   border-radius: 50%;
-//   background-color: #141414;
-//   width: 40.5px; //0.5px 차이
-//   height: 40.5px;
-// `;
-
 const OuterCircle = styled.div`
   border-radius: 50%;
   background-image: conic-gradient(
     transparent 0deg,
     transparent 180deg,
-    white 180deg,
-    white 270deg,
+    #FFF 180deg,
+    #FFF 270deg,
     transparent 270deg
   );
-  width: 60px;
-  height: 60px;
+  width: 6rem;
+  height: 6rem;
   animation: spin 3s linear infinite;
 
   @keyframes spin {
@@ -69,14 +58,14 @@ const InnerCircle = styled.div`
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background-image: conic-gradient(
-    white 0deg,
-    white 180deg,
+    #FFF 0deg,
+    #FFF 180deg,
     #141414 180deg,
     #141414 270deg,
-    white 270deg
+    #FFF 270deg
   );
-  width: 40px;
-  height: 40px;
+  width: 4rem;
+  height: 4rem;
 `;
 
 const InnerInnerCircle = styled.div`
@@ -86,6 +75,6 @@ const InnerInnerCircle = styled.div`
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background-color: #141414;
-  width: 20px;
-  height: 20px;
+  width: 2rem;
+  height: 2rem;
 `;
