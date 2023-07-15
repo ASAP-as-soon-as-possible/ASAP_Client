@@ -63,7 +63,7 @@ const ColumnWrapper = styled.div<ColumnWrapperProps>`
     $isFirstRow ? `0.1rem solid ${theme.colors.grey7}` : 'none'};
 
   background-color: ${({ theme, $isDateEmpty, $isSelected }) =>
-    $isSelected ? '#999999' : $isDateEmpty ? theme.colors.grey9 : 'none'};
+    $isSelected ? theme.colors.main4 : $isDateEmpty ? theme.colors.grey9 : 'none'};
   width: 4.4rem;
   height: 1.2rem;
 `;
