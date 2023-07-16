@@ -5,6 +5,8 @@ import { theme } from 'styles/theme';
 import Column from './Column';
 import { RowProps } from '../types/AvailableScheduleType';
 import getTimeSlots from '../utils/getTimeSlots';
+import priorityToColor from '../utils/priorityToColor';
+
 
 const Row = (props: RowProps) => {
   const {
@@ -15,6 +17,7 @@ const Row = (props: RowProps) => {
     isMorningDinner,
     isLastofValidDate,
     selectedSchedulePerDate,
+    scheduleType,
   } = props;
 
   const selectedTimeSlots = getTimeSlots(
@@ -48,6 +51,14 @@ const Row = (props: RowProps) => {
             isMorningDinner ? getTimeSlots([{ startTime: '12:00', endTime: '18:00' }]) : undefined
           }
           $isSelected={selectedTimeSlots.includes(slot)}
+          $priorityColor={
+            priorityToColor(
+              scheduleType,
+              selectedSchedulePerDate.find((schedule) => {
+                return parseInt(schedule.startTime) < parseInt(slot) && parseInt(slot) < parseInt(schedule.endTime);
+              })?.priority
+            )
+          }
         />
       ))}
     </ColumnWrapper>

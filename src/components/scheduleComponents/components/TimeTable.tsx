@@ -87,9 +87,10 @@ const PREFER_TIMES = [
 
 interface TimeTableProps {
   selectedSchedule: SelectedSchedule[];
+  scheduleType: 'priority' | 'available';
 }
 
-function TimeTable({ selectedSchedule }: TimeTableProps) {
+function TimeTable({ selectedSchedule, scheduleType }: TimeTableProps) {
   const isMorningDinner =
     PREFER_TIMES.length === 2 && PREFER_TIMES.every((time) => time.startTime !== '12:00');
 
@@ -134,6 +135,7 @@ function TimeTable({ selectedSchedule }: TimeTableProps) {
           dayOfWeek={date.split(' ')[1]}
           isMorningDinner={isMorningDinner}
           isLastofValidDate={lastElementBeforeEmpty === date}
+          scheduleType={scheduleType}
         />
       ))}
     </TimeTableWrapper>

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 import { ColumnProps } from '../types/AvailableScheduleType';
 
@@ -13,6 +14,7 @@ const Column = (props: ColumnProps) => {
     EmptyRange,
     $isLastofValidDate,
     $isSelected,
+    $priorityColor,
   } = props;
   return (
     <ColumnWrapper
@@ -25,6 +27,7 @@ const Column = (props: ColumnProps) => {
       $isLastOfValidDate={$isLastofValidDate}
       $is18ofEmptyTimeSlot={EmptyRange && timeSlot === '18:00'}
       $isSelected={$isSelected}
+      $priorityColor={$priorityColor}
     />
   );
 };
@@ -41,6 +44,7 @@ interface ColumnWrapperProps {
   $isLastOfValidDate: boolean;
   $is18ofEmptyTimeSlot: boolean | undefined;
   $isSelected: boolean;
+  $priorityColor: string;
 }
 
 const ColumnWrapper = styled.div<ColumnWrapperProps>`
@@ -62,8 +66,11 @@ const ColumnWrapper = styled.div<ColumnWrapperProps>`
   border-left: ${({ theme, $isFirstRow }) =>
     $isFirstRow ? `0.1rem solid ${theme.colors.grey7}` : 'none'};
 
-  background-color: ${({ theme, $isDateEmpty, $isSelected }) =>
-    $isSelected ? theme.colors.main4 : $isDateEmpty ? theme.colors.grey9 : 'none'};
+  /* background-color: ${({ theme, $isDateEmpty, $isSelected }) =>
+    $isSelected ? theme.colors.main4 : $isDateEmpty ? theme.colors.grey9 : 'none'}; */
+
+  background-color: ${({ $priorityColor }) => $priorityColor};
+
   width: 4.4rem;
   height: 1.2rem;
 `;
