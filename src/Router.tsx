@@ -2,6 +2,7 @@ import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
 import ComponentTesting from 'pages/ComponentTesting';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
+import LoginEntrance from 'pages/LoginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
 import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -22,7 +23,8 @@ const Router = () => {
           element={<SteppingLayout steppingType={'hostScheduleComplete'} />}
         />
         <Route path="/meet/:meetingId" element={<SteppingLayout steppingType={'meetEntrance'} />} />
-        <Route path="/login/:meetingId" element={<div>로그인 페이지를 넣어주세요</div>} />
+        <Route path="/login/host/:meetingId" element={<LoginEntrance loginType={"host"} />} />
+        <Route path="/login/member/:meetingId" element={<LoginEntrance loginType={"member"} />} />
         <Route path="/host/:meetingId" element={<div>최적의 회의시간 페이지를 넣어주세요</div>} />
         <Route path="/q-card/:meetingId" element={<CueCard />} />
         <Route path="*" element={<div>not found</div>} />
