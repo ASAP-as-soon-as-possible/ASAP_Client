@@ -9,6 +9,9 @@ import TitleComponent from 'components/moleculesComponents/TitleComponent';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
+import HostComponent from './LoginComponent/HostComponent';
+import MemberComponent from './LoginComponent/MemberComponent';
+
 interface HostInfoProps {
   id: string;
   password: string;
@@ -28,101 +31,13 @@ function LoginEntrance({ loginType }: LoginType) {
   const [hostInfo, setHostInfo] = useState(InitialHostInfo);
 
   console.log(hostInfo);
-  const hostOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHostInfo((prev: HostInfoProps) => {
-      return { ...prev, id: e.target.value };
-    });
-  };
-
-  const resetHostId = () => {
-    setHostInfo((prev: HostInfoProps) => {
-      return { ...prev, id: '' };
-    });
-  };
-
-  const passWordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setHostInfo((prev: HostInfoProps) => {
-      return { ...prev, password: e.target.value };
-    });
-  };
 
   return (
     <LoginEntranceWrapper>
       {
         {
-          host: (
-            <>
-              <Header position={'login'} />
-              <TitleComponent main={'방장 정보를 알려주세요'} sub={''} />
-              <HostInfoSection>
-                <HostNameSection>
-                  <Text font={`title2`} color={`${theme.colors.white}`}>
-                    방장 이름
-                  </Text>
-                  <TextInput
-                    value={hostInfo.id}
-                    setValue={hostOnChange}
-                    resetValue={resetHostId}
-                    placeholder={'방장 이름'}
-                  />
-                </HostNameSection>
-                <HostNameSection>
-                  <Text font={`title2`} color={`${theme.colors.white}`}>
-                    방 비밀번호
-                  </Text>
-                  <PasswordInput
-                    value={hostInfo.password}
-                    placeholder={`숫자 4자 이상`}
-                    passWordOnChange={passWordOnChange}
-                    page={'entrance'}
-                  />
-                </HostNameSection>
-              </HostInfoSection>
-              <StyledBtnSection>
-                <Button
-                  typeState={
-                    hostInfo.id && hostInfo.password.length >= 4
-                      ? 'primaryActive'
-                      : 'secondaryDisabled'
-                  }
-                  onClick={
-                    hostInfo.id && hostInfo.password.length >= 4
-                      ? () => console.log('happy')
-                      : undefined
-                  }
-                >
-                  <Text font={'button2'}>방장 페이지 접속하기</Text>
-                </Button>
-              </StyledBtnSection>
-            </>
-          ),
-          member: (
-            <>
-              <Header position={'login'} />
-              <TitleComponent main={'방장 정보를 알려주세요'} sub={''} />
-              <HostInfoSection>
-                <HostNameSection>
-                  <Text font={`title2`} color={`${theme.colors.white}`}>
-                    방장 이름
-                  </Text>
-                  <TextInput
-                    value={hostInfo.id}
-                    setValue={hostOnChange}
-                    resetValue={resetHostId}
-                    placeholder={'방장 이름'}
-                  />
-                </HostNameSection>
-              </HostInfoSection>
-              <StyledBtnSection>
-                <Button
-                  typeState={hostInfo.id ? 'primaryActive' : 'secondaryDisabled'}
-                  onClick={hostInfo.id ? () => console.log('happy') : undefined}
-                >
-                  <Text font={'button2'}>방장 페이지 접속하기</Text>
-                </Button>
-              </StyledBtnSection>
-            </>
-          ),
+          host: <HostComponent hostInfo={hostInfo} setHostInfo={setHostInfo} />,
+          member: <MemberComponent hostInfo={hostInfo} setHostInfo={setHostInfo} />,
         }[loginType]
       }
     </LoginEntranceWrapper>
