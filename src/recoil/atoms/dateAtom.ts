@@ -4,9 +4,11 @@ export const scheduleAtoms = atom({
   key: 'scheduleAtoms',
   default: [
     {
+      id: '',
       date: '',
       startTime: '',
       endTime: '',
+      priority: 0,
     },
   ],
 });

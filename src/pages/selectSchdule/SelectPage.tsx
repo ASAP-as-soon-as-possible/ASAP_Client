@@ -4,13 +4,22 @@ import { PlusIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 
 import SelectSchedule from './components/SelectSchedule';
-import { DateStates } from './types/Schedule';
+import { DateStates, ScheduleStates } from './types/Schedule';
 
 function SelectPage() {
   const [dateList, setDateList] = useState<DateStates[]>([
     {
       id: 1,
       dropDown: true,
+    },
+  ]);
+
+  const [scheduleList, setScheduleList] = useState<ScheduleStates[]>([
+    {
+      id: 1,
+      date: '',
+      startTime: '',
+      endTime: '',
     },
   ]);
 
@@ -22,12 +31,21 @@ function SelectPage() {
       dropDown: true,
     };
 
+    const schedule = {
+      id: nextID.current,
+      date: '',
+      startTime: '',
+      endTime: '',
+    };
+
     setDateList([...dateList, selectBox]);
+    setScheduleList([...scheduleList, schedule]);
     nextID.current += 1;
   };
 
   const deleteDataList = (index: number) => {
     setDateList(dateList.filter((item) => item.id !== index));
+    setScheduleList(scheduleList.filter((item) => item.id !== index));
   };
 
   const handleDropDown = (index: number) => {
@@ -46,7 +64,6 @@ function SelectPage() {
 
   return (
     <SelectPageWrapper>
-      
       <SelectSchedule
         dataList={dateList}
         deleteData={deleteDataList}

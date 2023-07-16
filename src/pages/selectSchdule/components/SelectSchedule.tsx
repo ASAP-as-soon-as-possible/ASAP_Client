@@ -28,8 +28,8 @@ function SelectSchedule({ dataList, deleteData, handleDropDown }: PropTypes) {
               </ExitIconWrapper>
             </SelectSection>
             <TimeSelectSection>
-              <TimeSelect text="시작 시간" />
-              <TimeSelect text="종료 시간" />
+              <TimeSelect text="시작 시간" id={item.id} />
+              <TimeSelect text="종료 시간" id={item.id} />
             </TimeSelectSection>
           </SelectWrapper>
         ))}

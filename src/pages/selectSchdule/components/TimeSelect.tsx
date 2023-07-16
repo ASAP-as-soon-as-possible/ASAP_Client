@@ -1,29 +1,35 @@
 import React, { useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 import { dummyData, time } from './dummyData';
 import TimeDropDown from './TimeDropDown';
 
-function TimeSelect({ text }: string) {
+interface PropTypes {
+  text: string;
+  id: number;
+}
+function TimeSelect({ text, id }: PropTypes) {
   const [startTime, setStartTime] = useState(false);
   const [endTime, setEndTime] = useState(false);
 
-  const handelStartTime = () => {
+  const handleStartTime = () => {
     setStartTime((prev) => !prev);
   };
+
   return (
     <TimeSelectWrapper>
-      <TimeSelectSection $drop={startTime} onClick={handelStartTime}>
+      <TimeSelectSection $drop={startTime} onClick={handleStartTime}>
         <Text font="button2" color={`${theme.colors.grey5}`}>
           {text}
         </Text>
       </TimeSelectSection>
       {startTime && (
         <TimeDropDownWrapper>
-          {time.map((item, i) => <TimeDropDown key={i} times={item} text={text} />)}
+          {time.map((item, i) => <TimeDropDown key={i} times={item} text={text} id={id} />)}
         </TimeDropDownWrapper>
       )}
     </TimeSelectWrapper>

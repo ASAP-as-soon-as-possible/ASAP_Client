@@ -13,7 +13,7 @@ interface PropTypes {
   month: number;
   day: number;
   dayOfWeek: string;
-  handleDropDown: () => {};
+  handleDropDown: (id: number) => {};
 }
 
 function DateDropDown({ month, day, dayOfWeek, id, handleDropDown }: PropTypes) {

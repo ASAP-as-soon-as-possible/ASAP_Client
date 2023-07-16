@@ -2,6 +2,8 @@ import { createGlobalStyle } from 'styled-components';
 import { reset } from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
+/*모바일 아래 드래그로 새로고침 막는 코드 */
+ overscroll-behavior : contain;
   ${reset}
 
 * {
@@ -9,10 +11,10 @@ const GlobalStyle = createGlobalStyle`
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 
 }
-/* overscroll-behavior : contain; */
-/*모바일 아래 드래그로 새로고침 막는 코드 */
+
 
   html, body {
+
   margin: 0 auto;
   font-size: 62.5%;
   }

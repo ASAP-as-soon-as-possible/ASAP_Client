@@ -4,6 +4,7 @@ export interface SelectBoxState {
 }
 
 export interface ScheduleStates {
+  id: number;
   date: string;
   startTime: string;
   endTime: string;

@@ -10,8 +10,9 @@ import { theme } from 'styles/theme';
 interface PropTypes {
   times: string;
   text: string;
+  id: number;
 }
-function TimeDropDown({ times, text }: PropTypes) {
+function TimeDropDown({ times, text, id }: PropTypes) {
   // const [time, setTime] = useRecoilState(scheduleAtom);
 
   return (
