@@ -11,6 +11,7 @@
     "lint:css": "stylelint './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
+    "@types/react-copy-to-clipboard": "^5.0.4",
     "axios": "^1.4.0",
     "copy-text-to-clipboard": "^3.2.0",
     "html2canvas": "^1.4.1",
