@@ -3,12 +3,10 @@ import styled from 'styled-components/macro';
 function LoadingPage() {
   return (
     <LoadingPageWrapper>
-      <LoadingSection>
-        <OuterCircle />
-        {/* <GapCircle /> */}
-        <InnerCircle />
+      <OuterCircle />
+      <InnerCircle>
         <InnerInnerCircle />
-      </LoadingSection>
+      </InnerCircle>
     </LoadingPageWrapper>
   );
 }
@@ -17,15 +15,12 @@ export default LoadingPage;
 
 const LoadingPageWrapper = styled.div`
   display: flex;
+  position: absolute;
   align-items: center;
   justify-content: center;
   background-color: #141414;
-  width: 100%;
+  width: 6rem;
   height: 100vh;
-`;
-
-const LoadingSection = styled.div`
-  position: absolute;
 `;
 
 const OuterCircle = styled.div`
@@ -33,8 +28,8 @@ const OuterCircle = styled.div`
   background-image: conic-gradient(
     transparent 0deg,
     transparent 180deg,
-    #FFF 180deg,
-    #FFF 270deg,
+    #fff 180deg,
+    #fff 270deg,
     transparent 270deg
   );
   width: 6rem;
@@ -58,11 +53,11 @@ const InnerCircle = styled.div`
   transform: translate(-50%, -50%);
   border-radius: 50%;
   background-image: conic-gradient(
-    #FFF 0deg,
-    #FFF 180deg,
+    #fff 0deg,
+    #fff 180deg,
     #141414 180deg,
     #141414 270deg,
-    #FFF 270deg
+    #fff 270deg
   );
   width: 4rem;
   height: 4rem;
