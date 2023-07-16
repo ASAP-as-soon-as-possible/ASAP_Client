@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { BackIc, ExitIc, HambergerIc, MainLogoIc } from 'components/Icon/icon';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -38,12 +38,18 @@ function Header({ position, setStep }: HeaderProps) {
           <IconSection onClick={backToFunnel}>
             <BackIc />
           </IconSection>
+        ) : position === 'login' ? (
+          <IconSection onClick={() => window.history.back()}>
+            <BackIc />
+          </IconSection>
         ) : null}
         {position === 'createMeeting' ? (
           <Text font={'title2'} color={`${theme.colors.white}`}>
             회의정보입력
           </Text>
-        ) : <EmptyBox/>}
+        ) : (
+          <EmptyBox />
+        )}
         <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
           <HambergerIc />
         </IconSection>
@@ -77,7 +83,7 @@ const HeaderSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top:1.2rem;
+  margin-top: 1.2rem;
   width: 100%;
 `;
 
@@ -89,7 +95,7 @@ const LogoIcSection = styled.div`
   height: 4.2rem;
 `;
 
-const EmptyBox =styled.div``
+const EmptyBox = styled.div``;
 
 const IconSection = styled.button`
   display: flex;

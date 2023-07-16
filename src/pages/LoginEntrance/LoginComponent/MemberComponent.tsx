@@ -33,7 +33,7 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
   return (
     <>
       <Header position={'login'} />
-      <TitleComponent main={'방장 정보를 알려주세요'} sub={''} />
+      <TitleComponent main={'참여자의 이름을 알려주세요'} sub={'정확한 일정 조율을 위해 실명입력을 추천드려요'} />
       <HostInfoSection>
         <HostNameSection>
           <Text font={`title2`} color={`${theme.colors.white}`}>
