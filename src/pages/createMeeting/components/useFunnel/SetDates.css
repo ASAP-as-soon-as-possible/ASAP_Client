@@ -1,0 +1,191 @@
+:root {
+  --rmdp-main1: #3253ff;
+  --rmdp-main2: #4e69ff;
+  --rmdp-main4: #8295ff;
+  --rmdp-grey6: #555555;
+  --rmdp-grey8: #2e2e2e;
+}
+
+.bg-dark.rmdp-wrapper,
+.bg-dark .rmdp-time-picker div input,
+.rmdp-container .bg-dark.ep-arrow::after {
+  /* width: 36rem;
+  height: 37.9rem; */
+  position: relative;
+  bottom: 2.2rem;
+  margin-bottom: 11.8rem;
+  border: none;
+  background-color: black;
+}
+.rmdp-year-picker,.bg-dark .rmdp-month-picker {
+  position: absolute;
+  top: 0;
+  left: 0.2rem;
+  z-index: 1;
+  background-color: black;
+  height: 20rem;
+}
+
+.rmdp-calendar {
+  width: 36rem;
+  height: 37.9rem;
+}
+
+.rmdp-day-picker {
+  justify-content: center;
+}
+
+.rmdp-day-picker > div {
+  width: 36rem;
+}
+
+.rmdp-day-picker > div > div:first-child {
+  margin-bottom: 0.7rem;
+  border-bottom: 0.5px solid white;
+}
+
+/* .rmdp-week {
+  border-bottom: 0.5px solid white;
+} */
+
+.rmdp-arrow-container:hover {
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.bg-dark .rmdp-day:not(.rmdp-deactive),
+.bg-dark .rmdp-time-picker div .rmdp-am,
+.bg-dark .rmdp-header-values,
+.bg-dark .rmdp-panel-header {
+  color: white;
+}
+
+.rmdp-arrow-container rmdp-right {
+  text-align: center;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+
+  /* asap/body1 */
+  font-family: 'Pretendard Variable';
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;`
+}
+.rmdp-header {
+  margin-bottom: 1rem;
+}
+
+.rmdp-header-values {
+  text-align: center;
+  line-height: 24px;
+  letter-spacing: -0.16px;
+
+  /* asap/body1 */
+  font-family: 'Pretendard Variable';
+  font-size: 16px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.bg-dark .rmdp-panel-body li {
+  color: white;
+}
+
+.bg-dark .rmdp-panel-body li {
+  box-shadow: 0 0 2px var(--rmdp-main1);
+  background-color: var(--rmdp-main1);
+}
+
+.bg-dark .rmdp-week-day {
+  text-align: center;
+line-height: 20px;
+letter-spacing: -0.14px;
+  color: #ffffff;
+/* asap/body2 */
+font-family: Pretendard;
+font-size: 14px;
+font-weight: 500;
+font-style: normal;
+}
+
+
+
+.bg-dark .rmdp-day.rmdp-deactive {
+  /*이전달 다음달 날짜*/
+  color: var(--rmdp-grey6);
+}
+
+.rmdp-range {
+  /* 범위 선택*/
+  box-shadow: none;
+  background-color: var(--rmdp-main1);
+  color: white;
+}
+
+.rmdp-range > span {
+  color: white;
+}
+
+.bg-dark .rmdp-arrow {
+  border: solid white;
+  border-width: 0 2px 2px 0;
+}
+
+.bg-dark .rmdp-panel-body::-webkit-scrollbar-thumb {
+  background: var(--rmdp-main1) !important;
+}
+
+.bg-dark .rmdp-day.rmdp-today span {
+  background-color: rgba(50, 83, 255, 0.4);
+}
+
+.bg-dark .rmdp-rtl .rmdp-panel {
+  border-right: 1px solid var(--rmdp-main1);
+  border-left: unset;
+}
+
+.rmdp-day.rmdp-selected span:not(.highlight) {
+  border: 1px solid var(--rmdp-main4);
+  background-color: var(--rmdp-main1) !important;
+}
+
+.bg-dark .rmdp-day:not(.rmdp-day-hidden) span:hover {
+  /*날짜 호버 백그라운드*/
+  background-color: transparent;
+}
+.rmdp-day {
+  /*날짜*/
+  padding: 2.5rem 2.5rem;
+  width: 4rem;
+  height: 4rem;
+}
+.rmdp-day span {
+  text-align: center;
+  line-height: 20px;
+  letter-spacing: -0.16px;  
+  /* asap/button2 */
+  font-family: Pretendard Variable;
+  font-size: 16px;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.rmdp-week-day {
+  padding: 0 0.4rem;
+  /*요일*/
+  width: 4rem;
+  height: 4rem;
+}
+
+
+.bg-dark .rmdp-action-button {
+  color: var(--rmdp-main1);
+}
+
+.bg-dark .rmdp-button:not(.rmdp-action-button) {
+  background-color: var(--rmdp-main1);
+}
+
+/* .bg-dark .rmdp-button:not(.rmdp-action-button):hover {
+  background-color: var(--rmdp-main1);
+} */
