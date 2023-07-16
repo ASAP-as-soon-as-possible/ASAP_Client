@@ -67,7 +67,7 @@ const buttonCSS = {
   tertiaryActive: css`
     ${buttonDefaultCSS.basicCss};
     border: 1px solid ${({ theme }) => theme.colors.main3};
-    background-color: transparent;
+    background-color: ${({ theme }) => theme.colors.grey10};
     color: ${({ theme }) => theme.colors.main3};
   `,
   halfTertiaryActive: css`
