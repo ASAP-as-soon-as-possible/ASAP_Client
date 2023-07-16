@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 
 import Button from 'components/atomComponents/Button';
 import PasswordInput from 'components/atomComponents/PasswordInput';
@@ -48,6 +48,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             value={meetingInfo.password}
             placeholder={`방 비밀번호`}
             passWordOnChange={passWordOnChange}
+            page={"createMeeting"}
           />
         </HostNameSection>
       </HostInfoSection>
