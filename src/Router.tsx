@@ -1,4 +1,5 @@
 import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
+import ChangeView from 'pages/ChangeView';
 import ComponentTesting from 'pages/ComponentTesting';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
@@ -22,6 +23,7 @@ const Router = () => {
         <Route path="/host/:meetingId" element={<div>최적의 회의시간 페이지를 넣어주세요</div>} />
         <Route path="/q-card/:meetingId" element={<CueCard />} />
         <Route path="*" element={<div>not found</div>} />
+        <Route path="/change" element={<ChangeView />} />
       </Routes>
     </BrowserRouter>
   );
