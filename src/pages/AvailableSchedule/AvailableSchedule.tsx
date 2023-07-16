@@ -15,14 +15,14 @@ const SELECTED_SCHEDULE: SelectedSchedule[] = [
     date: '7월 6일 (월)',
     startTime: '11:00',
     endTime: '15:00',
-    priority: 3,
+    priority: 2,
   },
   {
     id: 3,
     date: '7월 7일 (화)',
     startTime: '18:00',
     endTime: '24:00',
-    priority: 2,
+    priority: 3,
   },
   {
     id: 4,
@@ -34,7 +34,7 @@ const SELECTED_SCHEDULE: SelectedSchedule[] = [
 ];
 
 const AvailableSchedule = () => {
-  return <TimeTable selectedSchedule={SELECTED_SCHEDULE} />;
+  return <TimeTable selectedSchedule={SELECTED_SCHEDULE} scheduleType="available" />;
 };
 
 export default AvailableSchedule;

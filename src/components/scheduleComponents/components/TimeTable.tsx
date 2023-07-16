@@ -1,29 +1,3 @@
-/*
-"data": {
-    "duration" : "HOUR_HALF",
-    "place" : "ONLINE",
-    "placeDetail" : "구글미트",
-    "availableDates" : [
-        {
-            "month" : "7",
-            "day" : "6",
-            "dayOfWeek" : "월"
-        },
-        {
-            "month" : "7",
-            "day" : "7",
-            "dayOfWeek" : "월"
-        }
-    ],
-    "preferTimes" : [
-        {
-                "startTime": "06:00",
-                "endTime": "12:00"
-        }
-    ]
-}
-*/
-
 import Text from 'components/atomComponents/Text';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
