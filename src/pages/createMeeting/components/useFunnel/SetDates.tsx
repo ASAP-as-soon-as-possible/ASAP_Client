@@ -178,7 +178,11 @@ const Input = styled.input`
   }
 `;
 const Label = styled.label`
-  margin: 1.2rem;
+  display: flex;
+  align-items: center;
+  margin-left: 1.2rem;
+  height: 5rem;
+  width: 28rem;
   ${({ theme }) => theme.fonts.button1};
   color: ${({ theme }) => theme.colors.grey6};
 `;
