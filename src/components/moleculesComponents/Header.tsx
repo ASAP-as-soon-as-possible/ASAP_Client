@@ -77,7 +77,7 @@ const HeaderSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1.2rem;
+  margin-top:1.2rem;
   width: 100%;
 `;
 

@@ -4,7 +4,6 @@ import MakePng from 'assets/images/make.png';
 import PointPng from 'assets/images/point.png';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
-import { CardIc, InsertIc, MakeIc, PointIc } from 'components/Icon/icon';
 import Header from 'components/moleculesComponents/Header';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
