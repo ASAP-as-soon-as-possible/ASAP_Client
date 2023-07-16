@@ -4,6 +4,7 @@
   --rmdp-main4: #8295ff;
   --rmdp-grey6: #555555;
   --rmdp-grey8: #2e2e2e;
+  --rmdp-grey10: #141414;
 }
 
 .bg-dark.rmdp-wrapper,
@@ -15,7 +16,7 @@
   bottom: 2.2rem;
   margin-bottom: 11.8rem;
   border: none;
-  background-color: black;
+  background-color: var(--rmdp-grey10);
 }
 .rmdp-year-picker,.bg-dark .rmdp-month-picker {
   position: absolute;
