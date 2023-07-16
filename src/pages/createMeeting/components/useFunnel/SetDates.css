@@ -135,7 +135,7 @@
 }
 
 .bg-dark .rmdp-day.rmdp-today span {
-  background-color: rgba(50, 83, 255, 0.4);
+  background-color: rgba(50, 83, 255, 0.4) !important;
 }
 
 .bg-dark .rmdp-rtl .rmdp-panel {
