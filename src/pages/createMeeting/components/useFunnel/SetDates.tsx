@@ -166,7 +166,7 @@ const RangeInputBox = styled.div<{ $isClicked: boolean }>`
     $isClicked ? theme.colors.grey5 : theme.colors.main1};
   width: 33.5rem;
   height: 5.2rem;
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
 `;
 const Input = styled.input`
   appearance: none;
@@ -180,7 +180,7 @@ const Input = styled.input`
     background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='11' fill='%233C49FF'/%3E%3Ccircle cx='11' cy='11' r='4' fill='white'/%3E%3C/svg%3E ");
   }
   &:checked + label {
-    color: white;
+    color: ${({ theme }) => theme.colors.white};
   }
 `;
 const Label = styled.label`
@@ -204,7 +204,7 @@ const MultipleInputBox = styled.div<{ $isClicked: boolean }>`
   background-color: transparent;
   width: 33.5rem;
   height: 5.2rem;
-  color: white;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 const InputContianer = styled.div`

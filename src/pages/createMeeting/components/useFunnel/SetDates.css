@@ -15,16 +15,17 @@
   position: relative;
   bottom: 2.2rem;
   margin-bottom: 11.8rem;
-  border: none;
   background-color: var(--rmdp-grey10);
+  border: none;
 }
-.rmdp-year-picker,.bg-dark .rmdp-month-picker {
+.rmdp-year-picker,
+.bg-dark .rmdp-month-picker {
   position: absolute;
   top: 0;
   left: 0.2rem;
   z-index: 1;
-  background-color: black;
   height: 20rem;
+  background-color: black;
 }
 
 .rmdp-calendar {
@@ -50,8 +51,8 @@
 } */
 
 .rmdp-arrow-container:hover {
-  box-shadow: none;
   background-color: transparent;
+  box-shadow: none;
 }
 
 .bg-dark .rmdp-day:not(.rmdp-deactive),
@@ -62,30 +63,30 @@
 }
 
 .rmdp-arrow-container rmdp-right {
-  text-align: center;
-  line-height: 24px;
-  letter-spacing: -0.16px;
+  font-weight: 500;
+  font-size: 1.6rem;
 
   /* asap/body1 */
   font-family: 'Pretendard Variable';
-  font-size: 16px;
-  font-weight: 500;
-  font-style: normal;`
+  font-style: normal;
+  line-height: 2.4rem;
+  letter-spacing: -0.16px;
+  text-align: center;
 }
 .rmdp-header {
   margin-bottom: 1rem;
 }
 
 .rmdp-header-values {
-  text-align: center;
-  line-height: 24px;
-  letter-spacing: -0.16px;
+  font-weight: 500;
+  font-size: 1.6rem;
 
   /* asap/body1 */
   font-family: 'Pretendard Variable';
-  font-size: 16px;
-  font-weight: 500;
   font-style: normal;
+  line-height: 2.4rem;
+  letter-spacing: -0.16px;
+  text-align: center;
 }
 
 .bg-dark .rmdp-panel-body li {
@@ -93,23 +94,20 @@
 }
 
 .bg-dark .rmdp-panel-body li {
-  box-shadow: 0 0 2px var(--rmdp-main1);
   background-color: var(--rmdp-main1);
 }
 
 .bg-dark .rmdp-week-day {
-  text-align: center;
-line-height: 20px;
-letter-spacing: -0.14px;
   color: #ffffff;
-/* asap/body2 */
-font-family: Pretendard;
-font-size: 14px;
-font-weight: 500;
-font-style: normal;
+  font-weight: 500;
+  font-size: 1.4rem;
+  /* asap/body2 */
+  font-family: Pretendard;
+  font-style: normal;
+  line-height: 2rem;
+  letter-spacing: -0.14px;
+  text-align: center;
 }
-
-
 
 .bg-dark .rmdp-day.rmdp-deactive {
   /*이전달 다음달 날짜*/
@@ -117,10 +115,10 @@ font-style: normal;
 }
 
 .rmdp-range {
+  color: white;
+  background-color: var(--rmdp-main1);
   /* 범위 선택*/
   box-shadow: none;
-  background-color: var(--rmdp-main1);
-  color: white;
 }
 
 .rmdp-range > span {
@@ -146,8 +144,9 @@ font-style: normal;
 }
 
 .rmdp-day.rmdp-selected span:not(.highlight) {
-  border: 1px solid var(--rmdp-main4);
   background-color: var(--rmdp-main1) !important;
+  border: 1px solid var(--rmdp-main4);
+  box-shadow: none;
 }
 
 .bg-dark .rmdp-day:not(.rmdp-day-hidden) span:hover {
@@ -155,29 +154,28 @@ font-style: normal;
   background-color: transparent;
 }
 .rmdp-day {
-  /*날짜*/
-  padding: 2.5rem 2.5rem;
   width: 4rem;
   height: 4rem;
+  /*날짜*/
+  padding: 2.5rem 2.5rem;
 }
 .rmdp-day span {
-  text-align: center;
-  line-height: 20px;
-  letter-spacing: -0.16px;  
+  font-weight: 400;
+  font-size: 1.6rem;
   /* asap/button2 */
   font-family: Pretendard Variable;
-  font-size: 16px;
-  font-weight: 400;
   font-style: normal;
+  line-height: 2rem;
+  letter-spacing: -0.16px;
+  text-align: center;
 }
 
 .rmdp-week-day {
-  padding: 0 0.4rem;
   /*요일*/
   width: 4rem;
   height: 4rem;
+  padding: 0 0.4rem;
 }
-
 
 .bg-dark .rmdp-action-button {
   color: var(--rmdp-main1);
