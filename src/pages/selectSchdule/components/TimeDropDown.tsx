@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect, useState, SetStateAction, Dispatch } from 'react';
 
 import Text from 'components/atomComponents/Text';
 
@@ -11,12 +11,28 @@ interface PropTypes {
   times: string;
   text: string;
   id: number;
+  isOpen: boolean;
+  setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
-function TimeDropDown({ times, text, id }: PropTypes) {
-  // const [time, setTime] = useRecoilState(scheduleAtom);
+function TimeDropDown({ times, text, id, isOpen, setIsOpen }: PropTypes) {
+  const ref = useRef<HTMLDivElement>(null);
 
+  useEffect(
+    () => {
+      const clickOutSide = (e: MouseEvent) => {
+        if (isOpen && ref.current && !ref.current.contains(e.target as Node)) {
+          setIsOpen(false);
+        }
+      };
+      document.addEventListener('mousedown', clickOutSide);
+      return () => {
+        document.removeEventListener('mousedown', clickOutSide);
+      };
+    },
+    [isOpen, ref.current],
+  );
   return (
-    <TimeDropDownWrapper>
+    <TimeDropDownWrapper onClick={setIsOpen((prev) => !prev)} ref={ref}>
       <Text font="button1" color={theme.colors.white}>
         {times}
       </Text>

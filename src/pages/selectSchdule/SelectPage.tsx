@@ -4,10 +4,10 @@ import { PlusIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 
 import SelectSchedule from './components/SelectSchedule';
-import { DateStates, ScheduleStates } from './types/Schedule';
+import { SelectBoxState, ScheduleStates } from './types/Schedule';
 
 function SelectPage() {
-  const [dateList, setDateList] = useState<DateStates[]>([
+  const [dateList, setDateList] = useState<SelectBoxState[]>([
     {
       id: 1,
       dropDown: true,
@@ -54,13 +54,46 @@ function SelectPage() {
         if (item.id === index) {
           return {
             ...item,
-            dropDown: !item.dropDown, // Set the desired value for dropDown
+            dropDown: !item.dropDown,
           };
+
+          return item;
         }
-        return item;
       });
     });
   };
+
+  // const handleStartDropDown = (index: number) => {
+  //   setDateList((prevDateList) => {
+  //     return prevDateList.map((item) => {
+  //       if (item.id === index) {
+  //         return {
+  //           ...item,
+  //           dropDown: true, // Set the desired value for dropDown
+  //           startTimeDropDown: !item.startTimeDropDown,
+  //           endTimeDropDown: true,
+  //         };
+  //       }
+  //       return item;
+  //     });
+  //   });
+  // };
+
+  // const handleEndDropDown = (index: number) => {
+  //   setDateList((prevDateList) => {
+  //     return prevDateList.map((item) => {
+  //       if (item.id === index) {
+  //         return {
+  //           ...item,
+  //           dropDown: true, // Set the desired value for dropDown
+  //           startTimeDropDown: true,
+  //           endTimeDropDown: !item.endTimeDropDown,
+  //         };
+  //       }
+  //       return item;
+  //     });
+  //   });
+  // };
 
   return (
     <SelectPageWrapper>

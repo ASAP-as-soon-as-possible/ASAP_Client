@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { DropDownIc, DropUpIc } from 'components/Icon/icon';
@@ -15,17 +15,17 @@ interface PropTypes {
 }
 
 function DateSelect({ dropdown, handleDropDown, id }: PropTypes) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <DateSelectWrapper>
-      <DateSelectContainer $drop={dropdown} onClick={() => handleDropDown(id)}>
+      <DateSelectContainer $drop={isOpen} onClick={() => setIsOpen((prev) => !prev)}>
         <Text font="button2" color={`${theme.colors.grey5}`}>
           날짜 선택
         </Text>
         <DropDownIconWrapper>{dropdown ? <DropDownIcon /> : <DropUpIc />}</DropDownIconWrapper>
       </DateSelectContainer>
-      {dropdown ? (
-        <div />
-      ) : (
+      {isOpen ? (
         <DropDownWrapper>
           {dummyData.availableDates.map((item) => (
             <DateDropDown
@@ -34,10 +34,13 @@ function DateSelect({ dropdown, handleDropDown, id }: PropTypes) {
               month={item.month}
               day={item.day}
               dayOfWeek={item.dayOfWeek}
-              handleDropDown={handleDropDown}
+              setIsOpen={setIsOpen}
+              isOpen={isOpen}
             />
           ))}
         </DropDownWrapper>
+      ) : (
+        <div />
       )}
     </DateSelectWrapper>
   );
@@ -52,8 +55,8 @@ const DateSelectContainer = styled.div<{ $drop: boolean }>`
   align-items: center;
   justify-content: center;
   border-radius: 0.8rem;
-  border-bottom-left-radius: ${(props) => (props.$drop ? '0.8rem' : '0rem')};
-  border-bottom-right-radius: ${(props) => (props.$drop ? '0.8rem' : '0rem')};
+  border-bottom-left-radius: ${(props) => (props.$drop ? '0rem' : '0.8rem')};
+  border-bottom-right-radius: ${(props) => (props.$drop ? '0rem' : '0.8rem')};
 
   background-color: ${({ theme }) => theme.colors.grey7};
 

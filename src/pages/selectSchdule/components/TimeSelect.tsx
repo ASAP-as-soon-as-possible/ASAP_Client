@@ -15,9 +15,9 @@ interface PropTypes {
 function TimeSelect({ text, id }: PropTypes) {
   const [startTime, setStartTime] = useState(false);
   const [endTime, setEndTime] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false);
   const handleStartTime = () => {
-    setStartTime((prev) => !prev);
+    setIsOpen((prev) => !prev);
   };
 
   return (
@@ -27,9 +27,18 @@ function TimeSelect({ text, id }: PropTypes) {
           {text}
         </Text>
       </TimeSelectSection>
-      {startTime && (
+      {isOpen && (
         <TimeDropDownWrapper>
-          {time.map((item, i) => <TimeDropDown key={i} times={item} text={text} id={id} />)}
+          {time.map((item, i) => (
+            <TimeDropDown
+              key={i}
+              times={item}
+              text={text}
+              id={id}
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+            />
+          ))}
         </TimeDropDownWrapper>
       )}
     </TimeSelectWrapper>
