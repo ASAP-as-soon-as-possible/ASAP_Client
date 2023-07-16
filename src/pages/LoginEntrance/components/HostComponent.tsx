@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import PasswordInput from 'components/atomComponents/PasswordInput';
@@ -8,6 +8,8 @@ import Header from 'components/moleculesComponents/Header';
 import TitleComponent from 'components/moleculesComponents/TitleComponent';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+
+import ReturnModal from './ReturnModal';
 
 interface HostInfoProps {
   id: string;
@@ -36,6 +38,8 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
       return { ...prev, password: e.target.value };
     });
   };
+
+  const [ismodalOpen, setIsModalOpen] = useState(true);
   return (
     <>
       <Header position={'login'} />
@@ -76,6 +80,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
           <Text font={'button2'}>방장 페이지 접속하기</Text>
         </Button>
       </StyledBtnSection>
+      {ismodalOpen ? <ReturnModal setIsModalOpen={setIsModalOpen}/> : undefined}
     </>
   );
 }

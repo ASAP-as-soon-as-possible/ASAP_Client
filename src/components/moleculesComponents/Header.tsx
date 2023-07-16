@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { BackIc, ExitIc, HambergerIc, MainLogoIc } from 'components/Icon/icon';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 

@@ -2,8 +2,8 @@ import { useState } from 'react';
 
 import styled from 'styled-components/macro';
 
-import HostComponent from './LoginComponent/HostComponent';
-import MemberComponent from './LoginComponent/MemberComponent';
+import HostComponent from './components/HostComponent';
+import MemberComponent from './components/MemberComponent';
 
 interface HostInfoProps {
   id: string;
