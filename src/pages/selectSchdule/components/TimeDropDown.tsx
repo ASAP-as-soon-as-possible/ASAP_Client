@@ -15,24 +15,8 @@ interface PropTypes {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 }
 function TimeDropDown({ times, text, id, isOpen, setIsOpen }: PropTypes) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(
-    () => {
-      const clickOutSide = (e: MouseEvent) => {
-        if (isOpen && ref.current && !ref.current.contains(e.target as Node)) {
-          setIsOpen(false);
-        }
-      };
-      document.addEventListener('mousedown', clickOutSide);
-      return () => {
-        document.removeEventListener('mousedown', clickOutSide);
-      };
-    },
-    [isOpen, ref.current],
-  );
   return (
-    <TimeDropDownWrapper onClick={setIsOpen((prev) => !prev)} ref={ref}>
+    <TimeDropDownWrapper onClick={setIsOpen((prev) => !prev)}>
       <Text font="button1" color={theme.colors.white}>
         {times}
       </Text>

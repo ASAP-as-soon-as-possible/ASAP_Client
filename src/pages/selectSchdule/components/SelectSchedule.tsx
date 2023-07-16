@@ -10,17 +10,16 @@ import { SelectBoxState } from '../types/Schedule';
 interface PropTypes {
   dataList: SelectBoxState[];
   deleteData: (index: number) => void;
-  handleDropDown: (index: number) => void;
 }
 
-function SelectSchedule({ dataList, deleteData, handleDropDown }: PropTypes) {
+function SelectSchedule({ dataList, deleteData }: PropTypes) {
   return (
     <SelectScheduleWrapper>
       {dataList &&
         dataList.map((item) => (
           <SelectWrapper key={item.id}>
             <SelectSection>
-              <DateSelect dropdown={item.dropDown} handleDropDown={handleDropDown} id={item.id} />
+              <DateSelect id={item.id} />
               <ExitIconWrapper>
                 <ExitButton onClick={() => deleteData(item.id)}>
                   <ExitIc />

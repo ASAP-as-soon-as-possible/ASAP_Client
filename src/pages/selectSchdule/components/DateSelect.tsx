@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { DropDownIc, DropUpIc } from 'components/Icon/icon';
@@ -9,21 +9,34 @@ import DateDropDown from './DateDropDown';
 import { dummyData } from './dummyData';
 
 interface PropTypes {
-  dropdown: boolean;
-  handleDropDown: (index: number) => void;
   id: number;
 }
 
-function DateSelect({ dropdown, handleDropDown, id }: PropTypes) {
+function DateSelect({ id }: PropTypes) {
   const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
+  useEffect(
+    () => {
+      const clickOutSide = (e: MouseEvent) => {
+        if (isOpen && ref.current && !ref.current.contains(e.target as Node)) {
+          setIsOpen(false);
+        }
+      };
+      document.addEventListener('mousedown', clickOutSide);
+      return () => {
+        document.removeEventListener('mousedown', clickOutSide);
+      };
+    },
+    [isOpen, ref.current],
+  );
   return (
     <DateSelectWrapper>
-      <DateSelectContainer $drop={isOpen} onClick={() => setIsOpen((prev) => !prev)}>
+      <DateSelectContainer $drop={isOpen} onClick={() => setIsOpen((prev) => !prev)} ref={ref}>
         <Text font="button2" color={`${theme.colors.grey5}`}>
           날짜 선택
         </Text>
-        <DropDownIconWrapper>{dropdown ? <DropDownIcon /> : <DropUpIc />}</DropDownIconWrapper>
+        <DropDownIconWrapper>{isOpen ? <DropDownIcon /> : <DropUpIc />}</DropDownIconWrapper>
       </DateSelectContainer>
       {isOpen ? (
         <DropDownWrapper>
@@ -34,8 +47,6 @@ function DateSelect({ dropdown, handleDropDown, id }: PropTypes) {
               month={item.month}
               day={item.day}
               dayOfWeek={item.dayOfWeek}
-              setIsOpen={setIsOpen}
-              isOpen={isOpen}
             />
           ))}
         </DropDownWrapper>

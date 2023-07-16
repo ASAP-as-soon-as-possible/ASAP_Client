@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { useRecoilState } from 'recoil';
@@ -20,9 +20,25 @@ function TimeSelect({ text, id }: PropTypes) {
     setIsOpen((prev) => !prev);
   };
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(
+    () => {
+      const clickOutSide = (e: MouseEvent) => {
+        if (isOpen && ref.current && !ref.current.contains(e.target as Node)) {
+          setIsOpen(false);
+        }
+      };
+      document.addEventListener('mousedown', clickOutSide);
+      return () => {
+        document.removeEventListener('mousedown', clickOutSide);
+      };
+    },
+    [isOpen, ref.current],
+  );
   return (
     <TimeSelectWrapper>
-      <TimeSelectSection $drop={startTime} onClick={handleStartTime}>
+      <TimeSelectSection $drop={isOpen} onClick={handleStartTime} ref={ref}>
         <Text font="button2" color={`${theme.colors.grey5}`}>
           {text}
         </Text>
