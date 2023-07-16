@@ -10,23 +10,23 @@ import styled from 'styled-components/macro';
 
 import './SetDates.css';
 
+const months = [
+  '1월',
+  '2월',
+  '3월',
+  '4월',
+  '5월',
+  '6월',
+  '7월',
+  '8월',
+  '9월',
+  '10월',
+  '11월',
+  '12월',
+];
+const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
+const dateRangeFormat = 'YYYY/MM/DD/ddd';
 function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
-  const months = [
-    '1월',
-    '2월',
-    '3월',
-    '4월',
-    '5월',
-    '6월',
-    '7월',
-    '8월',
-    '9월',
-    '10월',
-    '11월',
-    '12월',
-  ];
-  const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
-  const dateRangeFormat = 'YYYY/MM/DD/ddd';
   // const [multiple, setMultiple] = useState(false);
   const [multiple, setMultiple] = useRecoilState(methodStateAtom);
   return (
@@ -65,7 +65,9 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             />
             <Label htmlFor="multiple">날짜 지정</Label>
           </MultipleInputBox>
-          <InputNotice>회의 날짜는 최대 7일까지 선택할 수 있어요.</InputNotice>
+          <InputNotice $dateLength={meetingInfo.availableDates.length}>
+            회의 날짜는 최대 7일까지 선택할 수 있어요.
+          </InputNotice>
         </InputContianer>
         <CalendarWrapper>
           <Calendar
@@ -79,7 +81,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             multiple={multiple}
             onChange={(dateObjects) => {
               if (dateObjects) {
-                if (multiple == false) {
+                if (multiple === false) {
                   const tmpArr = getAllDatesInRange(dateObjects as DateObject[]);
                   const newDate: string[] = [];
                   tmpArr.map((date) => {
@@ -88,7 +90,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                   setMeetingInfo((prev: MeetingInfo) => {
                     return { ...prev, availableDates: newDate };
                   });
-                } else if (multiple == true) {
+                } else if (multiple === true) {
                   const newDate: string[] = [];
                   (dateObjects as DateObject[]).map((date: DateObject) => {
                     newDate.push(date.format(dateRangeFormat));
@@ -105,14 +107,18 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
       <StyledBtnSection>
         <Button
           typeState={
-            meetingInfo.availableDates.length > 1 ||
-            (meetingInfo.availableDates.length > 0 && multiple)
+            (meetingInfo.availableDates.length > 1 && meetingInfo.availableDates.length < 8) ||
+            (multiple &&
+              meetingInfo.availableDates.length > 0 &&
+              meetingInfo.availableDates.length < 8)
               ? 'primaryActive'
               : 'secondaryDisabled'
           }
           onClick={
-            meetingInfo.availableDates.length > 1 ||
-            (meetingInfo.availableDates.length > 0 && multiple)
+            (meetingInfo.availableDates.length > 1 && meetingInfo.availableDates.length < 8) ||
+            (multiple &&
+              meetingInfo.availableDates.length > 0 &&
+              meetingInfo.availableDates.length < 8)
               ? () =>
                   setStep((prev) => {
                     if (prev === 6) {
@@ -210,11 +216,11 @@ const InputContianer = styled.div`
     margin-bottom: 1.1rem;
   }
 `;
-const InputNotice = styled.span`
+const InputNotice = styled.span<{ $dateLength: number }>`
   margin-top: 1.2rem;
   margin-bottom: 1rem;
   ${({ theme }) => theme.fonts.body3};
-  color: ${({ theme }) => theme.colors.sub1};
+  color: ${({ $dateLength, theme }) => ($dateLength > 7 ? theme.colors.red : theme.colors.sub1)};
 `;
 
 const CalendarWrapper = styled.div`
