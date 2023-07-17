@@ -4,53 +4,44 @@ import { PlusIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 
 import SelectSchedule from './components/SelectSchedule';
-import { SelectBoxState, ScheduleStates } from './types/Schedule';
+import { ScheduleStates } from './types/Schedule';
 
 function SelectPage() {
-  const [dateList, setDateList] = useState<SelectBoxState[]>([
-    {
-      id: 1,
-      dropDown: true,
-    },
-  ]);
-
   const [scheduleList, setScheduleList] = useState<ScheduleStates[]>([
     {
       id: 1,
       date: '',
       startTime: '',
       endTime: '',
+      priority: 0,
     },
   ]);
 
   const nextID = useRef<number>(2);
 
   const addDateList = () => {
-    const selectBox = {
-      id: nextID.current,
-      dropDown: true,
-    };
-
     const schedule = {
       id: nextID.current,
       date: '',
       startTime: '',
       endTime: '',
+      priority: 0,
     };
-
-    setDateList([...dateList, selectBox]);
     setScheduleList([...scheduleList, schedule]);
     nextID.current += 1;
   };
 
   const deleteDataList = (index: number) => {
-    setDateList(dateList.filter((item) => item.id !== index));
     setScheduleList(scheduleList.filter((item) => item.id !== index));
   };
 
   return (
     <SelectPageWrapper>
-      <SelectSchedule dataList={dateList} deleteData={deleteDataList} />
+      <SelectSchedule
+        scheduleList={scheduleList}
+        setScheduleList={setScheduleList}
+        deleteData={deleteDataList}
+      />
       <PlusButton onClick={addDateList} type="button">
         <PlusIc />
       </PlusButton>

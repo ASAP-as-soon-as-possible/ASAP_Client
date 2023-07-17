@@ -1,25 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 
 import { ExitIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 
 import DateSelect from './DateSelect';
 import TimeSelect from './TimeSelect';
-import { SelectBoxState } from '../types/Schedule';
+import { ScheduleStates } from '../types/Schedule';
 
 interface PropTypes {
-  dataList: SelectBoxState[];
+  scheduleList: ScheduleStates[];
+  setScheduleList: Dispatch<SetStateAction<ScheduleStates[]>>;
   deleteData: (index: number) => void;
 }
 
-function SelectSchedule({ dataList, deleteData }: PropTypes) {
+function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes) {
+  const handleDateChange = (id: number, date: string) => {
+    const updateScheduleList = scheduleList.map((schedule) => {
+      if (schedule.id === id) {
+        console.log('id값 일치?');
+        return { ...schedule, date };
+      }
+    });
+
+    setScheduleList(updateScheduleList);
+  };
+
   return (
     <SelectScheduleWrapper>
-      {dataList &&
-        dataList.map((item) => (
+      {scheduleList &&
+        scheduleList.map((item) => (
           <SelectWrapper key={item.id}>
             <SelectSection>
-              <DateSelect id={item.id} />
+              <DateSelect id={item.id} handleDateChange={handleDateChange} />
               <ExitIconWrapper>
                 <ExitButton onClick={() => deleteData(item.id)}>
                   <ExitIc />

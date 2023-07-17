@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { DropDownIc, DropUpIc } from 'components/Icon/icon';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 import DateDropDown from './DateDropDown';
@@ -10,9 +10,10 @@ import { dummyData } from './dummyData';
 
 interface PropTypes {
   id: number;
+  handleDateChange: (id: number, data: string) => void;
 }
 
-function DateSelect({ id }: PropTypes) {
+function DateSelect({ id, handleDateChange }: PropTypes) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -36,7 +37,7 @@ function DateSelect({ id }: PropTypes) {
         <Text font="button2" color={`${theme.colors.grey5}`}>
           날짜 선택
         </Text>
-        <DropDownIconWrapper>{isOpen ? <DropDownIcon /> : <DropUpIc />}</DropDownIconWrapper>
+        <DropDownIconWrapper>{isOpen ? <DropUpIc /> : <DropDownIcon />}</DropDownIconWrapper>
       </DateSelectContainer>
       {isOpen ? (
         <DropDownWrapper>
@@ -47,6 +48,7 @@ function DateSelect({ id }: PropTypes) {
               month={item.month}
               day={item.day}
               dayOfWeek={item.dayOfWeek}
+              handleDateChange={handleDateChange}
             />
           ))}
         </DropDownWrapper>

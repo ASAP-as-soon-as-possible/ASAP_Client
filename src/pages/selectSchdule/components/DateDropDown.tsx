@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Dispatch, SetStateAction, MouseEvent } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { useRecoilState } from 'recoil';
@@ -13,19 +13,25 @@ interface PropTypes {
   month: number;
   day: number;
   dayOfWeek: string;
+  // setScheduleList: Dispatch<SetStateAction<[]>>;
+  handleDateChange: (id: number, data: string) => void;
 }
 
-function DateDropDown({ month, day, dayOfWeek }: PropTypes) {
-  const [schedule, setSchedule] = useRecoilState(scheduleAtom);
+function DateDropDown({ id, month, day, dayOfWeek, handleDateChange }: PropTypes) {
+  const getDate = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
 
-  const getDate = () => {
     const updatedDate = `${month}월 ${day}일 ${dayOfWeek}요일`;
-    setSchedule({ ...schedule, date: updatedDate });
-    console.log(updatedDate);
+    handleDateChange(id, updatedDate);
   };
 
   return (
-    <DropDownList onClick={getDate}>
+    <DropDownList
+      onMouseDown={(e: React.MouseEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        getDate(e);
+      }}
+    >
       <Text font="button1" color={`${theme.colors.white}`}>
         {`${month}월 ${day}일 ${dayOfWeek}요일`}
       </Text>
@@ -48,4 +54,5 @@ const DropDownList = styled.div`
     background-color: ${({ theme }) => theme.colors.grey7};
   }
 `;
+
 export default DateDropDown;
