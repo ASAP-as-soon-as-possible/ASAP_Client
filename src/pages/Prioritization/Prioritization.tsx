@@ -5,8 +5,8 @@ const SELECTED_SCHEDULE: SelectedSchedule[] = [
   {
     id: 1,
     date: '7월 6일 (월)',
-    startTime: '17:00',
-    endTime: '23:00',
+    startTime: '17:30',
+    endTime: '18:00',
     priority: 2,
   },
   {
