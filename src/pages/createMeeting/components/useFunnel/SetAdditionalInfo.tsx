@@ -24,6 +24,7 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps
       console.log(response);
       // 성공 시에 콘솔에 성공 콘솔
       if (response.status === 201) {
+        navigate('/meet/complete')
         console.log('회의 생성에 성공했습니다.');
       }
     } catch (error) {
