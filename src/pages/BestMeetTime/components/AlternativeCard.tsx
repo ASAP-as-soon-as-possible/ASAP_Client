@@ -9,7 +9,7 @@ function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataPr
     chooseMeetime(rank);
   };
   return (
-    <AlternativeCardWrapper>
+    <AlternativeCardWrapper $rank={rank} $selected={selected}>
       <Input
         id={`${rank}`}
         type="checkbox"
@@ -40,11 +40,13 @@ function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataPr
 
 export default AlternativeCard;
 
-const AlternativeCardWrapper = styled.article`
+const AlternativeCardWrapper = styled.article<{ $rank: number; $selected: number }>`
   display: flex;
   position: relative;
   flex-direction: row;
-  border: 1px solid ${({ theme }) => theme.colors.grey5};
+  border: 1px solid
+    ${({ $rank, $selected, theme }) =>
+      $rank === $selected ? theme.colors.main1 : theme.colors.grey5};
   border-radius: 10px;
   padding: 2rem;
   height: fit-content;

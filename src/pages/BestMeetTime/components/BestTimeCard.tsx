@@ -13,7 +13,7 @@ function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps
     chooseMeetime(rank);
   };
   return (
-    <BestTimeCardWrapper>
+    <BestTimeCardWrapper $rank={rank} $selected={selected}>
       <IconContainer onClick={() => setIsMember((prev) => !prev)}>
         {isMember ? <DropupWhite /> : <DropdownWhite />}
       </IconContainer>
@@ -50,11 +50,13 @@ function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps
 
 export default BestTimeCard;
 
-const BestTimeCardWrapper = styled.article`
+const BestTimeCardWrapper = styled.article<{ $rank: number; $selected: number }>`
   display: flex;
   position: relative;
   flex-direction: row;
-  border: 1px solid ${({ theme }) => theme.colors.grey5};
+  border: 1px solid
+    ${({ $rank, $selected, theme }) =>
+      $rank === $selected ? theme.colors.main1 : theme.colors.grey5};
   border-radius: 10px;
   padding: 2rem;
   height: fit-content;
