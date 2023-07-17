@@ -78,6 +78,8 @@ const bestTimeData: DateTimeData = {
 
 function BestMeetTime() {
   const [isalternativeCardOpen, setIsalternativeCardOpen] = useState(false);
+  const [selected, setSelected] = useState(0);
+  console.log(selected);
   return (
     <BestMeetTimeWrapper>
       <TitleSection>
@@ -91,8 +93,12 @@ function BestMeetTime() {
           박스를 클릭하여 회의시간을 확정해주세요
         </Text>
       </TitleSection>
-
-      <BestTimeCard carddata={bestTimeData.data.bestDateTime} />
+      <BestTimeCard
+        rank={0}
+        selected={selected}
+        carddata={bestTimeData.data.bestDateTime}
+        chooseMeetime={setSelected}
+      />
 
       <AnotherTimeBtnSection>
         <Text font={`body4`} color={`${theme.colors.grey3}`}>
@@ -104,8 +110,18 @@ function BestMeetTime() {
       </AnotherTimeBtnSection>
       {isalternativeCardOpen ? (
         <AlternativeSection>
-          <AlternativeCard index={0} carddata={bestTimeData.data.otherDateTimes[0]} />
-          <AlternativeCard index={1} carddata={bestTimeData.data.otherDateTimes[1]} />
+          <AlternativeCard
+            rank={1}
+            selected={selected}
+            carddata={bestTimeData.data.otherDateTimes[0]}
+            chooseMeetime={setSelected}
+          />
+          <AlternativeCard
+            rank={2}
+            selected={selected}
+            carddata={bestTimeData.data.otherDateTimes[1]}
+            chooseMeetime={setSelected}
+          />
         </AlternativeSection>
       ) : (
         undefined
@@ -144,7 +160,7 @@ const AnotherTimeBtnSection = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   margin: 2rem 0 1.6rem 0;
-  padding-right:1rem;
+  padding-right: 1rem;
 `;
 const AlternativeSection = styled.section`
   display: flex;

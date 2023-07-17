@@ -4,16 +4,20 @@ import { theme } from 'styles/theme';
 
 import { BestDataProps } from '../types/meetCardData';
 
-interface NEwBestDataProps extends BestDataProps {
-  index: number;
-}
-
-function AlternativeCard({ carddata, index }: NEwBestDataProps) {
+function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
+  const checkingCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    chooseMeetime(rank);
+  };
   return (
     <AlternativeCardWrapper>
-      <Input id={`${index}`} type="checkbox" />
+      <Input
+        id={`${rank}`}
+        type="checkbox"
+        checked={rank === selected ? true : false}
+        onChange={checkingCheck}
+      />
       <InfoContainer>
-        <Label htmlFor={`${index}`}>
+        <Label htmlFor={`${rank}`}>
           <Text font={'body1'} color={`${theme.colors.white}`}>
             {carddata.month}월 {carddata.day}일 {carddata.dayOfWeek}요일
           </Text>

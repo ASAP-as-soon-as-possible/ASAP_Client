@@ -1,3 +1,5 @@
+import React, { Dispatch, SetStateAction, useState } from 'react';
+
 export interface BestDataProps {
   carddata: {
     month: string;
@@ -7,6 +9,9 @@ export interface BestDataProps {
     endTime: string;
     userNames: string[];
   };
+  rank: number;
+  chooseMeetime: Dispatch<SetStateAction<number>>;
+  selected:number;
 }
 
 export interface DateTimeData {

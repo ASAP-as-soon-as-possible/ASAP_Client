@@ -7,16 +7,24 @@ import { theme } from 'styles/theme';
 
 import { BestDataProps } from '../types/meetCardData';
 
-function BestTimeCard({ carddata }: BestDataProps) {
+function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
   const [isMember, setIsMember] = useState(false);
+  const checkingCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+    chooseMeetime(rank);
+  };
   return (
     <BestTimeCardWrapper>
       <IconContainer onClick={() => setIsMember((prev) => !prev)}>
         {isMember ? <DropupWhite /> : <DropdownWhite />}
       </IconContainer>
-      <Input id="bestMeetTime" type="checkbox" />
+      <Input
+        id={`${rank}`}
+        type="checkbox"
+        onChange={checkingCheck}
+        checked={rank === selected ? true : false}
+      />
       <InfoContainer>
-        <Label htmlFor="bestMeetTime">
+        <Label htmlFor={`${rank}`}>
           <Text font={'body1'} color={`${theme.colors.white}`}>
             {carddata.month}월 {carddata.day}일 {carddata.dayOfWeek}요일
           </Text>
