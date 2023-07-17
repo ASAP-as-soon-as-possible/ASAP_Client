@@ -1,5 +1,6 @@
 import ApiTesting from 'pages/ApiTesting';
 import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
+import ChangeView from 'pages/ChangeView';
 import ComponentTesting from 'pages/ComponentTesting';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
@@ -24,6 +25,7 @@ const Router = () => {
         <Route path="/q-card/:meetingId" element={<CueCard />} />
         <Route path="/apiTesting" element={<ApiTesting />} />
         <Route path="*" element={<div>not found</div>} />
+        <Route path="/change" element={<ChangeView />} />
       </Routes>
     </BrowserRouter>
   );
