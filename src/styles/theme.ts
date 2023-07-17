@@ -58,8 +58,8 @@ const fonts = {
   body3: FONT({ family: 'Pretendard Variable', weight: 400, size: 1.4, lineHeight: 2 }),
   body4: FONT({ family: 'Pretendard Variable', weight: 500, size: 1.2, lineHeight: 1.6 }),
 
-  button1: FONT({ family: 'Pretendard Variable', weight: 600, size: 1.6, lineHeight: 2 }),
-  button2: FONT({ family: 'Pretendard Variable', weight: 500, size: 1.6, lineHeight: 2 }),
+  button1: FONT({ family: 'Pretendard Variable', weight: 500, size: 1.6, lineHeight: 2 }),
+  button2: FONT({ family: 'Pretendard Variable', weight: 400, size: 1.6, lineHeight: 2 }),
 };
 
 export type FontsTypes = typeof fonts;
