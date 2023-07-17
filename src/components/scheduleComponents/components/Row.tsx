@@ -46,7 +46,6 @@ const Row = (props: RowProps) => {
     return priorityInfo;
   };
 
-
   return (
     <ColumnWrapper>
       <DateWrapper>

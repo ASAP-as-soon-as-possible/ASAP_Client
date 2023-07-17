@@ -3,61 +3,10 @@ import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
 
 import Row from './Row';
+import { AVAILABLE_DATES } from '../data/availableDates';
+import { PREFER_TIMES } from '../data/preferTimes';
 import { SelectedSchedule } from '../types/AvailableScheduleType';
 import getTimeSlots from '../utils/getTimeSlots';
-
-const AVAILABLE_DATES = [
-  {
-    month: '7',
-    day: '6',
-    dayOfWeek: '월',
-  },
-  {
-    month: '7',
-    day: '7',
-    dayOfWeek: '화',
-  },
-  {
-    month: '7',
-    day: '8',
-    dayOfWeek: '수',
-  },
-  {
-    month: '7',
-    day: '9',
-    dayOfWeek: '목',
-  },
-  {
-    month: '7',
-    day: '10',
-    dayOfWeek: '금',
-  },
-  {
-    month: '7',
-    day: '11',
-    dayOfWeek: '토',
-  },
-  {
-    month: '7',
-    day: '12',
-    dayOfWeek: '일',
-  },
-];
-
-const PREFER_TIMES = [
-  {
-    startTime: '06:00',
-    endTime: '12:00',
-  },
-  {
-    startTime: '12:00',
-    endTime: '18:00',
-  },
-  {
-    startTime: '18:00',
-    endTime: '24:00',
-  },
-];
 
 interface TimeTableProps {
   selectedSchedule: SelectedSchedule[];
