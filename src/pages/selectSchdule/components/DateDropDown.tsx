@@ -14,15 +14,15 @@ interface PropTypes {
   day: number;
   dayOfWeek: string;
   // setScheduleList: Dispatch<SetStateAction<[]>>;
-  handleDateChange: (id: number, data: string) => void;
+  handleDate: (id: number, data: string) => void;
 }
 
-function DateDropDown({ id, month, day, dayOfWeek, handleDateChange }: PropTypes) {
+function DateDropDown({ id, month, day, dayOfWeek, handleDate }: PropTypes) {
   const getDate = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
 
     const updatedDate = `${month}월 ${day}일 ${dayOfWeek}요일`;
-    handleDateChange(id, updatedDate);
+    handleDate(id, updatedDate);
   };
 
   return (

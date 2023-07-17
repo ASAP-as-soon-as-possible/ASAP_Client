@@ -14,10 +14,18 @@ interface PropTypes {
 }
 
 function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes) {
-  const handleDateChange = (id: number, date: string) => {
+  const handleDate = (id: number, date: string) => {
     const updateScheduleList = scheduleList.map((schedule) => {
       if (schedule.id === id) {
-        console.log('id값 일치?');
+        return { ...schedule, date };
+      }
+    });
+    setScheduleList(updateScheduleList);
+  };
+
+  const handleStartTimeChange = (id: number, startTime: string) => {
+    const updateScheduleList = scheduleList.map((schedule) => {
+      if (schedule.id === id) {
         return { ...schedule, date };
       }
     });
@@ -30,11 +38,7 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
         scheduleList.map((item) => (
           <SelectWrapper key={item.id}>
             <SelectSection>
-              <DateSelect
-                id={item.id}
-                handleDateChange={handleDateChange}
-                scheduleList={scheduleList}
-              />
+              <DateSelect id={item.id} handleDate={handleDate} scheduleList={scheduleList} />
               <ExitIconWrapper>
                 <ExitButton onClick={() => deleteData(item.id)}>
                   <ExitIc />

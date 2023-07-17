@@ -11,11 +11,11 @@ import { ScheduleStates } from '../types/Schedule';
 
 interface PropTypes {
   id: number;
-  handleDateChange: (id: number, data: string) => void;
+  handleDate: (id: number, data: string) => void;
   scheduleList: ScheduleStates[];
 }
 
-function DateSelect({ id, handleDateChange, scheduleList }: PropTypes) {
+function DateSelect({ id, handleDate, scheduleList }: PropTypes) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   console.log(scheduleList[id - 1].date);
@@ -58,7 +58,7 @@ function DateSelect({ id, handleDateChange, scheduleList }: PropTypes) {
               month={item.month}
               day={item.day}
               dayOfWeek={item.dayOfWeek}
-              handleDateChange={handleDateChange}
+              handleDate={handleDate}
             />
           ))}
         </DropDownWrapper>
