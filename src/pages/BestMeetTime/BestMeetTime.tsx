@@ -5,40 +5,9 @@ import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-const mebers = [
-  '서지원',
-  '강원용',
-  '김태희',
-  '이재훈',
-  '서채원',
-  '정찬우',
-  '심은서',
-  '이동헌',
-  '강민서',
-  '도소현',
-];
-
-interface DateTimeData {
-  status: number;
-  message: string;
-  data: {
-    memberCount: number;
-    bestDateTime: {
-      month: string;
-      day: string;
-      dayOfWeek: string;
-      startTime: string;
-      endTime: string;
-    };
-    otherDateTimes: {
-      month: string;
-      day: string;
-      dayOfWeek: string;
-      startTime: string;
-      endTime: string;
-    }[];
-  };
-}
+import AlternativeCard from './components/AlternativeCard';
+import BestTimeCard from './components/BestTimeCard';
+import { DateTimeData } from './types/meetCardData';
 
 const bestTimeData: DateTimeData = {
   status: 200,
@@ -51,6 +20,18 @@ const bestTimeData: DateTimeData = {
       dayOfWeek: '월',
       startTime: '06:00',
       endTime: '12:00',
+      userNames: [
+        '서지원',
+        '강원용',
+        '김태희',
+        '이재훈',
+        '서채원',
+        '정찬우',
+        '심은서',
+        '이동헌',
+        '강민서',
+        '도소현',
+      ],
     },
     otherDateTimes: [
       {
@@ -59,27 +40,50 @@ const bestTimeData: DateTimeData = {
         dayOfWeek: '화',
         startTime: '06:00',
         endTime: '12:00',
+        userNames: [
+          '서지원',
+          '강원용',
+          '김태희',
+          '이재훈',
+          '서채원',
+          '정찬우',
+          '심은서',
+          '이동헌',
+          '강민서',
+          '도소현',
+        ],
       },
       {
-        month: '7',
+        month: '6',
         day: '30',
-        dayOfWeek: '화',
+        dayOfWeek: '수',
         startTime: '06:00',
         endTime: '12:00',
+        userNames: [
+          '서지원',
+          '강원용',
+          '김태희',
+          '이재훈',
+          '서채원',
+          '정찬우',
+          '심은서',
+          '이동헌',
+          '강민서',
+          '도소현',
+        ],
       },
     ],
   },
 };
-function BestMeetTime() {
-  const count = 12;
 
-  const [isMember, setIsMember] = useState(false);
+function BestMeetTime() {
+  const [isalternativeCardOpen, setIsalternativeCardOpen] = useState(false);
   return (
     <BestMeetTimeWrapper>
       <TitleSection>
         <HeaderContainer>
           <HeaderTitle>
-            현재까지 모인 <MemberCount>{count}</MemberCount>명을 위한
+            현재까지 모인 <MemberCount>{bestTimeData.data.memberCount}</MemberCount>명을 위한
           </HeaderTitle>
           <HeaderTitle>최적의 회의시간이에요</HeaderTitle>
         </HeaderContainer>
@@ -87,63 +91,25 @@ function BestMeetTime() {
           박스를 클릭하여 회의시간을 확정해주세요
         </Text>
       </TitleSection>
-      <BestTimeCard>
-        <IconContainer onClick={() => setIsMember((prev) => !prev)}>
-          {isMember ? <DropupWhite /> : <DropdownWhite />}
-        </IconContainer>
-        <Input id="bestMeetTime" type="checkbox" />
-        <InfoContainer>
-          <Label htmlFor="bestMeetTime">
-            <Text font={'body1'} color={`${theme.colors.white}`}>
-              6월 30일 금요일
-            </Text>
-            <Text font={'body1'} color={`${theme.colors.white}`}>
-              18:00 ~ 21:00
-            </Text>
-          </Label>
-          {isMember ? (
-            <MemeberContainer>
-              {mebers.map((member, i) => (
-                <Text key={i + member} font={'body4'} color={`${theme.colors.grey5}`}>
-                  {`${member},`}&nbsp;
-                </Text>
-              ))}
-            </MemeberContainer>
-          ) : (
-            undefined
-          )}
-        </InfoContainer>
-      </BestTimeCard>
+
+      <BestTimeCard carddata={bestTimeData.data.bestDateTime} />
+
       <AnotherTimeBtnSection>
         <Text font={`body4`} color={`${theme.colors.grey3}`}>
           다른 시간대 확인하기
         </Text>
-        <BasicIconContainer onClick={() => setIsMember((prev) => !prev)}>
-          {isMember ? <DropupWhite /> : <DropdownWhite />}
+        <BasicIconContainer onClick={() => setIsalternativeCardOpen((prev) => !prev)}>
+          {isalternativeCardOpen ? <DropupWhite /> : <DropdownWhite />}
         </BasicIconContainer>
       </AnotherTimeBtnSection>
-
-      <BestTimeCard>
-        <Input id="bestMeetTime" type="checkbox" />
-        <InfoContainer>
-          <Label htmlFor="bestMeetTime">
-            <Text font={'body1'} color={`${theme.colors.white}`}>
-              6월 30일 금요일
-            </Text>
-            <Text font={'body1'} color={`${theme.colors.white}`}>
-              18:00 ~ 21:00
-            </Text>
-          </Label>
-
-          <MemeberContainer>
-            {mebers.map((member, i) => (
-              <Text key={i + member} font={'body4'} color={`${theme.colors.grey5}`}>
-                {`${member},`}&nbsp;
-              </Text>
-            ))}
-          </MemeberContainer>
-        </InfoContainer>
-      </BestTimeCard>
+      {isalternativeCardOpen ? (
+        <AlternativeSection>
+          <AlternativeCard index={0} carddata={bestTimeData.data.otherDateTimes[0]} />
+          <AlternativeCard index={1} carddata={bestTimeData.data.otherDateTimes[1]} />
+        </AlternativeSection>
+      ) : (
+        undefined
+      )}
     </BestMeetTimeWrapper>
   );
 }
@@ -173,68 +139,23 @@ const MemberCount = styled.span`
   color: ${({ theme }) => theme.colors.sub1};
 `;
 
-const BestTimeCard = styled.div`
-  display: flex;
-  position: relative;
-  flex-direction: row;
-  border: 1px solid ${({ theme }) => theme.colors.grey5};
-  border-radius: 10px;
-  padding: 2rem;
-  height: fit-content;
-`;
-
 const AnotherTimeBtnSection = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
   margin: 2rem 0 1.6rem 0;
+  padding-right:1rem;
 `;
-
-const InfoContainer = styled.div`
+const AlternativeSection = styled.section`
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.colors.white};
+  gap: 1rem;
 `;
-const Input = styled.input`
-  appearance: none;
-  margin: 0 2.274rem 0 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='9' stroke='%23D9D9D9' stroke-width='2'/%3E%3C/svg%3E%0A");
-  background-repeat: no-repeat;
-  width: 2rem;
-  height: 2rem;
-
-  &:checked {
-    background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='10' fill='%233C49FF'/%3E%3Ccircle cx='9.99965' cy='10.0001' r='3.63636' fill='white'/%3E%3C/svg%3E ");
-  }
-  &:checked + label {
-    color: ${({ theme }) => theme.colors.white};
-  }
-`;
-const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-`;
-
-const MemeberContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: 1.2rem;
-  width: 23rem;
-  height: fit-content;
-`;
-
 const BasicIconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   width: 3rem;
   height: 3rem;
-`;
-
-const IconContainer = styled(BasicIconContainer)`
-  position: absolute;
-  top: 1.2rem;
-  right: 1.2rem;
 `;
