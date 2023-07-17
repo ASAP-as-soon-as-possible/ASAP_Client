@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import Button from 'components/atomComponents/Button';
+import Text from 'components/atomComponents/Text';
 import Header from 'components/moleculesComponents/Header';
 import { styled } from 'styled-components';
 
@@ -22,6 +24,11 @@ function ChooseBestTime() {
         {/* green,blue 자리에 컴포넌트 입력 */}
         {viewBest ? <BestMeetTime /> : <Blue>종합 일정 시간표</Blue>}
       </ViewContainer>
+      <BtnWrapper>
+        <Button typeState={'primaryActive'}>
+          <Text font={'title2'}> 확정</Text>
+        </Button>
+      </BtnWrapper>
     </ChooseBestTimeWrapper>
   );
 }
@@ -68,6 +75,12 @@ const ChangeViewPicker = styled.div<{ $isClicked: boolean }>`
 const ViewContainer = styled.div`
   display: flex;
   align-items: center;
+`;
+
+const BtnWrapper = styled.div`
+  position: fixed;
+  bottom: 1.2rem;
+  border-radius: 50%;
 `;
 
 const Blue = styled.div`
