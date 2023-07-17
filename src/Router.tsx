@@ -1,13 +1,11 @@
 import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
 import ChangeView from 'pages/ChangeView';
 import ComponentTesting from 'pages/ComponentTesting';
-
-import CreateMetting from 'pages/createMeeting/CreateMeeting';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
-
 import OnBoarding from 'pages/onBoarding/OnBoarding';
 import SelectPage from 'pages/selectSchdule/SelectPage';
+import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router = () => {
@@ -18,18 +16,20 @@ const Router = () => {
         <Route path="/" element={<OnBoarding />} />
         <Route path="/scheduletest" element={<AvailableSchedule />} />
         <Route path="/meet/create" element={<CreateMeeting />} />
-        <Route path="/meet/complete" element={<div>회의 생성 완료페이지를 넣어주세요</div>} />
+        <Route path="/meet/complete" element={<SteppingLayout steppingType={'meetComplete'} />} />
         <Route path="/schedule/:meetingId" element={<div>가능 시간 입력페이지를 넣어주세요</div>} />
         <Route path="/priority/:meetingId" element={<div>우선순위 선정페이지를 넣어주세요</div>} />
-        <Route path="/schedule-complete/:meetingId" element={<div>일정 입력 완료 페이지</div>} />
-        <Route path="/meet/:meetingId" element={<div>링크입장페이지</div>} />
+        <Route
+          path="/schedule-complete/:meetingId"
+          element={<SteppingLayout steppingType={'hostScheduleComplete'} />}
+        />
+        <Route path="/meet/:meetingId" element={<SteppingLayout steppingType={'meetEntrance'} />} />
         <Route path="/login/:meetingId" element={<div>로그인 페이지를 넣어주세요</div>} />
         <Route path="/host/:meetingId" element={<div>최적의 회의시간 페이지를 넣어주세요</div>} />
         <Route path="/q-card/:meetingId" element={<CueCard />} />
         <Route path="*" element={<div>not found</div>} />
         <Route path="/select" element={<SelectPage />} />
         <Route path="/change" element={<ChangeView />} />
-
       </Routes>
     </BrowserRouter>
   );
