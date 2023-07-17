@@ -1,14 +1,14 @@
-import { useRef } from 'react';
+import { useRef , useState} from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import Header from 'components/moleculesComponents/Header';
 import html2canvas from 'html2canvas';
 import CueCardTitle from 'pages/cueCard/components/CueCardTitle';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import styled from 'styled-components/macro';
 
 import Qcard from './components/Qcard';
-
 
 function CueCard() {
 
@@ -25,14 +25,16 @@ const downLoadImage = () => {
   }
 }
 
-const handleCopyClipBoard = async (text: string) => {
-  try {
-    await navigator.clipboard.writeText(text);
-    alert('복사 성공!');
-  } catch (error) {
-    alert('복사실패! 아삽미쳤다 amugoto motaZo?!');
-  }
+const currentURL = window.location.href;
+
+//차후 toast-library 사용시 이용할 상태관리
+const [copied, setCopied] = useState(false);
+
+const handleCopy = () => {
+  setCopied(true);
+  setTimeout(() => setCopied(false), 2000);
 };
+
 
   return (
     <CueCardWrapper >
@@ -40,9 +42,11 @@ const handleCopyClipBoard = async (text: string) => {
       <CueCardTitle main={'일정 조율 완료!'} sub={'이미 확정된 회의 일정입니다'} />
       <Qcard ref={imageRef} />
       <ButtonSection>
-        <Button typeState={'halfTertiaryActive'} onClick={() => handleCopyClipBoard('복사된 텍스트')}>
+      <CopyToClipboard text={currentURL} onCopy={handleCopy}>
+        <Button typeState={'halfTertiaryActive'} >
           <Text font={'button2'}>링크 복사하기</Text>
         </Button>
+        </CopyToClipboard>
         <Button typeState={'halfPrimaryActive'} onClick={downLoadImage}>
           <Text font={'button2'}>이미지 저장하기</Text>
         </Button>
