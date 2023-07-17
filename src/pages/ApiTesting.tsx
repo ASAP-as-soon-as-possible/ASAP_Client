@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+// import { useEffect } from 'react';
 
-import { createMeetingApi } from 'utils/apis/createMeetingApi';
+// import { createMeetingApi } from 'utils/apis/createMeetingApi';
 
 const createMeetingRequestExample = {
   title: 'ASAP 회의',
@@ -19,23 +19,23 @@ const createMeetingRequestExample = {
   additionalInfo: '추가 공지사항',
 };
 
-const ApiTesting = () => {
-  const postCreateMeeting = async () => {
-    try {
-      const {
-        data: { data },
-      } = await createMeetingApi(createMeetingRequestExample);
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+// const ApiTesting = () => {
+//   const postCreateMeeting = async () => {
+//     try {
+//       const {
+//         data: { data },
+//       } = await createMeetingApi(createMeetingRequestExample);
+//       console.log(data);
+//     } catch (err) {
+//       console.log(err);
+//     }
+//   };
 
-  useEffect(() => {
-    postCreateMeeting();
-  }, []);
+//   useEffect(() => {
+//     postCreateMeeting();
+//   }, []);
 
-  return <div>ApiTesting</div>;
-};
+//   return <div>ApiTesting</div>;
+// };
 
-export default ApiTesting;
+// export default ApiTesting;
