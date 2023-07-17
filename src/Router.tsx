@@ -3,6 +3,8 @@ import ChangeView from 'pages/ChangeView';
 import ComponentTesting from 'pages/ComponentTesting';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
+import ErrorPage404 from 'pages/ErrorLoading/ErrorPage404';
+import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
 import SelectPage from 'pages/selectSchdule/SelectPage';
 import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
@@ -27,6 +29,8 @@ const Router = () => {
         <Route path="/login/:meetingId" element={<div>로그인 페이지를 넣어주세요</div>} />
         <Route path="/host/:meetingId" element={<div>최적의 회의시간 페이지를 넣어주세요</div>} />
         <Route path="/q-card/:meetingId" element={<CueCard />} />
+        <Route path="/loadingpage" element={<LoadingPage />} />
+        <Route path="*" element={<ErrorPage404 />} />
         <Route path="*" element={<div>not found</div>} />
         <Route path="/select" element={<SelectPage />} />
         <Route path="/change" element={<ChangeView />} />
