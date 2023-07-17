@@ -17,10 +17,10 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps
   };
   const createMeeting = async (meetingInfo: MeetingInfo) => {
     try {
-      // 서버에 좋아요 상태값을 변경하는 POST 요청을 보냄
+      // 서버에 방 정보가 담긴 POST 요청을 보냄
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/meeting`, meetingInfo);
       console.log(response);
-      // 성공 시에 아이콘 색깔을 변경
+      // 성공 시에 콘솔에 성공 콘솔
       if (response.status === 201) {
         console.log('회의 생성에 성공했습니다.');
       }
