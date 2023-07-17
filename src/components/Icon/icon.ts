@@ -35,7 +35,9 @@ export {
   LinkIc,
   PlaceIc,
   ClockIc,
+
   OnlinePlaceIc,
   OfflinePlaceIc,
   TimeIc,
+
 };

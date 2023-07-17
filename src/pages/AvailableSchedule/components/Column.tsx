@@ -12,6 +12,7 @@ const Column = (props: ColumnProps) => {
     $isLastColumn,
     EmptyRange,
     $isLastofValidDate,
+    $isSelected,
   } = props;
   return (
     <ColumnWrapper
@@ -23,6 +24,7 @@ const Column = (props: ColumnProps) => {
       $isLastColumn={$isLastColumn}
       $isLastOfValidDate={$isLastofValidDate}
       $is18ofEmptyTimeSlot={EmptyRange && timeSlot === '18:00'}
+      $isSelected={$isSelected}
     />
   );
 };
@@ -38,6 +40,7 @@ interface ColumnWrapperProps {
   $isLastColumn: boolean;
   $isLastOfValidDate: boolean;
   $is18ofEmptyTimeSlot: boolean | undefined;
+  $isSelected: boolean;
 }
 
 const ColumnWrapper = styled.div<ColumnWrapperProps>`
@@ -53,10 +56,14 @@ const ColumnWrapper = styled.div<ColumnWrapperProps>`
     (($isDateEmpty || $isTimeSlotEmpty) && !$isLastColumn) || !$isHalf
       ? 'none'
       : `0.1rem solid ${theme.colors.grey7}`};
+
+  border-bottom: ${({ $isSelected }) => $isSelected && 'none'};
+
   border-left: ${({ theme, $isFirstRow }) =>
     $isFirstRow ? `0.1rem solid ${theme.colors.grey7}` : 'none'};
 
-  background-color: ${({ theme, $isDateEmpty }) => ($isDateEmpty ? theme.colors.grey9 : 'none')};
+  background-color: ${({ theme, $isDateEmpty, $isSelected }) =>
+    $isSelected ? theme.colors.main4 : $isDateEmpty ? theme.colors.grey9 : 'none'};
   width: 4.4rem;
   height: 1.2rem;
 `;

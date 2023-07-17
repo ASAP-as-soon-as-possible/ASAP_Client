@@ -7,7 +7,23 @@ import { RowProps } from '../types/AvailableScheduleType';
 import getTimeSlots from '../utils/getTimeSlots';
 
 const Row = (props: RowProps) => {
-  const { rowIdx, timeSlots, monthDay, dayOfWeek, isMorningDinner, isLastofValidDate } = props;
+  const {
+    rowIdx,
+    timeSlots,
+    monthDay,
+    dayOfWeek,
+    isMorningDinner,
+    isLastofValidDate,
+    selectedSchedulePerDate,
+  } = props;
+
+  const selectedTimeSlots = getTimeSlots(
+    selectedSchedulePerDate.map(({ startTime, endTime }) => ({
+      startTime,
+      endTime,
+    })),
+  );
+
   return (
     <ColumnWrapper>
       <DateWrapper>
@@ -31,6 +47,7 @@ const Row = (props: RowProps) => {
           EmptyRange={
             isMorningDinner ? getTimeSlots([{ startTime: '12:00', endTime: '18:00' }]) : undefined
           }
+          $isSelected={selectedTimeSlots.includes(slot)}
         />
       ))}
     </ColumnWrapper>
