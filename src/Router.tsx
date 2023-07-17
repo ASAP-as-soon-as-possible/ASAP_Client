@@ -1,4 +1,5 @@
 import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
+import BestMeetTime from 'pages/BestMeetTime/BestMeetTime';
 import ComponentTesting from 'pages/ComponentTesting';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
@@ -25,7 +26,7 @@ const Router = () => {
         <Route path="/meet/:meetingId" element={<SteppingLayout steppingType={'meetEntrance'} />} />
         <Route path="/login/host/:meetingId" element={<LoginEntrance loginType={"host"} />} />
         <Route path="/login/member/:meetingId" element={<LoginEntrance loginType={"member"} />} />
-        <Route path="/host/:meetingId" element={<div>최적의 회의시간 페이지를 넣어주세요</div>} />
+        <Route path="/host/:meetingId" element={<BestMeetTime />} />
         <Route path="/q-card/:meetingId" element={<CueCard />} />
         <Route path="*" element={<div>not found</div>} />
       </Routes>
