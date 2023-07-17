@@ -29,6 +29,7 @@ import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
 
 import Row from './Row';
+import { SelectedSchedule } from '../types/AvailableScheduleType';
 import getTimeSlots from '../utils/getTimeSlots';
 
 const AVAILABLE_DATES = [
@@ -57,34 +58,38 @@ const AVAILABLE_DATES = [
     day: '10',
     dayOfWeek: '금',
   },
-  //   {
-  //     month: '7',
-  //     day: '11',
-  //     dayOfWeek: '토',
-  //   },
-  //   {
-  //     month: '7',
-  //     day: '12',
-  //     dayOfWeek: '일',
-  //   },
+  {
+    month: '7',
+    day: '11',
+    dayOfWeek: '토',
+  },
+  {
+    month: '7',
+    day: '12',
+    dayOfWeek: '일',
+  },
 ];
 
 const PREFER_TIMES = [
   {
     startTime: '06:00',
-    endTime: '17:00',
+    endTime: '12:00',
   },
-  //   {
-  //     startTime: '12:00',
-  //     endTime: '18:00',
-  //   },
-  //   {
-  //     startTime: '18:00',
-  //     endTime: '24:00',
-  //   },
+  {
+    startTime: '12:00',
+    endTime: '18:00',
+  },
+  {
+    startTime: '18:00',
+    endTime: '24:00',
+  },
 ];
 
-function TimeTable() {
+interface TimeTableProps {
+  selectedSchedule: SelectedSchedule[];
+}
+
+function TimeTable({ selectedSchedule }: TimeTableProps) {
   const isMorningDinner =
     PREFER_TIMES.length === 2 && PREFER_TIMES.every((time) => time.startTime !== '12:00');
 
@@ -94,6 +99,11 @@ function TimeTable() {
   const timeSlots = getTimeSlots(PreferTimes);
 
   let formattedDates = AVAILABLE_DATES.map((date) => `${date.month}/${date.day} ${date.dayOfWeek}`);
+
+  const formattedDatesForSelectBox = AVAILABLE_DATES.map(
+    (date) => `${date.month}월 ${date.day}일 (${date.dayOfWeek})`,
+  );
+
   formattedDates = formattedDates.concat(Array(7 - formattedDates.length).fill('')); // 7일 미만이라면 나머지를 빈 문자열로 채움
 
   const lastElementBeforeEmpty = [...formattedDates].reverse().find((element) => element !== '');
@@ -116,6 +126,9 @@ function TimeTable() {
         <Row
           rowIdx={idx}
           key={date}
+          selectedSchedulePerDate={Array.from(selectedSchedule).filter(
+            (obj: SelectedSchedule) => obj.date === formattedDatesForSelectBox[idx],
+          )}
           timeSlots={timeSlots}
           monthDay={date.split(' ')[0]}
           dayOfWeek={date.split(' ')[1]}
