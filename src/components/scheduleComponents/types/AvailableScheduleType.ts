@@ -38,5 +38,10 @@ export interface ColumnProps {
   $isLastofValidDate: boolean;
   EmptyRange: string[] | undefined;
   $isSelected: boolean;
-  $priorityColor: string;
+  $priorityColorInfo: string;
+}
+
+export interface PriorityInfo {
+  priority: number | undefined;
+  isStartTime: boolean;
 }

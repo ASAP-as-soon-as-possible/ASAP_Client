@@ -13,8 +13,10 @@ const Column = (props: ColumnProps) => {
     EmptyRange,
     $isLastofValidDate,
     $isSelected,
-    $priorityColor,
+    $priorityColorInfo,
+    $isStartTimeofPrioritySlot,
   } = props;
+  console.log($priorityColorInfo);
   return (
     <ColumnWrapper
       $isDateEmpty={$isEmpty}
@@ -26,7 +28,8 @@ const Column = (props: ColumnProps) => {
       $isLastOfValidDate={$isLastofValidDate}
       $is18ofEmptyTimeSlot={EmptyRange && timeSlot === '18:00'}
       $isSelected={$isSelected}
-      $priorityColor={$priorityColor}
+      $priorityColorInfo={$priorityColorInfo}
+      $isStartTimeofPrioritySlot={$isStartTimeofPrioritySlot}
     />
   );
 };
@@ -43,7 +46,8 @@ interface ColumnWrapperProps {
   $isLastOfValidDate: boolean;
   $is18ofEmptyTimeSlot: boolean | undefined;
   $isSelected: boolean;
-  $priorityColor: string;
+  $priorityColorInfo: string;
+  $isStartTimeofPrioritySlot: boolean;
 }
 
 const ColumnWrapper = styled.div<ColumnWrapperProps>`
@@ -65,7 +69,11 @@ const ColumnWrapper = styled.div<ColumnWrapperProps>`
   border-left: ${({ theme, $isFirstRow }) =>
     $isFirstRow ? `0.1rem solid ${theme.colors.grey7}` : 'none'};
 
-  background-color: ${({ $priorityColor }) => $priorityColor};
+  background-color: ${({ $priorityColorInfo }) => $priorityColorInfo};
+  background-color: ${({ $isStartTimeofPrioritySlot, $priorityColorInfo, theme }) =>
+    $isStartTimeofPrioritySlot && $priorityColorInfo !== theme.colors.grey6
+      ? '#ff0000'
+      : undefined};
 
   width: 4.4rem;
   height: 1.2rem;

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 import Column from './Column';
-import { RowProps } from '../types/AvailableScheduleType';
+import { PriorityInfo, RowProps } from '../types/AvailableScheduleType';
 import getTimeSlots from '../utils/getTimeSlots';
 import priorityToColor from '../utils/priorityToColor';
 
@@ -26,6 +26,25 @@ const Row = (props: RowProps) => {
       endTime,
     })),
   );
+
+  /** 인자로 받은 slot의 priority 값과 시작시간에 해당하는 slot인지 여부를 반환하는 함수 */
+  const getSlotPriorityInfo = (slot: string): PriorityInfo => {
+    const priorityInfo: PriorityInfo = { priority: undefined, isStartTime: false };
+    const containedSlot = selectedSchedulePerDate.find((candidateSlot) => {
+      if (parseInt(candidateSlot.startTime) === parseInt(slot)) {
+        priorityInfo.isStartTime = true;
+      }
+      return (
+        parseInt(candidateSlot.startTime) <= parseInt(slot) &&
+        parseInt(slot) < parseInt(candidateSlot.endTime)
+      );
+    });
+
+    priorityInfo.priority = containedSlot?.priority;
+
+    return priorityInfo;
+  };
+
 
   return (
     <ColumnWrapper>
@@ -51,13 +70,14 @@ const Row = (props: RowProps) => {
             isMorningDinner ? getTimeSlots([{ startTime: '12:00', endTime: '18:00' }]) : undefined
           }
           $isSelected={selectedTimeSlots.includes(slot)}
-          $priorityColor={
+          $priorityColorInfo={
             priorityToColor(
               scheduleType,
-              selectedSchedulePerDate.find((schedule) => {
-                return parseInt(schedule.startTime) < parseInt(slot) && parseInt(slot) < parseInt(schedule.endTime);
-              })?.priority
+              getSlotPriorityInfo(slot).priority
             )
+          }
+          $isStartTimeofPrioritySlot={
+            getSlotPriorityInfo(slot).isStartTime
           }
         />
       ))}

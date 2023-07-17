@@ -1,6 +1,8 @@
 import { theme } from 'styles/theme';
 
 //todo: type 지정 따로 빼는게 잘 안됨
+
+/** priority 값을 받아서 색상코드로 반환하는 함수 */
 const priorityToColor = (type: 'priority' | 'available', priority?: number): string => {
   switch (priority) {
     case 0:
