@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 
+import Header from 'components/moleculesComponents/Header';
 import { styled } from 'styled-components';
+
+import BestMeetTime from './BestMeetTime';
 //라우터 /Change로 확인 가능
-function ChangeView() {
+function ChooseBestTime() {
   const [viewBest, setViewBest] = useState<boolean>(true);
   return (
-    <ChangeViewWrapper>
+    <ChooseBestTimeWrapper>
+      <Header position="confirmMeet" />
       <ViewPickerWrapper>
         <ChangeViewPicker id="best" onClick={() => setViewBest(true)} $isClicked={viewBest}>
           최적의 회의시간
@@ -16,18 +20,20 @@ function ChangeView() {
       </ViewPickerWrapper>
       <ViewContainer>
         {/* green,blue 자리에 컴포넌트 입력 */}
-        {viewBest ? <Green>최적의 회의시간</Green> : <Blue>종합 일정 시간표</Blue>}
+        {viewBest ? <BestMeetTime /> : <Blue>종합 일정 시간표</Blue>}
       </ViewContainer>
-    </ChangeViewWrapper>
+    </ChooseBestTimeWrapper>
   );
 }
 
-export default ChangeView;
+export default ChooseBestTime;
 
-const ChangeViewWrapper = styled.div`
+const ChooseBestTimeWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-bottom: 5rem;
+  width: 100%;
 `;
 
 const ViewPickerWrapper = styled.div`
@@ -35,10 +41,11 @@ const ViewPickerWrapper = styled.div`
 `;
 
 const ChangeViewPicker = styled.div<{ $isClicked: boolean }>`
-  margin-top: 2.5rem;
   display: flex;
   justify-content: center;
+  margin-top: 2.5rem;
   ${({ theme }) => theme.fonts.body2};
+  border-bottom: 2px solid;
   width: 18.7rem;
   height: 3.5rem;
   color: ${({ $isClicked, theme, id }) =>
@@ -49,34 +56,25 @@ const ChangeViewPicker = styled.div<{ $isClicked: boolean }>`
       : $isClicked
         ? theme.colors.grey4
         : theme.colors.main1};
-  border-bottom: 2px solid
-    ${({ $isClicked, theme, id }) =>
-      id === 'best'
-        ? $isClicked
-          ? theme.colors.main1
-          : theme.colors.grey4
-        : $isClicked
-          ? theme.colors.grey4
-          : theme.colors.main1};
+  ${({ $isClicked, theme, id }) =>
+    id === 'best'
+      ? $isClicked
+        ? theme.colors.main1
+        : theme.colors.grey4
+      : $isClicked
+        ? theme.colors.grey4
+        : theme.colors.main1};
 `;
 const ViewContainer = styled.div`
-  display: felx;
+  display: flex;
   align-items: center;
 `;
 
-const Green = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: green;
-  width: 37rem;
-  height: 30rem;
-`;
 const Blue = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: yellow;
+  background-color: ${({ theme }) => theme.colors.main1};
   width: 37rem;
   height: 30rem;
 `;
