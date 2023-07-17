@@ -36,7 +36,6 @@ const Column = (props: ColumnProps) => {
     >
       {$isStartTimeofPrioritySlot &&
       $priorityColorInfo !== theme.colors.grey6 &&
-      !$isHalf &&
       scheduleType === 'priority' ? (
         <PriorityNumber>{priority}</PriorityNumber>
       ) : (
