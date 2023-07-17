@@ -11,6 +11,7 @@ import SelectPage from 'pages/selectSchdule/SelectPage';
 import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -35,7 +36,6 @@ const Router = () => {
         <Route path="*" element={<ErrorPage404 />} />
         <Route path="*" element={<div>not found</div>} />
         <Route path="/select" element={<SelectPage />} />
-        <Route path="/change" element={<ChangeView />} />
       </Routes>
     </BrowserRouter>
   );
