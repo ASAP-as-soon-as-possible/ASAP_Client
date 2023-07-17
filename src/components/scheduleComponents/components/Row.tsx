@@ -80,6 +80,7 @@ const Row = (props: RowProps) => {
           $isStartTimeofPrioritySlot={
             getSlotPriorityInfo(slot).isStartTime
           }
+          scheduleType={scheduleType}
         />
       ))}
     </ColumnWrapper>

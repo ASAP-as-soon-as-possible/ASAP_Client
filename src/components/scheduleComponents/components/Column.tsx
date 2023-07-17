@@ -17,6 +17,7 @@ const Column = (props: ColumnProps) => {
     priority,
     $priorityColorInfo,
     $isStartTimeofPrioritySlot,
+    scheduleType,
   } = props;
 
   return (
@@ -33,7 +34,10 @@ const Column = (props: ColumnProps) => {
       $priorityColorInfo={$priorityColorInfo}
       $isStartTimeofPrioritySlot={$isStartTimeofPrioritySlot}
     >
-      {$isStartTimeofPrioritySlot && $priorityColorInfo !== theme.colors.grey6 && !$isHalf ? (
+      {$isStartTimeofPrioritySlot &&
+      $priorityColorInfo !== theme.colors.grey6 &&
+      !$isHalf &&
+      scheduleType === 'priority' ? (
         <PriorityNumber>{priority}</PriorityNumber>
       ) : (
         undefined
