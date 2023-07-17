@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components';
+import { DefaultTheme } from 'styled-components/dist/types';
 
 const colors = {
   main1: '#3253FF',
@@ -23,7 +23,7 @@ const colors = {
   grey10: '#141414',
   black: '#000000',
 
-  red: '#DE4844',
+  red: '#F45D56',
   yellow: '#FFE14D',
   green: '#2DDD93',
 };
@@ -58,8 +58,8 @@ const fonts = {
   body3: FONT({ family: 'Pretendard Variable', weight: 400, size: 1.4, lineHeight: 2 }),
   body4: FONT({ family: 'Pretendard Variable', weight: 500, size: 1.2, lineHeight: 1.6 }),
 
-  button1: FONT({ family: 'Pretendard Variable', weight: 600, size: 1.6, lineHeight: 2 }),
-  button2: FONT({ family: 'Pretendard Variable', weight: 500, size: 1.6, lineHeight: 2 }),
+  button1: FONT({ family: 'Pretendard Variable', weight: 500, size: 1.6, lineHeight: 2 }),
+  button2: FONT({ family: 'Pretendard Variable', weight: 400, size: 1.6, lineHeight: 2 }),
 };
 
 export type FontsTypes = typeof fonts;
