@@ -6,9 +6,12 @@ import Header from 'components/moleculesComponents/Header';
 import { styled } from 'styled-components';
 
 import BestMeetTime from './BestMeetTime';
+import ConfirmModal from './components/confirmModal';
+
 //라우터 /Change로 확인 가능
 function ChooseBestTime() {
   const [viewBest, setViewBest] = useState<boolean>(true);
+  const [showModal, setShowModal] = useState<boolean>(false);
   return (
     <ChooseBestTimeWrapper>
       <Header position="confirmMeet" />
@@ -24,11 +27,13 @@ function ChooseBestTime() {
         {/* green,blue 자리에 컴포넌트 입력 */}
         {viewBest ? <BestMeetTime /> : <Blue>종합 일정 시간표</Blue>}
       </ViewContainer>
+
       <BtnWrapper>
-        <Button typeState={'primaryActive'}>
+        <Button typeState={'primaryActive'} onClick={() => setShowModal(true)}>
           <Text font={'title2'}> 확정</Text>
         </Button>
       </BtnWrapper>
+      {showModal && <ConfirmModal setIsModalOpen={setShowModal} />}
     </ChooseBestTimeWrapper>
   );
 }
@@ -82,7 +87,6 @@ const BtnWrapper = styled.div`
   bottom: 1.2rem;
   border-radius: 50%;
 `;
-
 const Blue = styled.div`
   display: flex;
   align-items: center;
