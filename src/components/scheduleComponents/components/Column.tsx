@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 import { ColumnProps } from '../types/AvailableScheduleType';
 
@@ -13,10 +14,11 @@ const Column = (props: ColumnProps) => {
     EmptyRange,
     $isLastofValidDate,
     $isSelected,
+    priority,
     $priorityColorInfo,
     $isStartTimeofPrioritySlot,
   } = props;
-  console.log($priorityColorInfo);
+
   return (
     <ColumnWrapper
       $isDateEmpty={$isEmpty}
@@ -30,7 +32,13 @@ const Column = (props: ColumnProps) => {
       $isSelected={$isSelected}
       $priorityColorInfo={$priorityColorInfo}
       $isStartTimeofPrioritySlot={$isStartTimeofPrioritySlot}
-    />
+    >
+      {$isStartTimeofPrioritySlot && $priorityColorInfo !== theme.colors.grey6 && !$isHalf ? (
+        <PriorityNumber>{priority}</PriorityNumber>
+      ) : (
+        undefined
+      )}
+    </ColumnWrapper>
   );
 };
 
@@ -66,15 +74,18 @@ const ColumnWrapper = styled.div<ColumnWrapperProps>`
 
   border-bottom: ${({ $isSelected }) => $isSelected && 'none'};
 
-  border-left: ${({ theme, $isFirstRow }) =>
+  border-left: ${({ $isFirstRow }) =>
     $isFirstRow ? `0.1rem solid ${theme.colors.grey7}` : 'none'};
 
   background-color: ${({ $priorityColorInfo }) => $priorityColorInfo};
-  background-color: ${({ $isStartTimeofPrioritySlot, $priorityColorInfo, theme }) =>
-    $isStartTimeofPrioritySlot && $priorityColorInfo !== theme.colors.grey6
-      ? '#ff0000'
-      : undefined};
 
   width: 4.4rem;
   height: 1.2rem;
+`;
+
+const PriorityNumber = styled.span`
+  display: flex;
+  justify-content: center;
+  ${({ theme }) => theme.fonts.body1};
+  position: relative;
 `;

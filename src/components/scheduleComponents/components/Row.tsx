@@ -70,6 +70,7 @@ const Row = (props: RowProps) => {
             isMorningDinner ? getTimeSlots([{ startTime: '12:00', endTime: '18:00' }]) : undefined
           }
           $isSelected={selectedTimeSlots.includes(slot)}
+          priority={getSlotPriorityInfo(slot).priority}
           $priorityColorInfo={
             priorityToColor(
               scheduleType,
