@@ -7,7 +7,7 @@ import { theme } from 'styles/theme';
 
 import AlternativeCard from './components/AlternativeCard';
 import BestTimeCard from './components/BestTimeCard';
-import { DateTimeData } from './types/meetCardData';
+import { BestMeetFinished, DateTimeData } from './types/meetCardData';
 
 const bestTimeData: DateTimeData = {
   status: 200,
@@ -79,7 +79,22 @@ const bestTimeData: DateTimeData = {
 function BestMeetTime() {
   const [isalternativeCardOpen, setIsalternativeCardOpen] = useState(false);
   const [selected, setSelected] = useState(0);
-  console.log(selected);
+
+  let dataobj: BestMeetFinished;
+  const whatisDataobj = (rank: number) => {
+    if (rank === 0) {
+      dataobj = bestTimeData.data.bestDateTime;
+    } else if (rank === 1) {
+      dataobj = bestTimeData.data.otherDateTimes[0];
+    } else if (rank === 2) {
+      dataobj = bestTimeData.data.otherDateTimes[1];
+    }
+    return dataobj;
+  };
+
+  const datause = whatisDataobj(selected);
+  console.log(datause);
+
   return (
     <BestMeetTimeWrapper>
       <TitleSection>

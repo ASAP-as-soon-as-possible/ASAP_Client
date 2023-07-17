@@ -11,7 +11,16 @@ export interface BestDataProps {
   };
   rank: number;
   chooseMeetime: Dispatch<SetStateAction<number>>;
-  selected:number;
+  selected: number;
+}
+
+export interface BestMeetFinished {
+  month: string;
+  day: string;
+  dayOfWeek: string;
+  startTime: string;
+  endTime: string;
+  userNames: string[];
 }
 
 export interface DateTimeData {
