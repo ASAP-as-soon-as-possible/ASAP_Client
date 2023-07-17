@@ -1,7 +1,7 @@
 import { CreateMeetingRequest, CreateMeetingResponse } from 'src/types/createMeetingType';
 
-import { unAuthorizedAxios } from './axios';
+import { client } from './axios';
 
 export const createMeetingApi = (CreateMeetingRequest: CreateMeetingRequest) => {
-  return unAuthorizedAxios.post<CreateMeetingResponse>(`/meeting`, CreateMeetingRequest);
+  return client.post<CreateMeetingResponse>(`/meeting`, CreateMeetingRequest);
 };
