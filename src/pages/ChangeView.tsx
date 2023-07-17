@@ -5,27 +5,34 @@ import { styled } from 'styled-components';
 function ChangeView() {
   const [viewBest, setViewBest] = useState<boolean>(true);
   return (
-    <ViewTestingWrapper>
-      <ChangeViewPicker id="best" onClick={() => setViewBest(true)} $isClicked={viewBest}>
-        최적의 회의시간
-      </ChangeViewPicker>
-      <ChangeViewPicker id="obverall" onClick={() => setViewBest(false)} $isClicked={viewBest}>
-        종합 일정 시간표
-      </ChangeViewPicker>
-    </ViewTestingWrapper>
+    <ChangeViewWrapper>
+      <ViewPickerWrapper>
+        <ChangeViewPicker id="best" onClick={() => setViewBest(true)} $isClicked={viewBest}>
+          최적의 회의시간
+        </ChangeViewPicker>
+        <ChangeViewPicker id="obverall" onClick={() => setViewBest(false)} $isClicked={viewBest}>
+          종합 일정 시간표
+        </ChangeViewPicker>
+      </ViewPickerWrapper>
+      <ViewContainer>
+        {viewBest ? <Green>최적의 회의시간</Green> : <Blue>종합 일정 시간표</Blue>}
+      </ViewContainer>
+    </ChangeViewWrapper>
   );
 }
 
 export default ChangeView;
 
-const ViewTestingWrapper = styled.div`
+const ChangeViewWrapper = styled.div`
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
-  width: 33.5rem;
-  height: 72.9rem;
-  color: white;
 `;
+
+const ViewPickerWrapper = styled.div`
+  display: flex;
+`;
+
 const ChangeViewPicker = styled.div<{ $isClicked: boolean }>`
   margin-top: 2.5rem;
   display: flex;
@@ -50,4 +57,25 @@ const ChangeViewPicker = styled.div<{ $isClicked: boolean }>`
         : $isClicked
           ? theme.colors.grey4
           : theme.colors.main1};
+`;
+const ViewContainer = styled.div`
+  display: felx;
+  align-items: center;
+`;
+
+const Green = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: green;
+  width: 37rem;
+  height: 30rem;
+`;
+const Blue = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: yellow;
+  width: 37rem;
+  height: 30rem;
 `;
