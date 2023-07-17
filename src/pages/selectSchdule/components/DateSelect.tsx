@@ -52,12 +52,12 @@ function DateSelect({ id, handleDate, scheduleList }: PropTypes) {
 
         <DropDownIconWrapper>{isOpen ? <DropUpIc /> : <DropDownIcon />}</DropDownIconWrapper>
       </DateSelectContainer>
-      {true ? (
+      {isOpen ? (
         <DropDownWrapper>
           {dummyData.availableDates.map((item) => (
             <DateDropDown
               id={id}
-              key={uuidv4()}
+              key={item.day + item.month}
               month={item.month}
               day={item.day}
               dayOfWeek={item.dayOfWeek}

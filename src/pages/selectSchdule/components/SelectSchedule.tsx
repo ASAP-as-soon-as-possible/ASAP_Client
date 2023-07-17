@@ -21,11 +21,11 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
     console.log(id, date ,scheduleList)
 
     const updateDate: ScheduleStates[] = scheduleList?.map((schedule) => {
-      // console.log(schedule);
-      // if (schedule?.id === id) {
-      //   return { ...schedule, date:date };
-      // }
-      // return schedule;
+      console.log(schedule);
+      if (schedule?.id === id) {
+        return { ...schedule, date:date };
+      }
+      return schedule;
 
     });
 
@@ -44,12 +44,12 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
   };
 
   const handleEndTime = (id: number, endTime: string) => {
-    const updateStartTime: ScheduleStates[] = scheduleList?.map((schedule) => {
+    const updateEndTime: ScheduleStates[] = scheduleList?.map((schedule) => {
       if (schedule?.id === id) {
         return { ...schedule, endTime };
       }
     });
-    setScheduleList(handleEndTime);
+    setScheduleList(updateEndTime);
   };
 
   useEffect(
@@ -80,7 +80,7 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
                 scheduleList={scheduleList}
               />
 
-<EndTimeSelect text="종료 시간"
+          <EndTimeSelect text="종료 시간"
                 id={item?.id}
                 handleEndTime={handleEndTime}
                 scheduleList={scheduleList}></EndTimeSelect>
