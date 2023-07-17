@@ -5,6 +5,7 @@ import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
 import ErrorPage404 from 'pages/ErrorLoading/ErrorPage404';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
+import LoginEntrance from 'pages/LoginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
 import SelectPage from 'pages/selectSchdule/SelectPage';
 import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
@@ -26,7 +27,8 @@ const Router = () => {
           element={<SteppingLayout steppingType={'hostScheduleComplete'} />}
         />
         <Route path="/meet/:meetingId" element={<SteppingLayout steppingType={'meetEntrance'} />} />
-        <Route path="/login/:meetingId" element={<div>로그인 페이지를 넣어주세요</div>} />
+        <Route path="/login/host/:meetingId" element={<LoginEntrance loginType={'host'} />} />
+        <Route path="/login/member/:meetingId" element={<LoginEntrance loginType={'member'} />} />
         <Route path="/host/:meetingId" element={<div>최적의 회의시간 페이지를 넣어주세요</div>} />
         <Route path="/q-card/:meetingId" element={<CueCard />} />
         <Route path="/loadingpage" element={<LoadingPage />} />
