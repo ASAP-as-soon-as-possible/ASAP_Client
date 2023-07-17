@@ -17,6 +17,7 @@ function SelectPage() {
     },
   ]);
 
+
   const nextID = useRef<number>(2);
 
   const addDateList = () => {
@@ -32,9 +33,10 @@ function SelectPage() {
   };
 
   const deleteDataList = (index: number) => {
-    setScheduleList(scheduleList.filter((item) => item.id !== index));
+    setScheduleList(scheduleList.filter((item) => item?.id !== index));
   };
 
+  // useEffect(() => {}, [scheduleList]);
   return (
     <SelectPageWrapper>
       <SelectSchedule

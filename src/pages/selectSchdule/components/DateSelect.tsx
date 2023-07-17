@@ -4,6 +4,7 @@ import Text from 'components/atomComponents/Text';
 import { DropDownIc, DropUpIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+import {v4 as uuidv4} from "uuid";
 
 import DateDropDown from './DateDropDown';
 import { dummyData } from './dummyData';
@@ -16,10 +17,11 @@ interface PropTypes {
 }
 
 function DateSelect({ id, handleDate, scheduleList }: PropTypes) {
+
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  console.log(scheduleList[id - 1].date);
-  console.log(id);
+
+
   useEffect(
     () => {
       const clickOutSide = (e: MouseEvent) => {
@@ -37,7 +39,8 @@ function DateSelect({ id, handleDate, scheduleList }: PropTypes) {
   return (
     <DateSelectWrapper>
       <DateSelectContainer $drop={isOpen} onClick={() => setIsOpen((prev) => !prev)} ref={ref}>
-        {scheduleList[id - 1].date ? (
+
+        {(id>=1) && scheduleList[id - 1]?.date ? (
           <Text font="button2" color={`${theme.colors.grey5}`}>
             {scheduleList[id - 1].date}
           </Text>
@@ -49,12 +52,12 @@ function DateSelect({ id, handleDate, scheduleList }: PropTypes) {
 
         <DropDownIconWrapper>{isOpen ? <DropUpIc /> : <DropDownIcon />}</DropDownIconWrapper>
       </DateSelectContainer>
-      {isOpen ? (
+      {true ? (
         <DropDownWrapper>
           {dummyData.availableDates.map((item) => (
             <DateDropDown
               id={id}
-              key={item.day + item.month}
+              key={uuidv4()}
               month={item.month}
               day={item.day}
               dayOfWeek={item.dayOfWeek}

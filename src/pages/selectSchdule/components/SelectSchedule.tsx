@@ -1,9 +1,11 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
 
 import { ExitIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 
+
 import DateSelect from './DateSelect';
+import EndTimeSelect from './EndTimeSelect';
 import TimeSelect from './TimeSelect';
 import { ScheduleStates } from '../types/Schedule';
 
@@ -14,48 +16,82 @@ interface PropTypes {
 }
 
 function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes) {
+  console.log(scheduleList);
   const handleDate = (id: number, date: string) => {
-    const updateScheduleList = scheduleList.map((schedule) => {
-      if (schedule.id === id) {
-        return { ...schedule, date };
-      }
+    console.log(id, date ,scheduleList)
+
+    const updateDate: ScheduleStates[] = scheduleList?.map((schedule) => {
+      // console.log(schedule);
+      // if (schedule?.id === id) {
+      //   return { ...schedule, date:date };
+      // }
+      // return schedule;
+
     });
-    setScheduleList(updateScheduleList);
+
+    setScheduleList(updateDate);
   };
 
-  const handleStartTimeChange = (id: number, startTime: string) => {
-    const updateScheduleList = scheduleList.map((schedule) => {
-      if (schedule.id === id) {
-        return { ...schedule, date };
-      }
-    });
-    setScheduleList(updateScheduleList);
+  const handleStartTime = (id: number, startTime: string) => {
+    const updateStartTime: ScheduleStates[] = scheduleList?.map((schedule) =>
+   {
+    if (schedule?.id === id) {
+      return { ...schedule, startTime };
+    }
+  });
+        setScheduleList(updateStartTime);
+
   };
 
+  const handleEndTime = (id: number, endTime: string) => {
+    const updateStartTime: ScheduleStates[] = scheduleList?.map((schedule) => {
+      if (schedule?.id === id) {
+        return { ...schedule, endTime };
+      }
+    });
+    setScheduleList(handleEndTime);
+  };
+
+  useEffect(
+    () => {
+      // alert(JSON.stringify(scheduleList));
+      // console.log(uuidv4());
+    },
+    [scheduleList],
+  );
   return (
-    <SelectScheduleWrapper>
+    <>
       {scheduleList &&
-        scheduleList.map((item) => (
-          <SelectWrapper key={item.id}>
+        scheduleList?.map((item,idx) =>(
+          <SelectWrapper key={item?.id+idx}>
             <SelectSection>
-              <DateSelect id={item.id} handleDate={handleDate} scheduleList={scheduleList} />
+              <DateSelect id={item?.id} handleDate={handleDate} scheduleList={scheduleList} />
               <ExitIconWrapper>
-                <ExitButton onClick={() => deleteData(item.id)}>
+                <ExitButton onClick={() => deleteData(item?.id)}>
                   <ExitIc />
                 </ExitButton>
               </ExitIconWrapper>
             </SelectSection>
             <TimeSelectSection>
-              <TimeSelect text="시작 시간" id={item.id} />
-              <TimeSelect text="종료 시간" id={item.id} />
+              <TimeSelect
+                text="시작 시간"
+                id={item?.id}
+                handleStartTime={handleStartTime}
+                scheduleList={scheduleList}
+              />
+
+<EndTimeSelect text="종료 시간"
+                id={item?.id}
+                handleEndTime={handleEndTime}
+                scheduleList={scheduleList}></EndTimeSelect>
             </TimeSelectSection>
           </SelectWrapper>
-        ))}
-    </SelectScheduleWrapper>
+        ))};
+    </>
   );
 }
 
-const SelectScheduleWrapper = styled.div``;
+// const SelectScheduleWrapper = styled.div``;
 const SelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
