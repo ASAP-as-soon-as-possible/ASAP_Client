@@ -1,7 +1,9 @@
 import { ReactComponent as BackIc } from 'assets/svgs/backBtn.svg';
 import { ReactComponent as ClockIc } from 'assets/svgs/clock.svg';
 import { ReactComponent as DropDownIc } from 'assets/svgs/dropDownBtn.svg';
+import { ReactComponent as DropdownWhite } from 'assets/svgs/dropdownWhite.svg';
 import { ReactComponent as DropUpIc } from 'assets/svgs/dropUpBtn.svg';
+import { ReactComponent as DropupWhite } from 'assets/svgs/dropupWhite.svg';
 import { ReactComponent as ExitIc } from 'assets/svgs/exitIcon.svg';
 import { ReactComponent as HambergerIc } from 'assets/svgs/hambergerIcon.svg';
 import { ReactComponent as InputCancelIc } from 'assets/svgs/inputCancelBtn.svg';
@@ -38,4 +40,6 @@ export {
   OnlinePlaceIc,
   OfflinePlaceIc,
   TimeIc,
+  DropdownWhite,
+  DropupWhite,
 };
