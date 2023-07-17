@@ -55,7 +55,7 @@ function EndTimeSelect({ text, id, handleEndTime, scheduleList }: PropTypes) {
         <TimeDropDownWrapper>
           {time.map((item, i) => (
             <EndTimeDropDown
-              key={i+item}
+              key={item}
               times={item}
               text={text}
               id={id}

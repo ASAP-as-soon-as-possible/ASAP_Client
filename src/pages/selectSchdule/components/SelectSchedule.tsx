@@ -16,12 +16,10 @@ interface PropTypes {
 }
 
 function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes) {
-  console.log(scheduleList);
   const handleDate = (id: number, date: string) => {
-    console.log(id, date ,scheduleList)
 
     const updateDate: ScheduleStates[] = scheduleList?.map((schedule) => {
-      console.log(schedule);
+
       if (schedule?.id === id) {
         return { ...schedule, date:date };
       }
@@ -38,6 +36,7 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
     if (schedule?.id === id) {
       return { ...schedule, startTime };
     }
+    return schedule;
   });
         setScheduleList(updateStartTime);
 
@@ -48,6 +47,7 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
       if (schedule?.id === id) {
         return { ...schedule, endTime };
       }
+      return schedule;
     });
     setScheduleList(updateEndTime);
   };
@@ -80,11 +80,11 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
                 scheduleList={scheduleList}
               />
 
-          <EndTimeSelect text="종료 시간"
+             <EndTimeSelect text="종료 시간"
                 id={item?.id}
                 handleEndTime={handleEndTime}
                 scheduleList={scheduleList}></EndTimeSelect>
-            </TimeSelectSection>
+             </TimeSelectSection>
           </SelectWrapper>
         ))};
     </>

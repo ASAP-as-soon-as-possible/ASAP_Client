@@ -39,6 +39,8 @@ function SelectPage() {
   // useEffect(() => {}, [scheduleList]);
   return (
     <SelectPageWrapper>
+
+
       <SelectSchedule
         scheduleList={scheduleList}
         setScheduleList={setScheduleList}

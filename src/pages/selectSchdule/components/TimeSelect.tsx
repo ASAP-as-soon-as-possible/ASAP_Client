@@ -57,7 +57,7 @@ function TimeSelect({ text, id, handleStartTime, scheduleList }: PropTypes) {
         <TimeDropDownWrapper>
           {time.map((item, i) => (
             <TimeDropDown
-            key={i+item}
+            key={item}
               times={item}
               text={text}
               id={id}

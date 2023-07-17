@@ -18,6 +18,7 @@ interface PropTypes {
 function TimeDropDown({ times, text, id, isOpen, setIsOpen, handleStartTime }: PropTypes) {
   const getStartTime = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
+    console.log(id);
     handleStartTime(id, times);
     setIsOpen((prev) => !prev);
   };
