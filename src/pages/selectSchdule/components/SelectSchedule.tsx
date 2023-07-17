@@ -21,7 +21,6 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
         return { ...schedule, date };
       }
     });
-
     setScheduleList(updateScheduleList);
   };
 
@@ -31,7 +30,11 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
         scheduleList.map((item) => (
           <SelectWrapper key={item.id}>
             <SelectSection>
-              <DateSelect id={item.id} handleDateChange={handleDateChange} />
+              <DateSelect
+                id={item.id}
+                handleDateChange={handleDateChange}
+                scheduleList={scheduleList}
+              />
               <ExitIconWrapper>
                 <ExitButton onClick={() => deleteData(item.id)}>
                   <ExitIc />

@@ -7,16 +7,19 @@ import { theme } from 'styles/theme';
 
 import DateDropDown from './DateDropDown';
 import { dummyData } from './dummyData';
+import { ScheduleStates } from '../types/Schedule';
 
 interface PropTypes {
   id: number;
   handleDateChange: (id: number, data: string) => void;
+  scheduleList: ScheduleStates[];
 }
 
-function DateSelect({ id, handleDateChange }: PropTypes) {
+function DateSelect({ id, handleDateChange, scheduleList }: PropTypes) {
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
+  console.log(scheduleList[id - 1].date);
+  console.log(id);
   useEffect(
     () => {
       const clickOutSide = (e: MouseEvent) => {
@@ -34,9 +37,16 @@ function DateSelect({ id, handleDateChange }: PropTypes) {
   return (
     <DateSelectWrapper>
       <DateSelectContainer $drop={isOpen} onClick={() => setIsOpen((prev) => !prev)} ref={ref}>
-        <Text font="button2" color={`${theme.colors.grey5}`}>
-          날짜 선택
-        </Text>
+        {scheduleList[id - 1].date ? (
+          <Text font="button2" color={`${theme.colors.grey5}`}>
+            {scheduleList[id - 1].date}
+          </Text>
+        ) : (
+          <Text font="button2" color={`${theme.colors.grey5}`}>
+            날짜 선택
+          </Text>
+        )}
+
         <DropDownIconWrapper>{isOpen ? <DropUpIc /> : <DropDownIcon />}</DropDownIconWrapper>
       </DateSelectContainer>
       {isOpen ? (
