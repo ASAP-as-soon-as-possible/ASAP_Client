@@ -1,4 +1,4 @@
-import { DefaultTheme } from 'styled-components';
+import { DefaultTheme } from 'styled-components/dist/types';
 
 const colors = {
   main1: '#3253FF',
@@ -20,10 +20,10 @@ const colors = {
   grey7: '#3F3F3F',
   grey8: '#2E2E2E',
   grey9: '#252525',
-  grey10: '#1C1C1E',
+  grey10: '#141414',
   black: '#000000',
 
-  red: '#DE4844',
+  red: '#F45D56',
   yellow: '#FFE14D',
   green: '#2DDD93',
 };
@@ -51,7 +51,7 @@ const fonts = {
   head2: FONT({ family: 'Pretendard Variable', weight: 700, size: 2.2, lineHeight: 3 }),
 
   title1: FONT({ family: 'Pretendard Variable', weight: 600, size: 1.8, lineHeight: 2.4 }),
-  title2: FONT({ family: 'Pretendard Variable', weight: 500, size: 1.6, lineHeight: 2 }),
+  title2: FONT({ family: 'Pretendard Variable', weight: 400, size: 1.6, lineHeight: 2 }),
 
   body1: FONT({ family: 'Pretendard Variable', weight: 500, size: 1.6, lineHeight: 2.4 }),
   body2: FONT({ family: 'Pretendard Variable', weight: 500, size: 1.4, lineHeight: 2 }),

@@ -9,6 +9,14 @@ export interface PreferTime {
   endTime: string;
 }
 
+export interface SelectedSchedule {
+  id: number;
+  date: string;
+  startTime: string;
+  endTime: string;
+  priority: number;
+}
+
 export interface RowProps {
   rowIdx: number;
   timeSlots: string[];
@@ -16,7 +24,9 @@ export interface RowProps {
   dayOfWeek: string;
   isMorningDinner: boolean;
   isLastofValidDate: boolean;
+  selectedSchedulePerDate: SelectedSchedule[];
 }
+
 export interface ColumnProps {
   timeSlot: string;
   $isHalf: boolean;
@@ -26,4 +36,5 @@ export interface ColumnProps {
   $isLastColumn: boolean;
   $isLastofValidDate: boolean;
   EmptyRange: string[] | undefined;
+  $isSelected: boolean;
 }

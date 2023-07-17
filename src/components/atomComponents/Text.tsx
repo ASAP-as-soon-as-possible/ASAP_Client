@@ -17,6 +17,8 @@ function Text({ children, font, color }: ValueProps) {
 export default Text;
 
 const TextWrapper = styled.span<{ $font: string; $color: string }>`
+  display: flex;
+  align-items: center;
   /*문제 생기면 빼는 속성 글자 내림 */
   word-break:keep-all;
   color: ${({ $color }) => $color};
