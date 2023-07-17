@@ -11,7 +11,6 @@ import SelectPage from 'pages/selectSchdule/SelectPage';
 import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-
 const Router = () => {
   return (
     <BrowserRouter>

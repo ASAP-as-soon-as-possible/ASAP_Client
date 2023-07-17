@@ -1,20 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { DropDownIc, DropUpIc } from 'components/Icon/icon';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+import {v4 as uuidv4} from "uuid";
 
 import DateDropDown from './DateDropDown';
 import { dummyData } from './dummyData';
+import { ScheduleStates } from '../types/Schedule';
 
 interface PropTypes {
   id: number;
+  handleDate: (id: number, data: string) => void;
+  scheduleList: ScheduleStates[];
 }
 
-function DateSelect({ id }: PropTypes) {
+function DateSelect({ id, handleDate, scheduleList }: PropTypes) {
+
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+
 
   useEffect(
     () => {
@@ -33,10 +39,18 @@ function DateSelect({ id }: PropTypes) {
   return (
     <DateSelectWrapper>
       <DateSelectContainer $drop={isOpen} onClick={() => setIsOpen((prev) => !prev)} ref={ref}>
-        <Text font="button2" color={`${theme.colors.grey5}`}>
-          날짜 선택
-        </Text>
-        <DropDownIconWrapper>{isOpen ? <DropDownIcon /> : <DropUpIc />}</DropDownIconWrapper>
+
+        {(id>=1) && scheduleList[id - 1]?.date ? (
+          <Text font="button2" color={`${theme.colors.grey5}`}>
+            {scheduleList[id - 1].date}
+          </Text>
+        ) : (
+          <Text font="button2" color={`${theme.colors.grey5}`}>
+            날짜 선택
+          </Text>
+        )}
+
+        <DropDownIconWrapper>{isOpen ? <DropUpIc /> : <DropDownIcon />}</DropDownIconWrapper>
       </DateSelectContainer>
       {isOpen ? (
         <DropDownWrapper>
@@ -47,6 +61,7 @@ function DateSelect({ id }: PropTypes) {
               month={item.month}
               day={item.day}
               dayOfWeek={item.dayOfWeek}
+              handleDate={handleDate}
             />
           ))}
         </DropDownWrapper>

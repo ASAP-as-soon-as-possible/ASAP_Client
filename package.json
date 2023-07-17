@@ -26,6 +26,7 @@
     "recoil": "^0.7.7",
     "styled-reset": "^4.5.1",
     "swiper": "^10.0.4",
+    "uuid": "^9.0.0",
     "vite-plugin-svgr": "^3.2.0"
   },
   "devDependencies": {

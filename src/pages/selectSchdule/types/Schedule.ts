@@ -8,4 +8,5 @@ export interface ScheduleStates {
   date: string;
   startTime: string;
   endTime: string;
+  priority: number;
 }
