@@ -3,8 +3,11 @@ import ChooseBestTime from 'pages/BestMeetTime/ChooseBestTime';
 import ComponentTesting from 'pages/ComponentTesting';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
+import ErrorPage404 from 'pages/ErrorLoading/ErrorPage404';
+import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import LoginEntrance from 'pages/LoginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
+import SelectPage from 'pages/selectSchdule/SelectPage';
 import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -28,7 +31,11 @@ const Router = () => {
         <Route path="/login/member/:meetingId" element={<LoginEntrance loginType={'member'} />} />
         <Route path="/host/:meetingId" element={<ChooseBestTime />} />
         <Route path="/q-card/:meetingId" element={<CueCard />} />
+        <Route path="/loadingpage" element={<LoadingPage />} />
+        <Route path="*" element={<ErrorPage404 />} />
         <Route path="*" element={<div>not found</div>} />
+        <Route path="/select" element={<SelectPage />} />
+        <Route path="/change" element={<ChangeView />} />
       </Routes>
     </BrowserRouter>
   );

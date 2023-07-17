@@ -17,7 +17,7 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps
       });
     }
   };
-  const createMeeting = async (e:MouseEvent<HTMLButtonElement>) => {
+  const createMeeting = async () => {
     try {
       // 서버에 방 정보가 담긴 POST 요청을 보냄
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/meeting`, meetingInfo);

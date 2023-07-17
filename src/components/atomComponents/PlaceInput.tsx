@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
-import { InputCancelIc } from 'components/Icon/icon';
+import { InputCancelIc ,InputErrorIc } from 'components/Icon/icon';
 import { MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
@@ -40,7 +40,7 @@ function PlaceInput({ value, setValue, placeholder }: ValueProps) {
           />
           {focus && (
             <IconContainer onClick={resetOnClick}>
-              <InputCancelIc />
+              {value.length > 15 ? <InputErrorIc /> : <InputCancelIc />}
             </IconContainer>
           )}
         </InputSection>

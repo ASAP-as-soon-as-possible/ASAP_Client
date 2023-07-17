@@ -106,6 +106,7 @@ const SubTextSection = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.4rem;
+  align-items: flex-start;
   margin-top: 1.7rem;
 
   span {
