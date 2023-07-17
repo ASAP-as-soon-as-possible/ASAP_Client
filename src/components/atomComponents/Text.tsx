@@ -1,7 +1,7 @@
 import styled from 'styled-components/macro';
 
 interface ValueProps {
-  children: string;
+  children: string | string[];
   font: string;
   color?: string;
 }

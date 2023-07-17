@@ -9,9 +9,10 @@ interface ValueProps {
   value: string;
   placeholder: string;
   passWordOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  page: string;
 }
 
-function PasswordInput({ value, placeholder, passWordOnChange }: ValueProps) {
+function PasswordInput({ value, placeholder, passWordOnChange, page }: ValueProps) {
   const [inputType, setInputType] = useState(true);
 
   const changePasswordType = () => {
@@ -31,15 +32,19 @@ function PasswordInput({ value, placeholder, passWordOnChange }: ValueProps) {
           {inputType ? <PasswordOpenEyeIc /> : <PasswordEyeIc />}
         </IconContainer>
       </InputSection>
-      <SubTextSection>
-        <Text font={'body4'} color={`${theme.colors.sub1}`}>
-          *
-        </Text>
-        <Text font={'body4'} color={`${theme.colors.sub1}`}>
-          확정 후 비밀번호는 수정할 수 없으며, 비밀번호가 있어야 방장 페이지에 접속할 수 있으니
-          반드시 기억해주세요!
-        </Text>
-      </SubTextSection>
+      {page === 'createMeeting' ? (
+        <SubTextSection>
+          <Text font={'body4'} color={`${theme.colors.sub1}`}>
+            *
+          </Text>
+          <Text font={'body4'} color={`${theme.colors.sub1}`}>
+            확정 후 비밀번호는 수정할 수 없으며, 비밀번호가 있어야 방장 페이지에 접속할 수 있으니
+            반드시 기억해주세요!
+          </Text>
+        </SubTextSection>
+      ) : (
+        undefined
+      )}
     </PasswordInputWrapper>
   );
 }
@@ -56,9 +61,9 @@ const InputSection = styled.div`
   input:focus + div {
     display: flex;
     svg {
-      cursor: pointer;
       width: fit-content;
       height: fit-content;
+      cursor: pointer;
     }
   }
 `;
@@ -81,8 +86,8 @@ const StyledPasswordInput = styled.input<{ $iserror: boolean }>`
   font-size: ${({ theme }) => theme.fonts.body3};
 
   &:focus {
-    outline: none;
     border: 2px solid ${({ $iserror, theme }) => ($iserror ? theme.colors.red : theme.colors.main1)};
+    outline: none;
   }
 `;
 
@@ -101,6 +106,7 @@ const SubTextSection = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.4rem;
+  align-items: flex-start;
   margin-top: 1.7rem;
 
   span {
