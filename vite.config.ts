@@ -18,6 +18,7 @@ export default defineConfig({
       { find: 'styles', replacement: path.resolve(__dirname, 'src/styles') },
       { find: 'hooks', replacement: path.resolve(__dirname, 'src/hooks') },
       { find: 'utils', replacement: path.resolve(__dirname, 'src/utils') },
+      { find: 'atoms', replacement: path.resolve(__dirname, 'src/atoms') },
     ],
   },
 });

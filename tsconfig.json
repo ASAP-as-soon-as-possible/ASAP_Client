@@ -10,7 +10,8 @@
       "pages/*": ["src/pages/*"],
       "assets/*": ["src/assets/*"],
       "styles/*": ["src/styles/*"],
-      "utils/*": ["src/utils/*"]
+      "utils/*": ["src/utils/*"],
+      "atoms/*": ["src/atoms/*"]
     },
     "useDefineForClassFields": true,
     // "lib": ["ES2020", "DOM", "DOM.Iterable"],
