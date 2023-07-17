@@ -17,7 +17,7 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps
       });
     }
   };
-  const createMeeting = async (meetingInfo: MeetingInfo) => {
+  const createMeeting = async () => {
     try {
       const {
         data: { data },
@@ -38,7 +38,7 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps
       <StyledBtnWrapper>
         <Button
           typeState={meetingInfo.additionalInfo ? 'primaryActive' : 'tertiaryActive'}
-          onClick={() => createMeeting(meetingInfo)}
+          onClick={createMeeting}
         >
           <Text font={'button2'}>{meetingInfo.additionalInfo ? `회의  생성하기` : `건너뛰기`}</Text>
         </Button>
