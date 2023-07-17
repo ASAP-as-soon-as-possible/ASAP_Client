@@ -13,7 +13,7 @@ function TitleComponent({ main, sub }: TextProps) {
       <Text font={'head2'} color={`${theme.colors.white}`}>
         {main}
       </Text>
-      <Text font={'title2'} color={`${theme.colors.grey4}`}>
+      <Text font={'body3'} color={`${theme.colors.grey4}`}>
         {sub}
       </Text>
     </TitleWrapper>
