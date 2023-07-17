@@ -1,3 +1,4 @@
+import ApiTesting from 'pages/ApiTesting';
 import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
 import ComponentTesting from 'pages/ComponentTesting';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
@@ -21,6 +22,7 @@ const Router = () => {
         <Route path="/login/:meetingId" element={<div>로그인 페이지를 넣어주세요</div>} />
         <Route path="/host/:meetingId" element={<div>최적의 회의시간 페이지를 넣어주세요</div>} />
         <Route path="/q-card/:meetingId" element={<CueCard />} />
+        <Route path="/apiTesting" element={<ApiTesting />} />
         <Route path="*" element={<div>not found</div>} />
       </Routes>
     </BrowserRouter>

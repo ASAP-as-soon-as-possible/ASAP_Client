@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["axios"],
     "target": "esnext",
     "module": "esnext",
     "baseUrl": ".",
@@ -8,7 +9,8 @@
       "hooks/*": ["src/hooks/*"],
       "pages/*": ["src/pages/*"],
       "assets/*": ["src/assets/*"],
-      "styles/*": ["src/styles/*"]
+      "styles/*": ["src/styles/*"],
+      "utils/*": ["src/utils/*"]
     },
     "useDefineForClassFields": true,
     // "lib": ["ES2020", "DOM", "DOM.Iterable"],
