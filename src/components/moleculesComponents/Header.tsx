@@ -34,16 +34,16 @@ function Header({ position, setStep }: HeaderProps) {
           <LogoIcSection>
             <MainLogoIc />
           </LogoIcSection>
-        ) : (
+        ) : position === 'createMeeting' ? (
           <IconSection onClick={backToFunnel}>
             <BackIc />
           </IconSection>
-        )}
-        {position === 'onBoarding' ? null : (
+        ) : null}
+        {position === 'createMeeting' ? (
           <Text font={'title2'} color={`${theme.colors.white}`}>
             회의정보입력
           </Text>
-        )}
+        ) : <EmptyBox/>}
         <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
           <HambergerIc />
         </IconSection>
@@ -88,6 +88,8 @@ const LogoIcSection = styled.div`
   margin-top: 0.8rem;
   height: 4.2rem;
 `;
+
+const EmptyBox =styled.div``
 
 const IconSection = styled.button`
   display: flex;

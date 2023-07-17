@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { styled } from 'styled-components';
-
+//라우터 /Change로 확인 가능
 function ChangeView() {
   const [viewBest, setViewBest] = useState<boolean>(true);
   return (
@@ -15,6 +15,7 @@ function ChangeView() {
         </ChangeViewPicker>
       </ViewPickerWrapper>
       <ViewContainer>
+        {/* green,blue 자리에 컴포넌트 입력 */}
         {viewBest ? <Green>최적의 회의시간</Green> : <Blue>종합 일정 시간표</Blue>}
       </ViewContainer>
     </ChangeViewWrapper>

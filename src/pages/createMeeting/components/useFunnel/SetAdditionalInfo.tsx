@@ -4,10 +4,12 @@ import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import TextAreaInput from 'components/atomComponents/TextAreaInput';
 import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { createMeetingApi } from 'utils/apis/createMeetingApi';
 
 function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
+  const navigate = useNavigate();
   const textAreaOnChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length < 51) {
       setMeetingInfo((prev: MeetingInfo) => {
