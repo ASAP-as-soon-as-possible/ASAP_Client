@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { theme } from 'styles/theme';
 
 import { ColumnProps } from '../types/AvailableScheduleType';
 
@@ -65,9 +64,6 @@ const ColumnWrapper = styled.div<ColumnWrapperProps>`
 
   border-left: ${({ theme, $isFirstRow }) =>
     $isFirstRow ? `0.1rem solid ${theme.colors.grey7}` : 'none'};
-
-  /* background-color: ${({ theme, $isDateEmpty, $isSelected }) =>
-    $isSelected ? theme.colors.main4 : $isDateEmpty ? theme.colors.grey9 : 'none'}; */
 
   background-color: ${({ $priorityColor }) => $priorityColor};
 

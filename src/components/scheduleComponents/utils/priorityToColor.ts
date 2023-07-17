@@ -2,7 +2,6 @@ import { theme } from 'styles/theme';
 
 //todo: type 지정 따로 빼는게 잘 안됨
 const priorityToColor = (type: 'priority' | 'available', priority?: number): string => {
-  console.log(priority);
   switch (priority) {
     case 0:
       return type === 'priority' ? theme.colors['grey6'] : theme.colors['main4'];
