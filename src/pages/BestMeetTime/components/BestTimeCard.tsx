@@ -59,6 +59,7 @@ const BestTimeCardWrapper = styled.article<{ $rank: number; $selected: number }>
       $rank === $selected ? theme.colors.main1 : theme.colors.grey5};
   border-radius: 10px;
   padding: 2rem;
+  width:100%;
   height: fit-content;
 `;
 const InfoContainer = styled.div`

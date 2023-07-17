@@ -1,6 +1,5 @@
 import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
-import BestMeetTime from 'pages/BestMeetTime/BestMeetTime';
-import ChangeView from 'pages/ChangeView';
+import ChooseBestTime from 'pages/BestMeetTime/ChooseBestTime';
 import ComponentTesting from 'pages/ComponentTesting';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
@@ -25,12 +24,11 @@ const Router = () => {
           element={<SteppingLayout steppingType={'hostScheduleComplete'} />}
         />
         <Route path="/meet/:meetingId" element={<SteppingLayout steppingType={'meetEntrance'} />} />
-        <Route path="/login/host/:meetingId" element={<LoginEntrance loginType={"host"} />} />
-        <Route path="/login/member/:meetingId" element={<LoginEntrance loginType={"member"} />} />
-        <Route path="/host/:meetingId" element={<BestMeetTime />} />
+        <Route path="/login/host/:meetingId" element={<LoginEntrance loginType={'host'} />} />
+        <Route path="/login/member/:meetingId" element={<LoginEntrance loginType={'member'} />} />
+        <Route path="/host/:meetingId" element={<ChooseBestTime />} />
         <Route path="/q-card/:meetingId" element={<CueCard />} />
         <Route path="*" element={<div>not found</div>} />
-        <Route path="/change" element={<ChangeView />} />
       </Routes>
     </BrowserRouter>
   );
