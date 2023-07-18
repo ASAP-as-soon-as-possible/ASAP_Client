@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
 import Header from 'components/moleculesComponents/Header';
@@ -97,6 +98,14 @@ function SelectPage() {
     setScheduleList(scheduleList.filter((item) => item?.id !== index));
   };
 
+  const validateScheduleList = (list: ScheduleStates[]): boolean => {
+    return list.every((item) => {
+      return item.id !== undefined && item.date !== '' && item.startTime !== '' && item.endTime !== '' && item.priority !== undefined;
+    });
+  };
+
+  const isScheduleListValid = validateScheduleList(scheduleList);
+
   return (
     <SelectPageWrapper>
       <Header position={'schedule'} />
@@ -143,6 +152,20 @@ function SelectPage() {
       <PlusButton onClick={addDateList} type="button">
         <PlusIc />
       </PlusButton>
+      <StyledBtnSection>
+        <Button
+          typeState={
+            isScheduleListValid
+              ? 'primaryActive'
+              : 'secondaryDisabled'
+          }
+          onClick={
+            () => {console.log('click')}
+          }
+        >
+          <Text font={'button2'}>다음</Text>
+        </Button>
+      </StyledBtnSection>
     </SelectPageWrapper>
   );
 }
@@ -156,7 +179,7 @@ const SelectPageWrapper = styled.div`
 
 const PlusButton = styled.button`
   margin-top: 3.2rem;
-  margin-bottom: 2rem;
+  margin-bottom: 12.2rem;
   border-radius: 0.8rem;
   background-color: ${({ theme }) => theme.colors.grey2};
   width: 33.5rem;
@@ -192,6 +215,12 @@ const TitleWrapper = styled.div`
 
   padding: 1.6rem 0 3.2rem 0;
   width: 100%;
+`;
+
+const StyledBtnSection = styled.section`
+  position: fixed;
+  bottom: 1.2rem;
+  border-radius: 50%;
 `;
 
 
