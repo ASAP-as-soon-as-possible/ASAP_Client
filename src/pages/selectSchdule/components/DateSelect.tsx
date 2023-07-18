@@ -15,7 +15,7 @@ interface PropTypes {
   scheduleList: ScheduleStates[];
 }
 
-function DateSelect({ id, handleDate, availableDates ,scheduleList }: PropTypes) {
+function DateSelect({ id, handleDate, availableDates, scheduleList }: PropTypes) {
 
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);

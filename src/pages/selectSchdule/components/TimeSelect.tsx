@@ -1,22 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+
 import Text from 'components/atomComponents/Text';
-import { PREFER_TIMES } from 'components/scheduleComponents/data/preferTimes';
 import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
-import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 import TimeDropDown from './TimeDropDown';
-import { ScheduleStates } from '../types/Schedule';
+import { ScheduleStates, TimeStates } from '../types/Schedule';
 
 interface PropTypes {
   text: string;
   id: number;
   handleStartTime: (id: number, startTime: string) => void;
   scheduleList: ScheduleStates[];
+  preferTimes: TimeStates[];
 }
-function TimeSelect({ text, id, handleStartTime, scheduleList }: PropTypes) {
+function TimeSelect({ text, id, handleStartTime, scheduleList, preferTimes }: PropTypes) {
   const [isOpen, setIsOpen] = useState(false);
   const startTimeModal = () => {
     setIsOpen((prev) => !prev);
@@ -54,7 +54,7 @@ function TimeSelect({ text, id, handleStartTime, scheduleList }: PropTypes) {
       </TimeSelectSection>
       {isOpen && (
         <TimeDropDownWrapper>
-          {getTimeSlots(PREFER_TIMES).map((item, i) => (
+          {getTimeSlots(preferTimes).map((item, i) => (
             <TimeDropDown
               key={item}
               times={item}

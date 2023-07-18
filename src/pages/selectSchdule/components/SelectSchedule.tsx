@@ -6,16 +6,17 @@ import styled from 'styled-components/macro';
 import DateSelect from './DateSelect';
 import EndTimeSelect from './EndTimeSelect';
 import TimeSelect from './TimeSelect';
-import { DateStates, ScheduleStates } from '../types/Schedule';
+import { DateStates, ScheduleStates, TimeStates } from '../types/Schedule';
 
 interface PropTypes {
   scheduleList: ScheduleStates[];
   availableDates: DateStates[];
+  preferTimes: TimeStates[];
   setScheduleList: Dispatch<SetStateAction<ScheduleStates[]>>;
   deleteData: (index: number) => void;
 }
 
-function SelectSchedule({ scheduleList, availableDates, setScheduleList, deleteData }: PropTypes) {
+function SelectSchedule({ scheduleList, availableDates, preferTimes, setScheduleList, deleteData }: PropTypes) {
   const handleDate = (id: number, date: string) => {
     const updateDate: ScheduleStates[] = scheduleList?.map((schedule) => {
       if (schedule?.id === id) {
@@ -66,12 +67,14 @@ function SelectSchedule({ scheduleList, availableDates, setScheduleList, deleteD
                 id={item?.id}
                 handleStartTime={handleStartTime}
                 scheduleList={scheduleList}
+                preferTimes={preferTimes}
               />
-
              <EndTimeSelect text="종료 시간"
                 id={item?.id}
                 handleEndTime={handleEndTime}
-                scheduleList={scheduleList}></EndTimeSelect>
+                scheduleList={scheduleList}
+                preferTimes={preferTimes}
+              />
              </TimeSelectSection>
           </SelectWrapper>
         ))};

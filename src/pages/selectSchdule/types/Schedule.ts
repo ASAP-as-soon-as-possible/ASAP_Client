@@ -11,3 +11,8 @@ export interface DateStates {
   day: string;
   dayOfWeek: string;
 }
+
+export interface TimeStates {
+  startTime: string;
+  endTime: string;
+}

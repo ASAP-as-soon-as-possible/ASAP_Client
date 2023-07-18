@@ -1,30 +1,36 @@
 import Text from 'components/atomComponents/Text';
+import { DateStates, TimeStates } from 'pages/selectSchdule/types/Schedule';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
 
 import Row from './Row';
-import { AVAILABLE_DATES } from '../data/availableDates';
-import { PREFER_TIMES } from '../data/preferTimes';
 import { SelectedSchedule } from '../types/AvailableScheduleType';
 import getTimeSlots from '../utils/getTimeSlots';
 
 interface TimeTableProps {
   selectedSchedule: SelectedSchedule[];
+  availableDates: DateStates[];
+  preferTimes: TimeStates[];
   scheduleType: 'priority' | 'available';
 }
 
-function TimeTable({ selectedSchedule, scheduleType }: TimeTableProps) {
+function TimeTable({
+  selectedSchedule,
+  availableDates,
+  preferTimes,
+  scheduleType,
+}: TimeTableProps) {
   const isMorningDinner =
-    PREFER_TIMES.length === 2 && PREFER_TIMES.every((time) => time.startTime !== '12:00');
+    preferTimes.length === 2 && preferTimes.every((time) => time.startTime !== '12:00');
 
-  const PreferTimes = [...PREFER_TIMES];
+  const PreferTimes = [...preferTimes];
   isMorningDinner && PreferTimes.splice(1, 0, { startTime: '12:00', endTime: '18:00' }); // 오전, 저녁 선택시 오후 시간을 추가로 채움
 
   const timeSlots = getTimeSlots(PreferTimes);
 
-  let formattedDates = AVAILABLE_DATES.map((date) => `${date.month}/${date.day} ${date.dayOfWeek}`);
+  let formattedDates = availableDates.map((date) => `${date.month}/${date.day} ${date.dayOfWeek}`);
 
-  const formattedDatesForSelectBox = AVAILABLE_DATES.map(
+  const formattedDatesForSelectBox = availableDates.map(
     (date) => `${date.month}월 ${date.day}일 (${date.dayOfWeek})`,
   );
 

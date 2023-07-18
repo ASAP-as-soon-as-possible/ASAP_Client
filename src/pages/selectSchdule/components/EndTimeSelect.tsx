@@ -1,21 +1,24 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
 
 import Text from 'components/atomComponents/Text';
+import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 import { dummyData, time } from './dummyData';
 import EndTimeDropDown from './EndTimeDropDown';
-import { ScheduleStates } from '../types/Schedule';
+import { ScheduleStates, TimeStates } from '../types/Schedule';
 
 interface PropTypes {
   text: string;
   id: number;
   handleEndTime: (id: number, endTime: string) => void;
   scheduleList: ScheduleStates[];
+  preferTimes: TimeStates[];
 }
-function EndTimeSelect({ text, id, handleEndTime, scheduleList }: PropTypes) {
+function EndTimeSelect({ text, id, handleEndTime, scheduleList, preferTimes }: PropTypes) {
   const [isOpen, setIsOpen] = useState(false);
   const startTimeModal = () => {
     setIsOpen((prev) => !prev);
@@ -53,7 +56,7 @@ function EndTimeSelect({ text, id, handleEndTime, scheduleList }: PropTypes) {
       </TimeSelectSection>
       {isOpen && (
         <TimeDropDownWrapper>
-          {time.map((item, i) => (
+          {getTimeSlots(preferTimes).map((item, i) => (
             <EndTimeDropDown
               key={item}
               times={item}

@@ -5,9 +5,10 @@ import TimeTable from 'components/scheduleComponents/components/TimeTable';
 import styled from 'styled-components/macro';
 
 import SelectSchedule from './components/SelectSchedule';
-import { DateStates, ScheduleStates } from './types/Schedule';
+import { DateStates, ScheduleStates, TimeStates } from './types/Schedule';
 
 function SelectPage() {
+  // 가능시간 선택지 - 날짜
   const [availableDates, setAvailableDates] = useState<DateStates[]>([
     {
       month: '7',
@@ -46,6 +47,23 @@ function SelectPage() {
     },
   ])
 
+  const [preferTimes, setPreferTimes] = useState<TimeStates[]>(
+    [
+      {
+        startTime: '06:00',
+        endTime: '12:00',
+      },
+      {
+        startTime: '12:00',
+        endTime: '18:00',
+      },
+      {
+        startTime: '18:00',
+        endTime: '24:00',
+      },
+    ]
+  )
+
   const [scheduleList, setScheduleList] = useState<ScheduleStates[]>([
     {
       id: 1,
@@ -76,9 +94,10 @@ function SelectPage() {
 
   return (
     <SelectPageWrapper>
-      <TimeTable selectedSchedule={scheduleList} scheduleType="available" />;
+      <TimeTable selectedSchedule={scheduleList} availableDates={availableDates} preferTimes={preferTimes} scheduleType="available" />;
       <SelectSchedule
         availableDates={availableDates}
+        preferTimes={preferTimes}
         scheduleList={scheduleList}
         setScheduleList={setScheduleList}
         deleteData={deleteDataList}
