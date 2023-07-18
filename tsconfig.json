@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["axios"],
     "target": "esnext",
     "module": "esnext",
     "baseUrl": ".",
@@ -9,6 +10,7 @@
       "pages/*": ["src/pages/*"],
       "assets/*": ["src/assets/*"],
       "styles/*": ["src/styles/*"],
+      "utils/*": ["src/utils/*"],
       "atoms/*": ["src/atoms/*"]
     },
     "useDefineForClassFields": true,

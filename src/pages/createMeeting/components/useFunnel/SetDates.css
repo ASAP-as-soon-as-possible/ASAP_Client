@@ -15,8 +15,8 @@
   position: relative;
   bottom: 2.2rem;
   margin-bottom: 11.8rem;
-  background-color: var(--rmdp-grey10);
-  border: none;
+  background-color: var(--rmdp-grey10) !important;
+  border: none !important;
 }
 .rmdp-year-picker,
 .bg-dark .rmdp-month-picker {
@@ -25,7 +25,7 @@
   left: 0.2rem;
   z-index: 1;
   height: 20rem;
-  background-color: black;
+  background-color: black !important;
 }
 
 .rmdp-calendar {
@@ -51,8 +51,8 @@
 } */
 
 .rmdp-arrow-container:hover {
-  background-color: transparent;
-  box-shadow: none;
+  background-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .bg-dark .rmdp-day:not(.rmdp-deactive),
@@ -111,14 +111,14 @@
 
 .bg-dark .rmdp-day.rmdp-deactive {
   /*이전달 다음달 날짜*/
-  color: var(--rmdp-grey6);
+  color: var(--rmdp-grey6) !important;
 }
 
 .rmdp-range {
   color: white;
-  background-color: var(--rmdp-main1);
+  background-color: var(--rmdp-main1) !important;
   /* 범위 선택*/
-  box-shadow: none;
+  box-shadow: none !important;
 }
 
 .rmdp-range > span {
@@ -145,13 +145,13 @@
 
 .rmdp-day.rmdp-selected span:not(.highlight) {
   background-color: var(--rmdp-main1) !important;
-  border: 1px solid var(--rmdp-main4);
-  box-shadow: none;
+  border: 1px solid var(--rmdp-main4) !important;
+  box-shadow: none !important;
 }
 
 .bg-dark .rmdp-day:not(.rmdp-day-hidden) span:hover {
   /*날짜 호버 백그라운드*/
-  background-color: transparent;
+  background-color: transparent !important;
 }
 .rmdp-day {
   width: 4rem;
@@ -178,11 +178,11 @@
 }
 
 .bg-dark .rmdp-action-button {
-  color: var(--rmdp-main1);
+  color: var(--rmdp-main1) !important;
 }
 
 .bg-dark .rmdp-button:not(.rmdp-action-button) {
-  background-color: var(--rmdp-main1);
+  background-color: var(--rmdp-main1) !important;
 }
 
 /* .bg-dark .rmdp-button:not(.rmdp-action-button):hover {
