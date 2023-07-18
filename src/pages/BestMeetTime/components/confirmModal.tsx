@@ -75,7 +75,7 @@ const ReturnModalWrpper = styled.div`
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
 
 const ModalSection = styled.article`

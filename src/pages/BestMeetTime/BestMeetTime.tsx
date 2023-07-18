@@ -25,10 +25,6 @@ const bestTimeData: DateTimeData = {
       users: [
         {
           id: 1,
-          name: '서지원',
-        },
-        {
-          id: 1,
           name: '서채원',
         },
         {
@@ -79,10 +75,6 @@ const bestTimeData: DateTimeData = {
         users: [
           {
             id: 1,
-            name: '서지원',
-          },
-          {
-            id: 1,
             name: '서채원',
           },
           {
@@ -130,10 +122,6 @@ const bestTimeData: DateTimeData = {
         startTime: '06:00',
         endTime: '12:00',
         users: [
-          {
-            id: 1,
-            name: '서지원',
-          },
           {
             id: 1,
             name: '서채원',
@@ -203,7 +191,7 @@ function BestMeetTime() {
   console.log(dataUse);
 
   return (
-    <BestMeetTimeWrapper>
+    <BestMeetTimeWrapper $state={showModal}>
       <TitleSection>
         <HeaderContainer>
           <HeaderTitle>
@@ -267,8 +255,9 @@ function BestMeetTime() {
 }
 
 export default BestMeetTime;
-const BestMeetTimeWrapper = styled.div`
+const BestMeetTimeWrapper = styled.div<{ $state: boolean }>`
   width: 100%;
+  overflow: hidden;
 `;
 const TitleSection = styled.article`
   display: flex;
