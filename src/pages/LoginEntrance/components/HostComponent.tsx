@@ -5,7 +5,7 @@ import PasswordInput from 'components/atomComponents/PasswordInput';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import Header from 'components/moleculesComponents/Header';
-import TitleComponent from 'components/moleculesComponents/TitleComponent';
+import TitleComponent from 'components/moleculesComponents/TitleComponents';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -80,7 +80,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
           <Text font={'button2'}>방장 페이지 접속하기</Text>
         </Button>
       </StyledBtnSection>
-      {ismodalOpen ? <ReturnModal setIsModalOpen={setIsModalOpen}/> : undefined}
+      {ismodalOpen ? <ReturnModal setIsModalOpen={setIsModalOpen} /> : undefined}
     </>
   );
 }

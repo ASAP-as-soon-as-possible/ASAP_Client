@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { DropDownIc, DropUpIc } from 'components/Icon/icon';
@@ -6,20 +6,19 @@ import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 import DateDropDown from './DateDropDown';
-import { dummyData } from './dummyData';
-import { ScheduleStates } from '../types/Schedule';
+import { DateStates, ScheduleStates } from '../types/Schedule';
 
 interface PropTypes {
   id: number;
   handleDate: (id: number, data: string) => void;
+  availableDates: DateStates[];
   scheduleList: ScheduleStates[];
 }
 
-function DateSelect({ id, handleDate, scheduleList }: PropTypes) {
+function DateSelect({ id, handleDate, availableDates, scheduleList }: PropTypes) {
 
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
 
   useEffect(
     () => {
@@ -53,7 +52,7 @@ function DateSelect({ id, handleDate, scheduleList }: PropTypes) {
       </DateSelectContainer>
       {isOpen ? (
         <DropDownWrapper>
-          {dummyData.availableDates.map((item) => (
+          {availableDates.map((item) => (
             <DateDropDown
               id={id}
               key={item.day + item.month}
