@@ -4,47 +4,30 @@ export const placeType = ['ONLINE', 'OFFLINE', 'UNDEFIND'];
 
 export const preferTimeType = [
   {
-    title: '오전 (6:00 - 12:00)',
+    title: '오전 ( 6:00 - 12:00 )',
     startTime: '06:00',
     endTime: '12:00',
+    btnState: false,
   },
   {
-    title: '오전 (12:00 - 18:00)',
+    title: '오후 ( 12:00 - 18:00 )',
     startTime: '12:00',
     endTime: '18:00',
+    btnState: false,
   },
   {
-    title: '오전 (18:00 - 24:00)',
-
+    title: '저녁 ( 18:00 - 24:00 )',
     startTime: '18:00',
     endTime: '24:00',
-  },
-  {
-    title: '직접 입력할게요',
-    startTime: '',
-    endTime: '',
+    btnState: false,
   },
 ];
-
-export const preferTimeList = [
-  {
-    startTime: '06:00',
-    endTime: '12:00',
-  },
-  {
-    startTime: '06:00',
-    endTime: '12:00',
-  },
-  {
-    startTime: '12:00',
-    endTime: '18:00',
-  },
-  {
-    startTime: '',
-    endTime: '',
-  },
-];
-
+export const directInputButton = {
+  title: '직접 입력할게요',
+  startTime: '',
+  endTime: '',
+  btnState: false,
+};
 export const funnelStep = [
   'title',
   'availableDates',

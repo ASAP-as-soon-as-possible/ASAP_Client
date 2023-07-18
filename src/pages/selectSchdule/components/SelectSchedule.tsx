@@ -18,9 +18,9 @@ interface PropTypes {
 function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes) {
   const handleDate = (id: number, date: string) => {
 
-    const updateDate: ScheduleStates[] = scheduleList?.map((schedule) => {
+          const updateDate: ScheduleStates[] = scheduleList?.map((schedule) => {
 
-      if (schedule?.id === id) {
+     if (schedule?.id === id) {
         return { ...schedule, date:date };
       }
       return schedule;
@@ -39,7 +39,6 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
     return schedule;
   });
         setScheduleList(updateStartTime);
-
   };
 
   const handleEndTime = (id: number, endTime: string) => {
@@ -56,7 +55,7 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
     () => {
       // alert(JSON.stringify(scheduleList));
       // console.log(uuidv4());
-    },
+          },
     [scheduleList],
   );
   return (
