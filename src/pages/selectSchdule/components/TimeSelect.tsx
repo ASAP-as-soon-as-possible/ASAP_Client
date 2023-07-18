@@ -1,30 +1,29 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+
 
 import Text from 'components/atomComponents/Text';
-import { useRecoilState } from 'recoil';
+import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-import { dummyData, time } from './dummyData';
 import TimeDropDown from './TimeDropDown';
-import { ScheduleStates } from '../types/Schedule';
+import { ScheduleStates, TimeStates } from '../types/Schedule';
 
 interface PropTypes {
   text: string;
   id: number;
   handleStartTime: (id: number, startTime: string) => void;
   scheduleList: ScheduleStates[];
+  preferTimes: TimeStates[];
 }
-function TimeSelect({ text, id, handleStartTime, scheduleList }: PropTypes) {
+function TimeSelect({ text, id, handleStartTime, scheduleList, preferTimes }: PropTypes) {
   const [isOpen, setIsOpen] = useState(false);
   const startTimeModal = () => {
     setIsOpen((prev) => !prev);
   };
 
   const ref = useRef<HTMLDivElement>(null);
-  // console.log(JSON.stringify(scheduleList));
-  // console.log(id);
-  // console.log(scheduleList[id - 1].startTime);
+
   useEffect(
     () => {
       const clickOutSide = (e: MouseEvent) => {
@@ -55,9 +54,9 @@ function TimeSelect({ text, id, handleStartTime, scheduleList }: PropTypes) {
       </TimeSelectSection>
       {isOpen && (
         <TimeDropDownWrapper>
-          {time.map((item, i) => (
+          {getTimeSlots(preferTimes).map((item, i) => (
             <TimeDropDown
-            key={item}
+              key={item}
               times={item}
               text={text}
               id={id}

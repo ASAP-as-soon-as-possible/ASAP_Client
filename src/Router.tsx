@@ -21,7 +21,7 @@ const Router = () => {
         <Route path="/scheduletest" element={<AvailableSchedule />} />
         <Route path="/meet/create" element={<CreateMeeting />} />
         <Route path="/meet/complete" element={<SteppingLayout steppingType={'meetComplete'} />} />
-        <Route path="/schedule/:meetingId" element={<div>가능 시간 입력페이지를 넣어주세요</div>} />
+        <Route path="/schedule/:meetingId" element={<SelectPage />} />
         <Route path="/priority/:meetingId" element={<Prioritization />} />
         <Route
           path="/schedule-complete/:meetingId"

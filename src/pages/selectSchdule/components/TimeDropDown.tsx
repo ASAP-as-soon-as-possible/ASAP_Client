@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, SetStateAction, Dispatch } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import styled from 'styled-components/macro';
@@ -15,7 +15,7 @@ interface PropTypes {
 function TimeDropDown({ times, text, id, isOpen, setIsOpen, handleStartTime }: PropTypes) {
   const getStartTime = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    console.log(id);
+
     handleStartTime(id, times);
     setIsOpen((prev) => !prev);
   };

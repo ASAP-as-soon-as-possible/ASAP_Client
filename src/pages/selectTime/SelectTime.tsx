@@ -1,4 +1,5 @@
-import { ExitIc, DropDownIc } from 'components/Icon/icon';
+import { DropDownIc, ExitIc } from 'components/Icon/icon';
+
 // import ReactDOMServer from 'react-dom/server';
 import styled from 'styled-components/macro';
 
@@ -29,11 +30,6 @@ function SelectTime() {
     </SelectTimeWrapper>
   );
 }
-// const dropDownIconUrl = DropDownIc.default.url;
-
-// const dropDownIconUrl1: string = DropDownIc.url;
-// console.log(dropDownIconUrl1);
-
 const SelectTimeWrapper = styled.section`
   display: flex;
   border-radius: 8px;
@@ -55,8 +51,6 @@ const SelectWrapper = styled.div`
   width: 27.9rem;
 `;
 
-// const svgElementToString = ReactDOMServer.renderToString(<DropDownIc />);
-// console.log(svgElementToString);
 const DateSelect = styled.select`
   appearance: none;
   border-radius: 0.8rem;

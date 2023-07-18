@@ -1,11 +1,11 @@
-import React, { useState, Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import PasswordInput from 'components/atomComponents/PasswordInput';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import Header from 'components/moleculesComponents/Header';
-import TitleComponent from 'components/moleculesComponents/TitleComponent';
+import TitleComponent from 'components/moleculesComponents/TitleComponents';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -33,7 +33,10 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
   return (
     <>
       <Header position={'login'} />
-      <TitleComponent main={'참여자의 이름을 알려주세요'} sub={'정확한 일정 조율을 위해 실명입력을 추천드려요'} />
+      <TitleComponent
+        main={'참여자의 이름을 알려주세요'}
+        sub={'정확한 일정 조율을 위해 실명입력을 추천드려요'}
+      />
       <HostInfoSection>
         <HostNameSection>
           <Text font={`title2`} color={`${theme.colors.white}`}>

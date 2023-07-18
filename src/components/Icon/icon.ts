@@ -18,6 +18,7 @@ import { ReactComponent as PlaceIc } from 'assets/svgs/placeIcon.svg';
 import { ReactComponent as PlusIc } from 'assets/svgs/plusBtn.svg';
 import { ReactComponent as RadioCheckIc } from 'assets/svgs/radioCheck.svg';
 import { ReactComponent as RadioCheckedIc } from 'assets/svgs/radioChecked.svg';
+import { ReactComponent as SpeechBubbleIc } from 'assets/svgs/speechBubble.svg';
 import { ReactComponent as TimeIc } from 'assets/svgs/time.svg';
 import { ReactComponent as Wave } from 'assets/svgs/wave.svg';
 
@@ -43,5 +44,6 @@ export {
   TimeIc,
   DropdownWhite,
   DropupWhite,
+  SpeechBubbleIc,
   Wave,
 };
