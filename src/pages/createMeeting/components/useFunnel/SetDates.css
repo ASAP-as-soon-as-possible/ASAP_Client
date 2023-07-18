@@ -151,7 +151,7 @@
 
 .bg-dark .rmdp-day:not(.rmdp-day-hidden) span:hover {
   /*날짜 호버 백그라운드*/
-  pointer-events: none;
+  pointer-events: none !important;
 }
 .rmdp-day {
   width: 4rem;
