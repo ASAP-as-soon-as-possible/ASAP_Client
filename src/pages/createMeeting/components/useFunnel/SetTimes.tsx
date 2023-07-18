@@ -4,11 +4,7 @@ import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { DropUpIc, DropDownIc, Wave } from 'components/Icon/icon';
 import { preferTimeType, directInputButton } from 'pages/createMeeting/data/meetingInfoData';
-import {
-  FunnelProps,
-  MeetingInfo,
-  PreferTimeInfo,
-} from 'pages/createMeeting/types/useFunnelInterface';
+import { FunnelProps, PreferTimeInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
 import { timeList } from '../../data/meetingInfoData';
@@ -19,7 +15,6 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const [directInput, setDirectInput] = useState(directInputButton);
   const [startDropDown, setStartDropDown] = useState(false);
   const [endDropDown, setEndDropDown] = useState(false);
-  // const [time, setTime] = useState()
 
   const getDate = (btnState: boolean, startTime: string, endTime: string) => {
     console.log(startTime, endTime);
@@ -70,9 +65,6 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
 
   useEffect(
     () => {
-      // console.log(directInput.btnState);
-      // // meetingInfo.start
-      // console.log(meetingInfo);
       console.log(meetingInfo.preferTimes[0]);
       if (
         meetingInfo.preferTimes &&
@@ -85,7 +77,6 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           deletePreferTimes();
         }
       }
-      // if(meetingInfo)
     },
     [meetingInfo.preferTimes],
   );
@@ -96,14 +87,7 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           return (
             <Button
               key={i + preferTime.title}
-              typeState={
-                // meetingInfo.preferTimes[getMeetingInfoLen()]?.startTime === '' || meetingInfo.preferTimes[getMeetingInfoLen()]
-                //   ? `primaryDisabled`
-                //   : meetingInfo.preferTimes[i] && meetingInfo.preferTimes[i].startTime !== ''
-                //     ? ` primaryActive`
-                //     : `primaryDisabled`
-                preferTime.btnState ? 'primaryActive' : 'tertiaryDisabled'
-              }
+              typeState={preferTime.btnState ? 'primaryActive' : 'tertiaryDisabled'}
               onClick={() => {
                 setPreferTimes((prev: PreferTimeInfo[]) => {
                   const updatedBtnState = prev.map((btn, index) => {
