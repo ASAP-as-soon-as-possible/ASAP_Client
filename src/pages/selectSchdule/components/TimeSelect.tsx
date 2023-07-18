@@ -23,9 +23,7 @@ function TimeSelect({ text, id, handleStartTime, scheduleList }: PropTypes) {
   };
 
   const ref = useRef<HTMLDivElement>(null);
-  // console.log(JSON.stringify(scheduleList));
-  // console.log(id);
-  // console.log(scheduleList[id - 1].startTime);
+
   useEffect(
     () => {
       const clickOutSide = (e: MouseEvent) => {

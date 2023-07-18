@@ -1,8 +1,7 @@
-import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { ExitIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
-
 
 import DateSelect from './DateSelect';
 import EndTimeSelect from './EndTimeSelect';
@@ -52,13 +51,6 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
     setScheduleList(updateEndTime);
   };
 
-  useEffect(
-    () => {
-      // alert(JSON.stringify(scheduleList));
-      // console.log(uuidv4());
-    },
-    [scheduleList],
-  );
   return (
     <>
       {scheduleList &&
