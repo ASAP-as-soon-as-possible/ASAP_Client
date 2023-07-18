@@ -13,10 +13,38 @@ import styled from 'styled-components/macro';
 function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const [preferTimes, setPreferTimes] = useState(preferTimeType);
   const [directInput, setDirectInput] = useState(directInputButton);
-  const getDate = (startTime: string, endTime: string) => {
-    setMeetingInfo((prev: MeetingInfo) => ({
+
+  const getDate = (btnState: boolean, startTime: string, endTime: string) => {
+    console.log(startTime, endTime);
+
+    if (!btnState) {
+      // btnState가 true인 경우 preferTimes에 객체를 추가
+      console.log(btnState);
+      setMeetingInfo((prev) => ({
+        ...prev,
+        preferTimes: [...prev.preferTimes, { startTime: startTime, endTime: endTime }],
+      }));
+    } else {
+      console.log(btnState);
+      // btnState가 false인 경우 해당 startTime과 endTime을 가진 객체를 preferTimes에서 삭제
+      setMeetingInfo((prev) => ({
+        ...prev,
+        preferTimes: prev.preferTimes.filter(
+          (time) => time.startTime !== startTime && time.endTime !== endTime,
+        ),
+      }));
+    }
+
+    // setMeetingInfo((prev: MeetingInfo) => ({
+    //   ...prev,
+    //   preferTimes: [{ startTime: startTime, endTime: endTime }],
+    // }));
+  };
+
+  const deletePreferTimes = () => {
+    setMeetingInfo((prev) => ({
       ...prev,
-      preferTimes: [{ startTime: startTime, endTime: endTime }],
+      preferTimes: [],
     }));
   };
 
@@ -35,7 +63,15 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
       });
       return updatePreferTime;
     });
+    deletePreferTimes();
   };
+
+  useEffect(
+    () => {
+      console.log(meetingInfo);
+    },
+    [meetingInfo],
+  );
   return (
     <SetTimesWrapper>
       <SetTimeSection>
@@ -52,10 +88,6 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                 preferTime.btnState ? 'primaryActive' : 'primaryDisabled'
               }
               onClick={() => {
-                // setMeetingInfo((prev: MeetingInfo) => ({
-                //   ...prev,
-                //   preferTimes: [{ startTime: preferTime.startTime, endTime: preferTime.endTime }],
-                // }));
                 setPreferTimes((prev: PreferTimeInfo[]) => {
                   const updatedBtnState = prev.map((btn, index) => {
                     if (index < 3 && index == i) {
@@ -72,6 +104,7 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                   ...prev,
                   btnState: false,
                 }));
+                getDate(preferTime.btnState, preferTime.startTime, preferTime.endTime);
               }}
             >
               <Text font={'title2'}>{preferTime.title}</Text>
@@ -88,13 +121,9 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
 
       <StyledBtnSection>
         <Button
-          typeState={
-            meetingInfo.preferTimes[0].startTime !== '' ? 'primaryActive' : 'secondaryDisabled'
-          }
+          typeState={meetingInfo.preferTimes.length >= 1 ? 'primaryActive' : 'secondaryDisabled'}
           onClick={
-            // meetingInfo.preferTimes &&
-            // (meetingInfo.preferTimes[0] !== '' || meetingInfo.preferTimes.length >= 2)
-            meetingInfo.preferTimes[0].startTime !== ''
+            meetingInfo.preferTimes
               ? () =>
                   setStep((prev) => {
                     if (prev === 6) {

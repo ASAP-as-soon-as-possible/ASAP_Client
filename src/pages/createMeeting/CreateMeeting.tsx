@@ -11,12 +11,7 @@ import { MeetingInfo } from './types/useFunnelInterface';
 const initialMeetingInfo: MeetingInfo = {
   title: '',
   availableDates: [''],
-  preferTimes: [
-    {
-      startTime: '',
-      endTime: '',
-    },
-  ],
+  preferTimes: [],
   place: '',
   placeDetail: '',
   duration: '',
