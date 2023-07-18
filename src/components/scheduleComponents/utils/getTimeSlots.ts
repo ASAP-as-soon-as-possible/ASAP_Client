@@ -3,6 +3,7 @@ import { PreferTime } from '../types/AvailableScheduleType';
 const getTimeSlots = (preferTimes: PreferTime[]) => {
   const timeSlots = preferTimes.flatMap((obj) => {
     const { startTime, endTime } = obj;
+    if (startTime === '' || endTime === '') return;
     const slots = [];
     let currentTime = startTime;
     while (currentTime !== endTime) {
