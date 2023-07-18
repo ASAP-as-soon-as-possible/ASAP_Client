@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 interface SteppingProps {
@@ -11,7 +12,19 @@ interface SteppingProps {
 }
 
 function SteppingBtnSection({ steppingType }: SteppingProps) {
+  const location = useLocation();
+  const meetInfo = { ...location.state };
   const { meetingId } = useParams();
+  console.log(meetInfo);
+
+  //차후 toast-library 사용시 이용할 상태관리
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <>
       <StyledBtnSection>
@@ -19,12 +32,21 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
           {
             meetComplete: (
               <>
-                <Button typeState={'halfTertiaryActive'}>
-                  <Text font={'button2'}>링크 복사하기</Text>
-                </Button>
-                <Button typeState={'halfPrimaryActive'}>
-                  <Text font={'button2'}>나의 가능시간 입력</Text>
-                </Button>
+                {/* 이후 도메인 시 연결 */}
+                {/* <CopyToClipboard text={`${import.meta.env.VITE_APP_IP}/meet/${meetInfo.meetingId}`} onCopy={handleCopy}> */}
+                <CopyToClipboard
+                  text={`http://192.168.45.208:5173/meet/${meetInfo.meetingId}`}
+                  onCopy={handleCopy}
+                >
+                  <Button typeState={'halfTertiaryActive'}>
+                    <Text font={'button2'}>링크 복사하기</Text>
+                  </Button>
+                </CopyToClipboard>
+                <Link to={`/schedule/${meetInfo.meetingId}`}>
+                  <Button typeState={'halfPrimaryActive'}>
+                    <Text font={'button2'}>나의 가능시간 입력</Text>
+                  </Button>
+                </Link>
               </>
             ),
             hostScheduleComplete: (

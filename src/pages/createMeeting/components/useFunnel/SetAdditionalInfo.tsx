@@ -22,7 +22,11 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps
       const {
         data: { data },
       } = await createMeetingApi(meetingInfo);
-      console.log(data);
+      navigate('/meet/complete', {
+        state: {
+          meetingId: data.url,
+        },
+      });
     } catch (err) {
       console.log(err);
     }
