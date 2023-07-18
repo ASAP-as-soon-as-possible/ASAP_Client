@@ -4,13 +4,32 @@ import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+import { BestMeetTimeApi } from 'utils/apis/bestMeetTimeApi';
+
+import { BestMeetFinished } from '../types/meetCardData';
 
 interface ModalProps {
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   memberCount: number;
+  bestTime: BestMeetFinished;
+  meetingId: string;
 }
 
-function ConfirmModal({ setIsModalOpen, memberCount }: ModalProps) {
+function ConfirmModal({ setIsModalOpen, memberCount, bestTime, meetingId }: ModalProps) {
+  const bestMeetTime = async () => {
+    try {
+      const {
+        data: { data },
+      } = await BestMeetTimeApi(bestTime, meetingId);
+      console.log(data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const finishConfirm = () => {
+    bestMeetTime();
+    setIsModalOpen(false);
+  };
   return (
     <ReturnModalWrpper>
       <ModalSection>
@@ -28,7 +47,7 @@ function ConfirmModal({ setIsModalOpen, memberCount }: ModalProps) {
               취소
             </Text>
           </ModalBtn>
-          <ModalBtn id="confirm" onClick={() => {}}>
+          <ModalBtn id="confirm" onClick={finishConfirm}>
             <Text font={`body2`} color={`${theme.colors.white}`}>
               확정
             </Text>

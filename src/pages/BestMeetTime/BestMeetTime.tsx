@@ -95,8 +95,8 @@ function BestMeetTime() {
     return dataobj;
   };
 
-  const datause = whatisDataobj(selected);
-  console.log(datause);
+  const dataUse = whatisDataobj(selected);
+  console.log(dataUse);
 
   return (
     <BestMeetTimeWrapper>
@@ -150,7 +150,12 @@ function BestMeetTime() {
         </Button>
       </BtnWrapper>
       {showModal && (
-        <ConfirmModal setIsModalOpen={setShowModal} memberCount={bestTimeData.data.memberCount} />
+        <ConfirmModal
+          setIsModalOpen={setShowModal}
+          memberCount={bestTimeData.data.memberCount}
+          bestTime={dataUse} //얘도 데이터에서 애들 이름 지워야됨.
+          meetingId={'1'} //임시
+        />
       )}
     </BestMeetTimeWrapper>
   );
