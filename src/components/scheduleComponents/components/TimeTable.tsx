@@ -76,7 +76,6 @@ export default TimeTable;
 const TimeTableWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 5rem;
 `;
 
 const TimeSlotWrapper = styled.div`

@@ -19,7 +19,6 @@ const getTimeSlots = (preferTimes: PreferTime[]) => {
       ).padStart(2, '0')}`;
 
       currentTime = currentTime === '00:00' ? '24:00' : currentTime;
-      // console.log(currentTime, endTime);
     }
     return slots;
   });

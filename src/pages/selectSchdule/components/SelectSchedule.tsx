@@ -82,13 +82,12 @@ function SelectSchedule({ scheduleList, availableDates, preferTimes, setSchedule
   );
 }
 
-// const SelectScheduleWrapper = styled.div``;
 const SelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 
-  margin-top: 1rem;
+  margin-top: 2rem;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.grey8};
   padding-top: 1.2rem;
@@ -98,6 +97,7 @@ const SelectWrapper = styled.div`
   width: 33.5rem;
   height: 12.8rem;
 `;
+
 const SelectSection = styled.section`
   display: flex;
   flex-direction: column;

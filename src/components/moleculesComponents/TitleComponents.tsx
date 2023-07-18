@@ -7,7 +7,7 @@ interface TextProps {
   sub: string;
 }
 
-function TitleComponent({ main, sub }: TextProps) {
+function TitleComponents({ main, sub }: TextProps) {
   return (
     <TitleWrapper>
       <Text font={'head2'} color={`${theme.colors.white}`}>
@@ -20,7 +20,7 @@ function TitleComponent({ main, sub }: TextProps) {
   );
 }
 
-export default TitleComponent;
+export default TitleComponents;
 
 const TitleWrapper = styled.div`
   display: flex;
