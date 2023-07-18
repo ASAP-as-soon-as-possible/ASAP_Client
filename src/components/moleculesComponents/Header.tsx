@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
-import { BackIc, ExitIc, HambergerIc, MainLogoIc } from 'components/Icon/icon';
+import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
@@ -38,12 +38,31 @@ function Header({ position, setStep }: HeaderProps) {
           <IconSection onClick={backToFunnel}>
             <BackIc />
           </IconSection>
+        ) : position === 'login' ? (
+          <IconSection onClick={() => window.history.back()}>
+            <BackIc />
+          </IconSection>
+        ) : position === 'confirmMeet' ? (
+          <ConfirmIconSection onClick={() => window.history.back()}>
+            <IconSection>
+              <BackIc />
+            </IconSection>
+            <IconSection>
+              <LinkIc />
+            </IconSection>
+          </ConfirmIconSection>
         ) : null}
         {position === 'createMeeting' ? (
           <Text font={'title2'} color={`${theme.colors.white}`}>
             회의정보입력
           </Text>
-        ) : <EmptyBox/>}
+        ) : position === 'confirmMeet' ? (
+          <Text font={'title2'} color={`${theme.colors.white}`}>
+            회의 일정 확정
+          </Text>
+        ) : (
+          <EmptyBox />
+        )}
         <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
           <HambergerIc />
         </IconSection>
@@ -77,7 +96,7 @@ const HeaderSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top:1.2rem;
+  margin-top: 1.2rem;
   width: 100%;
 `;
 
@@ -89,7 +108,7 @@ const LogoIcSection = styled.div`
   height: 4.2rem;
 `;
 
-const EmptyBox =styled.div``
+const EmptyBox = styled.div``;
 
 const IconSection = styled.button`
   display: flex;
@@ -106,6 +125,13 @@ const NavigationSection = styled.section`
   background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100vh;
+`;
+
+const ConfirmIconSection = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  width: fit-content;
 `;
 
 const NavigationContainer = styled.div`

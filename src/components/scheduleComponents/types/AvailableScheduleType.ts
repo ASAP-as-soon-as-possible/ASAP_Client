@@ -25,6 +25,7 @@ export interface RowProps {
   isMorningDinner: boolean;
   isLastofValidDate: boolean;
   selectedSchedulePerDate: SelectedSchedule[];
+  scheduleType: 'priority' | 'available';
 }
 
 export interface ColumnProps {
@@ -37,4 +38,13 @@ export interface ColumnProps {
   $isLastofValidDate: boolean;
   EmptyRange: string[] | undefined;
   $isSelected: boolean;
+  priority?: number;
+  $priorityColorInfo: string;
+  $isStartTimeofPrioritySlot: boolean;
+  scheduleType: string;
+}
+
+export interface PriorityInfo {
+  priority: number | undefined;
+  isStartTime: boolean;
 }

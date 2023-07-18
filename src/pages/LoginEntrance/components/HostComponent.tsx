@@ -1,42 +1,58 @@
- import React from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import PasswordInput from 'components/atomComponents/PasswordInput';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
-import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import Header from 'components/moleculesComponents/Header';
+import TitleComponent from 'components/moleculesComponents/TitleComponent';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
+import ReturnModal from './ReturnModal';
+
+interface HostInfoProps {
+  id: string;
+  password: string;
+}
+interface HostProps {
+  hostInfo: HostInfoProps;
+  setHostInfo: Dispatch<SetStateAction<HostInfoProps>>;
+}
+
+function HostComponent({ hostInfo, setHostInfo }: HostProps) {
   const hostOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMeetingInfo((prev: MeetingInfo) => {
-      return { ...prev, name: e.target.value };
+    setHostInfo((prev: HostInfoProps) => {
+      return { ...prev, id: e.target.value };
     });
   };
-  const resetHost = () => {
-    setMeetingInfo((prev: MeetingInfo) => {
-      return { ...prev, name: '' };
+
+  const resetHostId = () => {
+    setHostInfo((prev: HostInfoProps) => {
+      return { ...prev, id: '' };
     });
   };
 
   const passWordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMeetingInfo((prev: MeetingInfo) => {
+    setHostInfo((prev: HostInfoProps) => {
       return { ...prev, password: e.target.value };
     });
   };
 
+  const [ismodalOpen, setIsModalOpen] = useState(true);
   return (
-    <SetHostInfoWrapper>
+    <>
+      <Header position={'login'} />
+      <TitleComponent main={'방장 정보를 알려주세요'} sub={''} />
       <HostInfoSection>
         <HostNameSection>
           <Text font={`title2`} color={`${theme.colors.white}`}>
             방장 이름
           </Text>
           <TextInput
-            value={meetingInfo.name}
+            value={hostInfo.id}
             setValue={hostOnChange}
-            resetValue={resetHost}
+            resetValue={resetHostId}
             placeholder={'방장 이름'}
           />
         </HostNameSection>
@@ -45,46 +61,31 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             방 비밀번호
           </Text>
           <PasswordInput
-            value={meetingInfo.password}
-            placeholder={`방 비밀번호`}
+            value={hostInfo.password}
+            placeholder={`숫자 4자 이상`}
             passWordOnChange={passWordOnChange}
-            page={"createMeeting"}
+            page={'entrance'}
           />
         </HostNameSection>
       </HostInfoSection>
       <StyledBtnSection>
         <Button
           typeState={
-            meetingInfo.name && meetingInfo.password.length >= 4
-              ? 'primaryActive'
-              : 'secondaryDisabled'
+            hostInfo.id && hostInfo.password.length >= 4 ? 'primaryActive' : 'secondaryDisabled'
           }
           onClick={
-            meetingInfo.name && meetingInfo.password.length >= 4
-              ? () =>
-                  setStep((prev) => {
-                    if (prev === 6) {
-                      return prev;
-                    }
-                    return prev + 1;
-                  })
-              : undefined
+            hostInfo.id && hostInfo.password.length >= 4 ? () => console.log('happy') : undefined
           }
         >
-          <Text font={'button2'}>다음</Text>
+          <Text font={'button2'}>방장 페이지 접속하기</Text>
         </Button>
       </StyledBtnSection>
-    </SetHostInfoWrapper>
+      {ismodalOpen ? <ReturnModal setIsModalOpen={setIsModalOpen}/> : undefined}
+    </>
   );
 }
 
-export default SetHostInfo;
-
-const SetHostInfoWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
+export default HostComponent;
 
 const StyledBtnSection = styled.section`
   position: fixed;
@@ -101,5 +102,4 @@ const HostInfoSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.4rem;
-  padding: 0 2rem;
 `;
