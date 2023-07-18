@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@types/react-copy-to-clipboard": "^5.0.4",
+    "@types/axios": "^0.14.0",
     "axios": "^1.4.0",
     "copy-text-to-clipboard": "^3.2.0",
     "html2canvas": "^1.4.1",
