@@ -6,26 +6,23 @@ import styled from 'styled-components/macro';
 import DateSelect from './DateSelect';
 import EndTimeSelect from './EndTimeSelect';
 import TimeSelect from './TimeSelect';
-import { ScheduleStates } from '../types/Schedule';
+import { DateStates, ScheduleStates } from '../types/Schedule';
 
 interface PropTypes {
   scheduleList: ScheduleStates[];
+  availableDates: DateStates[];
   setScheduleList: Dispatch<SetStateAction<ScheduleStates[]>>;
   deleteData: (index: number) => void;
 }
 
-function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes) {
+function SelectSchedule({ scheduleList, availableDates, setScheduleList, deleteData }: PropTypes) {
   const handleDate = (id: number, date: string) => {
-
     const updateDate: ScheduleStates[] = scheduleList?.map((schedule) => {
-
       if (schedule?.id === id) {
         return { ...schedule, date:date };
       }
       return schedule;
-
     });
-
     setScheduleList(updateDate);
   };
 
@@ -38,7 +35,6 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
     return schedule;
   });
         setScheduleList(updateStartTime);
-
   };
 
   const handleEndTime = (id: number, endTime: string) => {
@@ -57,7 +53,7 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
         scheduleList?.map((item,idx) =>(
           <SelectWrapper key={item?.id+idx}>
             <SelectSection>
-              <DateSelect id={item?.id} handleDate={handleDate} scheduleList={scheduleList} />
+              <DateSelect id={item?.id} availableDates={availableDates} handleDate={handleDate} scheduleList={scheduleList} />
               <ExitIconWrapper>
                 <ExitButton onClick={() => deleteData(item?.id)}>
                   <ExitIc />

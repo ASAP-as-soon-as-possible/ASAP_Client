@@ -5,9 +5,47 @@ import TimeTable from 'components/scheduleComponents/components/TimeTable';
 import styled from 'styled-components/macro';
 
 import SelectSchedule from './components/SelectSchedule';
-import { ScheduleStates } from './types/Schedule';
+import { DateStates, ScheduleStates } from './types/Schedule';
 
 function SelectPage() {
+  const [availableDates, setAvailableDates] = useState<DateStates[]>([
+    {
+      month: '7',
+      day: '6',
+      dayOfWeek: '월',
+    },
+    {
+      month: '7',
+      day: '7',
+      dayOfWeek: '화',
+    },
+    {
+      month: '7',
+      day: '8',
+      dayOfWeek: '수',
+    },
+    {
+      month: '7',
+      day: '9',
+      dayOfWeek: '목',
+    },
+    {
+      month: '7',
+      day: '10',
+      dayOfWeek: '금',
+    },
+    {
+      month: '7',
+      day: '11',
+      dayOfWeek: '토',
+    },
+    {
+      month: '7',
+      day: '12',
+      dayOfWeek: '일',
+    },
+  ])
+
   const [scheduleList, setScheduleList] = useState<ScheduleStates[]>([
     {
       id: 1,
@@ -36,11 +74,11 @@ function SelectPage() {
     setScheduleList(scheduleList.filter((item) => item?.id !== index));
   };
 
-  // useEffect(() => {}, [scheduleList]);
   return (
     <SelectPageWrapper>
       <TimeTable selectedSchedule={scheduleList} scheduleType="available" />;
       <SelectSchedule
+        availableDates={availableDates}
         scheduleList={scheduleList}
         setScheduleList={setScheduleList}
         deleteData={deleteDataList}
