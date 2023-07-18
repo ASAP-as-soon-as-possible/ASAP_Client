@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
+import { DropUpIc, DropDownIc, Wave } from 'components/Icon/icon';
 import { preferTimeType, directInputButton } from 'pages/createMeeting/data/meetingInfoData';
 import {
   FunnelProps,
@@ -10,9 +11,15 @@ import {
 } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
+import { timeList } from '../../data/meetingInfoData';
+import StartDropDown from '../StartDropDown';
+
 function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const [preferTimes, setPreferTimes] = useState(preferTimeType);
   const [directInput, setDirectInput] = useState(directInputButton);
+  const [startDropDown, setStartDropDown] = useState(false);
+  const [endDropDown, setEndDropDown] = useState(false);
+  // const [time, setTime] = useState()
 
   const getDate = (btnState: boolean, startTime: string, endTime: string) => {
     console.log(startTime, endTime);
@@ -34,11 +41,6 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         ),
       }));
     }
-
-    // setMeetingInfo((prev: MeetingInfo) => ({
-    //   ...prev,
-    //   preferTimes: [{ startTime: startTime, endTime: endTime }],
-    // }));
   };
 
   const deletePreferTimes = () => {
@@ -68,7 +70,11 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
 
   useEffect(
     () => {
+      console.log(directInput.btnState);
+      // meetingInfo.start
       console.log(meetingInfo);
+
+      // if(meetingInfo)
     },
     [meetingInfo],
   );
@@ -85,7 +91,7 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                 //   : meetingInfo.preferTimes[i] && meetingInfo.preferTimes[i].startTime !== ''
                 //     ? ` primaryActive`
                 //     : `primaryDisabled`
-                preferTime.btnState ? 'primaryActive' : 'primaryDisabled'
+                preferTime.btnState ? 'primaryActive' : 'tertiaryDisabled'
               }
               onClick={() => {
                 setPreferTimes((prev: PreferTimeInfo[]) => {
@@ -100,6 +106,9 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                   });
                   return updatedBtnState;
                 });
+                if (directInput.btnState) {
+                  deletePreferTimes();
+                }
                 setDirectInput((prev) => ({
                   ...prev,
                   btnState: false,
@@ -112,16 +121,71 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           );
         })}
         <Button
-          typeState={directInput.btnState ? 'primaryActive' : 'primaryDisabled'}
+          typeState={directInput.btnState ? 'primaryActive' : 'tertiaryDisabled'}
           onClick={onClickDirectBtn}
         >
           <Text font={'title2'}>{directInputButton.title} </Text>
         </Button>
+        {directInput.btnState ? (
+          <DropDownWrapper>
+            <DropDownSelect $drop={startDropDown} onClick={() => setStartDropDown((prev) => !prev)}>
+              {meetingInfo.preferTimes.length > 0 ? (
+                <Text font={'button2'}>{meetingInfo.preferTimes[0].startTime}</Text>
+              ) : (
+                <Text font={'button2'}>00:00</Text>
+              )}
+              {startDropDown ? <DropUpIcon /> : <DropDownIcon />}
+              {startDropDown && (
+                <DropDownContainer>
+                  {timeList.map((time, i) => (
+                    <StartDropDown
+                      key={time + i}
+                      type={'start'}
+                      time={time}
+                      setIsOpen={setStartDropDown}
+                      setMeetingInfo={setMeetingInfo}
+                    />
+                  ))}
+                </DropDownContainer>
+              )}
+            </DropDownSelect>
+            <Wave />
+            <DropDownSelect $drop={endDropDown} onClick={() => setEndDropDown((prev) => !prev)}>
+              {meetingInfo.preferTimes.length > 0 ? (
+                <Text font={'button2'}>{meetingInfo.preferTimes[0].endTime}</Text>
+              ) : (
+                <Text font={'button2'}>00:00</Text>
+              )}
+              {endDropDown ? <DropUpIcon /> : <DropDownIcon />}
+              {endDropDown && (
+                <DropDownContainer>
+                  {timeList.map((time, i) => (
+                    <StartDropDown
+                      key={time + i}
+                      type={'end'}
+                      time={time}
+                      setIsOpen={setEndDropDown}
+                      setMeetingInfo={setMeetingInfo}
+                    />
+                  ))}
+                </DropDownContainer>
+              )}
+            </DropDownSelect>
+          </DropDownWrapper>
+        ) : (
+          <div />
+        )}
       </SetTimeSection>
 
       <StyledBtnSection>
         <Button
-          typeState={meetingInfo.preferTimes.length >= 1 ? 'primaryActive' : 'secondaryDisabled'}
+          typeState={
+            meetingInfo.preferTimes.length >= 1 &&
+            meetingInfo.preferTimes[0].startTime &&
+            meetingInfo.preferTimes[0].endTime !== '00:00'
+              ? 'primaryActive'
+              : 'secondaryDisabled'
+          }
           onClick={
             meetingInfo.preferTimes
               ? () =>
@@ -160,4 +224,56 @@ const SetTimeSection = styled.section`
   flex-direction: column;
   gap: 1rem;
   width: 100%;
+`;
+
+const DropDownWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 4.8rem;
+`;
+
+const DropDownSelect = styled.div<{ $drop: boolean }>`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  margin-top: 0.6rem;
+  border-radius: 1rem;
+  border-bottom-left-radius: ${(props) => (props.$drop ? '0rem' : '0.8rem')};
+  border-bottom-right-radius: ${(props) => (props.$drop ? '0rem' : '0.8rem')};
+  background-color: ${({ theme }) => theme.colors.grey7};
+  cursor: pointer;
+  width: 15.1rem;
+  height: 4.8rem;
+  text-align: center;
+
+  color: ${({ theme }) => theme.colors.grey5};
+`;
+
+const DropDownIcon = styled(DropDownIc)`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1;
+`;
+
+const DropUpIcon = styled(DropUpIc)`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  z-index: 1;
+`;
+
+const DropDownContainer = styled.div`
+  position: absolute; //drop down에서 아래 DOM을 밀고 싶을 땐 지워주기
+  background-color: white;
+  margin-top: 4.8rem ;
+z-index: 2;
+  width:15.1rem;
+  height:14.4rem;
+  overflow:auto;
+  border-bottom-left-radius:  0.8rem;
+  border-bottom-right-radius: 0.8rem;
 `;
