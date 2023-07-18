@@ -158,7 +158,6 @@
   height: 4rem;
   /*날짜*/
   padding: 2.5rem 2.5rem;
-  pointer-events: none !important;
 }
 .rmdp-day span {
   font-weight: 400;
