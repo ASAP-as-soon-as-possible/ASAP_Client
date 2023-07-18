@@ -91,10 +91,6 @@ function BestMeetTime() {
     }
     return dataobj;
   };
-
-  const datause = whatisDataobj(selected);
-  console.log(datause);
-
   return (
     <BestMeetTimeWrapper>
       <TitleSection>

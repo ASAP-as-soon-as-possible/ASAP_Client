@@ -29,10 +29,10 @@ function CreateMeeting() {
   const [step, setStep] = useState(0);
   const [meetingInfo, setMeetingInfo] = useState(initialMeetingInfo);
   const currentStep = funnelStep[step];
-  console.log(meetingInfo);
+
   return (
     <>
-      <ViewTestingWrapper>
+      <CreateMeetingWrapper>
         <Header position={'createMeeting'} setStep={setStep} />
 
         <ReturnTitleComponent step={currentStep} />
@@ -43,14 +43,14 @@ function CreateMeeting() {
           setMeetingInfo={setMeetingInfo}
           setStep={setStep}
         />
-      </ViewTestingWrapper>
+      </CreateMeetingWrapper>
     </>
   );
 }
 
 export default CreateMeeting;
 
-const ViewTestingWrapper = styled.div`
+const CreateMeetingWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

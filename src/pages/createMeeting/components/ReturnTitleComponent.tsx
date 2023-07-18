@@ -1,4 +1,4 @@
-import TitleComponents from 'components/moleculesComponents/TitleComponent';
+import TitleComponents from 'components/moleculesComponents/TitleComponents';
 
 interface FunnelSteps {
   [key: string]: {
