@@ -2,7 +2,6 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
-import { Token } from 'html2canvas/dist/types/css/syntax/tokenizer';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { BestMeetTimeApi } from 'utils/apis/bestMeetTimeApi';
