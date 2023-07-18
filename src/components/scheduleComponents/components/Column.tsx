@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
 
 import { ColumnProps } from '../types/AvailableScheduleType';
 
@@ -13,7 +14,12 @@ const Column = (props: ColumnProps) => {
     EmptyRange,
     $isLastofValidDate,
     $isSelected,
+    priority,
+    $priorityColorInfo,
+    $isStartTimeofPrioritySlot,
+    scheduleType,
   } = props;
+
   return (
     <ColumnWrapper
       $isDateEmpty={$isEmpty}
@@ -25,7 +31,17 @@ const Column = (props: ColumnProps) => {
       $isLastOfValidDate={$isLastofValidDate}
       $is18ofEmptyTimeSlot={EmptyRange && timeSlot === '18:00'}
       $isSelected={$isSelected}
-    />
+      $priorityColorInfo={$priorityColorInfo}
+      $isStartTimeofPrioritySlot={$isStartTimeofPrioritySlot}
+    >
+      {$isStartTimeofPrioritySlot &&
+      $priorityColorInfo !== theme.colors.grey6 &&
+      scheduleType === 'priority' ? (
+        <PriorityNumber>{priority}</PriorityNumber>
+      ) : (
+        undefined
+      )}
+    </ColumnWrapper>
   );
 };
 
@@ -41,6 +57,8 @@ interface ColumnWrapperProps {
   $isLastOfValidDate: boolean;
   $is18ofEmptyTimeSlot: boolean | undefined;
   $isSelected: boolean;
+  $priorityColorInfo: string;
+  $isStartTimeofPrioritySlot: boolean;
 }
 
 const ColumnWrapper = styled.div<ColumnWrapperProps>`
@@ -59,11 +77,19 @@ const ColumnWrapper = styled.div<ColumnWrapperProps>`
 
   border-bottom: ${({ $isSelected }) => $isSelected && 'none'};
 
-  border-left: ${({ theme, $isFirstRow }) =>
+  border-left: ${({ $isFirstRow }) =>
     $isFirstRow ? `0.1rem solid ${theme.colors.grey7}` : 'none'};
 
-  background-color: ${({ theme, $isDateEmpty, $isSelected }) =>
-    $isSelected ? theme.colors.main4 : $isDateEmpty ? theme.colors.grey9 : 'none'};
+  background-color: ${({ theme, $isDateEmpty, $isSelected, $priorityColorInfo }) =>
+    $isSelected ? $priorityColorInfo : $isDateEmpty ? theme.colors.grey9 : 'none'};
+
   width: 4.4rem;
   height: 1.2rem;
+`;
+
+const PriorityNumber = styled.span`
+  display: flex;
+  justify-content: center;
+  ${({ theme }) => theme.fonts.body1};
+  position: relative;
 `;

@@ -7,10 +7,10 @@ import ErrorPage404 from 'pages/ErrorLoading/ErrorPage404';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import LoginEntrance from 'pages/LoginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
+import Prioritization from 'pages/Prioritization/Prioritization';
 import SelectPage from 'pages/selectSchdule/SelectPage';
 import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
 
 const Router = () => {
   return (
@@ -22,7 +22,7 @@ const Router = () => {
         <Route path="/meet/create" element={<CreateMeeting />} />
         <Route path="/meet/complete" element={<SteppingLayout steppingType={'meetComplete'} />} />
         <Route path="/schedule/:meetingId" element={<div>가능 시간 입력페이지를 넣어주세요</div>} />
-        <Route path="/priority/:meetingId" element={<div>우선순위 선정페이지를 넣어주세요</div>} />
+        <Route path="/priority/:meetingId" element={<Prioritization />} />
         <Route
           path="/schedule-complete/:meetingId"
           element={<SteppingLayout steppingType={'hostScheduleComplete'} />}
@@ -34,7 +34,6 @@ const Router = () => {
         <Route path="/q-card/:meetingId" element={<CueCard />} />
         <Route path="/loadingpage" element={<LoadingPage />} />
         <Route path="*" element={<ErrorPage404 />} />
-        <Route path="*" element={<div>not found</div>} />
         <Route path="/select" element={<SelectPage />} />
       </Routes>
     </BrowserRouter>

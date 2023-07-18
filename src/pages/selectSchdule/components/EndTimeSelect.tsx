@@ -6,25 +6,23 @@ import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 import { dummyData, time } from './dummyData';
-import TimeDropDown from './TimeDropDown';
+import EndTimeDropDown from './EndTimeDropDown';
 import { ScheduleStates } from '../types/Schedule';
 
 interface PropTypes {
   text: string;
   id: number;
-  handleStartTime: (id: number, startTime: string) => void;
+  handleEndTime: (id: number, endTime: string) => void;
   scheduleList: ScheduleStates[];
 }
-function TimeSelect({ text, id, handleStartTime, scheduleList }: PropTypes) {
+function EndTimeSelect({ text, id, handleEndTime, scheduleList }: PropTypes) {
   const [isOpen, setIsOpen] = useState(false);
   const startTimeModal = () => {
     setIsOpen((prev) => !prev);
   };
 
   const ref = useRef<HTMLDivElement>(null);
-  // console.log(JSON.stringify(scheduleList));
-  // console.log(id);
-  // console.log(scheduleList[id - 1].startTime);
+
   useEffect(
     () => {
       const clickOutSide = (e: MouseEvent) => {
@@ -43,27 +41,27 @@ function TimeSelect({ text, id, handleStartTime, scheduleList }: PropTypes) {
   return (
     <TimeSelectWrapper>
       <TimeSelectSection $drop={isOpen} onClick={startTimeModal} ref={ref}>
-        {scheduleList[id - 1]?.startTime ? (
+        {scheduleList[id - 1]?.endTime ? (
           <Text font="button2" color={`${theme.colors.grey5}`}>
-            {scheduleList[id - 1].startTime}
+            {scheduleList[id - 1].endTime}
           </Text>
         ) : (
           <Text font="button2" color={`${theme.colors.grey5}`}>
-            {text}
+            {"종료 시간"}
           </Text>
         )}
       </TimeSelectSection>
       {isOpen && (
         <TimeDropDownWrapper>
           {time.map((item, i) => (
-            <TimeDropDown
-            key={item}
+            <EndTimeDropDown
+              key={item}
               times={item}
               text={text}
               id={id}
               isOpen={isOpen}
               setIsOpen={setIsOpen}
-              handleStartTime={handleStartTime}
+              handleEndTime={handleEndTime}
             />
           ))}
         </TimeDropDownWrapper>
@@ -105,4 +103,4 @@ const TimeDropDownWrapper = styled.div`
   } */
 
 `;
-export default TimeSelect;
+export default EndTimeSelect;
