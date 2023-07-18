@@ -4,7 +4,7 @@ const getTimeSlots = (preferTimes: PreferTime[]) => {
   const timeSlots = preferTimes.flatMap((obj) => {
     const { startTime, endTime } = obj;
     if (parseInt(startTime) >= parseInt(endTime)) {
-      alert('시작 시간은 종료 시간 이후로 설정해주세요!');
+      alert('종료 시간은 시작 시간 이후로 설정해주세요!');
       return;
     }
     if (startTime === '' || endTime === '') return;
