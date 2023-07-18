@@ -7,31 +7,33 @@ import { theme } from 'styles/theme';
 
 interface ModalProps {
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
+  memberCount: number;
 }
 
-function ConfirmModal({ setIsModalOpen }: ModalProps) {
+function ConfirmModal({ setIsModalOpen, memberCount }: ModalProps) {
   return (
     <ReturnModalWrpper>
       <ModalSection>
         <IconCatainer onClick={() => setIsModalOpen(false)}>
           <ExitIc />
         </IconCatainer>
-        <Text font={`title1`} color={`${theme.colors.sub1}`}>
-          잠깐!
-        </Text>
         <MentContainer>
-          <Text font={`body2`} color={`${theme.colors.white}`}>
-            나의 가능 시간을 입력해야
-          </Text>
-          <Text font={`body2`} color={`${theme.colors.white}`}>
-            방장 페이지에 접속할 수 있어요!
+          <Text font={`body3`} color={`${theme.colors.white}`}>
+            {`현재까지 ${memberCount}명의 멤버가 입력했어요. 회의 시간을 확정하겠습니까?`}
           </Text>
         </MentContainer>
-        <ModalBtn>
-          <Text font={`body2`} color={`${theme.colors.white}`}>
-            가능 시간 입력하러 가기
-          </Text>
-        </ModalBtn>
+        <BtnWrapper>
+          <ModalBtn id="cancel" onClick={() => setIsModalOpen(false)}>
+            <Text font={`body2`} color={`${theme.colors.white}`}>
+              취소
+            </Text>
+          </ModalBtn>
+          <ModalBtn id="confirm" onClick={() => {}}>
+            <Text font={`body2`} color={`${theme.colors.white}`}>
+              확정
+            </Text>
+          </ModalBtn>
+        </BtnWrapper>
       </ModalSection>
     </ReturnModalWrpper>
   );
@@ -42,10 +44,12 @@ export default ConfirmModal;
 const ReturnModalWrpper = styled.div`
   display: flex;
   position: absolute;
+  top: 0;
   left: 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  z-index: 1;
   background-color: rgba(0, 0, 0, 0.6);
   width: 100%;
   height: 100vh;
@@ -60,7 +64,7 @@ const ModalSection = styled.article`
   border-radius: 0.8rem;
   background-color: ${({ theme }) => theme.colors.grey8};
   width: 28.8rem;
-  height: 21.2rem;
+  height: 15.6rem;
 `;
 
 const IconCatainer = styled.div`
@@ -77,9 +81,11 @@ const IconCatainer = styled.div`
 
 const MentContainer = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   margin-top: 1.2rem;
+  width: 16.9rem;
+  height: 4rem;
 `;
 const ModalBtn = styled.button`
   display: flex;
@@ -87,7 +93,13 @@ const ModalBtn = styled.button`
   justify-content: center;
   margin-top: 2.4rem;
   border-radius: 0.6rem;
-  background-color: ${({ theme }) => theme.colors.main1};
-  width: 17.6rem;
-  height: 4.2rem;
+  background-color: ${({ theme, id }) =>
+    id === 'cancel' ? theme.colors.grey6 : theme.colors.main2};
+  width: 12.4rem;
+  height: 4rem;
+`;
+
+const BtnWrapper = styled.div`
+  display: flex;
+  gap: 0.8rem;
 `;

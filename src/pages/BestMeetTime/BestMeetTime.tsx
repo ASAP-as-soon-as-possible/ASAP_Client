@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
@@ -7,6 +8,7 @@ import { theme } from 'styles/theme';
 
 import AlternativeCard from './components/AlternativeCard';
 import BestTimeCard from './components/BestTimeCard';
+import ConfirmModal from './components/confirmModal';
 import { BestMeetFinished, DateTimeData } from './types/meetCardData';
 
 const bestTimeData: DateTimeData = {
@@ -79,6 +81,7 @@ const bestTimeData: DateTimeData = {
 function BestMeetTime() {
   const [isalternativeCardOpen, setIsalternativeCardOpen] = useState(false);
   const [selected, setSelected] = useState(0);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   let dataobj: BestMeetFinished;
   const whatisDataobj = (rank: number) => {
@@ -141,6 +144,14 @@ function BestMeetTime() {
       ) : (
         undefined
       )}
+      <BtnWrapper>
+        <Button typeState={'primaryActive'} onClick={() => setShowModal(true)}>
+          <Text font={'title2'}> 확정</Text>
+        </Button>
+      </BtnWrapper>
+      {showModal && (
+        <ConfirmModal setIsModalOpen={setShowModal} memberCount={bestTimeData.data.memberCount} />
+      )}
     </BestMeetTimeWrapper>
   );
 }
@@ -189,4 +200,9 @@ const BasicIconContainer = styled.div`
   cursor: pointer;
   width: 3rem;
   height: 3rem;
+`;
+const BtnWrapper = styled.div`
+  position: fixed;
+  bottom: 1.2rem;
+  border-radius: 50%;
 `;
