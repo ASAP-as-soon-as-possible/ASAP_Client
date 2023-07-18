@@ -1,6 +1,3 @@
-import { SVGProps } from 'react';
-
-import { dropDownBtn } from 'assets/svgs/dropDownBtn.svg';
 import { ExitIc, DropDownIc } from 'components/Icon/icon';
 // import ReactDOMServer from 'react-dom/server';
 import styled from 'styled-components/macro';
