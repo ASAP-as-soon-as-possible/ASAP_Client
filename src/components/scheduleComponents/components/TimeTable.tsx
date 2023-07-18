@@ -23,10 +23,10 @@ function TimeTable({
   const isMorningDinner =
     preferTimes.length === 2 && preferTimes.every((time) => time.startTime !== '12:00');
 
-  const PreferTimes = [...preferTimes];
-  isMorningDinner && PreferTimes.splice(1, 0, { startTime: '12:00', endTime: '18:00' }); // 오전, 저녁 선택시 오후 시간을 추가로 채움
+  const formattedPreferTimes = [...preferTimes];
+  isMorningDinner && formattedPreferTimes.splice(1, 0, { startTime: '12:00', endTime: '18:00' }); // 오전, 저녁 선택시 오후 시간을 추가로 채움
 
-  const timeSlots = getTimeSlots(PreferTimes);
+  const timeSlots = getTimeSlots(formattedPreferTimes);
 
   let formattedDates = availableDates.map((date) => `${date.month}/${date.day} ${date.dayOfWeek}`);
 
