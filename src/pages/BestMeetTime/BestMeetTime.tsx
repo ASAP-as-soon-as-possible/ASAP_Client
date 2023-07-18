@@ -198,6 +198,8 @@ function BestMeetTime() {
   };
 
   const dataUse = whatisDataobj(selected);
+  const token =
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2ODk3MDQ0NzgsImV4cCI6MTY4OTc5MDg3OCwidXNlcklkIjoiMjMiLCJyb2xlIjoiSE9TVCJ9.1yraZtDir9BPJcWTqw4pAMa9iTjj3ejPDjuJGJ2ziJhFpp45TM6uvkc8m_LGM11DOgV2jRA32mQPypacdlIuUQ';
   console.log(dataUse);
 
   return (
@@ -216,7 +218,7 @@ function BestMeetTime() {
       <BestTimeCard
         rank={0}
         selected={selected}
-        cardData={bestTimeData.data.bestDateTime}
+        carddata={bestTimeData.data.bestDateTime}
         chooseMeetime={setSelected}
       />
 
@@ -256,7 +258,8 @@ function BestMeetTime() {
           setIsModalOpen={setShowModal}
           memberCount={bestTimeData.data.memberCount}
           bestTime={dataUse} //얘도 데이터에서 애들 이름 지워야됨.
-          meetingId={'MTU='} //임시
+          meetingId={'MjM='} //임시
+          token={token}
         />
       )}
     </BestMeetTimeWrapper>

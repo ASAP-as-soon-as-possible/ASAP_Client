@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
+import { Token } from 'html2canvas/dist/types/css/syntax/tokenizer';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { BestMeetTimeApi } from 'utils/apis/bestMeetTimeApi';
@@ -13,14 +14,15 @@ interface ModalProps {
   memberCount: number;
   bestTime: BestMeetFinished;
   meetingId: string;
+  token: string;
 }
 
-function ConfirmModal({ setIsModalOpen, memberCount, bestTime, meetingId }: ModalProps) {
+function ConfirmModal({ setIsModalOpen, memberCount, bestTime, meetingId, token }: ModalProps) {
   const bestMeetTime = async () => {
     try {
       const {
         data: { data },
-      } = await BestMeetTimeApi(bestTime, meetingId);
+      } = await BestMeetTimeApi(bestTime, meetingId, token);
       console.log(data);
     } catch (err) {
       console.log(err);
