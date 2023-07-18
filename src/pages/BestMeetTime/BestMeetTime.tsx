@@ -22,17 +22,51 @@ const bestTimeData: DateTimeData = {
       dayOfWeek: '월',
       startTime: '06:00',
       endTime: '12:00',
-      userNames: [
-        '서지원',
-        '강원용',
-        '김태희',
-        '이재훈',
-        '서채원',
-        '정찬우',
-        '심은서',
-        '이동헌',
-        '강민서',
-        '도소현',
+      users: [
+        {
+          id: 1,
+          name: '서지원',
+        },
+        {
+          id: 1,
+          name: '서채원',
+        },
+        {
+          id: 2,
+          name: '강민서',
+        },
+        {
+          id: 3,
+          name: '김태희',
+        },
+        {
+          id: 4,
+          name: '도소현',
+        },
+        {
+          id: 5,
+          name: '강원용',
+        },
+        {
+          id: 6,
+          name: '이재훈',
+        },
+        {
+          id: 7,
+          name: '정찬우',
+        },
+        {
+          id: 8,
+          name: '서지원',
+        },
+        {
+          id: 9,
+          name: '심은서',
+        },
+        {
+          id: 10,
+          name: '이동헌',
+        },
       ],
     },
     otherDateTimes: [
@@ -42,17 +76,51 @@ const bestTimeData: DateTimeData = {
         dayOfWeek: '화',
         startTime: '06:00',
         endTime: '12:00',
-        userNames: [
-          '서지원',
-          '강원용',
-          '김태희',
-          '이재훈',
-          '서채원',
-          '정찬우',
-          '심은서',
-          '이동헌',
-          '강민서',
-          '도소현',
+        users: [
+          {
+            id: 1,
+            name: '서지원',
+          },
+          {
+            id: 1,
+            name: '서채원',
+          },
+          {
+            id: 2,
+            name: '강민서',
+          },
+          {
+            id: 3,
+            name: '김태희',
+          },
+          {
+            id: 4,
+            name: '도소현',
+          },
+          {
+            id: 5,
+            name: '강원용',
+          },
+          {
+            id: 6,
+            name: '이재훈',
+          },
+          {
+            id: 7,
+            name: '정찬우',
+          },
+          {
+            id: 8,
+            name: '서지원',
+          },
+          {
+            id: 9,
+            name: '심은서',
+          },
+          {
+            id: 10,
+            name: '이동헌',
+          },
         ],
       },
       {
@@ -61,17 +129,51 @@ const bestTimeData: DateTimeData = {
         dayOfWeek: '수',
         startTime: '06:00',
         endTime: '12:00',
-        userNames: [
-          '서지원',
-          '강원용',
-          '김태희',
-          '이재훈',
-          '서채원',
-          '정찬우',
-          '심은서',
-          '이동헌',
-          '강민서',
-          '도소현',
+        users: [
+          {
+            id: 1,
+            name: '서지원',
+          },
+          {
+            id: 1,
+            name: '서채원',
+          },
+          {
+            id: 2,
+            name: '강민서',
+          },
+          {
+            id: 3,
+            name: '김태희',
+          },
+          {
+            id: 4,
+            name: '도소현',
+          },
+          {
+            id: 5,
+            name: '강원용',
+          },
+          {
+            id: 6,
+            name: '이재훈',
+          },
+          {
+            id: 7,
+            name: '정찬우',
+          },
+          {
+            id: 8,
+            name: '서지원',
+          },
+          {
+            id: 9,
+            name: '심은서',
+          },
+          {
+            id: 10,
+            name: '이동헌',
+          },
         ],
       },
     ],
@@ -114,7 +216,7 @@ function BestMeetTime() {
       <BestTimeCard
         rank={0}
         selected={selected}
-        carddata={bestTimeData.data.bestDateTime}
+        cardData={bestTimeData.data.bestDateTime}
         chooseMeetime={setSelected}
       />
 
@@ -154,7 +256,7 @@ function BestMeetTime() {
           setIsModalOpen={setShowModal}
           memberCount={bestTimeData.data.memberCount}
           bestTime={dataUse} //얘도 데이터에서 애들 이름 지워야됨.
-          meetingId={'1'} //임시
+          meetingId={'MTU='} //임시
         />
       )}
     </BestMeetTimeWrapper>

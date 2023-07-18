@@ -33,12 +33,15 @@ function ConfirmModal({ setIsModalOpen, memberCount, bestTime, meetingId }: Moda
   return (
     <ReturnModalWrpper>
       <ModalSection>
-        <IconCatainer onClick={() => setIsModalOpen(false)}>
+        <IconContainer onClick={() => setIsModalOpen(false)}>
           <ExitIc />
-        </IconCatainer>
+        </IconContainer>
         <MentContainer>
+          <ModalMent>
+            현재까지 <ModalHighlight>{memberCount}명</ModalHighlight>이 입력했어요.
+          </ModalMent>
           <Text font={`body3`} color={`${theme.colors.white}`}>
-            {`현재까지 ${memberCount}명의 멤버가 입력했어요. 회의 시간을 확정하겠습니까?`}
+            {`회의 시간을 확정하시겠습니까?`}
           </Text>
         </MentContainer>
         <BtnWrapper>
@@ -86,7 +89,7 @@ const ModalSection = styled.article`
   height: 15.6rem;
 `;
 
-const IconCatainer = styled.div`
+const IconContainer = styled.div`
   display: flex;
   position: absolute;
   top: 0.8rem;
@@ -100,12 +103,24 @@ const IconCatainer = styled.div`
 
 const MentContainer = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: 1.2rem;
-  width: 16.9rem;
+  width: 18rem;
   height: 4rem;
 `;
+
+const ModalMent = styled.span`
+  color: ${({ theme }) => theme.colors.white};
+  ${({ theme }) => theme.fonts.body3};
+`;
+
+const ModalHighlight = styled.span`
+  color: ${({ theme }) => theme.colors.red};
+  ${({ theme }) => theme.fonts.body3};
+`;
+
 const ModalBtn = styled.button`
   display: flex;
   align-items: center;
