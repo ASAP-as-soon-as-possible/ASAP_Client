@@ -70,13 +70,24 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
 
   useEffect(
     () => {
-      console.log(directInput.btnState);
-      // meetingInfo.start
-      console.log(meetingInfo);
-
+      // console.log(directInput.btnState);
+      // // meetingInfo.start
+      // console.log(meetingInfo);
+      console.log(meetingInfo.preferTimes[0]);
+      if (
+        meetingInfo.preferTimes &&
+        meetingInfo.preferTimes[0] &&
+        parseInt(meetingInfo.preferTimes[0].startTime) >=
+          parseInt(meetingInfo.preferTimes[0].endTime)
+      ) {
+        if (meetingInfo.preferTimes[0].endTime !== '00:00') {
+          alert('종료 시간은 시작 시간 이후로 설정해주세요!');
+          deletePreferTimes();
+        }
+      }
       // if(meetingInfo)
     },
-    [meetingInfo],
+    [meetingInfo.preferTimes],
   );
   return (
     <SetTimesWrapper>
