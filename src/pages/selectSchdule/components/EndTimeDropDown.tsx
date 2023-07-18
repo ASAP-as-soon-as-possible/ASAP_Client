@@ -1,9 +1,6 @@
 import React, { useRef, useEffect, useState, SetStateAction, Dispatch } from 'react';
 
 import Text from 'components/atomComponents/Text';
-
-import { scheduleAtom, scheduleAtoms } from '/src/recoil/atoms/dateAtom';
-
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 

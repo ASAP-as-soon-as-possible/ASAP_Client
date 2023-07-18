@@ -2,9 +2,6 @@ import React, { Dispatch, SetStateAction, MouseEvent } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { useRecoilState } from 'recoil';
-
-import { scheduleAtom, dateAtoms } from '/src/recoil/atoms/dateAtom';
-
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 

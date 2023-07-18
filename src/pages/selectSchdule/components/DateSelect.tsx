@@ -4,7 +4,6 @@ import Text from 'components/atomComponents/Text';
 import { DropDownIc, DropUpIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import {v4 as uuidv4} from "uuid";
 
 import DateDropDown from './DateDropDown';
 import { dummyData } from './dummyData';
