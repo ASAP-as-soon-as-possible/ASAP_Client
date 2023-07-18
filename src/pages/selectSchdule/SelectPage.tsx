@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { PlusIc } from 'components/Icon/icon';
+import TimeTable from 'components/scheduleComponents/components/TimeTable';
 import styled from 'styled-components/macro';
 
 import SelectSchedule from './components/SelectSchedule';
@@ -16,7 +17,6 @@ function SelectPage() {
       priority: 0,
     },
   ]);
-
 
   const nextID = useRef<number>(2);
 
@@ -39,8 +39,7 @@ function SelectPage() {
   // useEffect(() => {}, [scheduleList]);
   return (
     <SelectPageWrapper>
-
-
+      <TimeTable selectedSchedule={scheduleList} scheduleType="available" />;
       <SelectSchedule
         scheduleList={scheduleList}
         setScheduleList={setScheduleList}
