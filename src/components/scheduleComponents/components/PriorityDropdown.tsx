@@ -9,7 +9,6 @@ import { theme } from 'styles/theme';
 const arr = [1, 2, 3, 43, 5, 6];
 function PriorityDropdown() {
   const [timeSelect, setTimeSelect] = useState([false, false, false]);
-  const [rankData, setRankData] = useState([]);
   const handleDropdown = (i: number) => {
     if (!timeSelect[i]) {
       setTimeSelect((prevState) => {

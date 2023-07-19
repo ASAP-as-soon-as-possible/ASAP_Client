@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+import { scheduleAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
@@ -7,6 +8,7 @@ import Header from 'components/moleculesComponents/Header';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
 import TitleComponents from 'components/moleculesComponents/TitleComponents';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -69,19 +71,9 @@ function SelectPage() {
       },
     ]
   )
-
-  const [scheduleList, setScheduleList] = useState<ScheduleStates[]>([
-    {
-      id: 1,
-      date: '',
-      startTime: '',
-      endTime: '',
-      priority: 0,
-    },
-  ]);
+  const [scheduleList, setScheduleList] = useRecoilState<ScheduleStates[]>(scheduleAtom);
 
   const nextID = useRef<number>(2);
-
   const addDateList = () => {
     const schedule = {
       id: nextID.current,
@@ -204,7 +196,7 @@ const SpeechBubbleWrapper = styled.div`
     display: flex;
     position: relative;
     margin-top:2rem;
-   
+
 `
 
 const TitleWrapper = styled.div`
