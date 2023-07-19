@@ -1,6 +1,7 @@
 import { DateStates, ScheduleStates, TimeStates } from './types/Schedule';
 import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
 import React, { useEffect, useRef, useState } from 'react';
+import { availableDatesAtom, preferTimesAtom } from 'atoms/atom';
 
 import Button from 'components/atomComponents/Button';
 import Header from 'components/moleculesComponents/Header';
@@ -13,12 +14,13 @@ import { availbleScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi'
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 
 function SelectPage() {
   // 가능시간 선택지 - 날짜
-  const [availableDates, setAvailableDates] = useState<DateStates[]>([])
+  const [availableDates, setAvailableDates] = useRecoilState(availableDatesAtom);
 
-  const [preferTimes, setPreferTimes] = useState<TimeStates[]>([])
+  const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
 
   const {meetingId} = useParams();
 
