@@ -27,6 +27,41 @@ function PriorityDropdown() {
       });
     }
   };
+
+  const handlePriority = (index: number, priority: number) => {
+    console.log(index, priority);
+    let temp = 0;
+    switch (index) {
+      case 1:
+        temp = 3;
+        break;
+      case 2:
+        temp = 2;
+        break;
+      case 3:
+        temp = 1;
+        break;
+      default:
+        temp = 0;
+        break;
+    }
+    console.log(temp);
+    setScheduleList((prev) => {
+      // console.log(temp);
+      // const updatedScheduleList = [...prev];
+      // console.log(updatedScheduleList);
+      // updatedScheduleList[index].priority = temp;
+      // return updatedScheduleList;
+
+      const updatedScheduleList = prev.map((schedule) => {
+        if (schedule.id === index) {
+          return { ...schedule, priority: temp };
+        }
+        return schedule;
+      });
+      return updatedScheduleList;
+    });
+  };
   useEffect(
     () => {
       console.log(scheduleList);
@@ -66,13 +101,19 @@ function PriorityDropdown() {
                 />
                 {timeSelect[i] && (
                   <DropdownWrapper>
-                    {scheduleList.map((item) => (
-                      <DropDownItem key={item.id}>
-                        <Text font={'button1'} color={theme.colors.white}>
-                          {item.date} {item.startTime} {item.endTime}
-                        </Text>
-                      </DropDownItem>
-                    ))}
+                    {scheduleList.map(
+                      (item) =>
+                        !item.priority && (
+                          <DropDownItem
+                            key={item.id}
+                            onClick={() => handlePriority(item.id, item.priority)}
+                          >
+                            <Text font={'button1'} color={theme.colors.white}>
+                              {item.date} {item.startTime} {item.endTime}
+                            </Text>
+                          </DropDownItem>
+                        ),
+                    )}
                   </DropdownWrapper>
                 )}
               </InputWrapper>
