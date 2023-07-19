@@ -147,9 +147,17 @@ function SelectPage() {
                 </TextSeveralLines>
               </>
             ) :
+            <TextOneLine>
               <Text font={'body1'} color={`${theme.colors.grey1}`}>
                 회의는&nbsp;
               </Text>
+              <Text font={'body1'} color={`${theme.colors.sub1}`}>
+              {meetingDetail.duration}&nbsp;
+            </Text>
+            <Text font={'body1'} color={`${theme.colors.grey1}`}>
+              동안 진행될 예정이에요!
+            </Text>
+            </TextOneLine>
           }
         </TextWrapper>
       {/* <SpeechBubbleIc/> */}
@@ -240,7 +248,7 @@ const TitleWrapper = styled.div`
   flex-direction: column;
   gap: 1.2rem;
 
-  padding: 1.6rem 0 3.2rem 0;
+  padding: 3.2rem 0 3.2rem 0;
   width: 100%;
 `;
 
