@@ -53,9 +53,11 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
             ),
             memberScheduleComplete: (
               <>
-                <Button typeState={'primaryActive'}>
-                  <Text font={'button2'}>홈으로 돌아가기</Text>
-                </Button>
+                <Link to={`/`}>
+                  <Button typeState={'primaryActive'}>
+                    <Text font={'button2'}>홈으로 돌아가기</Text>
+                  </Button>
+                </Link>
               </>
             ),
           }[steppingType]
