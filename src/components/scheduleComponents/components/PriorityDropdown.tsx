@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { Circle1Ic, Circle2Ic, Circle3Ic } from 'components/Icon/icon';
+import { AVAILABLE_DATES } from 'components/scheduleComponents/data/availableDates';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 const arr = [1, 2, 3, 43, 5, 6];
 function PriorityDropdown() {
   const [timeSelect, setTimeSelect] = useState([false, false, false]);
-
+  const [rankData, setRankData] = useState([]);
   const handleDropdown = (i: number) => {
     if (!timeSelect[i]) {
       setTimeSelect((prevState) => {
@@ -52,8 +53,19 @@ function PriorityDropdown() {
                   placeholder="시간대 선택"
                   readOnly
                   onClick={() => handleDropdown(i)}
+                  // value={}
                 />
-                {timeSelect[i] && <DropdownWrapper />}
+                {timeSelect[i] && (
+                  <DropdownWrapper>
+                    {AVAILABLE_DATES.map((item) => (
+                      <DropDownItem key={item}>
+                        <Text font={'button1'} color={theme.colors.white}>
+                          {item.month}월 {item.day}일 {item.dayOfWeek}요일
+                        </Text>
+                      </DropDownItem>
+                    ))}
+                  </DropdownWrapper>
+                )}
               </InputWrapper>
             </PriorityDropdownSection>
           ) : (
@@ -125,7 +137,24 @@ const DropdownWrapper = styled.div`
   border-radius: 0rem 0rem 0.8rem 0.8rem;
   background-color: ${({ theme }) => theme.colors.grey6};
   width: 27.4rem;
-  height: 10rem;
+  height: 20.8rem;
+  overflow-x: hidden;
+  /* max-height: 10.4rem; */
+  overflow-y: auto;
+`;
+
+const DropDownItem = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid ${({ theme }) => theme.colors.grey7};
+  background-color: ${({ theme }) => theme.colors.grey6};
+
+  cursor: pointer;
+
+  width: 27.4rem;
+  height: 5.2rem;
 `;
 
 export default PriorityDropdown;
