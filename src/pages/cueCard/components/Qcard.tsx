@@ -1,4 +1,4 @@
-import { forwardRef, useState , ForwardedRef } from 'react';
+import { forwardRef, useState, ForwardedRef } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
@@ -36,14 +36,25 @@ const cardInitData: CardData = {
     startTime: '06:00',
     endTime: '12:00',
     hostName: '서지원',
-    userNames: ['서지원', '도소현' , '도소현' , '도소현' , '도소현' , '도소현' , '도소현' , '도소현' , '도소현' , '도소현'],
-    additionalInfo: null,
+    userNames: [
+      '서지원',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+    ],
+    additionalInfo:
+      '50자 들어간 버전이에요 신촌역에서 만나요! 다들 늦지 않게 도착해주시면 감사하겠습니다! ',
   },
 };
 
 const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   const [cardData, setCardData] = useState<CardData>(cardInitData);
-
   const {
     data: {
       title,
@@ -63,13 +74,15 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   return (
     <QcardWrapper ref={ref}>
       <TopCardSetcion>
-        <Text font={'head2'} color={`${theme.colors.white}`}>{title}</Text>
+        <Text font={'head2'} color={`${theme.colors.white}`}>
+          {title}
+        </Text>
         <PlaceTimeSection>
           <PlaceContainer>
-            <IconBox>
-              {place === "ONLINE" ? <OnlinePlaceIc /> : <OfflinePlaceIc />}
-            </IconBox>
-            <Text font={'title2'} color={`${theme.colors.white}`}>{placeDetail === null ?"미정":placeDetail}</Text>
+            <IconBox>{place === 'ONLINE' ? <OnlinePlaceIc /> : <OfflinePlaceIc />}</IconBox>
+            <Text font={'title2'} color={`${theme.colors.white}`}>
+              {placeDetail === null ? '미정' : placeDetail}
+            </Text>
           </PlaceContainer>
           <TimeContainer>
             <IconBox>
@@ -89,7 +102,9 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
               </Text>
             </MemberTitle>
             <UserMemberbox>
-              <Text font={'body2'} color={`${theme.colors.white}`}>{hostName}</Text>
+              <Text font={'body2'} color={`${theme.colors.white}`}>
+                {hostName}
+              </Text>
             </UserMemberbox>
           </HostMeberContainer>
           <MemberContainer>
@@ -100,7 +115,11 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
             </MemberTitle>
             <UserMemberbox>
               {userNames.map((member, i) => (
-                <Text key={i + member} font={'body2'} color={`${theme.colors.white}`}>{`${member},`}</Text>
+                <Text
+                  key={i + member}
+                  font={'body2'}
+                  color={`${theme.colors.white}`}
+                >{`${member},`}</Text>
               ))}
             </UserMemberbox>
           </MemberContainer>
@@ -112,9 +131,16 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
         })}
       </DashedSection>
       <BottomCardSection>
-        <Text font={'body2'} color={`${theme.colors.grey4}`}>
-        {additionalInfo === null ?"별도의 공지사항은 없어요!":additionalInfo}
-        </Text>
+        {additionalInfo === null ? (
+          <Text font={'body2'} color={`${theme.colors.grey4}`}>
+            별도의 공지사항은 없어요!
+          </Text>
+        ) : (
+          <AdditionalText>
+            <NoticeText>공지</NoticeText>
+            <MentText>{additionalInfo}</MentText>
+          </AdditionalText>
+        )}
       </BottomCardSection>
     </QcardWrapper>
   );
@@ -128,7 +154,7 @@ const QcardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1rem 1.6rem ;
+  padding: 1rem 1.6rem;
   width: 100%;
 `;
 
@@ -144,25 +170,25 @@ const TopCardSetcion = styled.section`
   height: fit-content;
 
   &:before {
-    display: block;
     position: absolute;
     bottom: -1rem;
     left: 0rem;
-    border-radius: 0 5rem 5rem 0;
-    background-color: ${theme.colors.grey10};
+    display: block;
     width: 1rem;
     height: 2rem;
+    background-color: ${theme.colors.grey10};
+    border-radius: 0 5rem 5rem 0;
     content: '';
   }
   &:after {
-    display: block;
     position: absolute;
     right: 0rem;
     bottom: -1rem;
-    border-radius: 5rem 0 0 5rem;
-    background-color: ${theme.colors.grey10};
+    display: block;
     width: 1rem;
     height: 2rem;
+    background-color: ${theme.colors.grey10};
+    border-radius: 5rem 0 0 5rem;
     content: '';
   }
 `;
@@ -174,8 +200,8 @@ const DashedSection = styled.div`
   justify-content: center;
   background-color: ${theme.colors.grey9};
   div {
-    border: 1px solid ${theme.colors.black};
     width: 1rem;
+    border: 1px solid ${theme.colors.black};
   }
 `;
 
@@ -222,7 +248,7 @@ const MemberTitle = styled.div`
 const UserMemberbox = styled.div`
   display: flex;
   flex-direction: row;
-  flex-wrap:wrap;
+  flex-wrap: wrap;
   gap: 0.3rem;
 `;
 const BottomCardSection = styled.section`
@@ -233,4 +259,20 @@ const BottomCardSection = styled.section`
   border-bottom-right-radius: 1rem;
   background-color: ${theme.colors.grey9};
   height: 11rem;
+`;
+const AdditionalText = styled.div`
+  display: flex;
+  gap: 1.6rem;
+  align-self: flex-start;
+  margin-top: 2.7rem;
+`;
+const NoticeText = styled.span`
+  ${({ theme }) => theme.fonts.body2};
+  color: ${({ theme }) => theme.colors.main1};
+  width: 2.5rem;
+`;
+const MentText = styled.span`
+  ${({ theme }) => theme.fonts.body2};
+  color: ${({ theme }) => theme.colors.grey2};
+  width: 21.2rem;
 `;
