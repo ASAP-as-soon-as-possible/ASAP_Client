@@ -1,3 +1,4 @@
+import PriorityDropdown from 'components/scheduleComponents/components/PriorityDropdown';
 import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
 import ChooseBestTime from 'pages/BestMeetTime/ChooseBestTime';
 import ComponentTesting from 'pages/ComponentTesting';
@@ -35,6 +36,7 @@ const Router = () => {
         <Route path="/loadingpage" element={<LoadingPage />} />
         <Route path="*" element={<ErrorPage404 />} />
         <Route path="/select" element={<SelectPage />} />
+        <Route path="/priority-dropdown" element={<PriorityDropdown />} />
       </Routes>
     </BrowserRouter>
   );
