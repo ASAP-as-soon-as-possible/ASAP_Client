@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 export interface BestDataProps {
   carddata: {
@@ -7,20 +7,23 @@ export interface BestDataProps {
     dayOfWeek: string;
     startTime: string;
     endTime: string;
-    userNames: string[];
+    users: UserType[];
   };
   rank: number;
   chooseMeetime: Dispatch<SetStateAction<number>>;
   selected: number;
 }
-
+interface UserType {
+  id: number;
+  name: string;
+}
 export interface BestMeetFinished {
   month: string;
   day: string;
   dayOfWeek: string;
   startTime: string;
   endTime: string;
-  userNames: string[];
+  users: UserType[];
 }
 
 export interface DateTimeData {
@@ -34,7 +37,7 @@ export interface DateTimeData {
       dayOfWeek: string;
       startTime: string;
       endTime: string;
-      userNames: string[];
+      users: UserType[];
     };
     otherDateTimes: {
       month: string;
@@ -42,7 +45,7 @@ export interface DateTimeData {
       dayOfWeek: string;
       startTime: string;
       endTime: string;
-      userNames: string[];
+      users: UserType[];
     }[];
   };
 }

@@ -5,7 +5,7 @@ import { theme } from 'styles/theme';
 import { BestDataProps } from '../types/meetCardData';
 
 function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
-  const checkingCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const checkingCheck = () => {
     chooseMeetime(rank);
   };
   return (
@@ -27,9 +27,9 @@ function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataPr
         </Label>
 
         <MemeberContainer>
-          {carddata.userNames.map((member, i) => (
-            <Text key={i + member} font={'body4'} color={`${theme.colors.grey5}`}>
-              {`${member},`}&nbsp;
+          {carddata.users.map((member, i) => (
+            <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
+              {`${member.name},`}&nbsp;
             </Text>
           ))}
         </MemeberContainer>

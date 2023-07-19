@@ -9,7 +9,7 @@ import { BestDataProps } from '../types/meetCardData';
 
 function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
   const [isMember, setIsMember] = useState(false);
-  const checkingCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const checkingCheck = () => {
     chooseMeetime(rank);
   };
   return (
@@ -34,9 +34,9 @@ function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps
         </Label>
         {isMember ? (
           <MemeberContainer>
-            {carddata.userNames.map((member, i) => (
-              <Text key={i + member} font={'body4'} color={`${theme.colors.grey5}`}>
-                {`${member},`}&nbsp;
+            {carddata.users.map((member, i) => (
+              <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
+                {`${member.name},`}&nbsp;
               </Text>
             ))}
           </MemeberContainer>
@@ -59,7 +59,7 @@ const BestTimeCardWrapper = styled.article<{ $rank: number; $selected: number }>
       $rank === $selected ? theme.colors.main1 : theme.colors.grey5};
   border-radius: 10px;
   padding: 2rem;
-  width:100%;
+  width: 100%;
   height: fit-content;
 `;
 const InfoContainer = styled.div`
