@@ -1,74 +1,45 @@
+import { DateStates, ScheduleStates, TimeStates } from './types/Schedule';
+import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
 import React, { useEffect, useRef, useState } from 'react';
+import { availableDatesAtom, preferTimesAtom } from 'atoms/atom';
 
 import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
-import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
 import Header from 'components/moleculesComponents/Header';
+import SelectSchedule from './components/SelectSchedule';
+import Text from 'components/atomComponents/Text';
+import TimeTable from 'components/scheduleComponents/components/TimeTable';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
 import TitleComponents from 'components/moleculesComponents/TitleComponents';
-import TimeTable from 'components/scheduleComponents/components/TimeTable';
+import { availbleScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-
-import SelectSchedule from './components/SelectSchedule';
-import { DateStates, ScheduleStates, TimeStates } from './types/Schedule';
+import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 
 function SelectPage() {
   // 가능시간 선택지 - 날짜
-  const [availableDates, setAvailableDates] = useState<DateStates[]>([
-    {
-      month: '7',
-      day: '6',
-      dayOfWeek: '월',
-    },
-    {
-      month: '7',
-      day: '7',
-      dayOfWeek: '화',
-    },
-    {
-      month: '7',
-      day: '8',
-      dayOfWeek: '수',
-    },
-    {
-      month: '7',
-      day: '9',
-      dayOfWeek: '목',
-    },
-    {
-      month: '7',
-      day: '10',
-      dayOfWeek: '금',
-    },
-    {
-      month: '7',
-      day: '11',
-      dayOfWeek: '토',
-    },
-    {
-      month: '7',
-      day: '12',
-      dayOfWeek: '일',
-    },
-  ])
+  const [availableDates, setAvailableDates] = useRecoilState(availableDatesAtom);
 
-  const [preferTimes, setPreferTimes] = useState<TimeStates[]>(
-    [
-      {
-        startTime: '06:00',
-        endTime: '12:00',
-      },
-      {
-        startTime: '12:00',
-        endTime: '18:00',
-      },
-      {
-        startTime: '18:00',
-        endTime: '24:00',
-      },
-    ]
-  )
+  const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
+
+  const {meetingId} = useParams();
+
+  const getAvailableScheduleOption = async() => {
+    try{
+      const {
+        data
+      } = await availbleScheduleOptionApi(meetingId);
+      setAvailableDates(data.data.availableDates);
+      setPreferTimes(data.data.preferTimes);
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(()=>{
+    getAvailableScheduleOption();
+  },[]);
 
   const [scheduleList, setScheduleList] = useState<ScheduleStates[]>([
     {
