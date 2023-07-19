@@ -19,7 +19,7 @@ function SteppingLayout({ steppingType }: SteppingProps) {
   const isConfirmedMeet = async () => {
     const result = await client.get(`/meeting/${meetingId}`);
     console.log(result);
-    if (result.status === 409) {
+    if (result.data.code === 409) {
       navigate(`/q-card/${meetingId}`);
     }
   };
