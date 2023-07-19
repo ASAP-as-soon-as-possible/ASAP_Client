@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
@@ -6,16 +6,12 @@ import Header from 'components/moleculesComponents/Header';
 import html2canvas from 'html2canvas';
 import CueCardTitle from 'pages/cueCard/components/CueCardTitle';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { useParams } from 'react-router-dom';
-import { cueCardResponse } from 'src/types/cueCardType';
 import styled from 'styled-components/macro';
-import { client } from 'utils/apis/axios';
 
 import Qcard from './components/Qcard';
 
 function CueCard() {
   const imageRef = useRef(null);
-  const { meetingId } = useParams();
 
   const downLoadImage = () => {
     if (imageRef.current) {
@@ -37,16 +33,6 @@ function CueCard() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
-  const getCueCardData = async () => {
-    const result: cueCardResponse = await client.get(`/meeting/${meetingId}/card`);
-    console.log(result);
-    setCueCardData(result);
-  };
-  useEffect(() => {
-    getCueCardData();
-  }, []);
-  const [cueCardData, setCueCardData] = useState<cueCardResponse>();
 
   return (
     <CueCardWrapper>
