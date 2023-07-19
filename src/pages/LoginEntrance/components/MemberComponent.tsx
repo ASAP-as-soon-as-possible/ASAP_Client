@@ -10,7 +10,7 @@ import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 interface HostInfoProps {
-  id: string;
+  name: string;
   password: string;
 }
 interface HostProps {
@@ -20,13 +20,13 @@ interface HostProps {
 function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
   const hostOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHostInfo((prev: HostInfoProps) => {
-      return { ...prev, id: e.target.value };
+      return { ...prev, name: e.target.value };
     });
   };
 
   const resetHostId = () => {
     setHostInfo((prev: HostInfoProps) => {
-      return { ...prev, id: '' };
+      return { ...prev, name: '' };
     });
   };
 
