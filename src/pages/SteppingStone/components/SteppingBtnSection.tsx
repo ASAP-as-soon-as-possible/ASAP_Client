@@ -35,7 +35,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
                 {/* 이후 도메인 시 연결 */}
                 {/* <CopyToClipboard text={`${import.meta.env.VITE_APP_IP}/meet/${meetInfo.meetingId}`} onCopy={handleCopy}> */}
                 <CopyToClipboard
-                  text={`http://192.168.45.208:5173/meet/${meetInfo.meetingId}`}
+                  text={`http://172.23.135.46:5173/meet/${meetInfo.meetingId}`}
                   onCopy={handleCopy}
                 >
                   <Button typeState={'halfTertiaryActive'}>
@@ -57,7 +57,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
                   </Button>
                 </Link>
                 <CopyToClipboard
-                  text={`http://192.168.45.208:5173/meet/${meetingId}`}
+                  text={`http://172.23.135.46:5173/meet/${meetingId}`}
                   onCopy={handleCopy}
                 >
                   <Button typeState={'halfPrimaryActive'}>
