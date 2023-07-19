@@ -1,84 +1,34 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
+import { useParams } from 'react-router';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+import { client } from 'utils/apis/axios';
 
 import AlternativeCard from './components/AlternativeCard';
 import BestTimeCard from './components/BestTimeCard';
 import { BestMeetFinished, DateTimeData } from './types/meetCardData';
 
-const bestTimeData: DateTimeData = {
-  status: 200,
-  message: '최적의 회의시간 조회 성공입니다.',
-  data: {
-    memberCount: 12,
-    bestDateTime: {
-      month: '7',
-      day: '30',
-      dayOfWeek: '월',
-      startTime: '06:00',
-      endTime: '12:00',
-      userNames: [
-        '서지원',
-        '강원용',
-        '김태희',
-        '이재훈',
-        '서채원',
-        '정찬우',
-        '심은서',
-        '이동헌',
-        '강민서',
-        '도소현',
-      ],
-    },
-    otherDateTimes: [
-      {
-        month: '7',
-        day: '30',
-        dayOfWeek: '화',
-        startTime: '06:00',
-        endTime: '12:00',
-        userNames: [
-          '서지원',
-          '강원용',
-          '김태희',
-          '이재훈',
-          '서채원',
-          '정찬우',
-          '심은서',
-          '이동헌',
-          '강민서',
-          '도소현',
-        ],
-      },
-      {
-        month: '6',
-        day: '30',
-        dayOfWeek: '수',
-        startTime: '06:00',
-        endTime: '12:00',
-        userNames: [
-          '서지원',
-          '강원용',
-          '김태희',
-          '이재훈',
-          '서채원',
-          '정찬우',
-          '심은서',
-          '이동헌',
-          '강민서',
-          '도소현',
-        ],
-      },
-    ],
-  },
-};
-
 function BestMeetTime() {
   const [isalternativeCardOpen, setIsalternativeCardOpen] = useState(false);
   const [selected, setSelected] = useState(0);
+  const [bestTimeData, setBestTimeData] = useState<DateTimeData>();
+  const meetingId = useParams();
+
+  const getCueCardData = async () => {
+    const result = await client.get(`/meeting/${meetingId}/details`);
+    console.log(result.data);
+    setBestTimeData(result.data);
+  };
+
+  useEffect(
+    () => {
+      getCueCardData;
+    },
+    [meetingId],
+  );
 
   let dataobj: BestMeetFinished;
   const whatisDataobj = (rank: number) => {
