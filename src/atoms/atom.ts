@@ -1,6 +1,8 @@
-import { DateStates, TimeStates } from 'pages/selectSchdule/types/Schedule';
-
+import { DateStates, TimeStates, ScheduleStates } from 'pages/selectSchdule/types/Schedule';
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 
 export const methodStateAtom = atom<boolean>({
   key: 'methodStateAtom',
@@ -15,4 +17,18 @@ export const availableDatesAtom = atom<DateStates[]>({
 export const preferTimesAtom = atom<TimeStates[]>({
   key: 'preferTimesAtom',
   default: [],
+});
+
+export const scheduleAtom = atom<ScheduleStates[]>({
+  key: 'scheduleAtom',
+  default: [
+    {
+      id: 1,
+      date: '',
+      startTime: '',
+      endTime: '',
+      priority: 0,
+    },
+  ],
+  effects_UNSTABLE: [persistAtom],
 });

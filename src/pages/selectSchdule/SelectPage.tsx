@@ -1,21 +1,20 @@
-import { DateStates, ScheduleStates, TimeStates } from './types/Schedule';
-import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
 import React, { useEffect, useRef, useState } from 'react';
-import { availableDatesAtom, preferTimesAtom } from 'atoms/atom';
 
+import { availableDatesAtom, preferTimesAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
-import Header from 'components/moleculesComponents/Header';
-import { MeetingDetail } from 'src/types/availbleScheduleType';
-import SelectSchedule from './components/SelectSchedule';
 import Text from 'components/atomComponents/Text';
+import { PlusIc } from 'components/Icon/icon';
+import Header from 'components/moleculesComponents/Header';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
-import TitleComponent from 'components/moleculesComponents/TitleComponents';
-import TitleComponents from 'components/moleculesComponents/TitleComponents';
-import { availbleScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
-import styled from 'styled-components/macro';
-import { theme } from 'styles/theme';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import { MeetingDetail } from 'src/types/availbleScheduleType';
+import styled from 'styled-components/macro';
+import { theme } from 'styles/theme';
+import { availbleScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
+
+import SelectSchedule from './components/SelectSchedule';
+import { ScheduleStates } from './types/Schedule';
 
 function SelectPage() {
   // 가능시간 선택지 - 날짜
@@ -87,7 +86,6 @@ function SelectPage() {
   ]);
 
   const nextID = useRef<number>(2);
-
   const addDateList = () => {
     const schedule = {
       id: nextID.current,
@@ -101,6 +99,10 @@ function SelectPage() {
   };
 
   const deleteDataList = (index: number) => {
+    if(index===1){
+      alert("하나 이상의 시간을 입력해야합니다");
+      return ;
+    }
     setScheduleList(scheduleList.filter((item) => item?.id !== index));
   };
 
@@ -239,7 +241,7 @@ const SpeechBubbleWrapper = styled.div`
     display: flex;
     position: relative;
     margin-top:2rem;
-   
+
 `
 
 const TitleWrapper = styled.div`
