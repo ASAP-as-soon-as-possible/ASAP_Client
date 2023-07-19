@@ -23,7 +23,11 @@ function SelectPage() {
 
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
 
-  const [meetingDetail, setMeetingDetail] = useState<MeetingDetail>([]);
+  const [meetingDetail, setMeetingDetail] = useState<MeetingDetail>({
+    duration: '',
+    place: '',
+    placeDetail: '',
+  });
 
   const {meetingId} = useParams();
 
@@ -135,7 +139,7 @@ function SelectPage() {
                   <Text font={'body1'} color={`${theme.colors.sub1}`}>
                     {meetingDetail.place}
                   </Text>
-                  { meetingDetail.placeDetail && (
+                  {meetingDetail.placeDetail && (
                     <Text font={'body1'} color={`${theme.colors.sub1}`}>
                       {`(${meetingDetail.placeDetail})`}
                     </Text>

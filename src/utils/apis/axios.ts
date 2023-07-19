@@ -9,7 +9,7 @@ export const authClient:AxiosInstance = axios.create({
     baseURL: import.meta.env.VITE_APP_IP,
 
     headers: {'Content-Type': 'application/json',
-    " Access-Control-Allow-Origin": "*" ,
+    "Access-Control-Allow-Origin": "*" ,
   }
 })
 

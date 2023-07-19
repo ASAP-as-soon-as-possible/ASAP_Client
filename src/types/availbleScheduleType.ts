@@ -11,7 +11,7 @@ export interface AvailableScheduleOptionResponse {
 }
 
 export interface MeetingDetail {
-  duration: string;
+  duration?: string;
   place?: string;
   placeDetail?: string;
 }
