@@ -29,7 +29,6 @@ function PriorityDropdown() {
   };
 
   const handlePriority = (i: number, idx: number, item: ScheduleStates) => {
-    console.log(i, item, idx);
     let temp = 0;
     switch (i) {
       case 0:
@@ -46,7 +45,6 @@ function PriorityDropdown() {
         temp = 0;
         break;
     }
-    console.log(temp);
     setScheduleList((prev) => {
       const updatedScheduleList = prev.map((schedule) => {
         if (schedule.priority === temp) {
@@ -75,22 +73,13 @@ function PriorityDropdown() {
         updatedInput[i] = `${item.date} ${item.startTime}~${item.endTime}`;
       } else if (i === 2) {
         updatedInput[i] = `${item.date} ${item.startTime}~${item.endTime}`;
+      } else {
+        updatedInput[i] = 'error';
       }
       return updatedInput;
     });
     handleDropdown(i);
   };
-
-  useEffect(
-    () => {
-      console.log(scheduleList);
-      console.log(input);
-      scheduleList.map((item) => {
-        console.log(item.priority);
-      });
-    },
-    [scheduleList],
-  );
 
   return (
     <PriorityDropdownWrapper>
@@ -209,10 +198,10 @@ const DropdownWrapper = styled.div`
   border-radius: 0rem 0rem 0.8rem 0.8rem;
   background-color: ${({ theme }) => theme.colors.grey6};
   width: 27.4rem;
-  height: 20.8rem;
+  height: fit-content;
+  max-height: 15.6rem;
 
   overflow-x: hidden;
-  /* max-height: 10.4rem; */
   overflow-y: auto;
 `;
 
