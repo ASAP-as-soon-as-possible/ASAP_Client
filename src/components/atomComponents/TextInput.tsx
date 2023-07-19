@@ -14,7 +14,6 @@ interface ValueProps {
 
 function TextInput({ value, setValue, resetValue, placeholder }: ValueProps) {
   const [focus, setFocus] = useState(false);
-  console.log(focus);
 
   const resetOnClick = () => {
     resetValue();

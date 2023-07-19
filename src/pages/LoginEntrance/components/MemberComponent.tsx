@@ -34,7 +34,11 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
   };
 
   const loginMember = () => {
-    navigate(`/priority/${meetingId}`);
+    navigate(`/priority/${meetingId}`, {
+      state: {
+        memberName: hostInfo.name,
+      },
+    });
   };
 
   return (
@@ -47,13 +51,13 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
       <HostInfoSection>
         <HostNameSection>
           <Text font={`title2`} color={`${theme.colors.white}`}>
-            방장 이름
+            이름
           </Text>
           <TextInput
             value={hostInfo.name}
             setValue={hostOnChange}
             resetValue={resetHostId}
-            placeholder={'방장 이름'}
+            placeholder={'참여자 이름'}
           />
         </HostNameSection>
       </HostInfoSection>
