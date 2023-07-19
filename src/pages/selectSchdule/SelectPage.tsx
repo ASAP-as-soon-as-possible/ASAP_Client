@@ -87,10 +87,10 @@ function SelectPage() {
   };
 
   const deleteDataList = (index: number) => {
-    if(index===1){
-      alert("하나 이상의 시간을 입력해야합니다");
-      return ;
-    }
+    // if(index===1){
+    //   alert("하나 이상의 시간을 입력해야합니다");
+    //   return ;
+    // }
     setScheduleList(scheduleList.filter((item) => item?.id !== index));
   };
 
