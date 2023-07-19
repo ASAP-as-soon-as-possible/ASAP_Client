@@ -1,74 +1,80 @@
+import { DateStates, ScheduleStates, TimeStates } from './types/Schedule';
+import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
 import React, { useEffect, useRef, useState } from 'react';
+import { availableDatesAtom, preferTimesAtom } from 'atoms/atom';
 
 import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
-import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
 import Header from 'components/moleculesComponents/Header';
+import { MeetingDetail } from 'src/types/availbleScheduleType';
+import SelectSchedule from './components/SelectSchedule';
+import Text from 'components/atomComponents/Text';
+import TimeTable from 'components/scheduleComponents/components/TimeTable';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
 import TitleComponents from 'components/moleculesComponents/TitleComponents';
-import TimeTable from 'components/scheduleComponents/components/TimeTable';
+import { availbleScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-
-import SelectSchedule from './components/SelectSchedule';
-import { DateStates, ScheduleStates, TimeStates } from './types/Schedule';
+import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 
 function SelectPage() {
   // 가능시간 선택지 - 날짜
-  const [availableDates, setAvailableDates] = useState<DateStates[]>([
-    {
-      month: '7',
-      day: '6',
-      dayOfWeek: '월',
-    },
-    {
-      month: '7',
-      day: '7',
-      dayOfWeek: '화',
-    },
-    {
-      month: '7',
-      day: '8',
-      dayOfWeek: '수',
-    },
-    {
-      month: '7',
-      day: '9',
-      dayOfWeek: '목',
-    },
-    {
-      month: '7',
-      day: '10',
-      dayOfWeek: '금',
-    },
-    {
-      month: '7',
-      day: '11',
-      dayOfWeek: '토',
-    },
-    {
-      month: '7',
-      day: '12',
-      dayOfWeek: '일',
-    },
-  ])
+  const [availableDates, setAvailableDates] = useRecoilState(availableDatesAtom);
 
-  const [preferTimes, setPreferTimes] = useState<TimeStates[]>(
-    [
-      {
-        startTime: '06:00',
-        endTime: '12:00',
-      },
-      {
-        startTime: '12:00',
-        endTime: '18:00',
-      },
-      {
-        startTime: '18:00',
-        endTime: '24:00',
-      },
-    ]
-  )
+  const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
+
+  const [meetingDetail, setMeetingDetail] = useState<MeetingDetail>([]);
+
+  const {meetingId} = useParams();
+
+  const changeDurationFormat = (duration:string) => {
+    switch(duration){
+      case "HALF":
+        return "30분";
+      case "HOUR":
+        return "1시간";
+      case "HOUR_HALF":
+        return "1시간 30분";
+      case "TWO_HOUR":
+        return "2시간";
+      case "TWO_HOUR_HALF":
+        return "2시간 30분";
+      case "THREE_HOUR":
+        return "3시간";
+    }
+  }
+
+  const changePlaceFormat = (place:string) => {
+    switch(place){
+      case "ONLINE":
+        return "온라인";
+      case "OFFLINE":
+        return "오프라인";
+      case "UNDEFINED":
+        return undefined;
+    }
+  }
+
+
+  const getAvailableScheduleOption = async() => {
+    try{
+      const {
+        data
+      } = await availbleScheduleOptionApi(meetingId);
+      setAvailableDates(data.data.availableDates);
+      setPreferTimes(data.data.preferTimes);
+
+      const {duration, place, placeDetail} = data.data;
+      setMeetingDetail({duration:changeDurationFormat(duration), place:changePlaceFormat(place), placeDetail:placeDetail});
+    }
+    catch(err){
+      console.log(err);
+    }
+  }
+
+  useEffect(()=>{
+    getAvailableScheduleOption();
+  },[]);
 
   const [scheduleList, setScheduleList] = useState<ScheduleStates[]>([
     {
@@ -110,28 +116,51 @@ function SelectPage() {
     <SelectPageWrapper>
       <Header position={'schedule'} />
       <SpeechBubbleWrapper>
-      <TextWrapper>
-      <TextContainer>
-      <Text font={'body1'} color={`${theme.colors.grey1}`}>
-        회의는&nbsp;
-      </Text>
-      <Text font={'body1'} color={`${theme.colors.sub}`}>
-        2시간&nbsp;
-      </Text>
-      <Text font={'body1'} color={`${theme.colors.grey1}`}>
-        동안
-      </Text>
-      </TextContainer>
-      <TextContainer>
-      <Text font={'body1'} color={`${theme.colors.sub}`}>
-      ~~
-      </Text>
-      <Text font={'body1'} color={`${theme.colors.grey1}`}>
-      로 진행될 예정이에요!
-      </Text>
-      </TextContainer>
-      </TextWrapper>
-      <SpeechBubbleIc/>
+        <TextWrapper>
+          {
+            meetingDetail.place ? (
+              <>
+                <TextOneLine>
+                  <Text font={'body1'} color={`${theme.colors.grey1}`}>
+                    회의는&nbsp;
+                  </Text>
+                  <Text font={'body1'} color={`${theme.colors.sub1}`}>
+                    {meetingDetail.duration}&nbsp;
+                  </Text>
+                  <Text font={'body1'} color={`${theme.colors.grey1}`}>
+                    동안
+                  </Text>
+                </TextOneLine>
+                <TextSeveralLines>
+                  <Text font={'body1'} color={`${theme.colors.sub1}`}>
+                    {meetingDetail.place}
+                  </Text>
+                  { meetingDetail.placeDetail && (
+                    <Text font={'body1'} color={`${theme.colors.sub1}`}>
+                      {`(${meetingDetail.placeDetail})`}
+                    </Text>
+                  )
+                  }
+                  <Text font={'body1'} color={`${theme.colors.grey1}`}>
+                    으로 진행될 예정이에요!
+                  </Text>
+                </TextSeveralLines>
+              </>
+            ) :
+            <TextOneLine>
+              <Text font={'body1'} color={`${theme.colors.grey1}`}>
+                회의는&nbsp;
+              </Text>
+              <Text font={'body1'} color={`${theme.colors.sub1}`}>
+              {meetingDetail.duration}&nbsp;
+            </Text>
+            <Text font={'body1'} color={`${theme.colors.grey1}`}>
+              동안 진행될 예정이에요!
+            </Text>
+            </TextOneLine>
+          }
+        </TextWrapper>
+      {/* <SpeechBubbleIc/> */}
       </SpeechBubbleWrapper>
       <TitleWrapper>
       <Text font={'head2'} color={`${theme.colors.white}`}>
@@ -186,18 +215,24 @@ const PlusButton = styled.button`
   height: 5.2rem;
 `;
 
-const TextContainer = styled.div`
+const TextOneLine = styled.div`
   display:flex;
+  flex-wrap:wrap;
+  width:100%;
+`
 
+const TextSeveralLines = styled.div`
+  display:flex;
+  flex-wrap:wrap;
 `
 
 const TextWrapper = styled.div`
   display:flex;
-  position: absolute;
-  top: 1.5rem;
   flex-direction:column;
-  margin-left:2.4rem;
-  width:24.2rem;
+  border-radius:0.8rem;
+  background-color: ${theme.colors.grey9};
+  padding:1.5rem 2.4rem;
+  width:33.5rem;
 `
 
 const SpeechBubbleWrapper = styled.div`
@@ -213,7 +248,7 @@ const TitleWrapper = styled.div`
   flex-direction: column;
   gap: 1.2rem;
 
-  padding: 1.6rem 0 3.2rem 0;
+  padding: 3.2rem 0 3.2rem 0;
   width: 100%;
 `;
 

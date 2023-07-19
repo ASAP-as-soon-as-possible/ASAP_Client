@@ -13,6 +13,8 @@ export interface DateStates {
 }
 
 export interface TimeStates {
-  startTime: string;
-  endTime: string;
+  data: {
+    startTime: string;
+    endTime: string;
+  };
 }

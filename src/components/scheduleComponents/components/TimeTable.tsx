@@ -1,11 +1,11 @@
-import Text from 'components/atomComponents/Text';
 import { DateStates, TimeStates } from 'pages/selectSchdule/types/Schedule';
-import { styled } from 'styled-components';
-import { theme } from 'styles/theme';
 
 import Row from './Row';
 import { SelectedSchedule } from '../types/AvailableScheduleType';
+import Text from 'components/atomComponents/Text';
 import getTimeSlots from '../utils/getTimeSlots';
+import { styled } from 'styled-components';
+import { theme } from 'styles/theme';
 
 interface TimeTableProps {
   selectedSchedule: SelectedSchedule[];
@@ -55,7 +55,7 @@ function TimeTable({
       {formattedDates.map((date, idx) => (
         <Row
           rowIdx={idx}
-          key={date}
+          key={date + idx}
           selectedSchedulePerDate={Array.from(selectedSchedule).filter(
             (obj: SelectedSchedule) => obj.date === formattedDatesForSelectBox[idx],
           )}

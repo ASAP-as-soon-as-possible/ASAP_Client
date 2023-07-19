@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
@@ -7,6 +8,7 @@ import { theme } from 'styles/theme';
 
 import AlternativeCard from './components/AlternativeCard';
 import BestTimeCard from './components/BestTimeCard';
+import ConfirmModal from './components/confirmModal';
 import { BestMeetFinished, DateTimeData } from './types/meetCardData';
 
 const bestTimeData: DateTimeData = {
@@ -20,17 +22,47 @@ const bestTimeData: DateTimeData = {
       dayOfWeek: '월',
       startTime: '06:00',
       endTime: '12:00',
-      userNames: [
-        '서지원',
-        '강원용',
-        '김태희',
-        '이재훈',
-        '서채원',
-        '정찬우',
-        '심은서',
-        '이동헌',
-        '강민서',
-        '도소현',
+      users: [
+        {
+          id: 1,
+          name: '서채원',
+        },
+        {
+          id: 2,
+          name: '강민서',
+        },
+        {
+          id: 3,
+          name: '김태희',
+        },
+        {
+          id: 4,
+          name: '도소현',
+        },
+        {
+          id: 5,
+          name: '강원용',
+        },
+        {
+          id: 6,
+          name: '이재훈',
+        },
+        {
+          id: 7,
+          name: '정찬우',
+        },
+        {
+          id: 8,
+          name: '서지원',
+        },
+        {
+          id: 9,
+          name: '심은서',
+        },
+        {
+          id: 10,
+          name: '이동헌',
+        },
       ],
     },
     otherDateTimes: [
@@ -40,17 +72,47 @@ const bestTimeData: DateTimeData = {
         dayOfWeek: '화',
         startTime: '06:00',
         endTime: '12:00',
-        userNames: [
-          '서지원',
-          '강원용',
-          '김태희',
-          '이재훈',
-          '서채원',
-          '정찬우',
-          '심은서',
-          '이동헌',
-          '강민서',
-          '도소현',
+        users: [
+          {
+            id: 1,
+            name: '서채원',
+          },
+          {
+            id: 2,
+            name: '강민서',
+          },
+          {
+            id: 3,
+            name: '김태희',
+          },
+          {
+            id: 4,
+            name: '도소현',
+          },
+          {
+            id: 5,
+            name: '강원용',
+          },
+          {
+            id: 6,
+            name: '이재훈',
+          },
+          {
+            id: 7,
+            name: '정찬우',
+          },
+          {
+            id: 8,
+            name: '서지원',
+          },
+          {
+            id: 9,
+            name: '심은서',
+          },
+          {
+            id: 10,
+            name: '이동헌',
+          },
         ],
       },
       {
@@ -59,17 +121,47 @@ const bestTimeData: DateTimeData = {
         dayOfWeek: '수',
         startTime: '06:00',
         endTime: '12:00',
-        userNames: [
-          '서지원',
-          '강원용',
-          '김태희',
-          '이재훈',
-          '서채원',
-          '정찬우',
-          '심은서',
-          '이동헌',
-          '강민서',
-          '도소현',
+        users: [
+          {
+            id: 1,
+            name: '서채원',
+          },
+          {
+            id: 2,
+            name: '강민서',
+          },
+          {
+            id: 3,
+            name: '김태희',
+          },
+          {
+            id: 4,
+            name: '도소현',
+          },
+          {
+            id: 5,
+            name: '강원용',
+          },
+          {
+            id: 6,
+            name: '이재훈',
+          },
+          {
+            id: 7,
+            name: '정찬우',
+          },
+          {
+            id: 8,
+            name: '서지원',
+          },
+          {
+            id: 9,
+            name: '심은서',
+          },
+          {
+            id: 10,
+            name: '이동헌',
+          },
         ],
       },
     ],
@@ -79,6 +171,7 @@ const bestTimeData: DateTimeData = {
 function BestMeetTime() {
   const [isalternativeCardOpen, setIsalternativeCardOpen] = useState(false);
   const [selected, setSelected] = useState(0);
+  const [showModal, setShowModal] = useState<boolean>(false);
 
   let dataobj: BestMeetFinished;
   const whatisDataobj = (rank: number) => {
@@ -91,8 +184,12 @@ function BestMeetTime() {
     }
     return dataobj;
   };
+
+  const dataUse = whatisDataobj(selected);
+  console.log(dataUse);
+
   return (
-    <BestMeetTimeWrapper>
+    <BestMeetTimeWrapper $state={showModal}>
       <TitleSection>
         <HeaderContainer>
           <HeaderTitle>
@@ -137,13 +234,30 @@ function BestMeetTime() {
       ) : (
         undefined
       )}
+      <BtnWrapper>
+        <Button typeState={'primaryActive'} onClick={() => setShowModal(true)}>
+          <Text font={'title2'}> 확정</Text>
+        </Button>
+      </BtnWrapper>
+      {showModal && (
+        <ConfirmModal
+          setIsModalOpen={setShowModal}
+          memberCount={bestTimeData.data.memberCount}
+          bestTime={dataUse} //얘도 데이터에서 애들 이름 지워야됨.
+          meetingId={'NDE='} //임시
+          token={
+            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2ODk3NDM3MDUsImV4cCI6MTY4OTgzMDEwNSwidXNlcklkIjoiNDEiLCJyb2xlIjoiSE9TVCJ9.8V3kOCEoksfxVEZwWilpk8v40hjpp08xE6p55xpZxioXyNdygHBmFbCHHXVpVVR7nmaI4t1jEbjLEHSXEH7qzg'
+          }
+        />
+      )}
     </BestMeetTimeWrapper>
   );
 }
 
 export default BestMeetTime;
-const BestMeetTimeWrapper = styled.div`
+const BestMeetTimeWrapper = styled.div<{ $state: boolean }>`
   width: 100%;
+  overflow: hidden;
 `;
 const TitleSection = styled.article`
   display: flex;
@@ -185,4 +299,9 @@ const BasicIconContainer = styled.div`
   cursor: pointer;
   width: 3rem;
   height: 3rem;
+`;
+const BtnWrapper = styled.div`
+  position: fixed;
+  bottom: 1.2rem;
+  border-radius: 50%;
 `;
