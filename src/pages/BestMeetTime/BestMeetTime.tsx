@@ -22,7 +22,7 @@ function BestMeetTime() {
 
   const getCueCardData = async () => {
     const result = await client.get(`/meeting/${meetingId}/details`);
-    console.log(result.data);
+    console.log(result);
     setBestTimeData(result.data);
   };
 
@@ -33,14 +33,14 @@ function BestMeetTime() {
     [meetingId],
   );
 
-  let dataobj: BestMeetFinished;
+  let dataobj: BestMeetFinished | undefined;
   const whatisDataobj = (rank: number) => {
     if (rank === 0) {
-      dataobj = bestTimeData.data.bestDateTime;
+      dataobj = bestTimeData?.data.bestDateTime;
     } else if (rank === 1) {
-      dataobj = bestTimeData.data.otherDateTimes[0];
+      dataobj = bestTimeData?.data.otherDateTimes[0];
     } else if (rank === 2) {
-      dataobj = bestTimeData.data.otherDateTimes[1];
+      dataobj = bestTimeData?.data.otherDateTimes[1];
     }
     return dataobj;
   };
@@ -53,7 +53,7 @@ function BestMeetTime() {
       <TitleSection>
         <HeaderContainer>
           <HeaderTitle>
-            현재까지 모인 <MemberCount>{bestTimeData.data.memberCount}</MemberCount>명을 위한
+            현재까지 모인 <MemberCount>{bestTimeData?.data.memberCount}</MemberCount>명을 위한
           </HeaderTitle>
           <HeaderTitle>최적의 회의시간이에요</HeaderTitle>
         </HeaderContainer>
@@ -64,7 +64,7 @@ function BestMeetTime() {
       <BestTimeCard
         rank={0}
         selected={selected}
-        carddata={bestTimeData.data.bestDateTime}
+        carddata={bestTimeData?.data.bestDateTime}
         chooseMeetime={setSelected}
       />
 
@@ -81,13 +81,13 @@ function BestMeetTime() {
           <AlternativeCard
             rank={1}
             selected={selected}
-            carddata={bestTimeData.data.otherDateTimes[0]}
+            carddata={bestTimeData?.data.otherDateTimes[0]}
             chooseMeetime={setSelected}
           />
           <AlternativeCard
             rank={2}
             selected={selected}
-            carddata={bestTimeData.data.otherDateTimes[1]}
+            carddata={bestTimeData?.data.otherDateTimes[1]}
             chooseMeetime={setSelected}
           />
         </AlternativeSection>
@@ -102,12 +102,8 @@ function BestMeetTime() {
       {showModal && (
         <ConfirmModal
           setIsModalOpen={setShowModal}
-          memberCount={bestTimeData.data.memberCount}
-          bestTime={dataUse} //얘도 데이터에서 애들 이름 지워야됨.
-          meetingId={'NDE='} //임시
-          token={
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2ODk3NDM3MDUsImV4cCI6MTY4OTgzMDEwNSwidXNlcklkIjoiNDEiLCJyb2xlIjoiSE9TVCJ9.8V3kOCEoksfxVEZwWilpk8v40hjpp08xE6p55xpZxioXyNdygHBmFbCHHXVpVVR7nmaI4t1jEbjLEHSXEH7qzg'
-          }
+          memberCount={bestTimeData?.data.memberCount}
+          bestTime={dataUse} //얘도 데이터에서 애들 이름 지워야됨
         />
       )}
     </BestMeetTimeWrapper>

@@ -1,14 +1,16 @@
 import { Dispatch, SetStateAction } from 'react';
 
 export interface BestDataProps {
-  carddata: {
-    month: string;
-    day: string;
-    dayOfWeek: string;
-    startTime: string;
-    endTime: string;
-    users: UserType[];
-  };
+  carddata:
+    | {
+        month: string;
+        day: string;
+        dayOfWeek: string;
+        startTime: string;
+        endTime: string;
+        users: UserType[];
+      }
+    | undefined;
   rank: number;
   chooseMeetime: Dispatch<SetStateAction<number>>;
   selected: number;
