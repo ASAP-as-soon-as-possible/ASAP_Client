@@ -2,11 +2,7 @@ import { BestMeetTimeResponse, BestMeetTimeRequest } from 'src/types/bestMeetTim
 
 import { client } from './axios';
 
-export const BestMeetTimeApi = (
-  BestMeetTimeRequest: BestMeetTimeRequest,
-  meetingId: string,
-  token: string,
-) => {
+export const BestMeetTimeApi = (BestMeetTimeRequest: BestMeetTimeRequest) => {
   return client.post<BestMeetTimeResponse>(`/meeting/${meetingId}/confirm`, BestMeetTimeRequest, {
     headers: {
       Authorization: `[Bearer] ${token}`,

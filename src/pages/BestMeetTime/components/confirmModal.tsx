@@ -12,16 +12,14 @@ interface ModalProps {
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
   memberCount: number;
   bestTime: BestMeetFinished;
-  meetingId: string;
-  token: string;
 }
 
-function ConfirmModal({ setIsModalOpen, memberCount, bestTime, meetingId, token }: ModalProps) {
+function ConfirmModal({ setIsModalOpen, memberCount, bestTime }: ModalProps) {
   const bestMeetTime = async () => {
     try {
       const {
         data: { data },
-      } = await BestMeetTimeApi(bestTime, meetingId, token);
+      } = await BestMeetTimeApi(bestTime);
       console.log(data);
     } catch (err) {
       console.log(err);
