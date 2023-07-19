@@ -12,6 +12,7 @@ import { useParams } from 'react-router';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { client } from 'utils/apis/axios';
+import BlankMeetCard from './BlankMeetCard';
 
 const initialData = {
   status: 200,
@@ -113,7 +114,6 @@ function BestMeetTime() {
   );
 
   if (!isloading && bestTimeData) {
-    console.log(bestTimeData.data.otherDateTimes[1]);
     let dataobj: BestMeetFinished;
     const whatisDataobj = (rank: number) => {
       if (rank === 0) {
@@ -168,7 +168,7 @@ function BestMeetTime() {
                 carddata={bestTimeData.data.otherDateTimes[0]}
                 chooseMeetime={setSelected}
               />
-            ) : null}
+            ) : <BlankMeetCard />}
             {bestTimeData.data.otherDateTimes[1] ? (
               <AlternativeCard
                 rank={2}
