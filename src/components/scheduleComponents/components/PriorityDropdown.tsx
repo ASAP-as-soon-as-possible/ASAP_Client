@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { scheduleAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
-import { Circle1Ic, Circle2Ic, Circle3Ic } from 'components/Icon/icon';
+import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
 import { ScheduleStates } from 'pages/selectSchdule/types/Schedule';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
@@ -112,6 +112,17 @@ function PriorityDropdown() {
                   onClick={() => handleDropdown(i)}
                   value={input[i]}
                 />
+
+                {timeSelect[i] ? (
+                  <DropDownIconWrapper>
+                    <DropUpIc />{' '}
+                  </DropDownIconWrapper>
+                ) : (
+                  <DropDownIconWrapper>
+                    <DropDownIc />
+                  </DropDownIconWrapper>
+                )}
+
                 {timeSelect[i] && (
                   <DropdownWrapper>
                     {scheduleList.map(
@@ -190,7 +201,12 @@ const TimeInput = styled.input<{ $drop: boolean }>`
   width: 27.4rem;
   height: 5.2rem;
 `;
-
+const DropDownIconWrapper = styled.div`
+  position: absolute;
+  top: 36%;
+  right: 1rem;
+  cursor: pointer;
+`;
 const DropdownWrapper = styled.div`
   position: absolute;
   top: 5.2rem;
