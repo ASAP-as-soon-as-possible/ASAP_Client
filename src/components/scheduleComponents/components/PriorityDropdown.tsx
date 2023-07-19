@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+import { scheduleAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
 import { Circle1Ic, Circle2Ic, Circle3Ic } from 'components/Icon/icon';
 import { AVAILABLE_DATES } from 'components/scheduleComponents/data/availableDates';
+import { ScheduleStates } from 'pages/selectSchdule/types/Schedule';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 const arr = [1, 2, 3, 43, 5, 6];
 function PriorityDropdown() {
+  const [scheduleList, setScheduleList] = useRecoilState<ScheduleStates[]>(scheduleAtom);
   const [timeSelect, setTimeSelect] = useState([false, false, false]);
   const handleDropdown = (i: number) => {
     if (!timeSelect[i]) {
@@ -23,13 +27,19 @@ function PriorityDropdown() {
       });
     }
   };
+  useEffect(
+    () => {
+      console.log(scheduleList);
+    },
+    [scheduleList],
+  );
 
   return (
     <PriorityDropdownWrapper>
-      {arr.map(
+      {scheduleList.map(
         (item, i) =>
           i < 3 ? (
-            <PriorityDropdownSection key={item + i}>
+            <PriorityDropdownSection key={item.id}>
               <CircleWrapper>
                 <TextWrapper>
                   <Text font={'body2'} color={theme.colors.white}>
@@ -56,10 +66,10 @@ function PriorityDropdown() {
                 />
                 {timeSelect[i] && (
                   <DropdownWrapper>
-                    {AVAILABLE_DATES.map((item) => (
-                      <DropDownItem key={item}>
+                    {scheduleList.map((item) => (
+                      <DropDownItem key={item.id}>
                         <Text font={'button1'} color={theme.colors.white}>
-                          {item.month}월 {item.day}일 {item.dayOfWeek}요일
+                          {item.date} {item.startTime} {item.endTime}
                         </Text>
                       </DropDownItem>
                     ))}
@@ -68,7 +78,7 @@ function PriorityDropdown() {
               </InputWrapper>
             </PriorityDropdownSection>
           ) : (
-            <div key={item + i} />
+            <div key={item.id} />
           ),
       )}
     </PriorityDropdownWrapper>

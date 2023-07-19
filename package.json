@@ -11,8 +11,8 @@
     "lint:css": "stylelint './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
-    "@types/react-copy-to-clipboard": "^5.0.4",
     "@types/axios": "^0.14.0",
+    "@types/react-copy-to-clipboard": "^5.0.4",
     "axios": "^1.4.0",
     "copy-text-to-clipboard": "^3.2.0",
     "html2canvas": "^1.4.1",
@@ -25,6 +25,7 @@
     "react-multi-date-picker": "^4.1.2",
     "react-router-dom": "6",
     "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
     "styled-reset": "^4.5.1",
     "swiper": "^10.0.4",
     "vite-plugin-svgr": "^3.2.0"
