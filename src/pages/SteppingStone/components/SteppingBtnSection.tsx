@@ -51,12 +51,19 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
             ),
             hostScheduleComplete: (
               <>
-                <Button typeState={'halfTertiaryActive'}>
-                  <Text font={'button2'}>방장페이지 입장</Text>
-                </Button>
-                <Button typeState={'halfPrimaryActive'}>
-                  <Text font={'button2'}>링크 복사하기</Text>
-                </Button>
+                <Link to={`/meet/${meetingId}`}>
+                  <Button typeState={'halfTertiaryActive'}>
+                    <Text font={'button2'}>방장페이지 입장</Text>
+                  </Button>
+                </Link>
+                <CopyToClipboard
+                  text={`http://192.168.45.208:5173/meet/${meetingId}`}
+                  onCopy={handleCopy}
+                >
+                  <Button typeState={'halfPrimaryActive'}>
+                    <Text font={'button2'}>링크 복사하기</Text>
+                  </Button>
+                </CopyToClipboard>
               </>
             ),
             meetEntrance: (
