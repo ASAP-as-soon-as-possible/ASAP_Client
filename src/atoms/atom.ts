@@ -32,3 +32,8 @@ export const scheduleAtom = atom<ScheduleStates[]>({
   ],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const timeSlotUserNameAtom = atom<string[]>({
+  key: 'timeSlotUserNameAtom',
+  default: [],
+});

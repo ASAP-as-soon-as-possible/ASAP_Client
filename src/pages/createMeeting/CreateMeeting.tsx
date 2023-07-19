@@ -28,9 +28,7 @@ function CreateMeeting() {
     <>
       <CreateMeetingWrapper>
         <Header position={'createMeeting'} setStep={setStep} />
-
         <ReturnTitleComponent step={currentStep} />
-
         <ReturnBodyComponent
           currentStep={currentStep}
           meetingInfo={meetingInfo}

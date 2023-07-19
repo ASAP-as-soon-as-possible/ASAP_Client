@@ -19,20 +19,22 @@ const Row = (props: RowProps) => {
     selectedSchedulePerDate,
     scheduleType,
   } = props;
-  // console.log(selectedSchedulePerDate);
+
   const timeSlotsPerDate = selectedSchedulePerDate.map((obj) => obj.timeSlots);
   const targetTimeSlots = timeSlotsPerDate[0] && timeSlotsPerDate[0].map((obj) => obj.time);
-  // const targetTimeSlots = selectedSchedulePerDate.map((obj) => {
-  //   console.log(obj.timeSlots);
-  //   obj.timeSlots.map((objSub) => objSub.time);
-  // });
 
   const getColorLevelByTime = (objArray, targetTime) => {
     if (objArray[0] === undefined) return;
     const targetObj = objArray[0].find((obj) => obj.time === targetTime);
-    // console.log(targetObj);
     return targetObj && targetObj.colorLevel
   }
+
+  const getUserNamesByTime = (objArray, targetTime) => {
+    if (objArray[0] === undefined) return;
+    const targetObj = objArray[0].find((obj)=> obj.time === targetTime);
+    return targetObj && targetObj.userNames
+  }
+
   return (
     <ColumnWrapper>
       <DateWrapper>
@@ -58,6 +60,7 @@ const Row = (props: RowProps) => {
           }
           $isSelected={targetTimeSlots?.includes(slot)}
           $slotColorLevel={getColorLevelByTime(timeSlotsPerDate,slot)}
+          userNames={getUserNamesByTime(timeSlotsPerDate,slot)}
           scheduleType={scheduleType}
         />
       ))}

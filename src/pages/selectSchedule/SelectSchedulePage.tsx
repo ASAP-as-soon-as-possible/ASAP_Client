@@ -186,7 +186,7 @@ function SelectSchedulePage() {
               ? 'primaryActive'
               : 'secondaryDisabled'
           }
-          onClick={
+          onClick = {
             () => {console.log('click')}
           }
         >

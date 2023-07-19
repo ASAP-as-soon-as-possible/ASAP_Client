@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { availableDatesAtom, preferTimesAtom } from 'atoms/atom';
+import { availableDatesAtom, preferTimesAtom, timeSlotUserNameAtom } from 'atoms/atom';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import { styled } from 'styled-components';
 import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
 
 import TimeTable from './components/TimeTable';
@@ -553,6 +554,7 @@ const OverallSchedule = () => {
 
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
 
+  const [timeSlotUserNames, setTimeSlotUserNames] = useRecoilState(timeSlotUserNameAtom);
   const getAvailableScheduleOption = async () => {
     try {
       const { data } = await availableScheduleOptionApi(meetingId);
@@ -568,13 +570,26 @@ const OverallSchedule = () => {
   }, []);
 
   return (
-    <TimeTable
-      selectedSchedule={formattedAvailableDateTimes.availableDateTimes}
-      availableDates={availableDates}
-      preferTimes={preferTimes}
-      scheduleType="available"
-    />
+    <>
+      <UserNameWrapper>{timeSlotUserNames}</UserNameWrapper>
+      <TimeTable
+        selectedSchedule={formattedAvailableDateTimes.availableDateTimes}
+        availableDates={availableDates}
+        preferTimes={preferTimes}
+        scheduleType="available"
+      />
+    </>
   );
 };
 
 export default OverallSchedule;
+
+const UserNameWrapper = styled.aside`
+  position: absolute;
+  margin-top: 62rem;
+  border: 1px solid var(--asap-neutral-grey-5, #787878);
+  border-radius: 8px;
+  background: var(--asap-neutral-grey-9, #252525);
+  width: 335px;
+  height: 83px;
+`;
