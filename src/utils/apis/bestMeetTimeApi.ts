@@ -9,7 +9,7 @@ export const BestMeetTimeApi = (
 ) => {
   return client.post<BestMeetTimeResponse>(`/meeting/${meetingId}/confirm`, BestMeetTimeRequest, {
     headers: {
-      Authorization: `[Bearer]${token}`,
+      Authorization: `[Bearer] ${token}`,
     },
   });
 };
