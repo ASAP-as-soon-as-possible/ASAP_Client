@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 
 import Header from 'components/moleculesComponents/Header';
+import BestMeetTime from 'pages/BestMeetTime/components/bestMeetTime/BestMeetTime';
 import { styled } from 'styled-components';
-
-import BestMeetTime from './BestMeetTime';
 
 //라우터 /Change로 확인 가능
 function ChooseBestTime() {

@@ -16,6 +16,7 @@ authClient.interceptors.request.use(
     (config) => {
       const accessToken = localStorage.getItem("hostToken");
       config.headers.Authorization = `Bearer ${accessToken}`;
+      config.headers.userId = accessToken
       return config;
     },
     (error) => {
