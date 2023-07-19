@@ -1,5 +1,4 @@
 import { DateStates, TimeStates } from 'pages/selectSchdule/types/Schedule';
-
 import { atom } from 'recoil';
 
 export const methodStateAtom = atom<boolean>({

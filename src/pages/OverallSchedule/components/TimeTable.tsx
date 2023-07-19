@@ -1,3 +1,4 @@
+
 import Text from 'components/atomComponents/Text';
 import { SelectedSchedule } from 'components/scheduleComponents/types/AvailableScheduleType';
 import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
@@ -20,6 +21,7 @@ function TimeTable({
   preferTimes,
   scheduleType,
 }: TimeTableProps) {
+
   const isMorningDinner =
     preferTimes.length === 2 && preferTimes.every((time) => time.startTime !== '12:00');
 
@@ -43,9 +45,9 @@ function TimeTable({
       <TimeSlotWrapper>
         {timeSlots.map(
           (slot) =>
-            slot.endsWith(':00') ? (
+            slot?.endsWith(':00') ? (
               <Text key={slot} font={'body4'} color={`${theme.colors.grey6}`}>
-                {String(parseInt(slot.split(':')[0]))}
+                {String(parseInt(slot?.split(':')[0]))}
               </Text>
             ) : (
               undefined

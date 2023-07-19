@@ -19,30 +19,18 @@ const Row = (props: RowProps) => {
     selectedSchedulePerDate,
     scheduleType,
   } = props;
+  // console.log(selectedSchedulePerDate);
+  const timeSlotsPerDate = selectedSchedulePerDate.map((obj) => obj.timeSlots);
+  const targetTimeSlots = timeSlotsPerDate[0] && timeSlotsPerDate[0].map((obj) => obj.time);
+  // const targetTimeSlots = selectedSchedulePerDate.map((obj) => {
+  //   console.log(obj.timeSlots);
+  //   obj.timeSlots.map((objSub) => objSub.time);
+  // });
+  // console.log(targetTimeSlots);
 
-  const selectedTimeSlots = getTimeSlots(
-    selectedSchedulePerDate.map(({ startTime, endTime }) => ({
-      startTime,
-      endTime,
-    })),
-  );
-
-  /** 인자로 받은 slot의 priority 값과 시작시간에 해당하는 slot인지 여부를 반환하는 함수 */
-  const getSlotPriorityInfo = (slot: string): PriorityInfo => {
-    const priorityInfo: PriorityInfo = { priority: undefined, isStartTime: false };
-    const containedSlot = selectedSchedulePerDate.find((candidateSlot) => {
-      if (candidateSlot.startTime === slot) {
-        priorityInfo.isStartTime = true;
-      }
-      return (
-        parseInt(candidateSlot.startTime) <= parseInt(slot) &&
-        parseInt(slot) < parseInt(candidateSlot.endTime)
-      );
-    });
-
-    priorityInfo.priority = containedSlot?.priority;
-
-    return priorityInfo;
+  const getColorLevelByTime = (objArray, targetTime) => {
+    const targetObj = objArray.find((obj) => obj[0].time === targetTime);
+    return targetObj ? targetObj[0].colorLevel : null;
   };
 
   return (
@@ -68,17 +56,8 @@ const Row = (props: RowProps) => {
           EmptyRange={
             isMorningDinner ? getTimeSlots([{ startTime: '12:00', endTime: '18:00' }]) : undefined
           }
-          $isSelected={selectedTimeSlots.includes(slot)}
-          priority={getSlotPriorityInfo(slot).priority}
-          $priorityColorInfo={
-            priorityToColor(
-              scheduleType,
-              getSlotPriorityInfo(slot).priority
-            )
-          }
-          $isStartTimeofPrioritySlot={
-            getSlotPriorityInfo(slot).isStartTime
-          }
+          $isSelected={targetTimeSlots?.includes(slot)}
+          $slotColorLevel={getColorLevelByTime(timeSlotsPerDate,slot)}
           scheduleType={scheduleType}
         />
       ))}
