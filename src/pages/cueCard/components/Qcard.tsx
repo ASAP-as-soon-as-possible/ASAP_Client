@@ -1,7 +1,8 @@
-import { forwardRef, useState, ForwardedRef, useEffect } from 'react';
+import { forwardRef, useState, ForwardedRef, useEffect, Suspense } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
+import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import { useParams } from 'react-router';
 import { cueCardDataType} from 'src/types/cueCardType';
 import styled from 'styled-components/macro';
@@ -26,9 +27,11 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   const { meetingId } = useParams();
 
   const getCueCardData = async () => {
+
     const result = await client.get(`/meeting/${meetingId}/card`);
     console.log(result.data.data);
     setCardData(result.data.data);
+
   };
   useEffect(
     () => {
@@ -38,6 +41,8 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   );
 
   return (
+
+    <Suspense fallback={<LoadingPage></LoadingPage>}>
     <QcardWrapper ref={ref}>
       <TopCardSetcion>
         <Text font={'head2'} color={`${theme.colors.white}`}>
@@ -109,6 +114,9 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
         )}
       </BottomCardSection>
     </QcardWrapper>
+
+</Suspense>
+
   );
 });
 
@@ -242,3 +250,4 @@ const MentText = styled.span`
   color: ${({ theme }) => theme.colors.grey2};
   width: 21.2rem;
 `;
+
