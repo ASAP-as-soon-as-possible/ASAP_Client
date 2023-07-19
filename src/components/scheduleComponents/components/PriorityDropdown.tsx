@@ -1,17 +1,16 @@
-import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
+import { useState, Dispatch, SetStateAction } from 'react';
 
-import { ScheduleStates } from 'pages/selectSchedule/types/Schedule';
-import Text from 'components/atomComponents/Text';
 import { scheduleAtom } from 'atoms/atom';
+import Text from 'components/atomComponents/Text';
+import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
+import { ScheduleStates } from 'pages/selectSchedule/types/Schedule';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { useRecoilState } from 'recoil';
-import { useState } from 'react';
 
-function PriorityDropdown() {
+function PriorityDropdown(input_: string[], setInput: Dispatch<SetStateAction<string[]>>) {
   const [scheduleList, setScheduleList] = useRecoilState<ScheduleStates[]>(scheduleAtom);
   const [timeSelect, setTimeSelect] = useState([false, false, false]);
-  const [input, setInput] = useState(['', '', '']);
 
   const handleDropdown = (i: number) => {
     if (!timeSelect[i]) {
@@ -110,7 +109,7 @@ function PriorityDropdown() {
                   placeholder="시간대 선택"
                   readOnly
                   onClick={() => handleDropdown(i)}
-                  value={input[i]}
+                  value={input_[i]}
                 />
 
                 {timeSelect[i] ? (
@@ -130,7 +129,7 @@ function PriorityDropdown() {
                         !item.priority && (
                           <DropDownItem key={item.id} onClick={() => handlePriority(i, idx, item)}>
                             <Text font={'button1'} color={theme.colors.white}>
-                              {item.date} {item.startTime} {item.endTime}
+                              {item.date} {item.startTime}~{item.endTime}
                             </Text>
                           </DropDownItem>
                         ),
@@ -153,7 +152,8 @@ const PriorityDropdownWrapper = styled.div`
   gap: 1.2rem;
   justify-content: start;
 
-  margin-top: 1rem;
+  margin-top: 3rem;
+  margin-bottom: 7.5rem;
   width: 100%;
   height: 18rem;
 `;
