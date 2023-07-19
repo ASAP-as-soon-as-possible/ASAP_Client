@@ -3,16 +3,16 @@ import React, { useState, useEffect } from 'react';
 import { scheduleAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
 import { Circle1Ic, Circle2Ic, Circle3Ic } from 'components/Icon/icon';
-import { AVAILABLE_DATES } from 'components/scheduleComponents/data/availableDates';
 import { ScheduleStates } from 'pages/selectSchdule/types/Schedule';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-const arr = [1, 2, 3, 43, 5, 6];
 function PriorityDropdown() {
   const [scheduleList, setScheduleList] = useRecoilState<ScheduleStates[]>(scheduleAtom);
   const [timeSelect, setTimeSelect] = useState([false, false, false]);
+  const [input, setInput] = useState(['', '', '']);
+
   const handleDropdown = (i: number) => {
     if (!timeSelect[i]) {
       setTimeSelect((prevState) => {
@@ -28,43 +28,66 @@ function PriorityDropdown() {
     }
   };
 
-  const handlePriority = (index: number, priority: number) => {
-    console.log(index, priority);
+  const handlePriority = (i: number, idx: number, item: ScheduleStates) => {
+    console.log(i, item, idx);
     let temp = 0;
-    switch (index) {
-      case 1:
+    switch (i) {
+      case 0:
         temp = 3;
         break;
-      case 2:
+      case 1:
         temp = 2;
         break;
-      case 3:
+      case 2:
         temp = 1;
         break;
+
       default:
         temp = 0;
         break;
     }
     console.log(temp);
     setScheduleList((prev) => {
-      // console.log(temp);
-      // const updatedScheduleList = [...prev];
-      // console.log(updatedScheduleList);
-      // updatedScheduleList[index].priority = temp;
-      // return updatedScheduleList;
-
       const updatedScheduleList = prev.map((schedule) => {
-        if (schedule.id === index) {
+        if (schedule.priority === temp) {
+          return { ...schedule, priority: 0 };
+        }
+        return schedule;
+      });
+      return updatedScheduleList;
+    });
+
+    setScheduleList((prev) => {
+      const updatedScheduleList = prev.map((schedule) => {
+        if (schedule.id === item.id) {
           return { ...schedule, priority: temp };
         }
         return schedule;
       });
       return updatedScheduleList;
     });
+
+    setInput((prev) => {
+      const updatedInput = [...prev];
+      if (i === 0) {
+        updatedInput[i] = `${item.date} ${item.startTime}~${item.endTime}`;
+      } else if (i === 1) {
+        updatedInput[i] = `${item.date} ${item.startTime}~${item.endTime}`;
+      } else if (i === 2) {
+        updatedInput[i] = `${item.date} ${item.startTime}~${item.endTime}`;
+      }
+      return updatedInput;
+    });
+    handleDropdown(i);
   };
+
   useEffect(
     () => {
       console.log(scheduleList);
+      console.log(input);
+      scheduleList.map((item) => {
+        console.log(item.priority);
+      });
     },
     [scheduleList],
   );
@@ -78,7 +101,7 @@ function PriorityDropdown() {
               <CircleWrapper>
                 <TextWrapper>
                   <Text font={'body2'} color={theme.colors.white}>
-                    {i + 1}순위{' '}
+                    {i + 1}순위
                   </Text>
                 </TextWrapper>
                 {i === 0 ? (
@@ -93,21 +116,19 @@ function PriorityDropdown() {
               </CircleWrapper>
               <InputWrapper>
                 <TimeInput
+                  type="text"
                   $drop={timeSelect[i]}
                   placeholder="시간대 선택"
                   readOnly
                   onClick={() => handleDropdown(i)}
-                  // value={}
+                  value={input[i]}
                 />
                 {timeSelect[i] && (
                   <DropdownWrapper>
                     {scheduleList.map(
-                      (item) =>
+                      (item, idx) =>
                         !item.priority && (
-                          <DropDownItem
-                            key={item.id}
-                            onClick={() => handlePriority(item.id, item.priority)}
-                          >
+                          <DropDownItem key={item.id} onClick={() => handlePriority(i, idx, item)}>
                             <Text font={'button1'} color={theme.colors.white}>
                               {item.date} {item.startTime} {item.endTime}
                             </Text>
@@ -172,7 +193,8 @@ const TimeInput = styled.input<{ $drop: boolean }>`
   border-bottom-right-radius: ${(props) => (props.$drop ? '0rem' : '0.8rem')};
 
   background-color: ${({ theme }) => theme.colors.grey7};
-
+  ${({ theme }) => theme.fonts.button1};
+  color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
 
   padding-left: 2rem;
@@ -188,6 +210,7 @@ const DropdownWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.grey6};
   width: 27.4rem;
   height: 20.8rem;
+
   overflow-x: hidden;
   /* max-height: 10.4rem; */
   overflow-y: auto;
