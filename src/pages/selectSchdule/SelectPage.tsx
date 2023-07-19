@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { availableDatesAtom, preferTimesAtom , scheduleAtom } from 'atoms/atom';
+import { availableDatesAtom, preferTimesAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
-import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
+import { PlusIc } from 'components/Icon/icon';
 import Header from 'components/moleculesComponents/Header';
-import TitleComponent from 'components/moleculesComponents/TitleComponents';
-import TitleComponents from 'components/moleculesComponents/TitleComponents';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -16,7 +14,7 @@ import { theme } from 'styles/theme';
 import { availbleScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
 
 import SelectSchedule from './components/SelectSchedule';
-import { DateStates, ScheduleStates, TimeStates } from './types/Schedule';
+import { ScheduleStates } from './types/Schedule';
 
 function SelectPage() {
   // 가능시간 선택지 - 날짜
