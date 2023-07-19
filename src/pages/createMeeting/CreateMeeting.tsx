@@ -11,12 +11,7 @@ import { MeetingInfo } from './types/useFunnelInterface';
 const initialMeetingInfo: MeetingInfo = {
   title: '',
   availableDates: [''],
-  preferTimes: [
-    {
-      startTime: '',
-      endTime: '',
-    },
-  ],
+  preferTimes: [],
   place: '',
   placeDetail: '',
   duration: '',
@@ -29,7 +24,6 @@ function CreateMeeting() {
   const [step, setStep] = useState(0);
   const [meetingInfo, setMeetingInfo] = useState(initialMeetingInfo);
   const currentStep = funnelStep[step];
-
   return (
     <>
       <CreateMeetingWrapper>

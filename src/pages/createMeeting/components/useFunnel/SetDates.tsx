@@ -85,7 +85,10 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                   const tmpArr = getAllDatesInRange(dateObjects as DateObject[]);
                   const newDate: string[] = [];
                   tmpArr.map((date) => {
-                    newDate.push((date as DateObject).format(dateRangeFormat));
+                    const tempDate = (date as DateObject).format(dateRangeFormat);
+                    const reformatDate = tempDate.toUpperCase();
+                    // newDate.push((date as DateObject).format(dateRangeFormat));
+                    newDate.push(reformatDate);
                   });
                   setMeetingInfo((prev: MeetingInfo) => {
                     return { ...prev, availableDates: newDate };
@@ -93,7 +96,10 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                 } else if (multiple === true) {
                   const newDate: string[] = [];
                   (dateObjects as DateObject[]).map((date: DateObject) => {
-                    newDate.push(date.format(dateRangeFormat));
+                    const tempDate = (date as DateObject).format(dateRangeFormat);
+                    const reformatDate = tempDate.toUpperCase();
+                    // newDate.push((date as DateObject).format(dateRangeFormat));
+                    newDate.push(reformatDate);
                   });
                   setMeetingInfo((prev: MeetingInfo) => {
                     return { ...prev, availableDates: newDate };
