@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import { scheduleAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
