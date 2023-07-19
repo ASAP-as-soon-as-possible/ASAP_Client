@@ -1,17 +1,18 @@
+import { DateStates, ScheduleStates, TimeStates } from './types/Schedule';
+import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
 import React, { useEffect, useRef, useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
-import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
 import Header from 'components/moleculesComponents/Header';
+import SelectSchedule from './components/SelectSchedule';
+import Text from 'components/atomComponents/Text';
+import TimeTable from 'components/scheduleComponents/components/TimeTable';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
 import TitleComponents from 'components/moleculesComponents/TitleComponents';
-import TimeTable from 'components/scheduleComponents/components/TimeTable';
+import { availbleScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-
-import SelectSchedule from './components/SelectSchedule';
-import { DateStates, ScheduleStates, TimeStates } from './types/Schedule';
+import { useParams } from 'react-router-dom';
 
 function SelectPage() {
   // 가능시간 선택지 - 날짜
@@ -69,6 +70,24 @@ function SelectPage() {
       },
     ]
   )
+
+  const {meetingId} = useParams();
+
+  const getAvailableScheduleOption = async() => {
+    try{
+      const {
+        data
+      } = await availbleScheduleOptionApi(meetingId);
+      console.log(data);
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+
+  useEffect(()=>{
+    getAvailableScheduleOption();
+  },[]);
 
   const [scheduleList, setScheduleList] = useState<ScheduleStates[]>([
     {
