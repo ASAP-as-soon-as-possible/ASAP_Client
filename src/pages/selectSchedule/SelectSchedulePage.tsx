@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { availableDatesAtom, preferTimesAtom } from 'atoms/atom';
+import { availableDatesAtom, preferTimesAtom, scheduleAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { PlusIc } from 'components/Icon/icon';
@@ -16,7 +16,7 @@ import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi
 import SelectSchedule from './components/SelectSchedule';
 import { ScheduleStates } from './types/Schedule';
 
-function SelectPage() {
+function SelectSchedulePage() {
   // 가능시간 선택지 - 날짜
   const [availableDates, setAvailableDates] = useRecoilState(availableDatesAtom);
 
@@ -79,15 +79,7 @@ function SelectPage() {
     getAvailableScheduleOption();
   },[]);
 
-  const [scheduleList, setScheduleList] = useState<ScheduleStates[]>([
-    {
-      id: 1,
-      date: '',
-      startTime: '',
-      endTime: '',
-      priority: 0,
-    },
-  ]);
+  const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
 
   const nextID = useRef<number>(2);
   const addDateList = () => {
@@ -265,4 +257,4 @@ const StyledBtnSection = styled.section`
 `;
 
 
-export default SelectPage;
+export default SelectSchedulePage;
