@@ -1,5 +1,7 @@
 import Error404 from 'assets/images/Error404.png';
+import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -7,19 +9,31 @@ function ErrorPage404() {
   return (
     <ErrorPage404Wrapper>
       <ErrorSection>
-        <Text font={'head1'} color={`${theme.colors.white}`}>
-          404 ERROR
-        </Text>
+        <HeaderContainer>
+          <Text font={'head2'} color={`${theme.colors.white}`}>
+            요청하신 페이지를
+          </Text>
+          <Text font={'head2'} color={`${theme.colors.white}`}>
+            찾을 수 없습니다
+          </Text>
+        </HeaderContainer>
         <ImgContainer src={Error404} alt="error404" />
         <ErrorMentContainer>
           <Text font={'body3'} color={`${theme.colors.grey4}`}>
-            죄송합니다. 페이지를 찾을 수 없습니다.
+            입력하신 페이지의 주소가 정확한지
           </Text>
           <Text font={'body3'} color={`${theme.colors.grey4}`}>
-            입력하신 페이지의 주소가 정확한지 확인해주세요
+            다시 한번 확인해주세요
           </Text>
         </ErrorMentContainer>
       </ErrorSection>
+      <StyledBtnSection>
+        <Link to={'/'}>
+          <Button typeState={'primaryActive'}>
+            <Text font={'button2'}>홈으로 돌아가기</Text>
+          </Button>
+        </Link>
+      </StyledBtnSection>
     </ErrorPage404Wrapper>
   );
 }
@@ -41,6 +55,14 @@ const ErrorSection = styled.section`
   justify-content: center;
 `;
 
+const HeaderContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 20rem;
+`;
+
 const ImgContainer = styled.img`
   margin-top: 4.3rem;
   width: 19.8rem;
@@ -52,4 +74,15 @@ const ErrorMentContainer = styled.section`
   flex-direction: column;
   align-items: center;
   margin-top: 5.3rem;
+`;
+
+const StyledBtnSection = styled.section`
+  display: flex;
+  position: fixed;
+  bottom: 1.2rem;
+  flex-direction: row;
+  gap: 1.4rem;
+  justify-content: center;
+  border-radius: 50%;
+  width: 100%;
 `;

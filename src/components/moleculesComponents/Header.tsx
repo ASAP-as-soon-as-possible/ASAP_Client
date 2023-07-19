@@ -51,6 +51,12 @@ function Header({ position, setStep }: HeaderProps) {
               <LinkIc />
             </IconSection>
           </ConfirmIconSection>
+        ) : position === 'schedule' ? (
+          <ConfirmIconSection onClick={() => window.history.back()}>
+            <IconSection>
+              <BackIc />
+            </IconSection>
+          </ConfirmIconSection>
         ) : null}
         {position === 'createMeeting' ? (
           <Text font={'title2'} color={`${theme.colors.white}`}>
@@ -59,6 +65,10 @@ function Header({ position, setStep }: HeaderProps) {
         ) : position === 'confirmMeet' ? (
           <Text font={'title2'} color={`${theme.colors.white}`}>
             회의 일정 확정
+          </Text>
+        ) : position === 'schedule' ? (
+          <Text font={'title2'} color={`${theme.colors.white}`}>
+            가능 시간 입력
           </Text>
         ) : (
           <EmptyBox />

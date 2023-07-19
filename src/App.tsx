@@ -7,6 +7,8 @@ import Router from './Router';
 import GlobalStyle from './styles/globalStyles';
 import { theme } from './styles/theme';
 import "./App.css"
+/**카카오톡 인앱브라우저 종료후 크롬 및 사파리로 오픈하는 utils file */
+import "./utils/changeBrowser"
 
 const MobileWrapper = styled.div`
   display: flex;

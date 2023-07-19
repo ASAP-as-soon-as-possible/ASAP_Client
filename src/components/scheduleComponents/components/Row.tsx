@@ -29,7 +29,6 @@ const Row = (props: RowProps) => {
 
   /** 인자로 받은 slot의 priority 값과 시작시간에 해당하는 slot인지 여부를 반환하는 함수 */
   const getSlotPriorityInfo = (slot: string): PriorityInfo => {
-    console.log(slot)
     const priorityInfo: PriorityInfo = { priority: undefined, isStartTime: false };
     const containedSlot = selectedSchedulePerDate.find((candidateSlot) => {
       if (candidateSlot.startTime === slot) {
