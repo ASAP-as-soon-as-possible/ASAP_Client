@@ -43,7 +43,7 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
             방장 이름
           </Text>
           <TextInput
-            value={hostInfo.id}
+            value={hostInfo.name}
             setValue={hostOnChange}
             resetValue={resetHostId}
             placeholder={'방장 이름'}
@@ -52,8 +52,8 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
       </HostInfoSection>
       <StyledBtnSection>
         <Button
-          typeState={hostInfo.id ? 'primaryActive' : 'secondaryDisabled'}
-          onClick={hostInfo.id ? () => console.log('happy') : undefined}
+          typeState={hostInfo.name ? 'primaryActive' : 'secondaryDisabled'}
+          onClick={hostInfo.name ? () => console.log('happy') : undefined}
         >
           <Text font={'button2'}>방장 페이지 접속하기</Text>
         </Button>
