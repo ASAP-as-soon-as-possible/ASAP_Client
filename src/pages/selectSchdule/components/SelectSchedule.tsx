@@ -18,8 +18,7 @@ interface PropTypes {
 
 function SelectSchedule({ scheduleList, availableDates, preferTimes, setScheduleList, deleteData }: PropTypes) {
   const handleDate = (id: number, date: string) => {
-          const updateDate: ScheduleStates[] = scheduleList?.map((schedule) => {
-     if (schedule?.id === id) {
+
     const updateDate: ScheduleStates[] = scheduleList?.map((schedule) => {
       if (schedule?.id === id) {
         return { ...schedule, date:date };
@@ -27,7 +26,8 @@ function SelectSchedule({ scheduleList, availableDates, preferTimes, setSchedule
       return schedule;
     });
     setScheduleList(updateDate);
-  };
+  }
+
 
   const handleStartTime = (id: number, startTime: string) => {
     const updateStartTime: ScheduleStates[] = scheduleList?.map((schedule) =>
