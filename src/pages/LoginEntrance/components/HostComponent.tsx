@@ -1,18 +1,21 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
+import { AxiosError } from 'axios';
 import Button from 'components/atomComponents/Button';
 import PasswordInput from 'components/atomComponents/PasswordInput';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import Header from 'components/moleculesComponents/Header';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+import { client } from 'utils/apis/axios';
 
 import ReturnModal from './ReturnModal';
 
 interface HostInfoProps {
-  id: string;
+  name: string;
   password: string;
 }
 interface HostProps {
@@ -21,15 +24,11 @@ interface HostProps {
 }
 
 function HostComponent({ hostInfo, setHostInfo }: HostProps) {
+  const { meetingId } = useParams();
+  const navigate = useNavigate();
   const hostOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHostInfo((prev: HostInfoProps) => {
-      return { ...prev, id: e.target.value };
-    });
-  };
-
-  const resetHostId = () => {
-    setHostInfo((prev: HostInfoProps) => {
-      return { ...prev, id: '' };
+      return { ...prev, name: e.target.value };
     });
   };
 
@@ -37,6 +36,34 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
     setHostInfo((prev: HostInfoProps) => {
       return { ...prev, password: e.target.value };
     });
+  };
+  const resetHostId = () => {
+    setHostInfo((prev: HostInfoProps) => {
+      return { ...prev, name: '' };
+    });
+  };
+
+  const loginHost = async () => {
+    try {
+      const result = await client.post(`/user/${meetingId}/host`, hostInfo);
+      const {
+        data: { code, accessToken, message },
+      } = result;
+      if (code === 200) {
+        if (!localStorage.getItem('hostToken')) {
+          localStorage.setItem('hostToken', accessToken);
+        }
+        navigate(`/host/${meetingId}`);
+      } else if (code === 403) {
+        navigate(`/priority/${meetingId}`);
+      } else {
+        console.log(message);
+      }
+    } catch {
+      (error: AxiosError) => {
+        console.log(error);
+      };
+    }
   };
 
   const [ismodalOpen, setIsModalOpen] = useState(true);
@@ -50,7 +77,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
             방장 이름
           </Text>
           <TextInput
-            value={hostInfo.id}
+            value={hostInfo.name}
             setValue={hostOnChange}
             resetValue={resetHostId}
             placeholder={'방장 이름'}
@@ -71,11 +98,9 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
       <StyledBtnSection>
         <Button
           typeState={
-            hostInfo.id && hostInfo.password.length >= 4 ? 'primaryActive' : 'secondaryDisabled'
+            hostInfo.name && hostInfo.password.length >= 4 ? 'primaryActive' : 'secondaryDisabled'
           }
-          onClick={
-            hostInfo.id && hostInfo.password.length >= 4 ? () => console.log('happy') : undefined
-          }
+          onClick={hostInfo.name && hostInfo.password.length >= 4 ? loginHost : undefined}
         >
           <Text font={'button2'}>방장 페이지 접속하기</Text>
         </Button>

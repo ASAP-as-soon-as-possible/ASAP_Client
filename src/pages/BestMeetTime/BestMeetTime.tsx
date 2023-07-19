@@ -1,186 +1,46 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
+import { useParams } from 'react-router';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+import { client } from 'utils/apis/axios';
 
 import AlternativeCard from './components/AlternativeCard';
 import BestTimeCard from './components/BestTimeCard';
 import ConfirmModal from './components/confirmModal';
 import { BestMeetFinished, DateTimeData } from './types/meetCardData';
 
-const bestTimeData: DateTimeData = {
-  status: 200,
-  message: '최적의 회의시간 조회 성공입니다.',
-  data: {
-    memberCount: 12,
-    bestDateTime: {
-      month: '7',
-      day: '30',
-      dayOfWeek: '월',
-      startTime: '06:00',
-      endTime: '12:00',
-      users: [
-        {
-          id: 1,
-          name: '서채원',
-        },
-        {
-          id: 2,
-          name: '강민서',
-        },
-        {
-          id: 3,
-          name: '김태희',
-        },
-        {
-          id: 4,
-          name: '도소현',
-        },
-        {
-          id: 5,
-          name: '강원용',
-        },
-        {
-          id: 6,
-          name: '이재훈',
-        },
-        {
-          id: 7,
-          name: '정찬우',
-        },
-        {
-          id: 8,
-          name: '서지원',
-        },
-        {
-          id: 9,
-          name: '심은서',
-        },
-        {
-          id: 10,
-          name: '이동헌',
-        },
-      ],
-    },
-    otherDateTimes: [
-      {
-        month: '7',
-        day: '30',
-        dayOfWeek: '화',
-        startTime: '06:00',
-        endTime: '12:00',
-        users: [
-          {
-            id: 1,
-            name: '서채원',
-          },
-          {
-            id: 2,
-            name: '강민서',
-          },
-          {
-            id: 3,
-            name: '김태희',
-          },
-          {
-            id: 4,
-            name: '도소현',
-          },
-          {
-            id: 5,
-            name: '강원용',
-          },
-          {
-            id: 6,
-            name: '이재훈',
-          },
-          {
-            id: 7,
-            name: '정찬우',
-          },
-          {
-            id: 8,
-            name: '서지원',
-          },
-          {
-            id: 9,
-            name: '심은서',
-          },
-          {
-            id: 10,
-            name: '이동헌',
-          },
-        ],
-      },
-      {
-        month: '6',
-        day: '30',
-        dayOfWeek: '수',
-        startTime: '06:00',
-        endTime: '12:00',
-        users: [
-          {
-            id: 1,
-            name: '서채원',
-          },
-          {
-            id: 2,
-            name: '강민서',
-          },
-          {
-            id: 3,
-            name: '김태희',
-          },
-          {
-            id: 4,
-            name: '도소현',
-          },
-          {
-            id: 5,
-            name: '강원용',
-          },
-          {
-            id: 6,
-            name: '이재훈',
-          },
-          {
-            id: 7,
-            name: '정찬우',
-          },
-          {
-            id: 8,
-            name: '서지원',
-          },
-          {
-            id: 9,
-            name: '심은서',
-          },
-          {
-            id: 10,
-            name: '이동헌',
-          },
-        ],
-      },
-    ],
-  },
-};
-
 function BestMeetTime() {
   const [isalternativeCardOpen, setIsalternativeCardOpen] = useState(false);
   const [selected, setSelected] = useState(0);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [bestTimeData, setBestTimeData] = useState<DateTimeData>();
+  const meetingId = useParams();
 
-  let dataobj: BestMeetFinished;
+  const getCueCardData = async () => {
+    const result = await client.get(`/meeting/${meetingId}/details`);
+    console.log(result);
+    setBestTimeData(result.data);
+  };
+
+  useEffect(
+    () => {
+      getCueCardData;
+    },
+    [meetingId],
+  );
+
+  let dataobj: BestMeetFinished | undefined;
   const whatisDataobj = (rank: number) => {
     if (rank === 0) {
-      dataobj = bestTimeData.data.bestDateTime;
+      dataobj = bestTimeData?.data.bestDateTime;
     } else if (rank === 1) {
-      dataobj = bestTimeData.data.otherDateTimes[0];
+      dataobj = bestTimeData?.data.otherDateTimes[0];
     } else if (rank === 2) {
-      dataobj = bestTimeData.data.otherDateTimes[1];
+      dataobj = bestTimeData?.data.otherDateTimes[1];
     }
     return dataobj;
   };
@@ -192,7 +52,7 @@ function BestMeetTime() {
       <TitleSection>
         <HeaderContainer>
           <HeaderTitle>
-            현재까지 모인 <MemberCount>{bestTimeData.data.memberCount}</MemberCount>명을 위한
+            현재까지 모인 <MemberCount>{bestTimeData?.data.memberCount}</MemberCount>명을 위한
           </HeaderTitle>
           <HeaderTitle>최적의 회의시간이에요</HeaderTitle>
         </HeaderContainer>
@@ -203,7 +63,7 @@ function BestMeetTime() {
       <BestTimeCard
         rank={0}
         selected={selected}
-        carddata={bestTimeData.data.bestDateTime}
+        carddata={bestTimeData?.data.bestDateTime}
         chooseMeetime={setSelected}
       />
 
@@ -220,13 +80,13 @@ function BestMeetTime() {
           <AlternativeCard
             rank={1}
             selected={selected}
-            carddata={bestTimeData.data.otherDateTimes[0]}
+            carddata={bestTimeData?.data.otherDateTimes[0]}
             chooseMeetime={setSelected}
           />
           <AlternativeCard
             rank={2}
             selected={selected}
-            carddata={bestTimeData.data.otherDateTimes[1]}
+            carddata={bestTimeData?.data.otherDateTimes[1]}
             chooseMeetime={setSelected}
           />
         </AlternativeSection>
@@ -241,12 +101,8 @@ function BestMeetTime() {
       {showModal && (
         <ConfirmModal
           setIsModalOpen={setShowModal}
-          memberCount={bestTimeData.data.memberCount}
-          bestTime={dataUse} //얘도 데이터에서 애들 이름 지워야됨.
-          meetingId={'NDE='} //임시
-          token={
-            'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhY2Nlc3NfdG9rZW4iLCJpYXQiOjE2ODk3NDM3MDUsImV4cCI6MTY4OTgzMDEwNSwidXNlcklkIjoiNDEiLCJyb2xlIjoiSE9TVCJ9.8V3kOCEoksfxVEZwWilpk8v40hjpp08xE6p55xpZxioXyNdygHBmFbCHHXVpVVR7nmaI4t1jEbjLEHSXEH7qzg'
-          }
+          memberCount={bestTimeData?.data.memberCount}
+          bestTime={dataUse} //얘도 데이터에서 애들 이름 지워야됨
         />
       )}
     </BestMeetTimeWrapper>

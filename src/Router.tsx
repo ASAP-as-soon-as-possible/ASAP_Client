@@ -1,3 +1,5 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
 import ChooseBestTime from 'pages/BestMeetTime/ChooseBestTime';
 import ComponentTesting from 'pages/ComponentTesting';
@@ -8,9 +10,9 @@ import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import LoginEntrance from 'pages/LoginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
 import Prioritization from 'pages/Prioritization/Prioritization';
-import SelectPage from 'pages/selectSchdule/SelectPage';
+import PriorityDropdown from 'components/scheduleComponents/components/PriorityDropdown';
+import SelectPage from 'pages/selectSchedule/SelectPage';
 import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router = () => {
   return (
@@ -39,6 +41,7 @@ const Router = () => {
         <Route path="/loadingpage" element={<LoadingPage />} />
         <Route path="*" element={<ErrorPage404 />} />
         <Route path="/select" element={<SelectPage />} />
+        <Route path="/priority-dropdown" element={<PriorityDropdown />} />
       </Routes>
     </BrowserRouter>
   );

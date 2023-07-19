@@ -3,10 +3,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { availableDatesAtom, preferTimesAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
-import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
+import { PlusIc } from 'components/Icon/icon';
 import Header from 'components/moleculesComponents/Header';
-import TitleComponent from 'components/moleculesComponents/TitleComponents';
-import TitleComponents from 'components/moleculesComponents/TitleComponents';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -16,7 +14,7 @@ import { theme } from 'styles/theme';
 import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
 
 import SelectSchedule from './components/SelectSchedule';
-import { DateStates, ScheduleStates, TimeStates } from './types/Schedule';
+import { ScheduleStates } from './types/Schedule';
 
 function SelectPage() {
   // 가능시간 선택지 - 날짜
@@ -92,7 +90,6 @@ function SelectPage() {
   ]);
 
   const nextID = useRef<number>(2);
-
   const addDateList = () => {
     const schedule = {
       id: nextID.current,
@@ -106,6 +103,10 @@ function SelectPage() {
   };
 
   const deleteDataList = (index: number) => {
+    if(index===1){
+      alert("하나 이상의 시간을 입력해야합니다");
+      return ;
+    }
     setScheduleList(scheduleList.filter((item) => item?.id !== index));
   };
 
@@ -244,7 +245,7 @@ const SpeechBubbleWrapper = styled.div`
     display: flex;
     position: relative;
     margin-top:2rem;
-   
+
 `
 
 const TitleWrapper = styled.div`

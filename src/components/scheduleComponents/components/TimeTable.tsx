@@ -1,11 +1,11 @@
-import { DateStates, TimeStates } from 'pages/selectSchdule/types/Schedule';
+import Text from 'components/atomComponents/Text';
+import { DateStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
+import { styled } from 'styled-components';
+import { theme } from 'styles/theme';
 
 import Row from './Row';
 import { SelectedSchedule } from '../types/AvailableScheduleType';
-import Text from 'components/atomComponents/Text';
 import getTimeSlots from '../utils/getTimeSlots';
-import { styled } from 'styled-components';
-import { theme } from 'styles/theme';
 
 interface TimeTableProps {
   selectedSchedule: SelectedSchedule[];
