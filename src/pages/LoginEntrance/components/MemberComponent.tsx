@@ -34,11 +34,8 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
   };
 
   const loginMember = () => {
-    console.log('happy');
     navigate(`/priority/${meetingId}`);
   };
-
-  console.log(hostInfo.name);
 
   return (
     <>

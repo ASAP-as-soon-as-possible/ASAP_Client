@@ -26,15 +26,15 @@ function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps
       <InfoContainer>
         <Label htmlFor={`${rank}`}>
           <Text font={'body1'} color={`${theme.colors.white}`}>
-            {carddata.month}월 {carddata.day}일 {carddata.dayOfWeek}요일
+            {carddata?.month}월 {carddata?.day}일 {carddata?.dayOfWeek}요일
           </Text>
           <Text font={'body1'} color={`${theme.colors.white}`}>
-            {carddata.startTime} ~ {carddata.endTime}
+            {carddata?.startTime} ~ {carddata?.endTime}
           </Text>
         </Label>
         {isMember ? (
           <MemeberContainer>
-            {carddata.users.map((member, i) => (
+            {carddata?.users.map((member, i) => (
               <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
                 {`${member.name},`}&nbsp;
               </Text>
