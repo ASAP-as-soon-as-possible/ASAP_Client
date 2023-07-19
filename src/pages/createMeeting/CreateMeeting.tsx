@@ -25,7 +25,6 @@ const initialMeetingInfo: MeetingInfo = {
   additionalInfo: '',
 };
 
-
 function CreateMeeting() {
   const [step, setStep] = useState(0);
   const [meetingInfo, setMeetingInfo] = useState(initialMeetingInfo);
