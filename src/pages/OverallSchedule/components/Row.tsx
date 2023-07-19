@@ -26,13 +26,13 @@ const Row = (props: RowProps) => {
   //   console.log(obj.timeSlots);
   //   obj.timeSlots.map((objSub) => objSub.time);
   // });
-  // console.log(targetTimeSlots);
 
   const getColorLevelByTime = (objArray, targetTime) => {
-    const targetObj = objArray.find((obj) => obj[0].time === targetTime);
-    return targetObj ? targetObj[0].colorLevel : null;
-  };
-
+    if (objArray[0] === undefined) return;
+    const targetObj = objArray[0].find((obj) => obj.time === targetTime);
+    // console.log(targetObj);
+    return targetObj && targetObj.colorLevel
+  }
   return (
     <ColumnWrapper>
       <DateWrapper>
