@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
+import { useParams } from 'react-router';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+import { client } from 'utils/apis/axios';
 
 import AlternativeCard from './components/AlternativeCard';
 import BestTimeCard from './components/BestTimeCard';
@@ -22,47 +24,17 @@ const bestTimeData: DateTimeData = {
       dayOfWeek: '월',
       startTime: '06:00',
       endTime: '12:00',
-      users: [
-        {
-          id: 1,
-          name: '서채원',
-        },
-        {
-          id: 2,
-          name: '강민서',
-        },
-        {
-          id: 3,
-          name: '김태희',
-        },
-        {
-          id: 4,
-          name: '도소현',
-        },
-        {
-          id: 5,
-          name: '강원용',
-        },
-        {
-          id: 6,
-          name: '이재훈',
-        },
-        {
-          id: 7,
-          name: '정찬우',
-        },
-        {
-          id: 8,
-          name: '서지원',
-        },
-        {
-          id: 9,
-          name: '심은서',
-        },
-        {
-          id: 10,
-          name: '이동헌',
-        },
+      userNames: [
+        '서지원',
+        '강원용',
+        '김태희',
+        '이재훈',
+        '서채원',
+        '정찬우',
+        '심은서',
+        '이동헌',
+        '강민서',
+        '도소현',
       ],
     },
     otherDateTimes: [
@@ -72,47 +44,17 @@ const bestTimeData: DateTimeData = {
         dayOfWeek: '화',
         startTime: '06:00',
         endTime: '12:00',
-        users: [
-          {
-            id: 1,
-            name: '서채원',
-          },
-          {
-            id: 2,
-            name: '강민서',
-          },
-          {
-            id: 3,
-            name: '김태희',
-          },
-          {
-            id: 4,
-            name: '도소현',
-          },
-          {
-            id: 5,
-            name: '강원용',
-          },
-          {
-            id: 6,
-            name: '이재훈',
-          },
-          {
-            id: 7,
-            name: '정찬우',
-          },
-          {
-            id: 8,
-            name: '서지원',
-          },
-          {
-            id: 9,
-            name: '심은서',
-          },
-          {
-            id: 10,
-            name: '이동헌',
-          },
+        userNames: [
+          '서지원',
+          '강원용',
+          '김태희',
+          '이재훈',
+          '서채원',
+          '정찬우',
+          '심은서',
+          '이동헌',
+          '강민서',
+          '도소현',
         ],
       },
       {
@@ -121,47 +63,17 @@ const bestTimeData: DateTimeData = {
         dayOfWeek: '수',
         startTime: '06:00',
         endTime: '12:00',
-        users: [
-          {
-            id: 1,
-            name: '서채원',
-          },
-          {
-            id: 2,
-            name: '강민서',
-          },
-          {
-            id: 3,
-            name: '김태희',
-          },
-          {
-            id: 4,
-            name: '도소현',
-          },
-          {
-            id: 5,
-            name: '강원용',
-          },
-          {
-            id: 6,
-            name: '이재훈',
-          },
-          {
-            id: 7,
-            name: '정찬우',
-          },
-          {
-            id: 8,
-            name: '서지원',
-          },
-          {
-            id: 9,
-            name: '심은서',
-          },
-          {
-            id: 10,
-            name: '이동헌',
-          },
+        userNames: [
+          '서지원',
+          '강원용',
+          '김태희',
+          '이재훈',
+          '서채원',
+          '정찬우',
+          '심은서',
+          '이동헌',
+          '강민서',
+          '도소현',
         ],
       },
     ],
@@ -172,6 +84,21 @@ function BestMeetTime() {
   const [isalternativeCardOpen, setIsalternativeCardOpen] = useState(false);
   const [selected, setSelected] = useState(0);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [bestTimeData, setBestTimeData] = useState<DateTimeData>();
+  const meetingId = useParams();
+
+  const getCueCardData = async () => {
+    const result = await client.get(`/meeting/${meetingId}/details`);
+    console.log(result.data);
+    setBestTimeData(result.data);
+  };
+
+  useEffect(
+    () => {
+      getCueCardData;
+    },
+    [meetingId],
+  );
 
   let dataobj: BestMeetFinished;
   const whatisDataobj = (rank: number) => {
