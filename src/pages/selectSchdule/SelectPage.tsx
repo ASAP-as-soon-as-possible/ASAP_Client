@@ -16,60 +16,9 @@ import { useParams } from 'react-router-dom';
 
 function SelectPage() {
   // 가능시간 선택지 - 날짜
-  const [availableDates, setAvailableDates] = useState<DateStates[]>([
-    {
-      month: '7',
-      day: '6',
-      dayOfWeek: '월',
-    },
-    {
-      month: '7',
-      day: '7',
-      dayOfWeek: '화',
-    },
-    {
-      month: '7',
-      day: '8',
-      dayOfWeek: '수',
-    },
-    {
-      month: '7',
-      day: '9',
-      dayOfWeek: '목',
-    },
-    {
-      month: '7',
-      day: '10',
-      dayOfWeek: '금',
-    },
-    {
-      month: '7',
-      day: '11',
-      dayOfWeek: '토',
-    },
-    {
-      month: '7',
-      day: '12',
-      dayOfWeek: '일',
-    },
-  ])
+  const [availableDates, setAvailableDates] = useState<DateStates[]>([])
 
-  const [preferTimes, setPreferTimes] = useState<TimeStates[]>(
-    [
-      {
-        startTime: '06:00',
-        endTime: '12:00',
-      },
-      {
-        startTime: '12:00',
-        endTime: '18:00',
-      },
-      {
-        startTime: '18:00',
-        endTime: '24:00',
-      },
-    ]
-  )
+  const [preferTimes, setPreferTimes] = useState<TimeStates[]>([])
 
   const {meetingId} = useParams();
 
@@ -78,7 +27,8 @@ function SelectPage() {
       const {
         data
       } = await availbleScheduleOptionApi(meetingId);
-      console.log(data);
+      setAvailableDates(data.data.availableDates);
+      setPreferTimes(data.data.preferTimes);
     }
     catch(err){
       console.log(err)
