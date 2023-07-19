@@ -1,4 +1,4 @@
-import { DateStates } from 'pages/selectSchdule/types/Schedule';
+import { DateStates, TimeStates } from 'pages/selectSchdule/types/Schedule';
 
 export interface AvailableScheduleOptionResponse {
   data: {
@@ -6,5 +6,12 @@ export interface AvailableScheduleOptionResponse {
     place: string;
     placeDetail: string;
     availableDates: DateStates[];
+    preferTimes: TimeStates[];
   };
+}
+
+export interface MeetingDetail {
+  duration: string;
+  place?: string;
+  placeDetail?: string;
 }
