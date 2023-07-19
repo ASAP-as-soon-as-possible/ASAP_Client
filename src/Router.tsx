@@ -25,12 +25,16 @@ const Router = () => {
         <Route path="/schedule/:meetingId" element={<SelectPage />} />
         <Route path="/priority/:meetingId" element={<Prioritization />} />
         <Route
-          path="/schedule-complete/:meetingId"
+          path="/host/schedule-complete/:meetingId"
           element={<SteppingLayout steppingType={'hostScheduleComplete'} />}
         />
         <Route path="/meet/:meetingId" element={<SteppingLayout steppingType={'meetEntrance'} />} />
         <Route path="/login/host/:meetingId" element={<LoginEntrance loginType={'host'} />} />
         <Route path="/login/member/:meetingId" element={<LoginEntrance loginType={'member'} />} />
+        <Route
+          path="/member/schedule-complete/:meetingId"
+          element={<SteppingLayout steppingType={'memberScheduleComplete'} />}
+        />
         <Route path="/host/:meetingId" element={<ChooseBestTime />} />
         <Route path="/q-card/:meetingId" element={<CueCard />} />
         <Route path="/loadingpage" element={<LoadingPage />} />

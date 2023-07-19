@@ -1,5 +1,9 @@
+import { useEffect, useState } from 'react';
+
 import Header from 'components/moleculesComponents/Header';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
+import { authClient, client } from 'utils/apis/axios';
 
 import SteppingBody from './components/SteppingBody';
 import SteppingBtnSection from './components/SteppingBtnSection';
@@ -9,6 +13,26 @@ interface SteppingProps {
 }
 
 function SteppingLayout({ steppingType }: SteppingProps) {
+  const navigate = useNavigate();
+  const { meetingId } = useParams();
+
+  const isConfirmedMeet = async () => {
+    const result = await client.get(`/meeting/${meetingId}`);
+    console.log(result);
+    if (result.data.code === 409) {
+      navigate(`/q-card/${meetingId}`);
+    }
+  };
+
+  useEffect(
+    () => {
+      if (steppingType === 'meetEntrance') {
+        isConfirmedMeet();
+      }
+    },
+    [steppingType],
+  );
+
   return (
     <>
       <SteppingWrapper>

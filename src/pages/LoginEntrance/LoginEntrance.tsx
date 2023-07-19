@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import styled from 'styled-components/macro';
 
@@ -6,11 +6,11 @@ import HostComponent from './components/HostComponent';
 import MemberComponent from './components/MemberComponent';
 
 interface HostInfoProps {
-  id: string;
+  name: string;
   password: string;
 }
 const InitialHostInfo: HostInfoProps = {
-  id: '',
+  name: '',
   password: '',
 };
 
