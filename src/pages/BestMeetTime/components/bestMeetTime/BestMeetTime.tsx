@@ -27,7 +27,7 @@ const initialData = {
       users: [
         {
           id: 1,
-          name: '베스트',
+          name: '심은서',
         },
         {
           id: 2,
@@ -49,7 +49,7 @@ const initialData = {
         users: [
           {
             id: 1,
-            name: '얼터1',
+            name: '심은서',
           },
           {
             id: 2,
@@ -70,7 +70,7 @@ const initialData = {
         users: [
           {
             id: 1,
-            name: '야보링',
+            name: '심은서',
           },
           {
             id: 2,
@@ -113,6 +113,7 @@ function BestMeetTime() {
   );
 
   if (!isloading && bestTimeData) {
+    console.log(bestTimeData.data.otherDateTimes[1]);
     let dataobj: BestMeetFinished;
     const whatisDataobj = (rank: number) => {
       if (rank === 0) {
@@ -141,12 +142,14 @@ function BestMeetTime() {
             박스를 클릭하여 회의시간을 확정해주세요
           </Text>
         </TitleSection>
-        <BestTimeCard
-          rank={0}
-          selected={selected}
-          carddata={bestTimeData.data.bestDateTime}
-          chooseMeetime={setSelected}
-        />
+        {bestTimeData.data.bestDateTime ? (
+          <BestTimeCard
+            rank={0}
+            selected={selected}
+            carddata={bestTimeData.data.bestDateTime}
+            chooseMeetime={setSelected}
+          />
+        ) : null}
 
         <AnotherTimeBtnSection>
           <Text font={`body4`} color={`${theme.colors.grey3}`}>
@@ -158,18 +161,22 @@ function BestMeetTime() {
         </AnotherTimeBtnSection>
         {isalternativeCardOpen ? (
           <AlternativeSection>
-            <AlternativeCard
-              rank={1}
-              selected={selected}
-              carddata={bestTimeData.data.otherDateTimes[0]}
-              chooseMeetime={setSelected}
-            />
-            <AlternativeCard
-              rank={2}
-              selected={selected}
-              carddata={bestTimeData.data.otherDateTimes[1]}
-              chooseMeetime={setSelected}
-            />
+            {bestTimeData.data.otherDateTimes[0] ? (
+              <AlternativeCard
+                rank={1}
+                selected={selected}
+                carddata={bestTimeData.data.otherDateTimes[0]}
+                chooseMeetime={setSelected}
+              />
+            ) : null}
+            {bestTimeData.data.otherDateTimes[1] ? (
+              <AlternativeCard
+                rank={2}
+                selected={selected}
+                carddata={bestTimeData.data.otherDateTimes[1]}
+                chooseMeetime={setSelected}
+              />
+            ) : null}
           </AlternativeSection>
         ) : (
           undefined

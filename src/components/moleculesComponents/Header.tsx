@@ -2,6 +2,8 @@ import { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
@@ -27,6 +29,16 @@ function Header({ position, setStep }: HeaderProps) {
       });
     }
   };
+
+  //차후 toast-library 사용시 이용할 상태관리
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const { meetingId } = useParams();
   return (
     <HeaderWrapper>
       <HeaderSection>
@@ -43,13 +55,18 @@ function Header({ position, setStep }: HeaderProps) {
             <BackIc />
           </IconSection>
         ) : position === 'confirmMeet' ? (
-          <ConfirmIconSection onClick={() => window.history.back()}>
-            <IconSection>
+          <ConfirmIconSection >
+            <IconSection onClick={() => window.history.back()}>
               <BackIc />
             </IconSection>
-            <IconSection>
-              <LinkIc />
-            </IconSection>
+            <CopyToClipboard
+              text={`http://172.23.135.46:5173/meet/${meetingId}`}
+              onCopy={handleCopy}
+            >
+              <IconSection>
+                <LinkIc />
+              </IconSection>
+            </CopyToClipboard>
           </ConfirmIconSection>
         ) : position === 'schedule' ? (
           <ConfirmIconSection onClick={() => window.history.back()}>

@@ -19,7 +19,6 @@ function ChooseBestTime() {
         </ChangeViewPicker>
       </ViewPickerWrapper>
       <ViewContainer>
-        {/* green,blue 자리에 컴포넌트 입력 */}
         {viewBest ? <BestMeetTime /> : <Blue>종합 일정 시간표</Blue>}
       </ViewContainer>
     </ChooseBestTimeWrapper>
