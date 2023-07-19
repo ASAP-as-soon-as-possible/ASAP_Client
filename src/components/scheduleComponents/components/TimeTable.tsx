@@ -1,16 +1,16 @@
-import { DateStates, TimeStates } from 'pages/selectSchdule/types/Schedule';
-
-import Row from './Row';
-import { SelectedSchedule } from '../types/AvailableScheduleType';
 import Text from 'components/atomComponents/Text';
-import getTimeSlots from '../utils/getTimeSlots';
+import { DateStates, TimeStates } from 'pages/selectSchdule/types/Schedule';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
+
+import Row from './Row';
+import { PreferTime, SelectedSchedule } from '../types/AvailableScheduleType';
+import getTimeSlots from '../utils/getTimeSlots';
 
 interface TimeTableProps {
   selectedSchedule: SelectedSchedule[];
   availableDates: DateStates[];
-  preferTimes: TimeStates[];
+  preferTimes: PreferTime[];
   scheduleType: 'priority' | 'available';
 }
 
@@ -43,9 +43,9 @@ function TimeTable({
       <TimeSlotWrapper>
         {timeSlots.map(
           (slot) =>
-            slot.endsWith(':00') ? (
+            slot?.endsWith(':00') ? (
               <Text key={slot} font={'body4'} color={`${theme.colors.grey6}`}>
-                {String(parseInt(slot.split(':')[0]))}
+                {String(parseInt(slot?.split(':')[0]))}
               </Text>
             ) : (
               undefined
