@@ -1,4 +1,4 @@
-import { DateStates, TimeStates } from 'pages/selectSchdule/types/Schedule';
+import { DateStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
 
 export interface AvailableScheduleOptionResponse {
   data: {
@@ -11,7 +11,7 @@ export interface AvailableScheduleOptionResponse {
 }
 
 export interface MeetingDetail {
-  duration: string;
+  duration?: string;
   place?: string;
   placeDetail?: string;
 }

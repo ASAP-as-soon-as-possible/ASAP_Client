@@ -1,4 +1,4 @@
-import { DateStates, TimeStates, ScheduleStates } from 'pages/selectSchdule/types/Schedule';
+import { DateStates, ScheduleStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
 

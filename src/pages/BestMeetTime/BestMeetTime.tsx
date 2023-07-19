@@ -46,7 +46,6 @@ function BestMeetTime() {
   };
 
   const dataUse = whatisDataobj(selected);
-  console.log(dataUse);
 
   return (
     <BestMeetTimeWrapper $state={showModal}>
