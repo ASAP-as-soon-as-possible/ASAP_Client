@@ -1,9 +1,6 @@
 import { PreferTime } from 'components/scheduleComponents/types/AvailableScheduleType';
 import { DateStates, ScheduleStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
 import { atom } from 'recoil';
-import { recoilPersist } from 'recoil-persist';
-
-const { persistAtom } = recoilPersist();
 
 export const methodStateAtom = atom<boolean>({
   key: 'methodStateAtom',
@@ -31,5 +28,4 @@ export const scheduleAtom = atom<ScheduleStates[]>({
       priority: 0,
     },
   ],
-  effects_UNSTABLE: [persistAtom],
 });
