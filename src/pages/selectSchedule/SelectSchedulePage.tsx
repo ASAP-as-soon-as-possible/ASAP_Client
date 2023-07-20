@@ -13,6 +13,7 @@ import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
 
+
 import SelectSchedule from './components/SelectSchedule';
 import { ScheduleStates } from './types/Schedule';
 
@@ -21,6 +22,7 @@ function SelectSchedulePage() {
   const [availableDates, setAvailableDates] = useRecoilState(availableDatesAtom);
 
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
+
 
   const [meetingDetail, setMeetingDetail] = useState<MeetingDetail>({
     duration: '',
@@ -187,8 +189,11 @@ function SelectSchedulePage() {
               : 'secondaryDisabled'
           }
           onClick={
-            () => {navigate(`/${auth}/priority/${meetingId}`)}
+            () => { navigate(`/${auth}/priority/${meetingId}` )}
+
           }
+
+
         >
           <Text font={'button2'}>다음</Text>
         </Button>
