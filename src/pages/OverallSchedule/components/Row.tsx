@@ -35,6 +35,7 @@ const Row = (props: RowProps) => {
     return targetObj && targetObj.userNames
   }
 
+
   return (
     <ColumnWrapper>
       <DateWrapper>
