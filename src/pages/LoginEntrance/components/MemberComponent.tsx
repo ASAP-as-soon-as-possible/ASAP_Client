@@ -5,6 +5,8 @@ import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import Header from 'components/moleculesComponents/Header';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
+import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -33,7 +35,7 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
   };
 
   const loginMember = () => {
-    navigate(`/member/priority/${meetingId}`, {
+    navigate(`/member/schedule/${meetingId}`, {
       state: {
         memberName: hostInfo.name,
       },
