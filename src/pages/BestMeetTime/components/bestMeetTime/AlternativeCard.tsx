@@ -2,12 +2,14 @@ import Text from 'components/atomComponents/Text';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-import { BestDataProps } from '../types/meetCardData';
+import { BestDataProps } from '../../types/meetCardData';
 
 function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
   const checkingCheck = () => {
     chooseMeetime(rank);
   };
+
+  if(carddata) {
   return (
     <AlternativeCardWrapper $rank={rank} $selected={selected}>
       <Input
@@ -19,10 +21,10 @@ function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataPr
       <InfoContainer>
         <Label htmlFor={`${rank}`}>
           <Text font={'body1'} color={`${theme.colors.white}`}>
-            {carddata?.month}월 {carddata?.day}일 {carddata?.dayOfWeek}요일
+            {carddata.month}월 {carddata.day}일 {carddata.dayOfWeek}요일
           </Text>
           <Text font={'body1'} color={`${theme.colors.white}`}>
-            {carddata?.startTime} ~ {carddata?.endTime}
+            {carddata.startTime} ~ {carddata.endTime}
           </Text>
         </Label>
 
@@ -36,6 +38,9 @@ function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataPr
       </InfoContainer>
     </AlternativeCardWrapper>
   );
+} else {
+  return null
+}
 }
 
 export default AlternativeCard;
