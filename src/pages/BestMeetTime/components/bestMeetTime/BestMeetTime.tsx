@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
@@ -6,114 +6,22 @@ import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
 import AlternativeCard from 'pages/BestMeetTime/components/bestMeetTime/AlternativeCard';
 import BestTimeCard from 'pages/BestMeetTime/components/bestMeetTime/BestTimeCard';
 import ConfirmModal from 'pages/BestMeetTime/components/bestMeetTime/confirmModal';
-import { BestMeetFinished, DateTimeData } from 'pages/BestMeetTime/types/meetCardData';
+import GetBestMeetimeListHooks from 'pages/BestMeetTime/hooks/getBestMeetimeList';
 import { whatisBestMeetime } from 'pages/BestMeetTime/utils/whatisBestMeetime';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import { useParams } from 'react-router';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { client } from 'utils/apis/axios';
 
 import BlankMeetCard from './BlankMeetCard';
-
-const initialData = {
-  status: 200,
-  message: '최적의 회의시간 조회 성공입니다.',
-  data: {
-    memberCount: 12,
-    bestDateTime: {
-      month: '7',
-      day: '30',
-      dayOfWeek: '월',
-      startTime: '06:00',
-      endTime: '12:00',
-      users: [
-        {
-          id: 1,
-          name: '심은서',
-        },
-        {
-          id: 2,
-          name: '이동헌',
-        },
-        {
-          id: 3,
-          name: '정찬우',
-        },
-      ],
-    },
-    otherDateTimes: [
-      {
-        month: '7',
-        day: '31',
-        dayOfWeek: '화',
-        startTime: '06:00',
-        endTime: '12:00',
-        users: [
-          {
-            id: 1,
-            name: '심은서',
-          },
-          {
-            id: 2,
-            name: '이동헌',
-          },
-          {
-            id: 3,
-            name: '정찬우',
-          },
-        ],
-      },
-      {
-        month: '7',
-        day: '32',
-        dayOfWeek: '화',
-        startTime: '06:00',
-        endTime: '12:00',
-        users: [
-          {
-            id: 1,
-            name: '심은서',
-          },
-          {
-            id: 2,
-            name: '이동헌',
-          },
-          {
-            id: 3,
-            name: '정찬우',
-          },
-        ],
-      },
-    ],
-  },
-};
 
 function BestMeetTime() {
   const [isalternativeCardOpen, setIsalternativeCardOpen] = useState(false);
   const [selected, setSelected] = useState(0);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [bestTimeData, setBestTimeData] = useState<DateTimeData>();
   const meetingId = useParams();
-  const [isloading, setIsloading] = useState(true);
-  const getCueCardData = async () => {
-    try {
-      setIsloading(true);
-      // const result = await client.get(`/meeting/${meetingId}/details`);
-      // setBestTimeData(result.data);
-      setTimeout(() => setBestTimeData(initialData), 1000);
-    } catch (error) {
-      console.log(error);
-    }
-    setIsloading(false);
-  };
 
-  useEffect(
-    () => {
-      getCueCardData();
-    },
-    [meetingId],
-  );
+  const { isloading, bestTimeData } = GetBestMeetimeListHooks((meetingId as unknown) as string);
 
   if (!isloading && bestTimeData) {
     const bestMeetimeObj = whatisBestMeetime(bestTimeData, selected);
@@ -186,13 +94,13 @@ function BestMeetTime() {
           )}
         </BestMeetTimeWrapper>
       );
-    } else {
-      return (
-        <LoadingWrapper>
-          <LoadingPage />
-        </LoadingWrapper>
-      );
     }
+  } else {
+    return (
+      <LoadingWrapper>
+        <LoadingPage />
+      </LoadingWrapper>
+    );
   }
 }
 
