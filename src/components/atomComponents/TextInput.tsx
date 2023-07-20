@@ -16,10 +16,9 @@ function TextInput({ value, setValue, resetValue, placeholder }: ValueProps) {
   const [focus, setFocus] = useState(false);
 
   const resetOnClick = () => {
-    setFocus(false);
     resetValue();
+    setFocus(false);
   };
-
   return (
     <>
       <TextInputWrapper>
@@ -29,21 +28,22 @@ function TextInput({ value, setValue, resetValue, placeholder }: ValueProps) {
             value={value}
             onChange={setValue}
             onFocus={() => setFocus(true)}
-            $iserror={value.length > 15}
+            $iserror={value?.length > 15}
           />
           {focus && (
             <IconContainer onClick={resetOnClick}>
-              {value.length > 15 ? <InputErrorIc /> : <InputCancelIc />}
+              {value && value.length > 15 ? <InputErrorIc /> : <InputCancelIc />}
             </IconContainer>
           )}
         </InputSection>
-        {value.length > 15 && (
-          <SubTextSection>
-            <Text font={'body4'} color={`${theme.colors.red}`}>
-              공백포함 최대 15자까지 입력가능해요
-            </Text>
-          </SubTextSection>
-        )}
+        {value &&
+          value.length > 15 && (
+            <SubTextSection>
+              <Text font={'body4'} color={`${theme.colors.red}`}>
+                공백포함 최대 15자까지 입력가능해요
+              </Text>
+            </SubTextSection>
+          )}
       </TextInputWrapper>
     </>
   );
@@ -61,9 +61,9 @@ const InputSection = styled.div`
   input:focus + div {
     display: flex;
     svg {
-      cursor: pointer;
       width: 2rem;
       height: 2rem;
+      cursor: pointer;
     }
   }
 `;
@@ -85,10 +85,9 @@ const StyledTextInput = styled.input<{ $iserror: boolean }>`
 
   caret-color: ${({ theme }) => theme.colors.main1};
 
-
   &:focus {
-    outline: none;
     border: 2px solid ${({ $iserror, theme }) => ($iserror ? theme.colors.red : theme.colors.main1)};
+    outline: none;
   }
 `;
 

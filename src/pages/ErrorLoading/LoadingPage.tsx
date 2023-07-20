@@ -14,13 +14,10 @@ function LoadingPage() {
 export default LoadingPage;
 
 const LoadingPageWrapper = styled.div`
-  display: flex;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  background-color: #141414;
+  position: relative;
+  background-color: transparent;
   width: 6rem;
-  height: 100vh;
+  height: 6rem;
 `;
 
 const OuterCircle = styled.div`
@@ -35,7 +32,6 @@ const OuterCircle = styled.div`
   width: 6rem;
   height: 6rem;
   animation: spin 3s linear infinite;
-
   @keyframes spin {
     0% {
       transform: rotate(0);

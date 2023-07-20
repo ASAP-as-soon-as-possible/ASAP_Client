@@ -43,6 +43,8 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
     });
   };
 
+  const [ismodalOpen, setIsModalOpen] = useState(false);
+
   const loginHost = async () => {
     try {
       const result = await client.post(`/user/${meetingId}/host`, hostInfo);
@@ -55,7 +57,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
         }
         navigate(`/host/${meetingId}`);
       } else if (code === 403) {
-        navigate(`/priority/${meetingId}`);
+        setIsModalOpen(true);
       } else {
         console.log(message);
       }
@@ -66,7 +68,6 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
     }
   };
 
-  const [ismodalOpen, setIsModalOpen] = useState(true);
   return (
     <>
       <Header position={'login'} />

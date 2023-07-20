@@ -7,7 +7,7 @@ export const durationType = [
   { time: '3시간', enum: 'THREE_HOUR' },
 ];
 
-export const placeType = ['ONLINE', 'OFFLINE', 'UNDEFIND'];
+export const placeType = ['ONLINE', 'OFFLINE', 'UNDEFINED'];
 
 export const preferTimeType = [
   {
