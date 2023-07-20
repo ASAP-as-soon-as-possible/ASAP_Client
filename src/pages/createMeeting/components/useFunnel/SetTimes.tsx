@@ -17,11 +17,8 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const [endDropDown, setEndDropDown] = useState(false);
 
   const getDate = (btnState: boolean, startTime: string, endTime: string) => {
-    console.log(startTime, endTime);
-
     if (!btnState) {
       // btnState가 true인 경우 preferTimes에 객체를 추가
-      console.log(btnState);
       setMeetingInfo((prev) => ({
         ...prev,
         preferTimes: [...prev.preferTimes, { startTime: startTime, endTime: endTime }],

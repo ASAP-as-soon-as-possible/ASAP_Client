@@ -48,6 +48,7 @@ const Row = (props: RowProps) => {
       {timeSlots.map((slot, columnIdx, arr) => (
         <Column
           key={slot}
+          rowIdx={rowIdx}
           timeSlot={slot}
           $isHalf={slot.endsWith(':30')}
           $isEmpty={!monthDay}

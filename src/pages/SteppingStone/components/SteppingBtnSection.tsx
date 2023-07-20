@@ -15,7 +15,6 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
   const location = useLocation();
   const meetInfo = { ...location.state };
   const { meetingId } = useParams();
-  console.log(meetInfo);
 
   return (
     <>

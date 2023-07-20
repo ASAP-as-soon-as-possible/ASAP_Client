@@ -11,27 +11,25 @@ import { theme } from 'styles/theme';
 import { hostAvailableApi } from 'utils/apis/createHostAvailableSchedule';
 
 import { ScheduleStates } from './types/Schedule';
-import { transformScheduleType } from './utils/changeHostApiReq';
+import { transformHostScheduleType } from './utils/changeHostApiReq';
 
 interface ModalProps {
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }
 
-interface ParamTypes {
-  auth: string;
-  meetingId: string;
-}
 function SelectModal({ setShowModal }: ModalProps) {
   const [scheduleList, setScheduleList] = useRecoilState<ScheduleStates[]>(scheduleAtom);
 
   const navigate = useNavigate();
-  const { auth, meetingId } = useParams<ParamTypes>();
+  const { auth, meetingId } = useParams();
 
-  const updateScheduleType = transformScheduleType(scheduleList);
+  const updateHostScheduleType: HostAvailableSchduleRequestType = transformHostScheduleType(
+    scheduleList,
+  );
 
   const postHostAvailableApi = async () => {
     try {
-      const data = await hostAvailableApi(meetingId, updateScheduleType);
+      const data = await hostAvailableApi(meetingId, updateHostScheduleType);
       return data;
     } catch (e) {
       console.error(e);

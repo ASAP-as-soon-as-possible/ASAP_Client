@@ -83,9 +83,9 @@ const GetBestMeetimeListHooks = (meetingId: string) => {
   const getBestMeetimeList = async () => {
     try {
       setIsloading(true);
-      // const result = await client.get(`/meeting/${meetingId}/details`);
-      // setBestTimeData(result.data);
-      setTimeout(() => setBestTimeData(initialData), 1000);
+      const result = await client.get(`/meeting/${meetingId}/details`);
+      setBestTimeData(result.data);
+      // setTimeout(() => setBestTimeData(initialData), 1000);
     } catch (error) {
       console.log(error);
     }
