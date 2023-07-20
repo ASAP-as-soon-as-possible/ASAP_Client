@@ -103,7 +103,7 @@ function Header({ position, setStep }: HeaderProps) {
           </NavigationSection>
         ) : null}
       </HeaderWrapper>
-      <ToastContainerBox />
+      {/* <ToastContainerBox /> */}
     </>
   );
 }

@@ -7,7 +7,7 @@ import html2canvas from 'html2canvas';
 import CueCardTitle from 'pages/cueCard/components/CueCardTitle';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import styled from 'styled-components/macro';
-import { notify } from 'utils/toast/copyLink';
+import { downLoadNotify, notify } from 'utils/toast/copyLink';
 
 import Qcard from './components/Qcard';
 
@@ -38,7 +38,13 @@ function CueCard() {
             <Text font={'button2'}>링크 복사하기</Text>
           </Button>
         </CopyToClipboard>
-        <Button typeState={'halfPrimaryActive'} onClick={downLoadImage}>
+        <Button
+          typeState={'halfPrimaryActive'}
+          onClick={() => {
+            downLoadNotify()
+            downLoadImage();
+          }}
+        >
           <Text font={'button2'}>이미지 저장하기</Text>
         </Button>
       </ButtonSection>
