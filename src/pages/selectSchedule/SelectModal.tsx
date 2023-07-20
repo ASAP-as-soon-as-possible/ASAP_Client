@@ -1,17 +1,16 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
-import { scheduleAtom } from 'atoms/atom';
+import { scheduleAtom, userNameAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
 import { useNavigate, useParams } from 'react-router';
-import { useRecoilState } from 'recoil';
-import { HostAvailableSchduleRequestType } from 'src/types/createAvailableSchduleType';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { hostAvailableApi } from 'utils/apis/createHostAvailableSchedule';
+import { hostAvailableApi, userAvailableApi } from 'utils/apis/createHostAvailableSchedule';
 
 import { ScheduleStates } from './types/Schedule';
-import { transformHostScheduleType } from './utils/changeHostApiReq';
+import { transformHostScheduleType, transformUserScheduleType } from './utils/changeApiReq';
 
 interface ModalProps {
   setShowModal: Dispatch<SetStateAction<boolean>>;
@@ -19,29 +18,39 @@ interface ModalProps {
 
 function SelectModal({ setShowModal }: ModalProps) {
   const [scheduleList, setScheduleList] = useRecoilState<ScheduleStates[]>(scheduleAtom);
+  const userName = useRecoilValue(userNameAtom);
 
   const navigate = useNavigate();
   const { auth, meetingId } = useParams();
-
-  const updateHostScheduleType: HostAvailableSchduleRequestType = transformHostScheduleType(
-    scheduleList,
-  );
+  const updateScheduleType = transformHostScheduleType(scheduleList);
+  const updateMemberScheduleType = transformUserScheduleType(scheduleList, userName);
 
   const postHostAvailableApi = async () => {
     try {
-      const data = await hostAvailableApi(meetingId, updateHostScheduleType);
+      const data = await hostAvailableApi(meetingId, updateScheduleType);
       return data;
     } catch (e) {
       console.error(e);
     }
   };
+
+  const postMemberAvailableApi = async () => {
+    try {
+      const data = await userAvailableApi(meetingId, updateMemberScheduleType);
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   // console.log(transformedScheduleList);
   const finishConfirm = () => {
     //여기에 api 연결하세요.
     if (auth === 'host') {
       postHostAvailableApi();
-    } else {
-      console.log('userHostApi');
+    } else if (auth === 'member') {
+      console.log(auth);
+      postMemberAvailableApi();
     }
 
     setShowModal(false);
