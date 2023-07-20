@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components/macro';
+import { notify } from 'utils/toast/copyLink';
+import ToastContainerBox from 'utils/toast/ToastContainer';
 
 interface SteppingProps {
   steppingType: string;
@@ -17,16 +17,10 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
   const { meetingId } = useParams();
   console.log(meetInfo);
 
-  //차후 toast-library 사용시 이용할 상태관리
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
+  // const notify = () => toast("링크 복사가 완료되었습니다");
   return (
     <>
+      <ToastContainerBox />
       <StyledBtnSection>
         {
           {
@@ -36,9 +30,9 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
                 {/* <CopyToClipboard text={`${import.meta.env.VITE_APP_IP}/meet/${meetInfo.meetingId}`} onCopy={handleCopy}> */}
                 <CopyToClipboard
                   text={`http://172.23.135.46:5173/meet/${meetInfo.meetingId}`}
-                  onCopy={handleCopy}
+                  // onCopy={handleCopy}
                 >
-                  <Button typeState={'halfTertiaryActive'}>
+                  <Button typeState={'halfTertiaryActive'} onClick={notify}>
                     <Text font={'button2'}>링크 복사하기</Text>
                   </Button>
                 </CopyToClipboard>
@@ -58,7 +52,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
                 </Link>
                 <CopyToClipboard
                   text={`http://172.23.135.46:5173/meet/${meetingId}`}
-                  onCopy={handleCopy}
+                  // onCopy={handleCopy}
                 >
                   <Button typeState={'halfPrimaryActive'}>
                     <Text font={'button2'}>링크 복사하기</Text>
@@ -100,7 +94,7 @@ export default SteppingBtnSection;
 
 const StyledBtnSection = styled.section`
   display: flex;
-  position: fixed;
+  position: absolute;
   bottom: 1.2rem;
   flex-direction: row;
   gap: 1.4rem;
