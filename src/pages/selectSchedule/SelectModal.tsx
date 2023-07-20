@@ -1,89 +1,55 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
-import { BestMeetFinished } from 'pages/BestMeetTime/types/meetCardData';
-import LoadingPage from 'pages/ErrorLoading/LoadingPage';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { authClient } from 'utils/apis/axios';
 
 interface ModalProps {
-  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
-  memberCount: number;
-  bestTime: BestMeetFinished;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
 }
 
-function ConfirmModal({ setIsModalOpen, memberCount, bestTime }: ModalProps) {
-  const { meetingId } = useParams();
-
-  const [isloading, setIsloading] = useState(false);
-
-  const confirmMeetime = async () => {
-    try {
-      const result = await authClient.post(`/meeting/${meetingId}/confirm`, bestTime);
-      console.log(result);
-    } catch (error) {
-      console.log(error);
-    }
-    setIsloading(false);
-    setIsModalOpen(false);
-  };
-
+function SelectModal({ setShowModal }: ModalProps) {
+  const navigate = useNavigate();
+  const { auth, meetingId } = useParams();
   const finishConfirm = () => {
-    setIsloading(true);
-    confirmMeetime();
+    //여기에 api 연결하세요.
+    setShowModal(false);
+    navigate(`/${auth}/schedule-complete/${meetingId}`);
   };
   return (
     <ReturnModalWrpper>
       <ModalSection>
-        <IconContainer onClick={() => setIsModalOpen(false)}>
+        <IconContainer onClick={() => setShowModal(false)}>
           <ExitIc />
         </IconContainer>
         <MentContainer>
           <ModalMent>
-            현재까지 <ModalHighlight>{memberCount}명</ModalHighlight>이 입력했어요.
+            가능 시간 입력을 완료하면 <ModalHighlight>수정이 불가</ModalHighlight>합니다.
           </ModalMent>
-          <Text font={`body3`} color={`${theme.colors.white}`}>
-            {`회의 시간을 확정하시겠습니까?`}
+          <Text font={`body2`} color={`${theme.colors.white}`}>
+            계속 진행하시겠습니까?
           </Text>
         </MentContainer>
         <BtnWrapper>
-          <ModalBtn id="cancel" onClick={() => setIsModalOpen(false)}>
-            <Text font={`title2`} color={`${theme.colors.white}`}>
+          <ModalBtn id="cancel" onClick={() => setShowModal(false)}>
+            <Text font={`button2`} color={`${theme.colors.white}`}>
               취소
             </Text>
           </ModalBtn>
           <ModalBtn id="confirm" onClick={finishConfirm}>
-            <Text font={`title2`} color={`${theme.colors.white}`}>
+            <Text font={`button2`} color={`${theme.colors.white}`}>
               확정
             </Text>
           </ModalBtn>
         </BtnWrapper>
       </ModalSection>
-      {isloading ? (
-        <LoadingWrapper>
-          <LoadingPage />
-        </LoadingWrapper>
-      ) : (
-        undefined
-      )}
     </ReturnModalWrpper>
   );
 }
 
-export default ConfirmModal;
-
-const LoadingWrapper = styled.div`
-  display: flex;
-  position: absolute;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.6);
-  width: 100%;
-  height: 100%;
-`;
+export default SelectModal;
 
 const ReturnModalWrpper = styled.div`
   display: flex;
@@ -108,7 +74,7 @@ const ModalSection = styled.article`
   border-radius: 0.8rem;
   background-color: ${({ theme }) => theme.colors.grey8};
   width: 28.8rem;
-  height: 15.6rem;
+  height: 17.2rem;
 `;
 
 const IconContainer = styled.div`
@@ -135,12 +101,16 @@ const MentContainer = styled.div`
 
 const ModalMent = styled.span`
   color: ${({ theme }) => theme.colors.white};
-  ${({ theme }) => theme.fonts.body3};
+  ${({ theme }) => theme.fonts.body2};
+  width: 14.4rem;
+  text-align: center;
+  margin-bottom: 0.8rem;
+  margin-top: 2.4rem;
 `;
 
 const ModalHighlight = styled.span`
   color: ${({ theme }) => theme.colors.red};
-  ${({ theme }) => theme.fonts.body3};
+  ${({ theme }) => theme.fonts.body2};
 `;
 
 const ModalBtn = styled.button`
@@ -152,10 +122,11 @@ const ModalBtn = styled.button`
   background-color: ${({ theme, id }) =>
     id === 'cancel' ? theme.colors.grey6 : theme.colors.main2};
   width: 12.4rem;
-  height: 4rem;
+  height: 4.4rem;
 `;
 
 const BtnWrapper = styled.div`
   display: flex;
   gap: 0.8rem;
+  margin-top: 2rem;
 `;

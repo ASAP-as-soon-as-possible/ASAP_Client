@@ -28,7 +28,7 @@ function SelectSchedulePage() {
     placeDetail: '',
   });
   const navigate=useNavigate();
-  const {meetingId} = useParams();
+  const {auth, meetingId} = useParams();
 
   const changeDurationFormat = (duration:string) => {
     switch(duration){
@@ -187,7 +187,7 @@ function SelectSchedulePage() {
               : 'secondaryDisabled'
           }
           onClick={
-            () => {navigate(`/priority/${meetingId}`)}
+            () => {navigate(`/${auth}/priority/${meetingId}`)}
           }
         >
           <Text font={'button2'}>다음</Text>

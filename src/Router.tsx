@@ -23,8 +23,8 @@ const Router = () => {
         <Route path="/scheduletest" element={<AvailableSchedule />} />
         <Route path="/meet/create" element={<CreateMeeting />} />
         <Route path="/meet/complete" element={<SteppingLayout steppingType={'meetComplete'} />} />
-        <Route path="/schedule/:meetingId" element={<SelectPage />} />
-        <Route path="/priority/:meetingId" element={<SelectSchedulePriority />} />
+        <Route path="/:auth/schedule/:meetingId" element={<SelectPage />} />
+        <Route path="/:auth/priority/:meetingId" element={<SelectSchedulePriority />} />
         <Route
           path="/host/schedule-complete/:meetingId"
           element={<SteppingLayout steppingType={'hostScheduleComplete'} />}
