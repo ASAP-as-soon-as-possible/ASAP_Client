@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
-
 import Text from 'components/atomComponents/Text';
-import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-import { BestDataProps } from '../types/meetCardData';
+import { BestDataProps } from '../../types/meetCardData';
 
-function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
-  const [isMember, setIsMember] = useState(false);
-  const checkingCheck = (e: React.ChangeEvent<HTMLInputElement>) => {
+function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
+  const checkingCheck = () => {
     chooseMeetime(rank);
   };
+
+  if(carddata) {
   return (
-    <BestTimeCardWrapper $rank={rank} $selected={selected}>
-      <IconContainer onClick={() => setIsMember((prev) => !prev)}>
-        {isMember ? <DropupWhite /> : <DropdownWhite />}
-      </IconContainer>
+    <AlternativeCardWrapper $rank={rank} $selected={selected}>
       <Input
         id={`${rank}`}
         type="checkbox"
-        onChange={checkingCheck}
         checked={rank === selected ? true : false}
+        onChange={checkingCheck}
       />
       <InfoContainer>
         <Label htmlFor={`${rank}`}>
@@ -32,25 +27,25 @@ function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps
             {carddata.startTime} ~ {carddata.endTime}
           </Text>
         </Label>
-        {isMember ? (
-          <MemeberContainer>
-            {carddata.userNames.map((member, i) => (
-              <Text key={i + member} font={'body4'} color={`${theme.colors.grey5}`}>
-                {`${member},`}&nbsp;
-              </Text>
-            ))}
-          </MemeberContainer>
-        ) : (
-          undefined
-        )}
+
+        <MemeberContainer>
+          {carddata?.users.map((member, i) => (
+            <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
+              {`${member.name},`}&nbsp;
+            </Text>
+          ))}
+        </MemeberContainer>
       </InfoContainer>
-    </BestTimeCardWrapper>
+    </AlternativeCardWrapper>
   );
+} else {
+  return null
+}
 }
 
-export default BestTimeCard;
+export default AlternativeCard;
 
-const BestTimeCardWrapper = styled.article<{ $rank: number; $selected: number }>`
+const AlternativeCardWrapper = styled.article<{ $rank: number; $selected: number }>`
   display: flex;
   position: relative;
   flex-direction: row;
@@ -59,9 +54,9 @@ const BestTimeCardWrapper = styled.article<{ $rank: number; $selected: number }>
       $rank === $selected ? theme.colors.main1 : theme.colors.grey5};
   border-radius: 10px;
   padding: 2rem;
-  width:100%;
   height: fit-content;
 `;
+
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -97,18 +92,4 @@ const MemeberContainer = styled.div`
   margin-top: 1.2rem;
   width: 23rem;
   height: fit-content;
-`;
-
-const BasicIconContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-`;
-
-const IconContainer = styled(BasicIconContainer)`
-  position: absolute;
-  top: 1.2rem;
-  right: 1.2rem;
 `;

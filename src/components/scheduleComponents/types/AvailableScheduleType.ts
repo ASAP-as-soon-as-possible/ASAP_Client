@@ -17,6 +17,8 @@ export interface SelectedSchedule {
   priority: number;
 }
 
+import React from 'react';
+
 export interface RowProps {
   rowIdx: number;
   timeSlots: string[];
@@ -26,6 +28,8 @@ export interface RowProps {
   isLastofValidDate: boolean;
   selectedSchedulePerDate: SelectedSchedule[];
   scheduleType: 'priority' | 'available';
+  timeSlotUserNames: string[];
+  setTimeSlotUserNames: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface ColumnProps {

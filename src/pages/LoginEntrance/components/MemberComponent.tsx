@@ -1,16 +1,17 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import Button from 'components/atomComponents/Button';
-import PasswordInput from 'components/atomComponents/PasswordInput';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import Header from 'components/moleculesComponents/Header';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
+import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 interface HostInfoProps {
-  id: string;
+  name: string;
   password: string;
 }
 interface HostProps {
@@ -18,15 +19,26 @@ interface HostProps {
   setHostInfo: Dispatch<SetStateAction<HostInfoProps>>;
 }
 function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
+  const { meetingId } = useParams();
+  const navigate = useNavigate();
+
   const hostOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHostInfo((prev: HostInfoProps) => {
-      return { ...prev, id: e.target.value };
+      return { ...prev, name: e.target.value };
     });
   };
 
   const resetHostId = () => {
     setHostInfo((prev: HostInfoProps) => {
-      return { ...prev, id: '' };
+      return { ...prev, name: '' };
+    });
+  };
+
+  const loginMember = () => {
+    navigate(`/member/schedule/${meetingId}`, {
+      state: {
+        memberName: hostInfo.name,
+      },
     });
   };
 
@@ -40,22 +52,22 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
       <HostInfoSection>
         <HostNameSection>
           <Text font={`title2`} color={`${theme.colors.white}`}>
-            방장 이름
+            이름
           </Text>
           <TextInput
-            value={hostInfo.id}
+            value={hostInfo.name}
             setValue={hostOnChange}
             resetValue={resetHostId}
-            placeholder={'방장 이름'}
+            placeholder={'참여자 이름'}
           />
         </HostNameSection>
       </HostInfoSection>
       <StyledBtnSection>
         <Button
-          typeState={hostInfo.id ? 'primaryActive' : 'secondaryDisabled'}
-          onClick={hostInfo.id ? () => console.log('happy') : undefined}
+          typeState={hostInfo.name ? 'primaryActive' : 'secondaryDisabled'}
+          onClick={hostInfo.name ? loginMember : undefined}
         >
-          <Text font={'button2'}>방장 페이지 접속하기</Text>
+          <Text font={'button2'}>나의 가능 시간 입력</Text>
         </Button>
       </StyledBtnSection>
     </>

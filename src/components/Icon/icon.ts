@@ -1,4 +1,7 @@
 import { ReactComponent as BackIc } from 'assets/svgs/backBtn.svg';
+import { ReactComponent as Circle1Ic } from 'assets/svgs/circle1.svg';
+import { ReactComponent as Circle2Ic } from 'assets/svgs/circle2.svg';
+import { ReactComponent as Circle3Ic } from 'assets/svgs/circle3.svg';
 import { ReactComponent as ClockIc } from 'assets/svgs/clock.svg';
 import { ReactComponent as DropDownIc } from 'assets/svgs/dropDownBtn.svg';
 import { ReactComponent as DropdownWhite } from 'assets/svgs/dropdownWhite.svg';
@@ -20,6 +23,7 @@ import { ReactComponent as RadioCheckIc } from 'assets/svgs/radioCheck.svg';
 import { ReactComponent as RadioCheckedIc } from 'assets/svgs/radioChecked.svg';
 import { ReactComponent as SpeechBubbleIc } from 'assets/svgs/speechBubble.svg';
 import { ReactComponent as TimeIc } from 'assets/svgs/time.svg';
+import { ReactComponent as Wave } from 'assets/svgs/wave.svg';
 
 export {
   MainLogoIc,
@@ -44,4 +48,8 @@ export {
   DropdownWhite,
   DropupWhite,
   SpeechBubbleIc,
+  Wave,
+  Circle1Ic,
+  Circle2Ic,
+  Circle3Ic,
 };
