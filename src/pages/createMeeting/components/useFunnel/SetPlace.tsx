@@ -23,7 +23,7 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                   {type === 'ONLINE' ? '온라인' : type === 'OFFLINE' ? '오프라인' : '미정'}
                 </Text>
               </Button>
-              {type === 'UNDEFIND' ? null : meetingInfo.place === type ? (
+              {type === 'UNDEFINED' ? null : meetingInfo.place === type ? (
                 <PlaceInput
                   data={type}
                   value={meetingInfo.placeDetail}
