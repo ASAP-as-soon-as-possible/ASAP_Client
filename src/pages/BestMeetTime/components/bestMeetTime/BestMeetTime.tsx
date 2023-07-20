@@ -7,11 +7,13 @@ import AlternativeCard from 'pages/BestMeetTime/components/bestMeetTime/Alternat
 import BestTimeCard from 'pages/BestMeetTime/components/bestMeetTime/BestTimeCard';
 import ConfirmModal from 'pages/BestMeetTime/components/bestMeetTime/confirmModal';
 import { BestMeetFinished, DateTimeData } from 'pages/BestMeetTime/types/meetCardData';
+import { whatisBestMeetime } from 'pages/BestMeetTime/utils/whatisBestMeetime';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import { useParams } from 'react-router';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { client } from 'utils/apis/axios';
+
 import BlankMeetCard from './BlankMeetCard';
 
 const initialData = {
@@ -43,7 +45,7 @@ const initialData = {
     otherDateTimes: [
       {
         month: '7',
-        day: '30',
+        day: '31',
         dayOfWeek: '화',
         startTime: '06:00',
         endTime: '12:00',
@@ -64,7 +66,7 @@ const initialData = {
       },
       {
         month: '7',
-        day: '30',
+        day: '32',
         dayOfWeek: '화',
         startTime: '06:00',
         endTime: '12:00',
@@ -114,93 +116,83 @@ function BestMeetTime() {
   );
 
   if (!isloading && bestTimeData) {
-    let dataobj: BestMeetFinished;
-    const whatisDataobj = (rank: number) => {
-      if (rank === 0) {
-        dataobj = bestTimeData.data.bestDateTime;
-      } else if (rank === 1) {
-        dataobj = bestTimeData.data.otherDateTimes[0];
-      } else if (rank === 2) {
-        dataobj = bestTimeData.data.otherDateTimes[1];
-      }
+    const bestMeetimeObj = whatisBestMeetime(bestTimeData, selected);
+    if (bestMeetimeObj) {
+      return (
+        <BestMeetTimeWrapper $state={showModal}>
+          <TitleSection>
+            <HeaderContainer>
+              <HeaderTitle>
+                현재까지 모인 <MemberCount>{bestTimeData.data.memberCount}</MemberCount>명을 위한
+              </HeaderTitle>
+              <HeaderTitle>최적의 회의시간이에요</HeaderTitle>
+            </HeaderContainer>
+            <Text font={'body3'} color={`${theme.colors.grey4}`}>
+              박스를 클릭하여 회의시간을 확정해주세요
+            </Text>
+          </TitleSection>
+          {bestTimeData.data.bestDateTime ? (
+            <BestTimeCard
+              rank={0}
+              selected={selected}
+              carddata={bestTimeData.data.bestDateTime}
+              chooseMeetime={setSelected}
+            />
+          ) : null}
 
-      return dataobj;
-    };
-
-    const dataUse = whatisDataobj(selected);
-
-    return (
-      <BestMeetTimeWrapper $state={showModal}>
-        <TitleSection>
-          <HeaderContainer>
-            <HeaderTitle>
-              현재까지 모인 <MemberCount>{bestTimeData.data.memberCount}</MemberCount>명을 위한
-            </HeaderTitle>
-            <HeaderTitle>최적의 회의시간이에요</HeaderTitle>
-          </HeaderContainer>
-          <Text font={'body3'} color={`${theme.colors.grey4}`}>
-            박스를 클릭하여 회의시간을 확정해주세요
-          </Text>
-        </TitleSection>
-        {bestTimeData.data.bestDateTime ? (
-          <BestTimeCard
-            rank={0}
-            selected={selected}
-            carddata={bestTimeData.data.bestDateTime}
-            chooseMeetime={setSelected}
-          />
-        ) : null}
-
-        <AnotherTimeBtnSection>
-          <Text font={`body4`} color={`${theme.colors.grey3}`}>
-            다른 시간대 확인하기
-          </Text>
-          <BasicIconContainer onClick={() => setIsalternativeCardOpen((prev) => !prev)}>
-            {isalternativeCardOpen ? <DropupWhite /> : <DropdownWhite />}
-          </BasicIconContainer>
-        </AnotherTimeBtnSection>
-        {isalternativeCardOpen ? (
-          <AlternativeSection>
-            {bestTimeData.data.otherDateTimes[0] ? (
-              <AlternativeCard
-                rank={1}
-                selected={selected}
-                carddata={bestTimeData.data.otherDateTimes[0]}
-                chooseMeetime={setSelected}
-              />
-            ) : <BlankMeetCard />}
-            {bestTimeData.data.otherDateTimes[1] ? (
-              <AlternativeCard
-                rank={2}
-                selected={selected}
-                carddata={bestTimeData.data.otherDateTimes[1]}
-                chooseMeetime={setSelected}
-              />
-            ) : null}
-          </AlternativeSection>
-        ) : (
-          undefined
-        )}
-        <BtnWrapper>
-          <Button typeState={'primaryActive'} onClick={() => setShowModal(true)}>
-            <Text font={'title2'}> 확정</Text>
-          </Button>
-        </BtnWrapper>
-        {showModal && (
-          <ConfirmModal
-            setIsModalOpen={setShowModal}
-            memberCount={bestTimeData.data.memberCount}
-            bestTime={dataUse} //얘도 데이터에서 애들 이름 지워야됨
-          />
-        )}
-      </BestMeetTimeWrapper>
-    );
-  } else {
-    return (
-      <LoadingWrapper>
-        <LoadingPage />
-      </LoadingWrapper>
-    );
+          <AnotherTimeBtnSection>
+            <Text font={`body4`} color={`${theme.colors.grey3}`}>
+              다른 시간대 확인하기
+            </Text>
+            <BasicIconContainer onClick={() => setIsalternativeCardOpen((prev) => !prev)}>
+              {isalternativeCardOpen ? <DropupWhite /> : <DropdownWhite />}
+            </BasicIconContainer>
+          </AnotherTimeBtnSection>
+          {isalternativeCardOpen ? (
+            <AlternativeSection>
+              {bestTimeData.data.otherDateTimes[0] ? (
+                <AlternativeCard
+                  rank={1}
+                  selected={selected}
+                  carddata={bestTimeData.data.otherDateTimes[0]}
+                  chooseMeetime={setSelected}
+                />
+              ) : (
+                <BlankMeetCard />
+              )}
+              {bestTimeData.data.otherDateTimes[1] ? (
+                <AlternativeCard
+                  rank={2}
+                  selected={selected}
+                  carddata={bestTimeData.data.otherDateTimes[1]}
+                  chooseMeetime={setSelected}
+                />
+              ) : null}
+            </AlternativeSection>
+          ) : (
+            undefined
+          )}
+          <BtnWrapper>
+            <Button typeState={'primaryActive'} onClick={() => setShowModal(true)}>
+              <Text font={'title2'}> 확정</Text>
+            </Button>
+          </BtnWrapper>
+          {showModal && (
+            <ConfirmModal
+              setIsModalOpen={setShowModal}
+              memberCount={bestTimeData.data.memberCount}
+              bestTime={bestMeetimeObj} //얘도 데이터에서 애들 이름 지워야됨
+            />
+          )}
+        </BestMeetTimeWrapper>
+      );
+    } else {
+      return (
+        <LoadingWrapper>
+          <LoadingPage />
+        </LoadingWrapper>
+      );
+    }
   }
 }
 
