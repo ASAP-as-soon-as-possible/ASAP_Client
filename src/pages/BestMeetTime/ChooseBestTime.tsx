@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 
 import Header from 'components/moleculesComponents/Header';
+import BestMeetTime from 'pages/BestMeetTime/components/bestMeetTime/BestMeetTime';
 import OverallSchedule from 'pages/OverallSchedule/OverallSchedule';
 import { styled } from 'styled-components';
-
-import BestMeetTime from './BestMeetTime';
 
 function ChooseBestTime() {
   const [viewBest, setViewBest] = useState<boolean>(true);
@@ -19,10 +18,7 @@ function ChooseBestTime() {
           종합 일정 시간표
         </ChangeViewPicker>
       </ViewPickerWrapper>
-      <ViewContainer>
-        {/* green,blue 자리에 컴포넌트 입력 */}
-        {viewBest ? <BestMeetTime /> : <OverallSchedule />}
-      </ViewContainer>
+      <ViewContainer>{viewBest ? <BestMeetTime /> : <OverallSchedule />}</ViewContainer>
     </ChooseBestTimeWrapper>
   );
 }

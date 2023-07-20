@@ -1,12 +1,10 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import Button from 'components/atomComponents/Button';
-import PasswordInput from 'components/atomComponents/PasswordInput';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import Header from 'components/moleculesComponents/Header';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
-import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -19,6 +17,9 @@ interface HostProps {
   setHostInfo: Dispatch<SetStateAction<HostInfoProps>>;
 }
 function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
+  const { meetingId } = useParams();
+  const navigate = useNavigate();
+
   const hostOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHostInfo((prev: HostInfoProps) => {
       return { ...prev, name: e.target.value };
@@ -30,7 +31,15 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
       return { ...prev, name: '' };
     });
   };
-  const { meetingId } = useParams();
+
+  const loginMember = () => {
+    navigate(`/member/priority/${meetingId}`, {
+      state: {
+        memberName: hostInfo.name,
+      },
+    });
+  };
+
   return (
     <>
       <Header position={'login'} />
@@ -41,25 +50,23 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
       <HostInfoSection>
         <HostNameSection>
           <Text font={`title2`} color={`${theme.colors.white}`}>
-            방장 이름
+            이름
           </Text>
           <TextInput
             value={hostInfo.name}
             setValue={hostOnChange}
             resetValue={resetHostId}
-            placeholder={'방장 이름'}
+            placeholder={'참여자 이름'}
           />
         </HostNameSection>
       </HostInfoSection>
       <StyledBtnSection>
-        <Link to={`/member/schedule/${meetingId}`}>
-          <Button
-            typeState={hostInfo.name ? 'primaryActive' : 'secondaryDisabled'}
-            onClick={hostInfo.name ? () => console.log('happy') : undefined}
-          >
-            <Text font={'button2'}>방장 페이지 접속하기</Text>
-          </Button>
-        </Link>
+        <Button
+          typeState={hostInfo.name ? 'primaryActive' : 'secondaryDisabled'}
+          onClick={hostInfo.name ? loginMember : undefined}
+        >
+          <Text font={'button2'}>나의 가능 시간 입력</Text>
+        </Button>
       </StyledBtnSection>
     </>
   );

@@ -6,7 +6,7 @@ import Text from 'components/atomComponents/Text';
 import Header from 'components/moleculesComponents/Header';
 import PriorityDropdown from 'components/scheduleComponents/components/PriorityDropdown';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
@@ -19,7 +19,6 @@ const SelectSchedulePriority = () => {
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
   const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
   const { meetingId } = useParams();
-  const [input_, setInput] = useState<string[]>(['', '', '']);
   const [showModal, setShowModal] = useState(false);
   const getAvailableScheduleOption = async () => {
     try {
@@ -50,10 +49,10 @@ const SelectSchedulePriority = () => {
         scheduleType="priority"
       />
 
-      <PriorityDropdown input_={input_} setInput={setInput} />
+      <PriorityDropdown />
       <StyledBtnSection>
         <Button
-          typeState={input_ ? 'halfTertiaryActive' : 'tertiaryDisabled'}
+          typeState={'halfTertiaryActive'}
           onClick={() => {
             console.log('click');
           }}
@@ -61,7 +60,7 @@ const SelectSchedulePriority = () => {
           <Text font={'button2'}>상관없음</Text>
         </Button>
         <Button
-          typeState={input_ ? 'halfPrimaryActive' : 'halfPrimaryDisabled'}
+          typeState={'halfPrimaryActive'}
           onClick={() => {
             setShowModal(true);
           }}

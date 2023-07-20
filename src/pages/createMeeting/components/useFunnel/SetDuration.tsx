@@ -5,7 +5,6 @@ import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInt
 import styled from 'styled-components/macro';
 
 function SetDuration({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
-  console.log(meetingInfo)
   return (
     <SetAdditionalInfoWrapper>
       <DurationWrapper>
@@ -14,7 +13,9 @@ function SetDuration({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             <Button
               key={i + duration.enum}
               typeState={
-                meetingInfo.duration === duration.enum ? `halfPrimaryActive` : `halfsecondaryDisabled`
+                meetingInfo.duration === duration.enum
+                  ? `halfPrimaryActive`
+                  : `halfsecondaryDisabled`
               }
               onClick={() => {
                 setMeetingInfo((prev: MeetingInfo) => {

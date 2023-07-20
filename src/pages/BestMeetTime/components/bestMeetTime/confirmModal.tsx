@@ -1,12 +1,13 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
+import { BestMeetFinished } from 'pages/BestMeetTime/types/meetCardData';
+import LoadingPage from 'pages/ErrorLoading/LoadingPage';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { BestMeetTimeApi } from 'utils/apis/bestMeetTimeApi';
-
-import { BestMeetFinished } from '../types/meetCardData';
+import { authClient } from 'utils/apis/axios';
 
 interface ModalProps {
   setIsModalOpen: Dispatch<SetStateAction<boolean>>;
@@ -15,19 +16,24 @@ interface ModalProps {
 }
 
 function ConfirmModal({ setIsModalOpen, memberCount, bestTime }: ModalProps) {
-  const bestMeetTime = async () => {
+  const { meetingId } = useParams();
+
+  const [isloading, setIsloading] = useState(false);
+
+  const confirmMeetime = async () => {
     try {
-      const {
-        data: { data },
-      } = await BestMeetTimeApi(bestTime);
-      console.log(data);
-    } catch (err) {
-      console.log(err);
+      const result = await authClient.post(`/meeting/${meetingId}/confirm`, bestTime);
+      console.log(result);
+    } catch (error) {
+      console.log(error);
     }
-  };
-  const finishConfirm = () => {
-    bestMeetTime();
+    setIsloading(false);
     setIsModalOpen(false);
+  };
+
+  const finishConfirm = () => {
+    setIsloading(true);
+    confirmMeetime();
   };
   return (
     <ReturnModalWrpper>
@@ -56,11 +62,28 @@ function ConfirmModal({ setIsModalOpen, memberCount, bestTime }: ModalProps) {
           </ModalBtn>
         </BtnWrapper>
       </ModalSection>
+      {isloading ? (
+        <LoadingWrapper>
+          <LoadingPage />
+        </LoadingWrapper>
+      ) : (
+        undefined
+      )}
     </ReturnModalWrpper>
   );
 }
 
 export default ConfirmModal;
+
+const LoadingWrapper = styled.div`
+  display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+`;
 
 const ReturnModalWrpper = styled.div`
   display: flex;
