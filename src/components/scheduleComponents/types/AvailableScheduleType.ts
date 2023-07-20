@@ -34,6 +34,7 @@ export interface RowProps {
 
 export interface ColumnProps {
   timeSlot: string;
+  rowIdx: number;
   $isHalf: boolean;
   $isEmpty: boolean;
   $isFirstRow: boolean;
@@ -46,6 +47,8 @@ export interface ColumnProps {
   $priorityColorInfo: string;
   $isStartTimeofPrioritySlot: boolean;
   scheduleType: string;
+  userNames: string[];
+  $slotColorLevel: number;
 }
 
 export interface PriorityInfo {

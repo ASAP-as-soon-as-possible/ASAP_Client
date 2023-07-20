@@ -27,8 +27,8 @@ const OverallSchedule = () => {
 
   const [timeSlotUserNames, setTimeSlotUserNames] = useRecoilState(timeSlotUserNameAtom);
 
-  const [memberCount, setMemberCount] = useState<number>();
-  const [totalUserNames, setTotalUserNames] = useState<string[]>();
+  const [memberCount, setMemberCount] = useState<number>(0);
+  const [totalUserNames, setTotalUserNames] = useState<string[]>('');
 
   const getAvailableScheduleOption = async () => {
     try {
@@ -47,7 +47,6 @@ const OverallSchedule = () => {
       setOverallScheduleData(data);
       setMemberCount(data.memberCount);
       setTotalUserNames(data.totalUserNames);
-      console.log(data);
     } catch (err) {
       console.log(err);
     }

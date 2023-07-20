@@ -1,15 +1,18 @@
-import { timeSlotUserNameAtom } from 'atoms/atom';
+import { useState } from 'react';
+
+import { clickedTimeSlotAtom, timeSlotUserNameAtom } from 'atoms/atom';
+import { ColumnProps } from 'components/scheduleComponents/types/AvailableScheduleType';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
-import { ColumnProps } from '../types/AvailableScheduleType';
-
 const Column = (props: ColumnProps) => {
   const [timeSlotUserName, setTimeSlotUserName] = useRecoilState(timeSlotUserNameAtom);
+  const [clickedTimeSlot, setClickedTimeSlot] = useRecoilState(clickedTimeSlotAtom);
 
   const {
     timeSlot,
+    rowIdx,
     $isHalf,
     $isEmpty,
     $isFirstRow,
@@ -26,6 +29,11 @@ const Column = (props: ColumnProps) => {
     $slotColorLevel,
   } = props;
 
+  const handleSlotClick = () => {
+    setTimeSlotUserName(userNames);
+    setClickedTimeSlot(rowIdx + timeSlot);
+  };
+
   return (
     <ColumnWrapper
       $isDateEmpty={$isEmpty}
@@ -40,9 +48,8 @@ const Column = (props: ColumnProps) => {
       $priorityColorInfo={$priorityColorInfo}
       $isStartTimeofPrioritySlot={$isStartTimeofPrioritySlot}
       $slotColorLevel={$slotColorLevel}
-      onClick={() => {
-        setTimeSlotUserName(userNames);
-      }}
+      onClick={handleSlotClick}
+      $isClicked={clickedTimeSlot === rowIdx + timeSlot}
     >
       {$isStartTimeofPrioritySlot &&
       $priorityColorInfo !== theme.colors.grey6 &&
@@ -70,6 +77,7 @@ interface ColumnWrapperProps {
   $priorityColorInfo: string;
   $isStartTimeofPrioritySlot: boolean;
   $slotColorLevel: number;
+  $isClicked: boolean;
 }
 
 const ColumnWrapper = styled.div<ColumnWrapperProps>`
@@ -106,8 +114,11 @@ const ColumnWrapper = styled.div<ColumnWrapperProps>`
               ? theme.colors.level5
               : 'none'};
 
+  background-color: ${({ theme, $isSelected, $isClicked }) =>
+    $isSelected && $isClicked && theme.colors.sub1};
+
   width: 4.4rem;
-  height: 1.2rem;
+  height: 1.5rem;
 `;
 
 const PriorityNumber = styled.span`
