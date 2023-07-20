@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
+import { userNameAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
@@ -7,6 +8,7 @@ import Header from 'components/moleculesComponents/Header';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -21,7 +23,7 @@ interface HostProps {
 function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
   const { meetingId } = useParams();
   const navigate = useNavigate();
-
+  const [userName, setUserName] = useRecoilState(userNameAtom);
   const hostOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setHostInfo((prev: HostInfoProps) => {
       return { ...prev, name: e.target.value };
@@ -35,11 +37,8 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
   };
 
   const loginMember = () => {
-    navigate(`/member/schedule/${meetingId}`, {
-      state: {
-        memberName: hostInfo.name,
-      },
-    });
+    setUserName(hostInfo.name);
+    navigate(`/member/schedule/${meetingId}`);
   };
 
   return (
