@@ -1,6 +1,6 @@
 import { ScheduleStates } from '../types/Schedule';
 
-export const transformScheduleType = (scheduleList: ScheduleStates[]) => {
+export const transformHostScheduleType = (scheduleList: ScheduleStates[]) => {
   return scheduleList.map((item) => {
     const [, month, day, dateOfWeek]: string[] = item.date.match(/(\d+)월 (\d+)일 \((\S+)\)/);
 
