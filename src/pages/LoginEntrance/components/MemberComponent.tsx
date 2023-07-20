@@ -6,6 +6,7 @@ import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import Header from 'components/moleculesComponents/Header';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -29,7 +30,7 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
       return { ...prev, name: '' };
     });
   };
-
+  const { meetingId } = useParams();
   return (
     <>
       <Header position={'login'} />
@@ -51,12 +52,14 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
         </HostNameSection>
       </HostInfoSection>
       <StyledBtnSection>
-        <Button
-          typeState={hostInfo.name ? 'primaryActive' : 'secondaryDisabled'}
-          onClick={hostInfo.name ? () => console.log('happy') : undefined}
-        >
-          <Text font={'button2'}>방장 페이지 접속하기</Text>
-        </Button>
+        <Link to={`/member/schedule/${meetingId}`}>
+          <Button
+            typeState={hostInfo.name ? 'primaryActive' : 'secondaryDisabled'}
+            onClick={hostInfo.name ? () => console.log('happy') : undefined}
+          >
+            <Text font={'button2'}>방장 페이지 접속하기</Text>
+          </Button>
+        </Link>
       </StyledBtnSection>
     </>
   );

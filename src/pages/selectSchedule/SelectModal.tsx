@@ -12,11 +12,11 @@ interface ModalProps {
 
 function SelectModal({ setShowModal }: ModalProps) {
   const navigate = useNavigate();
-  const meetingId = useParams();
+  const { auth, meetingId } = useParams();
   const finishConfirm = () => {
     //여기에 api 연결하세요.
     setShowModal(false);
-    navigate(`/host/schedule-complete/${meetingId}`);
+    navigate(`/${auth}/schedule-complete/${meetingId}`);
   };
   return (
     <ReturnModalWrpper>

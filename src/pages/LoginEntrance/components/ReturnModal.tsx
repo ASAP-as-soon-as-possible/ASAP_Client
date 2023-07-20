@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -10,6 +11,7 @@ interface ModalProps {
 }
 
 function ReturnModal({ setIsModalOpen }: ModalProps) {
+  const { meetingId } = useParams();
   return (
     <ReturnModalWrpper>
       <ModalSection>
@@ -27,11 +29,13 @@ function ReturnModal({ setIsModalOpen }: ModalProps) {
             방장 페이지에 접속할 수 있어요!
           </Text>
         </MentContainer>
-        <ModalBtn>
-          <Text font={`body2`} color={`${theme.colors.white}`}>
-            가능 시간 입력하러 가기
-          </Text>
-        </ModalBtn>
+        <Link to={`/host/schedule/${meetingId}`}>
+          <ModalBtn>
+            <Text font={`body2`} color={`${theme.colors.white}`}>
+              가능 시간 입력하러 가기
+            </Text>
+          </ModalBtn>
+        </Link>
       </ModalSection>
     </ReturnModalWrpper>
   );

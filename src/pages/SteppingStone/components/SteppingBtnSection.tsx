@@ -42,7 +42,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
                     <Text font={'button2'}>링크 복사하기</Text>
                   </Button>
                 </CopyToClipboard>
-                <Link to={`/schedule/${meetInfo.meetingId}`}>
+                <Link to={`/host/schedule/${meetInfo.meetingId}`}>
                   <Button typeState={'halfPrimaryActive'}>
                     <Text font={'button2'}>나의 가능시간 입력</Text>
                   </Button>
@@ -51,7 +51,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
             ),
             hostScheduleComplete: (
               <>
-                <Link to={`/meet/${meetingId}`}>
+                <Link to={`/host/meet/${meetingId}`}>
                   <Button typeState={'halfTertiaryActive'}>
                     <Text font={'button2'}>방장페이지 입장</Text>
                   </Button>
