@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction } from 'react';
+import { useEffect, useState } from 'react';
 
 import { scheduleAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
@@ -8,10 +8,10 @@ import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-function PriorityDropdown(input_: string[], setInput: Dispatch<SetStateAction<string[]>>) {
+function PriorityDropdown() {
   const [scheduleList, setScheduleList] = useRecoilState<ScheduleStates[]>(scheduleAtom);
   const [timeSelect, setTimeSelect] = useState([false, false, false]);
-
+  const [input_, setInput] = useState<string[]>(['', '', '']);
   const handleDropdown = (i: number) => {
     if (!timeSelect[i]) {
       setTimeSelect((prevState) => {
@@ -63,9 +63,11 @@ function PriorityDropdown(input_: string[], setInput: Dispatch<SetStateAction<st
       });
       return updatedScheduleList;
     });
-
+    console.log(i, item);
+    console.log(scheduleList);
     setInput((prev) => {
       const updatedInput = [...prev];
+      console.log('setInput');
       if (i === 0) {
         updatedInput[i] = `${item.date} ${item.startTime}~${item.endTime}`;
       } else if (i === 1) {
@@ -80,6 +82,12 @@ function PriorityDropdown(input_: string[], setInput: Dispatch<SetStateAction<st
     handleDropdown(i);
   };
 
+  // useEffect(
+  //   () => {
+  //     console.log(input_);
+  //   },
+  //   [input_],
+  // );
   return (
     <PriorityDropdownWrapper>
       {scheduleList.map(
