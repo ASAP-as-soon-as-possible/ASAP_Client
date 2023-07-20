@@ -15,9 +15,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
   const location = useLocation();
   const meetInfo = { ...location.state };
   const { meetingId } = useParams();
-  console.log(meetInfo);
 
-  // const notify = () => toast("링크 복사가 완료되었습니다");
   return (
     <>
       <ToastContainerBox />
