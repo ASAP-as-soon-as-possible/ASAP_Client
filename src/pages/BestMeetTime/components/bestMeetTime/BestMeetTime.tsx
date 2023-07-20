@@ -20,7 +20,7 @@ function BestMeetTime() {
   const [selected, setSelected] = useState(0);
   const [showModal, setShowModal] = useState<boolean>(false);
   const {meetingId} = useParams();
-  const { isloading, bestTimeData } = GetBestMeetimeListHooks(meetingId);
+  const { isloading, bestTimeData } = GetBestMeetimeListHooks(meetingId as unknown as string );
   if (!isloading && bestTimeData) {
     const bestMeetimeObj = whatisBestMeetime(bestTimeData, selected);
     if (bestMeetimeObj) {
