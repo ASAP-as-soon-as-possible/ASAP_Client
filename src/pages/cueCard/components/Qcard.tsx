@@ -49,7 +49,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
               <Text
                 font={'title2'}
                 color={`${theme.colors.white}`}
-              >{`${month}월 ${day} (${dayOfWeek}) ${startTime}-${endTime}`}</Text>
+              >{`${month}월 ${day}일 (${dayOfWeek}) ${startTime}-${endTime}`}</Text>
             </TimeContainer>
           </PlaceTimeSection>
           <MemeberSection>
