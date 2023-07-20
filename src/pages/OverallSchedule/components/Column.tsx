@@ -1,9 +1,13 @@
+import { timeSlotUserNameAtom } from 'atoms/atom';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 import { ColumnProps } from '../types/AvailableScheduleType';
 
 const Column = (props: ColumnProps) => {
+  const [timeSlotUserName, setTimeSlotUserName] = useRecoilState(timeSlotUserNameAtom);
+
   const {
     timeSlot,
     $isHalf,
@@ -18,9 +22,9 @@ const Column = (props: ColumnProps) => {
     $priorityColorInfo,
     $isStartTimeofPrioritySlot,
     scheduleType,
+    userNames,
     $slotColorLevel,
   } = props;
-  // console.log($isSelected);
 
   return (
     <ColumnWrapper
@@ -36,6 +40,9 @@ const Column = (props: ColumnProps) => {
       $priorityColorInfo={$priorityColorInfo}
       $isStartTimeofPrioritySlot={$isStartTimeofPrioritySlot}
       $slotColorLevel={$slotColorLevel}
+      onClick={() => {
+        setTimeSlotUserName(userNames);
+      }}
     >
       {$isStartTimeofPrioritySlot &&
       $priorityColorInfo !== theme.colors.grey6 &&
