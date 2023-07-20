@@ -1,16 +1,16 @@
-import Text from 'components/atomComponents/Text';
 import { DateStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
-import { styled } from 'styled-components';
-import { theme } from 'styles/theme';
 
 import Row from './Row';
-import { PreferTime, SelectedSchedule } from '../types/AvailableScheduleType';
-import getTimeSlots from '../utils/getTimeSlots';
+import { SelectedSchedule } from 'components/scheduleComponents/types/AvailableScheduleType';
+import Text from 'components/atomComponents/Text';
+import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
+import { styled } from 'styled-components';
+import { theme } from 'styles/theme';
 
 interface TimeTableProps {
   selectedSchedule: SelectedSchedule[];
   availableDates: DateStates[];
-  preferTimes: PreferTime[];
+  preferTimes: TimeStates[];
   scheduleType: 'priority' | 'available';
 }
 
@@ -20,7 +20,7 @@ function TimeTable({
   preferTimes,
   scheduleType,
 }: TimeTableProps) {
-  console.log(preferTimes);
+
   const isMorningDinner =
     preferTimes.length === 2 && preferTimes.every((time) => time.startTime !== '12:00');
 

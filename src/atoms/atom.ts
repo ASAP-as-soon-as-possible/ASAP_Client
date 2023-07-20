@@ -1,5 +1,5 @@
 import { PreferTime } from 'components/scheduleComponents/types/AvailableScheduleType';
-import { DateStates } from 'pages/selectSchdule/types/Schedule';
+import { DateStates, ScheduleStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
 import { atom } from 'recoil';
 
 export const methodStateAtom = atom<boolean>({
@@ -15,4 +15,17 @@ export const availableDatesAtom = atom<DateStates[]>({
 export const preferTimesAtom = atom<PreferTime[]>({
   key: 'preferTimesAtom',
   default: [],
+});
+
+export const scheduleAtom = atom<ScheduleStates[]>({
+  key: 'scheduleAtom',
+  default: [
+    {
+      id: 1,
+      date: '',
+      startTime: '',
+      endTime: '',
+      priority: 0,
+    },
+  ],
 });
