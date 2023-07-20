@@ -1,4 +1,3 @@
-import PriorityDropdown from 'components/scheduleComponents/components/PriorityDropdown';
 import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
 import ChooseBestTime from 'pages/BestMeetTime/ChooseBestTime';
 import ComponentTesting from 'pages/ComponentTesting';
@@ -8,7 +7,6 @@ import ErrorPage404 from 'pages/ErrorLoading/ErrorPage404';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import LoginEntrance from 'pages/LoginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
-import Prioritization from 'pages/Prioritization/Prioritization';
 import SelectSchedulePriority from 'pages/selectSchedule/SelectPriorityPage';
 import SelectPage from 'pages/selectSchedule/SelectSchedulePage';
 import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
