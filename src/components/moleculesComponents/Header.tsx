@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { notify } from 'utils/toast/copyLink';
-import ToastContainerBox from 'utils/toast/ToastContainer';
 
 const navigationOption = ['공지사항', 'ASAP family', '약속 생성하기', '피드백 보내기'];
 
@@ -103,7 +102,6 @@ function Header({ position, setStep }: HeaderProps) {
           </NavigationSection>
         ) : null}
       </HeaderWrapper>
-      {/* <ToastContainerBox /> */}
     </>
   );
 }
