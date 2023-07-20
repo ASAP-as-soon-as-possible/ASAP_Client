@@ -6,7 +6,7 @@ import Text from 'components/atomComponents/Text';
 import Header from 'components/moleculesComponents/Header';
 import PriorityDropdown from 'components/scheduleComponents/components/PriorityDropdown';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
@@ -19,8 +19,7 @@ const SelectSchedulePriority = () => {
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
   const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
   const { meetingId } = useParams();
-  const { auth } = useParams();
-  const navigate = useNavigate();
+
   const [showModal, setShowModal] = useState(false);
   const getAvailableScheduleOption = async () => {
     try {
