@@ -1,29 +1,32 @@
-import { DateStates, ScheduleStates, TimeStates } from './types/Schedule';
-import { PlusIc, SpeechBubbleIc } from 'components/Icon/icon';
 import React, { useEffect, useRef, useState } from 'react';
-import { availableDatesAtom, preferTimesAtom } from 'atoms/atom';
 
+import { availableDatesAtom, preferTimesAtom, scheduleAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
-import Header from 'components/moleculesComponents/Header';
-import { MeetingDetail } from 'src/types/availbleScheduleType';
-import SelectSchedule from './components/SelectSchedule';
 import Text from 'components/atomComponents/Text';
+import { PlusIc } from 'components/Icon/icon';
+import Header from 'components/moleculesComponents/Header';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
-import TitleComponent from 'components/moleculesComponents/TitleComponents';
-import TitleComponents from 'components/moleculesComponents/TitleComponents';
-import { availbleScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
-import styled from 'styled-components/macro';
-import { theme } from 'styles/theme';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
+import { MeetingDetail } from 'src/types/availbleScheduleType';
+import styled from 'styled-components/macro';
+import { theme } from 'styles/theme';
+import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
 
-function SelectPage() {
+import SelectSchedule from './components/SelectSchedule';
+import { ScheduleStates } from './types/Schedule';
+
+function SelectSchedulePage() {
   // 가능시간 선택지 - 날짜
   const [availableDates, setAvailableDates] = useRecoilState(availableDatesAtom);
 
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
 
-  const [meetingDetail, setMeetingDetail] = useState<MeetingDetail>([]);
+  const [meetingDetail, setMeetingDetail] = useState<MeetingDetail>({
+    duration: '',
+    place: '',
+    placeDetail: '',
+  });
 
   const {meetingId} = useParams();
 
@@ -60,7 +63,7 @@ function SelectPage() {
     try{
       const {
         data
-      } = await availbleScheduleOptionApi(meetingId);
+      } = await availableScheduleOptionApi(meetingId);
       setAvailableDates(data.data.availableDates);
       setPreferTimes(data.data.preferTimes);
 
@@ -76,18 +79,9 @@ function SelectPage() {
     getAvailableScheduleOption();
   },[]);
 
-  const [scheduleList, setScheduleList] = useState<ScheduleStates[]>([
-    {
-      id: 1,
-      date: '',
-      startTime: '',
-      endTime: '',
-      priority: 0,
-    },
-  ]);
+  const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
 
   const nextID = useRef<number>(2);
-
   const addDateList = () => {
     const schedule = {
       id: nextID.current,
@@ -101,6 +95,10 @@ function SelectPage() {
   };
 
   const deleteDataList = (index: number) => {
+    if(index===1){
+      alert("하나 이상의 시간을 입력해야합니다");
+      return ;
+    }
     setScheduleList(scheduleList.filter((item) => item?.id !== index));
   };
 
@@ -135,7 +133,7 @@ function SelectPage() {
                   <Text font={'body1'} color={`${theme.colors.sub1}`}>
                     {meetingDetail.place}
                   </Text>
-                  { meetingDetail.placeDetail && (
+                  {meetingDetail.placeDetail && (
                     <Text font={'body1'} color={`${theme.colors.sub1}`}>
                       {`(${meetingDetail.placeDetail})`}
                     </Text>
@@ -239,7 +237,7 @@ const SpeechBubbleWrapper = styled.div`
     display: flex;
     position: relative;
     margin-top:2rem;
-   
+
 `
 
 const TitleWrapper = styled.div`
@@ -259,4 +257,4 @@ const StyledBtnSection = styled.section`
 `;
 
 
-export default SelectPage;
+export default SelectSchedulePage;

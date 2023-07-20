@@ -1,3 +1,4 @@
+import PriorityDropdown from 'components/scheduleComponents/components/PriorityDropdown';
 import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
 import ChooseBestTime from 'pages/BestMeetTime/ChooseBestTime';
 import ComponentTesting from 'pages/ComponentTesting';
@@ -8,7 +9,8 @@ import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import LoginEntrance from 'pages/LoginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
 import Prioritization from 'pages/Prioritization/Prioritization';
-import SelectPage from 'pages/selectSchdule/SelectPage';
+import SelectSchedulePriority from 'pages/selectSchedule/SelectPriorityPage';
+import SelectPage from 'pages/selectSchedule/SelectSchedulePage';
 import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -22,7 +24,7 @@ const Router = () => {
         <Route path="/meet/create" element={<CreateMeeting />} />
         <Route path="/meet/complete" element={<SteppingLayout steppingType={'meetComplete'} />} />
         <Route path="/schedule/:meetingId" element={<SelectPage />} />
-        <Route path="/priority/:meetingId" element={<Prioritization />} />
+        <Route path="/priority/:meetingId" element={<SelectSchedulePriority />} />
         <Route
           path="/host/schedule-complete/:meetingId"
           element={<SteppingLayout steppingType={'hostScheduleComplete'} />}

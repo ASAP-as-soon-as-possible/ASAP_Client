@@ -10,11 +10,11 @@ const priorityToColor = (type: 'priority' | 'available', priority?: number): str
     case 0:
       return theme.colors['grey6'];
     case 1:
-      return theme.colors['main1'];
+      return theme.colors['main3'];
     case 2:
       return theme.colors['main2'];
     case 3:
-      return theme.colors['main3'];
+      return theme.colors['main1'];
     default:
       return theme.colors['grey10'];
   }

@@ -18,7 +18,9 @@ const Column = (props: ColumnProps) => {
     $priorityColorInfo,
     $isStartTimeofPrioritySlot,
     scheduleType,
+    $slotColorLevel,
   } = props;
+  // console.log($isSelected);
 
   return (
     <ColumnWrapper
@@ -33,11 +35,12 @@ const Column = (props: ColumnProps) => {
       $isSelected={$isSelected}
       $priorityColorInfo={$priorityColorInfo}
       $isStartTimeofPrioritySlot={$isStartTimeofPrioritySlot}
+      $slotColorLevel={$slotColorLevel}
     >
       {$isStartTimeofPrioritySlot &&
       $priorityColorInfo !== theme.colors.grey6 &&
       scheduleType === 'priority' ? (
-        <PriorityNumber>{priority === 1 ? 3 : priority === 2 ? 2 : 1}</PriorityNumber>
+        <PriorityNumber>{priority}</PriorityNumber>
       ) : (
         undefined
       )}
@@ -59,6 +62,7 @@ interface ColumnWrapperProps {
   $isSelected: boolean;
   $priorityColorInfo: string;
   $isStartTimeofPrioritySlot: boolean;
+  $slotColorLevel: number;
 }
 
 const ColumnWrapper = styled.div<ColumnWrapperProps>`
@@ -82,6 +86,18 @@ const ColumnWrapper = styled.div<ColumnWrapperProps>`
 
   background-color: ${({ theme, $isDateEmpty, $isSelected, $priorityColorInfo }) =>
     $isSelected ? $priorityColorInfo : $isDateEmpty ? theme.colors.grey9 : 'none'};
+  background-color: ${({ theme, $slotColorLevel }) =>
+    $slotColorLevel === 1
+      ? theme.colors.level1
+      : $slotColorLevel === 2
+        ? theme.colors.level2
+        : $slotColorLevel === 3
+          ? theme.colors.level3
+          : $slotColorLevel === 4
+            ? theme.colors.level4
+            : $slotColorLevel === 5
+              ? theme.colors.level5
+              : 'none'};
 
   width: 4.4rem;
   height: 1.2rem;
