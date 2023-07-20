@@ -1,4 +1,4 @@
-import { forwardRef, useState, ForwardedRef, useEffect } from 'react';
+import { forwardRef, ForwardedRef } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
@@ -6,66 +6,13 @@ import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import { useParams } from 'react-router';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { client } from 'utils/apis/axios';
 
-import { CueCardResponse } from '../types/cueCardType';
-
-// const initCardData: cueCardDataType = {
-//   title: '',
-//   place: 'UNDEFINED',
-//   placeDetail: null,
-//   month: '',
-//   day: '',
-//   dayOfWeek: '',
-//   startTime: '',
-//   endTime: '',
-//   hostName: '',
-//   userNames: [],
-//   additionalInfo: null,
-// }
-
-const initCardData: CueCardResponse = {
-  status: 200,
-  message: '큐카드 조회 성공입니다.',
-  data: {
-    title: '회의 제목',
-    place: 'ONLINE',
-    placeDetail: '구글미트',
-    month: '7',
-    day: '30',
-    dayOfWeek: '월',
-    startTime: '06:00',
-    endTime: '12:00',
-    hostName: '서지원',
-    userNames: ['서지원', '도소현'],
-    additionalInfo: '공지사항',
-  },
-};
+import GetQcardDataHooks from '../hooks/getQCardData';
 
 const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
-  const [cardData, setCardData] = useState<CueCardResponse>();
   const { meetingId } = useParams();
-
-  // const getCueCardData = async () => {
-
-  //   const result = await client.get(`/meeting/${meetingId}/card`);
-  //   console.log(result.data.data);
-  //   setCardData(result.data.data);
-
-  // };
-  // useEffect(
-  //   () => {
-  //     getCueCardData();
-  //   },
-  //   [meetingId],
-  // );
-
-  useEffect(() => {
-    setTimeout(() => {
-      setCardData(initCardData);
-    }, 1000);
-  });
-  if (cardData) {
+  const { isloading, cueCardData } = GetQcardDataHooks(meetingId as unknown as string)
+  if (!isloading && cueCardData) {
     const {
       data: {
         title,
@@ -80,7 +27,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
         userNames,
         additionalInfo,
       },
-    } = cardData;
+    } = cueCardData;
 
     return (
       <QcardWrapper ref={ref}>
