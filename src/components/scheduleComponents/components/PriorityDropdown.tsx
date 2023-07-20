@@ -63,11 +63,10 @@ function PriorityDropdown() {
       });
       return updatedScheduleList;
     });
-    console.log(i, item);
-    console.log(scheduleList);
+
     setInput((prev) => {
       const updatedInput = [...prev];
-      console.log('setInput');
+
       if (i === 0) {
         updatedInput[i] = `${item.date} ${item.startTime}~${item.endTime}`;
       } else if (i === 1) {

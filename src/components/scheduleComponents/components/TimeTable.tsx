@@ -20,7 +20,7 @@ function TimeTable({
   preferTimes,
   scheduleType,
 }: TimeTableProps) {
-  console.log(preferTimes);
+
   const isMorningDinner =
     preferTimes.length === 2 && preferTimes.every((time) => time.startTime !== '12:00');
 
