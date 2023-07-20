@@ -49,12 +49,10 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
     try {
       const result = await client.post(`/user/${meetingId}/host`, hostInfo);
       const {
-        data: { code, accessToken, message },
+        data: { code, data, message },
       } = result;
       if (code === 200) {
-        if (!localStorage.getItem('hostToken')) {
-          localStorage.setItem('hostToken', accessToken);
-        }
+        localStorage.setItem('hostToken', data.accessToken);
         navigate(`/host/${meetingId}`);
       } else if (code === 403) {
         setIsModalOpen(true);

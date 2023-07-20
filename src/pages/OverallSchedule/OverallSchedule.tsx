@@ -16,7 +16,6 @@ import { overallScheduleApi } from 'utils/apis/overallScheduleApi';
 import TimeTable from './components/TimeTable';
 import { getFormattedAvailableDateTimes } from './utils/getFormattedAvailableDateTimes';
 
-
 const OverallSchedule = () => {
   const { meetingId } = useParams();
   const [overallScheduleData, setOverallScheduleData] = useState<OverallScheduleData>();
@@ -26,6 +25,10 @@ const OverallSchedule = () => {
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
 
   const [timeSlotUserNames, setTimeSlotUserNames] = useRecoilState(timeSlotUserNameAtom);
+
+  const [memberCount, setMemberCount] = useState<number>(0);
+  const [totalUserNames, setTotalUserNames] = useState<string[]>();
+
   const getAvailableScheduleOption = async () => {
     try {
       const { data } = await availableScheduleOptionApi(meetingId);
@@ -41,6 +44,8 @@ const OverallSchedule = () => {
       const result = await overallScheduleApi(meetingId);
       const { data } = result.data;
       setOverallScheduleData(data);
+      setMemberCount(data.memberCount);
+      setTotalUserNames(data.totalUserNames);
     } catch (err) {
       console.log(err);
     }
@@ -55,10 +60,33 @@ const OverallSchedule = () => {
   const formattedAvailableDateTimes =
     overallScheduleData && getFormattedAvailableDateTimes(overallScheduleData);
 
+  console.log(formattedAvailableDateTimes);
+
   return (
     <OverallScheduleWrapper>
-      {overallScheduleData ? (
+      {/* {!overallScheduleData ? (
         <>
+        <TextOneLine>
+          <Text font={'title1'} color={`${theme.colors.white}`}>현재까지&nbsp;</Text>
+          <Text font={'title1'} color={`${theme.colors.sub1}`}>{memberCount}명</Text>
+          <Text font={'title1'} color={`${theme.colors.white}`}>이 입력했어요</Text>
+        </TextOneLine>
+        <TotalUserNames>
+        {totalUserNames &&
+          totalUserNames.map((name, idx) => (
+            <Text key={idx + name} font={'body4'} color={`${theme.colors.grey5}`}>
+              {name}
+              {idx !== totalUserNames.length - 1 ? ',' : ''}&nbsp;
+            </Text>
+          ))
+        }
+        </TotalUserNames>
+          <TimeTable
+            selectedSchedule={formattedAvailableDateTimes?.availableDateTimes}
+            availableDates={availableDates}
+            preferTimes={preferTimes}
+            scheduleType="available"
+          />
           <UserNameWrapper>
             {!timeSlotUserNames ? (
               <Text font={'body4'} color={`${theme.colors.grey5}`}>
@@ -73,16 +101,10 @@ const OverallSchedule = () => {
               ))
             )}
           </UserNameWrapper>
-          <TimeTable
-            selectedSchedule={formattedAvailableDateTimes?.availableDateTimes}
-            availableDates={availableDates}
-            preferTimes={preferTimes}
-            scheduleType="available"
-          />
         </>
       ) : (
         <LoadingPage />
-      )}
+      )} */}
     </OverallScheduleWrapper>
   );
 };
@@ -106,4 +128,23 @@ const UserNameWrapper = styled.aside`
 
 const OverallScheduleWrapper = styled.main`
   margin-bottom: 16.1rem;
+`;
+
+const TextOneLine = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3.7rem;
+  width: 100%;
+`;
+
+const TotalUserNames = styled.div`
+  display: flex;
+  margin-top: 1.2rem;
+  margin-bottom: 2.4rem;
+`;
+
+const LoadingWrapper = styled.div`
+  position: relative;
+  top: 25rem;
+  width: 100%;
 `;
