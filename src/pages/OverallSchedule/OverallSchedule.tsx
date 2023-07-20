@@ -16,7 +16,6 @@ import { overallScheduleApi } from 'utils/apis/overallScheduleApi';
 import TimeTable from './components/TimeTable';
 import { getFormattedAvailableDateTimes } from './utils/getFormattedAvailableDateTimes';
 
-
 const OverallSchedule = () => {
   const { meetingId } = useParams();
   const [overallScheduleData, setOverallScheduleData] = useState<OverallScheduleData>();
@@ -44,6 +43,7 @@ const OverallSchedule = () => {
     try {
       const result = await overallScheduleApi(meetingId);
       const { data } = result.data;
+
       setOverallScheduleData(data);
       setMemberCount(data.memberCount);
       setTotalUserNames(data.totalUserNames);
@@ -57,32 +57,35 @@ const OverallSchedule = () => {
     getOverallSchedule();
   }, []);
 
-  // console.log(overallSchedule);
   const formattedAvailableDateTimes =
     overallScheduleData && getFormattedAvailableDateTimes(overallScheduleData);
 
-
   return (
     <OverallScheduleWrapper>
-      {!overallScheduleData ? (
+      {overallScheduleData ? (
         <>
-        <TextOneLine>
-          <Text font={'title1'} color={`${theme.colors.white}`}>현재까지&nbsp;</Text>
-          <Text font={'title1'} color={`${theme.colors.sub1}`}>{memberCount}명</Text>
-          <Text font={'title1'} color={`${theme.colors.white}`}>이 입력했어요</Text>
-        </TextOneLine>
-        <TotalUserNames>
-        {totalUserNames &&
-          totalUserNames.map((name, idx) => (
-            <Text key={idx + name} font={'body4'} color={`${theme.colors.grey5}`}>
-              {name}
-              {idx !== totalUserNames.length - 1 ? ',' : ''}&nbsp;
+          <TextOneLine>
+            <Text font={'title1'} color={`${theme.colors.white}`}>
+              현재까지&nbsp;
             </Text>
-          ))
-        }
-        </TotalUserNames>
+            <Text font={'title1'} color={`${theme.colors.sub1}`}>
+              {memberCount}명
+            </Text>
+            <Text font={'title1'} color={`${theme.colors.white}`}>
+              이 입력했어요
+            </Text>
+          </TextOneLine>
+          <TotalUserNames>
+            {totalUserNames &&
+              totalUserNames.map((name, idx) => (
+                <Text key={idx + name} font={'body4'} color={`${theme.colors.grey5}`}>
+                  {name}
+                  {idx !== totalUserNames.length - 1 ? ',' : ''}&nbsp;
+                </Text>
+              ))}
+          </TotalUserNames>
           <TimeTable
-            selectedSchedule={formattedAvailableDateTimes?.availableDateTimes}
+            selectedSchedule={formattedAvailableDateTimes.availableDateTimes}
             availableDates={availableDates}
             preferTimes={preferTimes}
             scheduleType="available"
@@ -103,7 +106,9 @@ const OverallSchedule = () => {
           </UserNameWrapper>
         </>
       ) : (
-        <LoadingPage />
+        <LoadingWrapper>
+          <LoadingPage />
+        </LoadingWrapper>
       )}
     </OverallScheduleWrapper>
   );
