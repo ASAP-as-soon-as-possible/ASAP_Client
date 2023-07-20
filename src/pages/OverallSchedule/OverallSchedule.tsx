@@ -16,6 +16,7 @@ import { overallScheduleApi } from 'utils/apis/overallScheduleApi';
 import TimeTable from './components/TimeTable';
 import { getFormattedAvailableDateTimes } from './utils/getFormattedAvailableDateTimes';
 
+
 const OverallSchedule = () => {
   const { meetingId } = useParams();
   const [overallScheduleData, setOverallScheduleData] = useState<OverallScheduleData>();
@@ -73,7 +74,7 @@ const OverallSchedule = () => {
             )}
           </UserNameWrapper>
           <TimeTable
-            selectedSchedule={formattedAvailableDateTimes.availableDateTimes}
+            selectedSchedule={formattedAvailableDateTimes?.availableDateTimes}
             availableDates={availableDates}
             preferTimes={preferTimes}
             scheduleType="available"

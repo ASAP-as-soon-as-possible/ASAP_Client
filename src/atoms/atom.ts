@@ -35,5 +35,5 @@ export const scheduleAtom = atom<ScheduleStates[]>({
 
 export const timeSlotUserNameAtom = atom<string[]>({
   key: 'timeSlotUserNameAtom',
-  default: [],
+  default: undefined,
 });
