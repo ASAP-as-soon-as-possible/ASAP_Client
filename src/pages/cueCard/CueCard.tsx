@@ -41,7 +41,7 @@ function CueCard() {
         <Button
           typeState={'halfPrimaryActive'}
           onClick={() => {
-            downLoadNotify()
+            downLoadNotify();
             downLoadImage();
           }}
         >
@@ -69,10 +69,3 @@ const ButtonSection = styled.section`
   gap: 1.4rem;
   justify-content: center;
 `;
-
-// const LoadingPage = styled.div`
-//   z-index: 2;
-//   background-color: yellow;
-//   width: 100%;
-//   height: 100vh;
-// `;

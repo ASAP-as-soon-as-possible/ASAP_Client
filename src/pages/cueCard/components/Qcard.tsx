@@ -1,4 +1,4 @@
-import { forwardRef, ForwardedRef } from 'react';
+import { forwardRef, ForwardedRef, useRef } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
@@ -28,6 +28,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
         additionalInfo,
       },
     } = cueCardData;
+
     return (
       <QcardWrapper ref={ref}>
         <TopCardSetcion>
@@ -136,17 +137,18 @@ const TopCardSetcion = styled.section`
   position: relative;
   flex-direction: column;
   gap: 3.2rem;
+  z-index:0;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   background-color: ${theme.colors.grey9};
   padding: 4.6rem 2rem;
   height: fit-content;
-
   &:before {
     display: block;
     position: absolute;
     bottom: -1rem;
     left: 0rem;
+    z-index:1;
     border-radius: 0 5rem 5rem 0;
     background-color: ${theme.colors.grey10};
     width: 1rem;
@@ -158,6 +160,7 @@ const TopCardSetcion = styled.section`
     position: absolute;
     right: 0rem;
     bottom: -1rem;
+    z-index:1;
     border-radius: 5rem 0 0 5rem;
     background-color: ${theme.colors.grey10};
     width: 1rem;

@@ -65,7 +65,7 @@ function Header({ position, setStep }: HeaderProps) {
                 <BackIc />
               </IconSection>
             </ConfirmIconSection>
-          ) : null}
+          ) : undefined}
           {position === 'createMeeting' ? (
             <Text font={'title2'} color={`${theme.colors.white}`}>
               회의정보입력
@@ -100,7 +100,7 @@ function Header({ position, setStep }: HeaderProps) {
               })}
             </NavigationContainer>
           </NavigationSection>
-        ) : null}
+        ) : undefined}
       </HeaderWrapper>
     </>
   );

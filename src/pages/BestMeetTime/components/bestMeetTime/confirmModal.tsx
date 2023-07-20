@@ -24,7 +24,6 @@ function ConfirmModal({ setIsModalOpen, memberCount, bestTime }: ModalProps) {
     try {
       const result = await authClient.post(`/meeting/${meetingId}/confirm`, bestTime);
       const {code} = result.data
-      console.log(code)
       if(code === 200){
         navigate(`/q-card/${meetingId}`)
       }
