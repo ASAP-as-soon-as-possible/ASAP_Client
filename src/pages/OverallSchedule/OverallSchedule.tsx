@@ -5,6 +5,7 @@ import Text from 'components/atomComponents/Text';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
+import { theme } from 'styles/theme';
 import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
 
 import TimeTable from './components/TimeTable';
@@ -573,12 +574,18 @@ const OverallSchedule = () => {
   return (
     <>
       <UserNameWrapper>
-        {timeSlotUserNames.map((name, idx) => (
-          <Text key={idx + name} font={'body2'} color={'grey2'}>
-            {name}
-            {idx !== timeSlotUserNames.length - 1 ? ',' : ''}&nbsp;
+        {!timeSlotUserNames ? (
+          <Text font={'body4'} color={`${theme.colors.grey5}`}>
+            블럭을 선택하면 해당 시간대에 참여가능한<br />인원을 확인할 수 있어요
           </Text>
-        ))}
+        ) : (
+          timeSlotUserNames.map((name, idx) => (
+            <Text key={idx + name} font={'body2'} color={`${theme.colors.grey2}`}>
+              {name}
+              {idx !== timeSlotUserNames.length - 1 ? ',' : ''}&nbsp;
+            </Text>
+          ))
+        )}
       </UserNameWrapper>
       <TimeTable
         selectedSchedule={formattedAvailableDateTimes.availableDateTimes}
@@ -602,5 +609,6 @@ const UserNameWrapper = styled.aside`
   background: ${({ theme }) => theme.colors.grey7};
   width: 33.5rem;
   height: 8.3rem;
+  text-align: center;
   color: ${({ theme }) => theme.colors.white};
 `;
