@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { client } from 'utils/apis/axios';
+import { authClient, client } from 'utils/apis/axios';
 
 import { CueCardResponse } from '../types/cueCardType';
 
@@ -28,9 +28,9 @@ const GetQcardDataHooks = (meetingId: string) => {
   const GetQcardData = async () => {
     try {
       setIsloading(true);
-      // const result = await client.get(`/meeting/${meetingId}/details`);
-      // setBestTimeData(result.data);
-      setTimeout(() => setCueCardData(initCardData), 1000);
+      const result = await authClient.get(`/meeting/${meetingId}/card`);
+      setCueCardData(result.data);
+      // setTimeout(() => setCueCardData(initCardData), 1000);
     } catch (error) {
       console.log(error);
     }

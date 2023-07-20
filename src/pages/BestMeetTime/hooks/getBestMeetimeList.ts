@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import { client } from 'utils/apis/axios';
+import { authClient } from 'utils/apis/axios';
 
 import { DateTimeData } from '../types/meetCardData';
 
@@ -83,7 +83,7 @@ const GetBestMeetimeListHooks = (meetingId: string) => {
   const getBestMeetimeList = async () => {
     try {
       setIsloading(true);
-      const result = await client.get(`/meeting/${meetingId}/details`);
+      const result = await authClient.get(`/meeting/${meetingId}/details`);
       setBestTimeData(result.data);
       // setTimeout(() => setBestTimeData(initialData), 1000);
     } catch (error) {

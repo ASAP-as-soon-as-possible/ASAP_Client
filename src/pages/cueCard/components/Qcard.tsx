@@ -28,7 +28,6 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
         additionalInfo,
       },
     } = cueCardData;
-
     return (
       <QcardWrapper ref={ref}>
         <TopCardSetcion>
@@ -72,7 +71,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
                 </Text>
               </MemberTitle>
               <UserMemberbox>
-                {userNames.map((member, i) => (
+                {userNames?.map((member, i) => (
                   <Text
                     key={i + member}
                     font={'body2'}
