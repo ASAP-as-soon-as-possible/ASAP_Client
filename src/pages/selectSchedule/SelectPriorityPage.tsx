@@ -56,7 +56,7 @@ const SelectSchedulePriority = () => {
         <Button
           typeState={'halfTertiaryActive'}
           onClick={() => {
-            navigate(`/${auth}/schedule-complete/${meetingId}`);
+            setShowModal(true);
           }}
         >
           <Text font={'button2'}>상관없음</Text>
