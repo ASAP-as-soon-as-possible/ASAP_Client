@@ -6,7 +6,7 @@ import Text from 'components/atomComponents/Text';
 import { PlusIc } from 'components/Icon/icon';
 import Header from 'components/moleculesComponents/Header';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
-import { useParams } from 'react-router-dom';
+import { useParams ,useNavigate} from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { MeetingDetail } from 'src/types/availbleScheduleType';
 import styled from 'styled-components/macro';
@@ -27,7 +27,7 @@ function SelectSchedulePage() {
     place: '',
     placeDetail: '',
   });
-
+  const navigate=useNavigate();
   const {meetingId} = useParams();
 
   const changeDurationFormat = (duration:string) => {
@@ -187,7 +187,7 @@ function SelectSchedulePage() {
               : 'secondaryDisabled'
           }
           onClick={
-            () => {console.log('click')}
+            () => {navigate(`/priority/${meetingId}`)}
           }
         >
           <Text font={'button2'}>다음</Text>
