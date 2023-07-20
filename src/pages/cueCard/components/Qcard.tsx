@@ -1,87 +1,58 @@
-import { forwardRef, useState, ForwardedRef } from 'react';
+import { forwardRef, useState, ForwardedRef, useEffect, Suspense } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
+import LoadingPage from 'pages/ErrorLoading/LoadingPage';
+import { useParams } from 'react-router';
+import { cueCardDataType} from 'src/types/cueCardType';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-
-interface CardData {
-  status: number;
-  message: string;
-  data: {
-    title: string;
-    place: 'ONLINE' | 'OFFLINE' | 'UNDEFINED';
-    placeDetail: string | null;
-    month: string;
-    day: string;
-    dayOfWeek: string;
-    startTime: string;
-    endTime: string;
-    hostName: string;
-    userNames: string[];
-    additionalInfo: string | null;
-  };
-}
-
-const cardInitData: CardData = {
-  status: 200,
-  message: '큐카드 조회 성공입니다.',
-  data: {
-    title: 'ASAP 간챙겨',
-    place: 'OFFLINE',
-    placeDetail: '구글미트',
-    month: '7',
-    day: '30',
-    dayOfWeek: '월',
-    startTime: '06:00',
-    endTime: '12:00',
-    hostName: '서지원',
-    userNames: [
-      '서지원',
-      '도소현',
-      '도소현',
-      '도소현',
-      '도소현',
-      '도소현',
-      '도소현',
-      '도소현',
-      '도소현',
-      '도소현',
-    ],
-    additionalInfo: null,
-  },
-};
+import { client } from 'utils/apis/axios';
 
 const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
-  const [cardData, setCardData] = useState<CardData>(cardInitData);
+  // const initCardData: cueCardDataType = {
+  //   title: '',
+  //   place: 'UNDEFINED',
+  //   placeDetail: null,
+  //   month: '',
+  //   day: '',
+  //   dayOfWeek: '',
+  //   startTime: '',
+  //   endTime: '',
+  //   hostName: '',
+  //   userNames: [],
+  //   additionalInfo: null,
+  // }
+  const [cardData, setCardData] = useState<cueCardDataType>();
+  const { meetingId } = useParams();
 
-  const {
-    data: {
-      title,
-      place,
-      placeDetail,
-      month,
-      day,
-      dayOfWeek,
-      startTime,
-      endTime,
-      hostName,
-      userNames,
-      additionalInfo,
+  const getCueCardData = async () => {
+
+    const result = await client.get(`/meeting/${meetingId}/card`);
+    console.log(result.data.data);
+    setCardData(result.data.data);
+
+  };
+  useEffect(
+    () => {
+      getCueCardData();
     },
-  } = cardData;
+    [meetingId],
+  );
 
   return (
+
+    <Suspense fallback={<LoadingPage></LoadingPage>}>
     <QcardWrapper ref={ref}>
       <TopCardSetcion>
         <Text font={'head2'} color={`${theme.colors.white}`}>
-          {title}
+          {cardData?.title}
         </Text>
         <PlaceTimeSection>
           <PlaceContainer>
-            <IconBox>{place === 'ONLINE' ? <OnlinePlaceIc /> : <OfflinePlaceIc />}</IconBox>
+            <IconBox>{cardData?.place === 'ONLINE' ? <OnlinePlaceIc /> : <OfflinePlaceIc />}</IconBox>
             <Text font={'title2'} color={`${theme.colors.white}`}>
-              {placeDetail === null ? '미정' : placeDetail}
+              {cardData?.placeDetail === null ?'미정':cardData?.placeDetail}
             </Text>
           </PlaceContainer>
           <TimeContainer>
@@ -91,7 +62,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
             <Text
               font={'title2'}
               color={`${theme.colors.white}`}
-            >{`${month}월 ${day} (${dayOfWeek}) ${startTime}-${endTime}`}</Text>
+            >{`${cardData?.month}월 ${cardData?.day} (${cardData?.dayOfWeek}) ${cardData?.startTime}-${cardData?.endTime}`}</Text>
           </TimeContainer>
         </PlaceTimeSection>
         <MemeberSection>
@@ -103,7 +74,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
             </MemberTitle>
             <UserMemberbox>
               <Text font={'body2'} color={`${theme.colors.white}`}>
-                {hostName}
+                {cardData?.hostName}
               </Text>
             </UserMemberbox>
           </HostMeberContainer>
@@ -114,7 +85,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
               </Text>
             </MemberTitle>
             <UserMemberbox>
-              {userNames.map((member, i) => (
+              {cardData?.userNames?.map((member, i) => (
                 <Text
                   key={i + member}
                   font={'body2'}
@@ -131,11 +102,21 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
         })}
       </DashedSection>
       <BottomCardSection>
-        <Text font={'body2'} color={`${theme.colors.grey4}`}>
-          {additionalInfo === null ? '별도의 공지사항은 없어요!' : additionalInfo}
-        </Text>
+        {cardData?.additionalInfo === null ? (
+          <Text font={'body2'} color={`${theme.colors.grey4}`}>
+            별도의 공지사항은 없어요!
+          </Text>
+        ) : (
+          <AdditionalText>
+            <NoticeText>공지</NoticeText>
+            <MentText>{cardData?.additionalInfo}</MentText>
+          </AdditionalText>
+        )}
       </BottomCardSection>
     </QcardWrapper>
+
+</Suspense>
+
   );
 });
 
@@ -253,3 +234,20 @@ const BottomCardSection = styled.section`
   background-color: ${theme.colors.grey9};
   height: 11rem;
 `;
+const AdditionalText = styled.div`
+  display: flex;
+  gap: 1.6rem;
+  align-self: flex-start;
+  margin-top: 2.7rem;
+`;
+const NoticeText = styled.span`
+  ${({ theme }) => theme.fonts.body2};
+  color: ${({ theme }) => theme.colors.main1};
+  width: 2.5rem;
+`;
+const MentText = styled.span`
+  ${({ theme }) => theme.fonts.body2};
+  color: ${({ theme }) => theme.colors.grey2};
+  width: 21.2rem;
+`;
+
