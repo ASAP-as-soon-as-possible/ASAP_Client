@@ -30,7 +30,6 @@ const GetQcardDataHooks = (meetingId: string) => {
       setIsloading(true);
       const result = await authClient.get(`/meeting/${meetingId}/card`);
       setCueCardData(result.data);
-      // setTimeout(() => setCueCardData(initCardData), 1000);
     } catch (error) {
       console.log(error);
     }
