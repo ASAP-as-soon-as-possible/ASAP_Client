@@ -16,7 +16,6 @@ import { overallScheduleApi } from 'utils/apis/overallScheduleApi';
 import TimeTable from './components/TimeTable';
 import { getFormattedAvailableDateTimes } from './utils/getFormattedAvailableDateTimes';
 
-
 const OverallSchedule = () => {
   const { meetingId } = useParams();
   const [overallScheduleData, setOverallScheduleData] = useState<OverallScheduleData>();
@@ -28,7 +27,7 @@ const OverallSchedule = () => {
   const [timeSlotUserNames, setTimeSlotUserNames] = useRecoilState(timeSlotUserNameAtom);
 
   const [memberCount, setMemberCount] = useState<number>(0);
-  const [totalUserNames, setTotalUserNames] = useState<string[]>('');
+  const [totalUserNames, setTotalUserNames] = useState<string[]>();
 
   const getAvailableScheduleOption = async () => {
     try {
@@ -61,9 +60,11 @@ const OverallSchedule = () => {
   const formattedAvailableDateTimes =
     overallScheduleData && getFormattedAvailableDateTimes(overallScheduleData);
 
+  console.log(formattedAvailableDateTimes);
+
   return (
     <OverallScheduleWrapper>
-      {overallScheduleData ? (
+      {/* {!overallScheduleData ? (
         <>
         <TextOneLine>
           <Text font={'title1'} color={`${theme.colors.white}`}>현재까지&nbsp;</Text>
@@ -103,7 +104,7 @@ const OverallSchedule = () => {
         </>
       ) : (
         <LoadingPage />
-      )}
+      )} */}
     </OverallScheduleWrapper>
   );
 };
@@ -130,14 +131,20 @@ const OverallScheduleWrapper = styled.main`
 `;
 
 const TextOneLine = styled.div`
-  display:flex;
-  flex-wrap:wrap;
-  margin-top:3.7rem;
-  width:100%;
-`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3.7rem;
+  width: 100%;
+`;
 
 const TotalUserNames = styled.div`
-  display:flex;
-  margin-top:1.2rem;
-  margin-bottom:2.4rem;
-`
+  display: flex;
+  margin-top: 1.2rem;
+  margin-bottom: 2.4rem;
+`;
+
+const LoadingWrapper = styled.div`
+  position: relative;
+  top: 25rem;
+  width: 100%;
+`;
