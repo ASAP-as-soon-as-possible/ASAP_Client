@@ -39,3 +39,8 @@ export const clickedTimeSlotAtom = atom<string>({
   key: 'clickedTimeSlotAtom',
   default: undefined,
 });
+
+export const userNameAtom = atom<string>({
+  key: 'userNameAtom',
+  default: '',
+});

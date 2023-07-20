@@ -19,7 +19,8 @@ export const userAvailableApi = (
   meetingId: string,
   reqBody: UserAvailableScheduleRequestType[],
 ) => {
-  return client.post<AxiosResponse<UserAvailableScheduleResponseType>>(`/user/${meetingId}/time`, {
+  return client.post<AxiosResponse<UserAvailableScheduleResponseType>>(
+    `/user/${meetingId}/time`,
     reqBody,
-  });
+  );
 };
