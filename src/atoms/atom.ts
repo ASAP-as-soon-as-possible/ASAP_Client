@@ -28,4 +28,5 @@ export const scheduleAtom = atom<ScheduleStates[]>({
       priority: 0,
     },
   ],
+
 });
