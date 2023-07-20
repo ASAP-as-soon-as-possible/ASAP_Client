@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { Suspense, useRef, useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
@@ -27,22 +27,32 @@ function CueCard() {
 
   const currentURL = window.location.href;
 
+  //차후 toast-library 사용시 이용할 상태관리
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
-    <CueCardWrapper>
-      <Header position={'cueCard'} />
-      <CueCardTitle main={'일정 조율 완료!'} sub={'이미 확정된 회의 일정입니다'} />
-      <Qcard ref={imageRef} />
-      <ButtonSection>
-        <CopyToClipboard text={currentURL}>
-          <Button typeState={'halfTertiaryActive'} onClick={notify}>
-            <Text font={'button2'}>링크 복사하기</Text>
+    <Suspense fallback={<LoadingPage />}>
+      <CueCardWrapper>
+        <Header position={'cueCard'} />
+        <CueCardTitle main={'일정 조율 완료!'} sub={'이미 확정된 회의 일정입니다'} />
+        <Qcard ref={imageRef} />
+        <ButtonSection>
+          <CopyToClipboard text={currentURL} onCopy={handleCopy}>
+            <Button typeState={'halfTertiaryActive'}>
+              <Text font={'button2'}>링크 복사하기</Text>
+            </Button>
+          </CopyToClipboard>
+          <Button typeState={'halfPrimaryActive'} onClick={downLoadImage}>
+            <Text font={'button2'}>이미지 저장하기</Text>
           </Button>
-        </CopyToClipboard>
-        <Button typeState={'halfPrimaryActive'} onClick={downLoadImage}>
-          <Text font={'button2'}>이미지 저장하기</Text>
-        </Button>
-      </ButtonSection>
-    </CueCardWrapper>
+        </ButtonSection>
+      </CueCardWrapper>
+    </Suspense>
   );
 }
 
@@ -62,4 +72,11 @@ const ButtonSection = styled.section`
   flex-direction: row;
   gap: 1.4rem;
   justify-content: center;
+`;
+
+const LoadingPage = styled.div`
+  z-index: 2;
+  background-color: yellow;
+  width: 100%;
+  height: 100vh;
 `;
