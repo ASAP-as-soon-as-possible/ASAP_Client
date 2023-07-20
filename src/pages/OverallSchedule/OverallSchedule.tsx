@@ -16,6 +16,7 @@ import { overallScheduleApi } from 'utils/apis/overallScheduleApi';
 import TimeTable from './components/TimeTable';
 import { getFormattedAvailableDateTimes } from './utils/getFormattedAvailableDateTimes';
 
+
 const OverallSchedule = () => {
   const { meetingId } = useParams();
   const [overallScheduleData, setOverallScheduleData] = useState<OverallScheduleData>();
@@ -60,11 +61,10 @@ const OverallSchedule = () => {
   const formattedAvailableDateTimes =
     overallScheduleData && getFormattedAvailableDateTimes(overallScheduleData);
 
-  console.log(formattedAvailableDateTimes);
 
   return (
     <OverallScheduleWrapper>
-      {/* {!overallScheduleData ? (
+      {!overallScheduleData ? (
         <>
         <TextOneLine>
           <Text font={'title1'} color={`${theme.colors.white}`}>현재까지&nbsp;</Text>
@@ -104,7 +104,7 @@ const OverallSchedule = () => {
         </>
       ) : (
         <LoadingPage />
-      )} */}
+      )}
     </OverallScheduleWrapper>
   );
 };
