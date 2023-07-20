@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { availableDatesAtom, preferTimesAtom, timeSlotUserNameAtom } from 'atoms/atom';
+import Text from 'components/atomComponents/Text';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { styled } from 'styled-components';
@@ -571,7 +572,14 @@ const OverallSchedule = () => {
 
   return (
     <>
-      <UserNameWrapper>{timeSlotUserNames}</UserNameWrapper>
+      <UserNameWrapper>
+        {timeSlotUserNames.map((name, idx) => (
+          <Text key={idx + name} font={'body2'} color={'grey2'}>
+            {name}
+            {idx !== timeSlotUserNames.length - 1 ? ',' : ''}&nbsp;
+          </Text>
+        ))}
+      </UserNameWrapper>
       <TimeTable
         selectedSchedule={formattedAvailableDateTimes.availableDateTimes}
         availableDates={availableDates}
@@ -585,11 +593,14 @@ const OverallSchedule = () => {
 export default OverallSchedule;
 
 const UserNameWrapper = styled.aside`
-  position: absolute;
-  margin-top: 62rem;
-  border: 1px solid var(--asap-neutral-grey-5, #787878);
-  border-radius: 8px;
-  background: var(--asap-neutral-grey-9, #252525);
-  width: 335px;
-  height: 83px;
+  display: flex;
+  position: fixed;
+  bottom: 1.2rem;
+  justify-content: center;
+  border: 1px solid ${({ theme }) => theme.colors.grey5};
+  border-radius: 0.8rem;
+  background: ${({ theme }) => theme.colors.grey7};
+  width: 33.5rem;
+  height: 8.3rem;
+  color: ${({ theme }) => theme.colors.white};
 `;

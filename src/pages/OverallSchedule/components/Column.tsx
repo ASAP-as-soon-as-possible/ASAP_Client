@@ -25,7 +25,6 @@ const Column = (props: ColumnProps) => {
     userNames,
     $slotColorLevel,
   } = props;
-  console.log(userNames);
 
   return (
     <ColumnWrapper
