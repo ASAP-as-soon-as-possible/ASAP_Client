@@ -19,6 +19,8 @@ const SelectSchedulePriority = () => {
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
   const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
   const { meetingId } = useParams();
+  const { auth } = useParams();
+  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const getAvailableScheduleOption = async () => {
     try {
@@ -53,7 +55,7 @@ const SelectSchedulePriority = () => {
         <Button
           typeState={'halfTertiaryActive'}
           onClick={() => {
-            console.log('click');
+            setShowModal(true);
           }}
         >
           <Text font={'button2'}>상관없음</Text>
