@@ -71,7 +71,14 @@ const OverallSchedule = () => {
           <Text font={'title1'} color={`${theme.colors.sub1}`}>{memberCount}명</Text>
           <Text font={'title1'} color={`${theme.colors.white}`}>이 입력했어요</Text>
         </TextOneLine>
-
+        {totalUserNames &&
+          totalUserNames.map((name, idx) => (
+            <Text key={idx + name} font={'body2'} color={`${theme.colors.grey2}`}>
+              {name}
+              {idx !== totalUserNames.length - 1 ? ',' : ''}&nbsp;
+            </Text>
+          ))
+        }
           <TimeTable
             selectedSchedule={formattedAvailableDateTimes?.availableDateTimes}
             availableDates={availableDates}
