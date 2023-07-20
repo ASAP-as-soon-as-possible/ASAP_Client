@@ -77,7 +77,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
                     key={i + member}
                     font={'body2'}
                     color={`${theme.colors.white}`}
-                  >{`${member},`}</Text>
+                  >{member}{i !== userNames.length - 1 ? ',' : ''}&nbsp;</Text>
                 ))}
               </UserMemberbox>
             </MemberContainer>

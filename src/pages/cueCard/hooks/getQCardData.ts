@@ -17,7 +17,7 @@ const initCardData: CueCardResponse = {
     startTime: '06:00',
     endTime: '12:00',
     hostName: '서지원',
-    userNames: ['서지원', '도소현'],
+    userNames: ['서지원', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현'],
     additionalInfo: '공지사항 입니다 이바밥보아럼 공지사항 입니다 이바밥보아럼 공지사항 입니다 이바밥보아럼',
   },
 };
@@ -30,6 +30,7 @@ const GetQcardDataHooks = (meetingId: string) => {
       setIsloading(true);
       const result = await authClient.get(`/meeting/${meetingId}/card`);
       setCueCardData(result.data);
+      // setTimeout(() => setCueCardData(initCardData), 1000);
     } catch (error) {
       console.log(error);
     }
