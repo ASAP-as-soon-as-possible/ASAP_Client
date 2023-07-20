@@ -62,7 +62,7 @@ const OverallSchedule = () => {
 
   return (
     <OverallScheduleWrapper>
-      {!overallScheduleData ? (
+      {overallScheduleData ? (
         <>
           <TextOneLine>
             <Text font={'title1'} color={`${theme.colors.white}`}>
