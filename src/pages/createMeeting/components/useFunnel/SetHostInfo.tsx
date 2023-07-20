@@ -1,4 +1,4 @@
- import React from 'react';
+import React from 'react';
 
 import Button from 'components/atomComponents/Button';
 import PasswordInput from 'components/atomComponents/PasswordInput';
@@ -26,6 +26,20 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
     });
   };
 
+  const containsNonNumeric = (password: string) => {
+    const nonNumericPattern = /[^0-9]/;
+    if (!nonNumericPattern.test(password)) {
+      setStep((prev) => {
+        if (prev === 6) {
+          return prev;
+        }
+        return prev + 1;
+      });
+    } else {
+      alert('비밀번호는 4자리 이상 숫자로만 이루어져야합니다');
+    }
+  };
+
   return (
     <SetHostInfoWrapper>
       <HostInfoSection>
@@ -48,7 +62,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             value={meetingInfo.password}
             placeholder={`방 비밀번호`}
             passWordOnChange={passWordOnChange}
-            page={"createMeeting"}
+            page={'createMeeting'}
           />
         </HostNameSection>
       </HostInfoSection>
@@ -61,13 +75,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           }
           onClick={
             meetingInfo.name && meetingInfo.password.length >= 4
-              ? () =>
-                  setStep((prev) => {
-                    if (prev === 6) {
-                      return prev;
-                    }
-                    return prev + 1;
-                  })
+              ? () => containsNonNumeric(meetingInfo.password)
               : undefined
           }
         >

@@ -1,4 +1,4 @@
-export interface cueCardDataType {
+export interface CueCardDataType {
   title: string;
   place: 'ONLINE' | 'OFFLINE' | 'UNDEFINED';
   placeDetail: string | null;
@@ -12,8 +12,8 @@ export interface cueCardDataType {
   additionalInfo: string | null;
 }
 
-export interface cueCardResponse {
+export interface CueCardResponse {
   status: number;
   message: string;
-  data: cueCardDataType;
+  data: CueCardDataType;
 }

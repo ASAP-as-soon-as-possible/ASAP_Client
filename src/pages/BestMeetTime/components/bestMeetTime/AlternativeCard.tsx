@@ -29,9 +29,9 @@ function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataPr
         </Label>
 
         <MemeberContainer>
-          {carddata?.users.map((member, i) => (
+          {carddata.users.map((member, i) => (
             <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
-              {`${member.name},`}&nbsp;
+              {member.name}{i !== carddata.users.length - 1 ? ',' : ''}&nbsp;
             </Text>
           ))}
         </MemeberContainer>

@@ -18,7 +18,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
 
   return (
     <>
-      <ToastContainerBox />
+      {/* <ToastContainerBox /> */}
       <StyledBtnSection>
         {
           {
@@ -28,7 +28,6 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
                 {/* <CopyToClipboard text={`${import.meta.env.VITE_APP_IP}/meet/${meetInfo.meetingId}`} onCopy={handleCopy}> */}
                 <CopyToClipboard
                   text={`http://172.23.135.46:5173/meet/${meetInfo.meetingId}`}
-                  // onCopy={handleCopy}
                 >
                   <Button typeState={'halfTertiaryActive'} onClick={notify}>
                     <Text font={'button2'}>링크 복사하기</Text>
@@ -52,7 +51,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
                   text={`http://172.23.135.46:5173/meet/${meetingId}`}
                   // onCopy={handleCopy}
                 >
-                  <Button typeState={'halfPrimaryActive'}>
+                  <Button typeState={'halfPrimaryActive'} onClick={notify}>
                     <Text font={'button2'}>링크 복사하기</Text>
                   </Button>
                 </CopyToClipboard>

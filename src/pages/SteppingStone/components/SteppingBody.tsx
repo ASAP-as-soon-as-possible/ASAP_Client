@@ -92,7 +92,7 @@ const ImageSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 12rem;
+  margin-top: 4rem;
   img {
     display: flex;
     flex-direction: center;

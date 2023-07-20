@@ -7,8 +7,8 @@ import { theme } from 'styles/theme';
 
 interface PropTypes {
   id: number;
-  month: number;
-  day: number;
+  month: string;
+  day: string;
   dayOfWeek: string;
   // setScheduleList: Dispatch<SetStateAction<[]>>;
   handleDate: (id: number, data: string) => void;
