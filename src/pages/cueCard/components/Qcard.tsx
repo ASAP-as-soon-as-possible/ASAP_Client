@@ -171,10 +171,10 @@ export default Qcard;
 const LoadingWrapper = styled.div`
   display: flex;
   position: relative;
-  top: 25rem;
+  top: 15rem;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 32rem;
 `;
 
 const QcardWrapper = styled.article`
