@@ -2,7 +2,7 @@ import Text from 'components/atomComponents/Text';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-import { BestDataProps } from '../types/meetCardData';
+import { BestDataProps } from '../../types/meetCardData';
 
 function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
   const checkingCheck = () => {
