@@ -12,12 +12,15 @@ import styled from 'styled-components';
 import { theme } from 'styles/theme';
 import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
 
+import SelectModal from './SelectModal';
+
 const SelectSchedulePriority = () => {
   const [availableDates, setAvailableDates] = useRecoilState(availableDatesAtom);
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
   const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
   const { meetingId } = useParams();
   const [input_, setInput] = useState<string[]>(['', '', '']);
+  const [showModal, setShowModal] = useState(false);
   const getAvailableScheduleOption = async () => {
     try {
       const { data } = await availableScheduleOptionApi(meetingId);
@@ -60,12 +63,13 @@ const SelectSchedulePriority = () => {
         <Button
           typeState={input_ ? 'halfPrimaryActive' : 'halfPrimaryDisabled'}
           onClick={() => {
-            console.log('click');
+            setShowModal(true);
           }}
         >
           <Text font={'button2'}>확인</Text>
         </Button>
       </StyledBtnSection>
+      {showModal && <SelectModal setShowModal={setShowModal} />}
     </>
   );
 };

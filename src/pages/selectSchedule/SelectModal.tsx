@@ -2,55 +2,44 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
+import { useNavigate, useParams } from 'react-router';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { BestMeetTimeApi } from 'utils/apis/bestMeetTimeApi';
-
-import { BestMeetFinished } from '../types/meetCardData';
 
 interface ModalProps {
-  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
-  memberCount: number;
-  bestTime: BestMeetFinished;
+  setShowModal: Dispatch<SetStateAction<boolean>>;
 }
 
-function ConfirmModal({ setIsModalOpen, memberCount, bestTime }: ModalProps) {
-  const bestMeetTime = async () => {
-    try {
-      const {
-        data: { data },
-      } = await BestMeetTimeApi(bestTime);
-      console.log(data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+function SelectModal({ setShowModal }: ModalProps) {
+  const navigate = useNavigate();
+  const meetingId = useParams();
   const finishConfirm = () => {
-    bestMeetTime();
-    setIsModalOpen(false);
+    //여기에 api 연결하세요.
+    setShowModal(false);
+    navigate(`/host/schedule-complete/${meetingId}`);
   };
   return (
     <ReturnModalWrpper>
       <ModalSection>
-        <IconContainer onClick={() => setIsModalOpen(false)}>
+        <IconContainer onClick={() => setShowModal(false)}>
           <ExitIc />
         </IconContainer>
         <MentContainer>
           <ModalMent>
-            현재까지 <ModalHighlight>{memberCount}명</ModalHighlight>이 입력했어요.
+            가능 시간 입력을 완료하면 <ModalHighlight>수정이 불가</ModalHighlight>합니다.
           </ModalMent>
-          <Text font={`body3`} color={`${theme.colors.white}`}>
-            {`회의 시간을 확정하시겠습니까?`}
+          <Text font={`body2`} color={`${theme.colors.white}`}>
+            계속 진행하시겠습니까?
           </Text>
         </MentContainer>
         <BtnWrapper>
-          <ModalBtn id="cancel" onClick={() => setIsModalOpen(false)}>
-            <Text font={`title2`} color={`${theme.colors.white}`}>
+          <ModalBtn id="cancel" onClick={() => setShowModal(false)}>
+            <Text font={`button2`} color={`${theme.colors.white}`}>
               취소
             </Text>
           </ModalBtn>
           <ModalBtn id="confirm" onClick={finishConfirm}>
-            <Text font={`title2`} color={`${theme.colors.white}`}>
+            <Text font={`button2`} color={`${theme.colors.white}`}>
               확정
             </Text>
           </ModalBtn>
@@ -60,7 +49,7 @@ function ConfirmModal({ setIsModalOpen, memberCount, bestTime }: ModalProps) {
   );
 }
 
-export default ConfirmModal;
+export default SelectModal;
 
 const ReturnModalWrpper = styled.div`
   display: flex;
@@ -85,7 +74,7 @@ const ModalSection = styled.article`
   border-radius: 0.8rem;
   background-color: ${({ theme }) => theme.colors.grey8};
   width: 28.8rem;
-  height: 15.6rem;
+  height: 17.2rem;
 `;
 
 const IconContainer = styled.div`
@@ -112,12 +101,16 @@ const MentContainer = styled.div`
 
 const ModalMent = styled.span`
   color: ${({ theme }) => theme.colors.white};
-  ${({ theme }) => theme.fonts.body3};
+  ${({ theme }) => theme.fonts.body2};
+  width: 14.4rem;
+  text-align: center;
+  margin-bottom: 0.8rem;
+  margin-top: 2.4rem;
 `;
 
 const ModalHighlight = styled.span`
   color: ${({ theme }) => theme.colors.red};
-  ${({ theme }) => theme.fonts.body3};
+  ${({ theme }) => theme.fonts.body2};
 `;
 
 const ModalBtn = styled.button`
@@ -129,10 +122,11 @@ const ModalBtn = styled.button`
   background-color: ${({ theme, id }) =>
     id === 'cancel' ? theme.colors.grey6 : theme.colors.main2};
   width: 12.4rem;
-  height: 4rem;
+  height: 4.4rem;
 `;
 
 const BtnWrapper = styled.div`
   display: flex;
   gap: 0.8rem;
+  margin-top: 2rem;
 `;
