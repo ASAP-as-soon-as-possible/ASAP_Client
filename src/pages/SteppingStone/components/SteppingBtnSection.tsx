@@ -43,7 +43,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
             ),
             hostScheduleComplete: (
               <>
-                <Link to={`/host/meet/${meetingId}`}>
+                <Link to={`/host/${meetingId}`}>
                   <Button typeState={'halfTertiaryActive'}>
                     <Text font={'button2'}>방장페이지 입장</Text>
                   </Button>

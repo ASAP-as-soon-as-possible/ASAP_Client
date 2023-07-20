@@ -1,20 +1,51 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
+import { scheduleAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
 import { useNavigate, useParams } from 'react-router';
+import { useRecoilState } from 'recoil';
+import { HostAvailableSchduleRequestType } from 'src/types/createAvailableSchduleType';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+import { hostAvailableApi } from 'utils/apis/createHostAvailableSchedule';
+
+import { ScheduleStates } from './types/Schedule';
+import { transformScheduleType } from './utils/changeHostApiReq';
 
 interface ModalProps {
   setShowModal: Dispatch<SetStateAction<boolean>>;
 }
 
+interface ParamTypes {
+  auth: string;
+  meetingId: string;
+}
 function SelectModal({ setShowModal }: ModalProps) {
+  const [scheduleList, setScheduleList] = useRecoilState<ScheduleStates[]>(scheduleAtom);
+
   const navigate = useNavigate();
-  const { auth, meetingId } = useParams();
+  const { auth, meetingId } = useParams<ParamTypes>();
+
+  const updateScheduleType = transformScheduleType(scheduleList);
+
+  const postHostAvailableApi = async () => {
+    try {
+      const data = await hostAvailableApi(meetingId, updateScheduleType);
+      return data;
+    } catch (e) {
+      console.error(e);
+    }
+  };
+  // console.log(transformedScheduleList);
   const finishConfirm = () => {
     //여기에 api 연결하세요.
+    if (auth === 'host') {
+      postHostAvailableApi();
+    } else {
+      console.log('userHostApi');
+    }
+
     setShowModal(false);
     navigate(`/${auth}/schedule-complete/${meetingId}`);
   };
