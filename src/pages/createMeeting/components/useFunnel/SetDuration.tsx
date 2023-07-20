@@ -11,17 +11,19 @@ function SetDuration({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         {durationType.map((duration, i) => {
           return (
             <Button
-              key={i + duration}
+              key={i + duration.enum}
               typeState={
-                meetingInfo.duration === duration ? `halfPrimaryActive` : `halfsecondaryDisabled`
+                meetingInfo.duration === duration.enum
+                  ? `halfPrimaryActive`
+                  : `halfsecondaryDisabled`
               }
               onClick={() => {
                 setMeetingInfo((prev: MeetingInfo) => {
-                  return { ...prev, duration: duration };
+                  return { ...prev, duration: duration.enum };
                 });
               }}
             >
-              <Text font={'button2'}>{duration}</Text>
+              <Text font={'button2'}>{duration.time}</Text>
             </Button>
           );
         })}

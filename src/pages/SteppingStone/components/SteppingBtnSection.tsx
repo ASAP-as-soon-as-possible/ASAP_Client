@@ -1,40 +1,63 @@
-import React from 'react';
-
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
+import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components/macro';
+import { notify } from 'utils/toast/copyLink';
+import ToastContainerBox from 'utils/toast/ToastContainer';
 
 interface SteppingProps {
   steppingType: string;
 }
 
 function SteppingBtnSection({ steppingType }: SteppingProps) {
+  const location = useLocation();
+  const meetInfo = { ...location.state };
   const { meetingId } = useParams();
+  console.log(meetInfo);
+
+  // const notify = () => toast("링크 복사가 완료되었습니다");
   return (
     <>
+      <ToastContainerBox />
       <StyledBtnSection>
         {
           {
             meetComplete: (
               <>
-                <Button typeState={'halfTertiaryActive'}>
-                  <Text font={'button2'}>링크 복사하기</Text>
-                </Button>
-                <Button typeState={'halfPrimaryActive'}>
-                  <Text font={'button2'}>나의 가능시간 입력</Text>
-                </Button>
+                {/* 이후 도메인 시 연결 */}
+                {/* <CopyToClipboard text={`${import.meta.env.VITE_APP_IP}/meet/${meetInfo.meetingId}`} onCopy={handleCopy}> */}
+                <CopyToClipboard
+                  text={`http://172.23.135.46:5173/meet/${meetInfo.meetingId}`}
+                  // onCopy={handleCopy}
+                >
+                  <Button typeState={'halfTertiaryActive'} onClick={notify}>
+                    <Text font={'button2'}>링크 복사하기</Text>
+                  </Button>
+                </CopyToClipboard>
+                <Link to={`/schedule/${meetInfo.meetingId}`}>
+                  <Button typeState={'halfPrimaryActive'}>
+                    <Text font={'button2'}>나의 가능시간 입력</Text>
+                  </Button>
+                </Link>
               </>
             ),
             hostScheduleComplete: (
               <>
-                <Button typeState={'halfTertiaryActive'}>
-                  <Text font={'button2'}>방장페이지 입장</Text>
-                </Button>
-                <Button typeState={'halfPrimaryActive'}>
-                  <Text font={'button2'}>링크 복사하기</Text>
-                </Button>
+                <Link to={`/host/${meetingId}`}>
+                  <Button typeState={'halfTertiaryActive'}>
+                    <Text font={'button2'}>방장페이지 입장</Text>
+                  </Button>
+                </Link>
+                <CopyToClipboard
+                  text={`http://172.23.135.46:5173/meet/${meetingId}`}
+                  // onCopy={handleCopy}
+                >
+                  <Button typeState={'halfPrimaryActive'}>
+                    <Text font={'button2'}>링크 복사하기</Text>
+                  </Button>
+                </CopyToClipboard>
               </>
             ),
             meetEntrance: (
@@ -53,9 +76,11 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
             ),
             memberScheduleComplete: (
               <>
-                <Button typeState={'primaryActive'}>
-                  <Text font={'button2'}>홈으로 돌아가기</Text>
-                </Button>
+                <Link to={`/`}>
+                  <Button typeState={'primaryActive'}>
+                    <Text font={'button2'}>홈으로 돌아가기</Text>
+                  </Button>
+                </Link>
               </>
             ),
           }[steppingType]
@@ -69,7 +94,7 @@ export default SteppingBtnSection;
 
 const StyledBtnSection = styled.section`
   display: flex;
-  position: fixed;
+  position: absolute;
   bottom: 1.2rem;
   flex-direction: row;
   gap: 1.4rem;

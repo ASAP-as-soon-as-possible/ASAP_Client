@@ -18,24 +18,3 @@ const createMeetingRequestExample = {
   password: '0702',
   additionalInfo: '추가 공지사항',
 };
-
-// const ApiTesting = () => {
-//   const postCreateMeeting = async () => {
-//     try {
-//       const {
-//         data: { data },
-//       } = await createMeetingApi(createMeetingRequestExample);
-//       console.log(data);
-//     } catch (err) {
-//       console.log(err);
-//     }
-//   };
-
-//   useEffect(() => {
-//     postCreateMeeting();
-//   }, []);
-
-//   return <div>ApiTesting</div>;
-// };
-
-// export default ApiTesting;

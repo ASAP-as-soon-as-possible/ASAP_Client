@@ -11,28 +11,37 @@ import { MeetingInfo } from './types/useFunnelInterface';
 const initialMeetingInfo: MeetingInfo = {
   title: '',
   availableDates: [''],
-  preferTimes: [
-    {
-      startTime: '',
-      endTime: '',
-    },
-  ],
+  preferTimes: [],
   place: '',
   placeDetail: '',
   duration: '',
   name: '',
   password: '',
   additionalInfo: '',
+  // title: 'ASAP 회의',
+  // availableDates: ['2023/07/06/MON'],
+  // preferTimes: [
+  //   {
+  //     startTime: '06:00',
+  //     endTime: '12:00',
+  //   },
+  // ],
+  // place: 'ONLINE',
+  // placeDetail: 'zoom',
+  // duration: 'HALF',
+  // name: '서지원',
+  // password: '0702',
+  // additionalInfo: '추가 공지사항',
 };
 
 function CreateMeeting() {
   const [step, setStep] = useState(0);
   const [meetingInfo, setMeetingInfo] = useState(initialMeetingInfo);
   const currentStep = funnelStep[step];
-  console.log(meetingInfo);
+  console.log(meetingInfo)
   return (
     <>
-      <ViewTestingWrapper>
+      <CreateMeetingWrapper>
         <Header position={'createMeeting'} setStep={setStep} />
 
         <ReturnTitleComponent step={currentStep} />
@@ -43,14 +52,14 @@ function CreateMeeting() {
           setMeetingInfo={setMeetingInfo}
           setStep={setStep}
         />
-      </ViewTestingWrapper>
+      </CreateMeetingWrapper>
     </>
   );
 }
 
 export default CreateMeeting;
 
-const ViewTestingWrapper = styled.div`
+const CreateMeetingWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

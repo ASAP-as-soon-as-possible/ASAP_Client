@@ -1,34 +1,33 @@
-import React, { useState, Dispatch, SetStateAction, useEffect } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { ExitIc } from 'components/Icon/icon';
 import styled from 'styled-components/macro';
 
-
 import DateSelect from './DateSelect';
 import EndTimeSelect from './EndTimeSelect';
 import TimeSelect from './TimeSelect';
-import { ScheduleStates } from '../types/Schedule';
+import { DateStates, ScheduleStates, TimeStates } from '../types/Schedule';
 
 interface PropTypes {
   scheduleList: ScheduleStates[];
+  availableDates: DateStates[];
+  preferTimes: TimeStates[];
   setScheduleList: Dispatch<SetStateAction<ScheduleStates[]>>;
   deleteData: (index: number) => void;
 }
 
-function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes) {
+function SelectSchedule({ scheduleList, availableDates, preferTimes, setScheduleList, deleteData }: PropTypes) {
   const handleDate = (id: number, date: string) => {
 
     const updateDate: ScheduleStates[] = scheduleList?.map((schedule) => {
-
       if (schedule?.id === id) {
         return { ...schedule, date:date };
       }
       return schedule;
-
     });
-
     setScheduleList(updateDate);
-  };
+  }
+
 
   const handleStartTime = (id: number, startTime: string) => {
     const updateStartTime: ScheduleStates[] = scheduleList?.map((schedule) =>
@@ -39,7 +38,6 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
     return schedule;
   });
         setScheduleList(updateStartTime);
-
   };
 
   const handleEndTime = (id: number, endTime: string) => {
@@ -54,18 +52,17 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
 
   useEffect(
     () => {
-      // alert(JSON.stringify(scheduleList));
-      // console.log(uuidv4());
-    },
+          },
     [scheduleList],
   );
+
   return (
     <>
       {scheduleList &&
         scheduleList?.map((item,idx) =>(
           <SelectWrapper key={item?.id+idx}>
             <SelectSection>
-              <DateSelect id={item?.id} handleDate={handleDate} scheduleList={scheduleList} />
+              <DateSelect id={item?.id} availableDates={availableDates} handleDate={handleDate} scheduleList={scheduleList} />
               <ExitIconWrapper>
                 <ExitButton onClick={() => deleteData(item?.id)}>
                   <ExitIc />
@@ -78,12 +75,14 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
                 id={item?.id}
                 handleStartTime={handleStartTime}
                 scheduleList={scheduleList}
+                preferTimes={preferTimes}
               />
-
              <EndTimeSelect text="종료 시간"
                 id={item?.id}
                 handleEndTime={handleEndTime}
-                scheduleList={scheduleList}></EndTimeSelect>
+                scheduleList={scheduleList}
+                preferTimes={preferTimes}
+              />
              </TimeSelectSection>
           </SelectWrapper>
         ))};
@@ -91,13 +90,12 @@ function SelectSchedule({ scheduleList, setScheduleList, deleteData }: PropTypes
   );
 }
 
-// const SelectScheduleWrapper = styled.div``;
 const SelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 
-  margin-top: 1rem;
+  margin-top: 2rem;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.grey8};
   padding-top: 1.2rem;
@@ -107,6 +105,7 @@ const SelectWrapper = styled.div`
   width: 33.5rem;
   height: 12.8rem;
 `;
+
 const SelectSection = styled.section`
   display: flex;
   flex-direction: column;

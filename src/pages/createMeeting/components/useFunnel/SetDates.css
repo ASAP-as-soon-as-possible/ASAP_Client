@@ -168,6 +168,7 @@
   line-height: 2rem;
   letter-spacing: -0.16px;
   text-align: center;
+  pointer-events: none !important;
 }
 
 .rmdp-week-day {

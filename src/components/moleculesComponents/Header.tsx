@@ -2,9 +2,13 @@ import { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+import { notify } from 'utils/toast/copyLink';
+import ToastContainerBox from 'utils/toast/ToastContainer';
 
 const navigationOption = ['공지사항', 'ASAP family', '약속 생성하기', '피드백 보내기'];
 
@@ -27,63 +31,80 @@ function Header({ position, setStep }: HeaderProps) {
       });
     }
   };
+
+  const { meetingId } = useParams();
   return (
-    <HeaderWrapper>
-      <HeaderSection>
-        {position === 'onBoarding' ? (
-          <LogoIcSection>
-            <MainLogoIc />
-          </LogoIcSection>
-        ) : position === 'createMeeting' ? (
-          <IconSection onClick={backToFunnel}>
-            <BackIc />
-          </IconSection>
-        ) : position === 'login' ? (
-          <IconSection onClick={() => window.history.back()}>
-            <BackIc />
-          </IconSection>
-        ) : position === 'confirmMeet' ? (
-          <ConfirmIconSection onClick={() => window.history.back()}>
-            <IconSection>
+    <>
+      <HeaderWrapper>
+        <HeaderSection>
+          {position === 'onBoarding' ? (
+            <LogoIcSection>
+              <MainLogoIc />
+            </LogoIcSection>
+          ) : position === 'createMeeting' ? (
+            <IconSection onClick={backToFunnel}>
               <BackIc />
             </IconSection>
-            <IconSection>
-              <LinkIc />
+          ) : position === 'login' ? (
+            <IconSection onClick={() => window.history.back()}>
+              <BackIc />
             </IconSection>
-          </ConfirmIconSection>
+          ) : position === 'confirmMeet' ? (
+            <ConfirmIconSection>
+              <IconSection onClick={() => window.history.back()}>
+                <BackIc />
+              </IconSection>
+              <CopyToClipboard text={`http://172.23.135.46:5173/meet/${meetingId}`}>
+                <IconSection onClick={notify}>
+                  <LinkIc />
+                </IconSection>
+              </CopyToClipboard>
+            </ConfirmIconSection>
+          ) : position === 'schedule' ? (
+            <ConfirmIconSection onClick={() => window.history.back()}>
+              <IconSection>
+                <BackIc />
+              </IconSection>
+            </ConfirmIconSection>
+          ) : null}
+          {position === 'createMeeting' ? (
+            <Text font={'title2'} color={`${theme.colors.white}`}>
+              회의정보입력
+            </Text>
+          ) : position === 'confirmMeet' ? (
+            <Text font={'title2'} color={`${theme.colors.white}`}>
+              회의 일정 확정
+            </Text>
+          ) : position === 'schedule' ? (
+            <Text font={'title2'} color={`${theme.colors.white}`}>
+              가능 시간 입력
+            </Text>
+          ) : (
+            <EmptyBox />
+          )}
+          <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
+            <HambergerIc />
+          </IconSection>
+        </HeaderSection>
+        {isNaviOpen ? (
+          <NavigationSection>
+            <IconContainer onClick={() => setIsNaviOpen((prev) => !prev)}>
+              <ExitIc />
+            </IconContainer>
+            <NavigationContainer>
+              {navigationOption.map((option, i) => {
+                return (
+                  <Text key={i + option} font={'title2'} color={`${theme.colors.white}`}>
+                    {option}
+                  </Text>
+                );
+              })}
+            </NavigationContainer>
+          </NavigationSection>
         ) : null}
-        {position === 'createMeeting' ? (
-          <Text font={'title2'} color={`${theme.colors.white}`}>
-            회의정보입력
-          </Text>
-        ) : position === 'confirmMeet' ? (
-          <Text font={'title2'} color={`${theme.colors.white}`}>
-            회의 일정 확정
-          </Text>
-        ) : (
-          <EmptyBox />
-        )}
-        <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
-          <HambergerIc />
-        </IconSection>
-      </HeaderSection>
-      {isNaviOpen ? (
-        <NavigationSection>
-          <IconContainer onClick={() => setIsNaviOpen((prev) => !prev)}>
-            <ExitIc />
-          </IconContainer>
-          <NavigationContainer>
-            {navigationOption.map((option, i) => {
-              return (
-                <Text key={i + option} font={'title2'} color={`${theme.colors.white}`}>
-                  {option}
-                </Text>
-              );
-            })}
-          </NavigationContainer>
-        </NavigationSection>
-      ) : null}
-    </HeaderWrapper>
+      </HeaderWrapper>
+      <ToastContainerBox />
+    </>
   );
 }
 

@@ -26,6 +26,12 @@ const colors = {
   red: '#F45D56',
   yellow: '#FFE14D',
   green: '#2DDD93',
+
+  level5: 'rgba(50, 83, 255)',
+  level4: 'rgba(50, 83, 255, 0.8)',
+  level3: 'rgba(50, 83, 255, 0.5)',
+  level2: 'rgba(50, 83, 255, 0.3)',
+  level1: 'rgba(50, 83, 255, 0.1)',
 };
 
 export type ColorsTypes = typeof colors;

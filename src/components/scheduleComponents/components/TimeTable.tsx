@@ -1,30 +1,37 @@
 import Text from 'components/atomComponents/Text';
+import { DateStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
 
 import Row from './Row';
-import { AVAILABLE_DATES } from '../data/availableDates';
-import { PREFER_TIMES } from '../data/preferTimes';
-import { SelectedSchedule } from '../types/AvailableScheduleType';
+import { PreferTime, SelectedSchedule } from '../types/AvailableScheduleType';
 import getTimeSlots from '../utils/getTimeSlots';
 
 interface TimeTableProps {
   selectedSchedule: SelectedSchedule[];
+  availableDates: DateStates[];
+  preferTimes: PreferTime[];
   scheduleType: 'priority' | 'available';
 }
 
-function TimeTable({ selectedSchedule, scheduleType }: TimeTableProps) {
+function TimeTable({
+  selectedSchedule,
+  availableDates,
+  preferTimes,
+  scheduleType,
+}: TimeTableProps) {
+  console.log(preferTimes);
   const isMorningDinner =
-    PREFER_TIMES.length === 2 && PREFER_TIMES.every((time) => time.startTime !== '12:00');
+    preferTimes.length === 2 && preferTimes.every((time) => time.startTime !== '12:00');
 
-  const PreferTimes = [...PREFER_TIMES];
-  isMorningDinner && PreferTimes.splice(1, 0, { startTime: '12:00', endTime: '18:00' }); // 오전, 저녁 선택시 오후 시간을 추가로 채움
+  const formattedPreferTimes = [...preferTimes];
+  isMorningDinner && formattedPreferTimes.splice(1, 0, { startTime: '12:00', endTime: '18:00' }); // 오전, 저녁 선택시 오후 시간을 추가로 채움
 
-  const timeSlots = getTimeSlots(PreferTimes);
+  const timeSlots = getTimeSlots(formattedPreferTimes);
 
-  let formattedDates = AVAILABLE_DATES.map((date) => `${date.month}/${date.day} ${date.dayOfWeek}`);
+  let formattedDates = availableDates.map((date) => `${date.month}/${date.day} ${date.dayOfWeek}`);
 
-  const formattedDatesForSelectBox = AVAILABLE_DATES.map(
+  const formattedDatesForSelectBox = availableDates.map(
     (date) => `${date.month}월 ${date.day}일 (${date.dayOfWeek})`,
   );
 
@@ -37,9 +44,9 @@ function TimeTable({ selectedSchedule, scheduleType }: TimeTableProps) {
       <TimeSlotWrapper>
         {timeSlots.map(
           (slot) =>
-            slot.endsWith(':00') ? (
+            slot?.endsWith(':00') ? (
               <Text key={slot} font={'body4'} color={`${theme.colors.grey6}`}>
-                {String(parseInt(slot.split(':')[0]))}
+                {String(parseInt(slot?.split(':')[0]))}
               </Text>
             ) : (
               undefined
@@ -49,7 +56,7 @@ function TimeTable({ selectedSchedule, scheduleType }: TimeTableProps) {
       {formattedDates.map((date, idx) => (
         <Row
           rowIdx={idx}
-          key={date}
+          key={date + idx}
           selectedSchedulePerDate={Array.from(selectedSchedule).filter(
             (obj: SelectedSchedule) => obj.date === formattedDatesForSelectBox[idx],
           )}
@@ -70,7 +77,6 @@ export default TimeTable;
 const TimeTableWrapper = styled.div`
   display: flex;
   justify-content: center;
-  padding-top: 5rem;
 `;
 
 const TimeSlotWrapper = styled.div`

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
@@ -22,7 +22,12 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps
       const {
         data: { data },
       } = await createMeetingApi(meetingInfo);
-      console.log(data);
+      localStorage.setItem('hostToken', data.accessToken);
+      navigate('/meet/complete', {
+        state: {
+          meetingId: data.url,
+        },
+      });
     } catch (err) {
       console.log(err);
     }

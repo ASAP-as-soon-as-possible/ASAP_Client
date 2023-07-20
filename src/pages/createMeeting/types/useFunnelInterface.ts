@@ -14,6 +14,12 @@ export interface MeetingInfo {
   password: string;
   additionalInfo: string;
 }
+export interface PreferTimeInfo {
+  title: string;
+  startTime: string;
+  endTime: string;
+  btnState: boolean;
+}
 
 export interface FunnelProps {
   meetingInfo: MeetingInfo;

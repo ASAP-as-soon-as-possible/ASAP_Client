@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, SetStateAction, Dispatch } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import styled from 'styled-components/macro';
@@ -10,12 +10,13 @@ interface PropTypes {
   id: number;
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  handleEndTime: (id: number, endTime: string) => void;
+  handleStartTime: (id: number, startTime: string) => void;
 }
-function EndTimeDropDown({ times, text, id, isOpen, setIsOpen, handleEndTime }: PropTypes) {
+function TimeDropDown({ times, text, id, isOpen, setIsOpen, handleStartTime }: PropTypes) {
   const getStartTime = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
-    handleEndTime(id, times);
+
+    handleStartTime(id, times);
     setIsOpen((prev) => !prev);
   };
 
@@ -47,4 +48,4 @@ const TimeDropDownWrapper = styled.div`
     background-color: ${({ theme }) => theme.colors.grey7};
   }
 `;
-export default EndTimeDropDown;
+export default TimeDropDown;
