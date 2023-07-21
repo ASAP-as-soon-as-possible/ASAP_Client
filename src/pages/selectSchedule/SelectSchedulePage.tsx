@@ -193,7 +193,6 @@ function SelectSchedulePage() {
           onClick={() => {
             isScheduleListValid && navigate(`/${auth}/priority/${meetingId}`);
           }}
-          type="button"
         >
           <Text font={'button2'}>다음</Text>
         </Button>
