@@ -63,6 +63,7 @@ const OverallSchedule = () => {
 
 console.log(timeSlotUserNames);
 console.log(formattedAvailableDateTimes);
+console.log(timeSlotUserNames);
   return (
     <OverallScheduleWrapper>
       {overallScheduleData ? (
