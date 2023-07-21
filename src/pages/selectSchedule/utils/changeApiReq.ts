@@ -20,8 +20,6 @@ export const transformHostScheduleType = (scheduleList: ScheduleStates[]) => {
       endTime: item.endTime,
       priority: item.priority,
     };
-
-    return;
   });
 };
 

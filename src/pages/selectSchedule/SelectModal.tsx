@@ -28,7 +28,7 @@ function SelectModal({ setShowModal }: ModalProps) {
   console.log(updateMemberScheduleType);
   const postHostAvailableApi = async () => {
     try {
-      if (meetingId) {
+      if (meetingId && updateScheduleType) {
         const data = await hostAvailableApi(meetingId, updateScheduleType);
         return data;
       }
@@ -39,7 +39,7 @@ function SelectModal({ setShowModal }: ModalProps) {
 
   const postMemberAvailableApi = async () => {
     try {
-      if (meetingId) {
+      if (meetingId && updateMemberScheduleType) {
         const data = await userAvailableApi(meetingId, updateMemberScheduleType);
         return data;
       }
