@@ -22,69 +22,78 @@ function SelectSchedulePage() {
 
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
 
-
   const [meetingDetail, setMeetingDetail] = useState<MeetingDetail>({
     duration: '',
     place: '',
     placeDetail: '',
   });
-  const navigate=useNavigate();
-  const {auth, meetingId} = useParams();
+  const navigate = useNavigate();
+  const { auth, meetingId } = useParams();
 
-  const changeDurationFormat = (duration:string) : string => {
-    switch(duration){
-      case "HALF":
-        return "30분";
-      case "HOUR":
-        return "1시간";
-      case "HOUR_HALF":
-        return "1시간 30분";
-      case "TWO_HOUR":
-        return "2시간";
-      case "TWO_HOUR_HALF":
-        return "2시간 30분";
-      case "THREE_HOUR":
-        return "3시간";
-      default :
-        return "UNDEFINED";
+  const changeDurationFormat = (duration: string): string => {
+    switch (duration) {
+      case 'HALF':
+        return '30분';
+      case 'HOUR':
+        return '1시간';
+      case 'HOUR_HALF':
+        return '1시간 30분';
+      case 'TWO_HOUR':
+        return '2시간';
+      case 'TWO_HOUR_HALF':
+        return '2시간 30분';
+      case 'THREE_HOUR':
+        return '3시간';
+      default:
+        return 'UNDEFINED';
     }
-  }
+  };
 
-  const changePlaceFormat = (place:string) => {
-    switch(place){
-      case "ONLINE":
-        return "온라인";
-      case "OFFLINE":
-        return "오프라인";
-      case "UNDEFINED":
+  const changePlaceFormat = (place: string) => {
+    switch (place) {
+      case 'ONLINE':
+        return '온라인';
+      case 'OFFLINE':
+        return '오프라인';
+      case 'UNDEFINED':
         return undefined;
     }
-  }
+  };
 
-
-  const getAvailableScheduleOption = async() => {
-    try{
-      const {
-        data
-      } = await availableScheduleOptionApi(meetingId);
+  const getAvailableScheduleOption = async () => {
+    try {
+      const { data } = await availableScheduleOptionApi(meetingId);
       setAvailableDates(data.data.availableDates);
       setPreferTimes(data.data.preferTimes);
 
-      const {duration, place, placeDetail} = data.data;
-      setMeetingDetail({duration:changeDurationFormat(duration), place:changePlaceFormat(place), placeDetail:placeDetail});
-    }
-    catch(err){
+      console.log('가능시간 선택지 GET: ', data);
+
+      const { duration, place, placeDetail } = data.data;
+      setMeetingDetail({
+        duration: changeDurationFormat(duration),
+        place: changePlaceFormat(place),
+        placeDetail: placeDetail,
+      });
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
 
-  useEffect(()=>{
+  useEffect(() => {
     getAvailableScheduleOption();
-  },[]);
+  }, []);
 
   const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
-  const nextID = useRef<number>(2);
+
+  useEffect(
+    () => {
+      console.log('사용자가 선택한 값: ', scheduleList);
+    },
+    [scheduleList],
+  );
+  const nextID = useRef<number>(1);
   const addDateList = () => {
+    nextID.current += 1;
     const schedule = {
       id: nextID.current,
       date: '',
@@ -92,85 +101,98 @@ function SelectSchedulePage() {
       endTime: '',
       priority: 0,
     };
+    console.log(nextID.current);
     setScheduleList([...scheduleList, schedule]);
-    nextID.current += 1;
   };
 
   const deleteDataList = (index: number) => {
-    if(index===1){
-      alert("하나 이상의 시간을 입력해야합니다");
-      return ;
-    }
-    setScheduleList(scheduleList.filter((item) => item?.id !== index));
+    nextID.current -= 1;
+    console.log(index);
+    setScheduleList(scheduleList.filter((item) => item.id !== index));
   };
 
   const validateScheduleList = (list: ScheduleStates[]): boolean => {
     return list.every((item) => {
-      return item.id !== undefined && item.date !== '' && item.startTime !== '' && item.endTime !== '' && item.priority !== undefined;
+      return (
+        item.id !== undefined &&
+        item.date !== '' &&
+        item.startTime !== '' &&
+        item.endTime !== '' &&
+        item.priority !== undefined
+      );
     });
   };
 
   const isScheduleListValid = validateScheduleList(scheduleList);
 
+  useEffect(
+    () => {
+      console.log(scheduleList);
+    },
+    [scheduleList],
+  );
   return (
     <SelectPageWrapper>
       <Header position={'schedule'} />
       <SpeechBubbleWrapper>
         <TextWrapper>
-          {
-            meetingDetail.place ? (
-              <>
-                <TextOneLine>
-                  <Text font={'body1'} color={`${theme.colors.grey1}`}>
-                    회의는&nbsp;
-                  </Text>
+          {meetingDetail.place ? (
+            <>
+              <TextOneLine>
+                <Text font={'body1'} color={`${theme.colors.grey1}`}>
+                  회의는&nbsp;
+                </Text>
+                <Text font={'body1'} color={`${theme.colors.sub1}`}>
+                  {meetingDetail.duration}&nbsp;
+                </Text>
+                <Text font={'body1'} color={`${theme.colors.grey1}`}>
+                  동안
+                </Text>
+              </TextOneLine>
+              <TextSeveralLines>
+                <Text font={'body1'} color={`${theme.colors.sub1}`}>
+                  {meetingDetail.place}
+                </Text>
+                {meetingDetail.placeDetail && (
                   <Text font={'body1'} color={`${theme.colors.sub1}`}>
-                    {meetingDetail.duration}&nbsp;
+                    {`(${meetingDetail.placeDetail})`}
                   </Text>
-                  <Text font={'body1'} color={`${theme.colors.grey1}`}>
-                    동안
-                  </Text>
-                </TextOneLine>
-                <TextSeveralLines>
-                  <Text font={'body1'} color={`${theme.colors.sub1}`}>
-                    {meetingDetail.place}
-                  </Text>
-                  {meetingDetail.placeDetail && (
-                    <Text font={'body1'} color={`${theme.colors.sub1}`}>
-                      {`(${meetingDetail.placeDetail})`}
-                    </Text>
-                  )
-                  }
-                  <Text font={'body1'} color={`${theme.colors.grey1}`}>
-                    으로 진행될 예정이에요!
-                  </Text>
-                </TextSeveralLines>
-              </>
-            ) :
+                )}
+                <Text font={'body1'} color={`${theme.colors.grey1}`}>
+                  으로 진행될 예정이에요!
+                </Text>
+              </TextSeveralLines>
+            </>
+          ) : (
             <TextOneLine>
               <Text font={'body1'} color={`${theme.colors.grey1}`}>
                 회의는&nbsp;
               </Text>
               <Text font={'body1'} color={`${theme.colors.sub1}`}>
-              {meetingDetail.duration}&nbsp;
-            </Text>
-            <Text font={'body1'} color={`${theme.colors.grey1}`}>
-              동안 진행될 예정이에요!
-            </Text>
+                {meetingDetail.duration}&nbsp;
+              </Text>
+              <Text font={'body1'} color={`${theme.colors.grey1}`}>
+                동안 진행될 예정이에요!
+              </Text>
             </TextOneLine>
-          }
+          )}
         </TextWrapper>
-      {/* <SpeechBubbleIc/> */}
+        {/* <SpeechBubbleIc/> */}
       </SpeechBubbleWrapper>
       <TitleWrapper>
-      <Text font={'head2'} color={`${theme.colors.white}`}>
-        {'가능한 시간을 알려주세요'}
-      </Text>
-      <Text font={'body3'} color={`${theme.colors.grey4}`}>
-        {'아래 추가 버튼을 눌러 가능한 시간을 입력해주세요'}
-      </Text>
-    </TitleWrapper>
-      <TimeTable selectedSchedule={scheduleList} availableDates={availableDates} preferTimes={preferTimes} scheduleType="available" />
+        <Text font={'head2'} color={`${theme.colors.white}`}>
+          {'가능한 시간을 알려주세요'}
+        </Text>
+        <Text font={'body3'} color={`${theme.colors.grey4}`}>
+          {'아래 추가 버튼을 눌러 가능한 시간을 입력해주세요'}
+        </Text>
+      </TitleWrapper>
+      <TimeTable
+        selectedSchedule={scheduleList}
+        availableDates={availableDates}
+        preferTimes={preferTimes}
+        scheduleType="available"
+      />
       <SelectSchedule
         availableDates={availableDates}
         preferTimes={preferTimes}
@@ -183,17 +205,10 @@ function SelectSchedulePage() {
       </PlusButton>
       <StyledBtnSection>
         <Button
-          typeState={
-            isScheduleListValid
-              ? 'primaryActive'
-              : 'secondaryDisabled'
-          }
-          onClick={
-            () => { navigate(`/${auth}/priority/${meetingId}` )}
-
-          }
-
-
+          typeState={isScheduleListValid ? 'primaryActive' : 'secondaryDisabled'}
+          onClick={() => {
+            navigate(`/${auth}/priority/${meetingId}`);
+          }}
         >
           <Text font={'button2'}>다음</Text>
         </Button>
@@ -219,31 +234,30 @@ const PlusButton = styled.button`
 `;
 
 const TextOneLine = styled.div`
-  display:flex;
-  flex-wrap:wrap;
-  width:100%;
-`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+`;
 
 const TextSeveralLines = styled.div`
-  display:flex;
-  flex-wrap:wrap;
-`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 const TextWrapper = styled.div`
-  display:flex;
-  flex-direction:column;
-  border-radius:0.8rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.8rem;
   background-color: ${theme.colors.grey9};
-  padding:1.5rem 2.4rem;
-  width:33.5rem;
-`
+  padding: 1.5rem 2.4rem;
+  width: 33.5rem;
+`;
 
 const SpeechBubbleWrapper = styled.div`
-    display: flex;
-    position: relative;
-    margin-top:2rem;
-
-`
+  display: flex;
+  position: relative;
+  margin-top: 2rem;
+`;
 
 const TitleWrapper = styled.div`
   display: flex;
@@ -260,6 +274,5 @@ const StyledBtnSection = styled.section`
   bottom: 1.2rem;
   border-radius: 50%;
 `;
-
 
 export default SelectSchedulePage;
