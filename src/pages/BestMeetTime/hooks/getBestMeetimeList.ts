@@ -77,6 +77,7 @@ const initialData = {
   },
 };
 const GetBestMeetimeListHooks = (meetingId: string) => {
+  const [isError, setIsError] = useState(false);
   const [isloading, setIsloading] = useState(true);
   const [bestTimeData, setBestTimeData] = useState<DateTimeData>();
 
@@ -88,6 +89,7 @@ const GetBestMeetimeListHooks = (meetingId: string) => {
       // setTimeout(() => setBestTimeData(initialData), 1000);
     } catch (error) {
       console.log(error);
+      setIsError(true)
     }
     setIsloading(false);
   };
@@ -98,7 +100,7 @@ const GetBestMeetimeListHooks = (meetingId: string) => {
     },
     [meetingId],
   );
-  return { isloading, bestTimeData };
+  return { isloading, bestTimeData ,isError };
 };
 
 export default GetBestMeetimeListHooks;

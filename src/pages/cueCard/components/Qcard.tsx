@@ -1,4 +1,4 @@
-import { forwardRef, ForwardedRef, useRef } from 'react';
+import { forwardRef, ForwardedRef } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
@@ -39,7 +39,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
             <PlaceContainer>
               <IconBox>{place === 'ONLINE' ? <OnlinePlaceIc /> : <OfflinePlaceIc />}</IconBox>
               <Text font={'title2'} color={`${theme.colors.white}`}>
-                {placeDetail === '' ? '미정' : placeDetail}
+               {placeDetail === "" ? "미정" : placeDetail}
               </Text>
             </PlaceContainer>
             <TimeContainer>
