@@ -79,18 +79,18 @@ function SelectSchedulePage() {
     }
   };
 
+  useEffect(() => {
+    getAvailableScheduleOption();
+  }, []);
+
+  const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
+
   useEffect(
     () => {
       console.log('사용자가 선택한 값: ', scheduleList);
     },
     [scheduleList],
   );
-
-  useEffect(() => {
-    getAvailableScheduleOption();
-  }, []);
-
-  const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
   const nextID = useRef<number>(1);
   const addDateList = () => {
     nextID.current += 1;
