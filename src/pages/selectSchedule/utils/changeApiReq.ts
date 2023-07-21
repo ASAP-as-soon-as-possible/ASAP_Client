@@ -33,7 +33,7 @@ export const transformHostScheduleType = (
 export const transformUserScheduleType = (
   scheduleList: ScheduleStates[],
   meetInfo: string,
-): (UserAvailableScheduleRequestType | null)[] => {
+): UserAvailableScheduleRequestType | null => {
   const availableTimes = scheduleList.map((item) => {
     const matchedResult = item.date.match(/(\d+)월 (\d+)일 \((\S+)\)/);
     if (!matchedResult) {
@@ -58,6 +58,6 @@ export const transformUserScheduleType = (
     name: meetInfo,
     availableTimes,
   };
-  console.log(final);
+
   return final;
 };
