@@ -40,8 +40,8 @@ const Row = (props: RowProps) => {
     scheduleType,
   } = props;
 
-  const timeSlotsPerDate = selectedSchedulePerDate.map((obj) => obj.timeSlots);
-  const targetTimeSlots = timeSlotsPerDate[0] && timeSlotsPerDate[0].map((obj) => obj.time);
+  const timeSlotsPerDate = selectedSchedulePerDate && selectedSchedulePerDate.map((obj) => obj.timeSlots);
+  const targetTimeSlots = timeSlotsPerDate && timeSlotsPerDate[0].map((obj) => obj.time);
 
   const getColorLevelByTime = (objArray:TimeSlot[], targetTime:string) => {
     if (objArray === undefined) return;
@@ -80,8 +80,8 @@ const Row = (props: RowProps) => {
             isMorningDinner ? getTimeSlots([{ startTime: '12:00', endTime: '18:00' }]) : undefined
           }
           $isSelected={targetTimeSlots?.includes(slot)}
-          $slotColorLevel={getColorLevelByTime(timeSlotsPerDate[0],slot)}
-          userNames={getUserNamesByTime(timeSlotsPerDate[0],slot)}
+          $slotColorLevel={timeSlotsPerDate && getColorLevelByTime(timeSlotsPerDate[0],slot)}
+          userNames={timeSlotsPerDate && getUserNamesByTime(timeSlotsPerDate[0],slot)}
           scheduleType={scheduleType}
           $priorityColorInfo={undefined}
           $isStartTimeofPrioritySlot={undefined}
