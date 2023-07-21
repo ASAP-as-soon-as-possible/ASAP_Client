@@ -128,7 +128,7 @@ const QcardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1rem 1.6rem;
+  padding: 1rem 1.6rem 10rem 1rem;
   width: 100%;
 `;
 
