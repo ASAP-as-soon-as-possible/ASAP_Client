@@ -41,7 +41,7 @@ const Row = (props: RowProps) => {
   } = props;
 
   const timeSlotsPerDate = selectedSchedulePerDate && selectedSchedulePerDate.map((obj) => obj.timeSlots);
-  const targetTimeSlots = timeSlotsPerDate && timeSlotsPerDate[0].map((obj) => obj.time);
+  const targetTimeSlots = timeSlotsPerDate && timeSlotsPerDate[0] && timeSlotsPerDate[0].map((obj) => obj.time);
 
   const getColorLevelByTime = (objArray:TimeSlot[], targetTime:string) => {
     if (objArray === undefined) return;
