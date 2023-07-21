@@ -6,7 +6,7 @@ import Text from 'components/atomComponents/Text';
 import Header from 'components/moleculesComponents/Header';
 import PriorityDropdown from 'components/scheduleComponents/components/PriorityDropdown';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
