@@ -17,19 +17,15 @@ export interface HostAvailableScheduleResponseType {
 
 export interface UserAvailableScheduleRequestType {
   name: string;
-  availableTimes:
-    | [
-        {
-          id: string;
-          month: string;
-          day: string;
-          dayOfWeek: string;
-          startTime: string;
-          endTime: string;
-          priority: number;
-        }
-      ]
-    | null[];
+  availableTimes: {
+    id: string;
+    month: string;
+    day: string;
+    dayOfWeek: string;
+    startTime: string;
+    endTime: string;
+    priority: number;
+  }[];
 }
 export interface UserAvailableScheduleRequestTypeNull {
   name: string;
