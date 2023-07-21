@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-
 import Text from 'components/atomComponents/Text';
 import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
 import styled from 'styled-components/macro';
@@ -42,7 +41,7 @@ function TimeSelect({ text, id, handleStartTime, scheduleList, preferTimes }: Pr
   return (
     <TimeSelectWrapper>
       <TimeSelectSection $drop={isOpen} onClick={startTimeModal} ref={ref}>
-        {scheduleList[id - 1]?.startTime ? (
+        {scheduleList[id - 1].startTime ? (
           <Text font="button2" color={`${theme.colors.white}`}>
             {scheduleList[id - 1].startTime}
           </Text>
