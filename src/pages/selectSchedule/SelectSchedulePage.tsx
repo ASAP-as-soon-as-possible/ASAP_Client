@@ -6,7 +6,6 @@ import Text from 'components/atomComponents/Text';
 import { PlusIc } from 'components/Icon/icon';
 import Header from 'components/moleculesComponents/Header';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
-import { compareTime } from 'components/scheduleComponents/utils/compareTime';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { MeetingDetail } from 'src/types/availbleScheduleType';
@@ -32,7 +31,7 @@ function SelectSchedulePage() {
   const navigate=useNavigate();
   const {auth, meetingId} = useParams();
 
-  const changeDurationFormat = (duration:string) => {
+  const changeDurationFormat = (duration:string) : string => {
     switch(duration){
       case "HALF":
         return "30분";
@@ -46,6 +45,8 @@ function SelectSchedulePage() {
         return "2시간 30분";
       case "THREE_HOUR":
         return "3시간";
+      default :
+        return "UNDEFINED";
     }
   }
 

@@ -17,8 +17,6 @@ export interface SelectedSchedule {
   priority: number;
 }
 
-import React from 'react';
-
 export interface RowProps {
   rowIdx: number;
   timeSlots?: string[];

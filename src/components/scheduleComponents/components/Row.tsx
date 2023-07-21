@@ -55,7 +55,7 @@ const Row = (props: RowProps) => {
           {dayOfWeek}
         </Text>
       </DateWrapper>
-      {timeSlots.map((slot, columnIdx, arr) => (
+      {timeSlots && timeSlots.map((slot, columnIdx, arr) => (
         <Column
           key={slot}
           rowIdx={undefined}
