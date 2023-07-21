@@ -28,7 +28,7 @@ const Column = (props: ColumnProps) => {
   } = props;
 
   const handleSlotClick = () => {
-    setTimeSlotUserName(userNames || []);
+    setTimeSlotUserName(userNames);
     setClickedTimeSlot(rowIdx + timeSlot);
   };
 
@@ -71,7 +71,7 @@ interface ColumnWrapperProps {
   $isLastColumn: boolean;
   $isLastOfValidDate: boolean;
   $is18ofEmptyTimeSlot: boolean | undefined;
-  $isSelected: boolean;
+  $isSelected?: boolean;
   $priorityColorInfo?: string;
   $isStartTimeofPrioritySlot?: boolean;
   $slotColorLevel?: number;

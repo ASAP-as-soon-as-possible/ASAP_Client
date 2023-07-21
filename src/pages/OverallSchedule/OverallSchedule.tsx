@@ -91,9 +91,14 @@ const OverallSchedule = () => {
           />
           <UserNameWrapper>
             {!timeSlotUserNames ? (
+              <TextTwoLine>
               <Text font={'body4'} color={`${theme.colors.grey5}`}>
-                블럭을 선택하면 해당 시간대에 참여가능한<br />인원을 확인할 수 있어요
+                블럭을 선택하면 해당 시간대에 참여가능한
               </Text>
+              <Text font={'body4'} color={`${theme.colors.grey5}`}>
+                인원을 확인할 수 있어요
+              </Text>
+              </TextTwoLine>
             ) : (
               timeSlotUserNames.map((name, idx) => (
                 <Text key={idx + name} font={'body2'} color={`${theme.colors.grey2}`}>
@@ -152,3 +157,10 @@ const LoadingWrapper = styled.div`
   top: 25rem;
   width: 100%;
 `;
+
+const TextTwoLine = styled.div`
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content:center;
+`
