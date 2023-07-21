@@ -3,10 +3,7 @@ import { PreferTime } from '../types/AvailableScheduleType';
 const getTimeSlots = (preferTimes: PreferTime[]): string[] | undefined => {
   const timeSlots = preferTimes.flatMap((obj) => {
     const { startTime, endTime } = obj;
-    if (parseInt(startTime) >= parseInt(endTime)) {
-      alert('종료 시간은 시작 시간 이후로 설정해주세요!');
-      return;
-    }
+
     if (startTime === '' || endTime === '') return;
     const slots = [];
     let currentTime = startTime;

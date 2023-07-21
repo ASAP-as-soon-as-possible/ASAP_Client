@@ -6,13 +6,13 @@ import Text from 'components/atomComponents/Text';
 import { PlusIc } from 'components/Icon/icon';
 import Header from 'components/moleculesComponents/Header';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
+import { compareTime } from 'components/scheduleComponents/utils/compareTime';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { MeetingDetail } from 'src/types/availbleScheduleType';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
-
 
 import SelectSchedule from './components/SelectSchedule';
 import { ScheduleStates } from './types/Schedule';
@@ -82,7 +82,6 @@ function SelectSchedulePage() {
   },[]);
 
   const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
-
   const nextID = useRef<number>(2);
   const addDateList = () => {
     const schedule = {
