@@ -1,46 +1,46 @@
 import Text from 'components/atomComponents/Text';
+import { BestDataProps } from 'pages/BestMeetTime/types/meetCardData';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-
-import { BestDataProps } from '../../types/meetCardData';
 
 function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
   const checkingCheck = () => {
     chooseMeetime(rank);
   };
 
-  if(carddata) {
-  return (
-    <AlternativeCardWrapper $rank={rank} $selected={selected}>
-      <Input
-        id={`${rank}`}
-        type="checkbox"
-        checked={rank === selected ? true : false}
-        onChange={checkingCheck}
-      />
-      <InfoContainer>
-        <Label htmlFor={`${rank}`}>
-          <Text font={'body1'} color={`${theme.colors.white}`}>
-            {carddata.month}월 {carddata.day}일 {carddata.dayOfWeek}요일
-          </Text>
-          <Text font={'body1'} color={`${theme.colors.white}`}>
-            {carddata.startTime} ~ {carddata.endTime}
-          </Text>
-        </Label>
-
-        <MemeberContainer>
-          {carddata.users.map((member, i) => (
-            <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
-              {member.name}{i !== carddata.users.length - 1 ? ',' : ''}&nbsp;
+  if (carddata) {
+    return (
+      <AlternativeCardWrapper $rank={rank} $selected={selected}>
+        <Input
+          id={`${rank}`}
+          type="checkbox"
+          checked={rank === selected ? true : false}
+          onChange={checkingCheck}
+        />
+        <InfoContainer>
+          <Label htmlFor={`${rank}`}>
+            <Text font={'body1'} color={`${theme.colors.white}`}>
+              {carddata.month}월 {carddata.day}일 {carddata.dayOfWeek}요일
             </Text>
-          ))}
-        </MemeberContainer>
-      </InfoContainer>
-    </AlternativeCardWrapper>
-  );
-} else {
-  return null
-}
+            <Text font={'body1'} color={`${theme.colors.white}`}>
+              {carddata.startTime} ~ {carddata.endTime}
+            </Text>
+          </Label>
+
+          <MemeberContainer>
+            {carddata.users.map((member, i) => (
+              <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
+                {member.name}
+                {i !== carddata.users.length - 1 ? ',' : ''}&nbsp;
+              </Text>
+            ))}
+          </MemeberContainer>
+        </InfoContainer>
+      </AlternativeCardWrapper>
+    );
+  } else {
+    return null;
+  }
 }
 
 export default AlternativeCard;

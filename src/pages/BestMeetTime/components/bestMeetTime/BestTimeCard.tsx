@@ -2,50 +2,54 @@ import React, { useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
+import { BestDataProps } from 'pages/BestMeetTime/types/meetCardData';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-
-import { BestDataProps } from '../types/meetCardData';
 
 function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
   const [isMember, setIsMember] = useState(false);
   const checkingCheck = () => {
     chooseMeetime(rank);
   };
-  return (
-    <BestTimeCardWrapper $rank={rank} $selected={selected}>
-      <IconContainer onClick={() => setIsMember((prev) => !prev)}>
-        {isMember ? <DropupWhite /> : <DropdownWhite />}
-      </IconContainer>
-      <Input
-        id={`${rank}`}
-        type="checkbox"
-        onChange={checkingCheck}
-        checked={rank === selected ? true : false}
-      />
-      <InfoContainer>
-        <Label htmlFor={`${rank}`}>
-          <Text font={'body1'} color={`${theme.colors.white}`}>
-            {carddata?.month}월 {carddata?.day}일 {carddata?.dayOfWeek}요일
-          </Text>
-          <Text font={'body1'} color={`${theme.colors.white}`}>
-            {carddata?.startTime} ~ {carddata?.endTime}
-          </Text>
-        </Label>
-        {isMember ? (
-          <MemeberContainer>
-            {carddata?.users.map((member, i) => (
-              <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
-                {member.name}{i !== carddata.users.length - 1 ? ',' : ''}&nbsp;
-              </Text>
-            ))}
-          </MemeberContainer>
-        ) : (
-          undefined
-        )}
-      </InfoContainer>
-    </BestTimeCardWrapper>
-  );
+  if (carddata) {
+    return (
+      <BestTimeCardWrapper $rank={rank} $selected={selected}>
+        <IconContainer onClick={() => setIsMember((prev) => !prev)}>
+          {isMember ? <DropupWhite /> : <DropdownWhite />}
+        </IconContainer>
+        <Input
+          id={`${rank}`}
+          type="checkbox"
+          onChange={checkingCheck}
+          checked={rank === selected ? true : false}
+        />
+        <InfoContainer>
+          <Label htmlFor={`${rank}`}>
+            <Text font={'body1'} color={`${theme.colors.white}`}>
+              {carddata.month}월 {carddata.day}일 {carddata.dayOfWeek}요일
+            </Text>
+            <Text font={'body1'} color={`${theme.colors.white}`}>
+              {carddata.startTime} ~ {carddata.endTime}
+            </Text>
+          </Label>
+          {isMember ? (
+            <MemeberContainer>
+              {carddata.users.map((member, i) => (
+                <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
+                  {member.name}
+                  {i !== carddata.users.length - 1 ? ',' : ''}&nbsp;
+                </Text>
+              ))}
+            </MemeberContainer>
+          ) : (
+            undefined
+          )}
+        </InfoContainer>
+      </BestTimeCardWrapper>
+    );
+  } else {
+    return undefined;
+  }
 }
 
 export default BestTimeCard;

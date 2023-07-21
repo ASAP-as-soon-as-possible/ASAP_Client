@@ -61,9 +61,9 @@ const InputSection = styled.div`
   input:focus + div {
     display: flex;
     svg {
+      cursor: pointer;
       width: fit-content;
       height: fit-content;
-      cursor: pointer;
     }
   }
 `;
