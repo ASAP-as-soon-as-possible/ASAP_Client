@@ -45,6 +45,8 @@ function SelectSchedulePage() {
         return "2시간 30분";
       case "THREE_HOUR":
         return "3시간";
+      default :
+        return "UNDEFINED";
     }
   }
 
