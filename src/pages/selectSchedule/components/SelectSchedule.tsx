@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { ExitIc } from 'components/Icon/icon';
+import { compareTime } from 'components/scheduleComponents/utils/compareTime';
 import styled from 'styled-components/macro';
 
 import DateSelect from './DateSelect';
@@ -41,20 +42,20 @@ function SelectSchedule({ scheduleList, availableDates, preferTimes, setSchedule
   };
 
   const handleEndTime = (id: number, endTime: string) => {
-    const updateEndTime: ScheduleStates[] = scheduleList?.map((schedule) => {
-      if (schedule?.id === id) {
+    const updateEndTime: ScheduleStates[] = scheduleList.map((schedule) => {
+      if (schedule?.id === id &&compareTime(schedule.startTime,endTime)) {
+
         return { ...schedule, endTime };
       }
+      if (schedule?.id === id &&!compareTime(schedule.startTime,endTime)) {
+        alert('종료 시간은 시작 시간 이후로 설정해주세요!');
+        return schedule;
+      }
+
       return schedule;
     });
     setScheduleList(updateEndTime);
   };
-
-  useEffect(
-    () => {
-          },
-    [scheduleList],
-  );
 
   return (
     <>
