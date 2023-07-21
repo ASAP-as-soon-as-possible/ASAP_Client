@@ -14,6 +14,7 @@ import { overallScheduleApi } from 'utils/apis/overallScheduleApi';
 import TimeTable from './components/TimeTable';
 import { getFormattedAvailableDateTimes } from './utils/getFormattedAvailableDateTimes';
 
+
 const OverallSchedule = () => {
   const { meetingId } = useParams();
   const [overallScheduleData, setOverallScheduleData] = useState<OverallScheduleData>();
@@ -67,7 +68,7 @@ const OverallSchedule = () => {
               현재까지&nbsp;
             </Text>
             <Text font={'title1'} color={`${theme.colors.sub1}`}>
-              {memberCount}명
+              {memberCount.toString()}명
             </Text>
             <Text font={'title1'} color={`${theme.colors.white}`}>
               이 입력했어요
@@ -83,7 +84,7 @@ const OverallSchedule = () => {
               ))}
           </TotalUserNames>
           <TimeTable
-            selectedSchedule={formattedAvailableDateTimes.availableDateTimes}
+            selectedSchedule={formattedAvailableDateTimes?.availableDateTimes}
             availableDates={availableDates}
             preferTimes={preferTimes}
             scheduleType="available"
