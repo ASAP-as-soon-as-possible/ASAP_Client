@@ -1,12 +1,31 @@
-
 import Text from 'components/atomComponents/Text';
-import { PriorityInfo, RowProps } from 'components/scheduleComponents/types/AvailableScheduleType';
 import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
-import priorityToColor from 'components/scheduleComponents/utils/priorityToColor';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 import Column from './Column';
+
+interface TimeSlot{
+  time:string;
+  userNames:string[];
+  colorLevel:number;
+}
+
+interface SelectedSchedule {
+  date: string;
+  timeSlots:TimeSlot[];
+}
+
+interface RowProps {
+  rowIdx: number;
+  timeSlots: string[];
+  monthDay: string;
+  dayOfWeek: string;
+  isMorningDinner: boolean;
+  isLastofValidDate: boolean;
+  selectedSchedulePerDate: SelectedSchedule[];
+  scheduleType: 'priority' | 'available';
+}
 
 const Row = (props: RowProps) => {
   const {
@@ -23,18 +42,17 @@ const Row = (props: RowProps) => {
   const timeSlotsPerDate = selectedSchedulePerDate.map((obj) => obj.timeSlots);
   const targetTimeSlots = timeSlotsPerDate[0] && timeSlotsPerDate[0].map((obj) => obj.time);
 
-  const getColorLevelByTime = (objArray, targetTime) => {
-    if (objArray[0] === undefined) return;
-    const targetObj = objArray[0].find((obj) => obj.time === targetTime);
+  const getColorLevelByTime = (objArray:TimeSlot[], targetTime:string) => {
+    if (objArray === undefined) return;
+    const targetObj = objArray.find((obj) => obj.time === targetTime);
     return targetObj && targetObj.colorLevel
   }
 
-  const getUserNamesByTime = (objArray, targetTime) => {
-    if (objArray[0] === undefined) return;
-    const targetObj = objArray[0].find((obj)=> obj.time === targetTime);
+  const getUserNamesByTime = (objArray:TimeSlot[], targetTime:string) => {
+    if (objArray === undefined) return;
+    const targetObj = objArray.find((obj)=> obj.time === targetTime);
     return targetObj && targetObj.userNames
   }
-
 
   return (
     <ColumnWrapper>
@@ -61,9 +79,11 @@ const Row = (props: RowProps) => {
             isMorningDinner ? getTimeSlots([{ startTime: '12:00', endTime: '18:00' }]) : undefined
           }
           $isSelected={targetTimeSlots?.includes(slot)}
-          $slotColorLevel={getColorLevelByTime(timeSlotsPerDate,slot)}
-          userNames={getUserNamesByTime(timeSlotsPerDate,slot)}
+          $slotColorLevel={getColorLevelByTime(timeSlotsPerDate[0],slot)}
+          userNames={getUserNamesByTime(timeSlotsPerDate[0],slot)}
           scheduleType={scheduleType}
+          $priorityColorInfo={undefined}
+          $isStartTimeofPrioritySlot={undefined}
         />
       ))}
     </ColumnWrapper>
