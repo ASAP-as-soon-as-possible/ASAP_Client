@@ -1,10 +1,10 @@
 import { PreferTime } from '../types/AvailableScheduleType';
 
 const getTimeSlots = (preferTimes: PreferTime[]): string[] | undefined => {
-  const timeSlots = preferTimes.flatMap((obj) => {
+  const timeSlots: string[] = preferTimes.flatMap((obj) => {
     const { startTime, endTime } = obj;
 
-    if (startTime === '' || endTime === '') return;
+    if (startTime === '' || endTime === '') return [] as string[];
     const slots = [];
     let currentTime = startTime;
 
@@ -23,8 +23,6 @@ const getTimeSlots = (preferTimes: PreferTime[]): string[] | undefined => {
     }
     return slots;
   });
-
-  if (timeSlots === undefined) return undefined;
 
   return timeSlots;
 };
