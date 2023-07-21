@@ -14,7 +14,6 @@ export interface HostAvailableScheduleResponseType {
     accessToken: string;
   };
 }
-
 export interface UserAvailableScheduleRequestType {
   name: string;
   availableTimes: {

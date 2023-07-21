@@ -68,6 +68,6 @@ export const transformUserScheduleType = (
     name: meetInfo,
     availableTimes,
   };
-
   return final;
+
 };
