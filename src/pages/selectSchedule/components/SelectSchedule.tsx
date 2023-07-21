@@ -34,23 +34,20 @@ function SelectSchedule({ scheduleList, availableDates, preferTimes, setSchedule
     const updateStartTime: ScheduleStates[] = scheduleList?.map((schedule) =>
    {
     if (schedule?.id === id) {
-      console.log("1")
+
       if(schedule.endTime==="" ){
-        console.log("2")
         return { ...schedule, startTime };
       }
       else if (compareTime(startTime,schedule.endTime)){
         return { ...schedule, startTime };
       }
-      return schedule;
-    }
-    else if (schedule?.id === id &&!compareTime(startTime,schedule.endTime)) {
+      else{
+        alert("종료 시간은 시작 시간 이후로 설정해주세요!");
+      }
 
-      console.log(schedule.endTime);
-      alert('종료 시간은 시작 시간 이후로 설정해주세요!');
       return schedule;
     }
-    console.log("3")
+
     return schedule;
   });
         setScheduleList(updateStartTime);
@@ -58,11 +55,18 @@ function SelectSchedule({ scheduleList, availableDates, preferTimes, setSchedule
 
   const handleEndTime = (id: number, endTime: string) => {
     const updateEndTime: ScheduleStates[] = scheduleList.map((schedule) => {
-      if (schedule?.id === id &&compareTime(schedule.startTime,endTime)) {
-        return { ...schedule, endTime };
-      }
-      else if (schedule?.id === id &&!compareTime(schedule.startTime,endTime)) {
-        alert('종료 시간은 시작 시간 이후로 설정해주세요!');
+
+      if (schedule?.id === id) {
+
+        if(schedule.startTime==="" ){
+          return { ...schedule, endTime };
+        }
+        else if (compareTime(schedule.startTime,endTime)){
+          return { ...schedule, endTime };
+        }
+        else {
+          alert("종료 시간은 시작 시간 이후로 설정해주세요!");
+        }
         return schedule;
       }
 
