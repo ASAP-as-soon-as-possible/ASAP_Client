@@ -1,6 +1,6 @@
 import { PreferTime } from '../types/AvailableScheduleType';
 
-const getTimeSlots = (preferTimes: PreferTime[]): string[] | undefined => {
+const getTimeSlots = (preferTimes: PreferTime[]): string[] => {
   const timeSlots: string[] = preferTimes.flatMap((obj) => {
     const { startTime, endTime } = obj;
 
