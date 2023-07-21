@@ -1,6 +1,6 @@
 import { PreferTime } from '../types/AvailableScheduleType';
 
-const getTimeSlots = (preferTimes: PreferTime[]) => {
+const getTimeSlots = (preferTimes: PreferTime[]): string[] | undefined => {
   const timeSlots = preferTimes.flatMap((obj) => {
     const { startTime, endTime } = obj;
     if (parseInt(startTime) >= parseInt(endTime)) {
@@ -26,6 +26,8 @@ const getTimeSlots = (preferTimes: PreferTime[]) => {
     }
     return slots;
   });
+
+  if (timeSlots === undefined) return undefined;
 
   return timeSlots;
 };

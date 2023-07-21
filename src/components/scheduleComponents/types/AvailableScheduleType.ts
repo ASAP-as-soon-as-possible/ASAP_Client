@@ -41,14 +41,14 @@ export interface ColumnProps {
   $isFirstColumn: boolean;
   $isLastColumn: boolean;
   $isLastofValidDate: boolean;
-  EmptyRange: string[] | undefined;
+  EmptyRange?: string[];
   $isSelected: boolean;
   priority?: number;
-  $priorityColorInfo: string;
-  $isStartTimeofPrioritySlot: boolean;
+  $priorityColorInfo?: string;
+  $isStartTimeofPrioritySlot?: boolean;
   scheduleType: string;
-  userNames: string[];
-  $slotColorLevel: number;
+  userNames?: string[];
+  $slotColorLevel?: number;
 }
 
 export interface PriorityInfo {
