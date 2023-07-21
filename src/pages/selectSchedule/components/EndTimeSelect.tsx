@@ -44,7 +44,7 @@ function EndTimeSelect({ text, id, handleEndTime, scheduleList, preferTimes }: P
     <TimeSelectWrapper>
       <TimeSelectSection $drop={isOpen} onClick={startTimeModal} ref={ref}>
         {scheduleList[id - 1]?.endTime ? (
-          <Text font="button2" color={`${theme.colors.grey5}`}>
+          <Text font="button2" color={`${theme.colors.white}`}>
             {scheduleList[id - 1].endTime}
           </Text>
         ) : (
