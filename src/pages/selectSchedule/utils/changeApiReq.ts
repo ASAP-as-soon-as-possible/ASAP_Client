@@ -1,6 +1,10 @@
+import { HostAvailableSchduleRequestType } from 'src/types/createAvailableSchduleType';
+
 import { ScheduleStates } from '../types/Schedule';
 
-export const transformHostScheduleType = (scheduleList: ScheduleStates[]) => {
+export const transformHostScheduleType = (
+  scheduleList: ScheduleStates[],
+): (HostAvailableSchduleRequestType | null)[] => {
   return scheduleList.map((item) => {
     // const regexResult = item.date.match(/(\d+)월 (\d+)일 \((\S+)\)/);
     // console.log(regexResult);
