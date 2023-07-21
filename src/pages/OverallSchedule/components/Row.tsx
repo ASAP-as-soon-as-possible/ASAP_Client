@@ -58,7 +58,6 @@ const Row = (props: RowProps) => {
       const temp=filterUserNames(targetObj.userNames);
       return temp;
     }
-    return targetObj && targetObj.userNames;
   }
 
   return (
