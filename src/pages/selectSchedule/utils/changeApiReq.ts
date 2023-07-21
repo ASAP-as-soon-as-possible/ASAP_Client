@@ -54,11 +54,10 @@ export const transformUserScheduleType = (
     };
   });
 
-  const final = {
+  const final: UserAvailableScheduleRequestType = {
     name: meetInfo,
     availableTimes,
   };
-  // console.log(final);
   return final;
 
 };
