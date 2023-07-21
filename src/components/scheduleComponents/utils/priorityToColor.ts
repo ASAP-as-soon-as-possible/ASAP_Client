@@ -5,6 +5,7 @@ import { theme } from 'styles/theme';
 /** priority 값을 받아서 색상코드로 반환하는 함수 */
 const priorityToColor = (type: 'priority' | 'available', priority?: number): string => {
   if (type === 'available') return theme.colors['main4'];
+  if (type === 'priority') console.log(priority);
 
   switch (priority) {
     case 0:

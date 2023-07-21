@@ -80,8 +80,11 @@ const ColumnWrapper = styled.div<ColumnWrapperProps>`
   border-left: ${({ $isFirstRow }) =>
     $isFirstRow ? `0.1rem solid ${theme.colors.grey7}` : 'none'};
 
-  background-color: ${({ theme, $isDateEmpty, $isSelected, $priorityColorInfo }) =>
-    $isSelected ? $priorityColorInfo : $isDateEmpty ? theme.colors.grey9 : 'none'};
+  /* background-color: ${({ theme, $isDateEmpty, $isSelected, $priorityColorInfo }) =>
+    $isSelected ? $priorityColorInfo : $isDateEmpty ? theme.colors.grey9 : 'none'}; */
+
+  background-color: ${({ theme, $priorityColorInfo, $isSelected }) =>
+    $isSelected ? $priorityColorInfo : 'none'};
 
   width: 4.4rem;
   height: 1.2rem;

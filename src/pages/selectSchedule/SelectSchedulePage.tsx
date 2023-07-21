@@ -66,7 +66,7 @@ function SelectSchedulePage() {
       setAvailableDates(data.data.availableDates);
       setPreferTimes(data.data.preferTimes);
 
-      console.log('가능시간 선택지 GET: ', data);
+      // console.log('가능시간 선택지 GET: ', data);
 
       const { duration, place, placeDetail } = data.data;
       setMeetingDetail({
@@ -85,12 +85,12 @@ function SelectSchedulePage() {
 
   const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
 
-  useEffect(
-    () => {
-      console.log('사용자가 선택한 값: ', scheduleList);
-    },
-    [scheduleList],
-  );
+  // useEffect(
+  //   () => {
+  //     console.log('사용자가 선택한 값: ', scheduleList);
+  //   },
+  //   [scheduleList],
+  // );
   const nextID = useRef<number>(1);
   const addDateList = () => {
     nextID.current += 1;
@@ -125,12 +125,12 @@ function SelectSchedulePage() {
 
   const isScheduleListValid = validateScheduleList(scheduleList);
 
-  useEffect(
-    () => {
-      console.log(scheduleList);
-    },
-    [scheduleList],
-  );
+  // useEffect(
+  //   () => {
+  //     console.log(scheduleList);
+  //   },
+  //   [scheduleList],
+  // );
   return (
     <SelectPageWrapper>
       <Header position={'schedule'} />
