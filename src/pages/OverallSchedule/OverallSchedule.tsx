@@ -1,10 +1,8 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { availableDatesAtom, preferTimesAtom, timeSlotUserNameAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
-import ErrorPage404 from 'pages/ErrorLoading/ErrorPage404';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
-import { ErrorBoundary } from 'react-error-boundary';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { OverallScheduleData } from 'src/types/overallScheduleType';
@@ -24,7 +22,7 @@ const OverallSchedule = () => {
 
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
 
-  const [timeSlotUserNames, setTimeSlotUserNames] = useRecoilState(timeSlotUserNameAtom);
+  const [timeSlotUserNames] = useRecoilState(timeSlotUserNameAtom);
 
   const [memberCount, setMemberCount] = useState<number>(0);
   const [totalUserNames, setTotalUserNames] = useState<string[]>();
