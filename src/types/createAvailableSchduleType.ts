@@ -14,20 +14,9 @@ export interface HostAvailableScheduleResponseType {
     accessToken: string;
   };
 }
-
 export interface UserAvailableScheduleRequestType {
   name: string;
-  availableTimes: [
-    {
-      id: string;
-      month: string;
-      day: string;
-      dayOfWeek: string;
-      startTime: string;
-      endTime: string;
-      priority: number;
-    }
-  ];
+  availableTimes: (HostAvailableSchduleRequestType|null)[];
 }
 
 export interface UserAvailableScheduleResponseType {
