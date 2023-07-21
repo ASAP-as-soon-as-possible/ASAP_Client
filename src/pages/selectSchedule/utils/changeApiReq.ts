@@ -69,5 +69,4 @@ export const transformUserScheduleType = (
     availableTimes,
   };
   return final;
-
 };

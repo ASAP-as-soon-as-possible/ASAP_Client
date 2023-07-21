@@ -53,7 +53,7 @@ function Header({ position, setStep }: HeaderProps) {
               <IconSection onClick={() => window.history.back()}>
                 <BackIc />
               </IconSection>
-              <CopyToClipboard text={`http://172.23.135.46:5173/meet/${meetingId}`}>
+              <CopyToClipboard text={`${import.meta.env.VITE_APP_IP}/meet/${meetingId}`}>
                 <IconSection onClick={notify}>
                   <LinkIc />
                 </IconSection>
