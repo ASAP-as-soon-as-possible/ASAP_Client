@@ -4,7 +4,7 @@ import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
 import { BestMeetFinished } from 'pages/BestMeetTime/types/meetCardData';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { authClient } from 'utils/apis/axios';
@@ -17,13 +17,16 @@ interface ModalProps {
 
 function ConfirmModal({ setIsModalOpen, memberCount, bestTime }: ModalProps) {
   const { meetingId } = useParams();
-
+  const navigate = useNavigate()
   const [isloading, setIsloading] = useState(false);
 
   const confirmMeetime = async () => {
     try {
       const result = await authClient.post(`/meeting/${meetingId}/confirm`, bestTime);
-      console.log(result);
+      const {code} = result.data
+      if(code === 200){
+        navigate(`/q-card/${meetingId}`)
+      }
     } catch (error) {
       console.log(error);
     }

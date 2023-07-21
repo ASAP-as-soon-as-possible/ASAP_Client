@@ -1,128 +1,128 @@
-import { forwardRef, useState, ForwardedRef, useEffect, Suspense } from 'react';
+import { forwardRef, ForwardedRef, useRef } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import { useParams } from 'react-router';
-import { cueCardDataType} from 'src/types/cueCardType';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { client } from 'utils/apis/axios';
+
+import GetQcardDataHooks from '../hooks/getQCardData';
 
 const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
-  // const initCardData: cueCardDataType = {
-  //   title: '',
-  //   place: 'UNDEFINED',
-  //   placeDetail: null,
-  //   month: '',
-  //   day: '',
-  //   dayOfWeek: '',
-  //   startTime: '',
-  //   endTime: '',
-  //   hostName: '',
-  //   userNames: [],
-  //   additionalInfo: null,
-  // }
-  const [cardData, setCardData] = useState<cueCardDataType>();
   const { meetingId } = useParams();
+  const { isloading, cueCardData } = GetQcardDataHooks(meetingId as unknown as string)
+  if (!isloading && cueCardData) {
+    const {
+      data: {
+        title,
+        place,
+        placeDetail,
+        month,
+        day,
+        dayOfWeek,
+        startTime,
+        endTime,
+        hostName,
+        userNames,
+        additionalInfo,
+      },
+    } = cueCardData;
 
-  const getCueCardData = async () => {
-
-    const result = await client.get(`/meeting/${meetingId}/card`);
-
-    setCardData(result.data.data);
-
-  };
-  useEffect(
-    () => {
-      getCueCardData();
-    },
-    [meetingId],
-  );
-
-  return (
-
-    <Suspense fallback={<LoadingPage></LoadingPage>}>
-    <QcardWrapper ref={ref}>
-      <TopCardSetcion>
-        <Text font={'head2'} color={`${theme.colors.white}`}>
-          {cardData?.title}
-        </Text>
-        <PlaceTimeSection>
-          <PlaceContainer>
-            <IconBox>{cardData?.place === 'ONLINE' ? <OnlinePlaceIc /> : <OfflinePlaceIc />}</IconBox>
-            <Text font={'title2'} color={`${theme.colors.white}`}>
-              {cardData?.placeDetail === null ?'미정':cardData?.placeDetail}
-            </Text>
-          </PlaceContainer>
-          <TimeContainer>
-            <IconBox>
-              <TimeIc />
-            </IconBox>
-            <Text
-              font={'title2'}
-              color={`${theme.colors.white}`}
-            >{`${cardData?.month}월 ${cardData?.day} (${cardData?.dayOfWeek}) ${cardData?.startTime}-${cardData?.endTime}`}</Text>
-          </TimeContainer>
-        </PlaceTimeSection>
-        <MemeberSection>
-          <HostMeberContainer>
-            <MemberTitle>
-              <Text font={'body2'} color={`${theme.colors.main1}`}>
-                방장
-              </Text>
-            </MemberTitle>
-            <UserMemberbox>
-              <Text font={'body2'} color={`${theme.colors.white}`}>
-                {cardData?.hostName}
-              </Text>
-            </UserMemberbox>
-          </HostMeberContainer>
-          <MemberContainer>
-            <MemberTitle>
-              <Text font={'body2'} color={`${theme.colors.main1}`}>
-                참여
-              </Text>
-            </MemberTitle>
-            <UserMemberbox>
-              {cardData?.userNames?.map((member, i) => (
-                <Text
-                  key={i + member}
-                  font={'body2'}
-                  color={`${theme.colors.white}`}
-                >{`${member},`}</Text>
-              ))}
-            </UserMemberbox>
-          </MemberContainer>
-        </MemeberSection>
-      </TopCardSetcion>
-      <DashedSection>
-        {Array.from({ length: 15 }).map((_, i) => {
-          return <div key={i} />;
-        })}
-      </DashedSection>
-      <BottomCardSection>
-        {cardData?.additionalInfo === null ? (
-          <Text font={'body2'} color={`${theme.colors.grey4}`}>
-            별도의 공지사항은 없어요!
+    return (
+      <QcardWrapper ref={ref}>
+        <TopCardSetcion>
+          <Text font={'head2'} color={`${theme.colors.white}`}>
+            {title}
           </Text>
-        ) : (
-          <AdditionalText>
-            <NoticeText>공지</NoticeText>
-            <MentText>{cardData?.additionalInfo}</MentText>
-          </AdditionalText>
-        )}
-      </BottomCardSection>
-    </QcardWrapper>
-
-</Suspense>
-
-  );
+          <PlaceTimeSection>
+            <PlaceContainer>
+              <IconBox>{place === 'ONLINE' ? <OnlinePlaceIc /> : <OfflinePlaceIc />}</IconBox>
+              <Text font={'title2'} color={`${theme.colors.white}`}>
+                {placeDetail === null ? '미정' : placeDetail}
+              </Text>
+            </PlaceContainer>
+            <TimeContainer>
+              <IconBox>
+                <TimeIc />
+              </IconBox>
+              <Text
+                font={'title2'}
+                color={`${theme.colors.white}`}
+              >{`${month}월 ${day}일 (${dayOfWeek}) ${startTime}-${endTime}`}</Text>
+            </TimeContainer>
+          </PlaceTimeSection>
+          <MemeberSection>
+            <HostMeberContainer>
+              <MemberTitle>
+                <Text font={'body2'} color={`${theme.colors.main1}`}>
+                  방장
+                </Text>
+              </MemberTitle>
+              <UserMemberbox>
+                <Text font={'body2'} color={`${theme.colors.white}`}>
+                  {hostName}
+                </Text>
+              </UserMemberbox>
+            </HostMeberContainer>
+            <MemberContainer>
+              <MemberTitle>
+                <Text font={'body2'} color={`${theme.colors.main1}`}>
+                  참여
+                </Text>
+              </MemberTitle>
+              <UserMemberbox>
+                {userNames?.map((member, i) => (
+                  <Text
+                    key={i + member}
+                    font={'body2'}
+                    color={`${theme.colors.white}`}
+                  >{member}{i !== userNames.length - 1 ? ',' : ''}&nbsp;</Text>
+                ))}
+              </UserMemberbox>
+            </MemberContainer>
+          </MemeberSection>
+        </TopCardSetcion>
+        <DashedSection>
+          {Array.from({ length: 15 }).map((_, i) => {
+            return <div key={i} />;
+          })}
+        </DashedSection>
+        <BottomCardSection>
+          {additionalInfo === null ? (
+            <Text font={'body2'} color={`${theme.colors.grey4}`}>
+              별도의 공지사항은 없어요!
+            </Text>
+          ) : (
+            <AdditionalText>
+              <NoticeText>공지</NoticeText>
+              <MentText>{additionalInfo}</MentText>
+            </AdditionalText>
+          )}
+        </BottomCardSection>
+      </QcardWrapper>
+    );
+  } else {
+    return (
+      <LoadingWrapper>
+        <LoadingPage />
+      </LoadingWrapper>
+    );
+  }
 });
 
 Qcard.displayName = 'Qcard';
 
 export default Qcard;
+
+const LoadingWrapper = styled.div`
+  display: flex;
+  position: relative;
+  top: 15rem;
+  align-items: center;
+  justify-content: center;
+  width: 32rem;
+`;
 
 const QcardWrapper = styled.article`
   display: flex;
@@ -137,17 +137,18 @@ const TopCardSetcion = styled.section`
   position: relative;
   flex-direction: column;
   gap: 3.2rem;
+  z-index:0;
   border-top-left-radius: 1rem;
   border-top-right-radius: 1rem;
   background-color: ${theme.colors.grey9};
   padding: 4.6rem 2rem;
   height: fit-content;
-
   &:before {
     display: block;
     position: absolute;
     bottom: -1rem;
     left: 0rem;
+    z-index:1;
     border-radius: 0 5rem 5rem 0;
     background-color: ${theme.colors.grey10};
     width: 1rem;
@@ -159,6 +160,7 @@ const TopCardSetcion = styled.section`
     position: absolute;
     right: 0rem;
     bottom: -1rem;
+    z-index:1;
     border-radius: 5rem 0 0 5rem;
     background-color: ${theme.colors.grey10};
     width: 1rem;
@@ -242,12 +244,11 @@ const AdditionalText = styled.div`
 `;
 const NoticeText = styled.span`
   ${({ theme }) => theme.fonts.body2};
-  color: ${({ theme }) => theme.colors.main1};
   width: 2.5rem;
+  color: ${({ theme }) => theme.colors.main1};
 `;
 const MentText = styled.span`
   ${({ theme }) => theme.fonts.body2};
-  color: ${({ theme }) => theme.colors.grey2};
   width: 21.2rem;
+  color: ${({ theme }) => theme.colors.grey2};
 `;
-

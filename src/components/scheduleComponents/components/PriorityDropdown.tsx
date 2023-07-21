@@ -96,7 +96,7 @@ function PriorityDropdown() {
               <CircleWrapper>
                 <TextWrapper>
                   <Text font={'body2'} color={theme.colors.white}>
-                    {i + 1}순위
+                    {`${i + 1}`}순위
                   </Text>
                 </TextWrapper>
                 {i === 0 ? (
@@ -201,12 +201,11 @@ const TimeInput = styled.input<{ $drop: boolean }>`
 
   background-color: ${({ theme }) => theme.colors.grey7};
   ${({ theme }) => theme.fonts.button1};
-  color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
-
   padding-left: 2rem;
   width: 27.4rem;
   height: 5.2rem;
+  color: ${({ theme }) => theme.colors.white};
 `;
 const DropDownIconWrapper = styled.div`
   position: absolute;
