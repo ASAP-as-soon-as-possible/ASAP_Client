@@ -23,12 +23,15 @@ function SelectModal({ setShowModal }: ModalProps) {
   const navigate = useNavigate();
   const { auth, meetingId } = useParams();
   const updateScheduleType = transformHostScheduleType(scheduleList);
+  console.log(updateScheduleType);
   const updateMemberScheduleType = transformUserScheduleType(scheduleList, userName);
-
+  console.log(updateMemberScheduleType);
   const postHostAvailableApi = async () => {
     try {
-      const data = await hostAvailableApi(meetingId, updateScheduleType);
-      return data;
+      if (meetingId) {
+        const data = await hostAvailableApi(meetingId, updateScheduleType);
+        return data;
+      }
     } catch (e) {
       console.error(e);
     }
@@ -36,8 +39,10 @@ function SelectModal({ setShowModal }: ModalProps) {
 
   const postMemberAvailableApi = async () => {
     try {
-      const data = await userAvailableApi(meetingId, updateMemberScheduleType);
-      return data;
+      if (meetingId) {
+        const data = await userAvailableApi(meetingId, updateMemberScheduleType);
+        return data;
+      }
     } catch (e) {
       console.error(e);
     }

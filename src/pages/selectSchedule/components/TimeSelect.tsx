@@ -53,17 +53,18 @@ function TimeSelect({ text, id, handleStartTime, scheduleList, preferTimes }: Pr
       </TimeSelectSection>
       {isOpen && (
         <TimeDropDownWrapper>
-          {getTimeSlots(preferTimes).map((item, i) => (
-            <TimeDropDown
-              key={item}
-              times={item}
-              text={text}
-              id={id}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              handleStartTime={handleStartTime}
-            />
-          ))}
+          {getTimeSlots(preferTimes) &&
+            getTimeSlots(preferTimes).map((item) => (
+              <TimeDropDown
+                key={item}
+                times={item}
+                text={text}
+                id={id}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                handleStartTime={handleStartTime}
+              />
+            ))}
         </TimeDropDownWrapper>
       )}
     </TimeSelectWrapper>
