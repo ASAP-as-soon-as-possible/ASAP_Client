@@ -21,15 +21,13 @@ import React from 'react';
 
 export interface RowProps {
   rowIdx: number;
-  timeSlots: string[];
+  timeSlots?: string[];
   monthDay: string;
   dayOfWeek: string;
   isMorningDinner: boolean;
   isLastofValidDate: boolean;
   selectedSchedulePerDate: SelectedSchedule[];
   scheduleType: 'priority' | 'available';
-  timeSlotUserNames: string[];
-  setTimeSlotUserNames: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface ColumnProps {

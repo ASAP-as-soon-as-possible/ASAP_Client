@@ -27,6 +27,7 @@ interface RowProps {
   scheduleType: 'priority' | 'available';
 }
 
+
 const Row = (props: RowProps) => {
   const {
     rowIdx,
