@@ -207,7 +207,7 @@ function SelectSchedulePage() {
         <Button
           typeState={isScheduleListValid ? 'primaryActive' : 'secondaryDisabled'}
           onClick={() => {
-            navigate(`/${auth}/priority/${meetingId}`);
+            isScheduleListValid && navigate(`/${auth}/priority/${meetingId}`);
           }}
         >
           <Text font={'button2'}>다음</Text>

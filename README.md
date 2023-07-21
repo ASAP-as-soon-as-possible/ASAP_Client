@@ -3,14 +3,12 @@
 ![BRANDING 1_PLAN](https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/2526c8a1-21e7-471d-bce8-db8874a5cc5c)
 ![BRANDING 3_PLAN](https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/ddf9b475-a825-4577-8e14-b8d190a864b2)
 
+ASAP 은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽고 빠르고 간편하게 처리해주는 웹서비스입니다.
 
 ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽고 빠르고 간편하게 처리해주는 '최적의 회의시간 도출' 웹서비스입니다.
 
-1. **선호도 분석을 통해 최대 인원이 참석 가능한 회의시간을 자동으로 결정**해 줌으로써, 다수가 시간을 조율하며 딜레이되는 시간을 줄여주는 서비스 입니다.
-
 2.  **회의 관련 정보를 하나의 큐카드로 정리해 제공**함으로써
-회의 시간 외 추가 공지사항을 단톡방에 올리는 수고로움 또한 덜어주고자 합니다.
-
+    회의 시간 외 추가 공지사항을 단톡방에 올리는 수고로움 또한 덜어주고자 합니다.
 
 # 💡 ASAP 서비스의 핵심 기능
 
@@ -23,10 +21,11 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 | :---: | :---: | :---: |
 | 4️⃣ 회의 장소 입력 | 5️⃣ 회의 시간 설정 | 6️⃣ 방장 정보 입력 |
 
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/25dd8132-299a-45d1-9fbb-d6c449ebfdf7"/> | 
-| :---: |
-| 7️⃣ 준비물 등 추가 내용 | 
+| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/25dd8132-299a-45d1-9fbb-d6c449ebfdf7"/> |
+| :-----------------------------------------------------------------------------------------------------------------------: |
+|                                                  7️⃣  준비물 등 추가 내용                                                  |
 
+## 📥  가능 시간 입력하기
 
 ## 📥 가능 시간 입력하기
 | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/4b66f45e-1a08-490c-bc0f-04f4517e3c4e" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/d5c089e3-8338-4152-9f2a-d316e87a5dcb"/> |
@@ -39,12 +38,12 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 | :---: | :---: | :---: |
 | 1️⃣ 종합 일정 시간표 확인 | 2️⃣ 최적의 회의시간 추천 | 3️⃣ 큐카드 공유하기 |
 
-# 👨‍👨‍👧‍👦 팀원 소개
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/6054ba0b-cb75-4e7b-afa8-d6b79842ae0a"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/ff41d063-6597-44af-9493-613723f851b4"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/96d2a52d-17f9-4592-b032-75623c6d95d7"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/b47f10dd-ee91-4b27-8eb6-852dcf5cc189"/> |
-| :---: | :---: | :---: | :---: |
-| [이재훈](https://github.com/ljh0608) | [이동헌](https://github.com/eastlaw80) | [심은서](https://github.com/simeunseo) | [정찬우](https://github.com/Chanwoo-Jeong) |
-| `WEB FE` `리드개발자` | `WEB FE` | `WEB FE` | `WEB FE` |
+# 👨‍👨‍👧‍👦  팀원 소개
 
+| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/6054ba0b-cb75-4e7b-afa8-d6b79842ae0a"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/ff41d063-6597-44af-9493-613723f851b4"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/96d2a52d-17f9-4592-b032-75623c6d95d7"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/b47f10dd-ee91-4b27-8eb6-852dcf5cc189"/> |
+| :-----------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
+|                                           [이재훈](https://github.com/ljh0608)                                            |                                          [이동헌](https://github.com/eastlaw80)                                           |                                          [심은서](https://github.com/simeunseo)                                           |                                        [정찬우](https://github.com/Chanwoo-Jeong)                                         |
+|                                                   `WEB FE` `리드개발자`                                                   |                                                         `WEB FE`                                                          |                                                         `WEB FE`                                                          |                                                         `WEB FE`                                                          |
 
 # ⚒️ 기술 스택
 
@@ -96,7 +95,7 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
     "vite-plugin-babel-macros": "^1.0.6"
 ```
 
-### 🏙️ 환경 구축
+### 🏙️  환경 구축
 
 `React.js` `TypeScript` `Yarn` `Vite`
 
@@ -116,36 +115,33 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 
 - `type: subject`
 - type 종류
-    
-    
-    | type명 | 내용 |
-    | --- | --- |
-    | init | 초기 세팅 |
-    | feat | 기능 추가, 삭제, 변경 |
-    | design | 기능 변경 없이 UI만 변경 |
-    | fix | 버그 수정 |
-    | refactor | 코드 리팩토링 |
-    | style | 코드 형식, 정렬 등의 변경 (동작에 영향X) |
-    | test | 테스트 코드 추가, 삭제 변경 |
-    | docs | 문서 추가 삭제 변경 (코드 수정 X) |
-    | chore | 빌드 테스트 업데이트, 패키지 매니저 변경, 주석 추가 및 삭제 |
-    | etc | 위에 해당하지 않는 모든 변경 (가능한 한 X) |
-    - ex) feat: 회원가입 API 추가
+  | type 명  | 내용                                                        |
+  | -------- | ----------------------------------------------------------- |
+  | init     | 초기 세팅                                                   |
+  | feat     | 기능 추가, 삭제, 변경                                       |
+  | design   | 기능 변경 없이 UI 만 변경                                   |
+  | fix      | 버그 수정                                                   |
+  | refactor | 코드 리팩토링                                               |
+  | style    | 코드 형식, 정렬 등의 변경 (동작에 영향 X)                   |
+  | test     | 테스트 코드 추가, 삭제 변경                                 |
+  | docs     | 문서 추가 삭제 변경 (코드 수정 X)                           |
+  | chore    | 빌드 테스트 업데이트, 패키지 매니저 변경, 주석 추가 및 삭제 |
+  | etc      | 위에 해당하지 않는 모든 변경 (가능한 한 X)                  |
+  - ex) feat: 회원가입 API 추가
 - subject
-    - 제목은 최대 50글자가 넘지 않도록 하고 마침표 및 특수기호는 사용하지 않는다.
-    - 영문으로 표기하는 경우 동사(원형)를 가장 앞에 두고 첫 글자는 대문자로 표기한다.(과거 시제를 사용하지 않는다.)
-    - 제목은 **개조식 구문**으로 작성. → 서술형 문장이 아니라, 간결하고 요점적인 서술을 의미. + 명령조
-        - 예시
-            
-            ```tsx
-            * Fixed --> Fix
-            * Added --> Add
-            * Modified --> Modify
-            ```
-            
+  - 제목은 최대 50 글자가 넘지 않도록 하고 마침표 및 특수기호는 사용하지 않는다.
+  - 영문으로 표기하는 경우 동사(원형)를 가장 앞에 두고 첫 글자는 대문자로 표기한다.(과거 시제를 사용하지 않는다.)
+  - 제목은  **개조식 구문**으로 작성. → 서술형 문장이 아니라, 간결하고 요점적인 서술을 의미. + 명령조
+    - 예시
+      ```tsx
+      * Fixed --> Fix
+      * Added --> Add
+      * Modified --> Modify
+      ```
 - 최대한 작은 단위의 Commit 지향.
 
 # 📁 폴더 구조
+
 ```
 |-- 📁 node_modules
 |-- 📁 public
@@ -153,7 +149,7 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
     |-- 📁 asset
 	|-- 📁 svgs
 	|-- 📁 images
-    |-- 📁 components 
+    |-- 📁 components
 	|-- 📁 atomComponents (button , input , Text 등 재사용의 가장 작은 단위)
 	|-- 📁 moleculesComponents (Header , TitleComponents 등 재사용될만한 큼지막한 단위)
 	|-- 📁 icons(React Icon Components)
@@ -186,6 +182,6 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 |-- .prettierrc
 |-- README.md
 |-- package.json
-|-- tsconfig.json 
+|-- tsconfig.json
 |-- yarn.lock
 ```
