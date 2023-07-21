@@ -56,7 +56,7 @@ interface ColumnWrapperProps {
   $isLastColumn: boolean;
   $isLastOfValidDate: boolean;
   $is18ofEmptyTimeSlot: boolean | undefined;
-  $isSelected: boolean;
+  $isSelected?: boolean;
   $priorityColorInfo?: string;
   $isStartTimeofPrioritySlot?: boolean;
 }
