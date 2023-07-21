@@ -10,6 +10,7 @@ import GetBestMeetimeListHooks from 'pages/BestMeetTime/hooks/getBestMeetimeList
 import { whatisBestMeetime } from 'pages/BestMeetTime/utils/whatisBestMeetime';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -19,9 +20,14 @@ function BestMeetTime() {
   const [isalternativeCardOpen, setIsalternativeCardOpen] = useState(false);
   const [selected, setSelected] = useState(0);
   const [showModal, setShowModal] = useState<boolean>(false);
-  const {meetingId} = useParams();
-  const { isloading, bestTimeData } = GetBestMeetimeListHooks(meetingId as unknown as string );
-  if (!isloading && bestTimeData) {
+  const { meetingId } = useParams();
+  const { isloading, bestTimeData, isError } = GetBestMeetimeListHooks(
+    (meetingId as unknown) as string,
+  );
+  const navigate = useNavigate();
+  if (isError) {
+    navigate(`/*`);
+  } else if (!isloading && bestTimeData) {
     const bestMeetimeObj = whatisBestMeetime(bestTimeData, selected);
     if (bestMeetimeObj) {
       return (
@@ -50,7 +56,7 @@ function BestMeetTime() {
             <Text font={`body4`} color={`${theme.colors.grey3}`}>
               다른 시간대 확인하기
             </Text>
-            <BasicIconContainer >
+            <BasicIconContainer>
               {isalternativeCardOpen ? <DropupWhite /> : <DropdownWhite />}
             </BasicIconContainer>
           </AnotherTimeBtnSection>
