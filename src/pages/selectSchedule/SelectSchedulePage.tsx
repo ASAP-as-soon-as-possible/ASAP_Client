@@ -82,6 +82,7 @@ function SelectSchedulePage() {
   }, []);
 
   const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
+
   const nextID = useRef<number>(1);
   const addDateList = () => {
     nextID.current += 1;
@@ -92,13 +93,11 @@ function SelectSchedulePage() {
       endTime: '',
       priority: 0,
     };
-    console.log(nextID.current);
     setScheduleList([...scheduleList, schedule]);
   };
 
   const deleteDataList = (index: number) => {
     nextID.current -= 1;
-    console.log(index);
     setScheduleList(scheduleList.filter((item) => item.id !== index));
   };
 
@@ -116,12 +115,6 @@ function SelectSchedulePage() {
 
   const isScheduleListValid = validateScheduleList(scheduleList);
 
-  useEffect(
-    () => {
-      console.log(scheduleList);
-    },
-    [scheduleList],
-  );
   return (
     <SelectPageWrapper>
       <Header position={'schedule'} />
@@ -198,7 +191,7 @@ function SelectSchedulePage() {
         <Button
           typeState={isScheduleListValid ? 'primaryActive' : 'secondaryDisabled'}
           onClick={() => {
-            navigate(`/${auth}/priority/${meetingId}`);
+            isScheduleListValid && navigate(`/${auth}/priority/${meetingId}`);
           }}
         >
           <Text font={'button2'}>다음</Text>

@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 import Column from './Column';
+import { filterUserNames } from '../utils/setUserNames';
 
 interface TimeSlot{
   time:string;
@@ -52,7 +53,11 @@ const Row = (props: RowProps) => {
   const getUserNamesByTime = (objArray:TimeSlot[], targetTime:string) => {
     if (objArray === undefined) return;
     const targetObj = objArray.find((obj)=> obj.time === targetTime);
-    return targetObj && targetObj.userNames
+    if(targetObj){
+      console.log(targetObj.userNames);
+      const temp=filterUserNames(targetObj.userNames);
+      return temp;
+    }
   }
 
   return (

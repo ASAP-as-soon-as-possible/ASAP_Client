@@ -4,6 +4,8 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
+import { filterUserNames } from '../utils/setUserNames';
+
 const Column = (props: ColumnProps) => {
   const setTimeSlotUserName = useSetRecoilState(timeSlotUserNameAtom);
   const [clickedTimeSlot, setClickedTimeSlot] = useRecoilState(clickedTimeSlotAtom);
@@ -28,6 +30,7 @@ const Column = (props: ColumnProps) => {
   } = props;
 
   const handleSlotClick = () => {
+    console.log(filterUserNames(userNames));
     setTimeSlotUserName(userNames);
     setClickedTimeSlot(rowIdx + timeSlot);
   };
