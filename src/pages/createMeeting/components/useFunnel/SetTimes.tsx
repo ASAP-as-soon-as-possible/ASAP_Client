@@ -179,7 +179,9 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
               : 'secondaryDisabled'
           }
           onClick={
-            meetingInfo.preferTimes
+            meetingInfo.preferTimes.length >= 1 &&
+            meetingInfo.preferTimes[0].startTime &&
+            meetingInfo.preferTimes[0].endTime !== '00:00'
               ? () =>
                   setStep((prev) => {
                     if (prev === 6) {
