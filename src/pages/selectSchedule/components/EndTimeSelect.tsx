@@ -55,7 +55,7 @@ function EndTimeSelect({ text, id, handleEndTime, scheduleList, preferTimes }: P
       </TimeSelectSection>
       {isOpen && (
         <TimeDropDownWrapper>
-          { getTimeSlots(preferTimes) && addThirtyMinutesToLastElement(getTimeSlots(preferTimes)).map((item, i) => (
+          { getTimeSlots(preferTimes) && addThirtyMinutesToLastElement(getTimeSlots(preferTimes)).map((item) => (
             <EndTimeDropDown
               key={item}
               times={item}

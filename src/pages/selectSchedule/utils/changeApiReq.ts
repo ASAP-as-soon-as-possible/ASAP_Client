@@ -1,4 +1,7 @@
-import { HostAvailableSchduleRequestType } from 'src/types/createAvailableSchduleType';
+import {
+  HostAvailableSchduleRequestType,
+  UserAvailableScheduleRequestType,
+} from 'src/types/createAvailableSchduleType';
 
 import { ScheduleStates } from '../types/Schedule';
 
@@ -27,7 +30,10 @@ export const transformHostScheduleType = (
   });
 };
 
-export const transformUserScheduleType = (scheduleList: ScheduleStates[], meetInfo: string) => {
+export const transformUserScheduleType = (
+  scheduleList: ScheduleStates[],
+  meetInfo: string,
+): (UserAvailableScheduleRequestType | null)[] => {
   const availableTimes = scheduleList.map((item) => {
     const matchedResult = item.date.match(/(\d+)월 (\d+)일 \((\S+)\)/);
     if (!matchedResult) {
