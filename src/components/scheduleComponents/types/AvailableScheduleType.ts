@@ -34,7 +34,7 @@ export interface RowProps {
 
 export interface ColumnProps {
   timeSlot: string;
-  rowIdx: number;
+  rowIdx?: number;
   $isHalf: boolean;
   $isEmpty: boolean;
   $isFirstRow: boolean;
@@ -42,7 +42,7 @@ export interface ColumnProps {
   $isLastColumn: boolean;
   $isLastofValidDate: boolean;
   EmptyRange?: string[];
-  $isSelected: boolean;
+  $isSelected?: boolean;
   priority?: number;
   $priorityColorInfo?: string;
   $isStartTimeofPrioritySlot?: boolean;
