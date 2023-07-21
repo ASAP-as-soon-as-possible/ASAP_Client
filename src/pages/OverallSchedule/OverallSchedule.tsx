@@ -1,10 +1,8 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { availableDatesAtom, preferTimesAtom, timeSlotUserNameAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
-import ErrorPage404 from 'pages/ErrorLoading/ErrorPage404';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
-import { ErrorBoundary } from 'react-error-boundary';
 import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { OverallScheduleData } from 'src/types/overallScheduleType';
@@ -16,6 +14,7 @@ import { overallScheduleApi } from 'utils/apis/overallScheduleApi';
 import TimeTable from './components/TimeTable';
 import { getFormattedAvailableDateTimes } from './utils/getFormattedAvailableDateTimes';
 
+
 const OverallSchedule = () => {
   const { meetingId } = useParams();
   const [overallScheduleData, setOverallScheduleData] = useState<OverallScheduleData>();
@@ -24,7 +23,7 @@ const OverallSchedule = () => {
 
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
 
-  const [timeSlotUserNames, setTimeSlotUserNames] = useRecoilState(timeSlotUserNameAtom);
+  const [timeSlotUserNames] = useRecoilState(timeSlotUserNameAtom);
 
   const [memberCount, setMemberCount] = useState<number>(0);
   const [totalUserNames, setTotalUserNames] = useState<string[]>();
@@ -69,7 +68,7 @@ const OverallSchedule = () => {
               현재까지&nbsp;
             </Text>
             <Text font={'title1'} color={`${theme.colors.sub1}`}>
-              {memberCount}명
+              {memberCount.toString()}명
             </Text>
             <Text font={'title1'} color={`${theme.colors.white}`}>
               이 입력했어요
@@ -85,16 +84,21 @@ const OverallSchedule = () => {
               ))}
           </TotalUserNames>
           <TimeTable
-            selectedSchedule={formattedAvailableDateTimes.availableDateTimes}
+            selectedSchedule={formattedAvailableDateTimes?.availableDateTimes}
             availableDates={availableDates}
             preferTimes={preferTimes}
             scheduleType="available"
           />
           <UserNameWrapper>
             {!timeSlotUserNames ? (
+              <TextTwoLine>
               <Text font={'body4'} color={`${theme.colors.grey5}`}>
-                블럭을 선택하면 해당 시간대에 참여가능한<br />인원을 확인할 수 있어요
+                블럭을 선택하면 해당 시간대에 참여가능한
               </Text>
+              <Text font={'body4'} color={`${theme.colors.grey5}`}>
+                인원을 확인할 수 있어요
+              </Text>
+              </TextTwoLine>
             ) : (
               timeSlotUserNames.map((name, idx) => (
                 <Text key={idx + name} font={'body2'} color={`${theme.colors.grey2}`}>
@@ -153,3 +157,10 @@ const LoadingWrapper = styled.div`
   top: 25rem;
   width: 100%;
 `;
+
+const TextTwoLine = styled.div`
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  justify-content:center;
+`

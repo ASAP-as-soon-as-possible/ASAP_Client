@@ -1,6 +1,4 @@
-import AvailableSchedule from 'pages/AvailableSchedule/AvailableSchedule';
 import ChooseBestTime from 'pages/BestMeetTime/ChooseBestTime';
-import ComponentTesting from 'pages/ComponentTesting';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
 import ErrorPage404 from 'pages/ErrorLoading/ErrorPage404';
@@ -16,9 +14,7 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/componenttest" element={<ComponentTesting />} />
         <Route path="/" element={<OnBoarding />} />
-        <Route path="/scheduletest" element={<AvailableSchedule />} />
         <Route path="/meet/create" element={<CreateMeeting />} />
         <Route path="/meet/complete" element={<SteppingLayout steppingType={'meetComplete'} />} />
         <Route path="/:auth/schedule/:meetingId" element={<SelectPage />} />

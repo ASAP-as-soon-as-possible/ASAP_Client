@@ -30,7 +30,7 @@ export const scheduleAtom = atom<ScheduleStates[]>({
   ],
 });
 
-export const timeSlotUserNameAtom = atom<string[]>({
+export const timeSlotUserNameAtom = atom<string[] | undefined>({
   key: 'timeSlotUserNameAtom',
   default: undefined,
 });

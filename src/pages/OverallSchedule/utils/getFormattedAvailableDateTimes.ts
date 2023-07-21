@@ -1,6 +1,6 @@
-import React from 'react';
+import { OverallScheduleData } from "src/types/overallScheduleType";
 
-export const getFormattedAvailableDateTimes = (data) => {
+export const getFormattedAvailableDateTimes = (data:OverallScheduleData | undefined) => {
   if (data === undefined) return;
   const transformedData = {
     availableDateTimes: data.availableDateTimes.map((dateTime) => {

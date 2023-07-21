@@ -1,13 +1,11 @@
-import { useState } from 'react';
-
 import { clickedTimeSlotAtom, timeSlotUserNameAtom } from 'atoms/atom';
 import { ColumnProps } from 'components/scheduleComponents/types/AvailableScheduleType';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 const Column = (props: ColumnProps) => {
-  const [timeSlotUserName, setTimeSlotUserName] = useRecoilState(timeSlotUserNameAtom);
+  const setTimeSlotUserName = useSetRecoilState(timeSlotUserNameAtom);
   const [clickedTimeSlot, setClickedTimeSlot] = useRecoilState(clickedTimeSlotAtom);
 
   const {
@@ -73,10 +71,10 @@ interface ColumnWrapperProps {
   $isLastColumn: boolean;
   $isLastOfValidDate: boolean;
   $is18ofEmptyTimeSlot: boolean | undefined;
-  $isSelected: boolean;
-  $priorityColorInfo: string;
-  $isStartTimeofPrioritySlot: boolean;
-  $slotColorLevel: number;
+  $isSelected?: boolean;
+  $priorityColorInfo?: string;
+  $isStartTimeofPrioritySlot?: boolean;
+  $slotColorLevel?: number;
   $isClicked: boolean;
 }
 

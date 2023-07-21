@@ -30,7 +30,7 @@ function SelectSchedulePage() {
   const navigate = useNavigate();
   const { auth, meetingId } = useParams();
 
-  const changeDurationFormat = (duration: string) => {
+  const changeDurationFormat = (duration: string): string => {
     switch (duration) {
       case 'HALF':
         return '30분';
@@ -44,6 +44,8 @@ function SelectSchedulePage() {
         return '2시간 30분';
       case 'THREE_HOUR':
         return '3시간';
+      default:
+        return 'UNDEFINED';
     }
   };
 

@@ -70,7 +70,7 @@ const InputSection = styled.div`
 
 const StyledTextInput = styled.input<{ $iserror: boolean }>`
   position: relative;
-  border: 2px solid ${({ theme }) => theme.colors.black};
+  border:none;
 
   border-radius: 0.8rem;
   box-shadow: 0 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.25);
@@ -86,8 +86,8 @@ const StyledTextInput = styled.input<{ $iserror: boolean }>`
   caret-color: ${({ theme }) => theme.colors.main1};
 
   &:focus {
-    border: 2px solid ${({ $iserror, theme }) => ($iserror ? theme.colors.red : theme.colors.main1)};
     outline: none;
+    border: 2px solid ${({ $iserror, theme }) => ($iserror ? theme.colors.red : theme.colors.main1)};
   }
 `;
 
