@@ -66,6 +66,8 @@ function SelectSchedulePage() {
       setAvailableDates(data.data.availableDates);
       setPreferTimes(data.data.preferTimes);
 
+      console.log('가능시간 선택지 GET: ', data);
+
       const { duration, place, placeDetail } = data.data;
       setMeetingDetail({
         duration: changeDurationFormat(duration),
@@ -76,6 +78,13 @@ function SelectSchedulePage() {
       console.log(err);
     }
   };
+
+  useEffect(
+    () => {
+      console.log('사용자가 선택한 값: ', scheduleList);
+    },
+    [scheduleList],
+  );
 
   useEffect(() => {
     getAvailableScheduleOption();
