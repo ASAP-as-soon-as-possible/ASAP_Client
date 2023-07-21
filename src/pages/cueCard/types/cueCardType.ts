@@ -1,7 +1,7 @@
 export interface CueCardDataType {
   title: string;
   place: 'ONLINE' | 'OFFLINE' | 'UNDEFINED';
-  placeDetail: string | null;
+  placeDetail: string;
   month: string;
   day: string;
   dayOfWeek: string;
@@ -9,7 +9,7 @@ export interface CueCardDataType {
   endTime: string;
   hostName: string;
   userNames: string[];
-  additionalInfo: string | null;
+  additionalInfo: string;
 }
 
 export interface CueCardResponse {
