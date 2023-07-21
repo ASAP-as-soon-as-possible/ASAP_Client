@@ -8,17 +8,17 @@ import {
 
 import { authClient, client } from './axios';
 
-export const hostAvailableApi = (meetingId: string, reqBody: HostAvailableSchduleRequestType[]) => {
+export const hostAvailableApi = (
+  meetingId: string,
+  reqBody: (HostAvailableSchduleRequestType | null)[],
+) => {
   return authClient.post<AxiosResponse<HostAvailableScheduleResponseType>>(
     `/user/host/${meetingId}/time`,
     reqBody,
   );
 };
 
-export const userAvailableApi = (
-  meetingId: string,
-  reqBody: UserAvailableScheduleRequestType[],
-) => {
+export const userAvailableApi = (meetingId: string, reqBody: UserAvailableScheduleRequestType) => {
   return client.post<AxiosResponse<UserAvailableScheduleResponseType>>(
     `/user/${meetingId}/time`,
     reqBody,

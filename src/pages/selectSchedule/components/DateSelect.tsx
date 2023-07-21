@@ -19,7 +19,7 @@ function DateSelect({ id, handleDate, availableDates, scheduleList }: PropTypes)
 
   const [isOpen, setIsOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
+  console.log(id);
   useEffect(
     () => {
       const clickOutSide = (e: MouseEvent) => {
@@ -37,10 +37,9 @@ function DateSelect({ id, handleDate, availableDates, scheduleList }: PropTypes)
   return (
     <DateSelectWrapper>
       <DateSelectContainer $drop={isOpen} onClick={() => setIsOpen((prev) => !prev)} ref={ref}>
-
-        {(id>=1) && scheduleList[id - 1]?.date ? (
-          <Text font="button2" color={`${theme.colors.grey5}`}>
-            {scheduleList[id - 1].date}
+        {(id>=1) && scheduleList[id-1]?.date ? (
+          <Text font="button2" color={`${theme.colors.white}`}>
+            {scheduleList[id-1].date}
           </Text>
         ) : (
           <Text font="button2" color={`${theme.colors.grey5}`}>
