@@ -57,8 +57,8 @@ interface ColumnWrapperProps {
   $isLastOfValidDate: boolean;
   $is18ofEmptyTimeSlot: boolean | undefined;
   $isSelected: boolean;
-  $priorityColorInfo: string;
-  $isStartTimeofPrioritySlot: boolean;
+  $priorityColorInfo?: string;
+  $isStartTimeofPrioritySlot?: boolean;
 }
 
 const ColumnWrapper = styled.div<ColumnWrapperProps>`
