@@ -2,7 +2,6 @@
 import React from 'react';
 
 import Text from 'components/atomComponents/Text';
-import { SelectedSchedule } from 'components/scheduleComponents/types/AvailableScheduleType';
 import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
 import { DateStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
 import { styled } from 'styled-components';
@@ -15,6 +14,17 @@ interface TimeTableProps {
   availableDates: DateStates[];
   preferTimes: TimeStates[];
   scheduleType: 'priority' | 'available';
+}
+
+interface TimeSlot{
+  time:string;
+  userNames:string[];
+  colorLevel:number;
+}
+
+interface SelectedSchedule {
+  date: string;
+  timeSlots:TimeSlot[];
 }
 
 function TimeTable({
@@ -45,7 +55,7 @@ function TimeTable({
   return (
     <TimeTableWrapper>
       <TimeSlotWrapper>
-        {timeSlots.map(
+        {timeSlots && timeSlots.map(
           (slot) =>
             slot?.endsWith(':00') ? (
               <Text key={slot} font={'body4'} color={`${theme.colors.grey6}`}>
