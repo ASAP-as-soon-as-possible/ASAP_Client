@@ -39,7 +39,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
             <PlaceContainer>
               <IconBox>{place === 'ONLINE' ? <OnlinePlaceIc /> : <OfflinePlaceIc />}</IconBox>
               <Text font={'title2'} color={`${theme.colors.white}`}>
-                {placeDetail === null ? '미정' : placeDetail}
+                {placeDetail === '' ? '미정' : placeDetail}
               </Text>
             </PlaceContainer>
             <TimeContainer>
@@ -89,7 +89,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
           })}
         </DashedSection>
         <BottomCardSection>
-          {additionalInfo === null ? (
+          {additionalInfo === '' ? (
             <Text font={'body2'} color={`${theme.colors.grey4}`}>
               별도의 공지사항은 없어요!
             </Text>
