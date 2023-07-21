@@ -46,11 +46,11 @@ function BestMeetTime() {
             />
           ) : null}
 
-          <AnotherTimeBtnSection>
+          <AnotherTimeBtnSection onClick={() => setIsalternativeCardOpen((prev) => !prev)}>
             <Text font={`body4`} color={`${theme.colors.grey3}`}>
               다른 시간대 확인하기
             </Text>
-            <BasicIconContainer onClick={() => setIsalternativeCardOpen((prev) => !prev)}>
+            <BasicIconContainer >
               {isalternativeCardOpen ? <DropupWhite /> : <DropdownWhite />}
             </BasicIconContainer>
           </AnotherTimeBtnSection>
