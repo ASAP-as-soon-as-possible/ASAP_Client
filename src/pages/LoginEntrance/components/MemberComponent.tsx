@@ -37,7 +37,6 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
   };
 
   const loginMember = () => {
-    localStorage.removeItem('hostToken');
     setUserName(hostInfo.name);
     navigate(`/member/schedule/${meetingId}`);
   };
