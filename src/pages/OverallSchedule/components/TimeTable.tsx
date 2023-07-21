@@ -70,7 +70,7 @@ function TimeTable({
         <Row
           rowIdx={idx}
           key={date + idx}
-          selectedSchedulePerDate={Array.from(selectedSchedule).filter(
+          selectedSchedulePerDate={selectedSchedule && Array.from(selectedSchedule).filter(
             (obj: SelectedSchedule) => obj.date === formattedDatesForSelectBox[idx],
           )}
           timeSlots={timeSlots}

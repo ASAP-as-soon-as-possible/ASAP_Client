@@ -23,7 +23,7 @@ interface RowProps {
   dayOfWeek: string;
   isMorningDinner: boolean;
   isLastofValidDate: boolean;
-  selectedSchedulePerDate: SelectedSchedule[];
+  selectedSchedulePerDate?: SelectedSchedule[];
   scheduleType: 'priority' | 'available';
 }
 
