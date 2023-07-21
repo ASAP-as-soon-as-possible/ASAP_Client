@@ -1,10 +1,10 @@
-# 🏃 당신이 회의 시작 전부터 지치지 않도록, ASAP 💨
+# 🏃 모든 회의의 시작, ASAP 💨
 
 ![BRANDING 1_PLAN](https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/2526c8a1-21e7-471d-bce8-db8874a5cc5c)
 ![BRANDING 3_PLAN](https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/ddf9b475-a825-4577-8e14-b8d190a864b2)
 
 
-ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽고 빠르고 간편하게 처리해주는 웹서비스입니다.
+ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽고 빠르고 간편하게 처리해주는 '최적의 회의시간 도출' 웹서비스입니다.
 
 1. **선호도 분석을 통해 최대 인원이 참석 가능한 회의시간을 자동으로 결정**해 줌으로써, 다수가 시간을 조율하며 딜레이되는 시간을 줄여주는 서비스 입니다.
 
@@ -15,11 +15,11 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 # 💡 ASAP 서비스의 핵심 기능
 
 ## 📥 회의 생성하기
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/376dfab3-e4d7-427d-8f2e-1897984b21b4"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/124f8a81-dc54-4f86-8bad-0258c6ab70ce"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/b6f72f8a-4bed-4c3a-8a4c-f715b1c67685"/> |
+| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/376dfab3-e4d7-427d-8f2e-1897984b21b4"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/fbb6d887-f921-46d8-9979-7043512a80cc" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/b6f72f8a-4bed-4c3a-8a4c-f715b1c67685"/> |
 | :---: | :---: | :---: |
 | 1️⃣ 회의명 입력 | 2️⃣ 날짜 선택 | 3️⃣ 시간대 선택 |
 
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/b5de2db2-e793-4a49-b9f5-56a47f779285"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/d410bade-b34c-44bb-a6d1-38d7f99babf3"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/f33075dc-ea17-4e75-af67-b36ff4925f13"/> |
+| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/b5de2db2-e793-4a49-b9f5-56a47f779285"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/d410bade-b34c-44bb-a6d1-38d7f99babf3" /> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/e55b6b91-53ee-4606-8ec6-8a5668f594b1" width="400"/> |
 | :---: | :---: | :---: |
 | 4️⃣ 회의 장소 입력 | 5️⃣ 회의 시간 설정 | 6️⃣ 방장 정보 입력 |
 
@@ -29,12 +29,13 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 
 
 ## 📥 가능 시간 입력하기
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/c0dc2cf2-0303-4491-a184-a9d4e51dd949"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/19b0d1d0-898c-4bef-bbea-8edbeb85251e"/> |
+| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/4b66f45e-1a08-490c-bc0f-04f4517e3c4e" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/d5c089e3-8338-4152-9f2a-d316e87a5dcb"/> |
 | :---: | :---: |
 | 1️⃣ 일정 등록 | 2️⃣ 우선 순위 입력 |
 
+
 ## 📥 회의 일정 확인하기
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/d9c52f0f-f8d2-4310-b9ac-6962093c12d2"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/92c5ae99-19db-44b5-be6e-1123bbbb2064"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/1326806e-65a2-40b6-9611-46bd2f404612"/> |
+| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/095396f0-42f7-45ca-b33d-328b7f5f7b50" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/1ffe6158-1672-4edb-8f83-fc6b0a17e53e4" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/1326806e-65a2-40b6-9611-46bd2f404612"/> |
 | :---: | :---: | :---: |
 | 1️⃣ 종합 일정 시간표 확인 | 2️⃣ 최적의 회의시간 추천 | 3️⃣ 큐카드 공유하기 |
 
@@ -48,32 +49,51 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 # ⚒️ 기술 스택
 
 ```jsx
-"@stylelint/postcss-css-in-js": "^0.38.0",
-"@types/node": "^20.3.2",
-"@types/react": "^18.0.37",
-"@types/react-dom": "^18.0.11",
-"@types/styled-components": "^5.1.26",
-"@typescript-eslint/eslint-plugin": "^5.60.1",
-"@typescript-eslint/parser": "^5.60.1",
-"@vitejs/plugin-react": "^4.0.0",
-"eslint": "^8.43.0",
-"eslint-plugin-import": "^2.27.5",
-"eslint-plugin-jsx-a11y": "^6.7.1",
-"eslint-plugin-react": "^7.32.2",
-"eslint-plugin-react-hooks": "^4.6.0",
-"eslint-plugin-react-refresh": "^0.3.4",
-"postcss": "^8.4.24",
-"prettier-plugin-style-order": "^0.2.2",
-"styled-components": "^6.0.1",
-"styled-components.macro": "^1.0.0",
-"stylelint": "^15.9.0",
-"stylelint-config-concentric-order": "^5.1.0",
-"stylelint-config-prettier": "^9.0.5",
-"stylelint-config-recommended": "^12.0.0",
-"stylelint-config-styled-components": "^0.1.1",
-"typescript": "^5.0.2",
-"vite": "^4.3.9",
-"vite-plugin-babel-macros": "^1.0.6"
+    "@types/axios": "^0.14.0",
+    "@types/react-copy-to-clipboard": "^5.0.4",
+    "axios": "^1.4.0",
+    "copy-text-to-clipboard": "^3.2.0",
+    "html2canvas": "^1.4.1",
+    "postcss-syntax": "^0.36.2",
+    "prettier": "1.13",
+    "react": "^18.2.0",
+    "react-copy-to-clipboard": "^5.1.0",
+    "react-dom": "^18.2.0",
+    "react-error-boundary": "^4.0.10",
+    "react-multi-date-picker": "^4.1.2",
+    "react-router-dom": "6",
+    "react-toastify": "^9.1.3",
+    "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
+    "styled-reset": "^4.5.1",
+    "swiper": "^10.0.4",
+    "vite-plugin-svgr": "^3.2.0"
+    "@stylelint/postcss-css-in-js": "^0.38.0",
+    "@types/node": "^20.3.2",
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "@types/styled-components": "^5.1.26",
+    "@typescript-eslint/eslint-plugin": "^5.60.1",
+    "@typescript-eslint/parser": "^5.60.1",
+    "@vitejs/plugin-react": "^4.0.0",
+    "babel-plugin-styled-components": "^2.1.4",
+    "eslint": "^8.43.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "postcss": "^8.4.24",
+    "prettier-plugin-style-order": "^0.2.2",
+    "styled-components": "^6.0.1",
+    "stylelint": "15.5.0",
+    "stylelint-config-concentric-order": "^5.1.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-recommended": "^12.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.9",
+    "vite-plugin-babel-macros": "^1.0.6"
 ```
 
 ### 🏙️ 환경 구축
@@ -91,14 +111,6 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 ### 💎 State
 
 `Recoil`
-
-### 📡 API
-
-`React Query` `MSW`
-
-### 🖌️ Rendering
-
-`React Suspense`
 
 # ✅ 커밋 컨벤션
 

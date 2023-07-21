@@ -6,11 +6,13 @@ import Text from 'components/atomComponents/Text';
 import Header from 'components/moleculesComponents/Header';
 import PriorityDropdown from 'components/scheduleComponents/components/PriorityDropdown';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
+
+import SelectModal from './SelectModal';
 
 const SelectSchedulePriority = () => {
   const [availableDates, setAvailableDates] = useRecoilState(availableDatesAtom);
@@ -18,7 +20,7 @@ const SelectSchedulePriority = () => {
   const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
   const { meetingId } = useParams();
 
-  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
   const getAvailableScheduleOption = async () => {
     try {
       const { data } = await availableScheduleOptionApi(meetingId);
@@ -47,13 +49,12 @@ const SelectSchedulePriority = () => {
         preferTimes={preferTimes}
         scheduleType="priority"
       />
-
       <PriorityDropdown />
       <StyledBtnSection>
         <Button
           typeState={'halfTertiaryActive'}
           onClick={() => {
-            console.log('click');
+            setShowModal(true);
           }}
         >
           <Text font={'button2'}>상관없음</Text>
@@ -61,12 +62,13 @@ const SelectSchedulePriority = () => {
         <Button
           typeState={'halfPrimaryActive'}
           onClick={() => {
-            navigate(`/host/schedule-complete/${meetingId}`);
+            setShowModal(true);
           }}
         >
           <Text font={'button2'}>확인</Text>
         </Button>
       </StyledBtnSection>
+      {showModal && <SelectModal setShowModal={setShowModal} />}
     </>
   );
 };

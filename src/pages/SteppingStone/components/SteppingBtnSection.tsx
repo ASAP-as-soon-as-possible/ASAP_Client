@@ -1,8 +1,10 @@
+import { userNameAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';
 import { Link, useLocation } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components/macro';
 import { notify } from 'utils/toast/copyLink';
 import ToastContainerBox from 'utils/toast/ToastContainer';
@@ -15,28 +17,22 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
   const location = useLocation();
   const meetInfo = { ...location.state };
   const { meetingId } = useParams();
-  console.log(meetInfo);
-
-  // const notify = () => toast("링크 복사가 완료되었습니다");
+  console.log(meetingId);
   return (
     <>
-      <ToastContainerBox />
+      {/* <ToastContainerBox /> */}
       <StyledBtnSection>
         {
           {
             meetComplete: (
               <>
                 {/* 이후 도메인 시 연결 */}
-                {/* <CopyToClipboard text={`${import.meta.env.VITE_APP_IP}/meet/${meetInfo.meetingId}`} onCopy={handleCopy}> */}
-                <CopyToClipboard
-                  text={`http://172.23.135.46:5173/meet/${meetInfo.meetingId}`}
-                  // onCopy={handleCopy}
-                >
+                <CopyToClipboard text={`${import.meta.env.VITE_APP_IP}/meet/${meetInfo.meetingId}`}>
                   <Button typeState={'halfTertiaryActive'} onClick={notify}>
                     <Text font={'button2'}>링크 복사하기</Text>
                   </Button>
                 </CopyToClipboard>
-                <Link to={`/schedule/${meetInfo.meetingId}`}>
+                <Link to={`/host/schedule/${meetInfo.meetingId}`}>
                   <Button typeState={'halfPrimaryActive'}>
                     <Text font={'button2'}>나의 가능시간 입력</Text>
                   </Button>
@@ -51,10 +47,10 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
                   </Button>
                 </Link>
                 <CopyToClipboard
-                  text={`http://172.23.135.46:5173/meet/${meetingId}`}
+                  text={`${import.meta.env.VITE_APP_IP}/meet/${meetingId}`}
                   // onCopy={handleCopy}
                 >
-                  <Button typeState={'halfPrimaryActive'}>
+                  <Button typeState={'halfPrimaryActive'} onClick={notify}>
                     <Text font={'button2'}>링크 복사하기</Text>
                   </Button>
                 </CopyToClipboard>

@@ -55,9 +55,10 @@ const Row = (props: RowProps) => {
           {dayOfWeek}
         </Text>
       </DateWrapper>
-      {timeSlots.map((slot, columnIdx, arr) => (
+      {timeSlots && timeSlots.map((slot, columnIdx, arr) => (
         <Column
           key={slot}
+          rowIdx={undefined}
           timeSlot={slot}
           $isHalf={slot.endsWith(':30')}
           $isEmpty={!monthDay}
@@ -68,7 +69,7 @@ const Row = (props: RowProps) => {
           EmptyRange={
             isMorningDinner ? getTimeSlots([{ startTime: '12:00', endTime: '18:00' }]) : undefined
           }
-          $isSelected={selectedTimeSlots.includes(slot)}
+          $isSelected={selectedTimeSlots?.includes(slot)}
           priority={getSlotPriorityInfo(slot).priority}
           $priorityColorInfo={
             priorityToColor(

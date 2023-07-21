@@ -19,7 +19,7 @@ export interface SelectedSchedule {
 
 export interface RowProps {
   rowIdx: number;
-  timeSlots: string[];
+  timeSlots?: string[];
   monthDay: string;
   dayOfWeek: string;
   isMorningDinner: boolean;
@@ -30,18 +30,21 @@ export interface RowProps {
 
 export interface ColumnProps {
   timeSlot: string;
+  rowIdx?: number;
   $isHalf: boolean;
   $isEmpty: boolean;
   $isFirstRow: boolean;
   $isFirstColumn: boolean;
   $isLastColumn: boolean;
   $isLastofValidDate: boolean;
-  EmptyRange: string[] | undefined;
-  $isSelected: boolean;
+  EmptyRange?: string[];
+  $isSelected?: boolean;
   priority?: number;
-  $priorityColorInfo: string;
-  $isStartTimeofPrioritySlot: boolean;
+  $priorityColorInfo?: string;
+  $isStartTimeofPrioritySlot?: boolean;
   scheduleType: string;
+  userNames?: string[];
+  $slotColorLevel?: number;
 }
 
 export interface PriorityInfo {

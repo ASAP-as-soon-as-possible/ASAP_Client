@@ -66,12 +66,3 @@ const ViewContainer = styled.div`
   display: flex;
   align-items: center;
 `;
-
-const Blue = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.colors.main1};
-  width: 37rem;
-  height: 30rem;
-`;

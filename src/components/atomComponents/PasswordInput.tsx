@@ -61,16 +61,16 @@ const InputSection = styled.div`
   input:focus + div {
     display: flex;
     svg {
+      cursor: pointer;
       width: fit-content;
       height: fit-content;
-      cursor: pointer;
     }
   }
 `;
 
 const StyledPasswordInput = styled.input<{ $iserror: boolean }>`
   position: relative;
-  border: 2px solid ${({ theme }) => theme.colors.black};
+  border:none;
 
   border-radius: 0.8rem;
   box-shadow: 0 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.25);

@@ -1,7 +1,7 @@
 import React, { SetStateAction, Dispatch } from 'react';
 
 import Text from 'components/atomComponents/Text';
-import { styled } from 'styled-components/macro';
+import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 import { timeList } from '../data/meetingInfoData';

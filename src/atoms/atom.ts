@@ -28,5 +28,19 @@ export const scheduleAtom = atom<ScheduleStates[]>({
       priority: 0,
     },
   ],
+});
 
+export const timeSlotUserNameAtom = atom<string[] | undefined>({
+  key: 'timeSlotUserNameAtom',
+  default: undefined,
+});
+
+export const clickedTimeSlotAtom = atom<string>({
+  key: 'clickedTimeSlotAtom',
+  default: undefined,
+});
+
+export const userNameAtom = atom<string>({
+  key: 'userNameAtom',
+  default: '',
 });

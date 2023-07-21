@@ -1,17 +1,30 @@
-import { DateStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
 
-import Row from './Row';
-import { SelectedSchedule } from 'components/scheduleComponents/types/AvailableScheduleType';
+import React from 'react';
+
 import Text from 'components/atomComponents/Text';
 import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
+import { DateStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
 
+import Row from './Row';
+
 interface TimeTableProps {
-  selectedSchedule: SelectedSchedule[];
+  selectedSchedule?: SelectedSchedule[];
   availableDates: DateStates[];
   preferTimes: TimeStates[];
   scheduleType: 'priority' | 'available';
+}
+
+interface TimeSlot{
+  time:string;
+  userNames:string[];
+  colorLevel:number;
+}
+
+interface SelectedSchedule {
+  date: string;
+  timeSlots:TimeSlot[];
 }
 
 function TimeTable({
@@ -42,7 +55,7 @@ function TimeTable({
   return (
     <TimeTableWrapper>
       <TimeSlotWrapper>
-        {timeSlots.map(
+        {timeSlots && timeSlots.map(
           (slot) =>
             slot?.endsWith(':00') ? (
               <Text key={slot} font={'body4'} color={`${theme.colors.grey6}`}>
@@ -57,7 +70,7 @@ function TimeTable({
         <Row
           rowIdx={idx}
           key={date + idx}
-          selectedSchedulePerDate={Array.from(selectedSchedule).filter(
+          selectedSchedulePerDate={selectedSchedule && Array.from(selectedSchedule).filter(
             (obj: SelectedSchedule) => obj.date === formattedDatesForSelectBox[idx],
           )}
           timeSlots={timeSlots}

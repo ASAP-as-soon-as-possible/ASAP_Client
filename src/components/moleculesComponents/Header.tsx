@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { notify } from 'utils/toast/copyLink';
-import ToastContainerBox from 'utils/toast/ToastContainer';
 
 const navigationOption = ['공지사항', 'ASAP family', '약속 생성하기', '피드백 보내기'];
 
@@ -54,7 +53,7 @@ function Header({ position, setStep }: HeaderProps) {
               <IconSection onClick={() => window.history.back()}>
                 <BackIc />
               </IconSection>
-              <CopyToClipboard text={`http://172.23.135.46:5173/meet/${meetingId}`}>
+              <CopyToClipboard text={`${import.meta.env.VITE_APP_IP}/meet/${meetingId}`}>
                 <IconSection onClick={notify}>
                   <LinkIc />
                 </IconSection>
@@ -66,7 +65,7 @@ function Header({ position, setStep }: HeaderProps) {
                 <BackIc />
               </IconSection>
             </ConfirmIconSection>
-          ) : null}
+          ) : undefined}
           {position === 'createMeeting' ? (
             <Text font={'title2'} color={`${theme.colors.white}`}>
               회의정보입력
@@ -101,9 +100,8 @@ function Header({ position, setStep }: HeaderProps) {
               })}
             </NavigationContainer>
           </NavigationSection>
-        ) : null}
+        ) : undefined}
       </HeaderWrapper>
-      <ToastContainerBox />
     </>
   );
 }

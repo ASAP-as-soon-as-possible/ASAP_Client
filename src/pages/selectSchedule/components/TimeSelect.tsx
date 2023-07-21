@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-
 import Text from 'components/atomComponents/Text';
 import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
 import styled from 'styled-components/macro';
@@ -42,8 +41,8 @@ function TimeSelect({ text, id, handleStartTime, scheduleList, preferTimes }: Pr
   return (
     <TimeSelectWrapper>
       <TimeSelectSection $drop={isOpen} onClick={startTimeModal} ref={ref}>
-        {scheduleList[id - 1]?.startTime ? (
-          <Text font="button2" color={`${theme.colors.grey5}`}>
+        {scheduleList[id - 1].startTime ? (
+          <Text font="button2" color={`${theme.colors.white}`}>
             {scheduleList[id - 1].startTime}
           </Text>
         ) : (
@@ -54,17 +53,18 @@ function TimeSelect({ text, id, handleStartTime, scheduleList, preferTimes }: Pr
       </TimeSelectSection>
       {isOpen && (
         <TimeDropDownWrapper>
-          {getTimeSlots(preferTimes).map((item, i) => (
-            <TimeDropDown
-              key={item}
-              times={item}
-              text={text}
-              id={id}
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              handleStartTime={handleStartTime}
-            />
-          ))}
+          {getTimeSlots(preferTimes) &&
+            getTimeSlots(preferTimes).map((item) => (
+              <TimeDropDown
+                key={item}
+                times={item}
+                text={text}
+                id={id}
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                handleStartTime={handleStartTime}
+              />
+            ))}
         </TimeDropDownWrapper>
       )}
     </TimeSelectWrapper>

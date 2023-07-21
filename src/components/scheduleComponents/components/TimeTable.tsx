@@ -1,5 +1,5 @@
 import Text from 'components/atomComponents/Text';
-import { DateStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
+import { DateStates } from 'pages/selectSchedule/types/Schedule';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
 
@@ -20,7 +20,7 @@ function TimeTable({
   preferTimes,
   scheduleType,
 }: TimeTableProps) {
-  console.log(preferTimes);
+
   const isMorningDinner =
     preferTimes.length === 2 && preferTimes.every((time) => time.startTime !== '12:00');
 
@@ -42,7 +42,7 @@ function TimeTable({
   return (
     <TimeTableWrapper>
       <TimeSlotWrapper>
-        {timeSlots.map(
+        {timeSlots && timeSlots.map(
           (slot) =>
             slot?.endsWith(':00') ? (
               <Text key={slot} font={'body4'} color={`${theme.colors.grey6}`}>
