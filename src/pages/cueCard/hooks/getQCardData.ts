@@ -17,12 +17,27 @@ const initCardData: CueCardResponse = {
     startTime: '06:00',
     endTime: '12:00',
     hostName: '서지원',
-    userNames: ['서지원', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현', '도소현'],
+    userNames: [
+      '서지원',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+      '도소현',
+    ],
     additionalInfo: '',
   },
 };
 const GetQcardDataHooks = (meetingId: string) => {
   const [isloading, setIsloading] = useState(true);
+  const [isError, setIsError] = useState(false);
   const [cueCardData, setCueCardData] = useState<CueCardResponse>();
 
   const GetQcardData = async () => {
@@ -33,6 +48,7 @@ const GetQcardDataHooks = (meetingId: string) => {
       // setTimeout(() => setCueCardData(initCardData), 1000);
     } catch (error) {
       console.log(error);
+      setIsError(true);
     }
     setIsloading(false);
   };
@@ -43,7 +59,7 @@ const GetQcardDataHooks = (meetingId: string) => {
     },
     [meetingId],
   );
-  return { isloading, cueCardData };
+  return { isError, isloading, cueCardData };
 };
 
 export default GetQcardDataHooks;
