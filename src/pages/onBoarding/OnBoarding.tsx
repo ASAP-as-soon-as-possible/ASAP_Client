@@ -15,28 +15,27 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Explain from './components/Explain';
 
-
 const slides = [
   {
-    icon: <img src={MakePng} alt="png"/>,
+    icon: <img src={MakePng} alt="png" />,
     main: '간단한 회의방 생성',
     sub1: '1분만에 회의방을 만들고',
     sub2: '회의정보와 함께 전달하고 싶은 내용을 추가해보세요',
   },
   {
-    icon: <img src={InsertPng} alt="png"/>,
+    icon: <img src={InsertPng} alt="png" />,
     main: '시간대 우선순위 입력',
     sub1: '클릭 한번으로 선호하는 회의 시간의',
     sub2: '우선순위를 입력하세요',
   },
   {
-    icon: <img src={PointPng} alt="png"/>,
+    icon: <img src={PointPng} alt="png" />,
     main: '최적의 시간대 도출',
     sub1: '모든 팀원이 만족할 만한',
-    sub2: '한계의 시간대를 안내해줄게요',
+    sub2: '한개의 시간대를 안내해줄게요',
   },
   {
-    icon: <img src={CardPng} alt="png"/>,
+    icon: <img src={CardPng} alt="png" />,
     main: '회의정보 큐카드 제공',
     sub1: '한눈에 회의정보를 확인하고',
     sub2: '쉽게 공유해보세요',
