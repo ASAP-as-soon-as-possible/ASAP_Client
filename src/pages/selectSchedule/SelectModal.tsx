@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, useEffect, SetStateAction } from 'react';
 
 import { scheduleAtom, userNameAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
@@ -26,6 +26,7 @@ function SelectModal({ setShowModal }: ModalProps) {
   console.log(updateScheduleType);
   const updateMemberScheduleType = transformUserScheduleType(scheduleList, userName);
   console.log(updateMemberScheduleType);
+
   const postHostAvailableApi = async () => {
     try {
       if (meetingId && updateScheduleType) {
@@ -47,6 +48,13 @@ function SelectModal({ setShowModal }: ModalProps) {
       console.error(e);
     }
   };
+
+  useEffect(
+    () => {
+      console.log(scheduleList);
+    },
+    [scheduleList],
+  );
 
   // console.log(transformedScheduleList);
   const finishConfirm = () => {

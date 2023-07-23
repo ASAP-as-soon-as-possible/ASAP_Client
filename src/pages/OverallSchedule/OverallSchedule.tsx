@@ -4,7 +4,7 @@ import { availableDatesAtom, preferTimesAtom, timeSlotUserNameAtom } from 'atoms
 import Text from 'components/atomComponents/Text';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState,useRecoilValue } from 'recoil';
 import { OverallScheduleData } from 'src/types/overallScheduleType';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
@@ -23,7 +23,7 @@ const OverallSchedule = () => {
 
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
 
-  const [timeSlotUserNames] = useRecoilState(timeSlotUserNameAtom);
+  const timeSlotUserNames = useRecoilValue(timeSlotUserNameAtom);
 
   const [memberCount, setMemberCount] = useState<number>(0);
   const [totalUserNames, setTotalUserNames] = useState<string[]>();
@@ -38,14 +38,16 @@ const OverallSchedule = () => {
     }
   };
 
+
   const getOverallSchedule = async () => {
     try {
       const result = await overallScheduleApi(meetingId);
       const { data } = result.data;
-
+      const uniqueData = [...new Set(data.totalUserNames)];
+      console.log(uniqueData);
       setOverallScheduleData(data);
       setMemberCount(data.memberCount);
-      setTotalUserNames(data.totalUserNames);
+      setTotalUserNames(uniqueData);
     } catch (err) {
       console.log(err);
     }
@@ -57,8 +59,11 @@ const OverallSchedule = () => {
   }, []);
 
   const formattedAvailableDateTimes =
-    overallScheduleData && getFormattedAvailableDateTimes(overallScheduleData);
+  overallScheduleData && getFormattedAvailableDateTimes(overallScheduleData);
 
+console.log(timeSlotUserNames);
+console.log(formattedAvailableDateTimes);
+console.log(timeSlotUserNames);
   return (
     <OverallScheduleWrapper>
       {overallScheduleData ? (

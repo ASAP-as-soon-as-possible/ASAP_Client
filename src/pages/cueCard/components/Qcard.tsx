@@ -1,9 +1,10 @@
-import { forwardRef, ForwardedRef, useRef } from 'react';
+import { forwardRef, ForwardedRef } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -11,8 +12,11 @@ import GetQcardDataHooks from '../hooks/getQCardData';
 
 const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   const { meetingId } = useParams();
-  const { isloading, cueCardData } = GetQcardDataHooks(meetingId as unknown as string)
-  if (!isloading && cueCardData) {
+  const navigate = useNavigate();
+  const {isError, isloading, cueCardData } = GetQcardDataHooks(meetingId as unknown as string)
+  if (isError) {
+    navigate(`/*`);
+  } else if (!isloading && cueCardData) {
     const {
       data: {
         title,
@@ -39,7 +43,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
             <PlaceContainer>
               <IconBox>{place === 'ONLINE' ? <OnlinePlaceIc /> : <OfflinePlaceIc />}</IconBox>
               <Text font={'title2'} color={`${theme.colors.white}`}>
-                {placeDetail === '' ? '미정' : placeDetail}
+               {placeDetail === "" ? "미정" : placeDetail}
               </Text>
             </PlaceContainer>
             <TimeContainer>

@@ -4,6 +4,7 @@ import { theme } from 'styles/theme';
 
 import Column from './Column';
 import { PriorityInfo, RowProps } from '../types/AvailableScheduleType';
+import { compareTimeForPriorityEndTime, compareTimeForPriorityStartTime } from '../utils/compareTime';
 import getTimeSlots from '../utils/getTimeSlots';
 import priorityToColor from '../utils/priorityToColor';
 
@@ -35,8 +36,7 @@ const Row = (props: RowProps) => {
         priorityInfo.isStartTime = true;
       }
       return (
-        parseInt(candidateSlot.startTime) <= parseInt(slot) &&
-        parseInt(slot) < parseInt(candidateSlot.endTime)
+        compareTimeForPriorityStartTime(candidateSlot.startTime, slot) && compareTimeForPriorityEndTime(slot, candidateSlot.endTime)
       );
     });
 
