@@ -9,7 +9,8 @@ import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { notify } from 'utils/toast/copyLink';
 
-const navigationOption = ['공지사항', 'ASAP family', '약속 생성하기', '피드백 보내기'];
+import Navigation from './Navigation';
+
 
 interface HeaderProps {
   position: string;
@@ -17,6 +18,25 @@ interface HeaderProps {
 }
 
 function Header({ position, setStep }: HeaderProps) {
+  const navigationOptions = [
+    {
+      title: '공지사항',
+      url: '',
+    },
+    {
+      title: 'ASAP family',
+      url: '',
+    },
+    {
+      title: '약속 생성하기',
+      url: '/meet/create',
+    },
+    {
+      title: '피드백 보내기',
+      url: 'https://tally.so/r/wL79av',
+    },
+  ]
+
   const navigate = useNavigate();
   const [isNaviOpen, setIsNaviOpen] = useState(false);
   const backToFunnel = () => {
@@ -91,13 +111,7 @@ function Header({ position, setStep }: HeaderProps) {
               <ExitIc />
             </IconContainer>
             <NavigationContainer>
-              {navigationOption.map((option, i) => {
-                return (
-                  <Text key={i + option} font={'title2'} color={`${theme.colors.white}`}>
-                    {option}
-                  </Text>
-                );
-              })}
+              <Navigation navigationOptions={navigationOptions}/>
             </NavigationContainer>
           </NavigationSection>
         ) : undefined}
