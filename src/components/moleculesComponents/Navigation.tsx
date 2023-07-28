@@ -17,7 +17,11 @@ function Navigation({ navigationOptions }: NavigationProps) {
   return (
     <>
       {navigationOptions.map((option, i) => (
-        <Link to={option.url} key={i + option.title}>
+        <Link
+          to={option.url}
+          key={i + option.title}
+          target={option.title === '피드백 보내기' ? '_blank' : ''}
+        >
           <Text font={'title2'} color={theme.colors.white}>
             {option.title}
           </Text>
