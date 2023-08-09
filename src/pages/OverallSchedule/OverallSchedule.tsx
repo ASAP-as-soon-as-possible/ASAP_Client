@@ -44,7 +44,7 @@ const OverallSchedule = () => {
       const result = await overallScheduleApi(meetingId);
       const { data } = result.data;
       const uniqueData = [...new Set(data.totalUserNames)];
-      console.log(uniqueData);
+
       setOverallScheduleData(data);
       setMemberCount(data.memberCount);
       setTotalUserNames(uniqueData);
@@ -61,9 +61,6 @@ const OverallSchedule = () => {
   const formattedAvailableDateTimes =
   overallScheduleData && getFormattedAvailableDateTimes(overallScheduleData);
 
-console.log(timeSlotUserNames);
-console.log(formattedAvailableDateTimes);
-console.log(timeSlotUserNames);
   return (
     <OverallScheduleWrapper>
       {overallScheduleData ? (
