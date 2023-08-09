@@ -4,7 +4,7 @@ import { availableDatesAtom, preferTimesAtom, timeSlotUserNameAtom } from 'atoms
 import Text from 'components/atomComponents/Text';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import { useParams } from 'react-router-dom';
-import { useRecoilState,useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { OverallScheduleData } from 'src/types/overallScheduleType';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';

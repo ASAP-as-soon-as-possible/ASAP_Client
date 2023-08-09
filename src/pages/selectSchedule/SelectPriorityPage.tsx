@@ -7,7 +7,7 @@ import Header from 'components/moleculesComponents/Header';
 import PriorityDropdown from 'components/scheduleComponents/components/PriorityDropdown';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
 import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
@@ -17,7 +17,7 @@ import SelectModal from './SelectModal';
 const SelectSchedulePriority = () => {
   const [availableDates, setAvailableDates] = useRecoilState(availableDatesAtom);
   const [preferTimes, setPreferTimes] = useRecoilState(preferTimesAtom);
-  const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
+  const scheduleList = useRecoilValue(scheduleAtom);
   const { meetingId } = useParams();
 
   const [showModal, setShowModal] = useState(false);

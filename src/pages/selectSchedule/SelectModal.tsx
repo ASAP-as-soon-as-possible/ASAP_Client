@@ -1,10 +1,10 @@
-import React, { Dispatch, useEffect, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 
 import { scheduleAtom, userNameAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
 import { useNavigate, useParams } from 'react-router';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { hostAvailableApi, userAvailableApi } from 'utils/apis/createHostAvailableSchedule';
@@ -17,7 +17,7 @@ interface ModalProps {
 }
 
 function SelectModal({ setShowModal }: ModalProps) {
-  const [scheduleList, setScheduleList] = useRecoilState<ScheduleStates[]>(scheduleAtom);
+  const scheduleList = useRecoilValue<ScheduleStates[]>(scheduleAtom);
   const userName = useRecoilValue(userNameAtom);
 
   const navigate = useNavigate();
