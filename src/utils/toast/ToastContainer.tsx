@@ -32,7 +32,7 @@ const StyledToastContainer = styled(ToastContainer)`
     height: 4rem !important;
     min-height: 0;
     margin-bottom: 2.4rem;
-    background-color: #2e2e2e !important;
+    background-color: #2e2e2e;
     border-radius: 5rem;
   }
 
