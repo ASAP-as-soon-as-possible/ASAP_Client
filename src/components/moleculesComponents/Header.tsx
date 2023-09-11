@@ -1,16 +1,14 @@
+import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
 import { Dispatch, SetStateAction, useState } from 'react';
 
-import Text from 'components/atomComponents/Text';
-import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { useParams } from 'react-router';
-import { useNavigate } from 'react-router-dom';
+import Navigation from './Navigation';
+import Text from 'components/atomComponents/Text';
+import { notify } from 'utils/toast/copyLink';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { notify } from 'utils/toast/copyLink';
-
-import Navigation from './Navigation';
-
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router';
 
 interface HeaderProps {
   position: string;
@@ -19,14 +17,14 @@ interface HeaderProps {
 
 function Header({ position, setStep }: HeaderProps) {
   const navigationOptions = [
-    {
-      title: '공지사항',
-      url: '',
-    },
-    {
-      title: 'ASAP family',
-      url: '',
-    },
+    // {
+    //   title: '공지사항',
+    //   url: '',
+    // },
+    // {
+    //   title: 'ASAP family',
+    //   url: '',
+    // },
     {
       title: '약속 생성하기',
       url: '/meet/create',
