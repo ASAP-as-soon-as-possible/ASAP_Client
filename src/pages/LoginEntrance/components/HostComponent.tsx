@@ -1,18 +1,18 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { AxiosError } from 'axios';
 import Button from 'components/atomComponents/Button';
+import Header from 'components/moleculesComponents/Header';
 import PasswordInput from 'components/atomComponents/PasswordInput';
+import ReturnModal1 from './ReturnModal1';
+import ReturnModal2 from './ReturnModal2';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
-import Header from 'components/moleculesComponents/Header';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
-import { useNavigate, useParams } from 'react-router-dom';
+import { client } from 'utils/apis/axios';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { client } from 'utils/apis/axios';
-
-import ReturnModal from './ReturnModal';
 
 interface HostInfoProps {
   name: string;
@@ -44,24 +44,29 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
   };
 
   const [ismodalOpen, setIsModalOpen] = useState(false);
-
+  const [isLoginModalOpen, setIsLoginModalOpen]= useState(false);
+  // const incorrect_login_info=()=>{
+  
+  // }
   const loginHost = async () => {
     try {
       const result = await client.post(`/user/${meetingId}/host`, hostInfo);
       const {
         data: { code, data, message },
       } = result;
+
+      console.log(code);
       if (code === 200) {
         localStorage.setItem('hostToken', data.accessToken);
         navigate(`/host/${meetingId}`);
       } else if (code === 403) {
         setIsModalOpen(true);
-      } else {
-        console.log(message);
+      } else if(code===401){
+        setIsLoginModalOpen(true);
       }
     } catch {
       (error: AxiosError) => {
-        console.log(error);
+        console.log("login_error: "+error);
       };
     }
   };
@@ -104,7 +109,8 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
           <Text font={'button2'}>방장 페이지 접속하기</Text>
         </Button>
       </StyledBtnSection>
-      {ismodalOpen ? <ReturnModal setIsModalOpen={setIsModalOpen} /> : undefined}
+      {ismodalOpen ? <ReturnModal1 setIsModalOpen={setIsModalOpen} /> : undefined}
+      {isLoginModalOpen? <ReturnModal2 setIsLoginModalOpen={setIsLoginModalOpen}></ReturnModal2> : undefined}
     </>
   );
 }
