@@ -11,16 +11,13 @@ interface ModalProps {
 }
 
 function IncorrectInfoModal({ setIsLoginModalOpen }: ModalProps) {
-//   const { meetingId } = useParams();
   return (
     <ReturnModalWrpper>
       <ModalSection>
         <IconCatainer onClick={() => setIsLoginModalOpen(false)}>
           <ExitIc />
         </IconCatainer>
-        {/* <Text font={`title1`} color={`${theme.colors.sub1}`}>
-          잠깐!
-        </Text> */}
+   
         <MentContainer>
           <Text font={`body2`} color={`${theme.colors.white}`}>
             유효하지 않은 사용자 이름
