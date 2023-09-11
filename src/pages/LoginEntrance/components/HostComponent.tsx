@@ -4,9 +4,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import Button from 'components/atomComponents/Button';
 import Header from 'components/moleculesComponents/Header';
+import IncorrectInfoModal from './IncorrectInfoModal';
+import NoAvailableTimeModal from './NoAvailableTimeModal';
 import PasswordInput from 'components/atomComponents/PasswordInput';
-import ReturnModal1 from './ReturnModal1';
-import ReturnModal2 from './ReturnModal2';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
@@ -110,8 +110,8 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
           <Text font={'button2'}>방장 페이지 접속하기</Text>
         </Button>
       </StyledBtnSection>
-      {ismodalOpen ? <ReturnModal1 setIsModalOpen={setIsModalOpen} /> : undefined}
-      {isLoginModalOpen? <ReturnModal2 setIsLoginModalOpen={setIsLoginModalOpen}></ReturnModal2> : undefined}
+      {ismodalOpen ? <NoAvailableTimeModal setIsModalOpen={setIsModalOpen} /> : undefined}
+      {isLoginModalOpen? <IncorrectInfoModal setIsLoginModalOpen={setIsLoginModalOpen}></IncorrectInfoModal> : undefined}
     </>
   );
 }

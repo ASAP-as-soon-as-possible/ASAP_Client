@@ -7,39 +7,41 @@ import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 interface ModalProps {
-  setIsLoginModalOpen: Dispatch<SetStateAction<boolean>>;
+  setIsModalOpen: Dispatch<SetStateAction<boolean>>;
 }
 
-function ReturnModal2({ setIsLoginModalOpen }: ModalProps) {
-//   const { meetingId } = useParams();
+function NoAvailableTimeModal ({ setIsModalOpen }: ModalProps) {
+  const { meetingId } = useParams();
   return (
     <ReturnModalWrpper>
       <ModalSection>
-        <IconCatainer onClick={() => setIsLoginModalOpen(false)}>
+        <IconCatainer onClick={() => setIsModalOpen(false)}>
           <ExitIc />
         </IconCatainer>
-        {/* <Text font={`title1`} color={`${theme.colors.sub1}`}>
+        <Text font={`title1`} color={`${theme.colors.sub1}`}>
           잠깐!
-        </Text> */}
+        </Text>
         <MentContainer>
           <Text font={`body2`} color={`${theme.colors.white}`}>
-            유효하지 않은 사용자 이름
+            나의 가능 시간을 입력해야
           </Text>
           <Text font={`body2`} color={`${theme.colors.white}`}>
-            또는 비밀번호 입니다.
+            방장 페이지에 접속할 수 있어요!
           </Text>
         </MentContainer>
-          <ModalBtn onClick={()=> setIsLoginModalOpen(false)}>
+        <Link to={`/host/schedule/${meetingId}`}>
+          <ModalBtn>
             <Text font={`body2`} color={`${theme.colors.white}`}>
-              다시 입력하기
+              가능 시간 입력하러 가기
             </Text>
           </ModalBtn>
+        </Link>
       </ModalSection>
     </ReturnModalWrpper>
   );
 }
 
-export default ReturnModal2;
+export default NoAvailableTimeModal;
 
 const ReturnModalWrpper = styled.div`
   display: flex;
