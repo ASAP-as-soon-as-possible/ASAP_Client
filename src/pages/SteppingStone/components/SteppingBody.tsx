@@ -37,7 +37,7 @@ const bodyType: BodyType = {
   },
   meetEntrance: {
     img: <img src={stepingPlus} alt="png" />,
-    main: '에이셉 전체회의',
+    main: '에이셉 전체회의', // 찬우오빠.. 내가 범인 찾았어 - 2023.09.11 은서가
     sub: (
       <>
         <Text font={'title2'} color={`${theme.colors.grey4}`}>
