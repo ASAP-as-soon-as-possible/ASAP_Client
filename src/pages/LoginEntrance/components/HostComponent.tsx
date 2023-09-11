@@ -45,9 +45,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
 
   const [ismodalOpen, setIsModalOpen] = useState(false);
   const [isLoginModalOpen, setIsLoginModalOpen]= useState(false);
-  // const incorrect_login_info=()=>{
-  
-  // }
+
   const loginHost = async () => {
     try {
       const result = await client.post(`/user/${meetingId}/host`, hostInfo);
@@ -55,7 +53,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
         data: { code, data, message },
       } = result;
 
-      console.log(code);
+      
       if (code === 200) {
         localStorage.setItem('hostToken', data.accessToken);
         navigate(`/host/${meetingId}`);
@@ -64,6 +62,9 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
       } else if(code===401){
         setIsLoginModalOpen(true);
       }
+        else{
+          console.log(message);
+        }
     } catch {
       (error: AxiosError) => {
         console.log("login_error: "+error);
