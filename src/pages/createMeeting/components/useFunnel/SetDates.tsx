@@ -79,6 +79,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             className="bg-dark"
             range={!multiple}
             multiple={multiple}
+            minDate={new Date()}
             onChange={(dateObjects) => {
               if (dateObjects) {
                 if (multiple === false) {
@@ -172,6 +173,7 @@ const RangeInputBox = styled.div<{ $isClicked: boolean }>`
     $isClicked ? theme.colors.grey5 : theme.colors.main1};
   width: 33.5rem;
   height: 5.2rem;
+
   color: ${({ theme }) => theme.colors.white};
 `;
 const Input = styled.input`
