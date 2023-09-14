@@ -244,7 +244,7 @@ const InputNotice = styled.span<{ $dateLength: number }>`
       transform: rotate(-1deg);
     }
   }
-  ${({ $dateLength }) => $dateLength > 7 && `animation: vibration 0.1s infinite ease-out;`};
+  ${({ $dateLength }) => $dateLength > 7 && `animation: vibration 0.1s 5;`};
 `;
 
 const CalendarWrapper = styled.div`
