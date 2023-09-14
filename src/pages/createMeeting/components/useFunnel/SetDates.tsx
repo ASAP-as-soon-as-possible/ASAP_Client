@@ -6,6 +6,7 @@ import Text from 'components/atomComponents/Text';
 import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import { Calendar, DateObject, getAllDatesInRange } from 'react-multi-date-picker';
 import { useRecoilState } from 'recoil';
+import { keyframes } from 'styled-components';
 import styled from 'styled-components/macro';
 
 import './SetDates.css';
@@ -82,9 +83,9 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             minDate={new Date()}
             onChange={(dateObjects) => {
               if (dateObjects) {
+                const newDate: string[] = [];
                 if (multiple === false) {
                   const tmpArr = getAllDatesInRange(dateObjects as DateObject[]);
-                  const newDate: string[] = [];
                   tmpArr.map((date) => {
                     const tempDate = (date as DateObject).format(dateRangeFormat);
                     const reformatDate = tempDate.toUpperCase();
@@ -95,7 +96,6 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                     return { ...prev, availableDates: newDate };
                   });
                 } else if (multiple === true) {
-                  const newDate: string[] = [];
                   (dateObjects as DateObject[]).map((date: DateObject) => {
                     const tempDate = (date as DateObject).format(dateRangeFormat);
                     const reformatDate = tempDate.toUpperCase();
@@ -105,6 +105,13 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                   setMeetingInfo((prev: MeetingInfo) => {
                     return { ...prev, availableDates: newDate };
                   });
+                }
+                if (newDate.length > 7) {
+                  setTimeout(() => {
+                    setMeetingInfo((prev: MeetingInfo) => {
+                      return { ...prev, availableDates: [] };
+                    });
+                  }, 1000);
                 }
               }
             }}
@@ -229,6 +236,15 @@ const InputNotice = styled.span<{ $dateLength: number }>`
   margin-bottom: 1rem;
   ${({ theme }) => theme.fonts.body3};
   color: ${({ $dateLength, theme }) => ($dateLength > 7 ? theme.colors.red : theme.colors.sub1)};
+  @keyframes vibration {
+    from {
+      transform: rotate(1deg);
+    }
+    to {
+      transform: rotate(-1deg);
+    }
+  }
+  ${({ $dateLength }) => $dateLength > 7 && `animation: vibration 0.1s infinite ease-out;`};
 `;
 
 const CalendarWrapper = styled.div`
