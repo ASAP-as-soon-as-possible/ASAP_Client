@@ -16,9 +16,13 @@ function SteppingLayout({ steppingType }: SteppingProps) {
   const navigate = useNavigate();
   const { meetingId } = useParams();
 
+  const [meetingTitle, setMeetingTitle] = useState('');
+
   const isConfirmedMeet = async () => {
+    // 회의명 붙이기
     const result = await client.get(`/meeting/${meetingId}`);
-    console.log(result);
+
+    setMeetingTitle(result.data.data.title);
     if (result.data.code === 409) {
       navigate(`/q-card/${meetingId}`);
     }
@@ -37,7 +41,7 @@ function SteppingLayout({ steppingType }: SteppingProps) {
     <>
       <SteppingWrapper>
         <Header position={'stepping'} />
-        <SteppingBody steppingType={steppingType} />
+        <SteppingBody steppingType={steppingType} meetingTitle={meetingTitle} />
         <SteppingBtnSection steppingType={steppingType} />
       </SteppingWrapper>
     </>

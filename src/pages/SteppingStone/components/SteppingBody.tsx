@@ -37,7 +37,7 @@ const bodyType: BodyType = {
   },
   meetEntrance: {
     img: <img src={stepingPlus} alt="png" />,
-    main: '에이셉 전체회의', // 찬우오빠.. 내가 범인 찾았어 - 2023.09.11 은서가
+    main: '',
     sub: (
       <>
         <Text font={'title2'} color={`${theme.colors.grey4}`}>
@@ -67,16 +67,17 @@ const bodyType: BodyType = {
 
 interface SteppingProps {
   steppingType: string;
+  meetingTitle?: string;
 }
 
-function SteppingBody({ steppingType }: SteppingProps) {
+function SteppingBody({ steppingType, meetingTitle }: SteppingProps) {
   const stepInfo = bodyType[steppingType];
   return (
     <SteppingBodyWrapper>
       <ImageSection>{stepInfo.img}</ImageSection>
       <SteppingMentSection>
         <Text font={'head1'} color={`${theme.colors.white}`}>
-          {stepInfo.main}
+          {meetingTitle ? meetingTitle : stepInfo.main}
         </Text>
         <SubMentWrapper>{stepInfo.sub}</SubMentWrapper>
       </SteppingMentSection>
