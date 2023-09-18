@@ -24,15 +24,16 @@ const StyledToastContainer = styled(ToastContainer)`
   display: flex;
   position: absolute;
   bottom: 6rem;
-  /* left:-2rem; */
   align-items: center;
   justify-content: center;
 
   .Toastify__toast {
-    border-radius: 5rem;
-    background-color: #2e2e2e !important;
     width: 19rem;
     height: 4rem !important;
+    min-height: 0;
+    margin-bottom: 2.4rem;
+    background-color: #2e2e2e;
+    border-radius: 5rem;
   }
 
   .Toastify__toast-body div {
