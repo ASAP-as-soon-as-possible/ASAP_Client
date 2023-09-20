@@ -189,3 +189,11 @@
 /* .bg-dark .rmdp-button:not(.rmdp-action-button):hover {
   background-color: var(--rmdp-main1);
 } */
+
+.rmdp-day.rmdp-disabled {
+  color: var(--rmdp-grey6) !important;
+}
+
+.rmdp-day.rmdp-disabled.rmdp-deactive {
+  color: var(--rmdp-grey10) !important;
+}
