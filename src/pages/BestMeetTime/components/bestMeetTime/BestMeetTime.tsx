@@ -35,9 +35,22 @@ function BestMeetTime() {
           <TitleSection>
             <HeaderContainer>
               <HeaderTitle>
-                현재까지 모인 <MemberCount>{bestTimeData.data.memberCount}</MemberCount>명을 위한
+                <Text font={`head2`} color={`${theme.colors.white}`}>
+                  현재까지 모인&nbsp;
+                </Text>
+                <Text font={`head2`} color={`${theme.colors.sub1}`}>
+                  {bestTimeData.data.memberCount}
+                </Text>
+                <Text font={`head2`} color={`${theme.colors.sub1}`}>
+                  명
+                </Text>
+                <Text font={`head2`} color={`${theme.colors.white}`}>
+                  을 위한
+                </Text>
               </HeaderTitle>
-              <HeaderTitle>최적의 회의시간이에요</HeaderTitle>
+              <Text font={`head2`} color={`${theme.colors.white}`}>
+                최적의 회의시간이에요
+              </Text>
             </HeaderContainer>
             <Text font={'body3'} color={`${theme.colors.grey4}`}>
               박스를 클릭하여 회의시간을 확정해주세요
@@ -129,14 +142,7 @@ const HeaderContainer = styled.div`
 `;
 
 const HeaderTitle = styled.div`
-  line-height: 3rem;
-  color: ${({ theme }) => theme.colors.white};
-  font-size: 2.2rem;
-  font-weight: 700;
-`;
-
-const MemberCount = styled.span`
-  color: ${({ theme }) => theme.colors.sub1};
+  display: flex;
 `;
 
 const AnotherTimeBtnSection = styled.div`
