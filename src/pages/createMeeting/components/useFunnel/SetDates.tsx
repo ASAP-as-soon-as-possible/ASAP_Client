@@ -6,7 +6,6 @@ import Text from 'components/atomComponents/Text';
 import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import { Calendar, DateObject, getAllDatesInRange } from 'react-multi-date-picker';
 import { useRecoilState } from 'recoil';
-import { keyframes } from 'styled-components';
 import styled from 'styled-components/macro';
 
 import './SetDates.css';
