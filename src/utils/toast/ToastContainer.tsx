@@ -10,10 +10,11 @@ function ToastContainerBox() {
       newestOnTop={false}
       closeOnClick
       rtl={false}
-      pauseOnFocusLoss
+      pauseOnFocusLoss={true}
       draggable
       pauseOnHover
       theme="dark"
+      limit={1}
     />
   );
 }
