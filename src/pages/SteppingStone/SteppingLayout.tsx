@@ -1,12 +1,11 @@
+import { authClient, client } from 'utils/apis/axios';
 import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Header from 'components/moleculesComponents/Header';
-import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components/macro';
-import { authClient, client } from 'utils/apis/axios';
-
 import SteppingBody from './components/SteppingBody';
 import SteppingBtnSection from './components/SteppingBtnSection';
+import styled from 'styled-components/macro';
 
 interface SteppingProps {
   steppingType: string;
@@ -28,6 +27,7 @@ function SteppingLayout({ steppingType }: SteppingProps) {
     }
   };
 
+  //git test
   useEffect(
     () => {
       if (steppingType === 'meetEntrance') {
