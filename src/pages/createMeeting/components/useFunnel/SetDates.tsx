@@ -79,11 +79,12 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             className="bg-dark"
             range={!multiple}
             multiple={multiple}
+            minDate={new Date()}
             onChange={(dateObjects) => {
               if (dateObjects) {
+                const newDate: string[] = [];
                 if (multiple === false) {
                   const tmpArr = getAllDatesInRange(dateObjects as DateObject[]);
-                  const newDate: string[] = [];
                   tmpArr.map((date) => {
                     const tempDate = (date as DateObject).format(dateRangeFormat);
                     const reformatDate = tempDate.toUpperCase();
@@ -94,7 +95,6 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                     return { ...prev, availableDates: newDate };
                   });
                 } else if (multiple === true) {
-                  const newDate: string[] = [];
                   (dateObjects as DateObject[]).map((date: DateObject) => {
                     const tempDate = (date as DateObject).format(dateRangeFormat);
                     const reformatDate = tempDate.toUpperCase();
@@ -104,6 +104,13 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                   setMeetingInfo((prev: MeetingInfo) => {
                     return { ...prev, availableDates: newDate };
                   });
+                }
+                if (newDate.length > 7) {
+                  setTimeout(() => {
+                    setMeetingInfo((prev: MeetingInfo) => {
+                      return { ...prev, availableDates: [] };
+                    });
+                  }, 1000);
                 }
               }
             }}
@@ -172,6 +179,7 @@ const RangeInputBox = styled.div<{ $isClicked: boolean }>`
     $isClicked ? theme.colors.grey5 : theme.colors.main1};
   width: 33.5rem;
   height: 5.2rem;
+
   color: ${({ theme }) => theme.colors.white};
 `;
 const Input = styled.input`
@@ -227,6 +235,24 @@ const InputNotice = styled.span<{ $dateLength: number }>`
   margin-bottom: 1rem;
   ${({ theme }) => theme.fonts.body3};
   color: ${({ $dateLength, theme }) => ($dateLength > 7 ? theme.colors.red : theme.colors.sub1)};
+  @keyframes vibration {
+    0% {
+      transform: translateX(0);
+    }
+    25% {
+      transform: translateX(-0.2rem);
+    }
+    50% {
+      transform: translateX(0);
+    }
+    75% {
+      transform: translateX(0.2rem);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  ${({ $dateLength }) => $dateLength > 7 && `animation: vibration 0.1s 5;`};
 `;
 
 const CalendarWrapper = styled.div`
