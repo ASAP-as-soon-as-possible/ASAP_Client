@@ -1,3 +1,7 @@
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import CardPng from 'assets/images/card.png';
 import InsertPng from 'assets/images/insert.png';
 import MakePng from 'assets/images/make.png';
@@ -7,12 +11,9 @@ import Text from 'components/atomComponents/Text';
 import Header from 'components/moleculesComponents/Header';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
 import Explain from './components/Explain';
 
 const slides = [
@@ -108,14 +109,12 @@ const StyledSwiperSlide = styled(SwiperSlide)`
 
 const SvgContainer = styled.section`
   img {
-    width: 25rem;
-    height: 25rem;
+    width: 33rem;
+    height: 33rem;
   }
 `;
 
-const ExplainContainer = styled.section`
-  margin: 5rem 0;
-`;
+const ExplainContainer = styled.section``;
 
 const ButtonSection = styled.section`
   position: fixed;

@@ -1,12 +1,11 @@
+import { authClient, client } from 'utils/apis/axios';
 import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Header from 'components/moleculesComponents/Header';
-import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components/macro';
-import { authClient, client } from 'utils/apis/axios';
-
 import SteppingBody from './components/SteppingBody';
 import SteppingBtnSection from './components/SteppingBtnSection';
+import styled from 'styled-components/macro';
 
 interface SteppingProps {
   steppingType: string;
@@ -16,14 +15,19 @@ function SteppingLayout({ steppingType }: SteppingProps) {
   const navigate = useNavigate();
   const { meetingId } = useParams();
 
+  const [meetingTitle, setMeetingTitle] = useState('');
+
   const isConfirmedMeet = async () => {
+    // 회의명 붙이기
     const result = await client.get(`/meeting/${meetingId}`);
-    console.log(result);
+
+    setMeetingTitle(result.data.data.title);
     if (result.data.code === 409) {
       navigate(`/q-card/${meetingId}`);
     }
   };
 
+  //git test
   useEffect(
     () => {
       if (steppingType === 'meetEntrance') {
@@ -37,7 +41,7 @@ function SteppingLayout({ steppingType }: SteppingProps) {
     <>
       <SteppingWrapper>
         <Header position={'stepping'} />
-        <SteppingBody steppingType={steppingType} />
+        <SteppingBody steppingType={steppingType} meetingTitle={meetingTitle} />
         <SteppingBtnSection steppingType={steppingType} />
       </SteppingWrapper>
     </>
