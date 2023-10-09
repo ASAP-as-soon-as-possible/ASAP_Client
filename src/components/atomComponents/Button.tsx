@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { styled, css } from 'styled-components';
+import { css, styled } from 'styled-components';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -23,6 +23,7 @@ const buttonDefaultCSS = {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 4.4rem;
     border-radius: 0.8rem;
     padding: 1.6rem;
     width: 33.5rem;
