@@ -254,9 +254,15 @@ const TitleWrapper = styled.div`
 `;
 
 const StyledBtnSection = styled.section`
+  display: flex;
   position: fixed;
-  bottom: 1.2rem;
-  border-radius: 50%;
+  bottom: 0;
+  align-items: end;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.dim_gradient};
+
+  width: 100%;
+  height: 16.4rem;
 `;
 
 export default SelectSchedulePage;
