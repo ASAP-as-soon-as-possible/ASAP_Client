@@ -32,6 +32,8 @@ const colors = {
   level3: 'rgba(50, 83, 255, 0.5)',
   level2: 'rgba(50, 83, 255, 0.3)',
   level1: 'rgba(50, 83, 255, 0.1)',
+
+  dim_gradient: 'linear-gradient(1deg, #141414 56.25%, rgba(20, 20, 20, 0) 95.89%)',
 };
 
 export type ColorsTypes = typeof colors;
