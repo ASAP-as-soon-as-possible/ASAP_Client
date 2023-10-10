@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
+import  axios,{ AxiosError } from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { AxiosError } from 'axios';
 import Button from 'components/atomComponents/Button';
 import Header from 'components/moleculesComponents/Header';
 import IncorrectInfoModal from './IncorrectInfoModal';
@@ -50,29 +50,35 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
     console.log('first');
     try {
       const { data } = await client.post(`/user/${meetingId}/host`, hostInfo);
-      // const {
-      //   data: { code, data, message },
-      // } = result;
       console.log(data);
 
       if (data.code === 200) {
         localStorage.setItem('hostToken', data.data.accessToken);
         navigate(`/host/${meetingId}`);
-        console.log(data.code);
-      } else if (data.code === 403) {
-        setIsModalOpen(true);
       } else if (data.code === 401) {
         setIsLoginModalOpen(true);
       } else {
         console.log(data.message);
       }
-    } catch (err) {
-      setIsModalOpen(true);
+    } catch (e) {
+      //현재 err는 객체를 보내주지 않아서 다른 에러도 이 로직이 실행될 문제가 있음
 
-      console.log('login_error: ' + err);
-    }
+       if (axios.isAxiosError(e)) {
+      //   // axios에서 발생한 error
+      //   console.log(err.response);
+      // }
+      // const err = e as AxiosError;
+        const err= e;
+      if (err.response?.status === 403) {
+        console.log(err.response.data?.message);
+        setIsModalOpen(true);
+      } else {
+        console.log(err.response?.status);
+        console.log(err.response?.data.message);
+           }
+         }
+        }
   };
-
   return (
     <>
       <Header position={'login'} />
