@@ -44,31 +44,32 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
   };
 
   const [ismodalOpen, setIsModalOpen] = useState(false);
-  const [isLoginModalOpen, setIsLoginModalOpen]= useState(false);
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const loginHost = async () => {
+    console.log('first');
     try {
-      const result = await client.post(`/user/${meetingId}/host`, hostInfo);
-      const {
-        data: { code, data, message },
-      } = result;
+      const { data } = await client.post(`/user/${meetingId}/host`, hostInfo);
+      // const {
+      //   data: { code, data, message },
+      // } = result;
+      console.log(data);
 
-      
-      if (code === 200) {
-        localStorage.setItem('hostToken', data.accessToken);
+      if (data.code === 200) {
+        localStorage.setItem('hostToken', data.data.accessToken);
         navigate(`/host/${meetingId}`);
-      } else if (code === 403) {
+        console.log(data.code);
+      } else if (data.code === 403) {
         setIsModalOpen(true);
-      } else if(code===401){
+      } else if (data.code === 401) {
         setIsLoginModalOpen(true);
+      } else {
+        console.log(data.message);
       }
-        else{
-          console.log(message);
-        }
-    } catch {
-      (error: AxiosError) => {
-        console.log("login_error: "+error);
-      };
+    } catch (err) {
+      setIsModalOpen(true);
+
+      console.log('login_error: ' + err);
     }
   };
 
@@ -111,7 +112,11 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
         </Button>
       </StyledBtnSection>
       {ismodalOpen ? <NoAvailableTimeModal setIsModalOpen={setIsModalOpen} /> : undefined}
-      {isLoginModalOpen? <IncorrectInfoModal setIsLoginModalOpen={setIsLoginModalOpen}></IncorrectInfoModal> : undefined}
+      {isLoginModalOpen ? (
+        <IncorrectInfoModal setIsLoginModalOpen={setIsLoginModalOpen} />
+      ) : (
+        undefined
+      )}
     </>
   );
 }
