@@ -41,6 +41,7 @@ function SelectSchedule({ scheduleList, availableDates, preferTimes, setSchedule
       else if (compareTime(startTime,schedule.endTime)){
         return { ...schedule, startTime };
       }
+      //isMorningDinner가  true라면 isContainingAfternoon실행
       else{
         alert("종료 시간은 시작 시간 이후로 설정해주세요!");
       }
