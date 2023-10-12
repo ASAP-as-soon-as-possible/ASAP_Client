@@ -1,6 +1,7 @@
 import React, { Dispatch, useEffect, SetStateAction } from 'react';
 
 import { scheduleAtom, userNameAtom } from 'atoms/atom';
+import { isAxiosError } from 'axios';
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
 import { useNavigate, useParams } from 'react-router';
@@ -35,14 +36,22 @@ function SelectModal({ setShowModal }: ModalProps) {
         if (data.code === 201) {
           setShowModal(false);
           navigate(`/${auth}/schedule-complete/${meetingId}`);
+        } else if (data.code === 400) {
+          alert(`${data.message}`);
         } else {
           navigate('/error');
         }
         return data.code;
       }
     } catch (e) {
-      console.error(e);
-      navigate(`/error`);
+      if (isAxiosError(e) && e.response) {
+        if (e.response.status === 400) {
+          alert(`${e.response.data.message}`);
+        } else {
+          console.error(e);
+          navigate(`/error`);
+        }
+      }
     }
   };
 
@@ -54,14 +63,22 @@ function SelectModal({ setShowModal }: ModalProps) {
         if (data.code === 201) {
           setShowModal(false);
           navigate(`/${auth}/schedule-complete/${meetingId}`);
+        } else if (data.code === 400) {
+          alert(`${data.message}`);
         } else {
           navigate('/error');
         }
         return data;
       }
     } catch (e) {
-      console.error(e);
-      navigate(`/error`);
+      if (isAxiosError(e) && e.response) {
+        if (e.response.status === 400) {
+          alert(`${e.response.data.message}`);
+        } else {
+          console.error(e);
+          navigate(`/error`);
+        }
+      }
     }
   };
 
