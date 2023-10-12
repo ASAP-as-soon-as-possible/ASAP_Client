@@ -36,8 +36,6 @@ function SelectModal({ setShowModal }: ModalProps) {
         if (data.code === 201) {
           setShowModal(false);
           navigate(`/${auth}/schedule-complete/${meetingId}`);
-        } else if (data.code === 400) {
-          alert(`${data.message}`);
         } else {
           navigate('/error');
         }
@@ -63,8 +61,6 @@ function SelectModal({ setShowModal }: ModalProps) {
         if (data.code === 201) {
           setShowModal(false);
           navigate(`/${auth}/schedule-complete/${meetingId}`);
-        } else if (data.code === 400) {
-          alert(`${data.message}`);
         } else {
           navigate('/error');
         }
@@ -72,6 +68,7 @@ function SelectModal({ setShowModal }: ModalProps) {
       }
     } catch (e) {
       if (isAxiosError(e) && e.response) {
+        console.log(e.response.data);
         if (e.response.status === 400) {
           alert(`${e.response.data.message}`);
         } else {
