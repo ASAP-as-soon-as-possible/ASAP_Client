@@ -27,6 +27,7 @@ function PasswordInput({ value, placeholder, passWordOnChange, page }: ValueProp
           onChange={passWordOnChange}
           $iserror={value.length < 4}
           type={inputType ? `number` : undefined}
+          inputmode="numeric"
         />
         <IconContainer onClick={changePasswordType}>
           {inputType ? <PasswordOpenEyeIc /> : <PasswordEyeIc />}
