@@ -26,7 +26,7 @@ function PasswordInput({ value, placeholder, passWordOnChange, page }: ValueProp
           value={value}
           onChange={passWordOnChange}
           $iserror={value.length < 4}
-          type={inputType ? `password` : undefined}
+          type={inputType ? `number` : undefined}
         />
         <IconContainer onClick={changePasswordType}>
           {inputType ? <PasswordOpenEyeIc /> : <PasswordEyeIc />}
@@ -61,16 +61,16 @@ const InputSection = styled.div`
   input:focus + div {
     display: flex;
     svg {
-      cursor: pointer;
       width: fit-content;
       height: fit-content;
+      cursor: pointer;
     }
   }
 `;
 
 const StyledPasswordInput = styled.input<{ $iserror: boolean }>`
   position: relative;
-  border:none;
+  border: none;
 
   border-radius: 0.8rem;
   box-shadow: 0 0.4rem 0.4rem 0 rgba(0, 0, 0, 0.25);
