@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
 import { availableDatesAtom, preferTimesAtom, scheduleAtom } from 'atoms/atom';
+import axios from 'axios';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import Header from 'components/moleculesComponents/Header';
 import PriorityDropdown from 'components/scheduleComponents/components/PriorityDropdown';
 import TimeTable from 'components/scheduleComponents/components/TimeTable';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
@@ -20,6 +21,8 @@ const SelectSchedulePriority = () => {
   const [scheduleList, setScheduleList] = useRecoilState(scheduleAtom);
   const { meetingId } = useParams();
 
+  const navigate = useNavigate();
+
   const [showModal, setShowModal] = useState(false);
   const getAvailableScheduleOption = async () => {
     try {
@@ -28,9 +31,16 @@ const SelectSchedulePriority = () => {
       setPreferTimes(data.data.preferTimes);
     } catch (err) {
       console.log(err);
+
+      if (axios.isAxiosError(err) && err.response) {
+        if (err.response.status === 409) {
+          //이미 확정된 회의
+          alert(err.response.data.message);
+          navigate(`/q-card/${meetingId}`);
+        }
+      }
     }
   };
-
   useEffect(() => {
     getAvailableScheduleOption();
   }, []);
