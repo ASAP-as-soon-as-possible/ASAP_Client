@@ -18,6 +18,11 @@ interface PropTypes {
 }
 
 function SelectSchedule({ scheduleList, availableDates, preferTimes, setScheduleList, deleteData }: PropTypes) {
+
+  // 현재 선택된 가능시간이 아침/저녁 시간대인 경우를 확인하는 함수
+  const isMorningDinner =
+preferTimes.length === 2 && preferTimes.every((time) => time.startTime !== '12:00');
+
   const handleDate = (id: number, date: string) => {
 
     const updateDate: ScheduleStates[] = scheduleList?.map((schedule) => {
@@ -34,18 +39,25 @@ function SelectSchedule({ scheduleList, availableDates, preferTimes, setSchedule
     const updateStartTime: ScheduleStates[] = scheduleList?.map((schedule) =>
    {
     if (schedule?.id === id) {
-
       if(schedule.endTime==="" ){
         return { ...schedule, startTime };
       }
       else if (compareTime(startTime,schedule.endTime)){
+
+        if (isMorningDinner){
+          //오전,저녁 시간대이므로, 오후 시간대를 선택했는지 아닌지를 판별해야함
+          //시작 시간이 11:30 이하이면서 종료 시간이 18:00이후인 경우
+          if (compareTime(startTime, "11:30") && compareTime("18:00", schedule.endTime)) {
+            alert("12:00 부터 18:00는 선택지에 포함될 수 없습니다.");
+            return schedule;
+          }
+        }
+
         return { ...schedule, startTime };
       }
-      //isMorningDinner가  true라면 isContainingAfternoon실행
       else{
         alert("종료 시간은 시작 시간 이후로 설정해주세요!");
-      }
-
+        }
       return schedule;
     }
 
@@ -63,6 +75,16 @@ function SelectSchedule({ scheduleList, availableDates, preferTimes, setSchedule
           return { ...schedule, endTime };
         }
         else if (compareTime(schedule.startTime,endTime)){
+
+          if (isMorningDinner){
+            //오전,저녁 시간대이므로, 오후 시간대를 선택했는지 아닌지를 판별해야함
+            //시작 시간이 11:30 이하이면서 종료 시간이 18:00이후인 경우
+            if (compareTime(schedule.startTime, "11:30") && compareTime("18:00", endTime)) {
+              alert("오후 12시부터 18시는 선택지에 포함될 수 없습니다.");
+              return schedule;
+            }
+          }
+
           return { ...schedule, endTime };
         }
         else {
