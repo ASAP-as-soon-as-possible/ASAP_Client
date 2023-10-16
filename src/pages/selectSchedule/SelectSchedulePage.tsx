@@ -187,16 +187,16 @@ function SelectSchedulePage() {
       <PlusButton onClick={addDateList} type="button">
         <PlusIc />
       </PlusButton>
-      <StyledBtnSection>
-        <Button
-          typeState={isScheduleListValid ? 'primaryActive' : 'secondaryDisabled'}
-          onClick={() => {
-            isScheduleListValid && navigate(`/${auth}/priority/${meetingId}`);
-          }}
-        >
-          <Text font={'button2'}>다음</Text>
-        </Button>
-      </StyledBtnSection>
+
+      <Button
+        typeState={isScheduleListValid ? 'primaryActive' : 'secondaryDisabled'}
+        onClick={() => {
+          isScheduleListValid && navigate(`/${auth}/priority/${meetingId}`);
+        }}
+      >
+        <Text font={'button2'}>다음</Text>
+      </Button>
+      <StyledBtnSection />
     </SelectPageWrapper>
   );
 }
@@ -265,6 +265,8 @@ const StyledBtnSection = styled.section`
 
   width: 100%;
   height: 16.4rem;
+
+  pointer-events: none;
 `;
 
 export default SelectSchedulePage;
