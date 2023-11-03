@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { availableDatesAtom, preferTimesAtom, scheduleAtom } from 'atoms/atom';
+import axios from 'axios';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { PlusIc } from 'components/Icon/icon';
@@ -74,6 +75,13 @@ function SelectSchedulePage() {
       });
     } catch (err) {
       console.log(err);
+      if (axios.isAxiosError(err) && err.response) {
+        if (err.response.status === 409) {
+          //이미 확정된 회의
+          alert(err.response.data.message);
+          navigate(`/q-card/${meetingId}`);
+        }
+      }
     }
   };
 
