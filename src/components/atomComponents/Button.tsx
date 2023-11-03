@@ -21,11 +21,11 @@ export default Button;
 const buttonDefaultCSS = {
   basicCss: css`
     display: flex;
-    position: fixed;
-    bottom: 2.9rem;
+    /* position: fixed;
+    bottom: 2.9rem; */
     align-items: center;
     justify-content: center;
-    z-index: 1;
+    /* z-index: 1; */
     border-radius: 0.8rem;
     padding: 1.6rem;
     width: 33.5rem;
