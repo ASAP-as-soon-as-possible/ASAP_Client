@@ -9,6 +9,8 @@ export interface HostAvailableSchduleRequestType {
 }
 
 export interface HostAvailableScheduleResponseType {
+  code: number;
+  message: string;
   data: {
     url: string;
     accessToken: string;
@@ -32,6 +34,8 @@ export interface UserAvailableScheduleRequestTypeNull {
 }
 
 export interface UserAvailableScheduleResponseType {
+  code: number;
+  message: string;
   data: {
     role: string;
   };

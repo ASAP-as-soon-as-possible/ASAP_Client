@@ -1,6 +1,7 @@
 import React, { Dispatch, useEffect, SetStateAction } from 'react';
 
 import { scheduleAtom, userNameAtom } from 'atoms/atom';
+import { isAxiosError } from 'axios';
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
 import { useNavigate, useParams } from 'react-router';
@@ -30,22 +31,51 @@ function SelectModal({ setShowModal }: ModalProps) {
   const postHostAvailableApi = async () => {
     try {
       if (meetingId && updateScheduleType) {
-        const data = await hostAvailableApi(meetingId, updateScheduleType);
-        return data;
+        const { data } = await hostAvailableApi(meetingId, updateScheduleType);
+        console.log(data);
+        if (data.code === 201) {
+          setShowModal(false);
+          navigate(`/${auth}/schedule-complete/${meetingId}`);
+        } else {
+          navigate('/error');
+        }
+        return data.code;
       }
     } catch (e) {
-      console.error(e);
+      if (isAxiosError(e) && e.response) {
+        if (e.response.status === 400) {
+          alert(`${e.response.data.message}`);
+        } else {
+          console.error(e);
+          navigate(`/error`);
+        }
+      }
     }
   };
 
   const postMemberAvailableApi = async () => {
     try {
       if (meetingId && updateMemberScheduleType) {
-        const data = await userAvailableApi(meetingId, updateMemberScheduleType);
+        const { data } = await userAvailableApi(meetingId, updateMemberScheduleType);
+        console.log(data);
+        if (data.code === 201) {
+          setShowModal(false);
+          navigate(`/${auth}/schedule-complete/${meetingId}`);
+        } else {
+          navigate('/error');
+        }
         return data;
       }
     } catch (e) {
-      console.error(e);
+      if (isAxiosError(e) && e.response) {
+        console.log(e.response.data);
+        if (e.response.status === 400) {
+          alert(`${e.response.data.message}`);
+        } else {
+          console.error(e);
+          navigate(`/error`);
+        }
+      }
     }
   };
 
@@ -66,8 +96,8 @@ function SelectModal({ setShowModal }: ModalProps) {
       postMemberAvailableApi();
     }
 
-    setShowModal(false);
-    navigate(`/${auth}/schedule-complete/${meetingId}`);
+    // setShowModal(false);
+    // navigate(`/${auth}/schedule-complete/${meetingId}`);
   };
   return (
     <ReturnModalWrpper>

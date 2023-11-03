@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 import { availableDatesAtom, preferTimesAtom, scheduleAtom } from 'atoms/atom';
+import axios from 'axios';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { PlusIc } from 'components/Icon/icon';
@@ -74,6 +75,13 @@ function SelectSchedulePage() {
       });
     } catch (err) {
       console.log(err);
+      if (axios.isAxiosError(err) && err.response) {
+        if (err.response.status === 409) {
+          //이미 확정된 회의
+          alert(err.response.data.message);
+          navigate(`/q-card/${meetingId}`);
+        }
+      }
     }
   };
 
@@ -187,16 +195,16 @@ function SelectSchedulePage() {
       <PlusButton onClick={addDateList} type="button">
         <PlusIc />
       </PlusButton>
-      <StyledBtnSection>
-        <Button
-          typeState={isScheduleListValid ? 'primaryActive' : 'secondaryDisabled'}
-          onClick={() => {
-            isScheduleListValid && navigate(`/${auth}/priority/${meetingId}`);
-          }}
-        >
-          <Text font={'button2'}>다음</Text>
-        </Button>
-      </StyledBtnSection>
+
+      <Button
+        typeState={isScheduleListValid ? 'primaryActive' : 'secondaryDisabled'}
+        onClick={() => {
+          isScheduleListValid && navigate(`/${auth}/priority/${meetingId}`);
+        }}
+      >
+        <Text font={'button2'}>다음</Text>
+      </Button>
+      <StyledBtnSection />
     </SelectPageWrapper>
   );
 }
@@ -254,9 +262,19 @@ const TitleWrapper = styled.div`
 `;
 
 const StyledBtnSection = styled.section`
+  display: flex;
   position: fixed;
-  bottom: 1.2rem;
-  border-radius: 50%;
+  bottom: 0;
+  align-items: end;
+  justify-content: center;
+  background: ${({ theme }) => theme.colors.dim_gradient};
+
+  padding-bottom: 2.9rem;
+
+  width: 100%;
+  height: 16.4rem;
+
+  pointer-events: none;
 `;
 
 export default SelectSchedulePage;

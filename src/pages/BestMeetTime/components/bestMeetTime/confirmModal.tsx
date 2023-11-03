@@ -17,15 +17,16 @@ interface ModalProps {
 
 function ConfirmModal({ setIsModalOpen, memberCount, bestTime }: ModalProps) {
   const { meetingId } = useParams();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [isloading, setIsloading] = useState(false);
 
   const confirmMeetime = async () => {
     try {
       const result = await authClient.post(`/meeting/${meetingId}/confirm`, bestTime);
-      const {code} = result.data
-      if(code === 200){
-        navigate(`/q-card/${meetingId}`)
+      const { code } = result.data;
+      if (code === 200) {
+        navigate(`/q-card/${meetingId}`);
+        localStorage.removeItem('hostToken');
       }
     } catch (error) {
       console.log(error);
