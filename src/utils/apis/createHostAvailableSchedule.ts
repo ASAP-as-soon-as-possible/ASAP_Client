@@ -12,15 +12,12 @@ export const hostAvailableApi = (
   meetingId: string,
   reqBody: (HostAvailableSchduleRequestType | null)[],
 ) => {
-  return authClient.post<AxiosResponse<HostAvailableScheduleResponseType>>(
+  return authClient.post<HostAvailableScheduleResponseType>(
     `/user/host/${meetingId}/time`,
     reqBody,
   );
 };
 
 export const userAvailableApi = (meetingId: string, reqBody: UserAvailableScheduleRequestType) => {
-  return client.post<AxiosResponse<UserAvailableScheduleResponseType>>(
-    `/user/${meetingId}/time`,
-    reqBody,
-  );
+  return client.post<UserAvailableScheduleResponseType>(`/user/${meetingId}/time`, reqBody);
 };
