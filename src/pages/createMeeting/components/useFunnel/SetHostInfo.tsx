@@ -25,8 +25,8 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
       if (e.target.value.length < 9) {
         return { ...prev, password: e.target.value };
       }
-      alert("비밀번호는 8자리 이하로 말해주세요")
-      return { ...prev};
+      alert('비밀번호는 8자리 이하로 말해주세요');
+      return { ...prev };
     });
   };
 
@@ -64,7 +64,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           </Text>
           <PasswordInput
             value={meetingInfo.password}
-            placeholder={`방 비밀번호`}
+            placeholder={`숫자 4자리 이상`}
             passWordOnChange={passWordOnChange}
             page={'createMeeting'}
           />
