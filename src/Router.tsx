@@ -34,6 +34,7 @@ const Router = () => {
         <Route path="/q-card/:meetingId" element={<CueCard />} />
         <Route path="/loadingpage" element={<LoadingPage />} />
         <Route path="*" element={<ErrorPage404 />} />
+        <Route path="/error" element={<ErrorPage404 />} />
         <Route path="/select" element={<SelectPage />} />
       </Routes>
     </BrowserRouter>
