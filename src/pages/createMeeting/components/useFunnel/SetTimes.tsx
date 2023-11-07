@@ -1,4 +1,4 @@
-import { useState, useEffect, useLayoutEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
@@ -73,6 +73,8 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         meetingInfo.preferTimes[0].endTime !== '00:00')
     )
       return true;
+
+    return false;
   };
   useEffect(
     () => {
