@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import Header from 'components/moleculesComponents/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import { authClient, client } from 'utils/apis/axios';
+import { client } from 'utils/apis/axios';
 
 import SteppingBody from './components/SteppingBody';
 import SteppingBtnSection from './components/SteppingBtnSection';
@@ -37,6 +37,25 @@ function SteppingLayout({ steppingType }: SteppingProps) {
     },
     [steppingType],
   );
+
+  const handlePopstate = () => {
+    alert('handle 작동');
+    navigate('/');
+  };
+
+  useEffect(() => {
+    return () => {
+      window.addEventListener('popstate', handlePopstate);
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   history.pushState(null, '', location.href);
+  //   console.log(location.href);
+  //   window.onpopstate = function() {
+  //     history.go(1);
+  //   };
+  // }, []);
 
   return (
     <>
