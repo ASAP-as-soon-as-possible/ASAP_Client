@@ -60,8 +60,6 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
         console.log(data.message);
       }
     } catch (err) {
-      //현재 err는 객체를 보내주지 않아서 다른 에러도 이 로직이 실행될 문제가 있음
-
       if (isAxiosError(err)) {
         //   // axios에서 발생한 error
         // const err = e as AxiosError;
