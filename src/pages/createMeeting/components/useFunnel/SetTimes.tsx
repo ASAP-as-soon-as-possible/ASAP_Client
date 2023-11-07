@@ -17,15 +17,14 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const [endDropDown, setEndDropDown] = useState(false);
 
   const getDate = (btnState: boolean, startTime: string, endTime: string) => {
+    console.log('getDate 함수 호출');
+
     if (!btnState) {
-      // btnState가 true인 경우 preferTimes에 객체를 추가
       setMeetingInfo((prev) => ({
         ...prev,
         preferTimes: [...prev.preferTimes, { startTime: startTime, endTime: endTime }],
       }));
     } else {
-      console.log(btnState);
-      // btnState가 false인 경우 해당 startTime과 endTime을 가진 객체를 preferTimes에서 삭제
       setMeetingInfo((prev) => ({
         ...prev,
         preferTimes: prev.preferTimes.filter(
@@ -62,7 +61,6 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
 
   useEffect(
     () => {
-      console.log(meetingInfo.preferTimes[0]);
       if (
         meetingInfo.preferTimes &&
         meetingInfo.preferTimes[0] &&
@@ -77,6 +75,10 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
     },
     [meetingInfo.preferTimes],
   );
+
+  useEffect(() => {
+    deletePreferTimes();
+  }, []);
   return (
     <SetTimesWrapper>
       <SetTimeSection>
