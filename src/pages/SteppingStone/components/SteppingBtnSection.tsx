@@ -1,3 +1,5 @@
+import { useEffect, useState, useTransition } from 'react';
+
 import { userNameAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
@@ -8,7 +10,6 @@ import { useRecoilValue } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { notify } from 'utils/toast/copyLink';
-import ToastContainerBox from 'utils/toast/ToastContainer';
 
 interface SteppingProps {
   steppingType: string;
@@ -18,6 +19,8 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
   const location = useLocation();
   const meetInfo = { ...location.state };
   const { meetingId } = useParams();
+  const [isModalOpen, setIsModalOpen] = useState(true);
+
 
   return (
     <>
@@ -26,29 +29,27 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
           {
             meetComplete: (
               <>
-              <ModalOverlay>
-                <BottomSheetModal>
+                <BottomSheetModal $isModalOpen={isModalOpen}>
                   <BottomSheetDescription>
                   <Text font={'head2'} color={'white'}>회의방 링크가 생성되었어요!</Text>
                   <Text font={'title2'} color={`${theme.colors.grey4}`}>링크를 복사하여 팀원에게 공유해주세요</Text>
                   </BottomSheetDescription>
                   <CopyToClipboard text={`${import.meta.env.VITE_WEB_IP}/meet/${meetInfo.meetingId}`}>
-                    <Button typeState={'primaryActive'} onClick={notify}>
+                    <Button typeState={'primaryActive'} onClick={()=>setIsModalOpen(false)}>
                       <Text font={'button2'}>링크 복사하기</Text>
                     </Button>
                   </CopyToClipboard>
-                  <Link to={`/host/schedule/${meetInfo.meetingId}`}>
-                    <Button typeState={'primaryDisabled'}>
+                    <Button typeState={'primaryDisabled'} onClick={()=>setIsModalOpen(false)}>
                       <Text font={'button2'}>나중에 공유하기</Text>
                     </Button>
-                  </Link>
                 </BottomSheetModal>
-              </ModalOverlay>
-              {/* <Link to={`/host/schedule/${meetInfo.meetingId}`}>
+                <ModalOverlay $isModalOpen={isModalOpen} >
+                </ModalOverlay>
+                <Link to={`/host/schedule/${meetInfo.meetingId}`}>
                   <Button typeState={'primaryActive'}>
                     <Text font={'button2'}>나의 가능시간 입력</Text>
                   </Button>
-                </Link> */}
+                </Link>
               </>
             ),
             hostScheduleComplete: (
@@ -108,30 +109,35 @@ const StyledBtnSection = styled.section`
   justify-content: center;
   border-radius: 50%;
   width: 100%;
+  
 `;
 
-const BottomSheetModal = styled.div`
+const BottomSheetModal = styled.div<{$isModalOpen:boolean;}>`
   display:flex;
   position:fixed;
-  bottom:0;
+  bottom:${({$isModalOpen})=>$isModalOpen?0:-27.5}rem;
   flex-direction:column;
   gap:0.8rem;
-
+  transition: bottom 600ms cubic-bezier(0.86, 0, 0.07, 1);
+  z-index:1;
   border-top-left-radius: 1.2rem;
   border-top-right-radius: 1.2rem;
   background-color: ${({ theme }) => theme.colors.grey8};
 
   padding: 2.8rem 2rem 4rem;
-  width:100%; 
+  width:100%;
 
   & button {
     width:100%;
   }
+
 `
 
-const ModalOverlay = styled.div`
+const ModalOverlay = styled.div<{$isModalOpen:boolean;}>`
+  display:${({$isModalOpen})=>($isModalOpen?'block':'none')};
   position:fixed;
   top: 0;
+  /* transition: display 1s; display는 transition 불가 */
   background-color: rgba(0, 0, 0, 0.50);
   width:100%;
   height:100%;
