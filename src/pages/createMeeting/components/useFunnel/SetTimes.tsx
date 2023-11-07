@@ -66,6 +66,14 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
     deletePreferTimes();
   };
 
+  const buttonStateHandler = () => {
+    if (
+      meetingInfo.preferTimes.length >= 2 ||
+      (meetingInfo.preferTimes[0].startTime !== '00:00' &&
+        meetingInfo.preferTimes[0].endTime !== '00:00')
+    )
+      return true;
+  };
   useEffect(
     () => {
       if (
@@ -130,11 +138,6 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         {directInput.btnState ? (
           <DropDownWrapper>
             <DropDownSelect $drop={startDropDown} onClick={() => setStartDropDown((prev) => !prev)}>
-              {/* {meetingInfo.preferTimes.length > 0 ? (
-                <Text font={'button2'}>{meetingInfo.preferTimes[0].startTime}</Text>
-              ) : (
-                <Text font={'button2'}>00:00</Text>
-              )} */}
               <Text font={'button2'}>{meetingInfo.preferTimes[0].startTime}</Text>
               {startDropDown ? <DropUpIcon /> : <DropDownIcon />}
               {startDropDown && (
@@ -152,11 +155,7 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             </DropDownSelect>
             <Wave />
             <DropDownSelect $drop={endDropDown} onClick={() => setEndDropDown((prev) => !prev)}>
-              {meetingInfo.preferTimes.length > 0 ? (
-                <Text font={'button2'}>{meetingInfo.preferTimes[0].endTime}</Text>
-              ) : (
-                <Text font={'button2'}>00:00</Text>
-              )}
+              <Text font={'button2'}>{meetingInfo.preferTimes[0].endTime}</Text>
               {endDropDown ? <DropUpIcon /> : <DropDownIcon />}
               {endDropDown && (
                 <DropDownContainer>
@@ -179,17 +178,9 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
 
       <StyledBtnSection>
         <Button
-          typeState={
-            meetingInfo.preferTimes.length >= 2 ||
-            (meetingInfo.preferTimes[0].startTime !== '00:00' &&
-              meetingInfo.preferTimes[0].endTime !== '00:00')
-              ? 'primaryActive'
-              : 'secondaryDisabled'
-          }
+          typeState={buttonStateHandler() ? 'primaryActive' : 'secondaryDisabled'}
           onClick={
-            meetingInfo.preferTimes.length >= 2 ||
-            (meetingInfo.preferTimes[0].startTime !== '00:00' &&
-              meetingInfo.preferTimes[0].endTime !== '00:00')
+            buttonStateHandler()
               ? () => {
                   setStep((prev) => {
                     if (prev === 6) {
