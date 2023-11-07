@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
-import axios from 'axios';
+import { isAxiosError } from 'axios';
 import Button from 'components/atomComponents/Button';
 import PasswordInput from 'components/atomComponents/PasswordInput';
 import Text from 'components/atomComponents/Text';
@@ -48,10 +48,8 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const loginHost = async () => {
-    console.log('first');
     try {
       const { data } = await client.post(`/user/${meetingId}/host`, hostInfo);
-      console.log(data);
 
       if (data.code === 200) {
         localStorage.setItem('hostToken', data.data.accessToken);
@@ -62,12 +60,8 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
         console.log(data.message);
       }
     } catch (err) {
-      //현재 err는 객체를 보내주지 않아서 다른 에러도 이 로직이 실행될 문제가 있음
-
-      if (axios.isAxiosError(err)) {
+      if (isAxiosError(err)) {
         //   // axios에서 발생한 error
-        //   console.log(err.response);
-        // }
         // const err = e as AxiosError;
         if (err.response) {
           //타입 가드 사용
