@@ -84,6 +84,9 @@ const StyledTextInput = styled.input<{ $iserror: boolean }>`
   font-size: ${({ theme }) => theme.fonts.body3};
 
   caret-color: ${({ theme }) => theme.colors.main1};
+  &::placeholder{
+    color:${({theme})=>theme.colors.grey4}
+  }
 
   &:focus {
     outline: none;

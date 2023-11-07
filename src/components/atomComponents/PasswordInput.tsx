@@ -85,6 +85,9 @@ const StyledPasswordInput = styled.input<{ $iserror: boolean }>`
 
   color: ${({ theme }) => theme.colors.white};
   font-size: ${({ theme }) => theme.fonts.body3};
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.grey4};
+  }
 
   &:focus {
     border: 2px solid ${({ $iserror, theme }) => ($iserror ? theme.colors.red : theme.colors.main1)};

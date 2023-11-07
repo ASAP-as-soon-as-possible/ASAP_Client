@@ -16,7 +16,7 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           return (
             <PlaceSection key={i + type}>
               <Button
-                typeState={meetingInfo.place === type ? 'primaryActive' : 'secondaryDisabled'}
+                typeState={meetingInfo.place === type ? 'primaryActive' : 'primaryDisabled'}
                 onClick={() => setPlaceDetail(type)}
               >
                 <Text font={'button2'}>
@@ -41,7 +41,7 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
       </PlaceInfoSection>
       <StyledBtnSection>
         <Button
-          typeState={meetingInfo.place ? 'primaryActive' : 'secondaryDisabled'}
+          typeState={meetingInfo.place ? 'primaryActive' : 'primaryDisabled'}
           onClick={
             meetingInfo.place
               ? () =>
