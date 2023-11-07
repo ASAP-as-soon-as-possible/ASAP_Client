@@ -1,12 +1,10 @@
-import { useEffect, useState, useTransition } from 'react';
+import { useEffect, useState } from 'react';
 
-import { userNameAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';
 import { Link, useLocation } from 'react-router-dom';
-import { useRecoilValue } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { notify } from 'utils/toast/copyLink';
@@ -19,8 +17,11 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
   const location = useLocation();
   const meetInfo = { ...location.state };
   const { meetingId } = useParams();
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  useEffect(()=>{
+    setIsModalOpen(true);
+  },[])
 
   return (
     <>
@@ -137,7 +138,7 @@ const ModalOverlay = styled.div<{$isModalOpen:boolean;}>`
   display:${({$isModalOpen})=>($isModalOpen?'block':'none')};
   position:fixed;
   top: 0;
-  /* transition: display 1s; display는 transition 불가 */
+
   background-color: rgba(0, 0, 0, 0.50);
   width:100%;
   height:100%;
