@@ -99,6 +99,11 @@ const buttonCSS = {
     background-color: transparent;
     color: ${({ theme }) => theme.colors.grey6};
   `,
+  quaternaryDisabled: css`
+    ${buttonDefaultCSS.basicCss};
+    background: ${({ theme }) => theme.colors.grey7};
+    color: ${({ theme }) => theme.colors.grey2};
+  `,
 };
 
 const ButtonWrapper = styled.button<{ $type: string }>`
@@ -126,6 +131,8 @@ const ButtonWrapper = styled.button<{ $type: string }>`
         return buttonCSS.tertiaryDisabled;
       case 'halfPrimaryDisabled':
         return buttonCSS.halfPrimaryDisabled;
+      case 'quaternaryDisabled':
+        return buttonCSS.quaternaryDisabled;
       default:
         return '';
     }

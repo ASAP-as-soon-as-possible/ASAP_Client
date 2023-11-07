@@ -40,7 +40,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
                       <Text font={'button2'}>링크 복사하기</Text>
                     </Button>
                   </CopyToClipboard>
-                    <Button typeState={'primaryDisabled'} onClick={()=>setIsModalOpen(false)}>
+                    <Button typeState={'quaternaryDisabled'} onClick={()=>setIsModalOpen(false)}>
                       <Text font={'button2'}>나중에 공유하기</Text>
                     </Button>
                 </BottomSheetModal>
