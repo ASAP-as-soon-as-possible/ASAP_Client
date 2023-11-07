@@ -51,12 +51,12 @@ const buttonCSS = {
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.grey7};
     width: 15.2rem;
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.grey4};
   `,
   primaryDisabled: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.grey7};
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.grey4};
   `,
   secondaryActive: css`
     ${buttonDefaultCSS.basicCss};
