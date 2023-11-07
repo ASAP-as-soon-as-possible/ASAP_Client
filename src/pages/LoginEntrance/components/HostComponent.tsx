@@ -54,8 +54,6 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
       if (data.code === 200) {
         localStorage.setItem('hostToken', data.data.accessToken);
         navigate(`/host/${meetingId}`);
-      } else if (data.code === 401) {
-        setIsLoginModalOpen(true);
       } else {
         console.log(data.message);
       }
@@ -65,11 +63,13 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
         // const err = e as AxiosError;
         if (err.response) {
           //타입 가드 사용
-          if (err.response.status === 403) {
+          if (err.response.status === 400) {
+            setIsLoginModalOpen(true);
+          } else if (err.response.status === 401) {
+            setIsLoginModalOpen(true);
+          } else if (err.response.status === 403) {
             console.log(err.response.data.message);
             setIsModalOpen(true);
-          } else if (err.response.status === 400) {
-            setIsLoginModalOpen(true);
           } else {
             console.log(err.response.status);
             console.log(err.response.data.message);
