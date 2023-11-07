@@ -116,7 +116,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
       <StyledBtnSection>
         <Button
           typeState={
-            hostInfo.name && hostInfo.password.length >= 4 ? 'primaryActive' : 'secondaryDisabled'
+            hostInfo.name && hostInfo.password.length >= 4 ? 'primaryActive' : 'primaryDisabled'
           }
           onClick={hostInfo.name && hostInfo.password.length >= 4 ? loginHost : undefined}
         >

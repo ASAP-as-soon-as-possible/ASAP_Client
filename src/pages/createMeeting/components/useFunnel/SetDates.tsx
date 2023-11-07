@@ -1,14 +1,14 @@
 // import { useState } from 'react';
 
+import './SetDates.css';
+
 import { methodStateAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
-import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import { Calendar, DateObject, getAllDatesInRange } from 'react-multi-date-picker';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
-
-import './SetDates.css';
 
 const months = [
   '1월',
@@ -125,7 +125,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
               meetingInfo.availableDates.length > 0 &&
               meetingInfo.availableDates.length < 8)
               ? 'primaryActive'
-              : 'secondaryDisabled'
+              : 'primaryDisabled'
           }
           onClick={
             (meetingInfo.availableDates.length > 1 && meetingInfo.availableDates.length < 8) ||
