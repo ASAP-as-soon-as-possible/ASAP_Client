@@ -9,6 +9,7 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const setPlaceDetail = (place: string) => {
     setMeetingInfo((prev) => ({ ...prev, place, placeDetail: '' }));
   };
+  console.log(meetingInfo);
   return (
     <SetPlaceWrapper>
       <PlaceInfoSection>
@@ -16,7 +17,7 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           return (
             <PlaceSection key={i + type}>
               <Button
-                typeState={meetingInfo.place === type ? 'primaryActive' : 'secondaryDisabled'}
+                typeState={meetingInfo?.place === type ? 'primaryActive' : 'secondaryDisabled'}
                 onClick={() => setPlaceDetail(type)}
               >
                 <Text font={'button2'}>
