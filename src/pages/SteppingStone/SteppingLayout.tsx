@@ -63,6 +63,7 @@ function SteppingLayout({ steppingType }: SteppingProps) {
         <Header position={'stepping'} />
         <SteppingBody steppingType={steppingType} meetingTitle={meetingTitle} />
         <SteppingBtnSection steppingType={steppingType} />
+        <div />
       </SteppingWrapper>
     </>
   );
