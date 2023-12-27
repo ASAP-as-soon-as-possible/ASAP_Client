@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
+import { isAxiosError } from 'axios';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import TextAreaInput from 'components/atomComponents/TextAreaInput';
@@ -29,7 +30,14 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps
         },
       });
     } catch (err) {
-      console.log(err);
+      if (isAxiosError(err) && err.response) {
+        if (err.response.status === (400 || 500)) {
+          console.log(err.response.data.message);
+        } else {
+          console.log(err.response.data.code);
+        }
+        navigate('/error');
+      }
     }
   };
 
