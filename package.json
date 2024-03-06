@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "lint:css": "stylelint './src/**/*.{ts,tsx}'"
+    "lint:css": "stylelint './src/**/*.{ts,tsx}' --fix"
   },
   "dependencies": {
     "@types/axios": "^0.14.0",

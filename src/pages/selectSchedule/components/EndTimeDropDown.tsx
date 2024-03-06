@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import styled from 'styled-components/macro';
@@ -6,14 +6,12 @@ import { theme } from 'styles/theme';
 
 interface PropTypes {
   times: string;
-  text: string;
   id: number;
-  isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   handleEndTime: (id: number, endTime: string) => void;
 }
 
-function EndTimeDropDown({ times, text, id, isOpen, setIsOpen, handleEndTime }: PropTypes) {
+function EndTimeDropDown({ times, id, setIsOpen, handleEndTime }: PropTypes) {
   const getStartTime = (e: React.MouseEvent<HTMLDivElement>) => {
     e.preventDefault();
     handleEndTime(id, times);

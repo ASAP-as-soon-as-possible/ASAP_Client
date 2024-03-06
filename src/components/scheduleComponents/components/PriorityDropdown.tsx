@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { scheduleAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
@@ -81,12 +81,6 @@ function PriorityDropdown() {
     handleDropdown(i);
   };
 
-  // useEffect(
-  //   () => {
-  //     console.log(input_);
-  //   },
-  //   [input_],
-  // );
   return (
     <PriorityDropdownWrapper>
       {scheduleList.map(
@@ -154,11 +148,10 @@ function PriorityDropdown() {
 }
 const PriorityDropdownWrapper = styled.div`
   display: flex;
-
   flex-direction: column;
+
   gap: 1.2rem;
   justify-content: start;
-
   margin-top: 3rem;
   margin-bottom: 7.5rem;
   width: 100%;
@@ -167,6 +160,7 @@ const PriorityDropdownWrapper = styled.div`
 
 const PriorityDropdownSection = styled.div`
   display: flex;
+
   gap: 1.3rem;
   justify-content: space-between;
   width: 100%;
