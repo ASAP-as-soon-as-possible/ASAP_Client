@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
-import { DropUpIc, DropDownIc, Wave } from 'components/Icon/icon';
-import { preferTimeType, directInputButton } from 'pages/createMeeting/data/meetingInfoData';
+import { DropDownIc, DropUpIc, Wave } from 'components/Icon/icon';
+import { directInputButton, preferTimeType } from 'pages/createMeeting/data/meetingInfoData';
 import { FunnelProps, PreferTimeInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
@@ -180,7 +180,13 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
 
       <StyledBtnSection>
         <Button
-          typeState={buttonStateHandler() ? 'primaryActive' : 'secondaryDisabled'}
+          typeState={
+            meetingInfo.preferTimes.length >= 1 &&
+            meetingInfo.preferTimes[0].startTime &&
+            meetingInfo.preferTimes[0].endTime !== '00:00'
+              ? 'primaryActive'
+              : 'primaryDisabled'
+          }
           onClick={
             buttonStateHandler()
               ? () => {
