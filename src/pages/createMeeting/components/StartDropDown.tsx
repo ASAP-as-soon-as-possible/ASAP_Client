@@ -4,22 +4,21 @@ import Text from 'components/atomComponents/Text';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-import { timeList } from '../data/meetingInfoData';
 import { MeetingInfo } from '../types/useFunnelInterface';
 
 interface PropTypes {
   time: string;
   type: string;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
+
   setMeetingInfo: Dispatch<SetStateAction<MeetingInfo>>;
 }
 
-function StartDropDown({ time, type, setIsOpen, setMeetingInfo }: PropTypes) {
+function StartDropDown({ time, type, setMeetingInfo }: PropTypes) {
   const getTime = (time: string) => {
     if (type == 'start') {
       setMeetingInfo((prev) => ({
         ...prev,
-        preferTimes: [{ startTime: time, endTime: '00:00' }],
+        preferTimes: [{ startTime: time, endTime: prev.preferTimes[0].endTime }],
       }));
     } else if (type == 'end') {
       setMeetingInfo((prev) => ({

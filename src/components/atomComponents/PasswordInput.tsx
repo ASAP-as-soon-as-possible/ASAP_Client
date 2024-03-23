@@ -16,6 +16,7 @@ function PasswordInput({ value, placeholder, passWordOnChange, page }: ValueProp
   const [inputType, setInputType] = useState(true);
 
   const changePasswordType = () => {
+    console.log(inputType);
     setInputType((prev) => !prev);
   };
   return (
@@ -26,7 +27,7 @@ function PasswordInput({ value, placeholder, passWordOnChange, page }: ValueProp
           value={value}
           onChange={passWordOnChange}
           $iserror={value.length < 4}
-          type={inputType ? `number` : undefined}
+          type={inputType ? 'password' : `number`}
           inputMode="numeric"
         />
         <IconContainer onClick={changePasswordType}>
