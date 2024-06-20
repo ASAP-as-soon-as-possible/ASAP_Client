@@ -1,5 +1,11 @@
+import SelectSchedule from './selectSchedule/SelectSchedule';
+
 function Test() {
-  return <div>Test</div>;
+  return (
+    <div>
+      <SelectSchedule />
+    </div>
+  );
 }
 
 export default Test;

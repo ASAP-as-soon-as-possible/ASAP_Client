@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { availableDatesAtom, preferTimesAtom, timeSlotUserNameAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
-import LoadingPage from 'pages/ErrorLoading/LoadingPage';
+import LoadingPage from 'pages/errorLoading/LoadingPage';
 import { useParams } from 'react-router-dom';
-import { useRecoilState,useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { OverallScheduleData } from 'src/types/overallScheduleType';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';

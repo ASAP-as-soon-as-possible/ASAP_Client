@@ -1,5 +1,5 @@
+import { BestDataProps } from 'pages/bestMeetTime/types/meetCardData';
 import Text from 'components/atomComponents/Text';
-import { BestDataProps } from 'pages/BestMeetTime/types/meetCardData';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 

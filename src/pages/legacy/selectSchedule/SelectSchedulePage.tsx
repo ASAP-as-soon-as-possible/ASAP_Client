@@ -102,7 +102,6 @@ function SelectSchedulePage() {
       priority: 0,
     };
     setScheduleList([...scheduleList, schedule]);
-    console.log(scheduleList);
   };
 
   const deleteDataList = (index: number) => {

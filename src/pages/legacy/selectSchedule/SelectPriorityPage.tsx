@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { availableDatesAtom, preferTimesAtom, scheduleAtom } from 'atoms/atom';
-import { useNavigate, useParams } from 'react-router-dom';
 
-import Button from 'components/atomComponents/Button';
-import Header from 'components/moleculesComponents/Header';
-import PriorityDropdown from 'components/legacy/scheduleComponents/components/PriorityDropdown';
-import SelectModal from './SelectModal';
-import Text from 'components/atomComponents/Text';
-import TimeTable from 'components/legacy/scheduleComponents/components/TimeTable';
-import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
+import { availableDatesAtom, preferTimesAtom, scheduleAtom } from 'atoms/atom';
 import axios from 'axios';
+import Button from 'components/atomComponents/Button';
+import Text from 'components/atomComponents/Text';
+import PriorityDropdown from 'components/legacy/scheduleComponents/components/PriorityDropdown';
+import TimeTable from 'components/legacy/scheduleComponents/components/TimeTable';
+import Header from 'components/moleculesComponents/Header';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
-import { useRecoilState } from 'recoil';
+import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
+
+import SelectModal from './SelectModal';
 
 const SelectSchedulePriority = () => {
   const [availableDates, setAvailableDates] = useRecoilState(availableDatesAtom);
