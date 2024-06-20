@@ -1,5 +1,11 @@
+import Timetable from './components/timetable/Timetable';
+
 function SelectSchedule() {
-  return <div>SelectSchedule</div>;
+  return (
+    <div>
+      <Timetable />
+    </div>
+  );
 }
 
 export default SelectSchedule;
