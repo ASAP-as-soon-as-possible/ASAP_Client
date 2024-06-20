@@ -34,9 +34,24 @@ const availableDates: DateType[] = [
     day: '23',
     dayOfWeek: '일',
   },
+  {
+    month: '6',
+    day: '23',
+    dayOfWeek: '일',
+  },
+  {
+    month: '6',
+    day: '23',
+    dayOfWeek: '일',
+  },
+  {
+    month: '6',
+    day: '23',
+    dayOfWeek: '일',
+  },
 ];
 
-const dates = fillWeekDates(availableDates);
+const emptyDates = Array.from({ length: 7 - availableDates.length }, (_, i) => `empty${i + 1}`);
 
 export type SlotType = {
   startTime: string;
@@ -61,13 +76,14 @@ function Timetable() {
       }}
     >
       <StyledTimetable>
-        {dates.map((date) => (
+        {availableDates.map((date) => (
           <Column
             key={Object.values(date).join('/')}
             date={Object.values(date).join('/')}
             timeSlots={timeSlots}
           />
         ))}
+        {emptyDates && emptyDates.map((value) => <EmptyColumn key={value} />)}
       </StyledTimetable>
     </TimetableContext.Provider>
   );
@@ -78,6 +94,14 @@ export default Timetable;
 const StyledTimetable = styled.div`
   display: flex;
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey7};
-
   border-left: 1px solid ${({ theme }) => theme.colors.grey7};
+`;
+
+const EmptyColumn = styled.div`
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid ${({ theme }) => theme.colors.grey7};
+  border-right: 1px solid ${({ theme }) => theme.colors.grey7};
+  background-color: ${({ theme }) => theme.colors.grey9};
+  width: 4.4rem;
 `;

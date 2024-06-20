@@ -16,5 +16,4 @@ const StyledSlot = styled.div<{ $borderStyle: string }>`
   border-top: 1px ${({ $borderStyle }) => $borderStyle} ${({ theme }) => theme.colors.grey7};
   width: 4.4rem;
   height: 2rem;
-  color: white;
 `;
