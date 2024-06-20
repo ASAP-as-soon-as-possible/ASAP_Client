@@ -1,4 +1,4 @@
-import { DateStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
+import { DateStates, TimeStates } from 'pages/legacy/selectSchedule/types/Schedule';
 
 import React from 'react';
 import Row from './Row';

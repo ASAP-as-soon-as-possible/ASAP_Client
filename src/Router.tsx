@@ -1,3 +1,5 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 import ChooseBestTime from 'pages/BestMeetTime/ChooseBestTime';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
@@ -5,10 +7,9 @@ import ErrorPage404 from 'pages/ErrorLoading/ErrorPage404';
 import LoadingPage from 'pages/ErrorLoading/LoadingPage';
 import LoginEntrance from 'pages/LoginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
-import SelectSchedulePriority from 'pages/selectSchedule/SelectPriorityPage';
 import SelectPage from 'pages/selectSchedule/SelectSchedulePage';
+import SelectSchedulePriority from 'pages/legacy/selectSchedule/SelectPriorityPage';
 import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router = () => {
   return (
