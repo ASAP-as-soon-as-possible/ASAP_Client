@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { ReactNode, createContext, useContext } from 'react';
 
 export type SelectedSlotsType = {
   [date: string]: {
@@ -8,13 +8,17 @@ export type SelectedSlotsType = {
 };
 
 type TimetableContextType = {
-  startSlot?: string;
+  startSlot?: ReactNode;
+  setStartSlot: (startSlot?: string) => void;
   selectedSlots: SelectedSlotsType;
+  setSelectedSlots: (selectedSlots: SelectedSlotsType) => void;
 };
 
 export const TimetableContext = createContext<TimetableContextType>({
   startSlot: undefined,
+  setStartSlot: () => undefined,
   selectedSlots: {},
+  setSelectedSlots: () => undefined,
 });
 
 export function useTimetableContext() {

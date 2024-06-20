@@ -25,19 +25,3 @@ export function getAvailableTimes(times: SlotType) {
   }
   return getTimeSlots(times.startTime, times.endTime);
 }
-
-/**
- *
- * @description 날짜 리스트의 길이가 7이 될 때까지 비어있는 날짜에 대해 undefined를 채우는 함수입니다.
- */
-export function fillWeekDates(dates: DateType[]): DateType[] {
-  const filledDates = [...dates];
-  while (filledDates.length < 7) {
-    filledDates.push({
-      month: undefined,
-      day: undefined,
-      dayOfWeek: undefined,
-    });
-  }
-  return filledDates;
-}

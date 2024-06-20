@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { SelectedSlotsType, TimetableContext } from './context';
 import Column from './parts/Column';
-import { fillWeekDates, getAvailableTimes } from './utils';
+import { getAvailableTimes } from './utils';
 
 // api 연결 후 지울 것
 export type DateType = {
@@ -34,21 +34,6 @@ const availableDates: DateType[] = [
     day: '23',
     dayOfWeek: '일',
   },
-  {
-    month: '6',
-    day: '23',
-    dayOfWeek: '일',
-  },
-  {
-    month: '6',
-    day: '23',
-    dayOfWeek: '일',
-  },
-  {
-    month: '6',
-    day: '23',
-    dayOfWeek: '일',
-  },
 ];
 
 const emptyDates = Array.from({ length: 7 - availableDates.length }, (_, i) => `empty${i + 1}`);
@@ -67,12 +52,24 @@ const timeSlots = getAvailableTimes(preferTimes);
 
 function Timetable() {
   const [startSlot, setStartSlot] = useState<string | undefined>(undefined);
-  const [selectedSlots, setSelectedSlots] = useState<SelectedSlotsType>({});
+  const [selectedSlots, setSelectedSlots] = useState<SelectedSlotsType>({
+    // 시간표 색칠을 테스트하기 위한 더미 값
+    '6/20/목': {
+      startSlot: '09:00',
+      endSlot: '13:00',
+    },
+    '6/21/금': {
+      startSlot: '15:00',
+      endSlot: '18:00',
+    },
+  });
   return (
     <TimetableContext.Provider
       value={{
         startSlot,
+        setStartSlot,
         selectedSlots,
+        setSelectedSlots,
       }}
     >
       <StyledTimetable>
