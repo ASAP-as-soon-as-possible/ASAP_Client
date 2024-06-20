@@ -9,12 +9,9 @@ export const transformHostScheduleType = (
   scheduleList: ScheduleStates[],
 ): (HostAvailableSchduleRequestType | null)[] => {
   return scheduleList.map((item) => {
-    // const regexResult = item.date.match(/(\d+)월 (\d+)일 \((\S+)\)/);
-    // console.log(regexResult);
-
     const matchedResult = item.date.match(/(\d+)월 (\d+)일 \((\S+)\)/);
     if (!matchedResult) {
-      return null; // Handle the case when there is no match for the date pattern
+      return null;
     }
     const [, month, day, dateOfWeek] = matchedResult;
 
@@ -37,8 +34,6 @@ export const transformUserScheduleType = (
   const availableTimes = scheduleList.map((item) => {
     const matchedResult = item.date.match(/(\d+)월 (\d+)일 \((\S+)\)/);
     if (!matchedResult) {
-      // Handle the case when there is no match for the date pattern
-      // For example, you can return an empty object or any default value you prefer.
       return {
         id: '',
         month: '',

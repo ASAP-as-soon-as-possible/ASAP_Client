@@ -8,6 +8,7 @@ import SelectPage from 'pages/legacy/selectSchedule/SelectSchedulePage';
 import LoginEntrance from 'pages/loginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
 import SteppingLayout from 'pages/steppingStone/SteppingLayout';
+import Test from 'pages/Test';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router = () => {
@@ -36,6 +37,7 @@ const Router = () => {
         <Route path="*" element={<ErrorPage404 />} />
         <Route path="/error" element={<ErrorPage404 />} />
         <Route path="/select" element={<SelectPage />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );

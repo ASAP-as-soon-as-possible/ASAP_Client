@@ -16,7 +16,6 @@ function PasswordInput({ value, placeholder, passWordOnChange, page }: ValueProp
   const [inputType, setInputType] = useState(true);
 
   const changePasswordType = () => {
-    console.log(inputType);
     setInputType((prev) => !prev);
   };
   return (

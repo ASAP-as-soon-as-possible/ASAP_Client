@@ -1,12 +1,12 @@
-import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
 import { useEffect, useState } from 'react';
 
-import { ScheduleStates } from 'pages/legacy/selectSchedule/types/Schedule';
-import Text from 'components/atomComponents/Text';
 import { scheduleAtom } from 'atoms/atom';
+import Text from 'components/atomComponents/Text';
+import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
+import { ScheduleStates } from 'pages/legacy/selectSchedule/types/Schedule';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { useRecoilState } from 'recoil';
 
 function PriorityDropdown() {
   const [scheduleList, setScheduleList] = useRecoilState<ScheduleStates[]>(scheduleAtom);
@@ -81,12 +81,6 @@ function PriorityDropdown() {
     handleDropdown(i);
   };
 
-  // useEffect(
-  //   () => {
-  //     console.log(input_);
-  //   },
-  //   [input_],
-  // );
   return (
     <PriorityDropdownWrapper>
       {scheduleList.map(

@@ -1,9 +1,10 @@
-import Column from './Column';
 import Text from 'components/atomComponents/Text';
-import { filterUserNames } from '../utils/setUserNames';
 import getTimeSlots from 'components/legacy/scheduleComponents/utils/getTimeSlots';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
+
+import Column from './Column';
+import { filterUserNames } from '../utils/setUserNames';
 
 interface TimeSlot{
   time:string;
@@ -53,7 +54,6 @@ const Row = (props: RowProps) => {
     if (objArray === undefined) return;
     const targetObj = objArray.find((obj)=> obj.time === targetTime);
     if(targetObj){
-      console.log(targetObj.userNames);
       const temp=filterUserNames(targetObj.userNames);
       return temp;
     }

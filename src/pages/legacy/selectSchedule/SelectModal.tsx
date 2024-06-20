@@ -1,11 +1,11 @@
-import React, { Dispatch, useEffect, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useEffect } from 'react';
 
 import { scheduleAtom, userNameAtom } from 'atoms/atom';
 import { isAxiosError } from 'axios';
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
 import { useNavigate, useParams } from 'react-router';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { hostAvailableApi, userAvailableApi } from 'utils/apis/createHostAvailableSchedule';
@@ -24,15 +24,12 @@ function SelectModal({ setShowModal }: ModalProps) {
   const navigate = useNavigate();
   const { auth, meetingId } = useParams();
   const updateScheduleType = transformHostScheduleType(scheduleList);
-  console.log(updateScheduleType);
   const updateMemberScheduleType = transformUserScheduleType(scheduleList, userName);
-  console.log(updateMemberScheduleType);
 
   const postHostAvailableApi = async () => {
     try {
       if (meetingId && updateScheduleType) {
         const { data } = await hostAvailableApi(meetingId, updateScheduleType);
-        console.log(data);
         if (data.code === 201) {
           setShowModal(false);
           navigate(`/${auth}/schedule-complete/${meetingId}`);
@@ -58,7 +55,6 @@ function SelectModal({ setShowModal }: ModalProps) {
     try {
       if (meetingId && updateMemberScheduleType) {
         const { data } = await userAvailableApi(meetingId, updateMemberScheduleType);
-        console.log(data);
         if (data.code === 201) {
           setShowModal(false);
           navigate(`/${auth}/schedule-complete/${meetingId}`);
@@ -69,7 +65,6 @@ function SelectModal({ setShowModal }: ModalProps) {
       }
     } catch (e) {
       if (isAxiosError(e) && e.response) {
-        console.log(e.response.data);
         if (e.response.status === 400) {
           alert(`${e.response.data.message}`);
         } else {
@@ -80,25 +75,12 @@ function SelectModal({ setShowModal }: ModalProps) {
     }
   };
 
-  useEffect(
-    () => {
-      console.log(scheduleList);
-    },
-    [scheduleList],
-  );
-
-  // console.log(transformedScheduleList);
   const finishConfirm = () => {
-    //여기에 api 연결하세요.
     if (auth === 'host') {
       postHostAvailableApi();
     } else if (auth === 'member') {
-      console.log(auth);
       postMemberAvailableApi();
     }
-
-    // setShowModal(false);
-    // navigate(`/${auth}/schedule-complete/${meetingId}`);
   };
   return (
     <ReturnModalWrpper>

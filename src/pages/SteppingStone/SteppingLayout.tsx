@@ -48,14 +48,6 @@ function SteppingLayout({ steppingType }: SteppingProps) {
     };
   }, []);
 
-  // useEffect(() => {
-  //   history.pushState(null, '', location.href);
-  //   console.log(location.href);
-  //   window.onpopstate = function() {
-  //     history.go(1);
-  //   };
-  // }, []);
-
   return (
     <>
       <SteppingWrapper>
