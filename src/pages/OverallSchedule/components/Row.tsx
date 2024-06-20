@@ -1,10 +1,9 @@
+import Column from './Column';
 import Text from 'components/atomComponents/Text';
-import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
+import { filterUserNames } from '../utils/setUserNames';
+import getTimeSlots from 'components/legacy/scheduleComponents/utils/getTimeSlots';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
-
-import Column from './Column';
-import { filterUserNames } from '../utils/setUserNames';
 
 interface TimeSlot{
   time:string;

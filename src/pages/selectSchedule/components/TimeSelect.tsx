@@ -1,12 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { ScheduleStates, TimeStates } from '../types/Schedule';
 
 import Text from 'components/atomComponents/Text';
-import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
+import TimeDropDown from './TimeDropDown';
+import getTimeSlots from 'components/legacy/scheduleComponents/utils/getTimeSlots';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-
-import TimeDropDown from './TimeDropDown';
-import { ScheduleStates, TimeStates } from '../types/Schedule';
 
 interface PropTypes {
   text: string;

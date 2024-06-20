@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 import { ExitIc } from 'components/Icon/icon';
-import { compareTime } from 'components/scheduleComponents/utils/compareTime';
+import { compareTime } from 'components/legacy/scheduleComponents/utils/compareTime';
 import styled from 'styled-components/macro';
 
 import DateSelect from './DateSelect';

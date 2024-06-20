@@ -5,8 +5,8 @@ import axios from 'axios';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { PlusIc } from 'components/Icon/icon';
+import TimeTable from 'components/legacy/scheduleComponents/components/TimeTable';
 import Header from 'components/moleculesComponents/Header';
-import TimeTable from 'components/scheduleComponents/components/TimeTable';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { MeetingDetail } from 'src/types/availbleScheduleType';
@@ -269,9 +269,9 @@ const StyledBtnSection = styled.section`
   bottom: 0;
   align-items: end;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.dim_gradient};
 
-  margin-top:3rem;
+  margin-top: 3rem;
+  background: ${({ theme }) => theme.colors.dim_gradient};
   padding-bottom: 2.9rem;
 
   width: 100%;

@@ -39,7 +39,6 @@ function SteppingLayout({ steppingType }: SteppingProps) {
   );
 
   const handlePopstate = () => {
-    alert('handle 작동');
     navigate('/');
   };
 

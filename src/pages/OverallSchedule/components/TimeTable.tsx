@@ -1,13 +1,11 @@
+import { DateStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
 
 import React from 'react';
-
+import Row from './Row';
 import Text from 'components/atomComponents/Text';
-import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
-import { DateStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
+import getTimeSlots from 'components/legacy/scheduleComponents/utils/getTimeSlots';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
-
-import Row from './Row';
 
 interface TimeTableProps {
   selectedSchedule?: SelectedSchedule[];
