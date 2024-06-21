@@ -28,12 +28,14 @@ const useSlotSeletion = () => {
         const newSelectedSlots = {...selectedSlots};
         delete newSelectedSlots[selectedEntryId];
         setSelectedSlots(newSelectedSlots);
-        setStartSlot(undefined)
     }
 
     const onClickSlot = (targetSlot:string, selectedEntryId?:number)=>{
         if (selectedEntryId !== undefined){
-            handleDeleteSlot(selectedEntryId);
+            if (startSlot === undefined){
+                handleDeleteSlot(selectedEntryId);
+            }
+            setStartSlot(undefined)
         } else if (startSlot !== undefined){
             handleCompleteSlot(targetSlot)
         } else {

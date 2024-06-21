@@ -2,9 +2,10 @@ import { useState } from 'react';
 
 import styled from 'styled-components';
 
-import { SelectedSlotsType, TimetableContext } from './context';
+import { SelectedSlotType, TimetableContext } from './context';
 import Column from './parts/Column';
 import DateTitle from './parts/ColumnTitle';
+import SelectionSlots from './parts/SelectionSlots';
 import SlotTitle from './parts/SlotTitle';
 import { getAvailableTimes } from './utils';
 
@@ -54,7 +55,7 @@ const timeSlots = getAvailableTimes(preferTimes);
 
 function Timetable() {
   const [startSlot, setStartSlot] = useState<string | undefined>(undefined);
-  const [selectedSlots, setSelectedSlots] = useState<SelectedSlotsType>({});
+  const [selectedSlots, setSelectedSlots] = useState<SelectedSlotType>({});
   return (
     <TimetableContext.Provider
       value={{
@@ -70,11 +71,13 @@ function Timetable() {
           <DateTitle availableDates={availableDates} />
           <Table>
             {availableDates.map((date) => (
-              <Column
-                key={Object.values(date).join('/')}
-                date={Object.values(date).join('/')}
-                timeSlots={timeSlots}
-              />
+              <Column key={Object.values(date).join('/')}>
+                <SelectionSlots
+                  date={Object.values(date).join('/')}
+                  timeSlots={timeSlots}
+                  selectedSlots={selectedSlots}
+                />
+              </Column>
             ))}
             {emptyDates && emptyDates.map((value) => <EmptyColumn key={value} />)}
           </Table>

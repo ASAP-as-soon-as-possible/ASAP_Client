@@ -1,38 +1,13 @@
+import { ReactNode } from 'react';
+
 import styled from 'styled-components';
 
-import Slot from './Slot';
-import { useTimetableContext } from '../context';
-
 interface ColumnProps {
-  date: string;
-  timeSlots: string[];
+  children: ReactNode;
 }
 
-function Column({ date, timeSlots }: ColumnProps) {
-  const { selectedSlots } = useTimetableContext();
-  const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
-    ([, slot]) => slot.date === date,
-  );
-
-  return (
-    <StyledColumn>
-      {timeSlots.map((timeSlot) => {
-        const belongingEntry = selectedSlotsPerDate.find(
-          ([, { startSlot, endSlot }]) => timeSlot >= startSlot && timeSlot <= endSlot,
-        );
-
-        const selectedEntryId = belongingEntry ? parseInt(belongingEntry[0]) : undefined;
-
-        return (
-          <Slot
-            key={`${date}/${timeSlot}`}
-            slot={`${date}/${timeSlot}`}
-            selectedEntryId={selectedEntryId}
-          />
-        );
-      })}
-    </StyledColumn>
-  );
+function Column({ children }: ColumnProps) {
+  return <StyledColumn>{children}</StyledColumn>;
 }
 
 export default Column;
