@@ -10,16 +10,25 @@ interface ColumnProps {
 
 function Column({ date, timeSlots }: ColumnProps) {
   const { selectedSlots } = useTimetableContext();
-  const selectedSlotsPerDate = Object.values(selectedSlots).filter((slot) => slot.date === date);
+  const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
+    ([, slot]) => slot.date === date,
+  );
 
   return (
     <StyledColumn>
       {timeSlots.map((timeSlot) => {
-        const isSelected = selectedSlotsPerDate.some(
-          ({ startSlot, endSlot }) => timeSlot >= startSlot && timeSlot <= endSlot,
+        const belongingEntry = selectedSlotsPerDate.find(
+          ([, { startSlot, endSlot }]) => timeSlot >= startSlot && timeSlot <= endSlot,
         );
+
+        const selectedEntryId = belongingEntry ? parseInt(belongingEntry[0]) : undefined;
+
         return (
-          <Slot key={`${date}/${timeSlot}`} slot={`${date}/${timeSlot}`} isSelected={isSelected} />
+          <Slot
+            key={`${date}/${timeSlot}`}
+            slot={`${date}/${timeSlot}`}
+            selectedEntryId={selectedEntryId}
+          />
         );
       })}
     </StyledColumn>

@@ -4,22 +4,17 @@ import { useTimetableContext } from '../context';
 
 interface SlotProps {
   slot: string;
-  isSelected: boolean;
+  selectedEntryId?: number;
 }
 
-function Slot({ slot, isSelected }: SlotProps) {
-  const { startSlot, setStartSlot, selectedSlots } = useTimetableContext();
+function Slot({ slot, selectedEntryId }: SlotProps) {
+  const { startSlot, setStartSlot, selectedSlots, setSelectedSlots } = useTimetableContext();
 
   const onClickSlot = (targetSlot: string) => {
-    if (isSelected) {
-      const date = slot.substring(0, slot.lastIndexOf('/'));
-      const updatedSlots = selectedSlots[date].filter(
-        (slot) => !(targetSlot >= slot.startSlot && targetSlot <= slot.endSlot),
-      );
-      if (selectedSlots[date].length === 0) {
-        delete selectedSlots[date];
-      }
-      console.log(updatedSlots);
+    if (selectedEntryId !== undefined) {
+      const newSelectedSlots = { ...selectedSlots };
+      delete newSelectedSlots[selectedEntryId];
+      setSelectedSlots(newSelectedSlots);
     }
   };
 
@@ -27,7 +22,7 @@ function Slot({ slot, isSelected }: SlotProps) {
   return (
     <StyledSlot
       $borderStyle={borderStyle}
-      $isSelected={isSelected}
+      $isSelected={selectedEntryId !== undefined}
       onClick={() => onClickSlot(slot)}
     />
   );
