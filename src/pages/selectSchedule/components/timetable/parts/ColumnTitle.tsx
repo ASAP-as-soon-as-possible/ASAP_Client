@@ -4,13 +4,13 @@ import { theme } from 'styles/theme';
 
 import { DateType } from '../Timetable';
 
-interface DateTitleProps {
+interface ColumnTitleProps {
   availableDates: DateType[];
 }
 
-function DateTitle({ availableDates }: DateTitleProps) {
+function ColumnTitle({ availableDates }: ColumnTitleProps) {
   return (
-    <DateTitleWrapper>
+    <ColumnTitleWrapper>
       {availableDates.map((date) => {
         const { month, day, dayOfWeek } = date;
         return (
@@ -24,11 +24,11 @@ function DateTitle({ availableDates }: DateTitleProps) {
           </Date>
         );
       })}
-    </DateTitleWrapper>
+    </ColumnTitleWrapper>
   );
 }
 
-const DateTitleWrapper = styled.div`
+const ColumnTitleWrapper = styled.div`
   display: flex;
   gap: 1px;
   margin-bottom:0.8rem;
@@ -43,4 +43,4 @@ const Date = styled.div`
   width: 4.4rem;
 `;
 
-export default DateTitle;
+export default ColumnTitle;

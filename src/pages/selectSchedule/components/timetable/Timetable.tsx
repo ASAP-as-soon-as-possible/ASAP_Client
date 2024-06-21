@@ -87,17 +87,19 @@ function Timetable() {
         setSelectedSlots,
       }}
     >
-      <DateTitle availableDates={availableDates} />
-      <Table>
-        {availableDates.map((date) => (
-          <Column
-            key={Object.values(date).join('/')}
-            date={Object.values(date).join('/')}
-            timeSlots={timeSlots}
-          />
-        ))}
-        {emptyDates && emptyDates.map((value) => <EmptyColumn key={value} />)}
-      </Table>
+      <>
+        <DateTitle availableDates={availableDates} />
+        <Table>
+          {availableDates.map((date) => (
+            <Column
+              key={Object.values(date).join('/')}
+              date={Object.values(date).join('/')}
+              timeSlots={timeSlots}
+            />
+          ))}
+          {emptyDates && emptyDates.map((value) => <EmptyColumn key={value} />)}
+        </Table>
+      </>
     </TimetableContext.Provider>
   );
 }
