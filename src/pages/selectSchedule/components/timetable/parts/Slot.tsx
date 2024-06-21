@@ -15,6 +15,27 @@ function Slot({ slot, selectedEntryId }: SlotProps) {
       const newSelectedSlots = { ...selectedSlots };
       delete newSelectedSlots[selectedEntryId];
       setSelectedSlots(newSelectedSlots);
+      setStartSlot(undefined);
+    } else {
+      if (startSlot === undefined) {
+        setStartSlot(targetSlot);
+      } else {
+        const dateOfStartSlot = startSlot.substring(0, startSlot.lastIndexOf('/'));
+        const dateOfTargetSlot = targetSlot.substring(0, targetSlot.lastIndexOf('/'));
+        if (dateOfStartSlot === dateOfTargetSlot) {
+          const newSelectedSlot = {
+            date: dateOfStartSlot,
+            startSlot: startSlot.substring(startSlot.lastIndexOf('/') + 1),
+            endSlot: targetSlot.substring(targetSlot.lastIndexOf('/') + 1),
+          };
+          const keys = Object.keys(selectedSlots).map(Number);
+          console.log(keys);
+          const newKey = keys.length ? Math.max(...keys) + 1 : 0;
+          selectedSlots[newKey] = newSelectedSlot;
+          console.log(selectedSlots);
+        }
+        setStartSlot(undefined);
+      }
     }
   };
 
