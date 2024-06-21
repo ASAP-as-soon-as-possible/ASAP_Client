@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { useTimetableContext } from '../context';
+import useSlotSeletion from '../hooks/useSlotSelection';
 
 interface SlotProps {
   slot: string;
@@ -8,42 +8,13 @@ interface SlotProps {
 }
 
 function Slot({ slot, selectedEntryId }: SlotProps) {
-  const { startSlot, setStartSlot, selectedSlots, setSelectedSlots } = useTimetableContext();
-
-  const onClickSlot = (targetSlot: string) => {
-    if (selectedEntryId !== undefined) {
-      if (startSlot === undefined) {
-        const newSelectedSlots = { ...selectedSlots };
-        delete newSelectedSlots[selectedEntryId];
-        setSelectedSlots(newSelectedSlots);
-      }
-      setStartSlot(undefined);
-    } else {
-      if (startSlot === undefined) {
-        setStartSlot(targetSlot);
-      } else {
-        const dateOfStartSlot = startSlot.substring(0, startSlot.lastIndexOf('/'));
-        const dateOfTargetSlot = targetSlot.substring(0, targetSlot.lastIndexOf('/'));
-        if (dateOfStartSlot === dateOfTargetSlot) {
-          const newSelectedSlot = {
-            date: dateOfStartSlot,
-            startSlot: startSlot.substring(startSlot.lastIndexOf('/') + 1),
-            endSlot: targetSlot.substring(targetSlot.lastIndexOf('/') + 1),
-          };
-          const keys = Object.keys(selectedSlots).map(Number);
-          const newKey = keys.length ? Math.max(...keys) + 1 : 0;
-          selectedSlots[newKey] = newSelectedSlot;
-        }
-        setStartSlot(undefined);
-      }
-    }
-  };
+  const { startSlot, onClickSlot } = useSlotSeletion();
 
   const borderStyle = slot.endsWith(':30') ? 'dashed' : 'solid';
   const styledSlotProps = {
     $borderStyle: borderStyle,
     $isSelected: selectedEntryId !== undefined,
-    onClick: () => onClickSlot(slot),
+    onClick: () => onClickSlot(slot, selectedEntryId),
   };
 
   if (slot === startSlot) {
