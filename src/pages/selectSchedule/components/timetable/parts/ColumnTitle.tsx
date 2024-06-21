@@ -31,7 +31,6 @@ function ColumnTitle({ availableDates }: ColumnTitleProps) {
 const ColumnTitleWrapper = styled.div`
   display: flex;
   gap: 1px;
-  margin-bottom:0.8rem;
   padding-left: 1px;
 `;
 

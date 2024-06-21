@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 import { SelectedSlotsType, TimetableContext } from './context';
 import Column from './parts/Column';
-import DateTitle from './parts/DateTitle';
+import DateTitle from './parts/ColumnTitle';
+import SlotTitle from './parts/SlotTitle';
 import { getAvailableTimes } from './utils';
 
 // api 연결 후 지울 것
@@ -87,24 +88,38 @@ function Timetable() {
         setSelectedSlots,
       }}
     >
-      <>
-        <DateTitle availableDates={availableDates} />
-        <Table>
-          {availableDates.map((date) => (
-            <Column
-              key={Object.values(date).join('/')}
-              date={Object.values(date).join('/')}
-              timeSlots={timeSlots}
-            />
-          ))}
-          {emptyDates && emptyDates.map((value) => <EmptyColumn key={value} />)}
-        </Table>
-      </>
+      <TimetableWrapper>
+        <SlotTitle timeSlots={timeSlots} />
+        <TableWrapper>
+          <DateTitle availableDates={availableDates} />
+          <Table>
+            {availableDates.map((date) => (
+              <Column
+                key={Object.values(date).join('/')}
+                date={Object.values(date).join('/')}
+                timeSlots={timeSlots}
+              />
+            ))}
+            {emptyDates && emptyDates.map((value) => <EmptyColumn key={value} />)}
+          </Table>
+        </TableWrapper>
+      </TimetableWrapper>
     </TimetableContext.Provider>
   );
 }
 
 export default Timetable;
+
+const TimetableWrapper = styled.div`
+  display: flex;
+  gap: 0.75rem;
+`;
+
+const TableWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+`;
 
 const Table = styled.div`
   display: flex;
