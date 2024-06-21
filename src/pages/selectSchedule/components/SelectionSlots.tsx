@@ -1,13 +1,13 @@
-import Slot from './Slot';
-import { SelectedSlotType } from '../context';
+import { useTimetableContext } from '../../../components/timetableComponents/context';
+import Slot from '../../../components/timetableComponents/parts/Slot';
 
 interface SelectionSlotsProps {
   date: string;
   timeSlots: string[];
-  selectedSlots: SelectedSlotType;
 }
 
-function SelectionSlots({ date, timeSlots, selectedSlots }: SelectionSlotsProps) {
+function SelectionSlots({ date, timeSlots }: SelectionSlotsProps) {
+  const { selectedSlots } = useTimetableContext();
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,
   );

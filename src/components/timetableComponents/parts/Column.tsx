@@ -7,12 +7,12 @@ interface ColumnProps {
 }
 
 function Column({ children }: ColumnProps) {
-  return <StyledColumn>{children}</StyledColumn>;
+  return <ColumnWrapper>{children}</ColumnWrapper>;
 }
 
 export default Column;
 
-const StyledColumn = styled.div`
+const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
