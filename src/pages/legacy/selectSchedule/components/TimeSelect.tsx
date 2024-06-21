@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 
+
 import Text from 'components/atomComponents/Text';
-import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
+import getTimeSlots from 'components/legacy/scheduleComponents/utils/getTimeSlots';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 

@@ -1,5 +1,5 @@
 import { clickedTimeSlotAtom, timeSlotUserNameAtom } from 'atoms/atom';
-import { ColumnProps } from 'components/scheduleComponents/types/AvailableScheduleType';
+import { ColumnProps } from 'components/legacy/scheduleComponents/types/AvailableScheduleType';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
@@ -30,7 +30,6 @@ const Column = (props: ColumnProps) => {
   } = props;
 
   const handleSlotClick = () => {
-    console.log(filterUserNames(userNames));
     setTimeSlotUserName(userNames);
     setClickedTimeSlot(rowIdx + timeSlot);
   };

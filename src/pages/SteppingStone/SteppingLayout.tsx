@@ -39,7 +39,6 @@ function SteppingLayout({ steppingType }: SteppingProps) {
   );
 
   const handlePopstate = () => {
-    alert('handle 작동');
     navigate('/');
   };
 
@@ -48,14 +47,6 @@ function SteppingLayout({ steppingType }: SteppingProps) {
       window.addEventListener('popstate', handlePopstate);
     };
   }, []);
-
-  // useEffect(() => {
-  //   history.pushState(null, '', location.href);
-  //   console.log(location.href);
-  //   window.onpopstate = function() {
-  //     history.go(1);
-  //   };
-  // }, []);
 
   return (
     <>

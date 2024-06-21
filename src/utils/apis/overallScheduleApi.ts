@@ -5,8 +5,6 @@ import { authClient, client } from './axios';
 
 /** 가능 시간 입력 선택지 조회 api */
 export const availbleScheduleOptionApi = (meetingId?: string) => {
-  const data= client.get<AvailableScheduleOptionResponse>(`/meeting/${meetingId}/schedule`);
-  console.log(data);
   return client.get<AvailableScheduleOptionResponse>(`/meeting/${meetingId}/schedule`);
 };
 

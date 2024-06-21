@@ -1,13 +1,12 @@
+import { ScheduleStates, TimeStates } from '../types/Schedule';
 import { useEffect, useRef, useState } from 'react';
 
+import EndTimeDropDown from './EndTimeDropDown';
 import Text from 'components/atomComponents/Text';
-import getTimeSlots from 'components/scheduleComponents/utils/getTimeSlots';
+import { addThirtyMinutesToLastElement } from '../utils/addThirtyMinutesToLastElement';
+import getTimeSlots from 'components/legacy/scheduleComponents/utils/getTimeSlots';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-
-import EndTimeDropDown from './EndTimeDropDown';
-import { ScheduleStates, TimeStates } from '../types/Schedule';
-import { addThirtyMinutesToLastElement } from '../utils/addThirtyMinutesToLastElement';
 
 interface PropTypes {
   text: string;

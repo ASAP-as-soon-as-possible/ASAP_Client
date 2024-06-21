@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 
 import { availableDatesAtom, preferTimesAtom, timeSlotUserNameAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
-import LoadingPage from 'pages/ErrorLoading/LoadingPage';
+import LoadingPage from 'pages/errorLoading/LoadingPage';
 import { useParams } from 'react-router-dom';
-import { useRecoilState,useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { OverallScheduleData } from 'src/types/overallScheduleType';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
@@ -44,7 +44,6 @@ const OverallSchedule = () => {
       const result = await overallScheduleApi(meetingId);
       const { data } = result.data;
       const uniqueData = [...new Set(data.totalUserNames)];
-      console.log(uniqueData);
       setOverallScheduleData(data);
       setMemberCount(data.memberCount);
       setTotalUserNames(uniqueData);
@@ -61,9 +60,6 @@ const OverallSchedule = () => {
   const formattedAvailableDateTimes =
   overallScheduleData && getFormattedAvailableDateTimes(overallScheduleData);
 
-console.log(timeSlotUserNames);
-console.log(formattedAvailableDateTimes);
-console.log(timeSlotUserNames);
   return (
     <OverallScheduleWrapper>
       {overallScheduleData ? (

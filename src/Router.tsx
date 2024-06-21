@@ -1,13 +1,14 @@
-import ChooseBestTime from 'pages/BestMeetTime/ChooseBestTime';
+import ChooseBestTime from 'pages/bestMeetTime/ChooseBestTime';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
-import ErrorPage404 from 'pages/ErrorLoading/ErrorPage404';
-import LoadingPage from 'pages/ErrorLoading/LoadingPage';
-import LoginEntrance from 'pages/LoginEntrance/LoginEntrance';
+import ErrorPage404 from 'pages/errorLoading/ErrorPage404';
+import LoadingPage from 'pages/errorLoading/LoadingPage';
+import SelectSchedulePriority from 'pages/legacy/selectSchedule/SelectPriorityPage';
+import SelectPage from 'pages/legacy/selectSchedule/SelectSchedulePage';
+import LoginEntrance from 'pages/loginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
-import SelectSchedulePriority from 'pages/selectSchedule/SelectPriorityPage';
-import SelectPage from 'pages/selectSchedule/SelectSchedulePage';
-import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
+import SteppingLayout from 'pages/steppingStone/SteppingLayout';
+import Test from 'pages/Test';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router = () => {
@@ -36,6 +37,7 @@ const Router = () => {
         <Route path="*" element={<ErrorPage404 />} />
         <Route path="/error" element={<ErrorPage404 />} />
         <Route path="/select" element={<SelectPage />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );

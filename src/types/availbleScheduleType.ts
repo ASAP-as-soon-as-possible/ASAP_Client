@@ -1,4 +1,4 @@
-import { DateStates, TimeStates } from 'pages/selectSchedule/types/Schedule';
+import { DateStates, TimeStates } from 'pages/legacy/selectSchedule/types/Schedule';
 
 export interface AvailableScheduleOptionResponse {
   data: {
