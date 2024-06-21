@@ -7,7 +7,7 @@ import Column from './parts/Column';
 import { getAvailableTimes } from './utils';
 
 // api 연결 후 지울 것
-export type DateType = {
+type DateType = {
   month: string | undefined;
   day: string | undefined;
   dayOfWeek: string | undefined;
@@ -61,6 +61,10 @@ function Timetable() {
     '6/21/금': {
       startSlot: '15:00',
       endSlot: '18:00',
+    },
+    '6/22/토': {
+      startSlot: '12:00',
+      endSlot: '12:00',
     },
   });
   return (

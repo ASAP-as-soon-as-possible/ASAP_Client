@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import Slot from './Slot';
+import { useTimetableContext } from '../context';
 
 interface ColumnProps {
   date: string;
@@ -8,11 +9,20 @@ interface ColumnProps {
 }
 
 function Column({ date, timeSlots }: ColumnProps) {
+  const { selectedSlots } = useTimetableContext();
+  const { startSlot, endSlot } = selectedSlots[date] ?? {};
+
   return (
     <StyledColumn>
-      {timeSlots.map((timeSlot) => (
-        <Slot key={`${date}/${timeSlot}`} slot={`${date}/${timeSlot}`} />
-      ))}
+      {timeSlots.map((timeSlot) => {
+        const isSelectedSlot = timeSlot >= startSlot && timeSlot <= endSlot;
+        return (
+        <Slot
+          key={`${date}/${timeSlot}`}
+          slot={`${date}/${timeSlot}`}
+          isSelectedSlot={isSelectedSlot}
+        />)
+      })}
     </StyledColumn>
   );
 }

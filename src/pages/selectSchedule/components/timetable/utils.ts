@@ -1,4 +1,4 @@
-import { DateType, SlotType } from './Timetable';
+import { SlotType } from './Timetable';
 
 /**
  *

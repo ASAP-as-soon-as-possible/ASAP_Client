@@ -1,26 +1,14 @@
 import styled from 'styled-components';
 
-import { useTimetableContext } from '../context';
-
 interface SlotProps {
   slot: string;
+  isSelectedSlot: boolean;
 }
 
-function Slot({ slot }: SlotProps) {
-  const { selectedSlots } = useTimetableContext();
-  const [month, day, dayOfWeek, time] = slot.split('/');
-  const isHalf = time.endsWith(':30');
+function Slot({ slot, isSelectedSlot }: SlotProps) {
+  const borderStyle = slot.endsWith(':30') ? 'dashed' : 'solid';
 
-  const key = [month, day, dayOfWeek].join('/');
-
-  let isSelected = false;
-  if (key in selectedSlots) {
-    const { startSlot, endSlot } = selectedSlots[key];
-
-    isSelected = time >= startSlot && time <= endSlot;
-  }
-
-  return <StyledSlot $borderStyle={isHalf ? 'dashed' : 'solid'} $isSelected={isSelected} />;
+  return <StyledSlot $borderStyle={borderStyle} $isSelected={isSelectedSlot} />;
 }
 
 export default Slot;
