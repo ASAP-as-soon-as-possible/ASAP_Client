@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import stepingCheck from 'assets/images/steppingCheck.png';
 import stepingFinish from 'assets/images/steppingFinish.png';
 import stepingInsert from 'assets/images/steppingInsert.png';
 import stepingPlus from 'assets/images/steppingPlus.png';
 import Text from 'components/atomComponents/Text';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 

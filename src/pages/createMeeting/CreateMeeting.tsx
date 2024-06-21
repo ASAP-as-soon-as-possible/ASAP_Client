@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Header from 'components/moleculesComponents/Header';
 import ReturnBodyComponent from 'pages/createMeeting/components/ReturnBodyComponent';
@@ -11,7 +11,7 @@ import { MeetingInfo } from './types/useFunnelInterface';
 const initialMeetingInfo: MeetingInfo = {
   title: '',
   availableDates: [''],
-  preferTimes: [],
+  preferTimes: [{ startTime: '00:00', endTime: '00:00' }],
   place: '',
   placeDetail: '',
   duration: '',

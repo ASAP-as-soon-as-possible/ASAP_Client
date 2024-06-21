@@ -46,6 +46,7 @@ function SelectModal({ setShowModal }: ModalProps) {
         if (e.response.status === 400) {
           alert(`${e.response.data.message}`);
         } else {
+          alert(`${e.response.data.message}`);
           console.error(e);
           navigate(`/error`);
         }

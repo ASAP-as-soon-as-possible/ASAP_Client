@@ -1,7 +1,7 @@
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { durationType } from 'pages/createMeeting/data/meetingInfoData';
-import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
 function SetDuration({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
@@ -13,9 +13,7 @@ function SetDuration({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             <Button
               key={i + duration.enum}
               typeState={
-                meetingInfo.duration === duration.enum
-                  ? `halfPrimaryActive`
-                  : `halfsecondaryDisabled`
+                meetingInfo.duration === duration.enum ? `halfPrimaryActive` : `halfPrimaryDisabled`
               }
               onClick={() => {
                 setMeetingInfo((prev: MeetingInfo) => {
@@ -30,7 +28,7 @@ function SetDuration({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
       </DurationWrapper>
       <StyledBtnWrapper>
         <Button
-          typeState={meetingInfo.duration ? 'primaryActive' : 'secondaryDisabled'}
+          typeState={meetingInfo.duration ? 'primaryActive' : 'primaryDisabled'}
           onClick={
             meetingInfo.duration
               ? () =>

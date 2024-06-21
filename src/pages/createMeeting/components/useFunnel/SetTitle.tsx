@@ -3,7 +3,7 @@ import React from 'react';
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
-import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
 function SetTitle({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
@@ -29,9 +29,7 @@ function SetTitle({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
       <StyledBtnSection>
         <Button
           typeState={
-            meetingInfo.title && meetingInfo.title.length < 16
-              ? 'primaryActive'
-              : 'secondaryDisabled'
+            meetingInfo.title && meetingInfo.title.length < 16 ? 'primaryActive' : 'primaryDisabled'
           }
           onClick={
             meetingInfo.title && meetingInfo.title.length < 16

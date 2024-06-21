@@ -4,7 +4,7 @@ import Button from 'components/atomComponents/Button';
 import PasswordInput from 'components/atomComponents/PasswordInput';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
-import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
+import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -75,7 +75,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           typeState={
             meetingInfo.name && meetingInfo.password.length >= 4
               ? 'primaryActive'
-              : 'secondaryDisabled'
+              : 'primaryDisabled'
           }
           onClick={
             meetingInfo.name && meetingInfo.password.length >= 4

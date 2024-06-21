@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
-import { DropUpIc, DropDownIc, Wave } from 'components/Icon/icon';
-import { preferTimeType, directInputButton } from 'pages/createMeeting/data/meetingInfoData';
+import { DropDownIc, DropUpIc, Wave } from 'components/Icon/icon';
+import { directInputButton, preferTimeType } from 'pages/createMeeting/data/meetingInfoData';
 import { FunnelProps, PreferTimeInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 
@@ -18,27 +18,33 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
 
   const getDate = (btnState: boolean, startTime: string, endTime: string) => {
     if (!btnState) {
-      // btnState가 true인 경우 preferTimes에 객체를 추가
       setMeetingInfo((prev) => ({
         ...prev,
         preferTimes: [...prev.preferTimes, { startTime: startTime, endTime: endTime }],
       }));
     } else {
-      console.log(btnState);
-      // btnState가 false인 경우 해당 startTime과 endTime을 가진 객체를 preferTimes에서 삭제
       setMeetingInfo((prev) => ({
         ...prev,
         preferTimes: prev.preferTimes.filter(
-          (time) => time.startTime !== startTime && time.endTime !== endTime,
+          (time) => !(time.startTime === startTime && time.endTime === endTime),
         ),
       }));
     }
   };
 
+  const filterDate = () => {
+    setMeetingInfo((prev) => ({
+      ...prev,
+      preferTimes: prev.preferTimes.filter(
+        (time) => !(time.startTime === '00:00' && time.endTime === '00:00'),
+      ),
+    }));
+  };
+
   const deletePreferTimes = () => {
     setMeetingInfo((prev) => ({
       ...prev,
-      preferTimes: [],
+      preferTimes: [{ startTime: '00:00', endTime: '00:00' }],
     }));
   };
 
@@ -60,9 +66,18 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
     deletePreferTimes();
   };
 
+  const buttonStateHandler = () => {
+    if (
+      meetingInfo.preferTimes.length >= 2 ||
+      (meetingInfo.preferTimes[0].startTime !== '00:00' &&
+        meetingInfo.preferTimes[0].endTime !== '00:00')
+    )
+      return true;
+
+    return false;
+  };
   useEffect(
     () => {
-      console.log(meetingInfo.preferTimes[0]);
       if (
         meetingInfo.preferTimes &&
         meetingInfo.preferTimes[0] &&
@@ -75,8 +90,12 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         }
       }
     },
-    [meetingInfo.preferTimes],
+    [meetingInfo.preferTimes[0].startTime, meetingInfo.preferTimes[0].endTime],
   );
+
+  useEffect(() => {
+    deletePreferTimes();
+  }, []);
   return (
     <SetTimesWrapper>
       <SetTimeSection>
@@ -121,11 +140,7 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         {directInput.btnState ? (
           <DropDownWrapper>
             <DropDownSelect $drop={startDropDown} onClick={() => setStartDropDown((prev) => !prev)}>
-              {meetingInfo.preferTimes.length > 0 ? (
-                <Text font={'button2'}>{meetingInfo.preferTimes[0].startTime}</Text>
-              ) : (
-                <Text font={'button2'}>00:00</Text>
-              )}
+              <Text font={'button2'}>{meetingInfo.preferTimes[0].startTime}</Text>
               {startDropDown ? <DropUpIcon /> : <DropDownIcon />}
               {startDropDown && (
                 <DropDownContainer>
@@ -134,7 +149,6 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                       key={time + i}
                       type={'start'}
                       time={time}
-                      setIsOpen={setStartDropDown}
                       setMeetingInfo={setMeetingInfo}
                     />
                   ))}
@@ -143,11 +157,7 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             </DropDownSelect>
             <Wave />
             <DropDownSelect $drop={endDropDown} onClick={() => setEndDropDown((prev) => !prev)}>
-              {meetingInfo.preferTimes.length > 0 ? (
-                <Text font={'button2'}>{meetingInfo.preferTimes[0].endTime}</Text>
-              ) : (
-                <Text font={'button2'}>00:00</Text>
-              )}
+              <Text font={'button2'}>{meetingInfo.preferTimes[0].endTime}</Text>
               {endDropDown ? <DropUpIcon /> : <DropDownIcon />}
               {endDropDown && (
                 <DropDownContainer>
@@ -156,7 +166,6 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
                       key={time + i}
                       type={'end'}
                       time={time}
-                      setIsOpen={setEndDropDown}
                       setMeetingInfo={setMeetingInfo}
                     />
                   ))}
@@ -176,19 +185,19 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             meetingInfo.preferTimes[0].startTime &&
             meetingInfo.preferTimes[0].endTime !== '00:00'
               ? 'primaryActive'
-              : 'secondaryDisabled'
+              : 'primaryDisabled'
           }
           onClick={
-            meetingInfo.preferTimes.length >= 1 &&
-            meetingInfo.preferTimes[0].startTime &&
-            meetingInfo.preferTimes[0].endTime !== '00:00'
-              ? () =>
+            buttonStateHandler()
+              ? () => {
                   setStep((prev) => {
                     if (prev === 6) {
                       return prev;
                     }
                     return prev + 1;
-                  })
+                  });
+                  filterDate();
+                }
               : undefined
           }
         >
@@ -261,13 +270,13 @@ const DropUpIcon = styled(DropUpIc)`
 `;
 
 const DropDownContainer = styled.div`
-  position: absolute; //drop down에서 아래 DOM을 밀고 싶을 땐 지워주기
+  position: absolute;
   background-color: white;
-  margin-top: 4.8rem ;
-z-index: 2;
-  width:15.1rem;
-  height:14.4rem;
-  overflow:auto;
-  border-bottom-left-radius:  0.8rem;
+  margin-top: 4.8rem;
+  z-index: 2;
+  width: 15.1rem;
+  height: 14.4rem;
+  overflow: auto;
+  border-bottom-left-radius: 0.8rem;
   border-bottom-right-radius: 0.8rem;
 `;
