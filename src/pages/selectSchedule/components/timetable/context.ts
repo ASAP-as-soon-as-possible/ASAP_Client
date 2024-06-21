@@ -4,7 +4,7 @@ export type SelectedSlotsType = {
   [date: string]: {
     startSlot: string;
     endSlot: string;
-  };
+  }[];
 };
 
 type TimetableContextType = {

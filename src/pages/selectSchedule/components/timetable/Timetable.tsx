@@ -54,18 +54,28 @@ function Timetable() {
   const [startSlot, setStartSlot] = useState<string | undefined>(undefined);
   const [selectedSlots, setSelectedSlots] = useState<SelectedSlotsType>({
     // 시간표 색칠을 테스트하기 위한 더미 값
-    '6/20/목': {
-      startSlot: '09:00',
-      endSlot: '13:00',
-    },
-    '6/21/금': {
-      startSlot: '15:00',
-      endSlot: '18:00',
-    },
-    '6/22/토': {
-      startSlot: '12:00',
-      endSlot: '12:00',
-    },
+    '6/20/목': [
+      {
+        startSlot: '09:00',
+        endSlot: '13:00',
+      },
+    ],
+    '6/21/금': [
+      {
+        startSlot: '15:00',
+        endSlot: '18:00',
+      },
+    ],
+    '6/22/토': [
+      {
+        startSlot: '12:00',
+        endSlot: '12:00',
+      },
+      {
+        startSlot: '17:30',
+        endSlot: '20:00',
+      },
+    ],
   });
   return (
     <TimetableContext.Provider

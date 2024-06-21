@@ -10,12 +10,12 @@ interface ColumnProps {
 
 function Column({ date, timeSlots }: ColumnProps) {
   const { selectedSlots } = useTimetableContext();
-  const { startSlot, endSlot } = selectedSlots[date] ?? {};
+  const selectedSlotsPerDate = selectedSlots[date] ?? [];
 
   return (
     <StyledColumn>
       {timeSlots.map((timeSlot) => {
-        const isSelectedSlot = timeSlot >= startSlot && timeSlot <= endSlot;
+        const isSelectedSlot = selectedSlotsPerDate.some(({ startSlot, endSlot }) => timeSlot >= startSlot && timeSlot <= endSlot);
         return (
         <Slot
           key={`${date}/${timeSlot}`}
