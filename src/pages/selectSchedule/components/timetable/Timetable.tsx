@@ -4,10 +4,11 @@ import styled from 'styled-components';
 
 import { SelectedSlotsType, TimetableContext } from './context';
 import Column from './parts/Column';
+import DateTitle from './parts/DateTitle';
 import { getAvailableTimes } from './utils';
 
 // api 연결 후 지울 것
-type DateType = {
+export type DateType = {
   month: string | undefined;
   day: string | undefined;
   dayOfWeek: string | undefined;
@@ -86,7 +87,8 @@ function Timetable() {
         setSelectedSlots,
       }}
     >
-      <StyledTimetable>
+      <DateTitle availableDates={availableDates} />
+      <Table>
         {availableDates.map((date) => (
           <Column
             key={Object.values(date).join('/')}
@@ -95,14 +97,14 @@ function Timetable() {
           />
         ))}
         {emptyDates && emptyDates.map((value) => <EmptyColumn key={value} />)}
-      </StyledTimetable>
+      </Table>
     </TimetableContext.Provider>
   );
 }
 
 export default Timetable;
 
-const StyledTimetable = styled.div`
+const Table = styled.div`
   display: flex;
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey7};
   border-left: 1px solid ${({ theme }) => theme.colors.grey7};
