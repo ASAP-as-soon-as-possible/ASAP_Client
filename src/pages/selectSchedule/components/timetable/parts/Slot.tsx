@@ -12,9 +12,11 @@ function Slot({ slot, selectedEntryId }: SlotProps) {
 
   const onClickSlot = (targetSlot: string) => {
     if (selectedEntryId !== undefined) {
-      const newSelectedSlots = { ...selectedSlots };
-      delete newSelectedSlots[selectedEntryId];
-      setSelectedSlots(newSelectedSlots);
+      if (startSlot === undefined) {
+        const newSelectedSlots = { ...selectedSlots };
+        delete newSelectedSlots[selectedEntryId];
+        setSelectedSlots(newSelectedSlots);
+      }
       setStartSlot(undefined);
     } else {
       if (startSlot === undefined) {
@@ -38,23 +40,16 @@ function Slot({ slot, selectedEntryId }: SlotProps) {
   };
 
   const borderStyle = slot.endsWith(':30') ? 'dashed' : 'solid';
+  const styledSlotProps = {
+    $borderStyle: borderStyle,
+    $isSelected: selectedEntryId !== undefined,
+    onClick: () => onClickSlot(slot),
+  };
 
   if (slot === startSlot) {
-    return (
-      <SelectingSlot
-        $borderStyle={borderStyle}
-        $isSelected={selectedEntryId !== undefined}
-        onClick={() => onClickSlot(slot)}
-      />
-    );
+    return <SelectingSlot {...styledSlotProps} />;
   } else {
-    return (
-      <DefaultSlot
-        $borderStyle={borderStyle}
-        $isSelected={selectedEntryId !== undefined}
-        onClick={() => onClickSlot(slot)}
-      />
-    );
+    return <DefaultSlot {...styledSlotProps} />;
   }
 }
 
