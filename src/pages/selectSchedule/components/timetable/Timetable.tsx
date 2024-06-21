@@ -54,7 +54,23 @@ const timeSlots = getAvailableTimes(preferTimes);
 
 function Timetable() {
   const [startSlot, setStartSlot] = useState<string | undefined>(undefined);
-  const [selectedSlots, setSelectedSlots] = useState<SelectedSlotsType>({});
+  const [selectedSlots, setSelectedSlots] = useState<SelectedSlotsType>({
+    0: {
+      date: '6/20/목',
+      startSlot: '09:00',
+      endSlot: '15:00',
+    },
+    1: {
+      date: '6/20/목',
+      startSlot: '19:00',
+      endSlot: '23:00',
+    },
+    2: {
+      date: '6/21/금',
+      startSlot: '09:00',
+      endSlot: '15:00',
+    },
+  });
   return (
     <TimetableContext.Provider
       value={{

@@ -13,7 +13,6 @@ function SlotTitle({ timeSlots }: SlotTitleProps) {
     .filter((slot) => !slot.endsWith('30'))
     .map((slot) => parseInt(slot.split(':')[0]));
   parsedTimeSlots.push(24);
-  console.log(parsedTimeSlots);
 
   return (
     <SlotTitleWrapper>
