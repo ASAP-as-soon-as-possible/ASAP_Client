@@ -35,6 +35,6 @@ export default SlotTitle;
 const SlotTitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1.4rem;
   margin-top: 3.3rem;
 `;
