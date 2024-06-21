@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import Text from 'components/atomComponents/Text';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
@@ -11,18 +13,19 @@ function SlotTitle({ timeSlots }: SlotTitleProps) {
     .filter((slot) => !slot.endsWith('30'))
     .map((slot) => parseInt(slot.split(':')[0]));
   parsedTimeSlots.push(24);
+  console.log(parsedTimeSlots);
 
   return (
     <SlotTitleWrapper>
       {parsedTimeSlots.map((slot) => (
-        <>
-          <Text font="body4" color={theme.colors.grey5} key={slot}>
+        <Fragment key={slot}>
+          <Text font="body4" color={theme.colors.grey5} key={`${slot}-fill`}>
             {slot}
           </Text>
-          <Text font="body4" color={theme.colors.grey5} key={slot}>
+          <Text font="body4" color={theme.colors.grey5} key={`${slot}-empty`}>
             {''}
           </Text>
-        </>
+        </Fragment>
       ))}
     </SlotTitleWrapper>
   );

@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 
+import { useTimetableContext } from '../context';
+
 interface SlotProps {
   slot: string;
   isSelectedSlot: boolean;
 }
 
 function Slot({ slot, isSelectedSlot }: SlotProps) {
-  const borderStyle = slot.endsWith(':30') ? 'dashed' : 'solid';
+  const { startSlot, setStartSlot, selectedSlots } = useTimetableContext();
+  console.log(startSlot);
 
+  const borderStyle = slot.endsWith(':30') ? 'dashed' : 'solid';
   return <StyledSlot $borderStyle={borderStyle} $isSelected={isSelectedSlot} />;
 }
 
