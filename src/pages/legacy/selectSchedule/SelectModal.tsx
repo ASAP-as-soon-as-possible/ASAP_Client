@@ -1,20 +1,18 @@
-import React, { Dispatch, SetStateAction, useEffect } from 'react';
-
+import { hostAvailableApi, userAvailableApi } from 'utils/apis/createHostAvailableSchedule';
 import { scheduleAtom, userNameAtom } from 'atoms/atom';
-import { isAxiosError } from 'axios';
-import Text from 'components/atomComponents/Text';
-import { ExitIc } from 'components/Icon/icon';
+import { transformHostScheduleType, transformUserScheduleType } from './utils/changeApiReq';
 import { useNavigate, useParams } from 'react-router';
 import { useRecoilState, useRecoilValue } from 'recoil';
+
+import { ExitIc } from 'components/Icon/icon';
+import { ScheduleStates } from './types/Schedule';
+import Text from 'components/atomComponents/Text';
+import { isAxiosError } from 'axios';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { hostAvailableApi, userAvailableApi } from 'utils/apis/createHostAvailableSchedule';
-
-import { ScheduleStates } from './types/Schedule';
-import { transformHostScheduleType, transformUserScheduleType } from './utils/changeApiReq';
 
 interface ModalProps {
-  setShowModal: Dispatch<SetStateAction<boolean>>;
+  setShowModal: (isModalOpen: boolean) => void;
 }
 
 function SelectModal({ setShowModal }: ModalProps) {
@@ -117,7 +115,7 @@ export default SelectModal;
 
 const ReturnModalWrpper = styled.div`
   display: flex;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   flex-direction: column;

@@ -1,12 +1,14 @@
 import { ColumnStructure, TimetableStructure } from 'components/timetableComponents/types';
 import { SelectedSlotType, TimetableContext } from 'components/timetableComponents/context';
-import { Step, StepSlotsType } from '../types';
+import { Step, StepBtnsType, StepSlotsType } from '../types';
 
 import Button from 'components/atomComponents/Button';
+import PriorityCta from './selectPriority/PriorityCta';
 import PriorityDropdown from './selectPriority/PriorityDropdown';
 import PrioritySlots from './selectPriority/PrioritySlots';
 import SelectionSlots from './selectTimeSlot/SelectionSlots';
 import Text from 'components/atomComponents/Text';
+import TimeSlotCta from './selectTimeSlot/TimeSlotCta';
 import Timetable from 'components/timetableComponents/Timetable';
 import { resetPriorities } from '../utils';
 import styled from 'styled-components';
@@ -37,6 +39,11 @@ function SelectScheduleTable({
 
   const isValidSelection = Object.keys(selectedSlots).length !== 0;
 
+  const stepBtns: StepBtnsType = {
+    selectTimeSlot: <TimeSlotCta isValidSelection={isValidSelection} setStep={setStep} />,
+    selectPriority: <PriorityCta />,
+  };
+
   return (
     <TimetableContext.Provider
       value={{
@@ -50,35 +57,9 @@ function SelectScheduleTable({
         {stepSlots[step]}
       </Timetable>
       {step === 'selectPriority' && <PriorityDropdown />}
-      <BtnDim>
-        <Button
-          typeState={isValidSelection ? 'primaryActive' : 'secondaryDisabled'}
-          onClick={() => {
-            setStep('selectPriority');
-          }}
-        >
-          <Text font={'button2'}>다음</Text>
-        </Button>
-      </BtnDim>
+      {stepBtns[step]}
     </TimetableContext.Provider>
   );
 }
 
 export default SelectScheduleTable;
-
-const BtnDim = styled.div`
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  align-items: end;
-  justify-content: center;
-
-  margin-top: 3rem;
-  background: ${({ theme }) => theme.colors.dim_gradient};
-  padding-bottom: 2.9rem;
-
-  width: 100%;
-  height: 16.4rem;
-
-  pointer-events: none;
-`;
