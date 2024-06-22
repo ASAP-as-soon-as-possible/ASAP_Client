@@ -4,12 +4,12 @@ import styled from 'styled-components';
 
 import DateTitle from './parts/ColumnTitle';
 import SlotTitle from './parts/SlotTitle';
-import { DateType, TimetableStructure } from './types';
+import { ColumnStructure, DateType } from './types';
 
 interface TimetableProps {
   timeSlots: string[];
   availableDates: DateType[];
-  children: (props: TimetableStructure) => ReactNode;
+  children: (props: ColumnStructure) => ReactNode;
 }
 
 function Timetable({ timeSlots, availableDates, children }: TimetableProps) {
