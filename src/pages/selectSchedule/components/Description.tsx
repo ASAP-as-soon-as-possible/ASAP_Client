@@ -7,7 +7,7 @@ import { theme } from 'styles/theme';
 interface DescriptionProps {
   duration: string;
   place: string;
-  placeDetail: string;
+  placeDetail?: string;
 }
 
 function Description({ duration: durationOg, place: placeOg, placeDetail }: DescriptionProps) {
@@ -66,7 +66,7 @@ export default Description;
 const DescriptionWrapper = styled.div`
   display: flex;
   position: relative;
-  margin-top: 2rem;
+  margin: 2rem 0;
 `;
 
 const Texts = styled.div`
