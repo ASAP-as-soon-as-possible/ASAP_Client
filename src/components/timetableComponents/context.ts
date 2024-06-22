@@ -5,6 +5,7 @@ export type SelectedSlotType = {
     date: string;
     startSlot: string;
     endSlot: string;
+    priority: 0 | 1 | 2 | 3;
   };
 };
 

@@ -22,6 +22,7 @@ function SelectionSlots({ date, timeSlots }: SelectionSlotsProps) {
     const isSelectedSlot = selectedEntryId !== undefined;
 
     return `
+      cursor:pointer;
       ${
         isStartSlot
           ? `border: 1px dashed ${theme.colors.main5}`

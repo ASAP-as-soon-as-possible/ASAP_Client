@@ -5,6 +5,7 @@ import Timetable from 'components/timetableComponents/Timetable';
 import { DateType, TimetableStructure } from 'components/timetableComponents/types';
 import { getAvailableTimes } from 'components/timetableComponents/utils';
 
+import PrioritySlots from './selectPriority/components/PrioritySlots';
 import SelectionSlots from './selectTimeSlot/components/SelectionSlots';
 
 /***** api 연결 후 지울 것*****/
@@ -55,13 +56,22 @@ type StepSlotsType = {
 
 function SelectSchedule({ step }: SelectScheduleProps) {
   const [startSlot, setStartSlot] = useState<string | undefined>(undefined);
-  const [selectedSlots, setSelectedSlots] = useState<SelectedSlotType>({});
+  const [selectedSlots, setSelectedSlots] = useState<SelectedSlotType>({
+    0: {
+      date: '6/20/목',
+      startSlot: '15:00',
+      endSlot: '20:00',
+      priority: 1,
+    },
+  });
 
   const stepSlots: StepSlotsType = {
     selectTimeSlot: ({ date, timeSlots }: TimetableStructure) => (
       <SelectionSlots date={date} timeSlots={timeSlots} />
     ),
-    selectPriority: ({ date, timeSlots }: TimetableStructure) => <div>priority</div>,
+    selectPriority: ({ date, timeSlots }: TimetableStructure) => (
+      <PrioritySlots date={date} timeSlots={timeSlots} />
+    ),
   };
 
   return (
