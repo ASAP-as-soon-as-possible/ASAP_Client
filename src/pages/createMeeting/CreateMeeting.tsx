@@ -43,10 +43,6 @@ function CreateMeeting() {
 
 export default CreateMeeting;
 
-const Button = styled.div`
-  font-size: 5rem;
-  color: white;
-`;
 const CreateMeetingWrapper = styled.div`
   display: flex;
   flex-direction: column;
