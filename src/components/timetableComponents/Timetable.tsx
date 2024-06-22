@@ -2,7 +2,6 @@ import { ReactNode } from 'react';
 
 import styled from 'styled-components';
 
-import Column from './parts/Column';
 import DateTitle from './parts/ColumnTitle';
 import SlotTitle from './parts/SlotTitle';
 import { DateType, TimetableStructure } from './types';
@@ -50,6 +49,13 @@ const Table = styled.div`
   display: flex;
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey7};
   border-left: 1px solid ${({ theme }) => theme.colors.grey7};
+`;
+
+const Column = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  border-right: 1px solid ${({ theme }) => theme.colors.grey7};
 `;
 
 const EmptyColumn = styled.div`

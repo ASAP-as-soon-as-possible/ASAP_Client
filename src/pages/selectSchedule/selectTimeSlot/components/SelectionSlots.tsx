@@ -32,23 +32,21 @@ function SelectionSlots({ date, timeSlots }: SelectionSlotsProps) {
       };
     `;
   };
+
   return (
     <>
       {timeSlots.map((timeSlot) => {
         const belongingEntry = selectedSlotsPerDate.find(
           ([, { startSlot, endSlot }]) => timeSlot >= startSlot && timeSlot <= endSlot,
         );
-
         const selectedEntryId = belongingEntry ? parseInt(belongingEntry[0]) : undefined;
-
         const slotId = `${date}/${timeSlot}`;
 
-        const slotStyle = getTimeSlotStyle(slotId, selectedEntryId);
         return (
           <Slot
             key={slotId}
             slotId={slotId}
-            slotStyle={slotStyle}
+            slotStyle={getTimeSlotStyle(slotId, selectedEntryId)}
             onClick={() => onClickSlot(slotId, selectedEntryId)}
           />
         );
