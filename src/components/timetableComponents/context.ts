@@ -1,16 +1,17 @@
-import { ReactNode, createContext, useContext } from 'react';
+import { createContext, useContext } from 'react';
 
-export type SelectedSlotsType = {
-  [date: string]: {
+export type SelectedSlotType = {
+  [key: number]: {
+    date: string;
     startSlot: string;
     endSlot: string;
-  }[];
+  };
 };
 
 type TimetableContextType = {
-  startSlot?: ReactNode;
+  startSlot?: string;
   setStartSlot: (startSlot?: string) => void;
-  selectedSlots: SelectedSlotsType;
+  selectedSlots: SelectedSlotType;
   setSelectedSlots: (selectedSlots: SelectedSlotsType) => void;
 };
 
