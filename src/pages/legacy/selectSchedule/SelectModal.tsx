@@ -1,4 +1,4 @@
-import { hostAvailableApi, userAvailableApi } from 'utils/apis/createHostAvailableSchedule';
+import { hostAvailableApi, userAvailableApi } from 'utils/apis/legacy/createHostAvailableSchedule';
 import { scheduleAtom, userNameAtom } from 'atoms/atom';
 import { transformHostScheduleType, transformUserScheduleType } from './utils/changeApiReq';
 import { useNavigate, useParams } from 'react-router';
