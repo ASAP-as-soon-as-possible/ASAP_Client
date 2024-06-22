@@ -1,13 +1,14 @@
 import { createContext, useContext } from 'react';
 
-export type SelectedSlotType = {
-  [key: number]: {
-    date: string;
-    startSlot: string;
-    endSlot: string;
-    priority: 0 | 1 | 2 | 3;
-  };
-};
+export interface SlotInfoType {
+  date: string;
+  startSlot: string;
+  endSlot: string;
+  priority: 0 | 1 | 2 | 3;
+}
+export interface SelectedSlotType {
+  [key: number]: SlotInfoType;
+}
 
 type TimetableContextType = {
   startSlot?: string;
