@@ -1,4 +1,5 @@
 import Slot from '../../../../components/timetableComponents/parts/Slot';
+import Text from 'components/atomComponents/Text';
 import { theme } from 'styles/theme';
 import { useTimetableContext } from '../../../../components/timetableComponents/context';
 
@@ -35,6 +36,14 @@ function PrioritySlots({ date, timeSlots }: SelectionSlotsProps) {
         const belongingEntry = selectedSlotsPerDate.find(
           ([, { startSlot, endSlot }]) => timeSlot >= startSlot && timeSlot <= endSlot,
         );
+
+        let isFirstSlot = false;
+        if (belongingEntry !== undefined) {
+          if (selectedSlots[parseInt(belongingEntry[0])].startSlot === timeSlot) {
+            isFirstSlot = true;
+          }
+        }
+
         const selectedEntryId = belongingEntry ? parseInt(belongingEntry[0]) : undefined;
         const slotId = `${date}/${timeSlot}`;
         const priority =
@@ -45,7 +54,11 @@ function PrioritySlots({ date, timeSlots }: SelectionSlotsProps) {
             key={slotId}
             slotId={slotId}
             slotStyle={getPrioritySlotStyle(selectedEntryId, priority)}
-          />
+          >
+            <Text font="body1" color={theme.colors.white}>
+              {isFirstSlot && priority !== 0 ? priority : ''}
+            </Text>
+          </Slot>
         );
       })}
     </>
