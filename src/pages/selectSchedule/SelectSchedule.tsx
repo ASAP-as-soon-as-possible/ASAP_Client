@@ -5,8 +5,8 @@ import Timetable from 'components/timetableComponents/Timetable';
 import { DateType, TimetableStructure } from 'components/timetableComponents/types';
 import { getAvailableTimes } from 'components/timetableComponents/utils';
 
-import PrioritySlots from './selectPriority/components/PrioritySlots';
-import SelectionSlots from './selectTimeSlot/components/SelectionSlots';
+import PrioritySlots from './selectPriority/PrioritySlots';
+import SelectionSlots from './selectTimeSlot/SelectionSlots';
 
 /***** api 연결 후 지울 것*****/
 
@@ -46,15 +46,12 @@ const preferTimes: SlotType = {
 const timeSlots = getAvailableTimes(preferTimes);
 /***** api 연결 후 지울 것*****/
 
-interface SelectScheduleProps {
-  step: 'selectTimeSlot' | 'selectPriority';
-}
+type Step = 'selectTimeSlot' | 'selectPriority';
 
-type StepSlotsType = {
-  [key in SelectScheduleProps['step']]: (props: TimetableStructure) => ReactNode
-};
+type StepSlotsType = { [key in Step]: (props: TimetableStructure) => ReactNode };
 
-function SelectSchedule({ step }: SelectScheduleProps) {
+function SelectSchedule() {
+  const [step, setStep] = useState<Step>('selectPriority');
   const [startSlot, setStartSlot] = useState<string | undefined>(undefined);
   const [selectedSlots, setSelectedSlots] = useState<SelectedSlotType>({
     0: {
@@ -86,6 +83,12 @@ function SelectSchedule({ step }: SelectScheduleProps) {
       <Timetable timeSlots={timeSlots} availableDates={availableDates}>
         {stepSlots[step]}
       </Timetable>
+      <button style={{ color: 'white' }} onClick={() => setStep('selectPriority')}>
+        다음으로
+      </button>
+      <button style={{ color: 'white' }} onClick={() => setStep('selectTimeSlot')}>
+        이전으로
+      </button>
     </TimetableContext.Provider>
   );
 }
