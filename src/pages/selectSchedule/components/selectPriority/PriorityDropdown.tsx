@@ -20,17 +20,24 @@ function PriorityDropdown() {
   const { selectedSlots, setSelectedSlots } = useTimetableContext();
   const [timeSelect, setTimeSelect] = useState([false, false, false]);
 
+  const formatDate = (date: string) => {
+    const [month, day, dayOfWeek] = date.split('/');
+    return `${month}/${day}(${dayOfWeek})`;
+  };
+
   let defaultInput1 = '';
   let defaultInput2 = '';
   let defaultInput3 = '';
   for (const key in selectedSlots) {
     const item = selectedSlots[key];
+    const date = formatDate(item.date);
+    const endSlot = addMinutes(item.endSlot, 30);
     if (item.priority === 1) {
-      defaultInput1 = `${item.date} ${item.startSlot}~${addMinutes(item.endSlot, 30)}`;
+      defaultInput1 = `${date} ${item.startSlot}~${endSlot}`;
     } else if (item.priority === 2) {
-      defaultInput2 = `${item.date} ${item.startSlot}~${addMinutes(item.endSlot, 30)}`;
+      defaultInput2 = `${date} ${item.startSlot}~${endSlot}`;
     } else if (item.priority === 3) {
-      defaultInput3 = `${item.date} ${item.startSlot}~${addMinutes(item.endSlot, 30)}`;
+      defaultInput3 = `${date} ${item.startSlot}~${endSlot}`;
     }
   }
   const [input_, setInput] = useState<string[]>([defaultInput1, defaultInput2, defaultInput3]);
@@ -87,13 +94,14 @@ function PriorityDropdown() {
 
     setInput((prev) => {
       const updatedInput = [...prev];
-
+      const endSlot = addMinutes(item.endSlot, 30);
+      const date = formatDate(item.date);
       if (i === 0) {
-        updatedInput[i] = `${item.date} ${item.startSlot}~${addMinutes(item.endSlot, 30)}`;
+        updatedInput[i] = `${date} ${item.startSlot}~${endSlot}`;
       } else if (i === 1) {
-        updatedInput[i] = `${item.date} ${item.startSlot}~${addMinutes(item.endSlot, 30)}`;
+        updatedInput[i] = `${date} ${item.startSlot}~${endSlot}`;
       } else if (i === 2) {
-        updatedInput[i] = `${item.date} ${item.startSlot}~${addMinutes(item.endSlot, 30)}`;
+        updatedInput[i] = `${date} ${item.startSlot}~${endSlot}`;
       } else {
         updatedInput[i] = 'error';
       }
@@ -150,7 +158,10 @@ function PriorityDropdown() {
                       !value.priority && (
                         <DropDownItem key={key} onClick={() => handlePriority(i, value, key)}>
                           <Text font={'button1'} color={theme.colors.white}>
-                            {value.date} {value.startSlot}~{value.endSlot}
+                            {formatDate(value.date)} {value.startSlot}~{addMinutes(
+                              value.endSlot,
+                              30,
+                            )}
                           </Text>
                         </DropDownItem>
                       ),
