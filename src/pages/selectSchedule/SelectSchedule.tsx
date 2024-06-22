@@ -1,5 +1,3 @@
-import Button from 'components/atomComponents/Button';
-import { DateType } from 'components/timetableComponents/types';
 import Description from './components/Description';
 import Header from 'components/moleculesComponents/Header';
 import SelectScheduleTable from './components/SelectScheduleTable';
@@ -7,51 +5,14 @@ import { Step } from './types';
 import TitleComponents from 'components/moleculesComponents/TitleComponents';
 import { getAvailableTimes } from 'components/timetableComponents/utils';
 import styled from 'styled-components';
+import { useGetTimetable } from 'utils/apis/useGetTimetable';
+import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-
-/***** api 연결 후 지울 것*****/
-
-const availableDates: DateType[] = [
-  {
-    month: '6',
-    day: '20',
-    dayOfWeek: '목',
-  },
-  {
-    month: '6',
-    day: '21',
-    dayOfWeek: '금',
-  },
-  {
-    month: '6',
-    day: '22',
-    dayOfWeek: '토',
-  },
-  {
-    month: '6',
-    day: '23',
-    dayOfWeek: '일',
-  },
-];
-
-export type SlotType = {
-  startTime: string;
-  endTime: string;
-};
-
-const preferTimes: SlotType = {
-  startTime: '06:00',
-  endTime: '24:00',
-};
-
-const timeSlots = getAvailableTimes(preferTimes);
-const duration = 'HALF';
-const place = 'OFFLINE';
-const placeDetail = undefined;
-/***** api 연결 후 지울 것*****/
 
 function SelectSchedule() {
   const [step, setStep] = useState<Step>('selectTimeSlot');
+  const { meetingId } = useParams();
+  const { data, isLoading } = useGetTimetable(meetingId);
 
   interface TitlesType {
     [key: string]: {
@@ -70,23 +31,32 @@ function SelectSchedule() {
   };
 
   return (
-    <SelectScheduleWrapper>
-      <Header position="schedule" setSelectScheduleStep={setStep} />
-      {step === 'selectTimeSlot' && (
-        <Description duration={duration} place={place} placeDetail={placeDetail} />
-      )}
-      <TitleComponents
-        main={titles[step].main}
-        sub={titles[step].sub}
-        padding={step === 'selectTimeSlot' ? `0 0 2.6rem` : `4.4rem 0 3.2rem 0`}
-      />
-      <SelectScheduleTable
-        step={step}
-        setStep={setStep}
-        timeSlots={timeSlots}
-        availableDates={availableDates}
-      />
-    </SelectScheduleWrapper>
+    <>
+      {!isLoading &&
+        data && (
+          <SelectScheduleWrapper>
+            <Header position="schedule" setSelectScheduleStep={setStep} />
+            {step === 'selectTimeSlot' && (
+              <Description
+                duration={data.duration}
+                place={data.place}
+                placeDetail={data.placeDetail}
+              />
+            )}
+            <TitleComponents
+              main={titles[step].main}
+              sub={titles[step].sub}
+              padding={step === 'selectTimeSlot' ? `0 0 2.6rem` : `4.4rem 0 3.2rem 0`}
+            />
+            <SelectScheduleTable
+              step={step}
+              setStep={setStep}
+              timeSlots={getAvailableTimes(data.preferTimes[0])} // TODO: 시간대 선택이 없어지면서 preferTimes가 없어지면 이 부분을 수정해야함.
+              availableDates={data.availableDates}
+            />
+          </SelectScheduleWrapper>
+        )}
+    </>
   );
 }
 
