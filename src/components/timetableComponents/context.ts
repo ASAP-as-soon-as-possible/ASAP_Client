@@ -14,7 +14,7 @@ type TimetableContextType = {
   startSlot?: string;
   setStartSlot: (startSlot?: string) => void;
   selectedSlots: SelectedSlotType;
-  setSelectedSlots: (selectedSlots: SelectedSlotsType) => void;
+  setSelectedSlots: (selectedSlots: SelectedSlotType) => void;
 };
 
 export const TimetableContext = createContext<TimetableContextType>({

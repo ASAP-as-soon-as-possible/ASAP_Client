@@ -1,21 +1,15 @@
-import {
-  formatHostScheduleScheme,
-  formatMemberScheduleScheme,
-  formatSchedulePostScheme,
-} from 'pages/selectSchedule/utils';
+import { formatHostScheduleScheme, formatMemberScheduleScheme } from 'pages/selectSchedule/utils';
 import { hostAvailableApi, userAvailableApi } from 'utils/apis/legacy/createHostAvailableSchedule';
-import { scheduleAtom, userNameAtom } from 'atoms/atom';
-import { transformHostScheduleType, transformUserScheduleType } from './utils/changeApiReq';
 import { useNavigate, useParams } from 'react-router';
-import { useRecoilState, useRecoilValue } from 'recoil';
 
 import { ExitIc } from 'components/Icon/icon';
-import { ScheduleStates } from './types/Schedule';
 import Text from 'components/atomComponents/Text';
 import { isAxiosError } from 'axios';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+import { useRecoilValue } from 'recoil';
 import { useTimetableContext } from 'components/timetableComponents/context';
+import { userNameAtom } from 'atoms/atom';
 
 interface ModalProps {
   setShowModal: (isModalOpen: boolean) => void;

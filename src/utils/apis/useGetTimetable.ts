@@ -1,4 +1,7 @@
+import { DURATION, PLACE } from 'pages/selectSchedule/utils';
+
 import { client } from './axios';
+import { isAxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
@@ -14,8 +17,8 @@ interface TimeSlot {
 
 interface getTimetableResponse {
   data: {
-    duration: string;
-    place: string;
+    duration: keyof typeof DURATION;
+    place: keyof typeof PLACE;
     placeDetail: string;
     availableDates: Date[];
     preferTimes: TimeSlot[];
@@ -27,7 +30,9 @@ const getTimetable = async (meetingId: string) => {
     const res = await client.get<getTimetableResponse>(`/meeting/${meetingId}/schedule`);
     return res.data.data;
   } catch (err) {
-    throw new Error(err);
+    if (isAxiosError(err) && err.response) {
+      throw new Error(err.response.data.message);
+    }
   }
 };
 
@@ -37,10 +42,10 @@ export const useGetTimetable = (meetingId?: string) => {
     navigate('/error');
     throw new Error('잘못된 회의 아이디입니다.');
   }
-  const { data, isError, error, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['getTimetable', meetingId],
     queryFn: () => getTimetable(meetingId),
   });
 
-  return { data, isError, error, isLoading };
+  return { data, isLoading };
 };
