@@ -1,8 +1,7 @@
-import { SlotType } from './Timetable';
-
+import { SlotType } from 'pages/selectSchedule/components/SelectScheduleTable';
 /**
  *
- * @description 시작 시간(startTime)과 종료 시간(endTime) 사이에서 30분 간격으로 시간 슬롯을 생성하여 반환하는 함수입니다.
+ * @desc 시작 시간(startTime)과 종료 시간(endTime) 사이에서 30분 간격으로 시간 슬롯을 생성하여 반환하는 함수입니다.
  */
 
 export function getAvailableTimes(times: SlotType) {

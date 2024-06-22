@@ -1,30 +1,26 @@
-import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
 import { Dispatch, SetStateAction, useState } from 'react';
 
-import CopyToClipboard from 'react-copy-to-clipboard';
-import Navigation from './Navigation';
 import Text from 'components/atomComponents/Text';
-import { notify } from 'utils/toast/copyLink';
+import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
+import { Step as SelectScheduleStep } from 'pages/selectSchedule/types';
+import CopyToClipboard from 'react-copy-to-clipboard';
+import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router';
+import { notify } from 'utils/toast/copyLink';
+
+import Navigation from './Navigation';
+
 
 interface HeaderProps {
   position: string;
-  setStep?: Dispatch<SetStateAction<number>>;
+  setFunnelStep?: Dispatch<SetStateAction<number>>;
+  setSelectScheduleStep?: Dispatch<SetStateAction<SelectScheduleStep>>;
 }
 
-function Header({ position, setStep }: HeaderProps) {
+function Header({ position, setFunnelStep, setSelectScheduleStep }: HeaderProps) {
   const navigationOptions = [
-    // {
-    //   title: '공지사항',
-    //   url: '',
-    // },
-    // {
-    //   title: 'ASAP family',
-    //   url: '',
-    // },
     {
       title: '약속 생성하기',
       url: '/meet/create',
@@ -38,8 +34,8 @@ function Header({ position, setStep }: HeaderProps) {
   const navigate = useNavigate();
   const [isNaviOpen, setIsNaviOpen] = useState(false);
   const backToFunnel = () => {
-    if (setStep !== undefined) {
-      setStep((prev) => {
+    if (setFunnelStep !== undefined) {
+      setFunnelStep((prev) => {
         if (prev === 0) {
           navigate('/');
           return prev;
@@ -48,6 +44,19 @@ function Header({ position, setStep }: HeaderProps) {
       });
     }
   };
+  const backToSelectSchedule = () =>{
+    if (setSelectScheduleStep !== undefined){
+      setSelectScheduleStep((prev:SelectScheduleStep)=>{
+        if (prev === 'selectTimeSlot'){
+          window.history.back()
+          return prev;
+        } else if (prev === 'selectPriority'){
+          return 'selectTimeSlot'
+        }
+        return prev;
+      })
+    }
+  }
 
   const { meetingId } = useParams();
   return (
@@ -78,7 +87,7 @@ function Header({ position, setStep }: HeaderProps) {
               </CopyToClipboard>
             </ConfirmIconSection>
           ) : position === 'schedule' ? (
-            <ConfirmIconSection onClick={() => window.history.back()}>
+            <ConfirmIconSection onClick={backToSelectSchedule}>
               <IconSection>
                 <BackIc />
               </IconSection>

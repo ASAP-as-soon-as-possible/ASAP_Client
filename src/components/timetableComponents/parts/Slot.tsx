@@ -19,8 +19,8 @@ const DefaultSlot = styled.div<{
   $slotStyle?: string;
 }>`
   border-top: 1px solid ${({ theme }) => theme.colors.grey7};
-  ${({ $slotStyle }) => $slotStyle};
   border-top-style: ${({ $borderStyle }) => $borderStyle};
+  ${({ $slotStyle }) => $slotStyle};
 
   width: 4.4rem;
   height: 2.2rem;

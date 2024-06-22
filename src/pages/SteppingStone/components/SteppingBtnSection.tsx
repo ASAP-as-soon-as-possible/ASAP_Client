@@ -46,7 +46,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
                 </BottomSheetModal>
                 <ModalOverlay $isModalOpen={isModalOpen} >
                 </ModalOverlay>
-                <Link to={`/host/select-timeslot/${meetInfo.meetingId}`}>
+                <Link to={`/host/select/${meetInfo.meetingId}`}>
                   <Button typeState={'primaryActive'}>
                     <Text font={'button2'}>나의 가능시간 입력</Text>
                   </Button>

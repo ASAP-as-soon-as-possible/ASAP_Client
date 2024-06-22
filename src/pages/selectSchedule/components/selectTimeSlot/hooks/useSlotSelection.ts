@@ -1,4 +1,4 @@
-import { useTimetableContext } from '../../../../components/timetableComponents/context'
+import { useTimetableContext } from '../../../../../components/timetableComponents/context'
 
 const useSlotSeletion = () => {
     const {startSlot, setStartSlot, selectedSlots, setSelectedSlots} = useTimetableContext();

@@ -1,6 +1,7 @@
-import Slot from '../../../components/timetableComponents/parts/Slot';
 import { theme } from 'styles/theme';
-import { useTimetableContext } from '../../../components/timetableComponents/context';
+
+import { useTimetableContext } from '../../../../components/timetableComponents/context';
+import Slot from '../../../../components/timetableComponents/parts/Slot';
 
 interface SelectionSlotsProps {
   date: string;
