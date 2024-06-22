@@ -1,7 +1,8 @@
-import { DateType } from '../Timetable';
 import Text from 'components/atomComponents/Text';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
+
+import { DateType } from '../types';
 
 interface ColumnTitleProps {
   availableDates: DateType[];

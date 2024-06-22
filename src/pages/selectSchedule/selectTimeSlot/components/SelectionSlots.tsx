@@ -1,5 +1,5 @@
-import { useTimetableContext } from '../../../components/timetableComponents/context';
-import Slot from '../../../components/timetableComponents/parts/Slot';
+import { useTimetableContext } from '../../../../components/timetableComponents/context';
+import Slot from '../../../../components/timetableComponents/parts/Slot';
 
 interface SelectionSlotsProps {
   date: string;

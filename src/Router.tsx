@@ -7,8 +7,8 @@ import SelectSchedulePriority from 'pages/legacy/selectSchedule/SelectPriorityPa
 import SelectPage from 'pages/legacy/selectSchedule/SelectSchedulePage';
 import LoginEntrance from 'pages/loginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
+import SelectSchedule from 'pages/selectSchedule/SelectSchedule';
 import SteppingLayout from 'pages/steppingStone/SteppingLayout';
-import Test from 'pages/Test';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router = () => {
@@ -18,8 +18,16 @@ const Router = () => {
         <Route path="/" element={<OnBoarding />} />
         <Route path="/meet/create" element={<CreateMeeting />} />
         <Route path="/meet/complete" element={<SteppingLayout steppingType={'meetComplete'} />} />
-        <Route path="/:auth/schedule/:meetingId" element={<SelectPage />} />
-        <Route path="/:auth/priority/:meetingId" element={<SelectSchedulePriority />} />
+        {/* <Route path="/:auth/schedule/:meetingId" element={<SelectPage />} />
+        <Route path="/:auth/priority/:meetingId" element={<SelectSchedulePriority />} /> */}
+        <Route
+          path="/:auth/select-timeslot/:meetingId"
+          element={<SelectSchedule step="selectTimeSlot" />}
+        />
+        <Route
+          path="/:auth/select-priority/:meetingId"
+          element={<SelectSchedule step="selectPriority" />}
+        />
         <Route
           path="/host/schedule-complete/:meetingId"
           element={<SteppingLayout steppingType={'hostScheduleComplete'} />}
@@ -36,8 +44,6 @@ const Router = () => {
         <Route path="/loadingpage" element={<LoadingPage />} />
         <Route path="*" element={<ErrorPage404 />} />
         <Route path="/error" element={<ErrorPage404 />} />
-        <Route path="/select" element={<SelectPage />} />
-        <Route path="/test" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );

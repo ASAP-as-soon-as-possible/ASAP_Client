@@ -1,17 +1,13 @@
-import { useState } from 'react';
+import { ReactNode, useState } from 'react';
 
 import { SelectedSlotType, TimetableContext } from 'components/timetableComponents/context';
+import Timetable from 'components/timetableComponents/Timetable';
+import { DateType, TimetableStructure } from 'components/timetableComponents/types';
 import { getAvailableTimes } from 'components/timetableComponents/utils';
 
-import SelectionSlots from './components/SelectionSlots';
-import Timetable from '../../components/timetableComponents/Timetable';
+import SelectionSlots from './selectTimeSlot/components/SelectionSlots';
 
-// api 연결 후 지울 것
-export type DateType = {
-  month: string | undefined;
-  day: string | undefined;
-  dayOfWeek: string | undefined;
-};
+/***** api 연결 후 지울 것*****/
 
 const availableDates: DateType[] = [
   {
@@ -47,10 +43,27 @@ const preferTimes: SlotType = {
 };
 
 const timeSlots = getAvailableTimes(preferTimes);
+/***** api 연결 후 지울 것*****/
 
-function SelectSchedule() {
+interface SelectScheduleProps {
+  step: 'selectTimeSlot' | 'selectPriority';
+}
+
+type StepSlotsType = {
+  [key in SelectScheduleProps['step']]: (props: TimetableStructure) => ReactNode
+};
+
+function SelectSchedule({ step }: SelectScheduleProps) {
   const [startSlot, setStartSlot] = useState<string | undefined>(undefined);
   const [selectedSlots, setSelectedSlots] = useState<SelectedSlotType>({});
+
+  const stepSlots: StepSlotsType = {
+    selectTimeSlot: ({ date, timeSlots }: TimetableStructure) => (
+      <SelectionSlots date={date} timeSlots={timeSlots} />
+    ),
+    selectPriority: ({ date, timeSlots }: TimetableStructure) => <div>priority</div>,
+  };
+
   return (
     <TimetableContext.Provider
       value={{
@@ -61,7 +74,7 @@ function SelectSchedule() {
       }}
     >
       <Timetable timeSlots={timeSlots} availableDates={availableDates}>
-        {({ date, timeSlots }) => <SelectionSlots date={date} timeSlots={timeSlots} />}
+        {stepSlots[step]}
       </Timetable>
     </TimetableContext.Provider>
   );

@@ -1,21 +1,16 @@
 import { ReactNode } from 'react';
 
-import { DateType } from 'pages/selectSchedule/SelectSchedule';
 import styled from 'styled-components';
 
 import Column from './parts/Column';
 import DateTitle from './parts/ColumnTitle';
 import SlotTitle from './parts/SlotTitle';
-
-interface RenderProps {
-  date: string;
-  timeSlots: string[];
-}
+import { DateType, TimetableStructure } from './types';
 
 interface TimetableProps {
   timeSlots: string[];
   availableDates: DateType[];
-  children: (props: RenderProps) => ReactNode;
+  children: (props: TimetableStructure) => ReactNode;
 }
 
 function Timetable({ timeSlots, availableDates, children }: TimetableProps) {
