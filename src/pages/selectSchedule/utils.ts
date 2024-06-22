@@ -1,3 +1,5 @@
+import { SelectedSlotType } from 'components/timetableComponents/context';
+
 /**
  *
  * @desc 영어로 표현된 회의 진행 시간을 한글로 변환하는 함수
@@ -34,4 +36,23 @@ export const formatPlace = (place: string) => {
     case 'UNDEFINED':
       return undefined;
   }
+};
+
+/**
+ *
+ * @desc 선택된 슬롯들의 우선순위를 0으로 초기화하는 함수
+ */
+export const resetPriorities = (selectedSlots: SelectedSlotType): SelectedSlotType => {
+  const updatedSlots: SelectedSlotType = {};
+
+  for (const key in selectedSlots) {
+    if (typeof selectedSlots[key] === 'object') {
+      updatedSlots[key] = {
+        ...selectedSlots[key],
+        priority: 0,
+      };
+    }
+  }
+
+  return updatedSlots;
 };

@@ -1,14 +1,10 @@
+import { ColumnStructure } from 'components/timetableComponents/types';
 import Slot from '../../../../components/timetableComponents/parts/Slot';
 import Text from 'components/atomComponents/Text';
 import { theme } from 'styles/theme';
 import { useTimetableContext } from '../../../../components/timetableComponents/context';
 
-interface SelectionSlotsProps {
-  date: string;
-  timeSlots: string[];
-}
-
-function PrioritySlots({ date, timeSlots }: SelectionSlotsProps) {
+function PrioritySlots({ date, timeSlots }: ColumnStructure) {
   const { selectedSlots } = useTimetableContext();
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,

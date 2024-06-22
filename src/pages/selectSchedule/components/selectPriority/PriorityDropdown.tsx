@@ -6,6 +6,7 @@ import {
 } from 'components/timetableComponents/context';
 
 import Text from 'components/atomComponents/Text';
+import { addMinutes } from 'components/timetableComponents/utils';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 import { useState } from 'react';
@@ -17,9 +18,22 @@ import { useState } from 'react';
 
 function PriorityDropdown() {
   const { selectedSlots, setSelectedSlots } = useTimetableContext();
-  console.log(selectedSlots);
   const [timeSelect, setTimeSelect] = useState([false, false, false]);
-  const [input_, setInput] = useState<string[]>(['', '', '']);
+
+  let defaultInput1 = '';
+  let defaultInput2 = '';
+  let defaultInput3 = '';
+  for (const key in selectedSlots) {
+    const item = selectedSlots[key];
+    if (item.priority === 1) {
+      defaultInput1 = `${item.date} ${item.startSlot}~${addMinutes(item.endSlot, 30)}`;
+    } else if (item.priority === 2) {
+      defaultInput2 = `${item.date} ${item.startSlot}~${addMinutes(item.endSlot, 30)}`;
+    } else if (item.priority === 3) {
+      defaultInput3 = `${item.date} ${item.startSlot}~${addMinutes(item.endSlot, 30)}`;
+    }
+  }
+  const [input_, setInput] = useState<string[]>([defaultInput1, defaultInput2, defaultInput3]);
   const handleDropdown = (i: number) => {
     if (!timeSelect[i]) {
       setTimeSelect((prevState) => {
@@ -47,24 +61,10 @@ function PriorityDropdown() {
       case 2:
         temp = 3;
         break;
-
       default:
         temp = 0;
         break;
     }
-    setSelectedSlots(
-      (prev: SlotInfoType): SlotInfoType => {
-        const updatedScheduleList = { ...prev };
-        for (const key in updatedScheduleList) {
-          if (selectedSlots[parseInt(key)].priority === temp) {
-            return { ...selectedSlots[parseInt(key)], priority: 0 };
-          }
-          break;
-        }
-        return updatedScheduleList;
-      },
-    );
-
     setSelectedSlots((prev: SelectedSlotType) => {
       const updatedSelectedSlots = Object.entries(prev).map(([key, value]) => {
         if (value.priority === temp) {
@@ -89,11 +89,11 @@ function PriorityDropdown() {
       const updatedInput = [...prev];
 
       if (i === 0) {
-        updatedInput[i] = `${item.date} ${item.startSlot}~${item.endSlot}`;
+        updatedInput[i] = `${item.date} ${item.startSlot}~${addMinutes(item.endSlot, 30)}`;
       } else if (i === 1) {
-        updatedInput[i] = `${item.date} ${item.startSlot}~${item.endSlot}`;
+        updatedInput[i] = `${item.date} ${item.startSlot}~${addMinutes(item.endSlot, 30)}`;
       } else if (i === 2) {
-        updatedInput[i] = `${item.date} ${item.startSlot}~${item.endSlot}`;
+        updatedInput[i] = `${item.date} ${item.startSlot}~${addMinutes(item.endSlot, 30)}`;
       } else {
         updatedInput[i] = 'error';
       }

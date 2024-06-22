@@ -1,15 +1,10 @@
+import { ColumnStructure } from 'components/timetableComponents/types';
+import Slot from '../../../../components/timetableComponents/parts/Slot';
 import { theme } from 'styles/theme';
-
 import useSlotSeletion from './hooks/useSlotSelection';
 import { useTimetableContext } from '../../../../components/timetableComponents/context';
-import Slot from '../../../../components/timetableComponents/parts/Slot';
 
-interface SelectionSlotsProps {
-  date: string;
-  timeSlots: string[];
-}
-
-function SelectionSlots({ date, timeSlots }: SelectionSlotsProps) {
+function SelectionSlots({ date, timeSlots }: ColumnStructure) {
   const { selectedSlots } = useTimetableContext();
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,
@@ -23,10 +18,7 @@ function SelectionSlots({ date, timeSlots }: SelectionSlotsProps) {
 
     return `
       cursor:pointer;
-      ${
-        isStartSlot && `border: 1px dashed ${theme.colors.main5}`
-        // : `border-top: 1px solid ${theme.colors.grey7}`
-      };
+      ${isStartSlot && `border: 1px dashed ${theme.colors.main5}`};
       ${
         isSelectedSlot ? `background-color: ${theme.colors.main1}` : `background-color: transparent`
       };

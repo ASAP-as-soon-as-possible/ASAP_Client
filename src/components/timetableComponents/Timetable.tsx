@@ -1,10 +1,9 @@
-import { ReactNode } from 'react';
-
-import styled from 'styled-components';
+import { ColumnStructure, DateType } from './types';
 
 import DateTitle from './parts/ColumnTitle';
+import { ReactNode } from 'react';
 import SlotTitle from './parts/SlotTitle';
-import { ColumnStructure, DateType } from './types';
+import styled from 'styled-components';
 
 interface TimetableProps {
   timeSlots: string[];

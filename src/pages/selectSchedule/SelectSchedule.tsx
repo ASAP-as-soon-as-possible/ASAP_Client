@@ -1,3 +1,4 @@
+import Button from 'components/atomComponents/Button';
 import { DateType } from 'components/timetableComponents/types';
 import Description from './components/Description';
 import Header from 'components/moleculesComponents/Header';
@@ -50,7 +51,7 @@ const placeDetail = undefined;
 /***** api 연결 후 지울 것*****/
 
 function SelectSchedule() {
-  const [step, setStep] = useState<Step>('selectPriority');
+  const [step, setStep] = useState<Step>('selectTimeSlot');
 
   interface TitlesType {
     [key: string]: {
@@ -79,7 +80,12 @@ function SelectSchedule() {
         sub={titles[step].sub}
         padding={step === 'selectTimeSlot' ? `0 0 2.6rem` : `4.4rem 0 3.2rem 0`}
       />
-      <SelectScheduleTable step={step} timeSlots={timeSlots} availableDates={availableDates} />
+      <SelectScheduleTable
+        step={step}
+        setStep={setStep}
+        timeSlots={timeSlots}
+        availableDates={availableDates}
+      />
     </SelectScheduleWrapper>
   );
 }
@@ -91,4 +97,5 @@ const SelectScheduleWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 16.4rem;
 `;

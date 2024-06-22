@@ -1,6 +1,6 @@
-import React from 'react';
-
 import { css, styled } from 'styled-components';
+
+import React from 'react';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -73,6 +73,7 @@ const buttonCSS = {
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.grey7};
     color: ${({ theme }) => theme.colors.grey5};
+    pointer-events: none;
   `,
   halfsecondaryDisabled: css`
     ${buttonDefaultCSS.basicCss};
