@@ -27,7 +27,7 @@ const getTimetable = async (meetingId: string) => {
     const res = await client.get<getTimetableResponse>(`/meeting/${meetingId}/schedule`);
     return res.data.data;
   } catch (err) {
-    console.log(err);
+    throw new Error(err);
   }
 };
 
@@ -37,10 +37,10 @@ export const useGetTimetable = (meetingId?: string) => {
     navigate('/error');
     throw new Error('잘못된 회의 아이디입니다.');
   }
-  const { data, isLoading } = useQuery({
+  const { data, isError, error, isLoading } = useQuery({
     queryKey: ['getTimetable', meetingId],
     queryFn: () => getTimetable(meetingId),
   });
 
-  return { data, isLoading };
+  return { data, isError, error, isLoading };
 };

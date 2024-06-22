@@ -1,3 +1,8 @@
+import {
+  formatHostScheduleScheme,
+  formatMemberScheduleScheme,
+  formatSchedulePostScheme,
+} from 'pages/selectSchedule/utils';
 import { hostAvailableApi, userAvailableApi } from 'utils/apis/legacy/createHostAvailableSchedule';
 import { scheduleAtom, userNameAtom } from 'atoms/atom';
 import { transformHostScheduleType, transformUserScheduleType } from './utils/changeApiReq';
@@ -10,19 +15,20 @@ import Text from 'components/atomComponents/Text';
 import { isAxiosError } from 'axios';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+import { useTimetableContext } from 'components/timetableComponents/context';
 
 interface ModalProps {
   setShowModal: (isModalOpen: boolean) => void;
 }
 
 function SelectModal({ setShowModal }: ModalProps) {
-  const [scheduleList, setScheduleList] = useRecoilState<ScheduleStates[]>(scheduleAtom);
+  const { selectedSlots } = useTimetableContext();
   const userName = useRecoilValue(userNameAtom);
 
   const navigate = useNavigate();
   const { auth, meetingId } = useParams();
-  const updateScheduleType = transformHostScheduleType(scheduleList);
-  const updateMemberScheduleType = transformUserScheduleType(scheduleList, userName);
+  const updateScheduleType = formatHostScheduleScheme(selectedSlots);
+  const updateMemberScheduleType = formatMemberScheduleScheme(selectedSlots, userName);
 
   const postHostAvailableApi = async () => {
     try {

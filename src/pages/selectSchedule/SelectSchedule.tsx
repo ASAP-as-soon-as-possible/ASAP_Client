@@ -12,8 +12,10 @@ import { useState } from 'react';
 function SelectSchedule() {
   const [step, setStep] = useState<Step>('selectTimeSlot');
   const { meetingId } = useParams();
-  const { data, isLoading } = useGetTimetable(meetingId);
-
+  const { data, isLoading, isError, error } = useGetTimetable(meetingId);
+  if (isError) {
+    console.log(err);
+  }
   interface TitlesType {
     [key: string]: {
       main: string;
