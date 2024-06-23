@@ -41,6 +41,7 @@ const BtnDim = styled.div`
   gap: 1rem;
   align-items: end;
   justify-content: center;
+  z-index: 2;
 
   margin-top: 3rem;
   background: ${({ theme }) => theme.colors.dim_gradient};

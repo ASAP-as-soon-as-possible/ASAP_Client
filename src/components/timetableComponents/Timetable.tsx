@@ -11,9 +11,10 @@ interface TimetableProps {
   timeSlots: string[];
   availableDates: DateType[];
   children: (props: ColumnStructure) => ReactNode;
+  bottomItem?: ReactNode;
 }
 
-function Timetable({ timeSlots, availableDates, children }: TimetableProps) {
+function Timetable({ timeSlots, availableDates, children, bottomItem }: TimetableProps) {
   const [startSlot, setStartSlot] = useState<string | undefined>(undefined);
   const [selectedSlots, setSelectedSlots] = useState<SelectedSlotType>({});
 
@@ -41,6 +42,7 @@ function Timetable({ timeSlots, availableDates, children }: TimetableProps) {
           </Table>
         </TableWrapper>
       </TimetableWrapper>
+      {bottomItem}
     </TimetableContext.Provider>
   );
 }

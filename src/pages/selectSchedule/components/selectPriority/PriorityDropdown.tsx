@@ -1,15 +1,15 @@
+import { useState } from 'react';
+
+import Text from 'components/atomComponents/Text';
 import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
 import {
   SelectedSlotType,
   SlotInfoType,
   useTimetableContext,
 } from 'components/timetableComponents/context';
-
-import Text from 'components/atomComponents/Text';
 import { addMinutes } from 'components/timetableComponents/utils';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { useState } from 'react';
 
 /**
  *
