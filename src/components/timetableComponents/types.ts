@@ -15,3 +15,8 @@ export interface DateType {
   day: string | undefined;
   dayOfWeek: string | undefined;
 }
+
+export interface SlotType {
+  startTime: string;
+  endTime: string;
+}

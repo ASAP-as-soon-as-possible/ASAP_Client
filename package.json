@@ -11,6 +11,8 @@
     "lint:css": "stylelint './src/**/*.{ts,tsx}'"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.45.1",
+    "@tanstack/react-query-devtools": "^5.45.1",
     "@types/axios": "^0.14.0",
     "@types/react-copy-to-clipboard": "^5.0.4",
     "axios": "^1.4.0",

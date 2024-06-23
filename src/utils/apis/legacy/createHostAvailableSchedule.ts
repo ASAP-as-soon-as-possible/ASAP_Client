@@ -1,12 +1,10 @@
-import { AxiosResponse } from 'axios';
 import {
   HostAvailableSchduleRequestType,
   HostAvailableScheduleResponseType,
-  UserAvailableScheduleResponseType,
   UserAvailableScheduleRequestType,
+  UserAvailableScheduleResponseType,
 } from 'src/types/createAvailableSchduleType';
-
-import { authClient, client } from './axios';
+import { authClient, client } from '../axios';
 
 export const hostAvailableApi = (
   meetingId: string,

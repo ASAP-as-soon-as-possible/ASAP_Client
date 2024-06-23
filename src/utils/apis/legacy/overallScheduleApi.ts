@@ -1,7 +1,7 @@
+import { authClient, client } from '../axios';
+
 import { AvailableScheduleOptionResponse } from 'src/types/availbleScheduleType';
 import { OverallScheduleResponse } from 'src/types/overallScheduleType';
-
-import { authClient, client } from './axios';
 
 /** 가능 시간 입력 선택지 조회 api */
 export const availbleScheduleOptionApi = (meetingId?: string) => {

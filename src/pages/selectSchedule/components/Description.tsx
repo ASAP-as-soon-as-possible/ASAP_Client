@@ -1,18 +1,18 @@
-import { formatDuration, formatPlace } from '../utils';
+import { DURATION, PLACE } from '../utils';
 
 import Text from 'components/atomComponents/Text';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 interface DescriptionProps {
-  duration: string;
-  place: string;
+  duration: keyof typeof DURATION;
+  place: keyof typeof PLACE;
   placeDetail?: string;
 }
 
 function Description({ duration: durationOg, place: placeOg, placeDetail }: DescriptionProps) {
-  const duration = formatDuration(durationOg);
-  const place = formatPlace(placeOg);
+  const duration = DURATION[durationOg];
+  const place = PLACE[placeOg];
   return (
     <DescriptionWrapper>
       <Texts>

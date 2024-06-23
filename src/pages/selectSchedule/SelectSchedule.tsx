@@ -2,59 +2,20 @@ import { useState } from 'react';
 
 import Header from 'components/moleculesComponents/Header';
 import TitleComponents from 'components/moleculesComponents/TitleComponents';
-import { DateType } from 'components/timetableComponents/types';
 import { getAvailableTimes } from 'components/timetableComponents/utils';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { useGetTimetable } from 'utils/apis/useGetTimetable';
 
 import Description from './components/Description';
 import SelectScheduleTable from './components/SelectScheduleTable';
 import { ScheduleStepContext } from './context';
 import { ScheduleStepType } from './types';
 
-/***** api 연결 후 지울 것*****/
-
-const availableDates: DateType[] = [
-  {
-    month: '6',
-    day: '20',
-    dayOfWeek: '목',
-  },
-  {
-    month: '6',
-    day: '21',
-    dayOfWeek: '금',
-  },
-  {
-    month: '6',
-    day: '22',
-    dayOfWeek: '토',
-  },
-  {
-    month: '6',
-    day: '23',
-    dayOfWeek: '일',
-  },
-];
-
-export type SlotType = {
-  startTime: string;
-  endTime: string;
-};
-
-const preferTimes: SlotType = {
-  startTime: '06:00',
-  endTime: '24:00',
-};
-
-const timeSlots = getAvailableTimes(preferTimes);
-const duration = 'HALF';
-const place = 'OFFLINE';
-const placeDetail = undefined;
-/***** api 연결 후 지울 것*****/
-
 function SelectSchedule() {
   const [scheduleStep, setScheduleStep] = useState<ScheduleStepType>('selectTimeSlot');
-
+  const { meetingId } = useParams();
+  const { data, isLoading } = useGetTimetable(meetingId);
   interface TitlesType {
     [key: string]: {
       main: string;
@@ -73,18 +34,28 @@ function SelectSchedule() {
 
   return (
     <ScheduleStepContext.Provider value={{ scheduleStep, setScheduleStep }}>
-      <SelectScheduleWrapper>
-        <Header position="schedule" />
-        {scheduleStep === 'selectTimeSlot' && (
-          <Description duration={duration} place={place} placeDetail={placeDetail} />
+      {!isLoading &&
+        data && (
+          <SelectScheduleWrapper>
+            <Header position="schedule" />
+            {scheduleStep === 'selectTimeSlot' && (
+              <Description
+                duration={data.duration}
+                place={data.place}
+                placeDetail={data.placeDetail}
+              />
+            )}
+            <TitleComponents
+              main={titles[scheduleStep].main}
+              sub={titles[scheduleStep].sub}
+              padding={scheduleStep === 'selectTimeSlot' ? `0 0 2.6rem` : `4.4rem 0 3.2rem 0`}
+            />
+            <SelectScheduleTable
+              timeSlots={getAvailableTimes(data.preferTimes[0])}
+              availableDates={data.availableDates}
+            />
+          </SelectScheduleWrapper>
         )}
-        <TitleComponents
-          main={titles[scheduleStep].main}
-          sub={titles[scheduleStep].sub}
-          padding={scheduleStep === 'selectTimeSlot' ? `0 0 2.6rem` : `4.4rem 0 3.2rem 0`}
-        />
-        <SelectScheduleTable timeSlots={timeSlots} availableDates={availableDates} />
-      </SelectScheduleWrapper>
     </ScheduleStepContext.Provider>
   );
 }

@@ -1,17 +1,18 @@
-import { useEffect } from 'react';
-
-import { ThemeProvider } from 'styled-components';
-import styled from 'styled-components/macro';
-import ToastContainerBox from 'utils/toast/ToastContainer';
-
-import Router from './Router';
-import GlobalStyle from './styles/globalStyles';
-import { theme } from './styles/theme';
-
-import './App.css';
 /**카카오톡 인앱브라우저 종료후 크롬 및 사파리로 오픈하는 utils file */
 import './utils/changeBrowser';
 import 'react-toastify/dist/ReactToastify.css';
+import './App.css';
+
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+import GlobalStyle from './styles/globalStyles';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import Router from './Router';
+import { ThemeProvider } from 'styled-components';
+import ToastContainerBox from 'utils/toast/ToastContainer';
+import styled from 'styled-components/macro';
+import { theme } from './styles/theme';
+import { useEffect } from 'react';
 
 const MobileWrapper = styled.div`
   display: flex;
@@ -47,14 +48,19 @@ function App() {
       window.removeEventListener('resize', setScreenSize);
     };
   }, []);
+
+  const queryClient = new QueryClient();
   return (
     <>
       <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <MobileWrapper>
-          <Router />
-          <ToastContainerBox />
-        </MobileWrapper>
+        <QueryClientProvider client={queryClient}>
+          <GlobalStyle />
+          <MobileWrapper>
+            <Router />
+            <ToastContainerBox />
+          </MobileWrapper>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
       </ThemeProvider>
     </>
   );
