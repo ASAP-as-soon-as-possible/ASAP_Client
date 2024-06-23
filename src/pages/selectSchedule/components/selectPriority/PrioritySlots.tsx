@@ -1,11 +1,12 @@
-import { ColumnStructure } from 'components/timetableComponents/types';
-import Slot from '../../../../components/timetableComponents/parts/Slot';
 import Text from 'components/atomComponents/Text';
+import { ColumnStructure } from 'components/timetableComponents/types';
+import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 import { theme } from 'styles/theme';
-import { useTimetableContext } from '../../../../components/timetableComponents/context';
+
+import Slot from '../../../../components/timetableComponents/parts/Slot';
 
 function PrioritySlots({ date, timeSlots }: ColumnStructure) {
-  const { selectedSlots } = useTimetableContext();
+  const { selectedSlots } = useSelectContext();
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,
   );

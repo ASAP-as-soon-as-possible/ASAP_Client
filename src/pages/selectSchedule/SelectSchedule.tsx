@@ -9,7 +9,7 @@ import { useGetTimetable } from 'utils/apis/useGetTimetable';
 
 import Description from './components/Description';
 import SelectScheduleTable from './components/SelectScheduleTable';
-import { ScheduleStepContext } from './context';
+import { ScheduleStepContext } from './contexts/useScheduleStepContext';
 import { ScheduleStepType } from './types';
 import { TITLES } from './utils';
 
@@ -20,28 +20,30 @@ function SelectSchedule() {
 
   return (
     <ScheduleStepContext.Provider value={{ scheduleStep, setScheduleStep }}>
-      {!isLoading &&
-        data && (
-          <SelectScheduleWrapper>
-            <Header position="schedule" />
-            {scheduleStep === 'selectTimeSlot' && (
-              <Description
-                duration={data.duration}
-                place={data.place}
-                placeDetail={data.placeDetail}
+      <SelectScheduleWrapper>
+        <Header position="schedule" />
+        {!isLoading &&
+          data && (
+            <>
+              {scheduleStep === 'selectTimeSlot' && (
+                <Description
+                  duration={data.duration}
+                  place={data.place}
+                  placeDetail={data.placeDetail}
+                />
+              )}
+              <TitleComponents
+                main={TITLES[scheduleStep].main}
+                sub={TITLES[scheduleStep].sub}
+                padding={scheduleStep === 'selectTimeSlot' ? `0 0 2.6rem` : `4.4rem 0 3.2rem 0`}
               />
-            )}
-            <TitleComponents
-              main={TITLES[scheduleStep].main}
-              sub={TITLES[scheduleStep].sub}
-              padding={scheduleStep === 'selectTimeSlot' ? `0 0 2.6rem` : `4.4rem 0 3.2rem 0`}
-            />
-            <SelectScheduleTable
-              timeSlots={getAvailableTimes(data.preferTimes[0])}
-              availableDates={data.availableDates}
-            />
-          </SelectScheduleWrapper>
-        )}
+              <SelectScheduleTable
+                timeSlots={getAvailableTimes(data.preferTimes[0])}
+                availableDates={data.availableDates}
+              />
+            </>
+          )}
+      </SelectScheduleWrapper>
     </ScheduleStepContext.Provider>
   );
 }

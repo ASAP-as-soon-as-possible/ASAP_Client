@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-import { authClient, client } from './axios';
+import { authClient } from './axios';
 
 interface Date {
   month: string;
@@ -20,7 +20,7 @@ interface AvailableDateTime extends Date {
   timeSlots: TimeSlot[];
 }
 
-interface getOverallTimetableResponse {
+export interface getOverallScheduleResponse {
   data: {
     memberCount: number;
     totalUserNames: string[];
@@ -28,11 +28,9 @@ interface getOverallTimetableResponse {
   };
 }
 
-const getOverallTimetable = async (meetingId: string) => {
+const getOverallSchedule = async (meetingId: string) => {
   try {
-    const res = await authClient.get<getOverallTimetableResponse>(
-      `/meeting/${meetingId}/timetable`,
-    );
+    const res = await authClient.get<getOverallScheduleResponse>(`/meeting/${meetingId}/timetable`);
     return res.data.data;
   } catch (err) {
     if (isAxiosError(err) && err.response) {
@@ -41,15 +39,15 @@ const getOverallTimetable = async (meetingId: string) => {
   }
 };
 
-export const useGetOverallTimetable = (meetingId?: string) => {
+export const useGetOverallSchedule = (meetingId?: string) => {
   const navigate = useNavigate();
   if (meetingId === undefined) {
     navigate('/error');
     throw new Error('잘못된 회의 아이디입니다.');
   }
   const { data, isLoading } = useQuery({
-    queryKey: ['getOverallTimetable', meetingId],
-    queryFn: () => getOverallTimetable(meetingId),
+    queryKey: ['getOverallSchedule', meetingId],
+    queryFn: () => getOverallSchedule(meetingId),
   });
 
   return { data, isLoading };

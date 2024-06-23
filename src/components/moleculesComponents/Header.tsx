@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
-import { useScheduleStepContext } from 'pages/selectSchedule/context';
+import { useScheduleStepContext } from 'pages/selectSchedule/contexts/useScheduleStepContext';
 import { ScheduleStepType } from 'pages/selectSchedule/types';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';

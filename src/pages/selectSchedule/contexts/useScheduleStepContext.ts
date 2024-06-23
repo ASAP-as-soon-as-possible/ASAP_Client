@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react';
 
-import { ScheduleStepType } from './types';
+import { ScheduleStepType } from '../types';
 
 interface ScheduleStepContextType {
   scheduleStep: ScheduleStepType;

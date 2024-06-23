@@ -1,8 +1,8 @@
-import { ReactNode, useState } from 'react';
+import { ReactNode } from 'react';
 
 import styled from 'styled-components';
+import { getOverallScheduleResponse } from 'utils/apis/useGetOverallSchedule';
 
-import { SelectedSlotType, TimetableContext } from './context';
 import DateTitle from './parts/ColumnTitle';
 import SlotTitle from './parts/SlotTitle';
 import { ColumnStructure, DateType } from './types';
@@ -12,23 +12,14 @@ interface TimetableProps {
   availableDates: DateType[];
   children: (props: ColumnStructure) => ReactNode;
   bottomItem?: ReactNode;
+  dataOverallSchedule?: getOverallScheduleResponse['data'];
 }
 
 function Timetable({ timeSlots, availableDates, children, bottomItem }: TimetableProps) {
-  const [startSlot, setStartSlot] = useState<string | undefined>(undefined);
-  const [selectedSlots, setSelectedSlots] = useState<SelectedSlotType>({});
-
   const emptyDates = Array.from({ length: 7 - availableDates.length }, (_, i) => `empty${i + 1}`);
 
   return (
-    <TimetableContext.Provider
-      value={{
-        startSlot,
-        setStartSlot,
-        selectedSlots,
-        setSelectedSlots,
-      }}
-    >
+    <>
       <TimetableWrapper>
         <SlotTitle timeSlots={timeSlots} />
         <TableWrapper>
@@ -43,7 +34,7 @@ function Timetable({ timeSlots, availableDates, children, bottomItem }: Timetabl
         </TableWrapper>
       </TimetableWrapper>
       {bottomItem}
-    </TimetableContext.Provider>
+    </>
   );
 }
 

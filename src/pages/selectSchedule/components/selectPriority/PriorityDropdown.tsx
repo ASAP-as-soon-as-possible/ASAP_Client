@@ -2,12 +2,12 @@ import { useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
+import { addMinutes } from 'components/timetableComponents/utils';
 import {
   SelectedSlotType,
   SelectSlotType,
-  useTimetableContext,
-} from 'components/timetableComponents/context';
-import { addMinutes } from 'components/timetableComponents/utils';
+  useSelectContext,
+} from 'pages/selectSchedule/contexts/useSelectContext';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -17,7 +17,7 @@ import { theme } from 'styles/theme';
  */
 
 function PriorityDropdown() {
-  const { selectedSlots, setSelectedSlots } = useTimetableContext();
+  const { selectedSlots, setSelectedSlots } = useSelectContext();
   const [timeSelect, setTimeSelect] = useState([false, false, false]);
 
   const formatDate = (date: string) => {

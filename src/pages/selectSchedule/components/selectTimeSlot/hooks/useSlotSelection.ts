@@ -1,7 +1,7 @@
-import { useTimetableContext } from '../../../../../components/timetableComponents/context'
+import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 
 const useSlotSeletion = () => {
-    const {startSlot, setStartSlot, selectedSlots, setSelectedSlots} = useTimetableContext();
+    const {startSlot, setStartSlot, selectedSlots, setSelectedSlots} = useSelectContext();
 
     const handleSelectSlot = (targetSlot: string) => {
         setStartSlot(targetSlot);
