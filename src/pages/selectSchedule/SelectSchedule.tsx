@@ -8,7 +8,8 @@ import styled from 'styled-components';
 
 import Description from './components/Description';
 import SelectScheduleTable from './components/SelectScheduleTable';
-import { Step } from './types';
+import { ScheduleStepContext } from './context';
+import { ScheduleStepType } from './types';
 
 /***** api 연결 후 지울 것*****/
 
@@ -52,7 +53,7 @@ const placeDetail = undefined;
 /***** api 연결 후 지울 것*****/
 
 function SelectSchedule() {
-  const [step, setStep] = useState<Step>('selectTimeSlot');
+  const [scheduleStep, setScheduleStep] = useState<ScheduleStepType>('selectTimeSlot');
 
   interface TitlesType {
     [key: string]: {
@@ -71,23 +72,20 @@ function SelectSchedule() {
   };
 
   return (
-    <SelectScheduleWrapper>
-      <Header position="schedule" setSelectScheduleStep={setStep} />
-      {step === 'selectTimeSlot' && (
-        <Description duration={duration} place={place} placeDetail={placeDetail} />
-      )}
-      <TitleComponents
-        main={titles[step].main}
-        sub={titles[step].sub}
-        padding={step === 'selectTimeSlot' ? `0 0 2.6rem` : `4.4rem 0 3.2rem 0`}
-      />
-      <SelectScheduleTable
-        step={step}
-        setStep={setStep}
-        timeSlots={timeSlots}
-        availableDates={availableDates}
-      />
-    </SelectScheduleWrapper>
+    <ScheduleStepContext.Provider value={{ scheduleStep, setScheduleStep }}>
+      <SelectScheduleWrapper>
+        <Header position="schedule" />
+        {scheduleStep === 'selectTimeSlot' && (
+          <Description duration={duration} place={place} placeDetail={placeDetail} />
+        )}
+        <TitleComponents
+          main={titles[scheduleStep].main}
+          sub={titles[scheduleStep].sub}
+          padding={scheduleStep === 'selectTimeSlot' ? `0 0 2.6rem` : `4.4rem 0 3.2rem 0`}
+        />
+        <SelectScheduleTable timeSlots={timeSlots} availableDates={availableDates} />
+      </SelectScheduleWrapper>
+    </ScheduleStepContext.Provider>
   );
 }
 
