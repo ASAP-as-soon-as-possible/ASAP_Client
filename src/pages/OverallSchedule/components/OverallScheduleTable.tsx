@@ -9,6 +9,7 @@ import {
 } from 'utils/apis/useGetOverallSchedule';
 
 import OverallScheduleSlots from './OverallScheduleSlots';
+import UserNames from './UserNames';
 import { ClickContext } from '../contexts/useClickContext';
 
 interface OverallScheduleTableProps extends TimetableStructure {
@@ -45,7 +46,7 @@ function OverallScheduleTable({
         setClickedUserNames,
       }}
     >
-      <Timetable timeSlots={timeSlots} availableDates={availableDates}>
+      <Timetable timeSlots={timeSlots} availableDates={availableDates} bottomItem={<UserNames />}>
         {({ date, timeSlots }: ColumnStructure) => (
           <OverallScheduleSlots
             date={date}
