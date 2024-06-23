@@ -7,7 +7,7 @@ import PrioritySlots from './selectPriority/PrioritySlots';
 import SelectionSlots from './selectTimeSlot/SelectionSlots';
 import TimeSlotCta from './selectTimeSlot/TimeSlotCta';
 import { useScheduleStepContext } from '../context';
-import { StepBtnsType, StepSlotsType } from '../types';
+import { StepSlotsType, StepbottomItemsType } from '../types';
 
 function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) {
   const { scheduleStep } = useScheduleStepContext();
@@ -22,20 +22,21 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
   };
   const stepSlot = stepSlots[scheduleStep];
 
-  const stepBtns: StepBtnsType = {
+  const bottomItems: StepbottomItemsType = {
     selectTimeSlot: <TimeSlotCta />,
-    selectPriority: <PriorityCta />,
+    selectPriority: (
+      <>
+        <PriorityDropdown />
+        <PriorityCta />
+      </>
+    ),
   };
-  const stepBtn = stepBtns[scheduleStep];
+  const bottomItem = bottomItems[scheduleStep];
 
   return (
-    <>
-      <Timetable timeSlots={timeSlots} availableDates={availableDates}>
-        {stepSlot}
-      </Timetable>
-      {scheduleStep === 'selectPriority' && <PriorityDropdown />}
-      {stepBtn}
-    </>
+    <Timetable timeSlots={timeSlots} availableDates={availableDates} bottomItem={bottomItem}>
+      {stepSlot}
+    </Timetable>
   );
 }
 

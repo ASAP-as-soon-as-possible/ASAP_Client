@@ -1,8 +1,9 @@
-import Button from 'components/atomComponents/Button';
-import SelectModal from 'pages/legacy/selectSchedule/SelectModal';
-import Text from 'components/atomComponents/Text';
-import styled from 'styled-components';
 import { useState } from 'react';
+
+import Button from 'components/atomComponents/Button';
+import Text from 'components/atomComponents/Text';
+import SelectModal from 'pages/legacy/selectSchedule/SelectModal';
+import styled from 'styled-components';
 
 function PriorityCta() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,10 +37,11 @@ export default PriorityCta;
 const BtnDim = styled.div`
   display: flex;
   position: fixed;
-  gap: 1rem;
   bottom: 0;
+  gap: 1rem;
   align-items: end;
   justify-content: center;
+  z-index: 2;
 
   margin-top: 3rem;
   background: ${({ theme }) => theme.colors.dim_gradient};
