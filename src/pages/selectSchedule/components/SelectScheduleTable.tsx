@@ -1,18 +1,19 @@
-import { ColumnStructure, TimetableStructure } from 'components/timetableComponents/types';
-import { SelectedSlotType, TimetableContext } from 'components/timetableComponents/context';
-import { Step, StepBtnsType, StepSlotsType } from '../types';
+import { useState } from 'react';
 
 import Button from 'components/atomComponents/Button';
+import Text from 'components/atomComponents/Text';
+import { SelectedSlotType, TimetableContext } from 'components/timetableComponents/context';
+import Timetable from 'components/timetableComponents/Timetable';
+import { ColumnStructure, TimetableStructure } from 'components/timetableComponents/types';
+import styled from 'styled-components';
+
 import PriorityCta from './selectPriority/PriorityCta';
 import PriorityDropdown from './selectPriority/PriorityDropdown';
 import PrioritySlots from './selectPriority/PrioritySlots';
 import SelectionSlots from './selectTimeSlot/SelectionSlots';
-import Text from 'components/atomComponents/Text';
 import TimeSlotCta from './selectTimeSlot/TimeSlotCta';
-import Timetable from 'components/timetableComponents/Timetable';
+import { Step, StepBtnsType, StepSlotsType } from '../types';
 import { resetPriorities } from '../utils';
-import styled from 'styled-components';
-import { useState } from 'react';
 
 interface SelectScheduleTableProps extends TimetableStructure {
   step: Step;
@@ -36,13 +37,14 @@ function SelectScheduleTable({
       <PrioritySlots date={date} timeSlots={timeSlots} />
     ),
   };
+  const stepSlot = stepSlots[step];
 
   const isValidSelection = Object.keys(selectedSlots).length !== 0;
-
   const stepBtns: StepBtnsType = {
     selectTimeSlot: <TimeSlotCta isValidSelection={isValidSelection} setStep={setStep} />,
     selectPriority: <PriorityCta />,
   };
+  const stepBtn = stepBtns[step];
 
   return (
     <TimetableContext.Provider
@@ -54,10 +56,10 @@ function SelectScheduleTable({
       }}
     >
       <Timetable timeSlots={timeSlots} availableDates={availableDates}>
-        {stepSlots[step]}
+        {stepSlot}
       </Timetable>
       {step === 'selectPriority' && <PriorityDropdown />}
-      {stepBtns[step]}
+      {stepBtn}
     </TimetableContext.Provider>
   );
 }

@@ -1,13 +1,14 @@
-import Button from 'components/atomComponents/Button';
-import { DateType } from 'components/timetableComponents/types';
-import Description from './components/Description';
+import { useState } from 'react';
+
 import Header from 'components/moleculesComponents/Header';
-import SelectScheduleTable from './components/SelectScheduleTable';
-import { Step } from './types';
 import TitleComponents from 'components/moleculesComponents/TitleComponents';
+import { DateType } from 'components/timetableComponents/types';
 import { getAvailableTimes } from 'components/timetableComponents/utils';
 import styled from 'styled-components';
-import { useState } from 'react';
+
+import Description from './components/Description';
+import SelectScheduleTable from './components/SelectScheduleTable';
+import { Step } from './types';
 
 /***** api 연결 후 지울 것*****/
 
