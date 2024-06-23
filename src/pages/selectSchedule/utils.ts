@@ -1,4 +1,5 @@
 import { SelectedSlotType } from 'components/timetableComponents/context';
+import { addMinutes } from 'components/timetableComponents/utils';
 
 export const DURATION = {
   HALF: '30분',
@@ -49,7 +50,7 @@ export const formatHostScheduleScheme = (selectedSlots: SelectedSlotType) => {
       day: day.padStart(2, '0'),
       dayOfWeek: dayOfWeek,
       startTime: slot.startSlot,
-      endTime: slot.endSlot,
+      endTime: addMinutes(slot.endSlot, 30),
       priority: slot.priority,
     };
   });
@@ -71,7 +72,7 @@ export const formatMemberScheduleScheme = (selectedSlots: SelectedSlotType, user
       day: day.padStart(2, '0'),
       dayOfWeek: dayOfWeek,
       startTime: slot.startSlot,
-      endTime: slot.endSlot,
+      endTime: addMinutes(slot.endSlot, 30),
       priority: slot.priority,
     };
   });

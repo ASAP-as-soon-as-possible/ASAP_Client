@@ -1,15 +1,14 @@
-import { formatHostScheduleScheme, formatMemberScheduleScheme } from 'pages/selectSchedule/utils';
-import { hostAvailableApi, userAvailableApi } from 'utils/apis/legacy/createHostAvailableSchedule';
-import { useNavigate, useParams } from 'react-router';
-
-import { ExitIc } from 'components/Icon/icon';
-import Text from 'components/atomComponents/Text';
+import { userNameAtom } from 'atoms/atom';
 import { isAxiosError } from 'axios';
+import Text from 'components/atomComponents/Text';
+import { ExitIc } from 'components/Icon/icon';
+import { useTimetableContext } from 'components/timetableComponents/context';
+import { formatHostScheduleScheme, formatMemberScheduleScheme } from 'pages/selectSchedule/utils';
+import { useNavigate, useParams } from 'react-router';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { useRecoilValue } from 'recoil';
-import { useTimetableContext } from 'components/timetableComponents/context';
-import { userNameAtom } from 'atoms/atom';
+import { hostAvailableApi, userAvailableApi } from 'utils/apis/legacy/createHostAvailableSchedule';
 
 interface ModalProps {
   setShowModal: (isModalOpen: boolean) => void;
@@ -162,12 +161,15 @@ const MentContainer = styled.div`
 `;
 
 const ModalMent = styled.span`
+  margin-top: 2.4rem;
+  margin-bottom: 0.8rem;
+
+  width: 14.4rem;
+
+  text-align: center;
+
   color: ${({ theme }) => theme.colors.white};
   ${({ theme }) => theme.fonts.body2};
-  width: 14.4rem;
-  text-align: center;
-  margin-bottom: 0.8rem;
-  margin-top: 2.4rem;
 `;
 
 const ModalHighlight = styled.span`
