@@ -4,7 +4,7 @@ import Text from 'components/atomComponents/Text';
 import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
 import {
   SelectedSlotType,
-  SlotInfoType,
+  SelectSlotType,
   useTimetableContext,
 } from 'components/timetableComponents/context';
 import { addMinutes } from 'components/timetableComponents/utils';
@@ -56,7 +56,7 @@ function PriorityDropdown() {
     }
   };
 
-  const handlePriority = (i: number, item: SlotInfoType, itemKey: string) => {
+  const handlePriority = (i: number, item: SelectSlotType, itemKey: string) => {
     let temp: 0 | 1 | 2 | 3 = 0;
     switch (i) {
       case 0:
