@@ -22,13 +22,11 @@ function Title({ memberCount, totalUserNames }: TitleProps) {
         </Text>
       </TextOneLine>
       <TotalUserNames>
-        {totalUserNames &&
-          totalUserNames.map((name, idx) => (
-            <Text key={idx + name} font={'body4'} color={`${theme.colors.grey5}`}>
-              {name}
-              {idx !== totalUserNames.length - 1 ? ',' : ''}&nbsp;
-            </Text>
-          ))}
+        {totalUserNames && (
+          <Text font={'body4'} color={`${theme.colors.grey5}`}>
+            {totalUserNames.join(',')}
+          </Text>
+        )}
       </TotalUserNames>
     </>
   );

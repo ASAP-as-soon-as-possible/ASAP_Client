@@ -19,12 +19,9 @@ function UserNames() {
           </Text>
         </Texts>
       ) : (
-        clickedUserNames.map((name, idx) => (
-          <Text key={idx + name} font={'body2'} color={`${theme.colors.grey2}`}>
-            {name}
-            {idx !== clickedUserNames.length - 1 ? ',' : ''}&nbsp;
-          </Text>
-        ))
+        <Text font={'body2'} color={theme.colors.grey2}>
+          {clickedUserNames.join(', ')}
+        </Text>
       )}
     </UserNamesWrapper>
   );
