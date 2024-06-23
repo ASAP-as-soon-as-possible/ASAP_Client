@@ -10,13 +10,13 @@ interface Date {
   dayOfWeek: string;
 }
 
-interface TimeSlot {
+export interface TimeSlot {
   time: string;
   userNames: string[];
-  colorLevel: 1 | 2 | 3 | 4 | 5;
+  colorLevel: number;
 }
 
-interface AvailableDateTime extends Date {
+export interface AvailableDateTime extends Date {
   timeSlots: TimeSlot[];
 }
 
