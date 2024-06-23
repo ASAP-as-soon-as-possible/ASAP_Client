@@ -1,20 +1,19 @@
 import Button from 'components/atomComponents/Button';
-import { Step } from 'pages/selectSchedule/types';
 import Text from 'components/atomComponents/Text';
+import { useTimetableContext } from 'components/timetableComponents/context';
+import { useScheduleStepContext } from 'pages/selectSchedule/context';
 import styled from 'styled-components';
 
-interface TimeSlotCtaProps {
-  isValidSelection: boolean;
-  setStep: (step: Step) => void;
-}
-
-function TimeSlotCta({ isValidSelection, setStep }: TimeSlotCtaProps) {
+function TimeSlotCta() {
+  const { setScheduleStep } = useScheduleStepContext();
+  const { selectedSlots } = useTimetableContext();
+  const isValidSelection = Object.keys(selectedSlots).length !== 0;
   return (
     <BtnDim>
       <Button
         typeState={isValidSelection ? 'primaryActive' : 'secondaryDisabled'}
         onClick={() => {
-          setStep('selectPriority');
+          setScheduleStep('selectPriority');
         }}
       >
         <Text font={'button2'}>다음</Text>

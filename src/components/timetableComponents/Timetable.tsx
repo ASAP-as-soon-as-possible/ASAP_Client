@@ -1,9 +1,11 @@
-import { ColumnStructure, DateType } from './types';
+import { ReactNode, useState } from 'react';
 
-import DateTitle from './parts/ColumnTitle';
-import { ReactNode } from 'react';
-import SlotTitle from './parts/SlotTitle';
 import styled from 'styled-components';
+
+import { SelectedSlotType, TimetableContext } from './context';
+import DateTitle from './parts/ColumnTitle';
+import SlotTitle from './parts/SlotTitle';
+import { ColumnStructure, DateType } from './types';
 
 interface TimetableProps {
   timeSlots: string[];
@@ -12,22 +14,34 @@ interface TimetableProps {
 }
 
 function Timetable({ timeSlots, availableDates, children }: TimetableProps) {
+  const [startSlot, setStartSlot] = useState<string | undefined>(undefined);
+  const [selectedSlots, setSelectedSlots] = useState<SelectedSlotType>({});
+
   const emptyDates = Array.from({ length: 7 - availableDates.length }, (_, i) => `empty${i + 1}`);
 
   return (
-    <TimetableWrapper>
-      <SlotTitle timeSlots={timeSlots} />
-      <TableWrapper>
-        <DateTitle availableDates={availableDates} />
-        <Table>
-          {availableDates.map((date) => {
-            const dateKey = Object.values(date).join('/');
-            return <Column key={dateKey}>{children({ date: dateKey, timeSlots })}</Column>;
-          })}
-          {emptyDates && emptyDates.map((value) => <EmptyColumn key={value} />)}
-        </Table>
-      </TableWrapper>
-    </TimetableWrapper>
+    <TimetableContext.Provider
+      value={{
+        startSlot,
+        setStartSlot,
+        selectedSlots,
+        setSelectedSlots,
+      }}
+    >
+      <TimetableWrapper>
+        <SlotTitle timeSlots={timeSlots} />
+        <TableWrapper>
+          <DateTitle availableDates={availableDates} />
+          <Table>
+            {availableDates.map((date) => {
+              const dateKey = Object.values(date).join('/');
+              return <Column key={dateKey}>{children({ date: dateKey, timeSlots })}</Column>;
+            })}
+            {emptyDates && emptyDates.map((value) => <EmptyColumn key={value} />)}
+          </Table>
+        </TableWrapper>
+      </TimetableWrapper>
+    </TimetableContext.Provider>
   );
 }
 

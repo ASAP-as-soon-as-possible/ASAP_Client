@@ -2,7 +2,8 @@ import { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
-import { Step as SelectScheduleStep } from 'pages/selectSchedule/types';
+import { useScheduleStepContext } from 'pages/selectSchedule/context';
+import { ScheduleStepType } from 'pages/selectSchedule/types';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
@@ -16,10 +17,11 @@ import Navigation from './Navigation';
 interface HeaderProps {
   position: string;
   setFunnelStep?: Dispatch<SetStateAction<number>>;
-  setSelectScheduleStep?: Dispatch<SetStateAction<SelectScheduleStep>>;
+  setSelectScheduleStep?: Dispatch<SetStateAction<ScheduleStepType>>;
 }
 
-function Header({ position, setFunnelStep, setSelectScheduleStep }: HeaderProps) {
+function Header({ position, setFunnelStep }: HeaderProps) {
+  const { scheduleStep, setScheduleStep } = useScheduleStepContext();
   const navigationOptions = [
     {
       title: '약속 생성하기',
@@ -44,19 +46,16 @@ function Header({ position, setFunnelStep, setSelectScheduleStep }: HeaderProps)
       });
     }
   };
-  const backToSelectSchedule = () =>{
-    if (setSelectScheduleStep !== undefined){
-      setSelectScheduleStep((prev:SelectScheduleStep)=>{
-        if (prev === 'selectTimeSlot'){
-          window.history.back()
-          return prev;
-        } else if (prev === 'selectPriority'){
-          return 'selectTimeSlot'
-        }
-        return prev;
-      })
+  const backToSelectSchedule = () => {
+    if (setScheduleStep !== undefined) {
+      if (scheduleStep === 'selectTimeSlot') {
+        window.history.back();
+        return;
+      } else if (scheduleStep === 'selectPriority') {
+        setScheduleStep('selectTimeSlot');
+      }
     }
-  }
+  };
 
   const { meetingId } = useParams();
   return (
