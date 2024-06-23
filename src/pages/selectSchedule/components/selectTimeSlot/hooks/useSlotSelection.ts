@@ -1,4 +1,4 @@
-import { useTimetableContext } from '../context'
+import { useTimetableContext } from '../../../../../components/timetableComponents/context'
 
 const useSlotSeletion = () => {
     const {startSlot, setStartSlot, selectedSlots, setSelectedSlots} = useTimetableContext();
@@ -14,7 +14,8 @@ const useSlotSeletion = () => {
             const newSelectedSlot = {
                 date:dateOfStartSlot,
                 startSlot:startSlot?.substring(startSlot.lastIndexOf('/')+1),
-                endSlot:targetSlot.substring(targetSlot.lastIndexOf('/')+1)
+                endSlot:targetSlot.substring(targetSlot.lastIndexOf('/')+1),
+                priority:0,
             }
 
             const keys = Object.keys(selectedSlots).map(Number)

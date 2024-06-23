@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 
 import Header from 'components/moleculesComponents/Header';
+import { MeetingInfo } from './types/useFunnelInterface';
 import ReturnBodyComponent from 'pages/createMeeting/components/ReturnBodyComponent';
 import ReturnTitleComponent from 'pages/createMeeting/components/ReturnTitleComponent';
-import styled from 'styled-components/macro';
-
 import { funnelStep } from './data/meetingInfoData';
-import { MeetingInfo } from './types/useFunnelInterface';
+import styled from 'styled-components/macro';
 
 const initialMeetingInfo: MeetingInfo = {
   title: '',
@@ -27,7 +26,7 @@ function CreateMeeting() {
   return (
     <>
       <CreateMeetingWrapper>
-        <Header position={'createMeeting'} setStep={setStep} />
+        <Header position={'createMeeting'} setFunnelStep={setStep} />
         <ReturnTitleComponent step={currentStep} />
         <ReturnBodyComponent
           currentStep={currentStep}

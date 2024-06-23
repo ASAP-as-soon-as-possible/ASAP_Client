@@ -1,45 +1,36 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
-import useSlotSeletion from '../hooks/useSlotSelection';
-
 interface SlotProps {
-  slot: string;
-  selectedEntryId?: number;
+  slotId: string;
+  slotStyle?: string;
+  onClick?: () => void;
+  children?: ReactNode;
 }
 
-function Slot({ slot, selectedEntryId }: SlotProps) {
-  const { startSlot, onClickSlot } = useSlotSeletion();
+function Slot({ slotId, slotStyle, onClick, children }: SlotProps) {
+  const borderStyle = slotId.endsWith(':30') ? 'dashed' : 'solid';
 
-  const borderStyle = slot.endsWith(':30') ? 'dashed' : 'solid';
-  const styledSlotProps = {
-    $borderStyle: borderStyle,
-    $isSelected: selectedEntryId !== undefined,
-    onClick: () => onClickSlot(slot, selectedEntryId),
-  };
-
-  if (slot === startSlot) {
-    return <SelectingSlot {...styledSlotProps} />;
-  } else {
-    return <DefaultSlot {...styledSlotProps} />;
-  }
+  return (
+    <DefaultSlot $borderStyle={borderStyle} $slotStyle={slotStyle} onClick={onClick}>
+      {children}
+    </DefaultSlot>
+  );
 }
 
 export default Slot;
 
-const DefaultSlot = styled.div<{ $borderStyle: string; $isSelected: boolean }>`
-  border-top: 1px ${({ $borderStyle }) => $borderStyle} ${({ theme }) => theme.colors.grey7};
-  background-color: ${({ $isSelected, theme }) =>
-    $isSelected ? theme.colors.main1 : 'transparent'};
-  cursor: pointer;
-  width: 4.4rem;
-  height: 2.2rem;
-`;
+const DefaultSlot = styled.div<{
+  $borderStyle: string;
+  $slotStyle?: string;
+}>`
+  border-top: 1px solid ${({ theme }) => theme.colors.grey7};
+  border-top-style: ${({ $borderStyle }) => $borderStyle};
+  ${({ $slotStyle }) => $slotStyle};
 
-const SelectingSlot = styled.div<{ $borderStyle: string; $isSelected: boolean }>`
-  border: 1px dashed ${({ theme }) => theme.colors.main5};
-  background-color: ${({ $isSelected, theme }) =>
-    $isSelected ? theme.colors.main1 : 'transparent'};
-  cursor: pointer;
   width: 4.4rem;
   height: 2.2rem;
+
+  display: flex;
+  justify-content: center;
 `;
