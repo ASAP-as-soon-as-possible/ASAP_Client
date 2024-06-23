@@ -3,12 +3,17 @@ import { ColumnStructure } from 'components/timetableComponents/types';
 import { theme } from 'styles/theme';
 import { TimeSlot } from 'utils/apis/useGetOverallSchedule';
 
+import { useSlotClick } from '../hooks/useSlotClick';
+
 interface OverallScheduleSlotsProps extends ColumnStructure {
   availableSlotInfo: TimeSlot[];
 }
 
 function OverallScheduleSlots({ date, timeSlots, availableSlotInfo }: OverallScheduleSlotsProps) {
-  const getTimeSlotStyle = (colorLevel: number) => {
+
+  const { clickedSlot, onClickSlot } = useSlotClick();
+
+  const getTimeSlotStyle = (colorLevel: number, slotId:string) => {
     const COLOR :{ [key : number]: string } = {
       0: 'transparent',
       1: theme.colors.level1,
@@ -17,19 +22,21 @@ function OverallScheduleSlots({ date, timeSlots, availableSlotInfo }: OverallSch
       4: theme.colors.level4,
       5: theme.colors.level5,
     };
+
+    const isClickedSlot = clickedSlot === slotId;
     return `
-      background-color: ${COLOR[colorLevel]};
+      background-color: ${isClickedSlot && colorLevel!==0 ? theme.colors.sub1 : COLOR[colorLevel]};
+      cursor: ${colorLevel !== 0 ? 'pointer' : 'default'};
     `
   }
-
 
   return (
     <>
       {timeSlots.map((timeSlot) => {
-        const colorLevel = (availableSlotInfo.find((info) => info.time === timeSlot))?.colorLevel ?? 0;
+        const { colorLevel = 0, userNames = [] } = availableSlotInfo.find((info) => info.time === timeSlot) ?? {};
         const slotId = `${date}/${timeSlot}`;
 
-        return <Slot key={slotId} slotId={slotId} slotStyle={getTimeSlotStyle(colorLevel)}/>;
+        return <Slot key={slotId} slotId={slotId} slotStyle={getTimeSlotStyle(colorLevel, slotId)} onClick={()=>onClickSlot(slotId, userNames)}/>;
       })}
     </>
   );
