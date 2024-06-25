@@ -24,15 +24,12 @@ function SelectModal({ setShowModal }: ModalProps) {
   const navigate = useNavigate();
   const { auth, meetingId } = useParams();
   const updateScheduleType = transformHostScheduleType(scheduleList);
-  console.log(updateScheduleType);
   const updateMemberScheduleType = transformUserScheduleType(scheduleList, userName);
-  console.log(updateMemberScheduleType);
 
   const postHostAvailableApi = async () => {
     try {
       if (meetingId && updateScheduleType) {
         const { data } = await hostAvailableApi(meetingId, updateScheduleType);
-        console.log(data);
         if (data.code === 201) {
           setShowModal(false);
           navigate(`/${auth}/schedule-complete/${meetingId}`);
@@ -80,14 +77,6 @@ function SelectModal({ setShowModal }: ModalProps) {
     }
   };
 
-  useEffect(
-    () => {
-      console.log(scheduleList);
-    },
-    [scheduleList],
-  );
-
-  // console.log(transformedScheduleList);
   const finishConfirm = () => {
     //여기에 api 연결하세요.
     if (auth === 'host') {

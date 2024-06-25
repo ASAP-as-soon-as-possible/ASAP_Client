@@ -102,7 +102,6 @@ function SelectSchedulePage() {
       priority: 0,
     };
     setScheduleList([...scheduleList, schedule]);
-    console.log(scheduleList);
   };
 
   const deleteDataList = (index: number) => {
@@ -269,9 +268,9 @@ const StyledBtnSection = styled.section`
   bottom: 0;
   align-items: end;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.dim_gradient};
 
-  margin-top:3rem;
+  margin-top: 3rem;
+  background: ${({ theme }) => theme.colors.dim_gradient};
   padding-bottom: 2.9rem;
 
   width: 100%;

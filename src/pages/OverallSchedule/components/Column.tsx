@@ -30,7 +30,6 @@ const Column = (props: ColumnProps) => {
   } = props;
 
   const handleSlotClick = () => {
-    console.log(filterUserNames(userNames));
     setTimeSlotUserName(userNames);
     setClickedTimeSlot(rowIdx + timeSlot);
   };
