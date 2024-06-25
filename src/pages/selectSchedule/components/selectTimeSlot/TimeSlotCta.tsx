@@ -1,12 +1,12 @@
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
-import { useTimetableContext } from 'components/timetableComponents/context';
-import { useScheduleStepContext } from 'pages/selectSchedule/context';
+import { useScheduleStepContext } from 'pages/selectSchedule/contexts/useScheduleStepContext';
+import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 import styled from 'styled-components';
 
 function TimeSlotCta() {
   const { setScheduleStep } = useScheduleStepContext();
-  const { selectedSlots } = useTimetableContext();
+  const { selectedSlots } = useSelectContext();
   const isValidSelection = Object.keys(selectedSlots).length !== 0;
   return (
     <BtnDim>

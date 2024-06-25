@@ -1,11 +1,12 @@
 import { ColumnStructure } from 'components/timetableComponents/types';
-import Slot from '../../../../components/timetableComponents/parts/Slot';
+import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 import { theme } from 'styles/theme';
-import useSlotSeletion from './hooks/useSlotSelection';
-import { useTimetableContext } from '../../../../components/timetableComponents/context';
 
-function SelectionSlots({ date, timeSlots }: ColumnStructure) {
-  const { selectedSlots } = useTimetableContext();
+import useSlotSeletion from './hooks/useSlotSelection';
+import Slot from '../../../../components/timetableComponents/parts/Slot';
+
+function SelectionColumn({ date, timeSlots }: ColumnStructure) {
+  const { selectedSlots } = useSelectContext();
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,
   );
@@ -47,4 +48,4 @@ function SelectionSlots({ date, timeSlots }: ColumnStructure) {
   );
 }
 
-export default SelectionSlots;
+export default SelectionColumn;

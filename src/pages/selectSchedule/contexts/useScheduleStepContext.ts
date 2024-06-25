@@ -1,10 +1,10 @@
-import { createContext, useContext } from 'react';
+import { Dispatch, SetStateAction, createContext, useContext } from 'react';
 
-import { ScheduleStepType } from './types';
+import { ScheduleStepType } from '../types';
 
 interface ScheduleStepContextType {
   scheduleStep: ScheduleStepType;
-  setScheduleStep: (scheduleStep: ScheduleStepType) => void;
+  setScheduleStep: Dispatch<SetStateAction<ScheduleStepType>>;
 }
 
 export const ScheduleStepContext = createContext<ScheduleStepContextType>({

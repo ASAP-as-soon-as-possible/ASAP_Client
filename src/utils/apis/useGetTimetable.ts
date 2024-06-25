@@ -1,9 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
+import { isAxiosError } from 'axios';
 import { DURATION, PLACE } from 'pages/selectSchedule/utils';
+import { useNavigate } from 'react-router-dom';
 
 import { client } from './axios';
-import { isAxiosError } from 'axios';
-import { useNavigate } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
 
 interface Date {
   month: string;

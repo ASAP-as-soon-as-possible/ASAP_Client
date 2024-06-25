@@ -5,7 +5,7 @@ export interface HostAvailableSchduleRequestType {
   dayOfWeek: string;
   startTime: string;
   endTime: string;
-  priority: 0 | 1 | 2 | 3;
+  priority: number;
 }
 
 export interface HostAvailableScheduleResponseType {
