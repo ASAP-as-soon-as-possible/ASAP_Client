@@ -18,7 +18,7 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
 
   const { scheduleStep } = useScheduleStepContext();
 
-  const stepSlots: StepSlotsType = {
+  const stepColumns: StepSlotsType = {
     selectTimeSlot: ({ date, timeSlots }: ColumnStructure) => (
       <SelectionColumn date={date} timeSlots={timeSlots} />
     ),
@@ -26,7 +26,7 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
       <PriorityColumn date={date} timeSlots={timeSlots} />
     ),
   };
-  const stepSlot = stepSlots[scheduleStep];
+  const stepColumn = stepColumns[scheduleStep];
 
   const bottomItems: StepbottomItemsType = {
     selectTimeSlot: <TimeSlotCta />,
@@ -49,7 +49,7 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
       }}
     >
       <Timetable timeSlots={timeSlots} availableDates={availableDates} bottomItem={bottomItem}>
-        {stepSlot}
+        {stepColumn}
       </Timetable>
     </SelectContext.Provider>
   );
