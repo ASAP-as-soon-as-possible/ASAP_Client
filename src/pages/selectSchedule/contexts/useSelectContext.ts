@@ -1,8 +1,8 @@
-import { createContext, useContext } from 'react';
+import { Dispatch, SetStateAction, createContext, useContext } from 'react';
 
 export interface SelectSlotType {
   date: string;
-  startSlot?: string;
+  startSlot: string;
   endSlot: string;
   priority: number;
 }
@@ -13,9 +13,9 @@ export interface SelectedSlotType {
 
 interface SelectContextType {
   startSlot: string | undefined;
-  setStartSlot: (startSlot?: string) => void;
+  setStartSlot: Dispatch<SetStateAction<SelectContextType['startSlot']>>;
   selectedSlots: SelectedSlotType;
-  setSelectedSlots: (selectedSlots: SelectedSlotType) => void;
+  setSelectedSlots: Dispatch<SetStateAction<SelectedSlotType>>;
 }
 
 export const SelectContext = createContext<SelectContextType>({

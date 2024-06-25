@@ -14,6 +14,9 @@ function OverallSchedule() {
     meetingId,
   );
 
+  // 시간대 선택 단계가 없어질 것을 고려하여 상수값을 설정해놓음
+  const PREFER_TIMES = { startTime: '06:00', endTime: '24:00' };
+
   return (
     <OverallScheduleWrapper>
       <Title memberCount={dataOverallSchedule?.memberCount} totalUserNames={dataOverallSchedule?.totalUserNames}/>
@@ -22,7 +25,7 @@ function OverallSchedule() {
         dataTimetable &&
         dataOverallSchedule && (
           <OverallScheduleTable
-            timeSlots={getAvailableTimes(dataTimetable.preferTimes[0])}
+            timeSlots={getAvailableTimes(PREFER_TIMES)}
             availableDates={dataTimetable.availableDates}
             dataOverallSchedule={dataOverallSchedule}
           />

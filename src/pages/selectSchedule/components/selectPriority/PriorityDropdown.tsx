@@ -72,8 +72,9 @@ function PriorityDropdown() {
         temp = 0;
         break;
     }
+
     setSelectedSlots((prev: SelectedSlotType) => {
-      const updatedSelectedSlots = Object.entries(prev).map(([key, value]) => {
+      const updatedSelectedSlots = Object.entries(prev).map(([_, value]) => {
         if (value.priority === temp) {
           return { ...value, priority: 0 };
         }

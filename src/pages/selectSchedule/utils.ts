@@ -1,6 +1,6 @@
-import { SelectedSlotType } from 'components/timetableComponents/context';
 import { addMinutes } from 'components/timetableComponents/utils';
 
+import { SelectedSlotType } from './contexts/useSelectContext';
 import { TitlesType } from './types';
 
 export const DURATION = {
