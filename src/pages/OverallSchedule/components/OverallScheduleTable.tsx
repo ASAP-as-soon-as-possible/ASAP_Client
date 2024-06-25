@@ -8,7 +8,7 @@ import {
   getOverallScheduleResponse,
 } from 'utils/apis/useGetOverallSchedule';
 
-import OverallScheduleSlots from './OverallScheduleSlots';
+import OverallScheduleColumn from './OverallScheduleColumn';
 import UserNames from './UserNames';
 import { ClickContext } from '../contexts/useClickContext';
 
@@ -48,7 +48,7 @@ function OverallScheduleTable({
     >
       <Timetable timeSlots={timeSlots} availableDates={availableDates} bottomItem={<UserNames />}>
         {({ date, timeSlots }: ColumnStructure) => (
-          <OverallScheduleSlots
+          <OverallScheduleColumn
             date={date}
             timeSlots={timeSlots}
             availableSlotInfo={getAvailableTimesPerDate(

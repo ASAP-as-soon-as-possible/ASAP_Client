@@ -3,10 +3,10 @@ import { useState } from 'react';
 import Timetable from 'components/timetableComponents/Timetable';
 import { ColumnStructure, TimetableStructure } from 'components/timetableComponents/types';
 
+import PriorityColumn from './selectPriority/PriorityColumn';
 import PriorityCta from './selectPriority/PriorityCta';
 import PriorityDropdown from './selectPriority/PriorityDropdown';
-import PrioritySlots from './selectPriority/PrioritySlots';
-import SelectionSlots from './selectTimeSlot/SelectionSlots';
+import SelectionColumn from './selectTimeSlot/SelectionColumn';
 import TimeSlotCta from './selectTimeSlot/TimeSlotCta';
 import { useScheduleStepContext } from '../contexts/useScheduleStepContext';
 import { SelectContext, SelectedSlotType } from '../contexts/useSelectContext';
@@ -20,10 +20,10 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
 
   const stepSlots: StepSlotsType = {
     selectTimeSlot: ({ date, timeSlots }: ColumnStructure) => (
-      <SelectionSlots date={date} timeSlots={timeSlots} />
+      <SelectionColumn date={date} timeSlots={timeSlots} />
     ),
     selectPriority: ({ date, timeSlots }: ColumnStructure) => (
-      <PrioritySlots date={date} timeSlots={timeSlots} />
+      <PriorityColumn date={date} timeSlots={timeSlots} />
     ),
   };
   const stepSlot = stepSlots[scheduleStep];

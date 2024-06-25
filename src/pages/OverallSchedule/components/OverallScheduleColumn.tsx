@@ -5,11 +5,11 @@ import { TimeSlot } from 'utils/apis/useGetOverallSchedule';
 
 import { useSlotClick } from '../hooks/useSlotClick';
 
-interface OverallScheduleSlotsProps extends ColumnStructure {
+interface OverallScheduleColumnProps extends ColumnStructure {
   availableSlotInfo: TimeSlot[];
 }
 
-function OverallScheduleSlots({ date, timeSlots, availableSlotInfo }: OverallScheduleSlotsProps) {
+function OverallScheduleColumn({ date, timeSlots, availableSlotInfo }: OverallScheduleColumnProps) {
 
   const { clickedSlot, onClickSlot } = useSlotClick();
 
@@ -42,4 +42,4 @@ function OverallScheduleSlots({ date, timeSlots, availableSlotInfo }: OverallSch
   );
 }
 
-export default OverallScheduleSlots;
+export default OverallScheduleColumn;

@@ -5,13 +5,13 @@ import { theme } from 'styles/theme';
 
 import Slot from '../../../../components/timetableComponents/parts/Slot';
 
-function PrioritySlots({ date, timeSlots }: ColumnStructure) {
+function PriorityColumn({ date, timeSlots }: ColumnStructure) {
   const { selectedSlots } = useSelectContext();
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,
   );
 
-  const getPrioritySlotStyle = (selectedEntryId?: number, priority?: number) => {
+  const getPriorityColumntyle = (selectedEntryId?: number, priority?: number) => {
     const isSelectedSlot = selectedEntryId !== undefined;
     const slotColor =
       priority === 1
@@ -50,7 +50,7 @@ function PrioritySlots({ date, timeSlots }: ColumnStructure) {
           <Slot
             key={slotId}
             slotId={slotId}
-            slotStyle={getPrioritySlotStyle(selectedEntryId, priority)}
+            slotStyle={getPriorityColumntyle(selectedEntryId, priority)}
           >
             <Text font="body1" color={theme.colors.white}>
               {isFirstSlot && priority !== 0 ? priority : ''}
@@ -62,4 +62,4 @@ function PrioritySlots({ date, timeSlots }: ColumnStructure) {
   );
 }
 
-export default PrioritySlots;
+export default PriorityColumn;

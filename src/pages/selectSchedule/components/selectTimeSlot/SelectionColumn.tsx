@@ -5,7 +5,7 @@ import { theme } from 'styles/theme';
 import useSlotSeletion from './hooks/useSlotSelection';
 import Slot from '../../../../components/timetableComponents/parts/Slot';
 
-function SelectionSlots({ date, timeSlots }: ColumnStructure) {
+function SelectionColumn({ date, timeSlots }: ColumnStructure) {
   const { selectedSlots } = useSelectContext();
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,
@@ -48,4 +48,4 @@ function SelectionSlots({ date, timeSlots }: ColumnStructure) {
   );
 }
 
-export default SelectionSlots;
+export default SelectionColumn;
