@@ -1,7 +1,6 @@
 import { ReactNode } from 'react';
 
 import styled from 'styled-components';
-import { getOverallScheduleResponse } from 'utils/apis/useGetOverallSchedule';
 
 import DateTitle from './parts/ColumnTitle';
 import SlotTitle from './parts/SlotTitle';
@@ -12,7 +11,6 @@ interface TimetableProps {
   availableDates: DateType[];
   children: (props: ColumnStructure) => ReactNode;
   bottomItem?: ReactNode;
-  dataOverallSchedule?: getOverallScheduleResponse['data'];
 }
 
 function Timetable({ timeSlots, availableDates, children, bottomItem }: TimetableProps) {
