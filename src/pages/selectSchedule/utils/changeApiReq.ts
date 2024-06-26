@@ -9,9 +9,6 @@ export const transformHostScheduleType = (
   scheduleList: ScheduleStates[],
 ): (HostAvailableSchduleRequestType | null)[] => {
   return scheduleList.map((item) => {
-    // const regexResult = item.date.match(/(\d+)월 (\d+)일 \((\S+)\)/);
-    // console.log(regexResult);
-
     const matchedResult = item.date.match(/(\d+)월 (\d+)일 \((\S+)\)/);
     if (!matchedResult) {
       return null; // Handle the case when there is no match for the date pattern
