@@ -9,9 +9,9 @@ import { useGetTimetable } from 'utils/apis/useGetTimetable';
 
 import Description from './components/Description';
 import SelectScheduleTable from './components/SelectScheduleTable';
+import { TITLES } from './constants';
 import { ScheduleStepContext } from './contexts/useScheduleStepContext';
 import { ScheduleStepType } from './types';
-import { TITLES } from './utils';
 
 function SelectSchedule() {
   const [scheduleStep, setScheduleStep] = useState<ScheduleStepType>('selectTimeSlot');

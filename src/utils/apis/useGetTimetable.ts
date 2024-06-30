@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
-import { DURATION, PLACE } from 'pages/selectSchedule/utils';
+import { DURATION, PLACE } from 'pages/selectSchedule/constants';
 import { useNavigate } from 'react-router-dom';
 
 import { client } from './axios';

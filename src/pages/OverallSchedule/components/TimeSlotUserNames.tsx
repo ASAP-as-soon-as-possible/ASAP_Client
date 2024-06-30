@@ -10,14 +10,14 @@ function TimeSlotUserNames() {
   return (
     <UserNamesWrapper>
       {timeSlotUserNames.length === 0 ? (
-        <Texts>
+        <TextWrapper>
           <Text font={'body4'} color={`${theme.colors.grey5}`}>
             블럭을 선택하면 해당 시간대에 참여가능한
           </Text>
           <Text font={'body4'} color={`${theme.colors.grey5}`}>
             인원을 확인할 수 있어요
           </Text>
-        </Texts>
+        </TextWrapper>
       ) : (
         <Text font={'body2'} color={theme.colors.grey2}>
           {timeSlotUserNames.join(', ')}
@@ -44,7 +44,7 @@ const UserNamesWrapper = styled.aside`
   color: ${({ theme }) => theme.colors.white};
 `;
 
-const Texts = styled.div`
+const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

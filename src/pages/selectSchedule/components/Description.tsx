@@ -1,8 +1,8 @@
-import { DURATION, PLACE } from '../utils';
-
 import Text from 'components/atomComponents/Text';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
+
+import { DURATION, PLACE } from '../constants';
 
 interface DescriptionProps {
   duration: keyof typeof DURATION;
