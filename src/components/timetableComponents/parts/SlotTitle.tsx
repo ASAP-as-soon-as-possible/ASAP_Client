@@ -18,10 +18,10 @@ function SlotTitle({ timeSlots }: SlotTitleProps) {
     <SlotTitleWrapper>
       {parsedTimeSlots.map((slot) => (
         <Fragment key={slot}>
-          <Text font="body4" color={theme.colors.grey5} key={`${slot}-fill`}>
+          <Text font="body4" color={theme.colors.grey5}>
             {slot}
           </Text>
-          <Text font="body4" color={theme.colors.grey5} key={`${slot}-empty`}>
+          <Text font="body4" color={theme.colors.grey5}>
             {''}
           </Text>
         </Fragment>
