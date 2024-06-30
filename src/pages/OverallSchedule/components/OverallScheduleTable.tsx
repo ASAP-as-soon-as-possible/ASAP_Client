@@ -9,7 +9,7 @@ import {
 } from 'utils/apis/useGetOverallSchedule';
 
 import OverallScheduleColumn from './OverallScheduleColumn';
-import UserNames from './UserNames';
+import TimeSlotUserNames from './TimeSlotUserNames';
 import { ClickContext } from '../contexts/useClickContext';
 
 interface OverallScheduleTableProps extends TimetableStructure {
@@ -22,7 +22,7 @@ function OverallScheduleTable({
   dataOverallSchedule,
 }: OverallScheduleTableProps) {
   const [clickedSlot, setClickedSlot] = useState<string | undefined>(undefined);
-  const [clickedUserNames, setClickedUserNames] = useState<string[]>([]);
+  const [timeSlotUserNames, setTimeSlotUserNames] = useState<string[]>([]);
 
   const getAvailableTimesPerDate = (
     availableDates: AvailableDateTime[],
@@ -42,11 +42,15 @@ function OverallScheduleTable({
       value={{
         clickedSlot,
         setClickedSlot,
-        clickedUserNames,
-        setClickedUserNames,
+        timeSlotUserNames,
+        setTimeSlotUserNames,
       }}
     >
-      <Timetable timeSlots={timeSlots} availableDates={availableDates} bottomItem={<UserNames />}>
+      <Timetable
+        timeSlots={timeSlots}
+        availableDates={availableDates}
+        bottomItem={<TimeSlotUserNames />}
+      >
         {({ date, timeSlots }: ColumnStructure) => (
           <OverallScheduleColumn
             date={date}

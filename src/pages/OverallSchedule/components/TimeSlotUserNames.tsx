@@ -4,12 +4,12 @@ import { theme } from 'styles/theme';
 
 import { useClickContext } from '../contexts/useClickContext';
 
-function UserNames() {
-  const { clickedUserNames } = useClickContext();
+function TimeSlotUserNames() {
+  const { timeSlotUserNames } = useClickContext();
 
   return (
     <UserNamesWrapper>
-      {clickedUserNames.length === 0 ? (
+      {timeSlotUserNames.length === 0 ? (
         <Texts>
           <Text font={'body4'} color={`${theme.colors.grey5}`}>
             블럭을 선택하면 해당 시간대에 참여가능한
@@ -20,14 +20,14 @@ function UserNames() {
         </Texts>
       ) : (
         <Text font={'body2'} color={theme.colors.grey2}>
-          {clickedUserNames.join(', ')}
+          {timeSlotUserNames.join(', ')}
         </Text>
       )}
     </UserNamesWrapper>
   );
 }
 
-export default UserNames;
+export default TimeSlotUserNames;
 
 const UserNamesWrapper = styled.aside`
   display: flex;
