@@ -1,11 +1,7 @@
 # 🏃 모든 회의의 시작, ASAP 💨
-
-![BRANDING 1_PLAN](https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/2526c8a1-21e7-471d-bce8-db8874a5cc5c)
 ![BRANDING 3_PLAN](https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/ddf9b475-a825-4577-8e14-b8d190a864b2)
 
-ASAP 은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽고 빠르고 간편하게 처리해주는 웹서비스입니다.
-
-ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽고 빠르고 간편하게 처리해주는 '최적의 회의시간 도출' 웹서비스입니다.
+ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽고 빠르고 간편하게 처리해주는 '최적의 회의시간 도출' 웹 서비스입니다.
 
 2.  **회의 관련 정보를 하나의 큐카드로 정리해 제공**함으로써
     회의 시간 외 추가 공지사항을 단톡방에 올리는 수고로움 또한 덜어주고자 합니다.
@@ -25,8 +21,6 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 | :-----------------------------------------------------------------------------------------------------------------------: |
 |                                                  7️⃣  준비물 등 추가 내용                                                  |
 
-## 📥  가능 시간 입력하기
-
 ## 📥 가능 시간 입력하기
 | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/4b66f45e-1a08-490c-bc0f-04f4517e3c4e" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/d5c089e3-8338-4152-9f2a-d316e87a5dcb"/> |
 | :---: | :---: |
@@ -44,56 +38,6 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 | :-----------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
 |                                           [이재훈](https://github.com/ljh0608)                                            |                                          [이동헌](https://github.com/eastlaw80)                                           |                                          [심은서](https://github.com/simeunseo)                                           |                                        [정찬우](https://github.com/Chanwoo-Jeong)                                         |
 |                                                   `WEB FE` `리드개발자`                                                   |                                                         `WEB FE`                                                          |                                                         `WEB FE`                                                          |                                                         `WEB FE`                                                          |
-
-# ⚒️ 기술 스택
-
-```jsx
-    "@types/axios": "^0.14.0",
-    "@types/react-copy-to-clipboard": "^5.0.4",
-    "axios": "^1.4.0",
-    "copy-text-to-clipboard": "^3.2.0",
-    "html2canvas": "^1.4.1",
-    "postcss-syntax": "^0.36.2",
-    "prettier": "1.13",
-    "react": "^18.2.0",
-    "react-copy-to-clipboard": "^5.1.0",
-    "react-dom": "^18.2.0",
-    "react-error-boundary": "^4.0.10",
-    "react-multi-date-picker": "^4.1.2",
-    "react-router-dom": "6",
-    "react-toastify": "^9.1.3",
-    "recoil": "^0.7.7",
-    "recoil-persist": "^5.1.0",
-    "styled-reset": "^4.5.1",
-    "swiper": "^10.0.4",
-    "vite-plugin-svgr": "^3.2.0"
-    "@stylelint/postcss-css-in-js": "^0.38.0",
-    "@types/node": "^20.3.2",
-    "@types/react": "^18.0.37",
-    "@types/react-dom": "^18.0.11",
-    "@types/styled-components": "^5.1.26",
-    "@typescript-eslint/eslint-plugin": "^5.60.1",
-    "@typescript-eslint/parser": "^5.60.1",
-    "@vitejs/plugin-react": "^4.0.0",
-    "babel-plugin-styled-components": "^2.1.4",
-    "eslint": "^8.43.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.3.4",
-    "postcss": "^8.4.24",
-    "prettier-plugin-style-order": "^0.2.2",
-    "styled-components": "^6.0.1",
-    "stylelint": "15.5.0",
-    "stylelint-config-concentric-order": "^5.1.0",
-    "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-recommended": "^12.0.0",
-    "stylelint-config-styled-components": "^0.1.1",
-    "typescript": "^5.0.2",
-    "vite": "^4.3.9",
-    "vite-plugin-babel-macros": "^1.0.6"
-```
 
 ### 🏙️  환경 구축
 
