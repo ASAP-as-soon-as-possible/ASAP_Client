@@ -17,18 +17,18 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 | :---: | :---: | :---: |
 | 4️⃣ 회의 장소 입력 | 5️⃣ 회의 시간 설정 | 6️⃣ 방장 정보 입력 |
 
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/25dd8132-299a-45d1-9fbb-d6c449ebfdf7"/> |
+| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/25dd8132-299a-45d1-9fbb-d6c449ebfdf7" width="300"/> |
 | :-----------------------------------------------------------------------------------------------------------------------: |
 |                                                  7️⃣  준비물 등 추가 내용                                                  |
 
 ## 📥 가능 시간 입력하기
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/4b66f45e-1a08-490c-bc0f-04f4517e3c4e" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/d5c089e3-8338-4152-9f2a-d316e87a5dcb"/> |
+| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/4b66f45e-1a08-490c-bc0f-04f4517e3c4e" width="300"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/d5c089e3-8338-4152-9f2a-d316e87a5dcb" width="300"/> |
 | :---: | :---: |
 | 1️⃣ 일정 등록 | 2️⃣ 우선 순위 입력 |
 
 
 ## 📥 회의 일정 확인하기
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/095396f0-42f7-45ca-b33d-328b7f5f7b50" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/1ffe6158-1672-4edb-8f83-fc6b0a17e53e4" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/1326806e-65a2-40b6-9611-46bd2f404612"/> |
+| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/095396f0-42f7-45ca-b33d-328b7f5f7b50" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/1ffe6158-1672-4edb-8f83-fc6b0a17e53e4" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/1326806e-65a2-40b6-9611-46bd2f404612" width="400"/> |
 | :---: | :---: | :---: |
 | 1️⃣ 종합 일정 시간표 확인 | 2️⃣ 최적의 회의시간 추천 | 3️⃣ 큐카드 공유하기 |
 
