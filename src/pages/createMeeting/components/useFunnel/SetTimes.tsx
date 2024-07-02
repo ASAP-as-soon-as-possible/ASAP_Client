@@ -71,8 +71,9 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
       meetingInfo.preferTimes.length >= 2 ||
       (meetingInfo.preferTimes[0].startTime !== '00:00' &&
         meetingInfo.preferTimes[0].endTime !== '00:00')
-    )
+    ) {
       return true;
+    }
 
     return false;
   };
@@ -180,13 +181,7 @@ function SetTimes({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
 
       <StyledBtnSection>
         <Button
-          typeState={
-            meetingInfo.preferTimes.length >= 1 &&
-            meetingInfo.preferTimes[0].startTime &&
-            meetingInfo.preferTimes[0].endTime !== '00:00'
-              ? 'primaryActive'
-              : 'primaryDisabled'
-          }
+          typeState={buttonStateHandler() ? 'primaryActive' : 'primaryDisabled'}
           onClick={
             buttonStateHandler()
               ? () => {
@@ -271,12 +266,12 @@ const DropUpIcon = styled(DropUpIc)`
 
 const DropDownContainer = styled.div`
   position: absolute;
-  background-color: white;
-  margin-top: 4.8rem;
   z-index: 2;
+  margin-top: 4.8rem;
+  border-bottom-left-radius: 0.8rem;
+  border-bottom-right-radius: 0.8rem;
+  background-color: white;
   width: 15.1rem;
   height: 14.4rem;
   overflow: auto;
-  border-bottom-left-radius: 0.8rem;
-  border-bottom-right-radius: 0.8rem;
 `;
