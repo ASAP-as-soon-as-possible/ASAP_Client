@@ -1,9 +1,8 @@
+import { ScheduleStates } from 'pages/legacy/selectSchedule/types/Schedule';
 import {
   HostAvailableSchduleRequestType,
   UserAvailableScheduleRequestType,
 } from 'src/types/createAvailableSchduleType';
-
-import { ScheduleStates } from '../types/Schedule';
 
 export const transformHostScheduleType = (
   scheduleList: ScheduleStates[],
