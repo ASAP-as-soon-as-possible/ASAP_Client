@@ -24,7 +24,7 @@ function TimeSlotCta() {
 
 export default TimeSlotCta;
 
-const BtnDim = styled.div`
+const BtnDim = styled.section`
   display: flex;
   position: fixed;
   bottom: 0;

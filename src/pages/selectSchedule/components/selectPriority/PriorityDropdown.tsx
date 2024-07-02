@@ -178,7 +178,7 @@ function PriorityDropdown() {
     </PriorityDropdownWrapper>
   );
 }
-const PriorityDropdownWrapper = styled.div`
+const PriorityDropdownWrapper = styled.section`
   display: flex;
 
   flex-direction: column;

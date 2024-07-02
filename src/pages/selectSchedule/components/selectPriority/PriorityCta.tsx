@@ -34,7 +34,7 @@ function PriorityCta() {
 
 export default PriorityCta;
 
-const BtnDim = styled.div`
+const BtnDim = styled.section`
   display: flex;
   position: fixed;
   bottom: 0;

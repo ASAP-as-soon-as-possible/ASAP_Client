@@ -8,7 +8,7 @@ function TimeSlotUserNames() {
   const { timeSlotUserNames } = useClickContext();
 
   return (
-    <UserNamesWrapper>
+    <TimeSlotUserNamesWrapper>
       {timeSlotUserNames.length === 0 ? (
         <TextWrapper>
           <Text font={'body4'} color={`${theme.colors.grey5}`}>
@@ -23,13 +23,13 @@ function TimeSlotUserNames() {
           {timeSlotUserNames.join(', ')}
         </Text>
       )}
-    </UserNamesWrapper>
+    </TimeSlotUserNamesWrapper>
   );
 }
 
 export default TimeSlotUserNames;
 
-const UserNamesWrapper = styled.aside`
+const TimeSlotUserNamesWrapper = styled.section`
   display: flex;
   position: fixed;
   bottom: 4.4rem;

@@ -53,7 +53,7 @@ function SelectSchedule() {
 
 export default SelectSchedule;
 
-const SelectScheduleWrapper = styled.div`
+const SelectScheduleWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;

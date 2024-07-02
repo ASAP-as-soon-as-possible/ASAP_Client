@@ -36,7 +36,7 @@ function OverallSchedule() {
 
 export default OverallSchedule;
 
-const OverallScheduleWrapper = styled.div`
+const OverallScheduleWrapper = styled.main`
   display: flex;
   flex-direction: column;
   align-items: center;
