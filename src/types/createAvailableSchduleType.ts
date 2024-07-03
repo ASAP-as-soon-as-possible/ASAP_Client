@@ -1,8 +1,6 @@
 export interface HostAvailableSchduleRequestType {
-  id: string;
   month: string;
   day: string;
-  dayOfWeek: string;
   startTime: string;
   endTime: string;
   priority: number;
