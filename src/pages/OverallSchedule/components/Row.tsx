@@ -54,7 +54,6 @@ const Row = (props: RowProps) => {
     if (objArray === undefined) return;
     const targetObj = objArray.find((obj)=> obj.time === targetTime);
     if(targetObj){
-      console.log(targetObj.userNames);
       const temp=filterUserNames(targetObj.userNames);
       return temp;
     }

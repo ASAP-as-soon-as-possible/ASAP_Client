@@ -81,12 +81,6 @@ function PriorityDropdown() {
     handleDropdown(i);
   };
 
-  // useEffect(
-  //   () => {
-  //     console.log(input_);
-  //   },
-  //   [input_],
-  // );
   return (
     <PriorityDropdownWrapper>
       {scheduleList.map(

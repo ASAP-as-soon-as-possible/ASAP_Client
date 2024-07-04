@@ -9,20 +9,15 @@ export const transformHostScheduleType = (
   scheduleList: ScheduleStates[],
 ): (HostAvailableSchduleRequestType | null)[] => {
   return scheduleList.map((item) => {
-    // const regexResult = item.date.match(/(\d+)월 (\d+)일 \((\S+)\)/);
-    // console.log(regexResult);
-
     const matchedResult = item.date.match(/(\d+)월 (\d+)일 \((\S+)\)/);
     if (!matchedResult) {
       return null; // Handle the case when there is no match for the date pattern
     }
-    const [, month, day, dateOfWeek] = matchedResult;
+    const [, month, day, ,] = matchedResult;
 
     return {
-      id: item.id.toString(),
-      month: month.padStart(2, '0'),
-      day: day.padStart(2, '0'),
-      dayOfWeek: dateOfWeek,
+      month: month,
+      day: day,
       startTime: item.startTime,
       endTime: item.endTime,
       priority: item.priority,
@@ -40,7 +35,6 @@ export const transformUserScheduleType = (
       // Handle the case when there is no match for the date pattern
       // For example, you can return an empty object or any default value you prefer.
       return {
-        id: '',
         month: '',
         day: '',
         dayOfWeek: '',
@@ -52,12 +46,10 @@ export const transformUserScheduleType = (
     // const [, month, day, dateOfWeek]: string[] | null = item.date.match(
     //   /(\d+)월 (\d+)일 \((\S+)\)/,
     // );
-    const [, month, day, dateOfWeek] = matchedResult;
+    const [, month, day, ,] = matchedResult;
     return {
-      id: item.id.toString(),
-      month: month.padStart(2, '0'),
-      day: day.padStart(2, '0'),
-      dayOfWeek: dateOfWeek,
+      month: month,
+      day: day,
       startTime: item.startTime,
       endTime: item.endTime,
       priority: item.priority,
