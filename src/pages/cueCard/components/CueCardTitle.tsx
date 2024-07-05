@@ -29,6 +29,6 @@ const TitleWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  padding: 4.4rem 0 3.2rem 0;
+  padding: 4.4rem 0 1.8rem 0;
   width: 100%;
 `;
