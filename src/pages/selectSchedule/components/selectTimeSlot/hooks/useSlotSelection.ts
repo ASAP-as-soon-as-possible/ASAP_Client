@@ -1,52 +1,77 @@
 import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 
 const useSlotSeletion = () => {
-    const {startSlot, setStartSlot, selectedSlots, setSelectedSlots} = useSelectContext();
+  const { startSlot, setStartSlot, selectedSlots, setSelectedSlots } = useSelectContext();
 
-    const handleSelectSlot = (targetSlot: string) => {
-        setStartSlot(targetSlot);
+  const handleSelectSlot = (targetSlot: string) => {
+    setStartSlot(targetSlot);
+  };
+
+  const handleCompleteSlot = (endSlot: string) => {
+    const dateOfStartSlot = startSlot && startSlot.substring(0, startSlot.lastIndexOf('/'));
+    const dateOfEndSlot = endSlot.substring(0, endSlot.lastIndexOf('/'));
+    if (startSlot && dateOfStartSlot === dateOfEndSlot) {
+      const newSelectedSlot = {
+        date: dateOfStartSlot,
+        startSlot: startSlot && startSlot.substring(startSlot.lastIndexOf('/') + 1),
+        endSlot: endSlot.substring(endSlot.lastIndexOf('/') + 1),
+        priority: 0,
+      };
+
+      const keys = Object.keys(selectedSlots).map(Number);
+      const newKey = keys.length ? Math.max(...keys) + 1 : 0;
+
+      const newSelectedSlots = { ...removeOverlappedSlots(endSlot, dateOfStartSlot) };
+
+      newSelectedSlots[newKey] = newSelectedSlot;
+      setSelectedSlots(newSelectedSlots);
     }
+    setStartSlot(undefined);
+  };
 
-    const handleCompleteSlot = (targetSlot: string) => {
-        const dateOfStartSlot = startSlot?.substring(0, startSlot.lastIndexOf('/'));
-        const dateOfTargetSlot = targetSlot.substring(0, targetSlot.lastIndexOf('/'))
-        if (startSlot && dateOfStartSlot === dateOfTargetSlot){
-            const newSelectedSlot = {
-                date:dateOfStartSlot,
-                startSlot:startSlot?.substring(startSlot.lastIndexOf('/')+1),
-                endSlot:targetSlot.substring(targetSlot.lastIndexOf('/')+1),
-                priority:0,
-            }
+  const handleDeleteSlot = (selectedEntryId: number) => {
+    const newSelectedSlots = { ...selectedSlots };
+    delete newSelectedSlots[selectedEntryId];
+    setSelectedSlots(newSelectedSlots);
+  };
 
-            const keys = Object.keys(selectedSlots).map(Number)
-            const newKey = keys.length ? Math.max(...keys) + 1 : 0;
-            const newSelectedSlots = {...selectedSlots};
-            newSelectedSlots[newKey] = newSelectedSlot;
-            setSelectedSlots(newSelectedSlots)
+  const removeOverlappedSlots = (endSlot: string, dateOfStartSlot: string) => {
+    const newSelectedSlots = { ...selectedSlots };
+
+    const selectedSlotsPerDate = Object.fromEntries(
+      Object.entries(selectedSlots).filter(([, slot]) => slot.date === dateOfStartSlot),
+    );
+    Object.entries(selectedSlotsPerDate).forEach(
+      ([id, { startSlot: selectedStartSlot, endSlot: selectedEndSlot }]) => {
+        const startSlotTime = startSlot && startSlot.split('/').pop();
+        const endSlotTime = endSlot.split('/').pop();
+        if (
+          startSlotTime &&
+          endSlotTime &&
+          selectedStartSlot > startSlotTime &&
+          selectedEndSlot < endSlotTime
+        ) {
+          delete newSelectedSlots[parseInt(id)];
         }
-        setStartSlot(undefined);
+      },
+    );
+    return newSelectedSlots;
+  };
+
+  const onClickSlot = (targetSlot: string, selectedEntryId?: number) => {
+    if (selectedEntryId !== undefined) {
+      if (startSlot === undefined) {
+        handleDeleteSlot(selectedEntryId);
+      }
+      setStartSlot(undefined);
+    } else if (startSlot !== undefined) {
+      handleCompleteSlot(targetSlot);
+    } else {
+      handleSelectSlot(targetSlot);
     }
+  };
 
-    const handleDeleteSlot = (selectedEntryId: number) => {
-        const newSelectedSlots = {...selectedSlots};
-        delete newSelectedSlots[selectedEntryId];
-        setSelectedSlots(newSelectedSlots);
-    }
+  return { startSlot, onClickSlot };
+};
 
-    const onClickSlot = (targetSlot:string, selectedEntryId?:number)=>{
-        if (selectedEntryId !== undefined){
-            if (startSlot === undefined){
-                handleDeleteSlot(selectedEntryId);
-            }
-            setStartSlot(undefined)
-        } else if (startSlot !== undefined){
-            handleCompleteSlot(targetSlot)
-        } else {
-            handleSelectSlot(targetSlot)
-        }
-    }
-
-    return {startSlot, onClickSlot}
-}
-
-export default useSlotSeletion
+export default useSlotSeletion;
