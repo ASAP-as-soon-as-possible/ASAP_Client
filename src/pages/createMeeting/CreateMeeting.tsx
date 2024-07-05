@@ -6,6 +6,7 @@ import ReturnBodyComponent from 'pages/createMeeting/components/ReturnBodyCompon
 import ReturnTitleComponent from 'pages/createMeeting/components/ReturnTitleComponent';
 import { funnelStep } from './data/meetingInfoData';
 import styled from 'styled-components/macro';
+import { useGetTimetable } from 'utils/apis/useGetTimetable';
 
 const initialMeetingInfo: MeetingInfo = {
   title: '',
@@ -23,6 +24,7 @@ function CreateMeeting() {
   const [step, setStep] = useState(0);
   const [meetingInfo, setMeetingInfo] = useState(initialMeetingInfo);
   const currentStep = funnelStep[step];
+
   return (
     <>
       <CreateMeetingWrapper>

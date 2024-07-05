@@ -1,21 +1,20 @@
 import React, { useEffect, useRef, useState } from 'react';
-
 import { availableDatesAtom, preferTimesAtom, scheduleAtom } from 'atoms/atom';
-import axios from 'axios';
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
-import { PlusIc } from 'components/Icon/icon';
-import TimeTable from 'components/legacy/scheduleComponents/components/TimeTable';
-import Header from 'components/moleculesComponents/Header';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+
+import Button from 'components/atomComponents/Button';
+import Header from 'components/moleculesComponents/Header';
 import { MeetingDetail } from 'src/types/availbleScheduleType';
+import { PlusIc } from 'components/Icon/icon';
+import { ScheduleStates } from './types/Schedule';
+import SelectSchedule from './components/SelectSchedule';
+import Text from 'components/atomComponents/Text';
+import TimeTable from 'components/legacy/scheduleComponents/components/TimeTable';
+import { availableScheduleOptionApi } from 'utils/apis/legacy/availbleScheduleOptionApi';
+import axios from 'axios';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { availableScheduleOptionApi } from 'utils/apis/availbleScheduleOptionApi';
-
-import SelectSchedule from './components/SelectSchedule';
-import { ScheduleStates } from './types/Schedule';
+import { useRecoilState } from 'recoil';
 
 function SelectSchedulePage() {
   // 가능시간 선택지 - 날짜

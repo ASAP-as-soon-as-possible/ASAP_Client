@@ -1,28 +1,27 @@
-import { hostAvailableApi, userAvailableApi } from 'utils/apis/createHostAvailableSchedule';
-import { scheduleAtom, userNameAtom } from 'atoms/atom';
-import { transformHostScheduleType, transformUserScheduleType } from './utils/changeApiReq';
-import { useNavigate, useParams } from 'react-router';
-import { useRecoilState, useRecoilValue } from 'recoil';
-
-import { ExitIc } from 'components/Icon/icon';
-import { ScheduleStates } from './types/Schedule';
-import Text from 'components/atomComponents/Text';
+import { userNameAtom } from 'atoms/atom';
 import { isAxiosError } from 'axios';
+import Text from 'components/atomComponents/Text';
+import { ExitIc } from 'components/Icon/icon';
+import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
+import { formatHostScheduleScheme, formatMemberScheduleScheme } from 'pages/selectSchedule/utils';
+import { useNavigate, useParams } from 'react-router';
+import { useRecoilValue } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
+import { hostAvailableApi, userAvailableApi } from 'utils/apis/legacy/createHostAvailableSchedule';
 
 interface ModalProps {
   setShowModal: (isModalOpen: boolean) => void;
 }
 
 function SelectModal({ setShowModal }: ModalProps) {
-  const [scheduleList, setScheduleList] = useRecoilState<ScheduleStates[]>(scheduleAtom);
+  const { selectedSlots } = useSelectContext();
   const userName = useRecoilValue(userNameAtom);
 
   const navigate = useNavigate();
   const { auth, meetingId } = useParams();
-  const updateScheduleType = transformHostScheduleType(scheduleList);
-  const updateMemberScheduleType = transformUserScheduleType(scheduleList, userName);
+  const updateScheduleType = formatHostScheduleScheme(selectedSlots);
+  const updateMemberScheduleType = formatMemberScheduleScheme(selectedSlots, userName);
 
   const postHostAvailableApi = async () => {
     try {
@@ -162,12 +161,15 @@ const MentContainer = styled.div`
 `;
 
 const ModalMent = styled.span`
+  margin-top: 2.4rem;
+  margin-bottom: 0.8rem;
+
+  width: 14.4rem;
+
+  text-align: center;
+
   color: ${({ theme }) => theme.colors.white};
   ${({ theme }) => theme.fonts.body2};
-  width: 14.4rem;
-  text-align: center;
-  margin-bottom: 0.8rem;
-  margin-top: 2.4rem;
 `;
 
 const ModalHighlight = styled.span`

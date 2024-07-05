@@ -1,42 +1,32 @@
-import { SelectedSlotType } from 'components/timetableComponents/context';
+import { addMinutes } from 'components/timetableComponents/utils';
 
-/**
- *
- * @desc 영어로 표현된 회의 진행 시간을 한글로 변환하는 함수
- */
-export const formatDuration = (duration: string): string => {
-  switch (duration) {
-    case 'HALF':
-      return '30분';
-    case 'HOUR':
-      return '1시간';
-    case 'HOUR_HALF':
-      return '1시간 30분';
-    case 'TWO_HOUR':
-      return '2시간';
-    case 'TWO_HOUR_HALF':
-      return '2시간 30분';
-    case 'THREE_HOUR':
-      return '3시간';
-    default:
-      return 'UNDEFINED';
-  }
-};
+import { SelectedSlotType } from './contexts/useSelectContext';
+import { TitlesType } from './types';
 
-/**
- *
- * @desc 영어로 표현된 회의 장소를 한글로 변환하는 함수
- */
-export const formatPlace = (place: string) => {
-  switch (place) {
-    case 'ONLINE':
-      return '온라인';
-    case 'OFFLINE':
-      return '오프라인';
-    case 'UNDEFINED':
-      return undefined;
-  }
-};
+export const DURATION = {
+  HALF: '30분',
+  HOUR: '1시간',
+  HOUR_HALF: '1시간 30분',
+  TWO_HOUR: '2시간',
+  TWO_HOUR_HALF: '2시간 30분',
+  THREE_HOUR: '3시간',
+} as const;
+
+export const PLACE = {
+  ONLINE: '온라인',
+  OFFLINE: '오프라인',
+  UNDEFINED: undefined,
+} as const;
+
+export const TITLES: TitlesType = {
+  selectTimeSlot: {
+    main: '가능한 시간대를 등록해주세요',
+    sub: '시작시간과 종료시간을 터치하여 블럭을 생성해주세요',
+  },
+  selectPriority: {
+    main: '우선순위를 입력해주세요',
+  },
+} as const;
 
 /**
  *
@@ -55,4 +45,51 @@ export const resetPriorities = (selectedSlots: SelectedSlotType): SelectedSlotTy
   }
 
   return updatedSlots;
+};
+
+/**
+ *
+ * @desc 방장 시간표 입력 POST를 위한 형식을 맞추는 함수
+ */
+export const formatHostScheduleScheme = (selectedSlots: SelectedSlotType) => {
+  const availableTimes = Object.keys(selectedSlots).map((key) => {
+    const slot = selectedSlots[parseInt(key)];
+    const [month, day, dayOfWeek] = slot.date.split('/');
+
+    return {
+      id: key,
+      month: month.padStart(2, '0'),
+      day: day.padStart(2, '0'),
+      dayOfWeek: dayOfWeek,
+      startTime: slot.startSlot,
+      endTime: addMinutes(slot.endSlot, 30),
+      priority: slot.priority,
+    };
+  });
+  return availableTimes;
+};
+
+/**
+ *
+ * @desc 멤버 시간표 입력 POST를 위한 형식을 맞추는 함수
+ */
+export const formatMemberScheduleScheme = (selectedSlots: SelectedSlotType, userName: string) => {
+  const availableTimes = Object.keys(selectedSlots).map((key) => {
+    const slot = selectedSlots[parseInt(key)];
+    const [month, day, dayOfWeek] = slot.date.split('/');
+
+    return {
+      id: key,
+      month: month.padStart(2, '0'),
+      day: day.padStart(2, '0'),
+      dayOfWeek: dayOfWeek,
+      startTime: slot.startSlot,
+      endTime: addMinutes(slot.endSlot, 30),
+      priority: slot.priority,
+    };
+  });
+  return {
+    name: userName,
+    availableTimes: availableTimes,
+  };
 };

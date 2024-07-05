@@ -1,16 +1,17 @@
-import { ColumnStructure } from 'components/timetableComponents/types';
-import Slot from '../../../../components/timetableComponents/parts/Slot';
 import Text from 'components/atomComponents/Text';
+import { ColumnStructure } from 'components/timetableComponents/types';
+import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 import { theme } from 'styles/theme';
-import { useTimetableContext } from '../../../../components/timetableComponents/context';
 
-function PrioritySlots({ date, timeSlots }: ColumnStructure) {
-  const { selectedSlots } = useTimetableContext();
+import Slot from '../../../../components/timetableComponents/parts/Slot';
+
+function PriorityColumn({ date, timeSlots }: ColumnStructure) {
+  const { selectedSlots } = useSelectContext();
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,
   );
 
-  const getPrioritySlotStyle = (selectedEntryId?: number, priority?: number) => {
+  const getPriorityColumntyle = (selectedEntryId?: number, priority?: number) => {
     const isSelectedSlot = selectedEntryId !== undefined;
     const slotColor =
       priority === 1
@@ -49,7 +50,7 @@ function PrioritySlots({ date, timeSlots }: ColumnStructure) {
           <Slot
             key={slotId}
             slotId={slotId}
-            slotStyle={getPrioritySlotStyle(selectedEntryId, priority)}
+            slotStyle={getPriorityColumntyle(selectedEntryId, priority)}
           >
             <Text font="body1" color={theme.colors.white}>
               {isFirstSlot && priority !== 0 ? priority : ''}
@@ -61,4 +62,4 @@ function PrioritySlots({ date, timeSlots }: ColumnStructure) {
   );
 }
 
-export default PrioritySlots;
+export default PriorityColumn;
