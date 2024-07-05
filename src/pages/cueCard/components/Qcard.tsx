@@ -1,14 +1,13 @@
-import { forwardRef, ForwardedRef } from 'react';
-
-import Text from 'components/atomComponents/Text';
+import { ForwardedRef, forwardRef } from 'react';
 import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
-import LoadingPage from 'pages/ErrorLoading/LoadingPage';
-import { useParams } from 'react-router';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components/macro';
-import { theme } from 'styles/theme';
 
 import GetQcardDataHooks from '../hooks/getQCardData';
+import LoadingPage from 'pages/errorLoading/LoadingPage';
+import Text from 'components/atomComponents/Text';
+import styled from 'styled-components/macro';
+import { theme } from 'styles/theme';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router';
 
 const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   const { meetingId } = useParams();

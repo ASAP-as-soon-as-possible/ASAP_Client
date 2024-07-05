@@ -1,14 +1,16 @@
-import ChooseBestTime from 'pages/BestMeetTime/ChooseBestTime';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import ChooseBestTime from 'pages/bestMeetTime/ChooseBestTime';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
-import ErrorPage404 from 'pages/ErrorLoading/ErrorPage404';
-import LoadingPage from 'pages/ErrorLoading/LoadingPage';
-import LoginEntrance from 'pages/LoginEntrance/LoginEntrance';
+import ErrorPage404 from 'pages/errorLoading/ErrorPage404';
+import LoadingPage from 'pages/errorLoading/LoadingPage';
+import LoginEntrance from 'pages/loginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
-import SelectSchedulePriority from 'pages/selectSchedule/SelectPriorityPage';
-import SelectPage from 'pages/selectSchedule/SelectSchedulePage';
-import SteppingLayout from 'pages/SteppingStone/SteppingLayout';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import SelectPage from 'pages/legacy/selectSchedule/SelectSchedulePage';
+import SelectSchedule from 'pages/selectSchedule/SelectSchedule';
+import SelectSchedulePriority from 'pages/legacy/selectSchedule/SelectPriorityPage';
+import SteppingLayout from 'pages/steppingStone/SteppingLayout';
 
 const Router = () => {
   return (
@@ -17,8 +19,7 @@ const Router = () => {
         <Route path="/" element={<OnBoarding />} />
         <Route path="/meet/create" element={<CreateMeeting />} />
         <Route path="/meet/complete" element={<SteppingLayout steppingType={'meetComplete'} />} />
-        <Route path="/:auth/schedule/:meetingId" element={<SelectPage />} />
-        <Route path="/:auth/priority/:meetingId" element={<SelectSchedulePriority />} />
+        <Route path="/:auth/select/:meetingId" element={<SelectSchedule />} />
         <Route
           path="/host/schedule-complete/:meetingId"
           element={<SteppingLayout steppingType={'hostScheduleComplete'} />}
@@ -35,7 +36,6 @@ const Router = () => {
         <Route path="/loadingpage" element={<LoadingPage />} />
         <Route path="*" element={<ErrorPage404 />} />
         <Route path="/error" element={<ErrorPage404 />} />
-        <Route path="/select" element={<SelectPage />} />
       </Routes>
     </BrowserRouter>
   );

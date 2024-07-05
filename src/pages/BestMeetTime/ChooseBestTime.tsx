@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
 import Header from 'components/moleculesComponents/Header';
-import BestMeetTime from 'pages/BestMeetTime/components/bestMeetTime/BestMeetTime';
-import OverallSchedule from 'pages/OverallSchedule/OverallSchedule';
+import BestMeetTime from 'pages/bestMeetTime/components/bestMeetTime/BestMeetTime';
+import OverallSchedule from 'pages/overallSchedule/OverallSchedule';
 import { styled } from 'styled-components';
 
 function ChooseBestTime() {
