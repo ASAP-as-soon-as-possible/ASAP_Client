@@ -21,23 +21,25 @@ const useSlotSeletion = () => {
       const keys = Object.keys(selectedSlots).map(Number);
       const newKey = keys.length ? Math.max(...keys) + 1 : 0;
 
-      const newSelectedSlots = { ...removeOverlappedSlots(endSlot, dateOfStartSlot) };
-
-      newSelectedSlots[newKey] = newSelectedSlot;
-      setSelectedSlots(newSelectedSlots);
+      setSelectedSlots((prev) => {
+        const newSelectedSlots = { ...prev };
+        newSelectedSlots[newKey] = newSelectedSlot;
+        return newSelectedSlots;
+      });
+      removeOverlappedSlots(endSlot, dateOfStartSlot);
     }
     setStartSlot(undefined);
   };
 
   const handleDeleteSlot = (selectedEntryId: number) => {
-    const newSelectedSlots = { ...selectedSlots };
-    delete newSelectedSlots[selectedEntryId];
-    setSelectedSlots(newSelectedSlots);
+    setSelectedSlots((prev) => {
+      const newSelectedSlots = { ...prev };
+      delete newSelectedSlots[selectedEntryId];
+      return newSelectedSlots;
+    });
   };
 
   const removeOverlappedSlots = (endSlot: string, dateOfStartSlot: string) => {
-    const newSelectedSlots = { ...selectedSlots };
-
     const selectedSlotsPerDate = Object.fromEntries(
       Object.entries(selectedSlots).filter(([, slot]) => slot.date === dateOfStartSlot),
     );
@@ -51,11 +53,10 @@ const useSlotSeletion = () => {
           selectedStartSlot > startSlotTime &&
           selectedEndSlot < endSlotTime
         ) {
-          delete newSelectedSlots[parseInt(id)];
+          handleDeleteSlot(Number(id));
         }
       },
     );
-    return newSelectedSlots;
   };
 
   const onClickSlot = (targetSlot: string, selectedEntryId?: number) => {
