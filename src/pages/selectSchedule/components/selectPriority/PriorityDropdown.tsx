@@ -2,12 +2,12 @@ import { useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
+import { addMinutes } from 'components/timetableComponents/utils';
 import {
   SelectedSlotType,
-  SlotInfoType,
-  useTimetableContext,
-} from 'components/timetableComponents/context';
-import { addMinutes } from 'components/timetableComponents/utils';
+  SelectSlotType,
+  useSelectContext,
+} from 'pages/selectSchedule/contexts/useSelectContext';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -17,7 +17,7 @@ import { theme } from 'styles/theme';
  */
 
 function PriorityDropdown() {
-  const { selectedSlots, setSelectedSlots } = useTimetableContext();
+  const { selectedSlots, setSelectedSlots } = useSelectContext();
   const [timeSelect, setTimeSelect] = useState([false, false, false]);
 
   const formatDate = (date: string) => {
@@ -56,7 +56,7 @@ function PriorityDropdown() {
     }
   };
 
-  const handlePriority = (i: number, item: SlotInfoType, itemKey: string) => {
+  const handlePriority = (i: number, item: SelectSlotType, itemKey: string) => {
     let temp: 0 | 1 | 2 | 3 = 0;
     switch (i) {
       case 0:
@@ -72,8 +72,9 @@ function PriorityDropdown() {
         temp = 0;
         break;
     }
+
     setSelectedSlots((prev: SelectedSlotType) => {
-      const updatedSelectedSlots = Object.entries(prev).map(([key, value]) => {
+      const updatedSelectedSlots = Object.entries(prev).map(([_, value]) => {
         if (value.priority === temp) {
           return { ...value, priority: 0 };
         }

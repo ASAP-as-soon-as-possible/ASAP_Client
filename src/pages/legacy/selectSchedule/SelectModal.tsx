@@ -2,7 +2,7 @@ import { userNameAtom } from 'atoms/atom';
 import { isAxiosError } from 'axios';
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
-import { useTimetableContext } from 'components/timetableComponents/context';
+import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 import { formatHostScheduleScheme, formatMemberScheduleScheme } from 'pages/selectSchedule/utils';
 import { useNavigate, useParams } from 'react-router';
 import { useRecoilValue } from 'recoil';
@@ -15,7 +15,7 @@ interface ModalProps {
 }
 
 function SelectModal({ setShowModal }: ModalProps) {
-  const { selectedSlots } = useTimetableContext();
+  const { selectedSlots } = useSelectContext();
   const userName = useRecoilValue(userNameAtom);
 
   const navigate = useNavigate();
