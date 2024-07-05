@@ -1,13 +1,14 @@
 import { ForwardedRef, forwardRef } from 'react';
-import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
 
-import GetQcardDataHooks from '../hooks/getQCardData';
-import LoadingPage from 'pages/errorLoading/LoadingPage';
 import Text from 'components/atomComponents/Text';
+import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
+import LoadingPage from 'pages/errorLoading/LoadingPage';
+import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router';
+
+import GetQcardDataHooks from '../hooks/getQCardData';
 
 const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   const { meetingId } = useParams();
@@ -131,7 +132,8 @@ const QcardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 1rem 1.6rem 10rem 1rem;
+  background-color: ${theme.colors.grey10};
+  padding: 1.5rem;
   width: 100%;
 `;
 
