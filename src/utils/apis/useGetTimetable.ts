@@ -34,8 +34,7 @@ const getTimetable = async (meetingId: string) => {
   } catch (err) {
     if (isAxiosError(err) && err.response) {
       const errCode = err.response.status;
-      const errMessage = err.response.data.message;
-      throw { errCode, errMessage };
+      throw { errCode };
     } else {
       throw new Error('알 수 없는 오류가 발생했습니다.');
     }
@@ -44,7 +43,6 @@ const getTimetable = async (meetingId: string) => {
 
 interface ErrorType extends Error {
   errCode: number;
-  errMessage: string;
 }
 
 export const useGetTimetable = (meetingId?: string) => {
@@ -62,7 +60,6 @@ export const useGetTimetable = (meetingId?: string) => {
   useEffect(
     () => {
       if (error && (error as ErrorType).errCode === 409) {
-        alert('이미 확정된 회의입니다.');
         navigate(`/q-card/${meetingId}`);
       }
     },
