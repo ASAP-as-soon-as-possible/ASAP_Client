@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { useQuery } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { DURATION, PLACE } from 'pages/selectSchedule/utils';
@@ -31,10 +33,19 @@ const getTimetable = async (meetingId: string) => {
     return res.data.data;
   } catch (err) {
     if (isAxiosError(err) && err.response) {
-      throw new Error(err.response.data.message);
+      const errCode = err.response.status;
+      const errMessage = err.response.data.message;
+      throw { errCode, errMessage };
+    } else {
+      throw new Error('알 수 없는 오류가 발생했습니다.');
     }
   }
 };
+
+interface ErrorType extends Error {
+  errCode: number;
+  errMessage: string;
+}
 
 export const useGetTimetable = (meetingId?: string) => {
   const navigate = useNavigate();
@@ -42,10 +53,21 @@ export const useGetTimetable = (meetingId?: string) => {
     navigate('/error');
     throw new Error('잘못된 회의 아이디입니다.');
   }
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, error } = useQuery({
     queryKey: ['getTimetable', meetingId],
     queryFn: () => getTimetable(meetingId),
+    retry: 0,
   });
 
-  return { data, isLoading };
+  useEffect(
+    () => {
+      if (error && (error as ErrorType).errCode === 409) {
+        alert('이미 확정된 회의입니다.');
+        navigate(`/q-card/${meetingId}`);
+      }
+    },
+    [error, navigate, meetingId],
+  );
+
+  return { data, isLoading, error };
 };
