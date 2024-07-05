@@ -4,30 +4,35 @@ import { theme } from 'styles/theme';
 
 interface TextProps {
   main: string;
-  sub: string;
+  sub?: string;
+  padding?: string;
 }
 
-function TitleComponents({ main, sub }: TextProps) {
+const defaultPadding = `4.4rem 0 4.2rem 0`;
+function TitleComponents({ main, sub, padding = defaultPadding }: TextProps) {
   return (
-    <TitleWrapper>
+    <TitleWrapper $padding={padding}>
       <Text font={'head2'} color={`${theme.colors.white}`}>
         {main}
       </Text>
-      <Text font={'body3'} color={`${theme.colors.grey4}`}>
-        {sub}
-      </Text>
+      {sub && (
+        <Text font={'body3'} color={`${theme.colors.grey4}`}>
+          {sub}
+        </Text>
+      )}
     </TitleWrapper>
   );
 }
 
 export default TitleComponents;
 
-const TitleWrapper = styled.div`
+const TitleWrapper = styled.div<{ $padding: string }>`
   display: flex;
   position: relative;
   flex-direction: column;
   gap: 1.2rem;
 
-  padding: 4.4rem 0 4.2rem 0;
+  padding: ${({ $padding }) => $padding};
+
   width: 100%;
 `;

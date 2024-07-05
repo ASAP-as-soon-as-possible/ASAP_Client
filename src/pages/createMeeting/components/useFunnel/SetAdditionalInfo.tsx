@@ -1,13 +1,13 @@
-import React from 'react';
+import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 
-import { isAxiosError } from 'axios';
 import Button from 'components/atomComponents/Button';
+import React from 'react';
 import Text from 'components/atomComponents/Text';
 import TextAreaInput from 'components/atomComponents/TextAreaInput';
-import { MeetingInfo, FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
-import { useNavigate } from 'react-router-dom';
+import { createMeetingApi } from 'utils/apis/legacy/createMeetingApi';
+import { isAxiosError } from 'axios';
 import styled from 'styled-components/macro';
-import { createMeetingApi } from 'utils/apis/createMeetingApi';
+import { useNavigate } from 'react-router-dom';
 
 function SetAdditionalInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const navigate = useNavigate();
