@@ -126,7 +126,7 @@ const BottomSheetModal = styled.div<{$isModalOpen:boolean;}>`
   background-color: ${({ theme }) => theme.colors.grey8};
 
   padding: 2.8rem 2rem 4rem;
-  width:100%;
+  width:37.5rem;
 
   & button {
     width:100%;

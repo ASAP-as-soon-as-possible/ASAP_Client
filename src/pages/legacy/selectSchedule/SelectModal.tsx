@@ -20,6 +20,7 @@ function SelectModal({ setShowModal }: ModalProps) {
 
   const navigate = useNavigate();
   const { auth, meetingId } = useParams();
+
   const updateScheduleType = formatHostScheduleScheme(selectedSlots);
   const updateMemberScheduleType = formatMemberScheduleScheme(selectedSlots, userName);
 
