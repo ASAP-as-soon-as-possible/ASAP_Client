@@ -40,10 +40,11 @@ const useSlotSeletion = () => {
   };
 
   const removeOverlappedSlots = (endSlot: string, dateOfStartSlot: string) => {
-    const selectedSlotsPerDate = Object.fromEntries(
-      Object.entries(selectedSlots).filter(([, slot]) => slot.date === dateOfStartSlot),
+    const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
+      ([, slot]) => slot.date === dateOfStartSlot,
     );
-    Object.entries(selectedSlotsPerDate).forEach(
+
+    selectedSlotsPerDate.forEach(
       ([id, { startSlot: selectedStartSlot, endSlot: selectedEndSlot }]) => {
         const startSlotTime = startSlot && startSlot.split('/').pop();
         const endSlotTime = endSlot.split('/').pop();
