@@ -46,13 +46,13 @@ const useSlotSeletion = () => {
 
     selectedSlotsPerDate.forEach(
       ([id, { startSlot: selectedStartSlot, endSlot: selectedEndSlot }]) => {
-        const startSlotTime = startSlot && startSlot.split('/').pop();
-        const endSlotTime = endSlot.split('/').pop();
+        const currentStartSlotTime = startSlot && startSlot.split('/').pop();
+        const currentEndSlotTime = endSlot.split('/').pop();
         if (
-          startSlotTime &&
-          endSlotTime &&
-          selectedStartSlot > startSlotTime &&
-          selectedEndSlot < endSlotTime
+          currentStartSlotTime &&
+          currentEndSlotTime &&
+          selectedStartSlot > currentStartSlotTime &&
+          selectedEndSlot < currentEndSlotTime
         ) {
           handleDeleteSlot(Number(id));
         }
