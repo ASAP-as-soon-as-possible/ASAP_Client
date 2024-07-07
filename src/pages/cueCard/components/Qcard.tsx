@@ -15,7 +15,7 @@ const Qcard = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
   const navigate = useNavigate();
   const {isError, isloading, cueCardData } = GetQcardDataHooks(meetingId as unknown as string)
   if (isError) {
-    navigate(`/*`);
+    navigate(`/error`);
   } else if (!isloading && cueCardData) {
     const {
       data: {
@@ -132,8 +132,6 @@ const QcardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: ${theme.colors.grey10};
-  padding: 1.5rem;
   width: 100%;
 `;
 
