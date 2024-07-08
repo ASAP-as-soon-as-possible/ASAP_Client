@@ -9,7 +9,7 @@ interface ScheduleStepContextType {
 
 export const ScheduleStepContext = createContext<ScheduleStepContextType>({
   scheduleStep: 'selectTimeSlot',
-  setScheduleStep: () => undefined,
+  setScheduleStep: () => null,
 });
 
 export function useScheduleStepContext() {
