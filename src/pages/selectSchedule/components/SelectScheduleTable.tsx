@@ -13,7 +13,7 @@ import { SelectContext, SelectedSlotType } from '../contexts/useSelectContext';
 import { StepSlotsType, StepbottomItemsType } from '../types';
 
 function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) {
-  const [startSlot, setStartSlot] = useState<string | undefined>(undefined);
+  const [startSlot, setStartSlot] = useState<string | null>(null);
   const [selectedSlots, setSelectedSlots] = useState<SelectedSlotType>({});
 
   const { scheduleStep } = useScheduleStepContext();

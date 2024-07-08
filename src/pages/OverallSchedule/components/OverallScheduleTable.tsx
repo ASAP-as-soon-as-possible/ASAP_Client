@@ -21,7 +21,7 @@ function OverallScheduleTable({
   availableDates,
   dataOverallSchedule,
 }: OverallScheduleTableProps) {
-  const [clickedSlot, setClickedSlot] = useState<string | undefined>(undefined);
+  const [clickedSlot, setClickedSlot] = useState<string | null>(null);
   const [clickedUserNames, setClickedUserNames] = useState<string[]>([]);
 
   const getAvailableTimesPerDate = (
