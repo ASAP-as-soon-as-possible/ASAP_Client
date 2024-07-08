@@ -1,4 +1,4 @@
-import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
+import { SelectSlotType, useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 
 const useSlotSeletion = () => {
     const {startSlot, setStartSlot, selectedSlots, setSelectedSlots} = useSelectContext();
@@ -11,11 +11,21 @@ const useSlotSeletion = () => {
         const dateOfStartSlot = startSlot?.substring(0, startSlot.lastIndexOf('/'));
         const dateOfTargetSlot = targetSlot.substring(0, targetSlot.lastIndexOf('/'))
         if (startSlot && dateOfStartSlot === dateOfTargetSlot){
-            const newSelectedSlot = {
-                date:dateOfStartSlot,
-                startSlot:startSlot?.substring(startSlot.lastIndexOf('/')+1),
-                endSlot:targetSlot.substring(targetSlot.lastIndexOf('/')+1),
-                priority:0,
+            let newSelectedSlot: SelectSlotType;
+            if (startSlot > targetSlot){
+                newSelectedSlot = {
+                    date:dateOfStartSlot,
+                    startSlot:targetSlot.substring(targetSlot.lastIndexOf('/')+1),
+                    endSlot:startSlot?.substring(startSlot.lastIndexOf('/')+1),
+                    priority:0,
+                }
+            } else {
+                newSelectedSlot = {
+                    date:dateOfStartSlot,
+                    startSlot:startSlot?.substring(startSlot.lastIndexOf('/')+1),
+                    endSlot:targetSlot.substring(targetSlot.lastIndexOf('/')+1),
+                    priority:0,
+                }
             }
 
             const keys = Object.keys(selectedSlots).map(Number)
