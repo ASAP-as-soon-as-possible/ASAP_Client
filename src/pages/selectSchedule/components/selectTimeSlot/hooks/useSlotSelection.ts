@@ -28,7 +28,7 @@ const useSlotSeletion = () => {
       });
       removeOverlappedSlots(endSlot, dateOfStartSlot);
     }
-    setStartSlot(undefined);
+    setStartSlot(null);
   };
 
   const handleDeleteSlot = (selectedEntryId: number) => {
@@ -62,11 +62,11 @@ const useSlotSeletion = () => {
 
   const onClickSlot = (targetSlot: string, selectedEntryId?: number) => {
     if (selectedEntryId !== undefined) {
-      if (startSlot === undefined) {
+      if (startSlot === null) {
         handleDeleteSlot(selectedEntryId);
       }
-      setStartSlot(undefined);
-    } else if (startSlot !== undefined) {
+      setStartSlot(null);
+    } else if (startSlot !== null) {
       handleCompleteSlot(targetSlot);
     } else {
       handleSelectSlot(targetSlot);
