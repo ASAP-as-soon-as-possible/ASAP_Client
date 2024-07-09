@@ -32,14 +32,12 @@ function PriorityDropdown() {
     const item = selectedSlots[key];
     const date = formatDate(item.date);
     const endSlot = addMinutes(item.endSlot, 30);
-    if (item.priority === 1) {
+    if (item.priority === 3) {
       defaultInput1 = `${date} ${item.startSlot}~${endSlot}`;
     } else if (item.priority === 2) {
       defaultInput2 = `${date} ${item.startSlot}~${endSlot}`;
-    } else if (item.priority === 3) {
+    } else if (item.priority === 1) {
       defaultInput3 = `${date} ${item.startSlot}~${endSlot}`;
-    } else {
-      // alert(`잘못된 우선순위입니다. ${item.priority}`);
     }
   }
   const [input_, setInput] = useState<string[]>([defaultInput1, defaultInput2, defaultInput3]);
@@ -67,13 +65,13 @@ function PriorityDropdown() {
     let temp: 0 | 1 | 2 | 3 = 0;
     switch (idx) {
       case 0:
-        temp = 1;
+        temp = 3;
         break;
       case 1:
         temp = 2;
         break;
       case 2:
-        temp = 3;
+        temp = 1;
         break;
       default:
         temp = 0;

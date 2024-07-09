@@ -11,14 +11,27 @@ function PriorityColumn({ date, timeSlots }: ColumnStructure) {
     ([, slot]) => slot.date === date,
   );
 
+  const changePriorityValue = (priority: number) => {
+    switch (priority) {
+      case 3:
+        return 1;
+      case 2:
+        return 2;
+      case 1:
+        return 3;
+      default:
+        throw Error(`올바르지않은 priority ${priority}`);
+    }
+  };
+
   const getPriorityColumntyle = (selectedEntryId?: number, priority?: number) => {
     const isSelectedSlot = selectedEntryId !== undefined;
     const slotColor =
-      priority === 1
+      priority === 3
         ? theme.colors.main1
         : priority === 2
           ? theme.colors.main2
-          : priority === 3
+          : priority === 1
             ? theme.colors.main3
             : theme.colors.grey6;
 
@@ -53,7 +66,7 @@ function PriorityColumn({ date, timeSlots }: ColumnStructure) {
             slotStyle={getPriorityColumntyle(selectedEntryId, priority)}
           >
             <Text font="body1" color={theme.colors.white}>
-              {isFirstSlot && priority !== 0 ? priority : ''}
+              {isFirstSlot && priority !== 0 ? changePriorityValue(priority) : ''}
             </Text>
           </Slot>
         );
