@@ -61,7 +61,7 @@ function PriorityDropdown() {
   };
 
   const handlePriority = (idx: number, item: SelectSlotType, itemKey: string) => {
-    const numberItemKey = Number(itemKey);
+    const numberItemKey = parseInt(itemKey);
     let temp: 0 | 1 | 2 | 3 = 0;
     switch (idx) {
       case 0:
@@ -81,7 +81,7 @@ function PriorityDropdown() {
     setSelectedSlots((prev: SelectedSlotType) => {
       const updatedSelectedSlots = Object.entries(prev).reduce(
         (acc, [key, value]) => {
-          const numberKey = Number(key);
+          const numberKey = parseInt(key);
           // priority가 temp와 같은 경우 0으로 설정
           if (value.priority === temp) {
             acc[numberKey] = { ...value, priority: 0 };
