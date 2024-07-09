@@ -1,8 +1,8 @@
-import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
 import React, { useState } from 'react';
 
-import { BestDataProps } from 'pages/bestMeetTime/types/meetCardData';
 import Text from 'components/atomComponents/Text';
+import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
+import { BestDataProps } from 'pages/bestMeetTime/types/meetCardData';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
