@@ -52,6 +52,7 @@ function SelectModal({ setShowModal }: ModalProps) {
   const postMemberAvailableApi = async () => {
     try {
       if (meetingId && updateMemberScheduleType) {
+        console.log(updateMemberScheduleType);
         const { data } = await userAvailableApi(meetingId, updateMemberScheduleType);
         if (data.code === 201) {
           setShowModal(false);
