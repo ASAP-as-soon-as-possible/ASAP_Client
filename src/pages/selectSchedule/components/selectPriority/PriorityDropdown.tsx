@@ -18,7 +18,7 @@ import { theme } from 'styles/theme';
 
 function PriorityDropdown() {
   const { selectedSlots, setSelectedSlots } = useSelectContext();
-  const [timeSelect, setTimeSelect] = useState([false, false, false]);
+  const [isOpenDropDown, setIsOpenDropDown] = useState([false, false, false]);
 
   const formatDate = (date: string) => {
     const [month, day, dayOfWeek] = date.split('/');
@@ -38,27 +38,34 @@ function PriorityDropdown() {
       defaultInput2 = `${date} ${item.startSlot}~${endSlot}`;
     } else if (item.priority === 3) {
       defaultInput3 = `${date} ${item.startSlot}~${endSlot}`;
+    } else {
+      // alert(`잘못된 우선순위입니다. ${item.priority}`);
     }
   }
   const [input_, setInput] = useState<string[]>([defaultInput1, defaultInput2, defaultInput3]);
-  const handleDropdown = (i: number) => {
-    if (!timeSelect[i]) {
-      setTimeSelect((prevState) => {
-        const updatedTimeSelect = prevState.map((value, index) => index === i);
-        return updatedTimeSelect;
+
+  const handleDropdown = (idx: number) => {
+    //dropdown이 열려있을 때
+    if (isOpenDropDown[idx]) {
+      setIsOpenDropDown((prevState) => {
+        const updatedIsDropDown = [...prevState];
+        updatedIsDropDown[idx] = !updatedIsDropDown[idx];
+        return updatedIsDropDown;
       });
-    } else {
-      setTimeSelect((prevState) => {
-        const updatedTimeSelect = [...prevState];
-        updatedTimeSelect[i] = !updatedTimeSelect[i];
-        return updatedTimeSelect;
+    }
+    // dropdown이 닫혀있을 때
+    else {
+      setIsOpenDropDown((prevState) => {
+        const updatedIsDropDownOpen = prevState.map((_, index) => index === idx);
+        return updatedIsDropDownOpen;
       });
     }
   };
 
-  const handlePriority = (i: number, item: SelectSlotType, itemKey: string) => {
+  const handlePriority = (idx: number, item: SelectSlotType, itemKey: string) => {
+    const numberItemKey = Number(itemKey);
     let temp: 0 | 1 | 2 | 3 = 0;
-    switch (i) {
+    switch (idx) {
       case 0:
         temp = 1;
         break;
@@ -74,22 +81,28 @@ function PriorityDropdown() {
     }
 
     setSelectedSlots((prev: SelectedSlotType) => {
-      const updatedSelectedSlots = Object.entries(prev).map(([_, value]) => {
-        if (value.priority === temp) {
-          return { ...value, priority: 0 };
-        }
-        return value;
-      });
-      return updatedSelectedSlots;
-    });
+      const updatedSelectedSlots = Object.entries(prev).reduce(
+        (acc, [key, value]) => {
+          const numberKey = Number(key);
+          // priority가 temp와 같은 경우 0으로 설정
+          if (value.priority === temp) {
+            acc[numberKey] = { ...value, priority: 0 };
+          } else {
+            acc[numberKey] = value;
+          }
+          return acc;
+        },
+        {} as SelectedSlotType,
+      );
 
-    setSelectedSlots((prev: SelectedSlotType) => {
-      const updatedSelectedSlots = Object.entries(prev).map(([key, value]) => {
-        if (key === itemKey) {
-          return { ...value, priority: temp };
-        }
-        return value;
-      });
+      // 특정 key에 대해 priority를 temp로 설정
+      if (updatedSelectedSlots[numberItemKey]) {
+        updatedSelectedSlots[numberItemKey] = {
+          ...updatedSelectedSlots[numberItemKey],
+          priority: temp,
+        };
+      }
+
       return updatedSelectedSlots;
     });
 
@@ -97,36 +110,36 @@ function PriorityDropdown() {
       const updatedInput = [...prev];
       const endSlot = addMinutes(item.endSlot, 30);
       const date = formatDate(item.date);
-      if (i === 0) {
-        updatedInput[i] = `${date} ${item.startSlot}~${endSlot}`;
-      } else if (i === 1) {
-        updatedInput[i] = `${date} ${item.startSlot}~${endSlot}`;
-      } else if (i === 2) {
-        updatedInput[i] = `${date} ${item.startSlot}~${endSlot}`;
+      if (idx === 0) {
+        updatedInput[idx] = `${date} ${item.startSlot}~${endSlot}`;
+      } else if (idx === 1) {
+        updatedInput[idx] = `${date} ${item.startSlot}~${endSlot}`;
+      } else if (idx === 2) {
+        updatedInput[idx] = `${date} ${item.startSlot}~${endSlot}`;
       } else {
-        updatedInput[i] = 'error';
+        updatedInput[idx] = 'error';
       }
       return updatedInput;
     });
-    handleDropdown(i);
+    handleDropdown(idx);
   };
 
   return (
     <PriorityDropdownWrapper>
-      {Object.entries(selectedSlots).map(([key, _], i) => {
-        return i < 3 ? (
+      {Object.entries(selectedSlots).map(([key, _], idx) => {
+        return idx < 3 ? (
           <PriorityDropdownSection key={key}>
             <CircleWrapper>
               <TextWrapper>
                 <Text font={'body2'} color={theme.colors.white}>
-                  {`${i + 1}`}순위
+                  {`${idx + 1}`}순위
                 </Text>
               </TextWrapper>
-              {i === 0 ? (
+              {idx === 0 ? (
                 <Circle1Icon />
-              ) : i === 1 ? (
+              ) : idx === 1 ? (
                 <Circle2Icon />
-              ) : i === 2 ? (
+              ) : idx === 2 ? (
                 <Circle3Icon />
               ) : (
                 <div />
@@ -135,14 +148,14 @@ function PriorityDropdown() {
             <InputWrapper>
               <TimeInput
                 type="text"
-                $drop={timeSelect[i]}
+                $drop={isOpenDropDown[idx]}
                 placeholder="시간대 선택"
                 readOnly
-                onClick={() => handleDropdown(i)}
-                value={input_[i]}
+                onClick={() => handleDropdown(idx)}
+                value={input_[idx]}
               />
 
-              {timeSelect[i] ? (
+              {isOpenDropDown[idx] ? (
                 <DropDownIconWrapper>
                   <DropUpIc />{' '}
                 </DropDownIconWrapper>
@@ -152,12 +165,12 @@ function PriorityDropdown() {
                 </DropDownIconWrapper>
               )}
 
-              {timeSelect[i] && (
+              {isOpenDropDown[idx] && (
                 <DropdownWrapper>
                   {Object.entries(selectedSlots).map(
                     ([key, value]) =>
                       !value.priority && (
-                        <DropDownItem key={key} onClick={() => handlePriority(i, value, key)}>
+                        <DropDownItem key={key} onClick={() => handlePriority(idx, value, key)}>
                           <Text font={'button1'} color={theme.colors.white}>
                             {formatDate(value.date)} {value.startSlot}~{addMinutes(
                               value.endSlot,
