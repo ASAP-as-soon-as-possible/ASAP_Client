@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
-import { AxiosError, isAxiosError } from 'axios';
+import { isAxiosError } from 'axios';
 import { DURATION, PLACE } from 'pages/selectSchedule/utils';
 import { useNavigate } from 'react-router-dom';
 
