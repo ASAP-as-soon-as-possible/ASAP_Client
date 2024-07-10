@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
-import { isAxiosError } from 'axios';
+import { AxiosError, isAxiosError } from 'axios';
 import { DURATION, PLACE } from 'pages/selectSchedule/utils';
 import { useNavigate } from 'react-router-dom';
 
@@ -31,19 +31,15 @@ const getTimetable = async (meetingId: string) => {
   try {
     const res = await client.get<getTimetableResponse>(`/meeting/${meetingId}/schedule`);
     return res.data.data;
-  } catch (err) {
-    if (isAxiosError(err) && err.response) {
-      const errCode = err.response.status;
-      throw { errCode };
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw error;
     } else {
       throw new Error('알 수 없는 오류가 발생했습니다.');
     }
   }
 };
 
-interface ErrorType extends Error {
-  errCode: number;
-}
 
 export const useGetTimetable = (meetingId?: string) => {
   const navigate = useNavigate();
@@ -59,7 +55,7 @@ export const useGetTimetable = (meetingId?: string) => {
 
   useEffect(
     () => {
-      if (error && (error as ErrorType).errCode === 409) {
+      if (error && isAxiosError(error) && error.response?.status === 409) {
         navigate(`/q-card/${meetingId}`);
       }
     },
