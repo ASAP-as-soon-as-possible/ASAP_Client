@@ -71,9 +71,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
             console.log(err.response.data.message);
             setIsModalOpen(true);
           } else {
-            console.log(err.response.status);
-            console.log(err.response.data.message);
-            navigate('/error');
+            navigate(`/q-card/${meetingId}`);
           }
         }
       }
