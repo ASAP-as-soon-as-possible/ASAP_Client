@@ -1,4 +1,4 @@
-import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
+import { SelectSlotType, useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 
 const useSlotSeletion = () => {
   const { startSlot, setStartSlot, selectedSlots, setSelectedSlots } = useSelectContext();
@@ -7,19 +7,35 @@ const useSlotSeletion = () => {
     setStartSlot(targetSlot);
   };
 
-  const handleCompleteSlot = (endSlot: string) => {
-    const dateOfStartSlot = startSlot && startSlot.substring(0, startSlot.lastIndexOf('/'));
-    const dateOfEndSlot = endSlot.substring(0, endSlot.lastIndexOf('/'));
-    if (startSlot && dateOfStartSlot === dateOfEndSlot) {
-      const newSelectedSlot = {
-        date: dateOfStartSlot,
-        startSlot: startSlot && startSlot.substring(startSlot.lastIndexOf('/') + 1),
-        endSlot: endSlot.substring(endSlot.lastIndexOf('/') + 1),
-        priority: 0,
-      };
+    const handleCompleteSlot = (targetSlot: string) => {
+        const dateOfStartSlot = startSlot?.substring(0, startSlot.lastIndexOf('/'));
+        const dateOfTargetSlot = targetSlot.substring(0, targetSlot.lastIndexOf('/'))
+        if (startSlot && dateOfStartSlot === dateOfTargetSlot){
+            let newSelectedSlot: SelectSlotType;
+            if (startSlot > targetSlot){
+                newSelectedSlot = {
+                    date:dateOfStartSlot,
+                    startSlot:targetSlot.substring(targetSlot.lastIndexOf('/')+1),
+                    endSlot:startSlot?.substring(startSlot.lastIndexOf('/')+1),
+                    priority:0,
+                }
+            } else {
+                newSelectedSlot = {
+                    date:dateOfStartSlot,
+                    startSlot:startSlot?.substring(startSlot.lastIndexOf('/')+1),
+                    endSlot:targetSlot.substring(targetSlot.lastIndexOf('/')+1),
+                    priority:0,
+                }
+            }
 
-      const keys = Object.keys(selectedSlots).map(Number);
-      const newKey = keys.length ? Math.max(...keys) + 1 : 0;
+            const keys = Object.keys(selectedSlots).map(Number)
+            const newKey = keys.length ? Math.max(...keys) + 1 : 0;
+            const newSelectedSlots = {...selectedSlots};
+            newSelectedSlots[newKey] = newSelectedSlot;
+            setSelectedSlots(newSelectedSlots)
+        }
+        setStartSlot(undefined);
+    }
 
       setSelectedSlots((prev) => {
         const newSelectedSlots = { ...prev };
