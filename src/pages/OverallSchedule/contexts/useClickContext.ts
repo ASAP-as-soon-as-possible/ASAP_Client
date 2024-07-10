@@ -1,15 +1,15 @@
 import { Dispatch, SetStateAction, createContext, useContext } from 'react';
 
 interface ClickContextType {
-  clickedSlot: string | undefined;
+  clickedSlot: string | null;
   setClickedSlot: Dispatch<SetStateAction<ClickContextType['clickedSlot']>>;
   clickedUserNames: string[];
   setClickedUserNames: Dispatch<SetStateAction<ClickContextType['clickedUserNames']>>;
 }
 
 export const ClickContext = createContext<ClickContextType>({
-  clickedSlot: undefined,
-  setClickedSlot: () => undefined,
+  clickedSlot: null,
+  setClickedSlot: () => null,
   clickedUserNames: [],
   setClickedUserNames: () => [],
 });

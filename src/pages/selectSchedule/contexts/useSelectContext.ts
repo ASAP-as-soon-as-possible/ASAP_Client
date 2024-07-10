@@ -12,17 +12,17 @@ export interface SelectedSlotType {
 }
 
 interface SelectContextType {
-  startSlot: string | undefined;
+  startSlot: string | null;
   setStartSlot: Dispatch<SetStateAction<SelectContextType['startSlot']>>;
   selectedSlots: SelectedSlotType;
   setSelectedSlots: Dispatch<SetStateAction<SelectedSlotType>>;
 }
 
 export const SelectContext = createContext<SelectContextType>({
-  startSlot: undefined,
-  setStartSlot: () => undefined,
+  startSlot: null,
+  setStartSlot: () => null,
   selectedSlots: {},
-  setSelectedSlots: () => undefined,
+  setSelectedSlots: () => null,
 });
 
 export function useSelectContext() {
