@@ -7,6 +7,7 @@ import Slot from '../../../../components/timetableComponents/parts/Slot';
 
 function PriorityColumn({ date, timeSlots }: ColumnStructure) {
   const { selectedSlots } = useSelectContext();
+
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,
   );
@@ -24,8 +25,8 @@ function PriorityColumn({ date, timeSlots }: ColumnStructure) {
     }
   };
 
-  const getPriorityColumnStyle = (priority: number, selectedEntryId?: number) => {
-    const isSelectedSlot = selectedEntryId !== undefined;
+  const getPriorityColumnStyle = (priority: number, selectedEntryId?: number | null) => {
+    const isSelectedSlot = selectedEntryId;
     const slotColor =
       priority === 3
         ? theme.colors.main1
@@ -36,7 +37,11 @@ function PriorityColumn({ date, timeSlots }: ColumnStructure) {
             : theme.colors.grey6;
 
     return `
-        ${isSelectedSlot ? `background-color:${slotColor}` : `background-color: transparent`}
+        ${
+          isSelectedSlot !== null
+            ? `background-color:${slotColor}`
+            : `background-color: transparent`
+        }
     `;
   };
 
@@ -54,16 +59,15 @@ function PriorityColumn({ date, timeSlots }: ColumnStructure) {
           }
         }
 
-        const selectedEntryId = belongingEntry ? parseInt(belongingEntry[0]) : undefined;
+        const selectedEntryId = belongingEntry ? parseInt(belongingEntry[0]) : null;
         const slotId = `${date}/${timeSlot}`;
-        const priority =
-          selectedEntryId !== undefined ? selectedSlots[selectedEntryId].priority : 0;
+        const priority = selectedEntryId ? selectedSlots[selectedEntryId].priority : 0;
 
         return (
           <Slot
             key={slotId}
             slotId={slotId}
-            slotStyle={getPriorityColumnStyle(selectedEntryId, priority)}
+            slotStyle={getPriorityColumnStyle(priority, selectedEntryId)}
           >
             <Text font="body1" color={theme.colors.white}>
               {isFirstSlot && priority !== 0 ? changePriorityValue(priority) : ''}
