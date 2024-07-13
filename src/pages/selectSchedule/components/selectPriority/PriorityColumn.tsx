@@ -24,7 +24,7 @@ function PriorityColumn({ date, timeSlots }: ColumnStructure) {
     }
   };
 
-  const getPriorityColumntyle = (selectedEntryId?: number, priority?: number) => {
+  const getPriorityColumnStyle = (priority: number, selectedEntryId?: number) => {
     const isSelectedSlot = selectedEntryId !== undefined;
     const slotColor =
       priority === 3
@@ -63,7 +63,7 @@ function PriorityColumn({ date, timeSlots }: ColumnStructure) {
           <Slot
             key={slotId}
             slotId={slotId}
-            slotStyle={getPriorityColumntyle(selectedEntryId, priority)}
+            slotStyle={getPriorityColumnStyle(selectedEntryId, priority)}
           >
             <Text font="body1" color={theme.colors.white}>
               {isFirstSlot && priority !== 0 ? changePriorityValue(priority) : ''}
