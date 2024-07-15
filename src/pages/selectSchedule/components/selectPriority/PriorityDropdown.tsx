@@ -20,7 +20,6 @@ function PriorityDropdown() {
   const { selectedSlots, setSelectedSlots } = useSelectContext();
   const [isOpenDropDown, setIsOpenDropDown] = useState([false, false, false]);
 
-  console.log(selectedSlots);
   const formatDate = (date: string) => {
     const [month, day, dayOfWeek] = date.split('/');
     return `${month}/${day}(${dayOfWeek})`;
