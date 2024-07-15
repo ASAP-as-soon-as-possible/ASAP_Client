@@ -20,6 +20,7 @@ function PriorityDropdown() {
   const { selectedSlots, setSelectedSlots } = useSelectContext();
   const [isOpenDropDown, setIsOpenDropDown] = useState([false, false, false]);
 
+  console.log(selectedSlots);
   const formatDate = (date: string) => {
     const [month, day, dayOfWeek] = date.split('/');
     return `${month}/${day}(${dayOfWeek})`;
@@ -60,44 +61,45 @@ function PriorityDropdown() {
     }
   };
 
-  const handlePriority = (idx: number, item: SelectSlotType, itemKey: string) => {
-    const numberItemKey = parseInt(itemKey);
-    let temp: 0 | 1 | 2 | 3 = 0;
+  const handlePriority = (idx: number, item: SelectSlotType, stringSelectedSlotKey: string) => {
+    const selectedSlotKey = parseInt(stringSelectedSlotKey);
+    let selectedPriority: 0 | 1 | 2 | 3 = 0;
     switch (idx) {
       case 0:
-        temp = 3;
+        selectedPriority = 3;
         break;
       case 1:
-        temp = 2;
+        selectedPriority = 2;
         break;
       case 2:
-        temp = 1;
+        selectedPriority = 1;
         break;
       default:
-        temp = 0;
+        selectedPriority = 0;
         break;
     }
 
+    //이전 상태를 순회하면서 선택된 우선순위를 가지고 있는 데이터를 우선순위 0으로 초기화
     setSelectedSlots((prev: SelectedSlotType) => {
       const updatedSelectedSlots = Object.entries(prev).reduce(
         (acc, [key, value]) => {
-          const numberKey = parseInt(key);
-          // priority가 temp와 같은 경우 0으로 설정
-          if (value.priority === temp) {
-            acc[numberKey] = { ...value, priority: 0 };
+          const prevSelectedSlotKey = parseInt(key);
+          //선택된 우선순위가 기존에 존재할 경우 0으로 초기화
+          if (value.priority === selectedPriority) {
+            acc[prevSelectedSlotKey] = { ...value, priority: 0 };
           } else {
-            acc[numberKey] = value;
+            acc[prevSelectedSlotKey] = value;
           }
           return acc;
         },
         {} as SelectedSlotType,
       );
 
-      // 특정 key에 대해 priority를 temp로 설정
-      if (updatedSelectedSlots[numberItemKey]) {
-        updatedSelectedSlots[numberItemKey] = {
-          ...updatedSelectedSlots[numberItemKey],
-          priority: temp,
+      // 해당하는 selectedSlot의 priority를 선택된 우선순위로 변경
+      if (updatedSelectedSlots[selectedSlotKey]) {
+        updatedSelectedSlots[selectedSlotKey] = {
+          ...updatedSelectedSlots[selectedSlotKey],
+          priority: selectedPriority,
         };
       }
 
