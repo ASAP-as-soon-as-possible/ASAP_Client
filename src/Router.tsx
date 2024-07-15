@@ -1,5 +1,3 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-
 import ChooseBestTime from 'pages/bestMeetTime/ChooseBestTime';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
@@ -7,10 +5,9 @@ import ErrorPage404 from 'pages/errorLoading/ErrorPage404';
 import LoadingPage from 'pages/errorLoading/LoadingPage';
 import LoginEntrance from 'pages/loginEntrance/LoginEntrance';
 import OnBoarding from 'pages/onBoarding/OnBoarding';
-import SelectPage from 'pages/legacy/selectSchedule/SelectSchedulePage';
 import SelectSchedule from 'pages/selectSchedule/SelectSchedule';
-import SelectSchedulePriority from 'pages/legacy/selectSchedule/SelectPriorityPage';
 import SteppingLayout from 'pages/steppingStone/SteppingLayout';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router = () => {
   return (
