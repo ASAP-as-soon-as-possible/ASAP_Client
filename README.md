@@ -2,14 +2,12 @@
 ![BRANDING 3_PLAN](https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/ddf9b475-a825-4577-8e14-b8d190a864b2)
 
 ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽고 빠르고 간편하게 처리해주는 '최적의 회의시간 도출' 웹 서비스입니다.
-
-2.  **회의 관련 정보를 하나의 큐카드로 정리해 제공**함으로써
-    회의 시간 외 추가 공지사항을 단톡방에 올리는 수고로움 또한 덜어주고자 합니다.
+**회의 관련 정보를 하나의 큐카드로 정리해 제공**함으로써 회의 시간 외 추가 공지사항을 단톡방에 올리는 수고로움 또한 덜어주고자 합니다.
 
 # 💡 ASAP 서비스의 핵심 기능
 
 ## 📥 회의 생성하기
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/376dfab3-e4d7-427d-8f2e-1897984b21b4"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/fbb6d887-f921-46d8-9979-7043512a80cc" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/b6f72f8a-4bed-4c3a-8a4c-f715b1c67685"/> |
+| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/376dfab3-e4d7-427d-8f2e-1897984b21b4"/> | <img src="https://github.com/user-attachments/assets/9cea5d28-3f19-4501-8975-9b076dffc492"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/b6f72f8a-4bed-4c3a-8a4c-f715b1c67685"/> |
 | :---: | :---: | :---: |
 | 1️⃣ 회의명 입력 | 2️⃣ 날짜 선택 | 3️⃣ 시간대 선택 |
 
@@ -28,13 +26,13 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 
 
 ## 📥 회의 일정 확인하기
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/095396f0-42f7-45ca-b33d-328b7f5f7b50" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/1ffe6158-1672-4edb-8f83-fc6b0a17e53e4" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/1326806e-65a2-40b6-9611-46bd2f404612" width="400"/> |
+| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/095396f0-42f7-45ca-b33d-328b7f5f7b50" width="400"/> | <img src="https://github.com/user-attachments/assets/9d61e7a2-ac6f-400a-800a-fffb998c5998" width="400"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/1326806e-65a2-40b6-9611-46bd2f404612" width="400"/> |
 | :---: | :---: | :---: |
 | 1️⃣ 종합 일정 시간표 확인 | 2️⃣ 최적의 회의시간 추천 | 3️⃣ 큐카드 공유하기 |
 
 # 👨‍👨‍👧‍👦  팀원 소개
 
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/6054ba0b-cb75-4e7b-afa8-d6b79842ae0a"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/ff41d063-6597-44af-9493-613723f851b4"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/96d2a52d-17f9-4592-b032-75623c6d95d7"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/b47f10dd-ee91-4b27-8eb6-852dcf5cc189"/> |
+| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/6054ba0b-cb75-4e7b-afa8-d6b79842ae0a" width="200"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/ff41d063-6597-44af-9493-613723f851b4" width="200"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/96d2a52d-17f9-4592-b032-75623c6d95d7" width="200"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/55528304/b47f10dd-ee91-4b27-8eb6-852dcf5cc189" width="200"/> |
 | :-----------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------: |
 |                                           [이재훈](https://github.com/ljh0608)                                            |                                          [이동헌](https://github.com/eastlaw80)                                           |                                          [심은서](https://github.com/simeunseo)                                           |                                        [정찬우](https://github.com/Chanwoo-Jeong)                                         |
 |                                                   `WEB FE` `리드개발자`                                                   |                                                         `WEB FE`                                                          |                                                         `WEB FE`                                                          |                                                         `WEB FE`                                                          |
