@@ -2,19 +2,19 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import CardPng from 'assets/images/card.png';
+import InsertPng from 'assets/images/insert.png';
+import MakePng from 'assets/images/make.png';
+import PointPng from 'assets/images/point.png';
+import Button from 'components/atomComponents/Button';
+import Text from 'components/atomComponents/Text';
+import Header from 'components/moleculesComponents/Header';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components/macro';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import Button from 'components/atomComponents/Button';
-import CardPng from 'assets/images/card.png';
 import Explain from './components/Explain';
-import Header from 'components/moleculesComponents/Header';
-import InsertPng from 'assets/images/insert.png';
-import { Link } from 'react-router-dom';
-import MakePng from 'assets/images/make.png';
-import PointPng from 'assets/images/point.png';
-import Text from 'components/atomComponents/Text';
-import styled from 'styled-components/macro';
 
 const slides = [
   {
@@ -44,6 +44,7 @@ const slides = [
 ];
 
 function OnBoarding() {
+  console.log('배포 자동화 테스트');
   return (
     <>
       <OnboardingWrapper>
