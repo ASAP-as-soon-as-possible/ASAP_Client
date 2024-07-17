@@ -1,21 +1,27 @@
-import { BestDataProps } from 'pages/bestMeetTime/types/meetCardData';
+import React, { useState } from 'react';
+
 import Text from 'components/atomComponents/Text';
+import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
+import { BestDataProps } from 'pages/bestMeetTime/types/meetCardData';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
-function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
+function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
+  const [isMember, setIsMember] = useState(false);
   const checkingCheck = () => {
     chooseMeetime(rank);
   };
-
   if (carddata) {
     return (
-      <AlternativeCardWrapper $rank={rank} $selected={selected}>
+      <BestTimeCardWrapper $rank={rank} $selected={selected}>
+        <IconContainer onClick={() => setIsMember((prev) => !prev)}>
+          {isMember ? <DropupWhite /> : <DropdownWhite />}
+        </IconContainer>
         <Input
           id={`${rank}`}
           type="checkbox"
-          checked={rank === selected ? true : false}
           onChange={checkingCheck}
+          checked={rank === selected ? true : false}
         />
         <InfoContainer>
           <Label htmlFor={`${rank}`}>
@@ -26,26 +32,29 @@ function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataPr
               {carddata.startTime} ~ {carddata.endTime}
             </Text>
           </Label>
-
-          <MemeberContainer>
-            {carddata.users.map((member, i) => (
-              <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
-                {member.name}
-                {i !== carddata.users.length - 1 ? ',' : ''}&nbsp;
-              </Text>
-            ))}
-          </MemeberContainer>
+          {isMember ? (
+            <MemeberContainer>
+              {carddata.users.map((member, i) => (
+                <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
+                  {member.name}
+                  {i !== carddata.users.length - 1 ? ',' : ''}&nbsp;
+                </Text>
+              ))}
+            </MemeberContainer>
+          ) : (
+            undefined
+          )}
         </InfoContainer>
-      </AlternativeCardWrapper>
+      </BestTimeCardWrapper>
     );
   } else {
-    return null;
+    return undefined;
   }
 }
 
-export default AlternativeCard;
+export default BestTimeCard;
 
-const AlternativeCardWrapper = styled.article<{ $rank: number; $selected: number }>`
+const BestTimeCardWrapper = styled.article<{ $rank: number; $selected: number }>`
   display: flex;
   position: relative;
   flex-direction: row;
@@ -54,9 +63,9 @@ const AlternativeCardWrapper = styled.article<{ $rank: number; $selected: number
       $rank === $selected ? theme.colors.main1 : theme.colors.grey5};
   border-radius: 10px;
   padding: 2rem;
+  width: 100%;
   height: fit-content;
 `;
-
 const InfoContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -92,4 +101,18 @@ const MemeberContainer = styled.div`
   margin-top: 1.2rem;
   width: 23rem;
   height: fit-content;
+`;
+
+const BasicIconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+`;
+
+const IconContainer = styled(BasicIconContainer)`
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
 `;
