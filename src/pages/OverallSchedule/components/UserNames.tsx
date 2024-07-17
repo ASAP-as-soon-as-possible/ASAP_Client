@@ -1,5 +1,5 @@
 import Text from 'components/atomComponents/Text';
-import styled from 'styled-components';
+import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
 
 import { useClickContext } from '../contexts/useClickContext';

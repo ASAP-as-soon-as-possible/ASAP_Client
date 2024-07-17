@@ -54,13 +54,11 @@ export const resetPriorities = (selectedSlots: SelectedSlotType): SelectedSlotTy
 export const formatHostScheduleScheme = (selectedSlots: SelectedSlotType) => {
   const availableTimes = Object.keys(selectedSlots).map((key) => {
     const slot = selectedSlots[parseInt(key)];
-    const [month, day, dayOfWeek] = slot.date.split('/');
+    const [month, day, ,] = slot.date.split('/');
 
     return {
-      id: key,
-      month: month.padStart(2, '0'),
-      day: day.padStart(2, '0'),
-      dayOfWeek: dayOfWeek,
+      month: month,
+      day: day,
       startTime: slot.startSlot,
       endTime: addMinutes(slot.endSlot, 30),
       priority: slot.priority,
@@ -76,13 +74,11 @@ export const formatHostScheduleScheme = (selectedSlots: SelectedSlotType) => {
 export const formatMemberScheduleScheme = (selectedSlots: SelectedSlotType, userName: string) => {
   const availableTimes = Object.keys(selectedSlots).map((key) => {
     const slot = selectedSlots[parseInt(key)];
-    const [month, day, dayOfWeek] = slot.date.split('/');
+    const [month, day, ,] = slot.date.split('/');
 
     return {
-      id: key,
-      month: month.padStart(2, '0'),
-      day: day.padStart(2, '0'),
-      dayOfWeek: dayOfWeek,
+      month: month,
+      day: day,
       startTime: slot.startSlot,
       endTime: addMinutes(slot.endSlot, 30),
       priority: slot.priority,

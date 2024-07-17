@@ -4,6 +4,7 @@ import {
   UserAvailableScheduleRequestType,
   UserAvailableScheduleResponseType,
 } from 'src/types/createAvailableSchduleType';
+
 import { authClient, client } from '../axios';
 
 export const hostAvailableApi = (

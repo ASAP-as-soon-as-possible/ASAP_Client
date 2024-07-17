@@ -7,23 +7,41 @@ import Slot from '../../../../components/timetableComponents/parts/Slot';
 
 function PriorityColumn({ date, timeSlots }: ColumnStructure) {
   const { selectedSlots } = useSelectContext();
+
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,
   );
 
-  const getPriorityColumntyle = (selectedEntryId?: number, priority?: number) => {
-    const isSelectedSlot = selectedEntryId !== undefined;
+  const changePriorityValue = (priority: number) => {
+    switch (priority) {
+      case 3:
+        return 1;
+      case 2:
+        return 2;
+      case 1:
+        return 3;
+      default:
+        throw Error(`올바르지않은 priority ${priority}`);
+    }
+  };
+
+  const getPriorityColumnStyle = (priority: number, selectedEntryId?: number | null) => {
+    const isSelectedSlot = selectedEntryId;
     const slotColor =
-      priority === 1
+      priority === 3
         ? theme.colors.main1
         : priority === 2
           ? theme.colors.main2
-          : priority === 3
+          : priority === 1
             ? theme.colors.main3
             : theme.colors.grey6;
 
     return `
-        ${isSelectedSlot ? `background-color:${slotColor}` : `background-color: transparent`}
+        ${
+          isSelectedSlot !== null
+            ? `background-color:${slotColor}`
+            : `background-color: transparent`
+        }
     `;
   };
 
@@ -41,19 +59,18 @@ function PriorityColumn({ date, timeSlots }: ColumnStructure) {
           }
         }
 
-        const selectedEntryId = belongingEntry ? parseInt(belongingEntry[0]) : undefined;
+        const selectedEntryId = belongingEntry ? parseInt(belongingEntry[0]) : null;
         const slotId = `${date}/${timeSlot}`;
-        const priority =
-          selectedEntryId !== undefined ? selectedSlots[selectedEntryId].priority : 0;
+        const priority = selectedEntryId ? selectedSlots[selectedEntryId].priority : 0;
 
         return (
           <Slot
             key={slotId}
             slotId={slotId}
-            slotStyle={getPriorityColumntyle(selectedEntryId, priority)}
+            slotStyle={getPriorityColumnStyle(priority, selectedEntryId)}
           >
             <Text font="body1" color={theme.colors.white}>
-              {isFirstSlot && priority !== 0 ? priority : ''}
+              {isFirstSlot && priority !== 0 ? changePriorityValue(priority) : ''}
             </Text>
           </Slot>
         );

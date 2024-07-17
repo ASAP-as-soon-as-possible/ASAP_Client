@@ -1,19 +1,20 @@
-import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
 import React, { useState } from 'react';
 
+import Button from 'components/atomComponents/Button';
+import Text from 'components/atomComponents/Text';
+import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
 import AlternativeCard from 'pages/bestMeetTime/components/bestMeetTime/AlternativeCard';
 import BestTimeCard from 'pages/bestMeetTime/components/bestMeetTime/BestTimeCard';
-import BlankMeetCard from './BlankMeetCard';
-import Button from 'components/atomComponents/Button';
 import ConfirmModal from 'pages/bestMeetTime/components/bestMeetTime/confirmModal';
 import GetBestMeetimeListHooks from 'pages/bestMeetTime/hooks/getBestMeetimeList';
+import { whatisBestMeetime } from 'pages/bestMeetTime/utils/whatisBestMeetime';
 import LoadingPage from 'pages/errorLoading/LoadingPage';
-import Text from 'components/atomComponents/Text';
+import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router';
-import { whatisBestMeetime } from 'pages/bestMeetTime/utils/whatisBestMeetime';
+
+import BlankMeetCard from './BlankMeetCard';
 
 function BestMeetTime() {
   const [isalternativeCardOpen, setIsalternativeCardOpen] = useState(false);
