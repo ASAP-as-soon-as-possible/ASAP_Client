@@ -1,10 +1,5 @@
-import { useState } from 'react';
-
 import Button from 'components/atomComponents/Button';
-import PlaceInput from 'components/atomComponents/PlaceInput';
 import Text from 'components/atomComponents/Text';
-import TextAreaInput from 'components/atomComponents/TextAreaInput';
-import TextInput from 'components/atomComponents/TextInput';
 import {
   MainLogoIc,
   HambergerIc,

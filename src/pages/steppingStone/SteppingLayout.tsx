@@ -28,7 +28,6 @@ function SteppingLayout({ steppingType }: SteppingProps) {
     }
   };
 
-  //git test
   useEffect(
     () => {
       if (steppingType === 'meetEntrance') {
