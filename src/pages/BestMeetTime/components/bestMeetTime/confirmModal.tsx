@@ -2,8 +2,8 @@ import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
-import { BestMeetFinished } from 'pages/BestMeetTime/types/meetCardData';
-import LoadingPage from 'pages/ErrorLoading/LoadingPage';
+import { BestMeetFinished } from 'pages/bestMeetTime/types/meetCardData';
+import LoadingPage from 'pages/errorLoading/LoadingPage';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';

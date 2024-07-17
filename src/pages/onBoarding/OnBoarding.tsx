@@ -44,6 +44,7 @@ const slides = [
 ];
 
 function OnBoarding() {
+  console.log('배포 자동화 테스트');
   return (
     <>
       <OnboardingWrapper>
@@ -60,7 +61,7 @@ function OnBoarding() {
               pagination={{
                 clickable: true,
               }}
-              navigation={true}
+              navigation={false}
               modules={[Autoplay, Pagination, Navigation]}
               className="mySwiper"
             >

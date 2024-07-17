@@ -16,7 +16,7 @@ function CueCard() {
 
   const downLoadImage = () => {
     if (imageRef.current) {
-      html2canvas(imageRef.current).then((canvas) => {
+      html2canvas(imageRef.current, { backgroundColor: null }).then((canvas) => {
         const link = document.createElement('a');
         link.download = 'myimage.png';
         link.href = canvas.toDataURL('image/png');
@@ -59,6 +59,8 @@ const CueCardWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  width: 100%;
 `;
 
 const ButtonSection = styled.section`
