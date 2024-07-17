@@ -7,6 +7,27 @@ const useSlotSeletion = () => {
     setStartSlot(targetSlot);
   };
 
+  const removeOverlappedSlots = (endSlot: string, dateOfStartSlot: string) => {
+    const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
+      ([, slot]) => slot.date === dateOfStartSlot,
+    );
+
+    selectedSlotsPerDate.forEach(
+      ([id, { startSlot: selectedStartSlot, endSlot: selectedEndSlot }]) => {
+        const currentStartSlotTime = startSlot && startSlot.split('/').pop();
+        const currentEndSlotTime = endSlot.split('/').pop();
+        if (
+          currentStartSlotTime &&
+          currentEndSlotTime &&
+          selectedStartSlot > currentStartSlotTime &&
+          selectedEndSlot < currentEndSlotTime
+        ) {
+          handleDeleteSlot(Number(id));
+        }
+      },
+    );
+  };
+
     const handleCompleteSlot = (targetSlot: string) => {
         const dateOfStartSlot = startSlot?.substring(0, startSlot.lastIndexOf('/'));
         const dateOfTargetSlot = targetSlot.substring(0, targetSlot.lastIndexOf('/'))
@@ -33,19 +54,12 @@ const useSlotSeletion = () => {
             const newSelectedSlots = {...selectedSlots};
             newSelectedSlots[newKey] = newSelectedSlot;
             setSelectedSlots(newSelectedSlots)
+
+            removeOverlappedSlots(targetSlot, dateOfStartSlot);
         }
-        setStartSlot(undefined);
+        setStartSlot(null);
     }
 
-      setSelectedSlots((prev) => {
-        const newSelectedSlots = { ...prev };
-        newSelectedSlots[newKey] = newSelectedSlot;
-        return newSelectedSlots;
-      });
-      removeOverlappedSlots(endSlot, dateOfStartSlot);
-    }
-    setStartSlot(null);
-  };
 
   const handleDeleteSlot = (selectedEntryId: number) => {
     setSelectedSlots((prev) => {
@@ -55,26 +69,6 @@ const useSlotSeletion = () => {
     });
   };
 
-  const removeOverlappedSlots = (endSlot: string, dateOfStartSlot: string) => {
-    const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
-      ([, slot]) => slot.date === dateOfStartSlot,
-    );
-
-    selectedSlotsPerDate.forEach(
-      ([id, { startSlot: selectedStartSlot, endSlot: selectedEndSlot }]) => {
-        const currentStartSlotTime = startSlot && startSlot.split('/').pop();
-        const currentEndSlotTime = endSlot.split('/').pop();
-        if (
-          currentStartSlotTime &&
-          currentEndSlotTime &&
-          selectedStartSlot > currentStartSlotTime &&
-          selectedEndSlot < currentEndSlotTime
-        ) {
-          handleDeleteSlot(Number(id));
-        }
-      },
-    );
-  };
 
   const onClickSlot = (targetSlot: string, selectedEntryId?: number) => {
     if (selectedEntryId !== undefined) {
