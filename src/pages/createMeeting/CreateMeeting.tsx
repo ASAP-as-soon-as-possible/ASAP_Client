@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Header from 'components/moleculesComponents/Header';
-import { MeetingInfo } from './types/useFunnelInterface';
 import ReturnBodyComponent from 'pages/createMeeting/components/ReturnBodyComponent';
 import ReturnTitleComponent from 'pages/createMeeting/components/ReturnTitleComponent';
-import { funnelStep } from './data/meetingInfoData';
 import styled from 'styled-components/macro';
-import { useGetTimetable } from 'utils/apis/useGetTimetable';
+
+import { funnelStep } from './data/meetingInfoData';
+import { MeetingInfo } from './types/useFunnelInterface';
 
 const initialMeetingInfo: MeetingInfo = {
   title: '',
