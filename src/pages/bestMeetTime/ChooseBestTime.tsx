@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Header from 'components/moleculesComponents/Header';
-import BestMeetTime from 'pages/bestMeetTime/components/bestMeetTime/BestMeetTime';
+import BestMeetTime from 'pages/bestMeetTime/components/BestMeetTime';
 import OverallSchedule from 'pages/overallSchedule/OverallSchedule';
 import { styled } from 'styled-components';
 
