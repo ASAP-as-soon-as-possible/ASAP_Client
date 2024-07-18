@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
 import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
@@ -123,6 +123,12 @@ function PriorityDropdown() {
     handleDropdown(idx);
   };
 
+  useEffect(
+    () => {
+      console.log(selectedSlots);
+    },
+    [selectedSlots],
+  );
   return (
     <PriorityDropdownWrapper>
       {Object.entries(selectedSlots).map(([key, _], idx) => {
