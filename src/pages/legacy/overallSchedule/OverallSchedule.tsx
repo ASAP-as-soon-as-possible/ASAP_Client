@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { availableDatesAtom, preferTimesAtom, timeSlotUserNameAtom } from 'atoms/atom';
-import { useRecoilState, useRecoilValue } from 'recoil';
 
-import LoadingPage from 'pages/errorLoading/LoadingPage';
-import { OverallScheduleData } from 'src/types/overallScheduleType';
+import { availableDatesAtom, preferTimesAtom, timeSlotUserNameAtom } from 'atoms/atom';
 import Text from 'components/atomComponents/Text';
-import TimeTable from './components/TimeTable';
-import { availableScheduleOptionApi } from 'utils/apis/legacy/availbleScheduleOptionApi';
-import { getFormattedAvailableDateTimes } from './utils/getFormattedAvailableDateTimes';
-import { overallScheduleApi } from 'utils/apis/legacy/overallScheduleApi';
+import LoadingPage from 'pages/errorLoading/LoadingPage';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { OverallScheduleData } from 'src/types/overallScheduleType';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
-import { useParams } from 'react-router-dom';
+import { availableScheduleOptionApi } from 'utils/apis/legacy/availbleScheduleOptionApi';
+import { overallScheduleApi } from 'utils/apis/legacy/overallScheduleApi';
+
+import TimeTable from './components/TimeTable';
+import { getFormattedAvailableDateTimes } from './utils/getFormattedAvailableDateTimes';
+
 
 const OverallSchedule = () => {
   const { meetingId } = useParams();
