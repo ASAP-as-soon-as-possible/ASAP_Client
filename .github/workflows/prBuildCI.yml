@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  pull_request:
+    branches: ['main', "develop"]
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Checkout code 
+        uses: actions/checkout@v3
+
+      - name: Install dependencies 
+        run: yarn install
+
+      - name: Build # 빌드
+        run: yarn build
+      
+      - name: Close PR, if build fails 
+        if: ${{ failure() }} 
+        uses: actions/github-script@v6
+        with: 
+          github-token: ${{ github.TOKEN }}
+          script: | 
+            const pull_number = ${{ github.event.pull_request.number }}
+            const updated_title = `[BUILD FAIL] ${{ github.event.pull_request.title }}`
+            await github.rest.pulls.createReview({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pull_number,
+              body: '빌드에 실패했습니다.',
+              event: 'REQUEST_CHANGES'
+              })
+             await github.rest.pulls.update({
+               owner: context.repo.owner,
+               repo: context.repo.repo,
+               pull_number: pull_number,
+               title: updated_title,
+               state: 'closed'
+              })
+
