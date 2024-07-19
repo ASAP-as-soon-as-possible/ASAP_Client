@@ -134,7 +134,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
               meetingInfo.availableDates.length < 8)
               ? () =>
                   setStep((prev) => {
-                    if (prev === 6) {
+                    if (prev === 5) {
                       return prev;
                     }
                     return prev + 1;

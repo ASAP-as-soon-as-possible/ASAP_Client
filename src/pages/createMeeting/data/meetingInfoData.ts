@@ -61,7 +61,6 @@ export const timeList = [
 export const funnelStep = [
   'title',
   'availableDates',
-  'preferTimes',
   'place',
   'duration',
   'hostInfo',
