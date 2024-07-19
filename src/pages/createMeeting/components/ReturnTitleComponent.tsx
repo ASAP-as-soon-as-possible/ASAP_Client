@@ -15,10 +15,6 @@ const funnelSteps: FunnelSteps = {
     main: '고려 중인 회의 날짜는 언제인가요?',
     sub: '하나의 방식을 골라 후보 날짜를 입력해주세요',
   },
-  preferTimes: {
-    main: '어느 시간대를 선호하세요?',
-    sub: '선호하는 회의 시간대를 모두 선택해주세요',
-  },
   place: {
     main: '회의 장소를 입력해주세요',
     sub: '회의 방식과 장소를 알려주세요',
@@ -43,7 +39,6 @@ interface ReturnProps {
 
 function ReturnTitleComponent({ step }: ReturnProps) {
   const currentStep = funnelSteps[step];
-
   return <TitleComponents main={currentStep.main} sub={currentStep.sub} />;
 }
 
