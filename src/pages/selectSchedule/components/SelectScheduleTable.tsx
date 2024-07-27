@@ -18,12 +18,14 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
 
   const { scheduleStep } = useScheduleStepContext();
 
+  const slotUnit = scheduleStep === 'selectTimeSlot' ? 'HALF' : 'HOUR';
+
   const stepColumns: StepSlotsType = {
     selectTimeSlot: ({ date, timeSlots }: ColumnStructure) => (
-      <SelectionColumn date={date} timeSlots={timeSlots} />
+      <SelectionColumn date={date} timeSlots={timeSlots} slotUnit={slotUnit} />
     ),
     selectPriority: ({ date, timeSlots }: ColumnStructure) => (
-      <PriorityColumn date={date} timeSlots={timeSlots} />
+      <PriorityColumn date={date} timeSlots={timeSlots} slotUnit={slotUnit} />
     ),
   };
   const stepColumn = stepColumns[scheduleStep];
@@ -48,7 +50,12 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
         setSelectedSlots,
       }}
     >
-      <Timetable timeSlots={timeSlots} availableDates={availableDates} bottomItem={bottomItem}>
+      <Timetable
+        timeSlots={timeSlots}
+        availableDates={availableDates}
+        slotUnit={slotUnit}
+        bottomItem={bottomItem}
+      >
         {stepColumn}
       </Timetable>
     </SelectContext.Provider>

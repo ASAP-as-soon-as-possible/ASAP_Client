@@ -1,36 +1,50 @@
 import { ReactNode } from 'react';
+
 import styled from 'styled-components';
 
 interface SlotProps {
   slotId: string;
-  slotStyle?: string;
+  customSlotStyle?: string;
+  slotUnit: 'HALF' | 'HOUR';
   onClick?: () => void;
   children?: ReactNode;
 }
 
-function Slot({ slotId, slotStyle, onClick, children }: SlotProps) {
-  const borderStyle = slotId.endsWith(':30') ? 'dashed' : 'solid';
+function Slot({ slotId, customSlotStyle, slotUnit, onClick, children }: SlotProps) {
+  const defaultSlotStyle = `
+    width: 4.4rem;
+    height: ${slotUnit === 'HALF' ? '2.2rem' : '1.2rem'};
+    display: flex;
+    justify-content: center;
+  `;
+
+  const borderTopStyle = slotId.endsWith(':30')
+    ? slotUnit === 'HALF'
+      ? 'dashed'
+      : 'none'
+    : 'solid';
 
   return (
-    <DefaultSlot $borderStyle={borderStyle} $slotStyle={slotStyle} onClick={onClick}>
+    <SlotWrapper
+      $defaultSlotStyle={defaultSlotStyle}
+      $borderTopStyle={borderTopStyle}
+      $customSlotStyle={customSlotStyle}
+      onClick={onClick}
+    >
       {children}
-    </DefaultSlot>
+    </SlotWrapper>
   );
 }
 
 export default Slot;
 
-const DefaultSlot = styled.div<{
-  $borderStyle: string;
-  $slotStyle?: string;
+const SlotWrapper = styled.div<{
+  $defaultSlotStyle: string;
+  $borderTopStyle: string;
+  $customSlotStyle?: string;
 }>`
   border-top: 1px solid ${({ theme }) => theme.colors.grey7};
-  border-top-style: ${({ $borderStyle }) => $borderStyle};
-  ${({ $slotStyle }) => $slotStyle};
-
-  width: 4.4rem;
-  height: 2.2rem;
-
-  display: flex;
-  justify-content: center;
+  border-top-style: ${({ $borderTopStyle }) => $borderTopStyle};
+  ${({ $defaultSlotStyle }) => $defaultSlotStyle};
+  ${({ $customSlotStyle }) => $customSlotStyle};
 `;

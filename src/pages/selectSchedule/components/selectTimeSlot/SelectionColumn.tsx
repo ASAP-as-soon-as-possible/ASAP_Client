@@ -5,7 +5,7 @@ import { theme } from 'styles/theme';
 import useSlotSeletion from './hooks/useSlotSelection';
 import Slot from '../../../../components/timetableComponents/parts/Slot';
 
-function SelectionColumn({ date, timeSlots }: ColumnStructure) {
+function SelectionColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
   const { selectedSlots } = useSelectContext();
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,
@@ -39,7 +39,8 @@ function SelectionColumn({ date, timeSlots }: ColumnStructure) {
           <Slot
             key={slotId}
             slotId={slotId}
-            slotStyle={getTimeSlotStyle(slotId, selectedEntryId)}
+            slotUnit={slotUnit}
+            customSlotStyle={getTimeSlotStyle(slotId, selectedEntryId)}
             onClick={() => onClickSlot(slotId, selectedEntryId)}
           />
         );
