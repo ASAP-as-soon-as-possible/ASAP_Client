@@ -37,7 +37,6 @@ function OverallScheduleColumn({ date, timeSlots, availableSlotInfo }: OverallSc
       border-top: ${borderTop};
       background-color: ${backgroundColor};
       cursor: ${colorLevel !== 0 ? 'pointer' : 'default'};
-      border-top: ${borderTop};
     `
   }
 
