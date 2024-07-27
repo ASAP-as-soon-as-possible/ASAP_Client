@@ -28,7 +28,7 @@ function Timetable({ timeSlots, availableDates, slotUnit, children, bottomItem }
               const dateKey = Object.values(date).join('/');
               return (
                 <ColumnWrapper key={dateKey}>
-                  {children({ date: dateKey, timeSlots })}
+                  {children({ date: dateKey, timeSlots, slotUnit })}
                 </ColumnWrapper>
               );
             })}
