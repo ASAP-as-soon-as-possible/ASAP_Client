@@ -5,7 +5,7 @@ import { theme } from 'styles/theme';
 
 import Slot from '../../../../components/timetableComponents/parts/Slot';
 
-function PriorityColumn({ date, timeSlots }: ColumnStructure) {
+function PriorityColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
   const { selectedSlots } = useSelectContext();
 
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
@@ -67,7 +67,8 @@ function PriorityColumn({ date, timeSlots }: ColumnStructure) {
           <Slot
             key={slotId}
             slotId={slotId}
-            slotStyle={getPriorityColumnStyle(priority, selectedEntryId)}
+            slotUnit={slotUnit}
+            customSlotStyle={getPriorityColumnStyle(priority, selectedEntryId)}
           >
             <Text font="body1" color={theme.colors.white}>
               {isFirstSlot && priority !== 0 ? changePriorityValue(priority) : ''}
