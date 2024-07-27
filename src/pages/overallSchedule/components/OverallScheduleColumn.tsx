@@ -46,7 +46,7 @@ function OverallScheduleColumn({ date, timeSlots, availableSlotInfo }: OverallSc
         const { colorLevel = 0, userNames = [] } = availableSlotInfo.find((info) => info.time === timeSlot) ?? {};
         const slotId = `${date}/${timeSlot}`;
 
-        return <Slot key={slotId} slotUnit='HALF' customSlotStyle={getTimeSlotStyle(colorLevel, slotId)} onClick={()=>onClickSlot(slotId, userNames)}/>;
+        return <Slot key={slotId} customSlotStyle={getTimeSlotStyle(colorLevel, slotId)} onClick={()=>onClickSlot(slotId, userNames)}/>;
       })}
     </>
   );
