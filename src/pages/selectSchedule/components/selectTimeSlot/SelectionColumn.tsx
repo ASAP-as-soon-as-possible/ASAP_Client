@@ -19,12 +19,16 @@ function SelectionColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
     const isStartSlot = slotId === startSlot;
     const isSelectedSlot = selectedEntryId !== undefined;
 
+    const borderStyle = slotId.endsWith(':30') ? 'dashed' : 'solid';
+    const border = isStartSlot && `1px dashed ${theme.colors.main5}`;
+    const borderTop = `1px ${borderStyle} ${theme.colors.grey7}`;
+    const backgroundColor = isSelectedSlot ? theme.colors.main1 : 'transparent';
+
     return `
       cursor:pointer;
-      ${isStartSlot && `border: 1px dashed ${theme.colors.main5}`};
-      ${
-        isSelectedSlot ? `background-color: ${theme.colors.main1}` : `background-color: transparent`
-      };
+      border-top: ${borderTop};
+      border: ${border};
+      background-color: ${backgroundColor};
     `;
   };
 
@@ -40,7 +44,6 @@ function SelectionColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
         return (
           <Slot
             key={slotId}
-            slotId={slotId}
             slotUnit={slotUnit}
             customSlotStyle={getTimeSlotStyle(slotId, selectedEntryId)}
             onClick={() => onClickSlot(slotId, selectedEntryId)}

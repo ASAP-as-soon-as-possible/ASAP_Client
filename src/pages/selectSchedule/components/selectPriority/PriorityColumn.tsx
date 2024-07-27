@@ -24,8 +24,12 @@ function PriorityColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
         throw Error(`올바르지않은 priority ${priority}`);
     }
   };
-  const getPriorityColumnStyle = (priority: number, selectedEntryId: number | null) => {
-    const isSelectedSlot = selectedEntryId;
+  const getPriorityColumnStyle = (
+    slotId: string,
+    priority: number,
+    selectedEntryId: number | null,
+  ) => {
+    const isSelectedSlot = selectedEntryId !== null;
 
     const slotColor =
       priority === 3
@@ -36,13 +40,13 @@ function PriorityColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
             ? theme.colors.main3
             : theme.colors.grey6;
 
+    const borderStyle = slotId.endsWith(':30') ? 'none' : 'solid';
+    const backgroundColor = isSelectedSlot ? slotColor : 'transparent';
+    const borderTop = isSelectedSlot ? 'none' : `1px ${borderStyle} ${theme.colors.grey7}`;
+
     return `
-        ${
-          isSelectedSlot !== null
-            ? `background-color:${slotColor}`
-            : `background-color: transparent`
-        };
-        ${isSelectedSlot !== null && 'border-top-style: none'};
+        background-color : ${backgroundColor};
+        border-top: ${borderTop};
     `;
   };
 
@@ -67,9 +71,8 @@ function PriorityColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
         return (
           <Slot
             key={slotId}
-            slotId={slotId}
             slotUnit={slotUnit}
-            customSlotStyle={getPriorityColumnStyle(priority, selectedEntryId)}
+            customSlotStyle={getPriorityColumnStyle(slotId, priority, selectedEntryId)}
           >
             <Text font="body1" color={theme.colors.white}>
               {isFirstSlot && priority !== 0 ? changePriorityValue(priority) : ''}
