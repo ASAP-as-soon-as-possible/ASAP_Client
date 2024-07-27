@@ -31,7 +31,7 @@ function Slot({ slotId, customSlotStyle, slotUnit, onClick, children }: SlotProp
       $customSlotStyle={customSlotStyle}
       onClick={onClick}
     >
-      {children}
+      <PriorityNumber>{children}</PriorityNumber>
     </SlotWrapper>
   );
 }
@@ -47,4 +47,13 @@ const SlotWrapper = styled.div<{
   border-top-style: ${({ $borderTopStyle }) => $borderTopStyle};
   ${({ $defaultSlotStyle }) => $defaultSlotStyle};
   ${({ $customSlotStyle }) => $customSlotStyle};
+`;
+
+const PriorityNumber = styled.div`
+  display: flex;
+  position: relative;
+  top: 6px;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 `;
