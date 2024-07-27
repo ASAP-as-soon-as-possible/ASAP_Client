@@ -41,7 +41,8 @@ function PriorityColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
           isSelectedSlot !== null
             ? `background-color:${slotColor}`
             : `background-color: transparent`
-        }
+        };
+        ${isSelectedSlot !== null && 'border-top-style: none'};
     `;
   };
 
