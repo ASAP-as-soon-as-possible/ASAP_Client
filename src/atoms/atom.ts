@@ -1,4 +1,3 @@
-
 import { ScheduleStates } from 'pages/legacy/selectSchedule/types/Schedule';
 import { atom } from 'recoil';
 import { recoilPersist } from 'recoil-persist';
