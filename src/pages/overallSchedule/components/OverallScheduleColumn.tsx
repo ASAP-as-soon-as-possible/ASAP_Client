@@ -24,9 +24,13 @@ function OverallScheduleColumn({ date, timeSlots, availableSlotInfo }: OverallSc
     };
 
     const isClickedSlot = clickedSlot === slotId;
+    const borderStyle = slotId.endsWith(':30') ? 'none' : 'solid';
+    const borderTop = `1px ${borderStyle} ${theme.colors.grey7} `;
+
     return `
       background-color: ${isClickedSlot && colorLevel!==0 ? theme.colors.sub1 : COLOR[colorLevel]};
       cursor: ${colorLevel !== 0 ? 'pointer' : 'default'};
+      border-top: ${borderTop};
     `
   }
 
@@ -36,7 +40,7 @@ function OverallScheduleColumn({ date, timeSlots, availableSlotInfo }: OverallSc
         const { colorLevel = 0, userNames = [] } = availableSlotInfo.find((info) => info.time === timeSlot) ?? {};
         const slotId = `${date}/${timeSlot}`;
 
-        return <Slot key={slotId} slotId={slotId} slotStyle={getTimeSlotStyle(colorLevel, slotId)} onClick={()=>onClickSlot(slotId, userNames)}/>;
+        return <Slot key={slotId} slotUnit='HALF' customSlotStyle={getTimeSlotStyle(colorLevel, slotId)} onClick={()=>onClickSlot(slotId, userNames)}/>;
       })}
     </>
   );

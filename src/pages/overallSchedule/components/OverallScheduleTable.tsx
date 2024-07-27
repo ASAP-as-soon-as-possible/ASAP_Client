@@ -46,11 +46,17 @@ function OverallScheduleTable({
         setClickedUserNames,
       }}
     >
-      <Timetable timeSlots={timeSlots} availableDates={availableDates} bottomItem={<UserNames />}>
+      <Timetable
+        timeSlots={timeSlots}
+        availableDates={availableDates}
+        slotUnit="HALF"
+        bottomItem={<UserNames />}
+      >
         {({ date, timeSlots }: ColumnStructure) => (
           <OverallScheduleColumn
             date={date}
             timeSlots={timeSlots}
+            slotUnit="HALF"
             availableSlotInfo={getAvailableTimesPerDate(
               dataOverallSchedule.availableDateTimes,
               date,
