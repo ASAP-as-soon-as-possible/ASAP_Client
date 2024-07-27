@@ -57,6 +57,7 @@ function OverallScheduleTable({
           <OverallScheduleColumn
             date={date}
             timeSlots={timeSlots}
+            slotUnit="HALF"
             availableSlotInfo={getAvailableTimesPerDate(
               dataOverallSchedule.availableDateTimes,
               date,
