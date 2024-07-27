@@ -8,6 +8,7 @@ export interface TimetableStructure extends BaseStructure {
 
 export interface ColumnStructure extends BaseStructure {
   date: string;
+  slotUnit: 'HALF' | 'HOUR';
 }
 
 export interface DateType {

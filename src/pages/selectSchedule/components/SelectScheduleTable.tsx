@@ -23,10 +23,10 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
 
   const stepColumns: StepSlotsType = {
     selectTimeSlot: ({ date, timeSlots }: ColumnStructure) => (
-      <SelectionColumn date={date} timeSlots={timeSlots} />
+      <SelectionColumn date={date} timeSlots={timeSlots} slotUnit={slotUnit} />
     ),
     selectPriority: ({ date, timeSlots }: ColumnStructure) => (
-      <PriorityColumn date={date} timeSlots={timeSlots} />
+      <PriorityColumn date={date} timeSlots={timeSlots} slotUnit={slotUnit} />
     ),
   };
   const stepColumn = stepColumns[scheduleStep];

@@ -2,10 +2,10 @@ import { ColumnStructure } from 'components/common/timetableComponents/types';
 import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 import { theme } from 'styles/theme';
 
-import useSlotSeletion from './hooks/useSlotSelection';
 import Slot from '../../../../components/common/timetableComponents/parts/Slot';
+import useSlotSeletion from './hooks/useSlotSelection';
 
-function SelectionColumn({ date, timeSlots }: ColumnStructure) {
+function SelectionColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
   const { selectedSlots } = useSelectContext();
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,
