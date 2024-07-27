@@ -1,16 +1,16 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
+import { userNameAtom } from 'atoms/atom';
 import Button from 'components/atomComponents/Button';
-import Header from 'components/moleculesComponents/Header';
 import Text from 'components/atomComponents/Text';
 import TextInput from 'components/atomComponents/TextInput';
+import Header from 'components/moleculesComponents/Header';
 import TitleComponent from 'components/moleculesComponents/TitleComponents';
+import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router';
-import { useRecoilState } from 'recoil';
-import { userNameAtom } from 'atoms/atom';
 
 interface HostInfoProps {
   name: string;

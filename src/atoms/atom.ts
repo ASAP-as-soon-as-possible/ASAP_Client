@@ -1,7 +1,9 @@
-import { DateStates, ScheduleStates, TimeStates } from 'pages/legacy/selectSchedule/types/Schedule';
-
 import { PreferTime } from 'components/legacy/scheduleComponents/types/AvailableScheduleType';
+import { DateStates, ScheduleStates } from 'pages/legacy/selectSchedule/types/Schedule';
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist();
 
 export const methodStateAtom = atom<boolean>({
   key: 'methodStateAtom',
@@ -44,4 +46,5 @@ export const clickedTimeSlotAtom = atom<string>({
 export const userNameAtom = atom<string>({
   key: 'userNameAtom',
   default: '',
+  effects_UNSTABLE: [persistAtom],
 });
