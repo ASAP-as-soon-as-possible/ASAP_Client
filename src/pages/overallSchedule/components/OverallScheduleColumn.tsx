@@ -24,7 +24,7 @@ function OverallScheduleColumn({ date, timeSlots, availableSlotInfo }: OverallSc
     };
 
     /**
-     * 우선순위 입력 스타일링
+     * 종합일정 시간표 스타일링
      * 1. border-top: 선택된 시간이라면 none, 선택되지 않은 시간이라면 30분 단위는 none, 1시간 단위는 실선
      * 2. background-color: 선택된 시간이라면 colorLevel에 따른 색상
      */
