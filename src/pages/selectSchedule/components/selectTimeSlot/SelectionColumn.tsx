@@ -6,7 +6,7 @@ import useSlotSeletion from './hooks/useSlotSelection';
 
 import Slot from '../../../../components/common/timetableComponents/parts/Slot';
 
-function SelectionColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
+function SelectionColumn({ date, timeSlots }: ColumnStructure) {
   const { selectedSlots } = useSelectContext();
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,

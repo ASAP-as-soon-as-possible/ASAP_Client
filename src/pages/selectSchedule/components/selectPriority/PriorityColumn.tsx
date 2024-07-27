@@ -5,7 +5,7 @@ import { theme } from 'styles/theme';
 
 import Slot from '../../../../components/common/timetableComponents/parts/Slot';
 
-function PriorityColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
+function PriorityColumn({ date, timeSlots }: ColumnStructure) {
   const { selectedSlots } = useSelectContext();
 
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
