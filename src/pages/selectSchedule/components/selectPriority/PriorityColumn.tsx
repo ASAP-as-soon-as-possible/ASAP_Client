@@ -40,13 +40,18 @@ function PriorityColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
             ? theme.colors.main3
             : theme.colors.grey6;
 
-    const borderStyle = slotId.endsWith(':30') ? 'none' : 'solid';
+    /**
+     * 우선순위 입력 스타일링
+     * 1. border-top: 선택된 시간이라면 none, 선택되지 않은 시간이라면 30분 단위는 none, 1시간 단위는 실선
+     * 2. background-color: 선택된 시간이라면 우선순위에 따른 slotColor
+     */
+    const borderTopStyle = slotId.endsWith(':30') ? 'none' : 'solid';
+    const borderTop = isSelectedSlot ? 'none' : `1px ${borderTopStyle} ${theme.colors.grey7}`;
     const backgroundColor = isSelectedSlot ? slotColor : 'transparent';
-    const borderTop = isSelectedSlot ? 'none' : `1px ${borderStyle} ${theme.colors.grey7}`;
 
     return `
-        background-color : ${backgroundColor};
         border-top: ${borderTop};
+        background-color : ${backgroundColor};
     `;
   };
 
