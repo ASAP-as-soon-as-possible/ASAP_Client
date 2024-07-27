@@ -23,14 +23,20 @@ function OverallScheduleColumn({ date, timeSlots, availableSlotInfo }: OverallSc
       5: theme.colors.level5,
     };
 
+    /**
+     * 우선순위 입력 스타일링
+     * 1. border-top: 선택된 시간이라면 none, 선택되지 않은 시간이라면 30분 단위는 none, 1시간 단위는 실선
+     * 2. background-color: 선택된 시간이라면 colorLevel에 따른 색상
+     */
+    const borderTopStyle = slotId.endsWith(':30') ? 'none' : 'solid';
+    const borderTop = `1px ${borderTopStyle} ${theme.colors.grey7} `;
     const isClickedSlot = clickedSlot === slotId;
-    const borderStyle = slotId.endsWith(':30') ? 'none' : 'solid';
-    const borderTop = `1px ${borderStyle} ${theme.colors.grey7} `;
+    const backgroundColor = isClickedSlot && colorLevel !== 0 ? theme.colors.sub1 : COLOR[colorLevel];
 
     return `
-      background-color: ${isClickedSlot && colorLevel!==0 ? theme.colors.sub1 : COLOR[colorLevel]};
-      cursor: ${colorLevel !== 0 ? 'pointer' : 'default'};
       border-top: ${borderTop};
+      background-color: ${backgroundColor};
+      cursor: ${colorLevel !== 0 ? 'pointer' : 'default'};
     `
   }
 

@@ -19,6 +19,12 @@ function SelectionColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
     const isStartSlot = slotId === startSlot;
     const isSelectedSlot = selectedEntryId !== undefined;
 
+    /**
+     * 가능시간 입력 시간표 스타일링
+     * 1. border-top: 30분 단위는 dashed, 1시간 단위는 solid
+     * 2. border: 탭투탭 시 startSlot에 dashed
+     * 3. background-color: 탭투탭으로 선택된 시간이면 main1, 그 외는 transparent;
+     */
     const borderStyle = slotId.endsWith(':30') ? 'dashed' : 'solid';
     const border = isStartSlot && `1px dashed ${theme.colors.main5}`;
     const borderTop = `1px ${borderStyle} ${theme.colors.grey7}`;
@@ -27,7 +33,7 @@ function SelectionColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
     return `
       cursor:pointer;
       border-top: ${borderTop};
-      border: ${border};
+      ${isStartSlot && `border: ${border}`};
       background-color: ${backgroundColor};
     `;
   };
