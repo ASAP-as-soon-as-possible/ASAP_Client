@@ -5,7 +5,7 @@ import { theme } from 'styles/theme';
 
 import Slot from '../../../../components/timetableComponents/parts/Slot';
 
-function PriorityColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
+function PriorityColumn({ date, timeSlots }: ColumnStructure) {
   const { selectedSlots } = useSelectContext();
 
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
@@ -48,10 +48,12 @@ function PriorityColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
     const borderTopStyle = slotId.endsWith(':30') ? 'none' : 'solid';
     const borderTop = isSelectedSlot ? 'none' : `1px ${borderTopStyle} ${theme.colors.grey7}`;
     const backgroundColor = isSelectedSlot ? slotColor : 'transparent';
+    const height = '1.2rem';
 
     return `
         border-top: ${borderTop};
-        background-color : ${backgroundColor};
+        background-color: ${backgroundColor};
+        height: ${height};
     `;
   };
 
@@ -76,7 +78,6 @@ function PriorityColumn({ date, timeSlots, slotUnit }: ColumnStructure) {
         return (
           <Slot
             key={slotId}
-            slotUnit={slotUnit}
             customSlotStyle={getPriorityColumnStyle(slotId, priority, selectedEntryId)}
           >
             <Text font="body1" color={theme.colors.white}>

@@ -4,15 +4,14 @@ import styled from 'styled-components';
 
 interface SlotProps {
   customSlotStyle?: string;
-  slotUnit: 'HALF' | 'HOUR';
   onClick?: () => void;
   children?: ReactNode;
 }
 
-function Slot({ customSlotStyle, slotUnit, onClick, children }: SlotProps) {
+function Slot({ customSlotStyle, onClick, children }: SlotProps) {
   const defaultSlotStyle = `
     width: 4.4rem;
-    height: ${slotUnit === 'HALF' ? '2.2rem' : '1.2rem'};
+    height: 2.2rem;
     display: flex;
     justify-content: center;
   `;
