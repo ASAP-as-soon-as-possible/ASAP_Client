@@ -29,6 +29,9 @@ function CreateMeeting() {
     <>
       <CreateMeetingWrapper>
         <Header position={'createMeeting'} setFunnelStep={setStep} />
+        <ProgressBar>
+          <StepBar step={step + 1} />
+        </ProgressBar>
         <ReturnTitleComponent step={currentStep} />
         <ReturnBodyComponent
           currentStep={currentStep}
@@ -42,7 +45,16 @@ function CreateMeeting() {
 }
 
 export default CreateMeeting;
-
+const StepBar = styled.div<{ step: number }>`
+  width: ${({ step }) => `calc(100%* ${step}/6)`};
+  height: 0.3rem;
+  background-color: ${({ theme }) => theme.colors.main1};
+`;
+const ProgressBar = styled.div`
+  width: 100%;
+  height: 0.3rem;
+  background-color: ${({ theme }) => theme.colors.grey6};
+`;
 const CreateMeetingWrapper = styled.div`
   display: flex;
   flex-direction: column;
