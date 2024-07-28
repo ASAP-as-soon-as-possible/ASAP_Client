@@ -1,11 +1,11 @@
-import React, { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
-
 import Text from 'components/atomComponents/Text';
 import { DropDownIc, DropUpIc } from 'components/Icon/icon';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
 import DateDropDown from './DateDropDown';
+
 import { DateStates, ScheduleStates } from '../types/Schedule';
 
 interface PropTypes {

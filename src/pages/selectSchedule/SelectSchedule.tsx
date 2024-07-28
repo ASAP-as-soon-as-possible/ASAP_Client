@@ -19,7 +19,6 @@ function SelectSchedule() {
   const { data, isLoading } = useGetTimetable(meetingId);
   // 시간대 선택 단계가 없어질 것을 고려하여 상수값을 설정해놓음
   const PREFER_TIMES = { startTime: '06:00', endTime: '24:00' };
-
   return (
     <ScheduleStepContext.Provider value={{ scheduleStep, setScheduleStep }}>
       <SelectScheduleWrapper>

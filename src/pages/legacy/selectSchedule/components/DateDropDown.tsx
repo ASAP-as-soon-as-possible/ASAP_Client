@@ -1,7 +1,5 @@
-import React, { Dispatch, MouseEvent, SetStateAction } from 'react';
-
 import Text from 'components/atomComponents/Text';
-import { useRecoilState } from 'recoil';
+import React from 'react';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
 
@@ -10,7 +8,6 @@ interface PropTypes {
   month: string;
   day: string;
   dayOfWeek: string;
-  // setScheduleList: Dispatch<SetStateAction<[]>>;
   handleDate: (id: number, data: string) => void;
 }
 

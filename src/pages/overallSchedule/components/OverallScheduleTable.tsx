@@ -10,6 +10,7 @@ import {
 
 import OverallScheduleColumn from './OverallScheduleColumn';
 import UserNames from './UserNames';
+
 import { ClickContext } from '../contexts/useClickContext';
 
 interface OverallScheduleTableProps extends TimetableStructure {
