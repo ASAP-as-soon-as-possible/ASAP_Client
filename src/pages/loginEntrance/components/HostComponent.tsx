@@ -59,10 +59,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
       }
     } catch (err) {
       if (isAxiosError(err)) {
-        //   // axios에서 발생한 error
-        // const err = e as AxiosError;
         if (err.response) {
-          //타입 가드 사용
           if (err.response.status === 400) {
             setIsLoginModalOpen(true);
           } else if (err.response.status === 401) {
