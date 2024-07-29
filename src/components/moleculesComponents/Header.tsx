@@ -113,10 +113,10 @@ function Header({ position, setFunnelStep }: HeaderProps) {
         </HeaderSection>
         {isNaviOpen ? (
           <NavigationSection>
+            <NavigationContainer>
             <IconContainer onClick={() => setIsNaviOpen((prev) => !prev)}>
               <ExitIc />
             </IconContainer>
-            <NavigationContainer>
               <Navigation navigationOptions={navigationOptions}/>
             </NavigationContainer>
           </NavigationSection>
