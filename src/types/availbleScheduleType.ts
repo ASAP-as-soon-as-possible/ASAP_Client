@@ -6,7 +6,6 @@ export interface AvailableScheduleOptionResponse {
     place: string;
     placeDetail: string;
     availableDates: DateStates[];
-    preferTimes: TimeStates[];
   };
 }
 
