@@ -118,15 +118,7 @@ function PriorityDropdown() {
                   {`${idx + 1}`}순위
                 </Text>
               </TextWrapper>
-              {idx === 0 ? (
-                <Circle1Icon />
-              ) : idx === 1 ? (
-                <Circle2Icon />
-              ) : idx === 2 ? (
-                <Circle3Icon />
-              ) : (
-                <div />
-              )}
+              {idx === 0 ? <Circle1Ic /> : idx === 1 ? <Circle2Ic /> : <Circle3Ic />}
             </CircleWrapper>
             <InputWrapper>
               <TimeInput
@@ -137,17 +129,9 @@ function PriorityDropdown() {
                 onClick={() => handleDropdown(idx)}
                 value={input_[idx]}
               />
-
-              {isOpenDropDown[idx] ? (
-                <DropDownIconWrapper>
-                  <DropUpIc />{' '}
-                </DropDownIconWrapper>
-              ) : (
-                <DropDownIconWrapper>
-                  <DropDownIc />
-                </DropDownIconWrapper>
-              )}
-
+              <DropDownIconWrapper>
+                {isOpenDropDown[idx] ? <DropUpIc /> : <DropDownIc />}
+              </DropDownIconWrapper>
               {isOpenDropDown[idx] && (
                 <DropdownWrapper>
                   {sortedSlots.map(
@@ -206,9 +190,6 @@ const TextWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
-const Circle1Icon = styled(Circle1Ic)``;
-const Circle2Icon = styled(Circle2Ic)``;
-const Circle3Icon = styled(Circle3Ic)``;
 
 const InputWrapper = styled.div`
   position: relative;
