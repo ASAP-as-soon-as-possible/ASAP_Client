@@ -20,6 +20,18 @@ function PriorityDropdown() {
   const { selectedSlots, setSelectedSlots } = useSelectContext();
   const [isOpenDropDown, setIsOpenDropDown] = useState([false, false, false]);
 
+  //우선 순위 시간순 정렬을 위한 날짜 시간 파싱함수
+  const parseDateTime = (dateStr: string, timeStr: string) => {
+    const [month, day] = dateStr.split('/');
+    const formatDay = day.padStart(2, '0');
+    const [hour, minute] = timeStr.split(':');
+    return Number(month + formatDay + hour + minute);
+  };
+
+  const sortedSlots = Object.entries(selectedSlots).toSorted(
+    (a, b) => parseDateTime(a[1].date, a[1].startSlot) - parseDateTime(b[1].date, b[1].startSlot),
+  );
+
   const formatDate = (date: string) => {
     const [month, day, dayOfWeek] = date.split('/');
     return `${month}/${day}(${dayOfWeek})`;
@@ -83,7 +95,7 @@ function PriorityDropdown() {
       const updatedSelectedSlots = Object.entries(prev).reduce(
         (acc, [key, value]) => {
           const prevSelectedSlotKey = parseInt(key);
-          //선택된 우선순위가 기존에 존재할 경우 0으로 초기화
+          //우선순위를 선택한 후 다시 설정할 경우 기존 priority 0으로 초기화
           if (value.priority === selectedPriority) {
             acc[prevSelectedSlotKey] = { ...value, priority: 0 };
           } else {
@@ -166,7 +178,7 @@ function PriorityDropdown() {
 
               {isOpenDropDown[idx] && (
                 <DropdownWrapper>
-                  {Object.entries(selectedSlots).map(
+                  {sortedSlots.map(
                     ([key, value]) =>
                       !value.priority && (
                         <DropDownItem key={key} onClick={() => handlePriority(idx, value, key)}>
