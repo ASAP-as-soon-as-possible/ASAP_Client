@@ -28,9 +28,11 @@ function PriorityDropdown() {
     return Number(month + formatDay + hour + minute);
   };
 
-  const sortedSlots = Object.entries(selectedSlots).toSorted(
-    (a, b) => parseDateTime(a[1].date, a[1].startSlot) - parseDateTime(b[1].date, b[1].startSlot),
-  );
+  const sortedSlots = Object.entries(selectedSlots)
+    .slice()
+    .sort(
+      (a, b) => parseDateTime(a[1].date, a[1].startSlot) - parseDateTime(b[1].date, b[1].startSlot),
+    );
 
   const formatDate = (date: string) => {
     const [month, day, dayOfWeek] = date.split('/');
