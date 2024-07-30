@@ -12,10 +12,6 @@ interface Date {
   day: string;
   dayOfWeek: string;
 }
-interface TimeSlot {
-  startTime: string;
-  endTime: string;
-}
 
 interface getTimetableResponse {
   data: {
@@ -23,7 +19,6 @@ interface getTimetableResponse {
     place: keyof typeof PLACE;
     placeDetail: string;
     availableDates: Date[];
-    preferTimes: TimeSlot[];
   };
 }
 

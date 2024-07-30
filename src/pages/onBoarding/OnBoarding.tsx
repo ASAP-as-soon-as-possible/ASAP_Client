@@ -44,7 +44,6 @@ const slides = [
 ];
 
 function OnBoarding() {
-  console.log('배포 자동화 테스트 성공??!!???');
   return (
     <>
       <OnboardingWrapper>

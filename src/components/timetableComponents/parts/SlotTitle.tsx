@@ -4,24 +4,24 @@ import Text from 'components/atomComponents/Text';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
-interface SlotTitleProps {
-  timeSlots: string[];
-}
+import { TimetableProps } from '../Timetable';
 
-function SlotTitle({ timeSlots }: SlotTitleProps) {
+type SlotTitleProps = Pick<TimetableProps, 'timeSlots' | 'slotUnit'>;
+
+function SlotTitle({ timeSlots, slotUnit }: SlotTitleProps) {
   const parsedTimeSlots = timeSlots
     .filter((slot) => !slot.endsWith('30'))
     .map((slot) => parseInt(slot.split(':')[0]));
   parsedTimeSlots.push(24);
 
   return (
-    <SlotTitleWrapper>
+    <SlotTitleWrapper $slotUnit={slotUnit}>
       {parsedTimeSlots.map((slot) => (
         <Fragment key={slot}>
-          <Text font="body4" color={theme.colors.grey5} key={`${slot}-fill`}>
+          <Text font="body4" color={theme.colors.grey7} key={`${slot}-fill`}>
             {slot}
           </Text>
-          <Text font="body4" color={theme.colors.grey5} key={`${slot}-empty`}>
+          <Text font="body4" color={theme.colors.grey7} key={`${slot}-empty`}>
             {''}
           </Text>
         </Fragment>
@@ -32,9 +32,9 @@ function SlotTitle({ timeSlots }: SlotTitleProps) {
 
 export default SlotTitle;
 
-const SlotTitleWrapper = styled.div`
+const SlotTitleWrapper = styled.div<{ $slotUnit: 'HALF' | 'HOUR' }>`
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: ${({ $slotUnit }) => ($slotUnit === 'HALF' ? '1.4rem' : '0.4rem')};
   margin-top: 3.3rem;
 `;
