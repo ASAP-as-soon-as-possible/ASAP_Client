@@ -1,36 +1,47 @@
 import { ReactNode } from 'react';
+
 import styled from 'styled-components';
 
 interface SlotProps {
-  slotId: string;
-  slotStyle?: string;
+  customSlotStyle?: string;
   onClick?: () => void;
   children?: ReactNode;
 }
 
-function Slot({ slotId, slotStyle, onClick, children }: SlotProps) {
-  const borderStyle = slotId.endsWith(':30') ? 'dashed' : 'solid';
+function Slot({ customSlotStyle, onClick, children }: SlotProps) {
+  const defaultSlotStyle = `
+    width: 4.4rem;
+    height: 2.2rem;
+    display: flex;
+    justify-content: center;
+  `;
 
   return (
-    <DefaultSlot $borderStyle={borderStyle} $slotStyle={slotStyle} onClick={onClick}>
-      {children}
-    </DefaultSlot>
+    <SlotWrapper
+      $defaultSlotStyle={defaultSlotStyle}
+      $customSlotStyle={customSlotStyle}
+      onClick={onClick}
+    >
+      <PriorityNumber>{children}</PriorityNumber>
+    </SlotWrapper>
   );
 }
 
 export default Slot;
 
-const DefaultSlot = styled.div<{
-  $borderStyle: string;
-  $slotStyle?: string;
+const SlotWrapper = styled.div<{
+  $defaultSlotStyle: string;
+  $customSlotStyle?: string;
 }>`
-  border-top: 1px solid ${({ theme }) => theme.colors.grey7};
-  border-top-style: ${({ $borderStyle }) => $borderStyle};
-  ${({ $slotStyle }) => $slotStyle};
+  ${({ $defaultSlotStyle }) => $defaultSlotStyle};
+  ${({ $customSlotStyle }) => $customSlotStyle};
+`;
 
-  width: 4.4rem;
-  height: 2.2rem;
-
+const PriorityNumber = styled.div`
   display: flex;
+  position: relative;
+  top: 6px;
   justify-content: center;
+  width: 100%;
+  height: 100%;
 `;
