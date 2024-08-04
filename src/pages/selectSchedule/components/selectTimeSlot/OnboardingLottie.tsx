@@ -49,6 +49,6 @@ const LottieWrapper = styled(Lottie)`
 const LottieBackground = styled.div`
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: calc(100% + 16.4rem);
   background: ${({ theme }) => theme.colors.black60};
 `;
