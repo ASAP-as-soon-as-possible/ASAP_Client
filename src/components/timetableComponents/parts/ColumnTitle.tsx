@@ -39,7 +39,7 @@ const Date = styled.div`
   flex-direction: column;
   gap: 0.13rem;
   align-items: center;
-  width: 4.4rem;
+  width: 4.3rem;
 `;
 
 export default ColumnTitle;
