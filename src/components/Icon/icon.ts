@@ -3,6 +3,7 @@ import { ReactComponent as Circle1Ic } from 'assets/svgs/circle1.svg';
 import { ReactComponent as Circle2Ic } from 'assets/svgs/circle2.svg';
 import { ReactComponent as Circle3Ic } from 'assets/svgs/circle3.svg';
 import { ReactComponent as ClockIc } from 'assets/svgs/clock.svg';
+import { ReactComponent as CloseIc } from 'assets/svgs/close.svg';
 import { ReactComponent as DropDownIc } from 'assets/svgs/dropDownBtn.svg';
 import { ReactComponent as DropdownWhite } from 'assets/svgs/dropdownWhite.svg';
 import { ReactComponent as DropUpIc } from 'assets/svgs/dropUpBtn.svg';
@@ -33,6 +34,7 @@ export {
   Circle2Ic,
   Circle3Ic,
   ClockIc,
+  CloseIc,
   DropDownIc,
   DropdownWhite,
   DropUpIc,
