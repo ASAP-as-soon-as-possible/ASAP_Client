@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
 import useModalState from 'components/common/Modal/hooks/useModalState';
-import Header from 'components/moleculesComponents/Header';
-import TitleComponents from 'components/moleculesComponents/TitleComponents';
-import { getAvailableTimes } from 'components/timetableComponents/utils';
+import Header from 'components/common/moleculesComponents/Header';
+import TitleComponents from 'components/common/moleculesComponents/TitleComponents';
+import { getAvailableTimes } from 'components/common/timetableComponents/utils';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useGetTimetable } from 'utils/apis/useGetTimetable';

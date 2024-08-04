@@ -1,5 +1,5 @@
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
 import {
   BackIc,
   ClockIc,

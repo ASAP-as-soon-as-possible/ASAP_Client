@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
 import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
 import AlternativeCard from 'pages/bestMeetTime/components/AlternativeCard';
 import BestTimeCard from 'pages/bestMeetTime/components/BestTimeCard';

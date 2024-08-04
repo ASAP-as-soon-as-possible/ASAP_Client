@@ -3,8 +3,8 @@
 import './SetDates.css';
 
 import { methodStateAtom } from 'atoms/atom';
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
 import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import { Calendar, DateObject, getAllDatesInRange } from 'react-multi-date-picker';
 import { useRecoilState } from 'recoil';

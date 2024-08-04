@@ -2,7 +2,7 @@ import { PreferTime, SelectedSchedule } from '../types/AvailableScheduleType';
 
 import { DateStates } from 'pages/legacy/selectSchedule/types/Schedule';
 import Row from './Row';
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import getTimeSlots from '../utils/getTimeSlots';
 import { styled } from 'styled-components';
 import { theme } from 'styles/theme';
