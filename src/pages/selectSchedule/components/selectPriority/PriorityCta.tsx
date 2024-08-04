@@ -48,7 +48,6 @@ const BtnDim = styled.div`
   padding-bottom: 2.9rem;
 
   width: 100%;
-  height: 16.4rem;
 
   pointer-events: none;
 `;
