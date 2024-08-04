@@ -10,7 +10,7 @@ interface SlotProps {
 
 function Slot({ customSlotStyle, onClick, children }: SlotProps) {
   const defaultSlotStyle = `
-    width: 4.4rem;
+    width: 4.3rem;
     height: 2.2rem;
     display: flex;
     justify-content: center;
