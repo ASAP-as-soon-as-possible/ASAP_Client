@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-import Header from 'components/moleculesComponents/Header';
+import Header from 'components/common/moleculesComponents/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { client } from 'utils/apis/axios';

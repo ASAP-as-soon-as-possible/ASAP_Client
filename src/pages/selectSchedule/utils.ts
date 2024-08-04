@@ -1,4 +1,4 @@
-import { addMinutes } from 'components/timetableComponents/utils';
+import { addMinutes } from 'components/common/timetableComponents/utils';
 
 import { SelectedSlotType } from './contexts/useSelectContext';
 import { TitlesType } from './types';

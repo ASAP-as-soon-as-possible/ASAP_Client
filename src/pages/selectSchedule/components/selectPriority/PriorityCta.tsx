@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
 import SelectModal from 'pages/legacy/selectSchedule/SelectModal';
 import styled from 'styled-components';
 

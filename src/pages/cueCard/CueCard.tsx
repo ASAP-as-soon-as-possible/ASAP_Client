@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
-import Header from 'components/moleculesComponents/Header';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
+import Header from 'components/common/moleculesComponents/Header';
 import html2canvas from 'html2canvas';
 import CueCardTitle from 'pages/cueCard/components/CueCardTitle';
 import CopyToClipboard from 'react-copy-to-clipboard';

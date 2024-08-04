@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
