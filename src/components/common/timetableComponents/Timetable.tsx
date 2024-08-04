@@ -47,7 +47,6 @@ const TimetableWrapper = styled.div`
   display: flex;
   width: 100%;
   gap: 1.1rem;
-  margin-bottom: 16.4rem;
 `;
 
 const TableWithDateWrapper = styled.div`
