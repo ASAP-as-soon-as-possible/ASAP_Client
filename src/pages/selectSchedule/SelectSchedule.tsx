@@ -9,6 +9,7 @@ import { useGetTimetable } from 'utils/apis/useGetTimetable';
 
 import Description from './components/Description';
 import SelectScheduleTable from './components/SelectScheduleTable';
+import OnboardingLottie from './components/selectTimeSlot/OnboardingLottie';
 import { ScheduleStepContext } from './contexts/useScheduleStepContext';
 import { ScheduleStepType } from './types';
 import { TITLES } from './utils';
@@ -26,11 +27,14 @@ function SelectSchedule() {
           data && (
             <>
               {scheduleStep === 'selectTimeSlot' && (
-                <Description
-                  duration={data.duration}
-                  place={data.place}
-                  placeDetail={data.placeDetail}
-                />
+                <>
+                  <OnboardingLottie />
+                  <Description
+                    duration={data.duration}
+                    place={data.place}
+                    placeDetail={data.placeDetail}
+                  />
+                </>
               )}
               <TitleComponents
                 main={TITLES[scheduleStep].main}
