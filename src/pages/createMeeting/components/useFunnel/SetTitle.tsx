@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
-import TextInput from 'components/atomComponents/TextInput';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
+import TextInput from 'components/common/atomComponents/TextInput';
 import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';
 

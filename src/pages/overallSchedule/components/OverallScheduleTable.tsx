@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import Timetable from 'components/timetableComponents/Timetable';
-import { ColumnStructure, TimetableStructure } from 'components/timetableComponents/types';
+import Timetable from 'components/common/timetableComponents/Timetable';
+import { ColumnStructure, TimetableStructure } from 'components/common/timetableComponents/types';
 import {
   AvailableDateTime,
   TimeSlot,

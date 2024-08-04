@@ -1,6 +1,6 @@
 import { userNameAtom } from 'atoms/atom';
 import { isAxiosError } from 'axios';
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
 import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 import { formatHostScheduleScheme, formatMemberScheduleScheme } from 'pages/selectSchedule/utils';

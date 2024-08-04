@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { ColumnStructure } from 'components/timetableComponents/types';
+import { ColumnStructure } from 'components/common/timetableComponents/types';
 
 export type ScheduleStepType = 'selectTimeSlot' | 'selectPriority';
 export type StepSlotsType = { [key in ScheduleStepType]: (props: ColumnStructure) => ReactNode };

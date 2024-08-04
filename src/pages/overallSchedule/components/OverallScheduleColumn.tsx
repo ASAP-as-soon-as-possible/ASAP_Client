@@ -1,5 +1,5 @@
-import Slot from 'components/timetableComponents/parts/Slot';
-import { ColumnStructure } from 'components/timetableComponents/types';
+import Slot from 'components/common/timetableComponents/parts/Slot';
+import { ColumnStructure } from 'components/common/timetableComponents/types';
 import { theme } from 'styles/theme';
 import { TimeSlot } from 'utils/apis/useGetOverallSchedule';
 

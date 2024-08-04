@@ -1,12 +1,12 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import { isAxiosError } from 'axios';
-import Button from 'components/atomComponents/Button';
-import PasswordInput from 'components/atomComponents/PasswordInput';
-import Text from 'components/atomComponents/Text';
-import TextInput from 'components/atomComponents/TextInput';
-import Header from 'components/moleculesComponents/Header';
-import TitleComponent from 'components/moleculesComponents/TitleComponents';
+import Button from 'components/common/atomComponents/Button';
+import PasswordInput from 'components/common/atomComponents/PasswordInput';
+import Text from 'components/common/atomComponents/Text';
+import TextInput from 'components/common/atomComponents/TextInput';
+import Header from 'components/common/moleculesComponents/Header';
+import TitleComponent from 'components/common/moleculesComponents/TitleComponents';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';

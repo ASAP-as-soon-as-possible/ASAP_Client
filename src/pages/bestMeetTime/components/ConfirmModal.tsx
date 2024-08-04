@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
 import { BestMeetFinished } from 'pages/bestMeetTime/types/meetCardData';
 import LoadingPage from 'pages/errorLoading/LoadingPage';
