@@ -1,6 +1,6 @@
-import Button from 'components/atomComponents/Button';
-import PlaceInput from 'components/atomComponents/PlaceInput';
-import Text from 'components/atomComponents/Text';
+import Button from 'components/common/atomComponents/Button';
+import PlaceInput from 'components/common/atomComponents/PlaceInput';
+import Text from 'components/common/atomComponents/Text';
 import { placeType } from 'pages/createMeeting/data/meetingInfoData';
 import { FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components/macro';

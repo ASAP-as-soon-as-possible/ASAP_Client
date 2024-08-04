@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import { Link } from 'react-router-dom';
 import { theme } from 'styles/theme';
 

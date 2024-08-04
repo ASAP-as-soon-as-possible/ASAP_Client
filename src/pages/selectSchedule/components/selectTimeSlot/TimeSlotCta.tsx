@@ -1,5 +1,5 @@
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
 import { useScheduleStepContext } from 'pages/selectSchedule/contexts/useScheduleStepContext';
 import { SelectedSlotType, useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 import styled from 'styled-components';

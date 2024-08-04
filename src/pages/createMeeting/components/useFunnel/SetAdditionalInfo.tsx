@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { isAxiosError } from 'axios';
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
-import TextAreaInput from 'components/atomComponents/TextAreaInput';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
+import TextAreaInput from 'components/common/atomComponents/TextAreaInput';
 import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
