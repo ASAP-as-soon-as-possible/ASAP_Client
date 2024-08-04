@@ -139,7 +139,7 @@ const ModalOverlay = styled.div<{$isModalOpen:boolean;}>`
   position:fixed;
   top: 0;
 
-  background-color: rgba(0, 0, 0, 0.50);
+  background-color:${({theme})=>theme.colors.black60};
   width:100%;
   height:100%;
 `
