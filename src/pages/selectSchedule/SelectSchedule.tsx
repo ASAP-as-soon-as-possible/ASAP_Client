@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import useModalState from 'components/common/Modal/hooks/useModalState';
 import Header from 'components/moleculesComponents/Header';
 import TitleComponents from 'components/moleculesComponents/TitleComponents';
 import { getAvailableTimes } from 'components/timetableComponents/utils';
@@ -18,29 +19,29 @@ function SelectSchedule() {
   const [scheduleStep, setScheduleStep] = useState<ScheduleStepType>('selectTimeSlot');
   const { meetingId } = useParams();
   const { data, isLoading } = useGetTimetable(meetingId);
+  const { isOpen: isLottieOpen, onClose: onLottieClose } = useModalState(true);
 
   return (
     <ScheduleStepContext.Provider value={{ scheduleStep, setScheduleStep }}>
       <SelectScheduleWrapper>
         <Header position="schedule" />
+
         {!isLoading &&
           data && (
             <>
               {scheduleStep === 'selectTimeSlot' && (
-                <>
-                  <OnboardingLottie />
-                  <Description
-                    duration={data.duration}
-                    place={data.place}
-                    placeDetail={data.placeDetail}
-                  />
-                </>
+                <Description
+                  duration={data.duration}
+                  place={data.place}
+                  placeDetail={data.placeDetail}
+                />
               )}
               <TitleComponents
                 main={TITLES[scheduleStep].main}
                 sub={TITLES[scheduleStep].sub}
                 padding={scheduleStep === 'selectTimeSlot' ? `0 0 2.6rem` : `4.4rem 0 3.2rem 0`}
               />
+              {isLottieOpen && <OnboardingLottie onClose={onLottieClose} />}
               <SelectScheduleTable
                 timeSlots={getAvailableTimes({ startTime: '06:00', endTime: '24:00' })}
                 availableDates={data.availableDates}
