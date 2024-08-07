@@ -1,12 +1,6 @@
-interface PreferTimes {
-  startTime: string;
-  endTime: string;
-}
-
 export interface CreateMeetingRequest {
   title: string;
   availableDates: string[];
-  preferTimes: PreferTimes[];
   place: string;
   placeDetail: string;
   duration: string;
