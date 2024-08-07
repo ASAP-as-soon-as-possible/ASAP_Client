@@ -17,12 +17,7 @@ function SelectSchedule() {
   const [scheduleStep, setScheduleStep] = useState<ScheduleStepType>('selectTimeSlot');
   const { meetingId } = useParams();
   const { data, isLoading } = useGetTimetable(meetingId);
-<<<<<<< HEAD
-  // 시간대 선택 단계가 없어질 것을 고려하여 상수값을 설정해놓음
-  const PREFER_TIMES = { startTime: '06:00', endTime: '24:00' };
-=======
 
->>>>>>> 8dab556 (fix: preferTimes 필드 삭제)
   return (
     <ScheduleStepContext.Provider value={{ scheduleStep, setScheduleStep }}>
       <SelectScheduleWrapper>
