@@ -107,9 +107,15 @@ function Header({ position, setFunnelStep }: HeaderProps) {
           ) : (
             <EmptyBox />
           )}
+          <IconWrapper>
+            {position==="stepping"&& <IconSection onClick={notify}>
+          <LinkIc/>
+          </IconSection>}
+
           <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
             <HambergerIc />
           </IconSection>
+          </IconWrapper>
         </HeaderSection>
         {isNaviOpen ? (
           <NavigationSection>
@@ -128,6 +134,10 @@ function Header({ position, setFunnelStep }: HeaderProps) {
 
 export default Header;
 
+const IconWrapper= styled.div`
+  display:flex;
+  align-items: center;
+`
 const HeaderWrapper = styled.div`
   width: 100%;
 `;
@@ -153,6 +163,7 @@ const IconSection = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  width:4.2rem;
   height: 4.2rem;
 `;
 
