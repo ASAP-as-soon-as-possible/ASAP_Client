@@ -113,10 +113,10 @@ function Header({ position, setFunnelStep }: HeaderProps) {
         </HeaderSection>
         {isNaviOpen ? (
           <NavigationSection>
+            <NavigationContainer>
             <IconContainer onClick={() => setIsNaviOpen((prev) => !prev)}>
               <ExitIc />
             </IconContainer>
-            <NavigationContainer>
               <Navigation navigationOptions={navigationOptions}/>
             </NavigationContainer>
           </NavigationSection>
@@ -160,7 +160,7 @@ const NavigationSection = styled.section`
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100vh;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Timetable from 'components/timetableComponents/Timetable';
 import { ColumnStructure, TimetableStructure } from 'components/timetableComponents/types';
@@ -8,6 +8,7 @@ import PriorityCta from './selectPriority/PriorityCta';
 import PriorityDropdown from './selectPriority/PriorityDropdown';
 import SelectionColumn from './selectTimeSlot/SelectionColumn';
 import TimeSlotCta from './selectTimeSlot/TimeSlotCta';
+
 import { useScheduleStepContext } from '../contexts/useScheduleStepContext';
 import { SelectContext, SelectedSlotType } from '../contexts/useSelectContext';
 import { StepSlotsType, StepbottomItemsType } from '../types';
@@ -41,6 +42,25 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
   };
   const bottomItem = bottomItems[scheduleStep];
 
+  const resetPriorities = (selectedSlots: SelectedSlotType) => {
+    const updatedSelectedSlots: SelectedSlotType = {};
+    for (const key in selectedSlots) {
+      updatedSelectedSlots[key] = {
+        ...selectedSlots[key],
+        priority: 0,
+      };
+    }
+    setSelectedSlots(updatedSelectedSlots);
+  };
+
+  useEffect(
+    () => {
+      if (scheduleStep === 'selectTimeSlot') {
+        resetPriorities(selectedSlots);
+      }
+    },
+    [scheduleStep],
+  );
   return (
     <SelectContext.Provider
       value={{
