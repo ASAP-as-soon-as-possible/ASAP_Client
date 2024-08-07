@@ -40,19 +40,21 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
   };
   const bottomItem = bottomItems[scheduleStep];
 
+  const resetPriorities = (selectedSlots: SelectedSlotType) => {
+    const updatedSelectedSlots: SelectedSlotType = {};
+    for (const key in selectedSlots) {
+      updatedSelectedSlots[key] = {
+        ...selectedSlots[key],
+        priority: 0,
+      };
+    }
+    setSelectedSlots(updatedSelectedSlots);
+  };
+
   useEffect(
     () => {
       if (scheduleStep === 'selectTimeSlot') {
-        const resetPriorities = () => {
-          const updatedSchedules = Object.entries(selectedSlots).map((schedule) => {
-            if (schedule[1] && typeof schedule[1] === 'object') {
-              return [schedule[0], { ...schedule[1], priority: 0 }];
-            }
-            return schedule;
-          });
-          setSelectedSlots(Object.fromEntries(updatedSchedules));
-        };
-        resetPriorities();
+        resetPriorities(selectedSlots);
       }
     },
     [scheduleStep],
