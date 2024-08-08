@@ -1,19 +1,31 @@
 import Button from 'components/atomComponents/Button';
 import Text from 'components/atomComponents/Text';
 import { useScheduleStepContext } from 'pages/selectSchedule/contexts/useScheduleStepContext';
-import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
+import { SelectedSlotType, useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 import styled from 'styled-components';
 
 function TimeSlotCta() {
+  const { selectedSlots, setSelectedSlots } = useSelectContext();
   const { setScheduleStep } = useScheduleStepContext();
-  const { selectedSlots } = useSelectContext();
   const isValidSelection = Object.keys(selectedSlots).length !== 0;
+
+  const resetPriorities = (selectedSlots: SelectedSlotType) => {
+    const updatedSelectedSlots: SelectedSlotType = {};
+    for (const key in selectedSlots) {
+      updatedSelectedSlots[key] = {
+        ...selectedSlots[key],
+        priority: 0,
+      };
+    }
+    setSelectedSlots(updatedSelectedSlots);
+  };
   return (
     <BtnDim>
       <Button
         typeState={isValidSelection ? 'primaryActive' : 'secondaryDisabled'}
         onClick={() => {
           setScheduleStep('selectPriority');
+          resetPriorities(selectedSlots);
         }}
       >
         <Text font={'button2'}>다음</Text>
