@@ -56,4 +56,5 @@ export {
   SpeechBubbleIc,
   TimeIc,
   Wave,
+  CloseIc,
 };
