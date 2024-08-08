@@ -13,6 +13,7 @@ function SetTitle({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
     });
   };
 
+  const a;
   const resetTitle = () => {
     setMeetingInfo((prev: MeetingInfo) => {
       return { ...prev, title: '' };
