@@ -27,6 +27,7 @@ export default TimeSlotCta;
 const BtnDim = styled.div`
   display: flex;
   position: fixed;
+  z-index: 1;
   bottom: 0;
   align-items: end;
   justify-content: center;
