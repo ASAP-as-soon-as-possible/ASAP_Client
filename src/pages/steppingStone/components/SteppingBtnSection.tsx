@@ -4,8 +4,9 @@ import Text from 'components/common/atomComponents/Text';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { notify } from 'utils/toast/copyLinkToast';
+
 
 interface SteppingProps {
   steppingType: string;

@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 function ToastContainerBox() {
   return (

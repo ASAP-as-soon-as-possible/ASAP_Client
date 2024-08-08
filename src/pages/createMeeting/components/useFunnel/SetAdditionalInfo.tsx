@@ -6,7 +6,7 @@ import Text from 'components/common/atomComponents/Text';
 import TextAreaInput from 'components/common/atomComponents/TextAreaInput';
 import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { createMeetingApi } from 'utils/apis/legacy/createMeetingApi';
 
 function SetAdditionalInfo({ meetingInfo, setMeetingInfo }: FunnelProps) {

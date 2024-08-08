@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Text from 'components/common/atomComponents/Text';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 interface ValueProps {

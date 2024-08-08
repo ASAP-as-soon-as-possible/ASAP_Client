@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider } from 'styled-components';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import ToastContainerBox from 'utils/toast/ToastContainer';
 
 import Router from './Router';

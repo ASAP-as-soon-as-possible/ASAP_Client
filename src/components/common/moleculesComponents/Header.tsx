@@ -8,7 +8,7 @@ import { ScheduleStepType } from 'pages/selectSchedule/types';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 import { notify } from 'utils/toast/copyLinkToast';
 

@@ -8,7 +8,7 @@ import TextInput from 'components/common/atomComponents/TextInput';
 import Header from 'components/common/moleculesComponents/Header';
 import TitleComponent from 'components/common/moleculesComponents/TitleComponents';
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 import { client } from 'utils/apis/axios';
 
