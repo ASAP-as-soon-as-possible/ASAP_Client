@@ -3,7 +3,7 @@ import PlaceInput from 'components/common/atomComponents/PlaceInput';
 import Text from 'components/common/atomComponents/Text';
 import { placeType } from 'pages/createMeeting/data/meetingInfoData';
 import { FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const setPlaceDetail = (place: string) => {

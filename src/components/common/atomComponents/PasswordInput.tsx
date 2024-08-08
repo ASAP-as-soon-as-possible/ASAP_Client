@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import Text from 'components/common/atomComponents/Text';
 import { PasswordEyeIc, PasswordOpenEyeIc } from 'components/Icon/icon';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 interface ValueProps {
