@@ -125,7 +125,7 @@ function PriorityDropdown() {
 
   return (
     <PriorityDropdownWrapper>
-      {Object.entries(selectedSlots).map(([key, _], idx) => {
+      {Object.entries(selectedSlots).map(([key], idx) => {
         return idx < 3 ? (
           <PriorityDropdownSection key={key}>
             <CircleWrapper>

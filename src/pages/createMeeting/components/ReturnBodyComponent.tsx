@@ -8,6 +8,7 @@ import SetDuration from './useFunnel/SetDuration';
 import SetHostInfo from './useFunnel/SetHostInfo';
 import SetPlace from './useFunnel/SetPlace';
 import SetTitle from './useFunnel/SetTitle';
+
 import { MeetingInfo } from '../types/useFunnelInterface';
 
 interface BodyProps {
