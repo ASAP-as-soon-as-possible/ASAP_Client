@@ -1,6 +1,6 @@
 import Text from 'components/common/atomComponents/Text';
 import { BestDataProps } from 'pages/bestMeetTime/types/meetCardData';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 function AlternativeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {

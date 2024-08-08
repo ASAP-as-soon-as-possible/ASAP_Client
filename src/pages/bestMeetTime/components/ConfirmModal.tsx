@@ -5,7 +5,7 @@ import { ExitIc } from 'components/Icon/icon';
 import { BestMeetFinished } from 'pages/bestMeetTime/types/meetCardData';
 import LoadingPage from 'pages/errorLoading/LoadingPage';
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 import { authClient } from 'utils/apis/axios';
 

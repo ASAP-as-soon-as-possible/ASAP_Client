@@ -11,7 +11,7 @@ import { whatisBestMeetime } from 'pages/bestMeetTime/utils/whatisBestMeetime';
 import LoadingPage from 'pages/errorLoading/LoadingPage';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 import BlankMeetCard from './BlankMeetCard';

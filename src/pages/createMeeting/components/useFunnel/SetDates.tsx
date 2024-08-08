@@ -8,7 +8,7 @@ import Text from 'components/common/atomComponents/Text';
 import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import { Calendar, DateObject, getAllDatesInRange } from 'react-multi-date-picker';
 import { useRecoilState } from 'recoil';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const months = [
   '1월',
