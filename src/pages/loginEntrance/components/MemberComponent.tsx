@@ -5,7 +5,7 @@ import Header from 'components/common/moleculesComponents/Header';
 import Text from 'components/common/atomComponents/Text';
 import TextInput from 'components/common/atomComponents/TextInput';
 import TitleComponent from 'components/common/moleculesComponents/TitleComponents';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router';

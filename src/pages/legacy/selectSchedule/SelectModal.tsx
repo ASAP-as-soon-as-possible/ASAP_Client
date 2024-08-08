@@ -6,7 +6,7 @@ import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext
 import { formatHostScheduleScheme, formatMemberScheduleScheme } from 'pages/selectSchedule/utils';
 import { useNavigate, useParams } from 'react-router';
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 import { hostAvailableApi, userAvailableApi } from 'utils/apis/legacy/createHostAvailableSchedule';
 
