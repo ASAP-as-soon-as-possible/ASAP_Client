@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
@@ -36,5 +36,5 @@ const SlotTitleWrapper = styled.div<{ $slotUnit: 'HALF' | 'HOUR' }>`
   display: flex;
   flex-direction: column;
   gap: ${({ $slotUnit }) => ($slotUnit === 'HALF' ? '1.4rem' : '0.4rem')};
-  margin-top: 3.3rem;
+  margin-top: 3.5rem;
 `;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';
 import { Link, useLocation } from 'react-router-dom';
@@ -139,7 +139,7 @@ const ModalOverlay = styled.div<{$isModalOpen:boolean;}>`
   position:fixed;
   top: 0;
 
-  background-color: rgba(0, 0, 0, 0.50);
+  background-color:${({theme})=>theme.colors.black60};
   width:100%;
   height:100%;
 `

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
 import SelectModal from 'pages/legacy/selectSchedule/SelectModal';
 import styled from 'styled-components';
 
@@ -48,7 +48,6 @@ const BtnDim = styled.div`
   padding-bottom: 2.9rem;
 
   width: 100%;
-  height: 16.4rem;
 
   pointer-events: none;
 `;

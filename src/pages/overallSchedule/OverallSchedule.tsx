@@ -1,4 +1,4 @@
-import { getAvailableTimes } from 'components/timetableComponents/utils';
+import { getAvailableTimes } from 'components/common/timetableComponents/utils';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useGetOverallSchedule } from 'utils/apis/useGetOverallSchedule';

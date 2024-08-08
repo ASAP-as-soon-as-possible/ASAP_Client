@@ -1,5 +1,5 @@
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
 import { useScheduleStepContext } from 'pages/selectSchedule/contexts/useScheduleStepContext';
 import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 import styled from 'styled-components';
@@ -27,6 +27,7 @@ export default TimeSlotCta;
 const BtnDim = styled.div`
   display: flex;
   position: fixed;
+  z-index: 1;
   bottom: 0;
   align-items: end;
   justify-content: center;

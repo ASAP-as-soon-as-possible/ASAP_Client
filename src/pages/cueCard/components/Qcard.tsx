@@ -1,6 +1,6 @@
 import { ForwardedRef, forwardRef } from 'react';
 
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
 import LoadingPage from 'pages/errorLoading/LoadingPage';
 import { useParams } from 'react-router';
