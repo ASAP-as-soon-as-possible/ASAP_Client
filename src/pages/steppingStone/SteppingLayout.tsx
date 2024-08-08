@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 
+import { LinkTooltipIc } from 'components/Icon/icon';
 import Header from 'components/moleculesComponents/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { client } from 'utils/apis/axios';
+import { notify } from 'utils/toast/copyLink';
 
 import SteppingBody from './components/SteppingBody';
 import SteppingBtnSection from './components/SteppingBtnSection';
@@ -51,16 +53,20 @@ function SteppingLayout({ steppingType }: SteppingProps) {
     <>
       <SteppingWrapper>
         <Header position={'stepping'} />
+        <LinkToolTipIcon onClick={notify} />
         <SteppingBody steppingType={steppingType} meetingTitle={meetingTitle} />
         <SteppingBtnSection steppingType={steppingType} />
-        <div />
       </SteppingWrapper>
     </>
   );
 }
 
 export default SteppingLayout;
-
+const LinkToolTipIcon = styled(LinkTooltipIc)`
+  position: relative;
+  left: 10.3rem;
+  cursor: pointer;
+`;
 const SteppingWrapper = styled.div`
   display: flex;
   flex-direction: column;
