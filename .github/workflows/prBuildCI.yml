@@ -20,7 +20,7 @@ jobs:
       - name: Build # 빌드
         run: yarn build
       
-      - name: Close PR, if build fails 
+      - name: Comment and Request changes, if build fails 
         if: ${{ failure() }} 
         uses: actions/github-script@v6
         with: 
@@ -40,6 +40,5 @@ jobs:
                repo: context.repo.repo,
                pull_number: pull_number,
                title: updated_title,
-               state: 'closed'
               })
 
