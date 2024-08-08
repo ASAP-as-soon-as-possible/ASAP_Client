@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import Header from 'components/common/moleculesComponents/Header';
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { client } from 'utils/apis/axios';
 
 import SteppingBody from './components/SteppingBody';

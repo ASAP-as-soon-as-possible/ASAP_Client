@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Header from 'components/common/moleculesComponents/Header';
 import ReturnBodyComponent from 'pages/createMeeting/components/ReturnBodyComponent';
 import ReturnTitleComponent from 'pages/createMeeting/components/ReturnTitleComponent';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import { funnelStep } from './data/meetingInfoData';
 import { MeetingInfo } from './types/useFunnelInterface';

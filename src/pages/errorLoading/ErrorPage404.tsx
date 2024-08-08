@@ -2,7 +2,7 @@ import Error404 from 'assets/images/Error404.png';
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 function ErrorPage404() {

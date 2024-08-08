@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Text from 'components/common/atomComponents/Text';
 import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
 import { BestDataProps } from 'pages/bestMeetTime/types/meetCardData';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {

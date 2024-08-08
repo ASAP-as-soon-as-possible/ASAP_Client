@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import SetAdditionalInfo from './useFunnel/SetAdditionalInfo';
 import SetDates from './useFunnel/SetDates';
