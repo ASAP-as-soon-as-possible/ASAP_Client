@@ -12,7 +12,7 @@ function SelectionColumn({ date, timeSlots }: ColumnStructure) {
   const selectedSlotsPerDate = Object.entries(selectedSlots).filter(
     ([, slot]) => slot.date === date,
   );
-
+  //test
   const { startSlot, onClickSlot } = useSlotSeletion();
 
   const getTimeSlotStyle = (slotId: string, selectedEntryId?: number) => {
