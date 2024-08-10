@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import Timetable from 'components/timetableComponents/Timetable';
 import { ColumnStructure, TimetableStructure } from 'components/timetableComponents/types';
@@ -40,25 +40,6 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
   };
   const bottomItem = bottomItems[scheduleStep];
 
-  const resetPriorities = (selectedSlots: SelectedSlotType) => {
-    const updatedSelectedSlots: SelectedSlotType = {};
-    for (const key in selectedSlots) {
-      updatedSelectedSlots[key] = {
-        ...selectedSlots[key],
-        priority: 0,
-      };
-    }
-    setSelectedSlots(updatedSelectedSlots);
-  };
-
-  useEffect(
-    () => {
-      if (scheduleStep === 'selectTimeSlot') {
-        resetPriorities(selectedSlots);
-      }
-    },
-    [scheduleStep],
-  );
   return (
     <SelectContext.Provider
       value={{
