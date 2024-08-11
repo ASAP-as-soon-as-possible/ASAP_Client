@@ -7,7 +7,7 @@ import { useParams } from 'react-router';
 import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { notify } from 'utils/toast/copyLink';
+import { notify } from 'utils/toast/copyLinkToast';
 
 interface SteppingProps {
   steppingType: string;

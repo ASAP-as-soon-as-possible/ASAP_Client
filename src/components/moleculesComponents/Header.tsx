@@ -9,7 +9,7 @@ import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { theme } from 'styles/theme';
-import { notify } from 'utils/toast/copyLink';
+import { notify } from 'utils/toast/copyLinkToast';
 
 import Navigation from './Navigation';
 
@@ -109,7 +109,9 @@ function Header({ position, setFunnelStep }: HeaderProps) {
           )}
           <IconWrapper>
             {position==="stepping"&& <IconSection onClick={notify}>
+            <CopyToClipboard text={`${import.meta.env.VITE_WEB_IP}/meet/${meetingId}`}>
           <LinkIc/>
+          </CopyToClipboard>
           </IconSection>}
 
           <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>

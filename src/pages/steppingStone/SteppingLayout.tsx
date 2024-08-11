@@ -5,7 +5,7 @@ import Header from 'components/moleculesComponents/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import { client } from 'utils/apis/axios';
-import { notify } from 'utils/toast/copyLink';
+import { notify } from 'utils/toast/copyLinkToast';
 
 import SteppingBody from './components/SteppingBody';
 import SteppingBtnSection from './components/SteppingBtnSection';
