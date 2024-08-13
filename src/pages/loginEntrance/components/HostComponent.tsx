@@ -65,7 +65,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
           } else if (err.response.status === 401) {
             setIsLoginModalOpen(true);
           } else if (err.response.status === 403) {
-            console.log(err.response.data.message);
+            localStorage.setItem('hostToken', err.response.data.data.accessToken);
             setIsModalOpen(true);
           } else {
             navigate(`/q-card/${meetingId}`);
