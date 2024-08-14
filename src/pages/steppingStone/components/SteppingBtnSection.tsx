@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
+import BottomSheet from 'components/common/BottomSheet/BottomSheet';
+import useModalState from 'components/common/Modal/hooks/useModalState';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';
 import { Link, useLocation } from 'react-router-dom';
@@ -19,6 +21,8 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
   const { meetingId } = useParams();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const {isOpen, onClose}= useModalState(true);
+
   useEffect(()=>{
     setIsModalOpen(true);
   },[])
@@ -30,7 +34,8 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
           {
             meetComplete: (
               <>
-                <BottomSheetModal $isModalOpen={isModalOpen}>
+              <BottomSheet isOpen={isOpen} onClose={onClose}/>
+                {/* <BottomSheetModal $isModalOpen={isModalOpen}>
                   <BottomSheetDescription>
                   <Text font={'head2'} color={'white'}>회의방 링크가 생성되었어요!</Text>
                   <Text font={'title2'} color={`${theme.colors.grey4}`}>링크를 복사하여 팀원에게 공유해주세요</Text>
@@ -46,6 +51,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
                 </BottomSheetModal>
                 <ModalOverlay $isModalOpen={isModalOpen} >
                 </ModalOverlay>
+                */}
                 <Link to={`/host/select/${meetInfo.meetingId}`}>
                   <Button typeState={'primaryActive'}>
                     <Text font={'button2'}>나의 가능시간 입력</Text>
