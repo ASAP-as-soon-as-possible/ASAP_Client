@@ -29,7 +29,12 @@ function CreateMeeting() {
 
   const goBackFunnel = () => {
     setStep((prev) => {
-      return prev !== 0 ? prev - 1 : prev;
+      if (prev === 0) {
+        Promise.resolve().then(() => navigate('/'));
+        return prev;
+      } else {
+        return prev - 1;
+      }
     });
   };
 
