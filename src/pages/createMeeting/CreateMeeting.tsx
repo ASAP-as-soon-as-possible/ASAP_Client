@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import Header from 'components/common/moleculesComponents/Header';
 import ReturnBodyComponent from 'pages/createMeeting/components/ReturnBodyComponent';
 import ReturnTitleComponent from 'pages/createMeeting/components/ReturnTitleComponent';
+import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { funnelStep } from './data/meetingInfoData';
@@ -23,6 +24,36 @@ function CreateMeeting() {
   const [step, setStep] = useState(0);
   const [meetingInfo, setMeetingInfo] = useState(initialMeetingInfo);
   const currentStep = funnelStep[step];
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const goBackFunnel = () => {
+    setStep((prev) => {
+      return prev !== 0 ? prev - 1 : prev;
+    });
+  };
+
+  useEffect(() => {
+    (() => {
+      window.addEventListener('popstate', goBackFunnel);
+      navigate({
+        pathname: location.pathname,
+        search: `?step=${step}`,
+      });
+    })();
+
+    return () => {
+      window.removeEventListener('popstate', goBackFunnel);
+    };
+  }, []);
+
+  const setStepRouter = () => {
+    navigate({
+      pathname: location.pathname,
+      search: `?step=${step + 1}`,
+    });
+    setStep((prev) => prev + 1);
+  };
 
   return (
     <>
@@ -36,7 +67,7 @@ function CreateMeeting() {
           currentStep={currentStep}
           meetingInfo={meetingInfo}
           setMeetingInfo={setMeetingInfo}
-          setStep={setStep}
+          setStep={setStepRouter}
         />
       </CreateMeetingWrapper>
     </>
