@@ -36,10 +36,7 @@ function CreateMeeting() {
   useEffect(() => {
     (() => {
       window.addEventListener('popstate', goBackFunnel);
-      navigate({
-        pathname: location.pathname,
-        search: `?step=${step}`,
-      });
+      navigate(`${location.pathname}?step=${step}`);
     })();
 
     return () => {
@@ -48,10 +45,7 @@ function CreateMeeting() {
   }, []);
 
   const setStepRouter = () => {
-    navigate({
-      pathname: location.pathname,
-      search: `?step=${step + 1}`,
-    });
+    navigate(`${location.pathname}?step=${step + 1}`);
     setStep((prev) => prev + 1);
   };
 
