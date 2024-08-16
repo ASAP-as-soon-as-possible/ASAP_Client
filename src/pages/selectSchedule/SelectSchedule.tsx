@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import useModalState from 'components/common/Modal/hooks/useModalState';
 import Header from 'components/common/moleculesComponents/Header';
 import TitleComponents from 'components/common/moleculesComponents/TitleComponents';
 import { getAvailableTimes } from 'components/common/timetableComponents/utils';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useGetTimetable } from 'utils/apis/useGetTimetable';
 
@@ -20,6 +20,32 @@ function SelectSchedule() {
   const { meetingId } = useParams();
   const { data, isLoading } = useGetTimetable(meetingId);
   const { isOpen: isLottieOpen, onClose: onLottieClose } = useModalState(true);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const params = useParams();
+
+  const goBackFunnel = () => {
+    setScheduleStep((prev) => {
+      if (prev === 'selectTimeSlot') {
+        Promise.resolve().then(() => navigate(`/meet/${params.meetingId}`));
+        return prev;
+      } else {
+        return 'selectTimeSlot';
+      }
+    });
+  };
+
+  useEffect(() => {
+    (() => {
+      window.addEventListener('popstate', goBackFunnel);
+      navigate(`${location.pathname}?step=${scheduleStep}`);
+    })();
+
+    return () => {
+      window.removeEventListener('popstate', goBackFunnel);
+    };
+  }, []);
 
   return (
     <ScheduleStepContext.Provider value={{ scheduleStep, setScheduleStep }}>
