@@ -3,7 +3,6 @@ import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext
 import { theme } from 'styles/theme';
 
 import useSlotSeletion from './hooks/useSlotSelection';
-
 import Slot from '../../../../components/common/timetableComponents/parts/Slot';
 
 function SelectionColumn({ date, timeSlots }: ColumnStructure) {

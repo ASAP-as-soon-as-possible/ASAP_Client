@@ -22,7 +22,6 @@ interface HeaderProps {
 
 function Header({ position, setFunnelStep }: HeaderProps) {
   const { scheduleStep, setScheduleStep } = useScheduleStepContext();
-
   const navigationOptions = [
     {
       title: '약속 생성하기',
@@ -80,7 +79,6 @@ function Header({ position, setFunnelStep }: HeaderProps) {
               <IconSection onClick={() => window.history.back()}>
                 <BackIc />
               </IconSection>
-
             </ConfirmIconSection>
           ) : position === 'schedule' ? (
             <ConfirmIconSection onClick={backToSelectSchedule}>
