@@ -75,4 +75,5 @@ const ViewContainer = styled.div`
   align-items: center;
   width: 100%;
   margin-top: 3.6rem;
+  margin-bottom: 16.4rem;
 `;
