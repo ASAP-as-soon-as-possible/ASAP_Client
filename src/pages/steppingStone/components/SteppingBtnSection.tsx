@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
@@ -19,12 +19,11 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
   const location = useLocation();
   const meetInfo = { ...location.state };
   const { meetingId } = useParams();
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const {isOpen, onClose}= useModalState(true);
+  const {isOpen, onOpen, onClose}= useModalState(false);
 
   useEffect(()=>{
-    setIsModalOpen(true);
+    onOpen();
   },[])
 
   return (
@@ -34,24 +33,20 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
           {
             meetComplete: (
               <>
-              <BottomSheet isOpen={isOpen} onClose={onClose}/>
-                {/* <BottomSheetModal $isModalOpen={isModalOpen}>
-                  <BottomSheetDescription>
-                  <Text font={'head2'} color={'white'}>회의방 링크가 생성되었어요!</Text>
-                  <Text font={'title2'} color={`${theme.colors.grey4}`}>링크를 복사하여 팀원에게 공유해주세요</Text>
-                  </BottomSheetDescription>
-                  <CopyToClipboard text={`${import.meta.env.VITE_WEB_IP}/meet/${meetInfo.meetingId}`}>
-                    <Button typeState={'primaryActive'} onClick={()=>setIsModalOpen(false)}>
-                      <Text font={'button2'}>링크 복사하기</Text>
-                    </Button>
-                  </CopyToClipboard>
-                    <Button typeState={'quaternaryDisabled'} onClick={()=>setIsModalOpen(false)}>
+                  <BottomSheet isOpen={isOpen}>
+                    <BottomSheetDescription>
+                      <Text font={'head2'} color={'white'}>회의방 링크가 생성되었어요!</Text>
+                      <Text font={'title2'} color={`${theme.colors.grey4}`}>링크를 복사하여 팀원에게 공유해주세요</Text>
+                    </BottomSheetDescription>
+                    <CopyToClipboard text={`${import.meta.env.VITE_WEB_IP}/meet/${meetInfo.meetingId}`}>
+                      <Button typeState={'primaryActive'} onClick={onClose}>
+                        <Text font={'button2'}>링크 복사하기</Text>
+                      </Button>
+                    </CopyToClipboard>
+                    <Button typeState={'quaternaryDisabled'} onClick={onClose}>
                       <Text font={'button2'}>나중에 공유하기</Text>
                     </Button>
-                </BottomSheetModal>
-                <ModalOverlay $isModalOpen={isModalOpen} >
-                </ModalOverlay>
-                */}
+                  </BottomSheet>
                 <Link to={`/host/select/${meetInfo.meetingId}`}>
                   <Button typeState={'primaryActive'}>
                     <Text font={'button2'}>나의 가능시간 입력</Text>
@@ -119,41 +114,11 @@ const StyledBtnSection = styled.section`
   
 `;
 
-const BottomSheetModal = styled.div<{$isModalOpen:boolean;}>`
-  display:flex;
-  position:fixed;
-  bottom:${({$isModalOpen})=>$isModalOpen?0:-27.5}rem;
-  flex-direction:column;
-  gap:0.8rem;
-  transition: bottom 600ms cubic-bezier(0.86, 0, 0.07, 1);
-  z-index:1;
-  border-top-left-radius: 1.2rem;
-  border-top-right-radius: 1.2rem;
-  background-color: ${({ theme }) => theme.colors.grey8};
-
-  padding: 2.8rem 2rem 4rem;
-  width:37.5rem;
-
-  & button {
-    width:100%;
-  }
-
-`
-
-const ModalOverlay = styled.div<{$isModalOpen:boolean;}>`
-  display:${({$isModalOpen})=>($isModalOpen?'block':'none')};
-  position:fixed;
-  top: 0;
-
-  background-color:${({theme})=>theme.colors.black60};
-  width:100%;
-  height:100%;
-`
 
 const BottomSheetDescription = styled.div`
-  display:flex;
-  flex-direction:column;
-  gap:0.8rem;
-  margin-bottom:2.4rem;
-  padding-left:0.9rem;
-`
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-bottom: 2.4rem;
+  padding-left: 0.9rem;
+`;
