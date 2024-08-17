@@ -65,4 +65,6 @@ const ChangeViewPicker = styled.div<{ $isClicked: boolean }>`
 const ViewContainer = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
+  margin-top: 3.6rem;
 `;
