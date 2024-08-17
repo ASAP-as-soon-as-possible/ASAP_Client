@@ -4,7 +4,7 @@ import useModalState from 'components/common/Modal/hooks/useModalState';
 import Header from 'components/common/moleculesComponents/Header';
 import TitleComponents from 'components/common/moleculesComponents/TitleComponents';
 import { getAvailableTimes } from 'components/common/timetableComponents/utils';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { useGetTimetable } from 'utils/apis/useGetTimetable';
 
