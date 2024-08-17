@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
 import Text from 'components/atomComponents/Text';
+import Tooltip from 'components/atomComponents/Tooltip';
 import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
 import { useScheduleStepContext } from 'pages/selectSchedule/contexts/useScheduleStepContext';
 import { ScheduleStepType } from 'pages/selectSchedule/types';
@@ -12,7 +13,6 @@ import { theme } from 'styles/theme';
 import { notify } from 'utils/toast/copyLinkToast';
 
 import Navigation from './Navigation';
-
 
 interface HeaderProps {
   position: string;
@@ -80,11 +80,7 @@ function Header({ position, setFunnelStep }: HeaderProps) {
               <IconSection onClick={() => window.history.back()}>
                 <BackIc />
               </IconSection>
-              <CopyToClipboard text={`${import.meta.env.VITE_WEB_IP}/meet/${meetingId}`}>
-                <IconSection onClick={notify}>
-                  <LinkIc />
-                </IconSection>
-              </CopyToClipboard>
+
             </ConfirmIconSection>
           ) : position === 'schedule' ? (
             <ConfirmIconSection onClick={backToSelectSchedule}>
@@ -109,15 +105,20 @@ function Header({ position, setFunnelStep }: HeaderProps) {
             <EmptyBox />
           )}
           <IconWrapper>
-            {position==="completeCreateMeeting"&& <IconSection onClick={notify}>
-            <CopyToClipboard text={`${import.meta.env.VITE_WEB_IP}/meet/${meetingId}`}>
+          {(position==="completeCreateMeeting" || position==="cueCard" || position==="confirmMeet") &&
+            <LinkIcWrapper>
+             <IconSection onClick={notify}>
+            <CopyToClipboard text={ position==="cueCard" ? `${import.meta.env.VITE_WEB_IP}/q-card/${meetingId}`:`${import.meta.env.VITE_WEB_IP}/meet/${meetingId}` }>
           <LinkIc/>
           </CopyToClipboard>
-          </IconSection>}
+          </IconSection>
+          {position==="completeCreateMeeting" && <Tooltip tooltipText={"링크 공유하기"}></Tooltip>}
 
+          </LinkIcWrapper>}
           <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
             <HambergerIc />
           </IconSection>
+
           </IconWrapper>
         </HeaderSection>
         {isNaviOpen ? (
@@ -136,6 +137,10 @@ function Header({ position, setFunnelStep }: HeaderProps) {
 }
 
 export default Header;
+
+const LinkIcWrapper=styled.div`
+  position:relative;
+`
 
 const IconWrapper= styled.div`
   display:flex;
