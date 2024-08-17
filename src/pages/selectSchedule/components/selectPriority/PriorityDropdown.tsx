@@ -1,8 +1,15 @@
 import { useState } from 'react';
 
 import Text from 'components/common/atomComponents/Text';
-import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
 import { addMinutes } from 'components/common/timetableComponents/utils';
+import {
+  ArrowBottomIc,
+  ArrowTopIc,
+  Circle1Ic,
+  Circle2Ic,
+  Circle3Ic,
+  InputCancelIc,
+} from 'components/Icon/icon';
 import {
   SelectedSlotType,
   SelectSlotType,
@@ -10,7 +17,6 @@ import {
 } from 'pages/selectSchedule/contexts/useSelectContext';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
-
 /**
  *
  * @desc 기존의 우선순위 Dropdown 컴포넌트를 그대로 가져와서, 따로 리팩토링 없이 새로운 시간표 컴포넌트에 맞게 적용되도록 수정한 컴포넌트입니다.
@@ -19,6 +25,9 @@ import { theme } from 'styles/theme';
 function PriorityDropdown() {
   const { selectedSlots, setSelectedSlots } = useSelectContext();
   const [isOpenDropDown, setIsOpenDropDown] = useState([false, false, false]);
+  const defaultInputs = Array(3).fill('');
+
+  const [input_, setInput] = useState<string[]>(defaultInputs);
 
   //우선 순위 시간순 정렬을 위한 날짜 시간 파싱함수
   const parseDateTime = (dateStr: string, timeStr: string) => {
@@ -39,7 +48,6 @@ function PriorityDropdown() {
     return `${month}/${day}(${dayOfWeek})`;
   };
 
-  const defaultInputs = Array(3).fill('');
   Object.values(selectedSlots).forEach((item) => {
     const date = formatDate(item.date);
     const endSlot = addMinutes(item.endSlot, 30);
@@ -47,8 +55,6 @@ function PriorityDropdown() {
       defaultInputs[3 - item.priority] = `${date} ${item.startSlot}~${endSlot}`;
     }
   });
-
-  const [input_, setInput] = useState<string[]>(defaultInputs);
 
   const handleDropdown = (idx: number) => {
     //dropdown이 열려있을 때
@@ -109,57 +115,77 @@ function PriorityDropdown() {
     handleDropdown(idx);
   };
 
+  const deletePriority = (idx: number) => {
+    setSelectedSlots((prevSelectedSlots: SelectedSlotType) => {
+      const updateSlots = { ...prevSelectedSlots };
+      Object.values(updateSlots).map((item) => {
+        if (item.priority === 3 - idx) {
+          item.priority = 0;
+        }
+      });
+      return updateSlots;
+    });
+
+    setInput((prev) => {
+      const updatedInput = [...prev];
+      updatedInput[idx] = '';
+      return updatedInput;
+    });
+  };
   return (
     <PriorityDropdownWrapper>
-      {Object.entries(selectedSlots).map(([key], idx) => {
-        return idx < 3 ? (
-          <PriorityDropdownSection key={key}>
-            <CircleWrapper>
-              <TextWrapper>
-                <Text font={'body2'} color={theme.colors.white}>
-                  {`${idx + 1}`}순위
-                </Text>
-              </TextWrapper>
-              {idx === 0 ? <Circle1Ic /> : idx === 1 ? <Circle2Ic /> : <Circle3Ic />}
-            </CircleWrapper>
-            <InputWrapper>
-              <TimeInput
-                type="text"
-                $drop={isOpenDropDown[idx]}
-                placeholder="시간대 선택"
-                readOnly
-                onClick={() => handleDropdown(idx)}
-                value={input_[idx]}
-              />
-              <DropDownIconWrapper>
-                {isOpenDropDown[idx] ? <DropUpIc /> : <DropDownIc />}
-              </DropDownIconWrapper>
-              {isOpenDropDown[idx] && (
-                <DropdownWrapper>
-                  {sortedSlots.map(
-                    ([key, value]) =>
-                      !value.priority && (
-                        <DropDownItem key={key} onClick={() => handlePriority(idx, value, key)}>
-                          <Text font={'button1'} color={theme.colors.white}>
-                            {formatDate(value.date)} {value.startSlot}~{addMinutes(
-                              value.endSlot,
-                              30,
-                            )}
-                          </Text>
-                        </DropDownItem>
-                      ),
-                  )}
-                </DropdownWrapper>
+      {isOpenDropDown.map((item, idx) => (
+        <PriorityDropdownSection key={idx}>
+          <CircleWrapper>
+            <TextWrapper>
+              <Text font={'body2'} color={theme.colors.white}>
+                {`${idx + 1}`}순위
+              </Text>
+            </TextWrapper>
+            {idx === 0 ? <Circle1Ic /> : idx === 1 ? <Circle2Ic /> : <Circle3Ic />}
+          </CircleWrapper>
+          <InputWrapper>
+            <TimeInput
+              type="text"
+              $drop={item}
+              placeholder="시간대 선택"
+              readOnly
+              onClick={() => handleDropdown(idx)}
+              value={input_[idx]}
+            />
+            <DropDownIconWrapper>
+              {defaultInputs[idx] ? (
+                <InputCancelIcon onClick={() => deletePriority(idx)} />
+              ) : item ? (
+                <ArrowTopIc />
+              ) : (
+                <ArrowBottomIc />
               )}
-            </InputWrapper>
-          </PriorityDropdownSection>
-        ) : (
-          <div key={key} />
-        );
-      })}
+            </DropDownIconWrapper>
+            {item && (
+              <DropdownWrapper>
+                {sortedSlots.map(
+                  ([key, value]) =>
+                    !value.priority && (
+                      <DropDownItem key={key} onClick={() => handlePriority(idx, value, key)}>
+                        <Text font={'button1'} color={theme.colors.white}>
+                          {formatDate(value.date)} {value.startSlot}~{addMinutes(value.endSlot, 30)}
+                        </Text>
+                      </DropDownItem>
+                    ),
+                )}
+              </DropdownWrapper>
+            )}
+          </InputWrapper>
+        </PriorityDropdownSection>
+      ))}
     </PriorityDropdownWrapper>
   );
 }
+
+const InputCancelIcon = styled(InputCancelIc)`
+  cursor: pointer;
+`;
 const PriorityDropdownWrapper = styled.div`
   display: flex;
 
@@ -214,8 +240,9 @@ const TimeInput = styled.input<{ $drop: boolean }>`
 `;
 const DropDownIconWrapper = styled.div`
   position: absolute;
-  top: 36%;
-  right: 1rem;
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 1.6rem;
   cursor: pointer;
 `;
 const DropdownWrapper = styled.div`
