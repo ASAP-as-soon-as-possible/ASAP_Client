@@ -21,31 +21,30 @@ function SelectSchedule() {
   const { data, isLoading } = useGetTimetable(meetingId);
   const { isOpen: isLottieOpen, onClose: onLottieClose } = useModalState(true);
 
-  const location = useLocation();
   const navigate = useNavigate();
   const params = useParams();
 
-  const goBackFunnel = () => {
-    setScheduleStep((prev) => {
-      if (prev === 'selectTimeSlot') {
-        Promise.resolve().then(() => navigate(`/meet/${params.meetingId}`));
-        return prev;
-      } else {
-        return 'selectTimeSlot';
-      }
-    });
-  };
+  useEffect(
+    () => {
+      const goBackFunnel = () => {
+        setScheduleStep((prev) => {
+          if (prev === 'selectTimeSlot') {
+            Promise.resolve().then(() => navigate(`/meet/${params.meetingId}`));
+            return prev;
+          } else {
+            return 'selectTimeSlot';
+          }
+        });
+      };
 
-  useEffect(() => {
-    (() => {
       window.addEventListener('popstate', goBackFunnel);
-      navigate(`${location.pathname}?step=${scheduleStep}`);
-    })();
 
-    return () => {
-      window.removeEventListener('popstate', goBackFunnel);
-    };
-  }, []);
+      return () => {
+        window.removeEventListener('popstate', goBackFunnel);
+      };
+    },
+    [setScheduleStep, navigate],
+  );
 
   return (
     <ScheduleStepContext.Provider value={{ scheduleStep, setScheduleStep }}>
