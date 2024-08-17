@@ -58,8 +58,4 @@ export {
   TimeIc,
   TooltipArrowIc,
   Wave,
-  Circle1Ic,
-  Circle2Ic,
-  Circle3Ic,
-  CloseIc,
 };

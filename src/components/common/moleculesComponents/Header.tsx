@@ -1,6 +1,5 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
-import Tooltip from 'components/atomComponents/Tooltip';
 import Text from 'components/common/atomComponents/Text';
 import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
 import { useScheduleStepContext } from 'pages/selectSchedule/contexts/useScheduleStepContext';
@@ -13,6 +12,8 @@ import { theme } from 'styles/theme';
 import { notify } from 'utils/toast/copyLinkToast';
 
 import Navigation from './Navigation';
+
+import Tooltip from '../atomComponents/Tooltip';
 
 interface HeaderProps {
   position?: string;

@@ -1,6 +1,7 @@
-import Text from 'components/atomComponents/Text';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
+
+import Text from '../atomComponents/Text';
 /**
  * 이미지, 메인텍스트, 서브텍스트로 이루어진 재사용 컴포넌트
  * @returns asap 페이지에 기본이 되는 컴포넌트

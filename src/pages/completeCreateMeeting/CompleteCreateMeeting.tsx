@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
 import stepingCheck from 'assets/images/steppingCheck.png';
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
-import ASAPBasicComponent from 'components/moleculesComponents/ASAPBasicComponent';
-import Header from 'components/moleculesComponents/Header';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
+import ASAPBasicComponent from 'components/common/moleculesComponents/ASAPBasicComponent';
+import Header from 'components/common/moleculesComponents/Header';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
