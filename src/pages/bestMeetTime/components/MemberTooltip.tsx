@@ -13,7 +13,7 @@ function MemberTooltip({ members }: MemberTooltipProps) {
       <TooltipContent>
         <TooltipArrowIcon />
         <Text font="body4" color={theme.colors.grey7}>
-          {members.join(',')}
+          {members.join(', ')}
         </Text>
       </TooltipContent>
     </MemberTooltipWrapper>
@@ -22,7 +22,8 @@ function MemberTooltip({ members }: MemberTooltipProps) {
 
 export default MemberTooltip;
 const MemberTooltipWrapper = styled.div`
-  /* visibility: hidden; */
+  visibility: hidden;
+  z-index: 1;
   position: absolute;
   width: fit-content;
   right: 4%;

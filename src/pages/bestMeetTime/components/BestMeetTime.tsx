@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
 import { DropDown, DropUp } from 'components/Icon/icon';
-import AlternativeCard from 'pages/bestMeetTime/components/AlternativeCard';
 import BestTimeCard from 'pages/bestMeetTime/components/BestTimeCard';
 import ConfirmModal from 'pages/bestMeetTime/components/ConfirmModal';
 import GetBestMeetimeListHooks from 'pages/bestMeetTime/hooks/getBestMeetimeList';
@@ -86,7 +85,7 @@ function BestMeetTime() {
       {isalternativeCardOpen && bestTimeData ? (
         <AlternativeSection>
           {bestTimeData.data.otherDateTimes[0] ? (
-            <AlternativeCard
+            <BestTimeCard
               rank={1}
               selected={selected}
               carddata={bestTimeData.data.otherDateTimes[0]}
@@ -96,7 +95,7 @@ function BestMeetTime() {
             <BlankOtherMeetCard />
           )}
           {bestTimeData.data.otherDateTimes[1] ? (
-            <AlternativeCard
+            <BestTimeCard
               rank={2}
               selected={selected}
               carddata={bestTimeData.data.otherDateTimes[1]}
