@@ -1,5 +1,8 @@
 import { TooltipArrowIc } from 'components/Icon/icon';
 import styled from 'styled-components';
+import { theme } from 'styles/theme';
+
+import Text from './Text';
 
 interface TooltipPropTypes {
   tooltipText: string;
@@ -8,7 +11,11 @@ const Tooltip = ({ tooltipText }: TooltipPropTypes) => {
   return (
     <TooltipWrapper>
       <TooltioArrowIcon />
-      <ToolTipTextWrapper>{tooltipText}</ToolTipTextWrapper>
+      <ToolTipTextWrapper>
+        <Text color={theme.colors.grey5} font={'body4'}>
+          {tooltipText}
+        </Text>
+      </ToolTipTextWrapper>
     </TooltipWrapper>
   );
 };
@@ -39,9 +46,5 @@ const ToolTipTextWrapper = styled.div`
 
   border-radius: 6px;
   background-color: ${({ theme }) => theme.colors.grey9};
-
-  color: ${({ theme }) => theme.colors.grey5};
-
-  ${({ theme }) => theme.fonts.body4};
 `;
 export default Tooltip;
