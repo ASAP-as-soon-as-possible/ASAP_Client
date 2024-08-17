@@ -4,6 +4,8 @@ import { BestDataProps } from 'pages/bestMeetTime/types/meetCardData';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
+import MemberTooltip from './MemberTooltip';
+
 function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
   const checkingCheck = () => {
     chooseMeetime(rank);
@@ -33,6 +35,7 @@ function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps
             {carddata.users.length}
           </Text>
         </MemberCountChip>
+        <MemberTooltip members={carddata.users.map((user) => user.name)} />
       </BestTimeCardWrapper>
     );
   }
@@ -48,7 +51,7 @@ const BestTimeCardWrapper = styled.article<{ $rank: number; $selected: number }>
     ${({ $rank, $selected, theme }) =>
       $rank === $selected ? theme.colors.main1 : theme.colors.grey5};
   border-radius: 10px;
-  padding: 2rem;
+  padding: 1.8rem 1.5rem;
   width: 100%;
   height: fit-content;
 `;
@@ -98,5 +101,9 @@ const MemberCountChip = styled.div`
   }
   &:focus {
     background-color: ${theme.colors.grey6};
+  }
+
+  &:hover + .tooltip {
+    visibility: visible;
   }
 `;
