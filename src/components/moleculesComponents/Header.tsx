@@ -22,6 +22,7 @@ interface HeaderProps {
 
 function Header({ position, setFunnelStep }: HeaderProps) {
   const { scheduleStep, setScheduleStep } = useScheduleStepContext();
+
   const navigationOptions = [
     {
       title: '약속 생성하기',
@@ -108,7 +109,7 @@ function Header({ position, setFunnelStep }: HeaderProps) {
             <EmptyBox />
           )}
           <IconWrapper>
-            {position==="stepping"&& <IconSection onClick={notify}>
+            {position==="completeCreateMeeting"&& <IconSection onClick={notify}>
             <CopyToClipboard text={`${import.meta.env.VITE_WEB_IP}/meet/${meetingId}`}>
           <LinkIc/>
           </CopyToClipboard>

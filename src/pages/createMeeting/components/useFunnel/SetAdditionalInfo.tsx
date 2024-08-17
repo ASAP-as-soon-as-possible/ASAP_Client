@@ -24,11 +24,7 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo }: FunnelProps) {
         data: { data },
       } = await createMeetingApi(meetingInfo);
       localStorage.setItem('hostToken', data.accessToken);
-      navigate('/meet/complete', {
-        state: {
-          meetingId: data.url,
-        },
-      });
+      navigate(`/meet/complete/${data.url}`);
     } catch (err) {
       if (isAxiosError(err) && err.response) {
         if (err.response.status === (400 || 500)) {
