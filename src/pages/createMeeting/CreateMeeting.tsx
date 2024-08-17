@@ -27,30 +27,30 @@ function CreateMeeting() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const goBackFunnel = () => {
-    setStep((prev) => {
-      if (prev === 0) {
-        Promise.resolve().then(() => navigate('/'));
-        return prev;
-      } else {
-        return prev - 1;
-      }
-    });
-  };
+  useEffect(
+    () => {
+      const goBackFunnel = () => {
+        setStep((prev) => {
+          if (prev === 0) {
+            Promise.resolve().then(() => navigate('/'));
+            return prev;
+          } else {
+            return prev - 1;
+          }
+        });
+      };
 
-  useEffect(() => {
-    (() => {
       window.addEventListener('popstate', goBackFunnel);
-      navigate(`${location.pathname}?step=${step}`);
-    })();
 
-    return () => {
-      window.removeEventListener('popstate', goBackFunnel);
-    };
-  }, []);
+      return () => {
+        window.removeEventListener('popstate', goBackFunnel);
+      };
+    },
+    [setStep, navigate],
+  );
 
   const setStepRouter = () => {
-    navigate(`${location.pathname}?step=${step + 1}`);
+    navigate(`${location.pathname}?step=${funnelStep[step + 1]}`);
     setStep((prev) => prev + 1);
   };
 
