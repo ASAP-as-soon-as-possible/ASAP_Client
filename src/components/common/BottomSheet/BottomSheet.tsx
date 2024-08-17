@@ -22,10 +22,11 @@ export default BottomSheet;
 const BottomSheetModal = styled.div<{ $isModalOpen: boolean }>`
   display: flex;
   position: fixed;
-  bottom: ${({ $isModalOpen }) => ($isModalOpen ? 0 : -27.5)}rem;
+  bottom: 0;
+  transform: translateY(${({ $isModalOpen }) => ($isModalOpen ? 0 : '100%')});
   flex-direction: column;
   gap: 0.8rem;
-  transition: bottom 600ms cubic-bezier(0.86, 0, 0.07, 1);
+  transition: transform 600ms cubic-bezier(0.86, 0, 0.07, 1);
   z-index: 1;
   border-top-left-radius: 1.2rem;
   border-top-right-radius: 1.2rem;
