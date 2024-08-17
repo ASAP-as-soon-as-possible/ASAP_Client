@@ -24,6 +24,7 @@ import { ReactComponent as RadioCheckIc } from 'assets/svgs/radioCheck.svg';
 import { ReactComponent as RadioCheckedIc } from 'assets/svgs/radioChecked.svg';
 import { ReactComponent as SpeechBubbleIc } from 'assets/svgs/speechBubble.svg';
 import { ReactComponent as TimeIc } from 'assets/svgs/time.svg';
+import { ReactComponent as TooltipArrowIc } from 'assets/svgs/tooltipArrow.svg';
 import { ReactComponent as Wave } from 'assets/svgs/wave.svg';
 
 export {
@@ -53,5 +54,6 @@ export {
   RadioCheckIc,
   SpeechBubbleIc,
   TimeIc,
+  TooltipArrowIc,
   Wave,
 };
