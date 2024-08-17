@@ -59,6 +59,7 @@ function SteppingLayout({ steppingType }: SteppingProps) {
 }
 
 export default SteppingLayout;
+
 const SteppingWrapper = styled.div`
   display: flex;
   flex-direction: column;
