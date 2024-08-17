@@ -1,22 +1,16 @@
-import React, { useState } from 'react';
-
 import Text from 'components/common/atomComponents/Text';
-import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
+import { Member } from 'components/Icon/icon';
 import { BestDataProps } from 'pages/bestMeetTime/types/meetCardData';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
-  const [isMember, setIsMember] = useState(false);
   const checkingCheck = () => {
     chooseMeetime(rank);
   };
   if (carddata) {
     return (
       <BestTimeCardWrapper $rank={rank} $selected={selected}>
-        <IconContainer onClick={() => setIsMember((prev) => !prev)}>
-          {isMember ? <DropupWhite /> : <DropdownWhite />}
-        </IconContainer>
         <Input
           id={`${rank}`}
           type="checkbox"
@@ -32,23 +26,15 @@ function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps
               {carddata.startTime} ~ {carddata.endTime}
             </Text>
           </Label>
-          {isMember ? (
-            <MemeberContainer>
-              {carddata.users.map((member, i) => (
-                <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
-                  {member.name}
-                  {i !== carddata.users.length - 1 ? ',' : ''}&nbsp;
-                </Text>
-              ))}
-            </MemeberContainer>
-          ) : (
-            undefined
-          )}
         </InfoContainer>
+        <MemberCountChip>
+          <Member />
+          <Text font="body2" color={theme.colors.white}>
+            {carddata.users.length}
+          </Text>
+        </MemberCountChip>
       </BestTimeCardWrapper>
     );
-  } else {
-    return undefined;
   }
 }
 
@@ -94,25 +80,23 @@ const Label = styled.label`
   cursor: pointer;
 `;
 
-const MemeberContainer = styled.div`
+const MemberCountChip = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: 1.2rem;
-  width: 23rem;
-  height: fit-content;
-`;
-
-const BasicIconContainer = styled.div`
-  display: flex;
-  align-items: center;
   justify-content: center;
-  width: 3rem;
+  align-items: center;
+  min-width: 5.6rem;
   height: 3rem;
-`;
-
-const IconContainer = styled(BasicIconContainer)`
-  position: absolute;
-  top: 1.2rem;
-  right: 1.2rem;
+  padding: 0.6rem 1rem;
+  gap: 0.6rem;
+  border-radius: 10rem;
+  background-color: ${theme.colors.grey8};
+  align-self: flex-end;
+  margin-left: auto;
+  cursor: pointer;
+  &:hover {
+    background-color: ${theme.colors.grey5};
+  }
+  &:focus {
+    background-color: ${theme.colors.grey6};
+  }
 `;

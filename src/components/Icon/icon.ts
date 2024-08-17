@@ -16,6 +16,7 @@ import { ReactComponent as InputCancelIc } from 'assets/svgs/inputCancelBtn.svg'
 import { ReactComponent as InputErrorIc } from 'assets/svgs/inputErrorBtn.svg';
 import { ReactComponent as LinkIc } from 'assets/svgs/linkIcon.svg';
 import { ReactComponent as MainLogoIc } from 'assets/svgs/mainLogo.svg';
+import { ReactComponent as Member } from 'assets/svgs/member.svg';
 import { ReactComponent as OfflinePlaceIc } from 'assets/svgs/offlinePlace.svg';
 import { ReactComponent as OnlinePlaceIc } from 'assets/svgs/onlinePlace.svg';
 import { ReactComponent as PasswordEyeIc } from 'assets/svgs/passwordEye.svg';
@@ -58,4 +59,5 @@ export {
   CloseIc,
   DropUp,
   DropDown,
+  Member,
 };
