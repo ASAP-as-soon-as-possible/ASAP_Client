@@ -32,7 +32,7 @@ function CreateMeeting() {
       const goBackFunnel = () => {
         setStep((prev) => {
           if (prev === 0) {
-            Promise.resolve().then(() => navigate('/'));
+            navigate('/');
             return prev;
           } else {
             return prev - 1;

@@ -29,7 +29,7 @@ function SelectSchedule() {
       const goBackFunnel = () => {
         setScheduleStep((prev) => {
           if (prev === 'selectTimeSlot') {
-            Promise.resolve().then(() => navigate(`/meet/${params.meetingId}`));
+            navigate(`/meet/${params.meetingId}`);
             return prev;
           } else {
             return 'selectTimeSlot';
