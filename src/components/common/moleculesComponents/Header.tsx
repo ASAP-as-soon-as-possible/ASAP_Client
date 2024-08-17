@@ -15,7 +15,7 @@ import { notify } from 'utils/toast/copyLinkToast';
 import Navigation from './Navigation';
 
 interface HeaderProps {
-  position: string;
+  position?: string;
   setFunnelStep?: Dispatch<SetStateAction<number>>;
   setSelectScheduleStep?: Dispatch<SetStateAction<ScheduleStepType>>;
 }
