@@ -45,7 +45,7 @@ function BestMeetTime() {
               현재까지 모인&nbsp;
             </Text>
             <Text font={`head2`} color={`${theme.colors.sub1}`}>
-              {bestTimeData && bestTimeData.data.memberCount}
+              {bestTimeData ? bestTimeData.data.memberCount : ''}
             </Text>
             <Text font={`head2`} color={`${theme.colors.sub1}`}>
               명
@@ -110,7 +110,7 @@ function BestMeetTime() {
         </Button>
       </BtnWrapper>
       {showModal &&
-        bestTimeData && (
+        bestMeetimeObj && (
           <ConfirmModal
             setIsModalOpen={setShowModal}
             memberCount={bestTimeData.data.memberCount}
@@ -157,7 +157,7 @@ const AnotherTimeBtnSection = styled.div`
 const AlternativeSection = styled.section`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.6rem;
 `;
 const BasicIconContainer = styled.div`
   display: flex;

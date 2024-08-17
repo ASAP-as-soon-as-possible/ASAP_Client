@@ -49,7 +49,7 @@ const BestTimeCardWrapper = styled.article<{ $rank: number; $selected: number }>
   flex-direction: row;
   border: 1px solid
     ${({ $rank, $selected, theme }) =>
-      $rank === $selected ? theme.colors.main1 : theme.colors.grey5};
+      $rank === $selected ? theme.colors.main1 : theme.colors.grey7};
   border-radius: 10px;
   padding: 1.8rem 1.5rem;
   width: 100%;
@@ -63,7 +63,7 @@ const InfoContainer = styled.div`
 const Input = styled.input`
   appearance: none;
   margin: 0 2.274rem 0 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='9' stroke='%23D9D9D9' stroke-width='2'/%3E%3C/svg%3E%0A");
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='9' stroke='%23555555' stroke-width='2'/%3E%3C/svg%3E%0A");
   background-repeat: no-repeat;
   cursor: pointer;
   width: 2rem;
