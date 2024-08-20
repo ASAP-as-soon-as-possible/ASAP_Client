@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 import Text from 'components/common/atomComponents/Text';
 import { addMinutes } from 'components/common/timetableComponents/utils';
-import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
 import {
   ArrowBottomIc,
   ArrowTopIc,
