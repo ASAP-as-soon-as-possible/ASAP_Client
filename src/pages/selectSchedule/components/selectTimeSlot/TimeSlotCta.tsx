@@ -1,13 +1,21 @@
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
 import { useScheduleStepContext } from 'pages/selectSchedule/contexts/useScheduleStepContext';
+
+import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
+import { useNavigate } from 'react-router-dom';
+
 import { SelectedSlotType, useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
+
 import styled from 'styled-components';
 
 function TimeSlotCta() {
   const { selectedSlots, setSelectedSlots } = useSelectContext();
   const { setScheduleStep } = useScheduleStepContext();
   const isValidSelection = Object.keys(selectedSlots).length !== 0;
+
+
+  const navigate = useNavigate();
 
   const resetPriorities = (selectedSlots: SelectedSlotType) => {
     const updatedSelectedSlots: SelectedSlotType = {};
@@ -19,11 +27,13 @@ function TimeSlotCta() {
     }
     setSelectedSlots(updatedSelectedSlots);
   };
+
   return (
     <BtnDim>
       <Button
         typeState={isValidSelection ? 'primaryActive' : 'secondaryDisabled'}
         onClick={() => {
+          navigate(`${location.pathname}?step=selectPriority`);
           setScheduleStep('selectPriority');
           resetPriorities(selectedSlots);
         }}
