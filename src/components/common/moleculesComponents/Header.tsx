@@ -9,13 +9,14 @@ import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
-import { notify } from 'utils/toast/copyLink';
+import { notify } from 'utils/toast/copyLinkToast';
 
 import Navigation from './Navigation';
 
+import Tooltip from '../../../pages/completeCreateMeeting/components/Tooltip';
 
 interface HeaderProps {
-  position: string;
+  position?: string;
   setFunnelStep?: Dispatch<SetStateAction<number>>;
   setSelectScheduleStep?: Dispatch<SetStateAction<ScheduleStepType>>;
 }
@@ -79,11 +80,6 @@ function Header({ position, setFunnelStep }: HeaderProps) {
               <IconSection onClick={() => window.history.back()}>
                 <BackIc />
               </IconSection>
-              <CopyToClipboard text={`${import.meta.env.VITE_WEB_IP}/meet/${meetingId}`}>
-                <IconSection onClick={notify}>
-                  <LinkIc />
-                </IconSection>
-              </CopyToClipboard>
             </ConfirmIconSection>
           ) : position === 'schedule' ? (
             <ConfirmIconSection onClick={backToSelectSchedule}>
@@ -107,9 +103,22 @@ function Header({ position, setFunnelStep }: HeaderProps) {
           ) : (
             <EmptyBox />
           )}
+          <IconWrapper>
+          {(position==="completeCreateMeeting" || position==="cueCard" || position==="confirmMeet") &&
+            <LinkIcWrapper>
+             <IconSection onClick={notify}>
+            <CopyToClipboard text={ position==="cueCard" ? `${import.meta.env.VITE_WEB_IP}/q-card/${meetingId}`:`${import.meta.env.VITE_WEB_IP}/meet/${meetingId}` }>
+          <LinkIc/>
+          </CopyToClipboard>
+          </IconSection>
+          {position==="completeCreateMeeting" && <Tooltip tooltipText={"링크 공유하기"}></Tooltip>}
+
+          </LinkIcWrapper>}
           <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
             <HambergerIc />
           </IconSection>
+
+          </IconWrapper>
         </HeaderSection>
         {isNaviOpen ? (
           <NavigationSection>
@@ -128,6 +137,14 @@ function Header({ position, setFunnelStep }: HeaderProps) {
 
 export default Header;
 
+const LinkIcWrapper=styled.div`
+  position:relative;
+`
+
+const IconWrapper= styled.div`
+  display:flex;
+  align-items: center;
+`
 const HeaderWrapper = styled.div`
   width: 100%;
 `;
@@ -153,6 +170,7 @@ const IconSection = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  width:4.2rem;
   height: 4.2rem;
 `;
 

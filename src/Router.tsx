@@ -1,4 +1,5 @@
 import ChooseBestTime from 'pages/bestMeetTime/ChooseBestTime';
+import CompleteCreateMeeting from 'pages/completeCreateMeeting/CompleteCreateMeeting';
 import CreateMeeting from 'pages/createMeeting/CreateMeeting';
 import CueCard from 'pages/cueCard/CueCard';
 import ErrorPage404 from 'pages/errorLoading/ErrorPage404';
@@ -15,7 +16,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<OnBoarding />} />
         <Route path="/meet/create" element={<CreateMeeting />} />
-        <Route path="/meet/complete" element={<SteppingLayout steppingType={'meetComplete'} />} />
+        <Route path="/meet/complete/:meetingId" element={<CompleteCreateMeeting />} />
         <Route path="/:auth/select/:meetingId" element={<SelectSchedule />} />
         <Route
           path="/host/schedule-complete/:meetingId"
