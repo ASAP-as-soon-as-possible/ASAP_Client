@@ -46,7 +46,6 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo }: FunnelProps) {
       }
     }
   };
-  console.log(meetingInfo.duration);
 
   const formatDate = (dateString: string) => {
     const [, month, day, dayOfWeek] = dateString.split('/');
