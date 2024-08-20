@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useState } from 'react';
+import { useEffect} from 'react';
 
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
@@ -46,7 +46,7 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
                     <Button typeState={'quaternaryDisabled'} onClick={onClose}>
                       <Text font={'button2'}>나중에 공유하기</Text>
                     </Button>
-                  </BottomSheet>
+                </BottomSheet>
                 <Link to={`/host/select/${meetInfo.meetingId}`}>
                   <Button typeState={'primaryActive'}>
                     <Text font={'button2'}>나의 가능시간 입력</Text>

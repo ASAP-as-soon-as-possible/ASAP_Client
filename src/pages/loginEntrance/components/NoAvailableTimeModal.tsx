@@ -1,8 +1,8 @@
-import { Link, useParams } from 'react-router-dom';
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
-import { ExitIc } from 'components/Icon/icon';
 import Text from 'components/common/atomComponents/Text';
+import { ExitIc } from 'components/Icon/icon';
+import { Link, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
@@ -29,7 +29,7 @@ function NoAvailableTimeModal({ setIsModalOpen }: ModalProps) {
             방장 페이지에 접속할 수 있어요!
           </Text>
         </MentContainer>
-        <Link to={`/host/select/${meetingId}`}>
+        <Link to={`/host/select/${meetingId}?step=selectSchedule`}>
           <ModalBtn>
             <Text font={`body2`} color={`${theme.colors.white}`}>
               가능 시간 입력하러 가기
