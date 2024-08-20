@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import Text from 'components/common/atomComponents/Text';
-import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
 import { addMinutes } from 'components/common/timetableComponents/utils';
+import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
 import {
   SelectedSlotType,
   SelectSlotType,
@@ -20,27 +20,35 @@ function PriorityDropdown() {
   const { selectedSlots, setSelectedSlots } = useSelectContext();
   const [isOpenDropDown, setIsOpenDropDown] = useState([false, false, false]);
 
+  //우선 순위 시간순 정렬을 위한 날짜 시간 파싱함수
+  const parseDateTime = (dateStr: string, timeStr: string) => {
+    const [month, day] = dateStr.split('/');
+    const formatDay = day.padStart(2, '0');
+    const [hour, minute] = timeStr.split(':');
+    return Number(month + formatDay + hour + minute);
+  };
+
+  const sortedSlots = Object.entries(selectedSlots)
+    .slice()
+    .sort(
+      (a, b) => parseDateTime(a[1].date, a[1].startSlot) - parseDateTime(b[1].date, b[1].startSlot),
+    );
+
   const formatDate = (date: string) => {
     const [month, day, dayOfWeek] = date.split('/');
     return `${month}/${day}(${dayOfWeek})`;
   };
 
-  let defaultInput1 = '';
-  let defaultInput2 = '';
-  let defaultInput3 = '';
-  for (const key in selectedSlots) {
-    const item = selectedSlots[key];
+  const defaultInputs = Array(3).fill('');
+  Object.values(selectedSlots).forEach((item) => {
     const date = formatDate(item.date);
     const endSlot = addMinutes(item.endSlot, 30);
-    if (item.priority === 3) {
-      defaultInput1 = `${date} ${item.startSlot}~${endSlot}`;
-    } else if (item.priority === 2) {
-      defaultInput2 = `${date} ${item.startSlot}~${endSlot}`;
-    } else if (item.priority === 1) {
-      defaultInput3 = `${date} ${item.startSlot}~${endSlot}`;
+    if (item.priority > 0) {
+      defaultInputs[3 - item.priority] = `${date} ${item.startSlot}~${endSlot}`;
     }
-  }
-  const [input_, setInput] = useState<string[]>([defaultInput1, defaultInput2, defaultInput3]);
+  });
+
+  const [input_, setInput] = useState<string[]>(defaultInputs);
 
   const handleDropdown = (idx: number) => {
     //dropdown이 열려있을 때
@@ -62,28 +70,13 @@ function PriorityDropdown() {
 
   const handlePriority = (idx: number, item: SelectSlotType, stringSelectedSlotKey: string) => {
     const selectedSlotKey = parseInt(stringSelectedSlotKey);
-    let selectedPriority: 0 | 1 | 2 | 3 = 0;
-    switch (idx) {
-      case 0:
-        selectedPriority = 3;
-        break;
-      case 1:
-        selectedPriority = 2;
-        break;
-      case 2:
-        selectedPriority = 1;
-        break;
-      default:
-        selectedPriority = 0;
-        break;
-    }
-
+    const selectedPriority = 3 - idx;
     //이전 상태를 순회하면서 선택된 우선순위를 가지고 있는 데이터를 우선순위 0으로 초기화
     setSelectedSlots((prev: SelectedSlotType) => {
       const updatedSelectedSlots = Object.entries(prev).reduce(
         (acc, [key, value]) => {
           const prevSelectedSlotKey = parseInt(key);
-          //선택된 우선순위가 기존에 존재할 경우 0으로 초기화
+          //우선순위를 선택한 후 다시 설정할 경우 기존 priority 0으로 초기화
           if (value.priority === selectedPriority) {
             acc[prevSelectedSlotKey] = { ...value, priority: 0 };
           } else {
@@ -109,15 +102,8 @@ function PriorityDropdown() {
       const updatedInput = [...prev];
       const endSlot = addMinutes(item.endSlot, 30);
       const date = formatDate(item.date);
-      if (idx === 0) {
-        updatedInput[idx] = `${date} ${item.startSlot}~${endSlot}`;
-      } else if (idx === 1) {
-        updatedInput[idx] = `${date} ${item.startSlot}~${endSlot}`;
-      } else if (idx === 2) {
-        updatedInput[idx] = `${date} ${item.startSlot}~${endSlot}`;
-      } else {
-        updatedInput[idx] = 'error';
-      }
+
+      updatedInput[idx] = `${date} ${item.startSlot}~${endSlot}`;
       return updatedInput;
     });
     handleDropdown(idx);
@@ -134,15 +120,7 @@ function PriorityDropdown() {
                   {`${idx + 1}`}순위
                 </Text>
               </TextWrapper>
-              {idx === 0 ? (
-                <Circle1Icon />
-              ) : idx === 1 ? (
-                <Circle2Icon />
-              ) : idx === 2 ? (
-                <Circle3Icon />
-              ) : (
-                <div />
-              )}
+              {idx === 0 ? <Circle1Ic /> : idx === 1 ? <Circle2Ic /> : <Circle3Ic />}
             </CircleWrapper>
             <InputWrapper>
               <TimeInput
@@ -153,20 +131,12 @@ function PriorityDropdown() {
                 onClick={() => handleDropdown(idx)}
                 value={input_[idx]}
               />
-
-              {isOpenDropDown[idx] ? (
-                <DropDownIconWrapper>
-                  <DropUpIc />{' '}
-                </DropDownIconWrapper>
-              ) : (
-                <DropDownIconWrapper>
-                  <DropDownIc />
-                </DropDownIconWrapper>
-              )}
-
+              <DropDownIconWrapper>
+                {isOpenDropDown[idx] ? <DropUpIc /> : <DropDownIc />}
+              </DropDownIconWrapper>
               {isOpenDropDown[idx] && (
                 <DropdownWrapper>
-                  {Object.entries(selectedSlots).map(
+                  {sortedSlots.map(
                     ([key, value]) =>
                       !value.priority && (
                         <DropDownItem key={key} onClick={() => handlePriority(idx, value, key)}>
@@ -222,9 +192,6 @@ const TextWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 `;
-const Circle1Icon = styled(Circle1Ic)``;
-const Circle2Icon = styled(Circle2Ic)``;
-const Circle3Icon = styled(Circle3Ic)``;
 
 const InputWrapper = styled.div`
   position: relative;
