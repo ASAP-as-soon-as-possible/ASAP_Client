@@ -9,13 +9,13 @@ import Text from '../atomComponents/Text';
  * @param {mainText}
  * @param {subText}
  */
-interface ASAPBasicComponent {
+interface CheckPointProps {
   imgURL: string;
   mainText: string;
   subText: string;
 }
 
-const ASAPBasicComponent = ({ imgURL, mainText, subText }: ASAPBasicComponent) => {
+const CheckPoint = ({ imgURL, mainText, subText }: CheckPointProps) => {
   return (
     <>
       <ImageSection src={imgURL} />
@@ -31,7 +31,7 @@ const ASAPBasicComponent = ({ imgURL, mainText, subText }: ASAPBasicComponent) =
   );
 };
 
-export default ASAPBasicComponent;
+export default CheckPoint;
 
 const ImageSection = styled.img`
   margin-top: 10.7rem;
