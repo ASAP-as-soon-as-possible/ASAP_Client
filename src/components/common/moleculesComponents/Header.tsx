@@ -13,7 +13,7 @@ import { notify } from 'utils/toast/copyLinkToast';
 
 import Navigation from './Navigation';
 
-import Tooltip from '../atomComponents/Tooltip';
+import Tooltip from '../../../pages/completeCreateMeeting/components/Tooltip';
 
 interface HeaderProps {
   position?: string;

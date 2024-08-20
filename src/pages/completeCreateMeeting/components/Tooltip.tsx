@@ -2,7 +2,7 @@ import { TooltipArrowIc } from 'components/Icon/icon';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
-import Text from './Text';
+import Text from '../../../components/common/atomComponents/Text';
 
 interface TooltipPropTypes {
   tooltipText: string;
