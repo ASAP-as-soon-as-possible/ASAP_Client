@@ -41,7 +41,7 @@ function TextInput({ value, setValue, resetValue, max, placeholder }: ValueProps
           value.length > max && (
             <SubTextSection>
               <Text font={'body4'} color={`${theme.colors.red}`}>
-                `공백포함 최대 ${String(max)}자까지 입력가능해요`
+                {`공백포함 최대 ${String(max)}자까지 입력가능해요`}
               </Text>
             </SubTextSection>
           )}

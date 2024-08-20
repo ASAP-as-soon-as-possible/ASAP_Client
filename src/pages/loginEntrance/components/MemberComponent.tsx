@@ -57,6 +57,7 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
             value={hostInfo.name}
             setValue={hostOnChange}
             resetValue={resetHostId}
+            max={6}
             placeholder={'참여자 이름'}
           />
         </HostNameSection>
