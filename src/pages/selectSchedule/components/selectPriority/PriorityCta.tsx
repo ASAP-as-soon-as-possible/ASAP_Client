@@ -7,6 +7,7 @@ import styled from 'styled-components';
 
 function PriorityCta() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <>
       <BtnDim>
