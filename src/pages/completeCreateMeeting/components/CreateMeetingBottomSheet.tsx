@@ -5,7 +5,7 @@ import Text from 'components/common/atomComponents/Text';
 import BottomSheet from 'components/common/BottomSheet/BottomSheet';
 import useModalState from 'components/common/Modal/hooks/useModalState';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 

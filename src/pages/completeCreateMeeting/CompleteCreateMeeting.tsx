@@ -6,7 +6,7 @@ import Header from 'components/common/moleculesComponents/Header';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 
-import CreateMeetingBottomSheet from './CreateMeetingBottomSheet';
+import CreateMeetingBottomSheet from './components/CreateMeetingBottomSheet';
 
 const CompleteCreateMeeting = () => {
   const { meetingId } = useParams();
