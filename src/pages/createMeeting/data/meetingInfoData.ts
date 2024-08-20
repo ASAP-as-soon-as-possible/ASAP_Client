@@ -7,7 +7,27 @@ export const durationType = [
   { time: '3시간', enum: 'THREE_HOUR' },
 ];
 
-export const placeType = ['ONLINE', 'OFFLINE', 'UNDEFINED'];
+type PlaceType = {
+  [key: string]: string;
+};
+export const placeType: PlaceType = {
+  ONLINE: '온라인',
+  OFFLINE: '오프라인',
+  UNDEFINED: '미정',
+};
+
+type weekDayType = {
+  [key: string]: string;
+};
+export const weekDayType: weekDayType = {
+  MON: '월',
+  TUE: '화',
+  WED: '수',
+  THU: '목',
+  FRI: '금',
+  SAT: '토',
+  SUN: '일',
+};
 
 export const preferTimeType = [
   {

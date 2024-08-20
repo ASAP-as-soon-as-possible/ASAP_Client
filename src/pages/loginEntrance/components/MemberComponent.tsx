@@ -1,16 +1,16 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
+import { userNameAtom } from 'atoms/atom';
 import Button from 'components/common/atomComponents/Button';
-import Header from 'components/common/moleculesComponents/Header';
 import Text from 'components/common/atomComponents/Text';
 import TextInput from 'components/common/atomComponents/TextInput';
+import Header from 'components/common/moleculesComponents/Header';
 import TitleComponent from 'components/common/moleculesComponents/TitleComponents';
+import { useParams } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router';
-import { useRecoilState } from 'recoil';
-import { userNameAtom } from 'atoms/atom';
 
 interface HostInfoProps {
   name: string;
@@ -38,7 +38,7 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
 
   const loginMember = () => {
     setUserName(hostInfo.name);
-    navigate(`/member/select/${meetingId}`);
+    navigate(`/member/select/${meetingId}?step=selectSchedule`);
   };
 
   return (

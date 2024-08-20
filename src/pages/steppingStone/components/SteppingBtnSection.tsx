@@ -1,4 +1,5 @@
 
+
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
 import CopyToClipboard from 'react-copy-to-clipboard';
@@ -14,6 +15,7 @@ interface SteppingProps {
 
 function SteppingBtnSection({ steppingType }: SteppingProps) {
   const { meetingId } = useParams();
+
 
   return (
     <>
@@ -79,3 +81,5 @@ const StyledBtnSection = styled.section`
   width: 100%;
   
 `;
+
+

@@ -37,16 +37,6 @@ function SteppingLayout({ steppingType }: SteppingProps) {
     [steppingType],
   );
 
-  const handlePopstate = () => {
-    navigate('/');
-  };
-
-  useEffect(() => {
-    return () => {
-      window.addEventListener('popstate', handlePopstate);
-    };
-  }, []);
-
   return (
     <>
       <SteppingWrapper>

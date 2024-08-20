@@ -78,7 +78,7 @@ function OnBoarding() {
           </SwiperContext>
         </SwiperSection>
         <ButtonSection>
-          <Link to={'/meet/create'}>
+          <Link to={'/meet/create?step=title'}>
             <Button typeState={'primaryActive'}>
               <Text font={'button2'}>약속 생성하기</Text>
             </Button>

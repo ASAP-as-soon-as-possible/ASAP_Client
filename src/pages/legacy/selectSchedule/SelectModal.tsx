@@ -40,6 +40,9 @@ function SelectModal({ setShowModal }: ModalProps) {
       if (isAxiosError(e) && e.response) {
         if (e.response.status === 400) {
           alert(`${e.response.data.message}`);
+        } else if (e.response.status === 409) {
+          alert(`${e.response.data.message}`);
+          navigate(`/host/${meetingId}`);
         } else {
           alert(`${e.response.data.message}`);
           console.error(e);
