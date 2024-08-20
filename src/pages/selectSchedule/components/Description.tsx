@@ -65,17 +65,16 @@ export default Description;
 
 const DescriptionWrapper = styled.div`
   display: flex;
-  position: relative;
-  margin: 2rem 0;
+  margin: 0.6rem 0 2.4rem;
+  width: 100%;
 `;
 
 const Texts = styled.div`
   display: flex;
   flex-direction: column;
-  border-radius: 0.8rem;
   background-color: ${theme.colors.grey9};
   padding: 1.5rem 2.4rem;
-  width: 33.5rem;
+  width: 100%;
 `;
 const OneLine = styled.div`
   display: flex;
