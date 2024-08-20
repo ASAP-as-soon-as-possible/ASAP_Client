@@ -12,7 +12,7 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   return (
     <SetPlaceWrapper>
       <PlaceInfoSection>
-        {placeType.map((type, i) => {
+        {Object.keys(placeType).map((type, i) => {
           return (
             <PlaceSection key={i + type}>
               <Button
