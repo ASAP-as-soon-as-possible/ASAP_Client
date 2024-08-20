@@ -7,7 +7,7 @@ import html2canvas from 'html2canvas';
 import CueCardTitle from 'pages/cueCard/components/CueCardTitle';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import styled from 'styled-components';
-import { downLoadNotify, notify } from 'utils/toast/copyLink';
+import { downLoadNotify, notify } from 'utils/toast/copyLinkToast';
 
 import Qcard from './components/Qcard';
 
