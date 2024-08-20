@@ -29,6 +29,7 @@ import { ReactComponent as SpeechBubbleIc } from 'assets/svgs/speechBubble.svg';
 import { ReactComponent as TimeIc } from 'assets/svgs/time.svg';
 import { ReactComponent as TooltipArrowIc } from 'assets/svgs/tooltipArrow.svg';
 import { ReactComponent as Wave } from 'assets/svgs/wave.svg';
+//git test
 
 export {
   ArrowBottomIc,
