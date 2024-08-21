@@ -56,10 +56,14 @@ const SetTitleWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 `;
 
 const StyledBtnSection = styled.section`
-  position: fixed;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   bottom: 1.2rem;
   border-radius: 50%;
 `;

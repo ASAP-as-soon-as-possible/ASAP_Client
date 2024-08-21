@@ -6,7 +6,6 @@ import './utils/changeBrowser';
 import { useEffect } from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import styled, { ThemeProvider } from 'styled-components';
 import ToastContainerBox from 'utils/toast/ToastContainer';
 
@@ -60,7 +59,7 @@ function App() {
             <Router />
             <ToastContainerBox />
           </MobileWrapper>
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>
       </ThemeProvider>
     </>
