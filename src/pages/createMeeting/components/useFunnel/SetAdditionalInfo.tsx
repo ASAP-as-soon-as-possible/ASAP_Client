@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { isAxiosError } from 'axios';
 import Button from 'components/common/atomComponents/Button';
@@ -138,12 +138,16 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo }: FunnelProps) {
 export default SetAdditionalInfo;
 
 const SetAdditionalInfoWrapper = styled.div`
+width:100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `;
 
 const StyledBtnWrapper = styled.section`
+  width:100%;
+  display: flex;
+  justify-content:center;
   position: fixed;
   bottom: 1.2rem;
   border-radius: 50%;
