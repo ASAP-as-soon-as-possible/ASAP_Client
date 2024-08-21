@@ -185,16 +185,17 @@ const RangeInputBox = styled.div<{ $isClicked: boolean }>`
   width: 100%;
   height: 5.2rem;
 
+  cursor: pointer;
   color: ${({ theme }) => theme.colors.white};
 `;
 const Input = styled.input`
   appearance: none;
-  margin: 1.5rem 0 1.5rem 1.6rem;
   background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='10' stroke='%23D9D9D9' stroke-width='2'/%3E%3C/svg%3E%0A");
   background-repeat: no-repeat;
-  width: 2.2rem;
+  width: 3.2rem;
   height: 2.2rem;
-
+  margin-left: 1.5rem;
+  cursor: pointer;
   &:checked {
     background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='11' fill='%233C49FF'/%3E%3Ccircle cx='11' cy='11' r='4' fill='white'/%3E%3C/svg%3E ");
   }
@@ -205,9 +206,10 @@ const Input = styled.input`
 const Label = styled.label`
   display: flex;
   align-items: center;
-  margin-left: 1.2rem;
+  padding: 0 1.2rem;
   height: 5rem;
-
+  width: 100%;
+  cursor: pointer;
   ${({ theme }) => theme.fonts.button1};
   color: ${({ theme }) => theme.colors.grey6};
 `;
