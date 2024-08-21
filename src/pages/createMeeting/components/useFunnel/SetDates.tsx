@@ -27,7 +27,6 @@ const months = [
 const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
 const dateRangeFormat = 'YYYY/MM/DD/ddd';
 function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
-  // const [multiple, setMultiple] = useState(false);
   const [multiple, setMultiple] = useRecoilState(methodStateAtom);
   return (
     <SetDatesWrapper>
@@ -76,10 +75,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             shadow={false}
             showOtherDays
             weekDays={weekDays}
-            headerOrder={['YEAR_MONTH']}
-            // formatYear={(year, month) => {
-            //   return 'Year' + year;
-            // }}
+            headerOrder={['LEFT_BUTTON', 'YEAR_MONTH', 'RIGHT_BUTTON']}
             monthYearSeparator={'년 '}
             className="bg-dark"
             range={!multiple}
