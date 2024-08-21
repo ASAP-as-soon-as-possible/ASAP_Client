@@ -37,6 +37,9 @@ const CompleteCreateMeeting = () => {
 export default CompleteCreateMeeting;
 
 const BtnWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
   position: absolute;
   bottom: 1.2rem;
 `;
