@@ -43,7 +43,7 @@
 
 .rmdp-day-picker > div > div:first-child {
   margin-bottom: 0.7rem;
-  border-bottom: 0.5px solid white;
+  /* border-bottom: 0.5px solid white; */
 }
 
 /* .rmdp-week {
