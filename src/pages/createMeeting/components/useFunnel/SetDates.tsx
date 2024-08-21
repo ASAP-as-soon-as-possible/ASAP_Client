@@ -155,18 +155,22 @@ const SetDatesWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 `;
 
 const StyledBtnSection = styled.section`
+  display: flex;
+  justify-content: center;
   position: fixed;
   bottom: 1.2rem;
-  z-index: 3;
+  width: 100%;
 `;
 const DateSelectorWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 `;
 
 const RangeInputBox = styled.div<{ $isClicked: boolean }>`
@@ -177,7 +181,7 @@ const RangeInputBox = styled.div<{ $isClicked: boolean }>`
   border-radius: 0.8rem;
   border-color: ${({ $isClicked, theme }) =>
     $isClicked ? theme.colors.grey5 : theme.colors.main1};
-  width: 33.5rem;
+  width: 100%;
   height: 5.2rem;
 
   color: ${({ theme }) => theme.colors.white};
@@ -202,7 +206,7 @@ const Label = styled.label`
   align-items: center;
   margin-left: 1.2rem;
   height: 5rem;
-  width: 28rem;
+
   ${({ theme }) => theme.fonts.button1};
   color: ${({ theme }) => theme.colors.grey6};
 `;
@@ -216,7 +220,7 @@ const MultipleInputBox = styled.div<{ $isClicked: boolean }>`
   border-color: ${({ $isClicked, theme }) =>
     $isClicked ? theme.colors.main1 : theme.colors.grey5};
   background-color: transparent;
-  width: 33.5rem;
+  width: 100%;
   height: 5.2rem;
   color: ${({ theme }) => theme.colors.white};
 `;
@@ -224,7 +228,7 @@ const MultipleInputBox = styled.div<{ $isClicked: boolean }>`
 const InputContianer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: left;
+  width: 100%;
   margin-bottom: 3rem;
   div:first-child {
     margin-bottom: 1.1rem;
