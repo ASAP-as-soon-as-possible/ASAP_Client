@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
@@ -168,6 +168,7 @@ const BasicIconContainer = styled.div`
   height: 3rem;
 `;
 const BtnWrapper = styled.div`
+  width: 100%;
   position: fixed;
   bottom: 1.2rem;
   border-radius: 50%;
