@@ -76,6 +76,11 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             shadow={false}
             showOtherDays
             weekDays={weekDays}
+            headerOrder={['YEAR_MONTH']}
+            // formatYear={(year, month) => {
+            //   return 'Year' + year;
+            // }}
+            monthYearSeparator={'년 '}
             className="bg-dark"
             range={!multiple}
             multiple={multiple}

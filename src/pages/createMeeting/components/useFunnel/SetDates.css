@@ -197,3 +197,7 @@
 .rmdp-day.rmdp-disabled.rmdp-deactive {
   color: var(--rmdp-grey10) !important;
 }
+
+.rmdp-header-values.rmdp-header-values span {
+  padding: 0px;
+}
