@@ -57,6 +57,9 @@ const SetAdditionalInfoWrapper = styled.div`
 `;
 
 const StyledBtnWrapper = styled.section`
+  width: 100%;
+  display: flex;
+  justify-content: center;
   position: fixed;
   bottom: 1.2rem;
 `;
