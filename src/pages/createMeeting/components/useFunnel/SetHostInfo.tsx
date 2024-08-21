@@ -25,7 +25,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
       if (e.target.value.length < 9) {
         return { ...prev, password: e.target.value };
       }
-      alert('비밀번호는 8자리 이하로 말해주세요');
+      alert('비밀번호는 8자리 이하로 설정해주세요.');
       return { ...prev };
     });
   };
@@ -99,6 +99,9 @@ const SetHostInfoWrapper = styled.div`
 `;
 
 const StyledBtnSection = styled.section`
+  display: flex;
+  justify-content: center;
+  width: 100%;
   position: fixed;
   bottom: 1.2rem;
   border-radius: 50%;
@@ -113,5 +116,4 @@ const HostInfoSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.4rem;
-  padding: 0 2rem;
 `;

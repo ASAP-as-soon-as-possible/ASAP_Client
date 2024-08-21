@@ -78,7 +78,7 @@ const StyledPasswordInput = styled.input<{ $iserror: boolean }>`
   background: ${({ theme }) => theme.colors.grey7};
   padding: 1rem 1.6rem;
 
-  width: 33.5rem;
+  width: 100%;
   height: 5.2rem;
 
   caret-color: ${({ theme }) => theme.colors.main1};
