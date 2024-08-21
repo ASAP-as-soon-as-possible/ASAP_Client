@@ -63,17 +63,23 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
 
 export default SetPlace;
 
-const SetPlaceWrapper = styled.div``;
-
+const SetPlaceWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+`;
 const StyledBtnSection = styled.section`
   position: fixed;
   bottom: 1.2rem;
   border-radius: 50%;
+  width: 100%;
 `;
 
 const PlaceInfoSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 `;
 const PlaceSection = styled.section``;

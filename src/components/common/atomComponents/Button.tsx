@@ -31,7 +31,7 @@ const buttonDefaultCSS = {
     max-width: 39rem;
     height: 5.4rem;
     letter-spacing: -0.032rem;
-    margin: 0 2rem;
+    /* margin: 0 2rem; */
     pointer-events: auto;
   `,
 };
