@@ -9,7 +9,7 @@ import PointPng from 'assets/images/point.png';
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
 import Header from 'components/common/moleculesComponents/Header';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -44,11 +44,15 @@ const slides = [
 ];
 
 function OnBoarding() {
+  const navigate = useNavigate();
+  const handleCreateMeeting = () => {
+    navigate('/meet/create?step=title');
+  };
   return (
     <>
       <OnboardingWrapper>
         <Header position={'onBoarding'} />
-        <SwiperSection>
+        <>
           <SwiperContext>
             <Swiper
               spaceBetween={30}
@@ -76,13 +80,11 @@ function OnBoarding() {
               ))}
             </Swiper>
           </SwiperContext>
-        </SwiperSection>
+        </>
         <ButtonSection>
-          <Link to={'/meet/create?step=title'}>
-            <Button typeState={'primaryActive'}>
-              <Text font={'button2'}>약속 생성하기</Text>
-            </Button>
-          </Link>
+          <Button typeState={'primaryActive'} onClick={handleCreateMeeting}>
+            <Text font={'button2'}>약속 생성하기</Text>
+          </Button>
         </ButtonSection>
       </OnboardingWrapper>
     </>
@@ -92,6 +94,10 @@ function OnBoarding() {
 export default OnBoarding;
 
 const OnboardingWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
   width: 100%;
 `;
 
@@ -99,8 +105,6 @@ const SwiperContext = styled.div`
   width: 100%;
   height: 50rem;
 `;
-
-const SwiperSection = styled.section``;
 
 const StyledSwiperSlide = styled(SwiperSlide)`
   display: flex;
@@ -118,5 +122,8 @@ const ExplainContainer = styled.section``;
 
 const ButtonSection = styled.section`
   position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: center;
   bottom: 1.2rem;
 `;
