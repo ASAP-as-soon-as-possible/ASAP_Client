@@ -75,7 +75,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
     }
   };
   return (
-    <>
+    <HostComponentWrapper>
       <Header position={'login'} />
       <TitleComponent main={'방장 정보를 알려주세요'} sub={''} />
       <HostInfoSection>
@@ -118,14 +118,23 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
       ) : (
         undefined
       )}
-    </>
+    </HostComponentWrapper>
   );
 }
 
 export default HostComponent;
 
+const HostComponentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+`;
+
 const StyledBtnSection = styled.section`
+  width: 100%;
   position: fixed;
+  max-width: 39rem;
   bottom: 1.2rem;
   border-radius: 50%;
 `;
@@ -134,9 +143,12 @@ const HostNameSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 `;
 const HostInfoSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.4rem;
+
+  width: 100%;
 `;
