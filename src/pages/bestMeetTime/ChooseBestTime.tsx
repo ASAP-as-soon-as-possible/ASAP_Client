@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Header from 'components/common/moleculesComponents/Header';
 import BestMeetTime from 'pages/bestMeetTime/components/BestMeetTime';
@@ -38,6 +38,7 @@ const ViewPickerWrapper = styled.div`
 `;
 
 const ChangeViewPicker = styled.div<{ $isClicked: boolean }>`
+  cursor: pointer;
   display: flex;
   justify-content: center;
   margin-top: 2.5rem;
