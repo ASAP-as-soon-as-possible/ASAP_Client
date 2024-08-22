@@ -34,7 +34,7 @@ const BottomSheetModal = styled.div<{ $isModalOpen: boolean }>`
 
   padding: 4.4rem 2rem 4rem;
   width: 100%;
-  max-width: 39rem;
+  max-width: 41rem;
 
   & button {
     width: 100%;
