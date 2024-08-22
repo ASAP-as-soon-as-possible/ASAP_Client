@@ -75,13 +75,13 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
 
 export default MemberComponent;
 
-const StyledBtnSection = styled.section`
+const StyledBtnSection = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
   position: fixed;
   bottom: 1.2rem;
-  border-radius: 50%;
+  padding: 0 2rem;
 `;
 
 const HostNameSection = styled.section`
