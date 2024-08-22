@@ -65,11 +65,13 @@ export default SetPlace;
 
 const SetPlaceWrapper = styled.div`
   display: flex;
-  flex-direction: column;
   justify-content: center;
+
   width: 100%;
 `;
 const StyledBtnSection = styled.section`
+  display: flex;
+  justify-content: center;
   position: fixed;
   bottom: 1.2rem;
   border-radius: 50%;
