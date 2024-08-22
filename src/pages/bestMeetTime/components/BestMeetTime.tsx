@@ -21,14 +21,14 @@ function BestMeetTime() {
   const [selected, setSelected] = useState(0);
   const [showModal, setShowModal] = useState<boolean>(false);
   const { meetingId } = useParams();
-  const { isloading, bestTimeData, isError } = GetBestMeetimeListHooks(
+  const { isLoading, bestTimeData, isError } = GetBestMeetimeListHooks(
     (meetingId as unknown) as string,
   );
   const navigate = useNavigate();
   if (isError) {
     navigate(`/*`);
   }
-  if (isloading) {
+  if (isLoading) {
     return (
       <LoadingWrapper>
         <LoadingPage />
@@ -124,6 +124,8 @@ function BestMeetTime() {
 export default BestMeetTime;
 
 const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   position: relative;
   top: 25rem;
   width: 100%;

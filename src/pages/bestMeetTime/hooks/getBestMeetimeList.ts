@@ -6,7 +6,7 @@ import { DateTimeData } from '../types/meetCardData';
 
 const GetBestMeetimeListHooks = (meetingId: string) => {
   const [isError, setIsError] = useState(false);
-  const [isloading, setIsloading] = useState(true);
+  const [isLoading, setIsloading] = useState(true);
   const [bestTimeData, setBestTimeData] = useState<DateTimeData>();
 
   const getBestMeetimeList = async () => {
@@ -27,7 +27,7 @@ const GetBestMeetimeListHooks = (meetingId: string) => {
     },
     [meetingId],
   );
-  return { isloading, bestTimeData, isError };
+  return { isLoading, bestTimeData, isError };
 };
 
 export default GetBestMeetimeListHooks;
