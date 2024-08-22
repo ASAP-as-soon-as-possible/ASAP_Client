@@ -1,5 +1,6 @@
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import { durationType } from 'pages/createMeeting/data/meetingInfoData';
 import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components';
@@ -26,7 +27,7 @@ function SetDuration({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           );
         })}
       </DurationWrapper>
-      <StyledBtnWrapper>
+      <BottomBtnSection>
         <Button
           typeState={meetingInfo.duration ? 'primaryActive' : 'primaryDisabled'}
           onClick={
@@ -43,7 +44,7 @@ function SetDuration({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         >
           <Text font={'button2'}>다음</Text>
         </Button>
-      </StyledBtnWrapper>
+      </BottomBtnSection>
     </SetAdditionalInfoWrapper>
   );
 }
@@ -54,14 +55,6 @@ const SetAdditionalInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-const StyledBtnWrapper = styled.section`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  bottom: 1.2rem;
 `;
 
 const DurationWrapper = styled.div`

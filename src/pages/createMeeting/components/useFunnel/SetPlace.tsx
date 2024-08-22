@@ -1,6 +1,7 @@
 import Button from 'components/common/atomComponents/Button';
 import PlaceInput from 'components/common/atomComponents/PlaceInput';
 import Text from 'components/common/atomComponents/Text';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import { placeType } from 'pages/createMeeting/data/meetingInfoData';
 import { FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components';
@@ -39,7 +40,7 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           );
         })}
       </PlaceInfoSection>
-      <StyledBtnSection>
+      <BottomBtnSection>
         <Button
           typeState={meetingInfo.place ? 'primaryActive' : 'primaryDisabled'}
           onClick={
@@ -56,7 +57,7 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         >
           <Text font={'button2'}>다음</Text>
         </Button>
-      </StyledBtnSection>
+      </BottomBtnSection>
     </SetPlaceWrapper>
   );
 }
@@ -67,14 +68,6 @@ const SetPlaceWrapper = styled.div`
   display: flex;
   justify-content: center;
 
-  width: 100%;
-`;
-const StyledBtnSection = styled.section`
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  bottom: 1.2rem;
-  border-radius: 50%;
   width: 100%;
 `;
 

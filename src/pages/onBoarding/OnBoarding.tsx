@@ -8,6 +8,7 @@ import MakePng from 'assets/images/make.png';
 import PointPng from 'assets/images/point.png';
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import Header from 'components/common/moleculesComponents/Header';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -73,19 +74,19 @@ function OnBoarding() {
                   {/* <SvgContainer>{slide.icon}</SvgContainer> */}
                   {/* 로딩 속도로 차선책 png code */}
                   <SvgContainer>{slide.icon}</SvgContainer>
-                  <ExplainContainer>
+                  <>
                     <Explain main={slide.main} sub1={slide.sub1} sub2={slide.sub2} />
-                  </ExplainContainer>
+                  </>
                 </StyledSwiperSlide>
               ))}
             </Swiper>
           </SwiperContext>
         </>
-        <ButtonSection>
+        <BottomBtnSection>
           <Button typeState={'primaryActive'} onClick={handleCreateMeeting}>
             <Text font={'button2'}>약속 생성하기</Text>
           </Button>
-        </ButtonSection>
+        </BottomBtnSection>
       </OnboardingWrapper>
     </>
   );
@@ -116,14 +117,4 @@ const SvgContainer = styled.section`
     width: 33rem;
     height: 33rem;
   }
-`;
-
-const ExplainContainer = styled.section``;
-
-const ButtonSection = styled.section`
-  position: fixed;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  bottom: 1.2rem;
 `;

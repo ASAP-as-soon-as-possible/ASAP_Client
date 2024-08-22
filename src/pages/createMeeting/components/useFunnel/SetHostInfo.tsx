@@ -4,6 +4,7 @@ import Button from 'components/common/atomComponents/Button';
 import PasswordInput from 'components/common/atomComponents/PasswordInput';
 import Text from 'components/common/atomComponents/Text';
 import TextInput from 'components/common/atomComponents/TextInput';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
@@ -70,7 +71,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           />
         </HostNameSection>
       </HostInfoSection>
-      <StyledBtnSection>
+      <BottomBtnSection>
         <Button
           typeState={
             meetingInfo.name && meetingInfo.password.length >= 4
@@ -85,7 +86,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         >
           <Text font={'button2'}>다음</Text>
         </Button>
-      </StyledBtnSection>
+      </BottomBtnSection>
     </SetHostInfoWrapper>
   );
 }
@@ -96,15 +97,6 @@ const SetHostInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-const StyledBtnSection = styled.section`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  position: fixed;
-  bottom: 1.2rem;
-  border-radius: 50%;
 `;
 
 const HostNameSection = styled.section`

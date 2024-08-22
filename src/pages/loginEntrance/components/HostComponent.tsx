@@ -5,6 +5,7 @@ import Button from 'components/common/atomComponents/Button';
 import PasswordInput from 'components/common/atomComponents/PasswordInput';
 import Text from 'components/common/atomComponents/Text';
 import TextInput from 'components/common/atomComponents/TextInput';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import Header from 'components/common/moleculesComponents/Header';
 import TitleComponent from 'components/common/moleculesComponents/TitleComponents';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -102,7 +103,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
           />
         </HostNameSection>
       </HostInfoSection>
-      <StyledBtnSection>
+      <BottomBtnSection>
         <Button
           typeState={
             hostInfo.name && hostInfo.password.length >= 4 ? 'primaryActive' : 'primaryDisabled'
@@ -111,7 +112,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
         >
           <Text font={'button2'}>방장 페이지 접속하기</Text>
         </Button>
-      </StyledBtnSection>
+      </BottomBtnSection>
       {ismodalOpen ? <NoAvailableTimeModal setIsModalOpen={setIsModalOpen} /> : undefined}
       {isLoginModalOpen ? (
         <IncorrectInfoModal setIsLoginModalOpen={setIsLoginModalOpen} />
@@ -129,14 +130,7 @@ const HostComponentWrapper = styled.div`
   flex-direction: column;
 
   align-items: center;
-`;
-
-const StyledBtnSection = styled.section`
   width: 100%;
-  position: fixed;
-  max-width: 39rem;
-  bottom: 1.2rem;
-  border-radius: 50%;
 `;
 
 const HostNameSection = styled.section`

@@ -77,12 +77,6 @@ function SteppingBody({ steppingType, meetingTitle }: SteppingProps) {
 
 export default SteppingBody;
 
-// const LinkToolTipIcon = styled(LinkTooltipIc)`
-//   position: relative;
-//   left: 10.3rem;
-//   cursor: pointer;
-// `;
-
 const ImageSection = styled.section`
   display: flex;
   align-items: center;

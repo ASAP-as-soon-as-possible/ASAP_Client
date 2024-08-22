@@ -2,12 +2,12 @@
 
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { notify } from 'utils/toast/copyLinkToast';
-
 
 interface SteppingProps {
   steppingType: string;
@@ -16,19 +16,18 @@ interface SteppingProps {
 function SteppingBtnSection({ steppingType }: SteppingProps) {
   const { meetingId } = useParams();
 
+  const navigate=useNavigate();
 
   return (
     <>
-      <StyledBtnSection>
+      <BottomBtnSection>
         {
           {
             hostScheduleComplete: (
               <>
-                <Link to={`/host/${meetingId}`}>
-                  <Button typeState={'halfTertiaryActive'}>
+                  <Button typeState={'halfTertiaryActive'} onClick={()=>navigate(`/host/${meetingId}`)}>
                     <Text font={'button2'}>방장페이지 입장</Text>
                   </Button>
-                </Link>
                 <CopyToClipboard
                   text={`${import.meta.env.VITE_WEB_IP}/meet/${meetingId}`}
                 >
@@ -40,30 +39,24 @@ function SteppingBtnSection({ steppingType }: SteppingProps) {
             ),
             meetEntrance: (
               <>
-                <Link to={`/login/host/${meetingId}`}>
-                  <Button typeState={'halfSecondaryActive'}>
+                  <Button typeState={'halfSecondaryActive'} onClick={()=>navigate(`/login/host/${meetingId}`)}>
                     <Text font={'button2'}>방장 입장하기</Text>
                   </Button>
-                </Link>
-                <Link to={`/login/member/${meetingId}`}>
-                  <Button typeState={'halfPrimaryActive'}>
+                  <Button typeState={'halfPrimaryActive'} onClick={()=>navigate(`/login/member/${meetingId}`)}>
                     <Text font={'button2'}>팀원 입장하기</Text>
                   </Button>
-                </Link>
               </>
             ),
             memberScheduleComplete: (
               <>
-                <Link to={`/`}>
-                  <Button typeState={'primaryActive'}>
+                  <Button typeState={'primaryActive'} onClick={()=>navigate("/")}>
                     <Text font={'button2'}>홈으로 돌아가기</Text>
                   </Button>
-                </Link>
               </>
             ),
           }[steppingType]
         }
-      </StyledBtnSection>
+      </BottomBtnSection>
     </>
   );
 }

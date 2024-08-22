@@ -5,6 +5,7 @@ import './SetDates.css';
 import { methodStateAtom } from 'atoms/atom';
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import { Calendar, DateObject, getAllDatesInRange } from 'react-multi-date-picker';
 import { useRecoilState } from 'recoil';
@@ -118,7 +119,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           />
         </CalendarWrapper>
       </DateSelectorWrapper>
-      <StyledBtnSection>
+      <BottomBtnSection>
         <Button
           typeState={
             (meetingInfo.availableDates.length > 1 && meetingInfo.availableDates.length < 8) ||
@@ -145,7 +146,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         >
           <Text font={'button2'}>다음</Text>
         </Button>
-      </StyledBtnSection>
+      </BottomBtnSection>
     </SetDatesWrapper>
   );
 }
@@ -159,13 +160,6 @@ const SetDatesWrapper = styled.div`
   width: 100%;
 `;
 
-const StyledBtnSection = styled.section`
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  bottom: 1.2rem;
-  width: 100%;
-`;
 const DateSelectorWrapper = styled.div`
   display: flex;
   flex-direction: column;

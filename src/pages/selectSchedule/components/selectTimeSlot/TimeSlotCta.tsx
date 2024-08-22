@@ -51,8 +51,7 @@ const BtnDim = styled.div`
 
   margin-top: 3rem;
   background: ${({ theme }) => theme.colors.dim_gradient};
-  padding-bottom: 2.9rem;
-
+  padding: 0 2rem 2.9rem 2rem;
   width: 100%;
   height: 16.4rem;
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import { DropDown, DropUp } from 'components/Icon/icon';
 import BestTimeCard from 'pages/bestMeetTime/components/BestTimeCard';
 import ConfirmModal from 'pages/bestMeetTime/components/ConfirmModal';
@@ -104,11 +105,11 @@ function BestMeetTime() {
           ) : null}
         </AlternativeSection>
       ) : null}
-      <BtnWrapper>
+      <BottomBtnSection>
         <Button typeState={'primaryActive'} onClick={() => setShowModal(true)}>
           <Text font={'title2'}> 확정</Text>
         </Button>
-      </BtnWrapper>
+      </BottomBtnSection>
       {showModal &&
         bestMeetimeObj && (
           <ConfirmModal
