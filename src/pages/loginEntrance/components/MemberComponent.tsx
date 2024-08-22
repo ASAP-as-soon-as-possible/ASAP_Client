@@ -76,6 +76,9 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
 export default MemberComponent;
 
 const StyledBtnSection = styled.section`
+  display: flex;
+  justify-content: center;
+  width: 100%;
   position: fixed;
   bottom: 1.2rem;
   border-radius: 50%;
@@ -85,9 +88,12 @@ const HostNameSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 `;
 const HostInfoSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.4rem;
+
+  width: 100%;
 `;
