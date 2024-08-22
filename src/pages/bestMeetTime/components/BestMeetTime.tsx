@@ -129,7 +129,10 @@ const LoadingWrapper = styled.div`
   width: 100%;
 `;
 const BestMeetTimeWrapper = styled.div<{ $state: boolean }>`
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  align-items: center;
 `;
 const TitleSection = styled.article`
   display: flex;
@@ -158,6 +161,7 @@ const AlternativeSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  width: 100%;
 `;
 const BasicIconContainer = styled.div`
   display: flex;
@@ -168,8 +172,9 @@ const BasicIconContainer = styled.div`
   height: 3rem;
 `;
 const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   width: 100%;
   position: fixed;
   bottom: 1.2rem;
-  border-radius: 50%;
 `;

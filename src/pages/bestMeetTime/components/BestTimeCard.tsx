@@ -47,6 +47,7 @@ const BestTimeCardWrapper = styled.article<{ $rank: number; $selected: number }>
   display: flex;
   position: relative;
   flex-direction: row;
+  align-items: center;
   border: 1px solid
     ${({ $rank, $selected, theme }) =>
       $rank === $selected ? theme.colors.main1 : theme.colors.grey7};
