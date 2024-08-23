@@ -25,7 +25,7 @@ function Header({ position, setFunnelStep }: HeaderProps) {
   const { scheduleStep, setScheduleStep } = useScheduleStepContext();
   const navigationOptions = [
     {
-      title: '약속 생성하기',
+      title: '회의 일정 정하기',
       url: '/meet/create',
     },
     {
