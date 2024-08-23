@@ -78,7 +78,7 @@ function Header({ position, setFunnelStep }: HeaderProps) {
   //  } else {
   //    alert("out");
   //  }
-
+//test
 
   }
   return (
