@@ -22,11 +22,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
 
   const passWordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMeetingInfo((prev: MeetingInfo) => {
-      if (e.target.value.length < 9) {
-        return { ...prev, password: e.target.value };
-      }
-      alert('비밀번호는 8자리 이하로 말해주세요');
-      return { ...prev };
+      return { ...prev, password: e.target.value };
     });
   };
 
@@ -44,6 +40,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
     }
   };
 
+  console.log(meetingInfo.password.length);
   return (
     <SetHostInfoWrapper>
       <HostInfoSection>
