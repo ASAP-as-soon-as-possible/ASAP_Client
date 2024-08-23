@@ -55,7 +55,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             value={meetingInfo.name}
             setValue={hostOnChange}
             resetValue={resetHost}
-            max={6}
+            max={8}
             placeholder={'방장 이름'}
           />
         </HostNameSection>
