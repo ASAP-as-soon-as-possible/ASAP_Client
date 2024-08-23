@@ -69,7 +69,7 @@ function SelectSchedule() {
               {isLottieOpen && (
                 <OnboardingLottie
                   onClose={onLottieClose}
-                  top={data.place === 'UNDEFINED' ? 26.3 : 29.5}
+                  top={data.place === 'UNDEFINED' ? 26.3 : 28.4}
                 />
               )}
               <SelectScheduleTable
