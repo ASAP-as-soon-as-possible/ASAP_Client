@@ -24,6 +24,7 @@ function SetTitle({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         value={meetingInfo.title}
         setValue={titleOnChange}
         resetValue={resetTitle}
+        max={15}
         placeholder={'서비스 기획 1차 회의'}
       />
       <StyledBtnSection>

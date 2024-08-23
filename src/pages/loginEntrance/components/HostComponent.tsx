@@ -87,6 +87,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
             value={hostInfo.name}
             setValue={hostOnChange}
             resetValue={resetHostId}
+            max={6}
             placeholder={'방장 이름'}
           />
         </HostNameSection>
