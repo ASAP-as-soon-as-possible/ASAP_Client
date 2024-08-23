@@ -32,7 +32,7 @@ const BottomSheetModal = styled.div<{ $isModalOpen: boolean }>`
   border-top-right-radius: 1.8rem;
   background-color: ${({ theme }) => theme.colors.grey8};
 
-  padding: 4.4rem 2rem 4rem;
+  padding: 3.6rem 2rem 4.8rem;
   width: 37.5rem;
 
   & button {
