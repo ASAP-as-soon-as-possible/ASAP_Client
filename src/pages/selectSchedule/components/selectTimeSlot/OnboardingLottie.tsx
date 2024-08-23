@@ -5,9 +5,10 @@ import styled from 'styled-components';
 
 interface OnboardingLottieProps {
   onClose: () => void;
+  top: number;
 }
 
-function OnboardingLottie({ onClose }: OnboardingLottieProps) {
+function OnboardingLottie({ onClose, top }: OnboardingLottieProps) {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -18,7 +19,7 @@ function OnboardingLottie({ onClose }: OnboardingLottieProps) {
   };
   return (
     <>
-      <OnboardingLottieWrapper>
+      <OnboardingLottieWrapper $top={top}>
         <CloseIcWrapper onClick={onClose} />
         <LottieWrapper options={defaultOptions} />
       </OnboardingLottieWrapper>
@@ -29,9 +30,9 @@ function OnboardingLottie({ onClose }: OnboardingLottieProps) {
 
 export default OnboardingLottie;
 
-const OnboardingLottieWrapper = styled.aside`
+const OnboardingLottieWrapper = styled.aside<{ $top: number }>`
   position: absolute;
-  top: 29.4rem;
+  top: ${({ $top }) => $top}rem;
   z-index: 1;
 `;
 

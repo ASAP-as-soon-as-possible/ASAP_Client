@@ -66,7 +66,12 @@ function SelectSchedule() {
                 sub={TITLES[scheduleStep].sub}
                 padding={scheduleStep === 'selectTimeSlot' ? `0 0 2.6rem` : `4.4rem 0 3.2rem 0`}
               />
-              {isLottieOpen && <OnboardingLottie onClose={onLottieClose} />}
+              {isLottieOpen && (
+                <OnboardingLottie
+                  onClose={onLottieClose}
+                  top={data.place === 'UNDEFINED' ? 26.3 : 29.3}
+                />
+              )}
               <SelectScheduleTable
                 timeSlots={getAvailableTimes({ startTime: '06:00', endTime: '24:00' })}
                 availableDates={data.availableDates}
