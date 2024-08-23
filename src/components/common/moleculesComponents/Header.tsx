@@ -9,7 +9,6 @@ import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
-import { notify } from 'utils/toast/copyLinkToast';
 
 import Navigation from './Navigation';
 
@@ -20,6 +19,7 @@ interface HeaderProps {
   setFunnelStep?: Dispatch<SetStateAction<number>>;
   setSelectScheduleStep?: Dispatch<SetStateAction<ScheduleStepType>>;
 }
+
 
 function Header({ position, setFunnelStep }: HeaderProps) {
   const { scheduleStep, setScheduleStep } = useScheduleStepContext();
@@ -59,6 +59,28 @@ function Header({ position, setFunnelStep }: HeaderProps) {
   };
 
   const { meetingId } = useParams();
+
+  const shareData = {
+    title: "ASAP",
+    text: "회의 시간을 입력해주세요",
+    url: `${import.meta.env.VITE_WEB_IP}/meet/${meetingId}`,
+  };
+
+  const handleWebShare=async()=>{
+    // if (navigator.share && navigator.canShare(shareData)) {
+    //   console.log("test");
+      try{
+        await navigator.share(shareData);
+      }
+      catch(err){
+        alert(err + "지원하지 않는 브라우저");
+      }
+  //  } else {
+  //    alert("out");
+  //  }
+
+
+  }
   return (
     <>
       <HeaderWrapper>
@@ -106,7 +128,8 @@ function Header({ position, setFunnelStep }: HeaderProps) {
           <IconWrapper>
           {(position==="completeCreateMeeting" || position==="cueCard" || position==="confirmMeet") &&
             <LinkIcWrapper>
-             <IconSection onClick={notify}>
+             {/* <IconSection onClick={notify}> */}
+             <IconSection onClick={handleWebShare}>
             <CopyToClipboard text={ position==="cueCard" ? `${import.meta.env.VITE_WEB_IP}/q-card/${meetingId}`:`${import.meta.env.VITE_WEB_IP}/meet/${meetingId}` }>
           <LinkIc/>
           </CopyToClipboard>
