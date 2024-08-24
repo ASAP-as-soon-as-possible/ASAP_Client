@@ -45,7 +45,7 @@ const buttonCSS = {
   halfPrimaryActive: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.main1};
-    /* width: 15.2rem;     width: calc((100%-14px) / 2);*/
+    width: 100%;
     max-width: 18.8rem;
     color: ${({ theme }) => theme.colors.white};
   `,
@@ -53,6 +53,7 @@ const buttonCSS = {
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.grey7};
     max-width: 18.8rem;
+    width: 100%;
     color: ${({ theme }) => theme.colors.grey4};
   `,
   primaryDisabled: css`
@@ -69,7 +70,6 @@ const buttonCSS = {
   halfSecondaryActive: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.main5};
-    /* width: 15.2rem; */
     max-width: 18.8rem;
     color: ${({ theme }) => theme.colors.grey9};
   `,
@@ -78,6 +78,7 @@ const buttonCSS = {
     background: ${({ theme }) => theme.colors.grey7};
     color: ${({ theme }) => theme.colors.grey5};
     pointer-events: none;
+    cursor: default;
   `,
   halfsecondaryDisabled: css`
     ${buttonDefaultCSS.basicCss};

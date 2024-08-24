@@ -55,11 +55,14 @@ const SetAdditionalInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 `;
 
 const DurationWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 3열로 나누기 */
+  grid-template-rows: repeat(3, 1fr); /* 2행으로 나누기 */
+  width: 100%;
   gap: 1.1rem;
 
   justify-content: center;
