@@ -52,7 +52,7 @@ const buttonCSS = {
   halfPrimaryDisabled: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.grey7};
-    width: 15.2rem;
+    max-width: 18.8rem;
     color: ${({ theme }) => theme.colors.grey4};
   `,
   primaryDisabled: css`
@@ -82,7 +82,7 @@ const buttonCSS = {
   halfsecondaryDisabled: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.grey7};
-    width: 15.2rem;
+    max-width: 18.8rem;
     color: ${({ theme }) => theme.colors.grey5};
   `,
   tertiaryActive: css`
@@ -95,7 +95,7 @@ const buttonCSS = {
     ${buttonDefaultCSS.basicCss};
     border: 1px solid ${({ theme }) => theme.colors.main3};
     background-color: ${({ theme }) => theme.colors.grey10};
-    width: 15.2rem;
+    max-width: 18.8rem;
     color: ${({ theme }) => theme.colors.main3};
   `,
   tertiaryDisabled: css`
