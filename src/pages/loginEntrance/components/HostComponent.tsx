@@ -97,7 +97,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
           </Text>
           <PasswordInput
             value={hostInfo.password}
-            placeholder={`숫자 4자 이상`}
+            placeholder={`숫자 4자 이상 8자리 이하`}
             passWordOnChange={passWordOnChange}
             page={'entrance'}
           />
