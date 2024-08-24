@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 import Text from 'components/common/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';

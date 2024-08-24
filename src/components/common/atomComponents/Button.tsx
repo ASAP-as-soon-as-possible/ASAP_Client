@@ -58,6 +58,7 @@ const buttonCSS = {
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.grey7};
     color: ${({ theme }) => theme.colors.grey4};
+    cursor: default;
   `,
   secondaryActive: css`
     ${buttonDefaultCSS.basicCss};
