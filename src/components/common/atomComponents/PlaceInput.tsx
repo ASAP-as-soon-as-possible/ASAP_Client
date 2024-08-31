@@ -51,7 +51,9 @@ function PlaceInput({ value, setValue, placeholder }: ValueProps) {
 
 export default PlaceInput;
 
-const PlaceInputWrapper = styled.div``;
+const PlaceInputWrapper = styled.div`
+  width: 100%;
+`;
 
 const InputSection = styled.div`
   display: flex;
@@ -78,7 +80,7 @@ const StyledTextInput = styled.input<{ $iserror: boolean }>`
 
   padding: 1rem 1.6rem;
 
-  width: 33.5rem;
+  width: 100%;
   height: 5.2rem;
 
   color: ${({ theme }) => theme.colors.white};

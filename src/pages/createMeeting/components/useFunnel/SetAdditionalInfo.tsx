@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { isAxiosError } from 'axios';
 import Button from 'components/common/atomComponents/Button';
@@ -6,6 +6,7 @@ import Text from 'components/common/atomComponents/Text';
 import TextAreaInput from 'components/common/atomComponents/TextAreaInput';
 import BottomSheet from 'components/common/BottomSheet/BottomSheet';
 import useModalState from 'components/common/Modal/hooks/useModalState';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import { durationType, placeType, weekDayType } from 'pages/createMeeting/data/meetingInfoData';
 import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import { useNavigate } from 'react-router-dom';
@@ -65,7 +66,7 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo }: FunnelProps) {
           setValue={textAreaOnChange}
           placeholder={'회의 안건, 준비물 등 회의와 관련하여 알리고 싶은 추가 내용을 적어 보세요.'}
         />
-        <StyledBtnWrapper>
+        <BottomBtnSection>
           <Button
             typeState={meetingInfo.additionalInfo ? 'primaryActive' : 'tertiaryActive'}
             onClick={onOpen}
@@ -74,7 +75,7 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo }: FunnelProps) {
               {meetingInfo.additionalInfo ? `회의방 생성하기` : `건너뛰기`}
             </Text>
           </Button>
-        </StyledBtnWrapper>
+        </BottomBtnSection>
       </SetAdditionalInfoWrapper>
       <BottomSheet isOpen={isOpen}>
         <BottomSheetDescription>
@@ -138,15 +139,10 @@ function SetAdditionalInfo({ meetingInfo, setMeetingInfo }: FunnelProps) {
 export default SetAdditionalInfo;
 
 const SetAdditionalInfoWrapper = styled.div`
+width:100%;
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-const StyledBtnWrapper = styled.section`
-  position: fixed;
-  bottom: 1.2rem;
-  border-radius: 50%;
 `;
 
 const BottomSheetDescription = styled.div`

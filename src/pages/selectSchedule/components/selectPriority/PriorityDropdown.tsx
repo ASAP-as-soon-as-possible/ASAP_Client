@@ -192,10 +192,10 @@ const PriorityDropdownWrapper = styled.div`
   flex-direction: column;
   gap: 1.2rem;
   justify-content: start;
-
+  align-items: center;
   margin-top: 3rem;
   margin-bottom: 7.5rem;
-  width: 100%;
+  width: 33.5rem;
   height: 18rem;
 `;
 

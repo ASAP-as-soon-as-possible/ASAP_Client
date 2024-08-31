@@ -12,7 +12,9 @@ const GlobalStyle = createGlobalStyle`
 
 }
 
-
+input {
+  margin:0;
+}
   html, body {
 
   margin: 0 auto;
