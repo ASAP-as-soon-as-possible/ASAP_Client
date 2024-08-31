@@ -53,7 +53,6 @@ function OnBoarding() {
     <>
       <OnboardingWrapper>
         <Header position={'onBoarding'} />
-        <>
           <SwiperContext>
             <Swiper
               spaceBetween={30}
@@ -81,10 +80,9 @@ function OnBoarding() {
               ))}
             </Swiper>
           </SwiperContext>
-        </>
         <BottomBtnSection>
           <Button typeState={'primaryActive'} onClick={handleCreateMeeting}>
-            <Text font={'button2'}>약속 생성하기</Text>
+            <Text font={'button2'}>회의 일정 정하기</Text>
           </Button>
         </BottomBtnSection>
       </OnboardingWrapper>

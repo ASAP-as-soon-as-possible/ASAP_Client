@@ -253,7 +253,7 @@ const DropdownWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.grey6};
   width: 27.4rem;
   height: fit-content;
-  max-height: 15.6rem;
+  max-height: 18.3rem;
 
   overflow-x: hidden;
   overflow-y: auto;

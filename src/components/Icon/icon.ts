@@ -67,6 +67,6 @@ export {
   RadioCheckIc,
   SpeechBubbleIc,
   TimeIc,
-  TooltipArrowIc,
   Wave,
+  TooltipArrowIc,
 };

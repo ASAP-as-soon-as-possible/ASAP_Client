@@ -28,11 +28,11 @@ const BottomSheetModal = styled.div<{ $isModalOpen: boolean }>`
   gap: 0.8rem;
   transition: transform 600ms cubic-bezier(0.86, 0, 0.07, 1);
   z-index: 1;
-  border-top-left-radius: 1.2rem;
-  border-top-right-radius: 1.2rem;
+  border-top-left-radius: 1.8rem;
+  border-top-right-radius: 1.8rem;
   background-color: ${({ theme }) => theme.colors.grey8};
 
-  padding: 4.4rem 2rem 4rem;
+  padding: 3.6rem 2rem 4.8rem;
   width: 100%;
   max-width: 43rem;
 

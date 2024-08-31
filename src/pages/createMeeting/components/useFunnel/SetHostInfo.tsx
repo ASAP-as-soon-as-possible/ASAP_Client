@@ -49,7 +49,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
       meetingInfo.password.length <= 8
     );
   };
-
+  
   return (
     <SetHostInfoWrapper>
       <HostInfoSection>
