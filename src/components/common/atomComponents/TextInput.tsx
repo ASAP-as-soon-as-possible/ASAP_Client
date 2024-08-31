@@ -9,10 +9,11 @@ interface ValueProps {
   value: string;
   setValue: (e: React.ChangeEvent<HTMLInputElement>) => void;
   resetValue: () => void;
+  max: number;
   placeholder: string;
 }
 
-function TextInput({ value, setValue, resetValue, placeholder }: ValueProps) {
+function TextInput({ value, setValue, resetValue, max, placeholder }: ValueProps) {
   const [focus, setFocus] = useState(false);
 
   const resetOnClick = () => {
@@ -28,19 +29,19 @@ function TextInput({ value, setValue, resetValue, placeholder }: ValueProps) {
             value={value}
             onChange={setValue}
             onFocus={() => setFocus(true)}
-            $iserror={value?.length > 15}
+            $iserror={value?.length > max}
           />
           {focus && (
             <IconContainer onClick={resetOnClick}>
-              {value && value.length > 15 ? <InputErrorIc /> : <InputCancelIc />}
+              {value && value.length > max ? <InputErrorIc /> : <InputCancelIc />}
             </IconContainer>
           )}
         </InputSection>
         {value &&
-          value.length > 15 && (
+          value.length > max && (
             <SubTextSection>
               <Text font={'body4'} color={`${theme.colors.red}`}>
-                공백포함 최대 15자까지 입력가능해요
+                {`공백포함 최대 ${String(max)}자까지 입력가능해요`}
               </Text>
             </SubTextSection>
           )}
