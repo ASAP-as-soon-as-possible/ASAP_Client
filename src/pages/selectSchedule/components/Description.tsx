@@ -67,6 +67,7 @@ const DescriptionWrapper = styled.div`
   display: flex;
   position: relative;
   margin: 2rem 0;
+  width: 100%;
 `;
 
 const Texts = styled.div`
@@ -75,7 +76,7 @@ const Texts = styled.div`
   border-radius: 0.8rem;
   background-color: ${theme.colors.grey9};
   padding: 1.5rem 2.4rem;
-  width: 33.5rem;
+  width: 100%;
 `;
 const OneLine = styled.div`
   display: flex;

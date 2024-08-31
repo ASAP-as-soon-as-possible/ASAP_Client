@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import { DropDown, DropUp } from 'components/Icon/icon';
 import BestTimeCard from 'pages/bestMeetTime/components/BestTimeCard';
 import ConfirmModal from 'pages/bestMeetTime/components/ConfirmModal';
@@ -21,14 +22,14 @@ function BestMeetTime() {
   const [selected, setSelected] = useState(0);
   const [showModal, setShowModal] = useState<boolean>(false);
   const { meetingId } = useParams();
-  const { isloading, bestTimeData, isError } = GetBestMeetimeListHooks(
+  const { isLoading, bestTimeData, isError } = GetBestMeetimeListHooks(
     (meetingId as unknown) as string,
   );
   const navigate = useNavigate();
   if (isError) {
     navigate(`/*`);
   }
-  if (isloading) {
+  if (isLoading) {
     return (
       <LoadingWrapper>
         <LoadingPage />
@@ -104,11 +105,11 @@ function BestMeetTime() {
           ) : null}
         </AlternativeSection>
       ) : null}
-      <BtnWrapper>
+      <BottomBtnSection>
         <Button typeState={'primaryActive'} onClick={() => setShowModal(true)}>
           <Text font={'title2'}> 확정</Text>
         </Button>
-      </BtnWrapper>
+      </BottomBtnSection>
       {showModal &&
         bestMeetimeObj && (
           <ConfirmModal
@@ -124,12 +125,17 @@ function BestMeetTime() {
 export default BestMeetTime;
 
 const LoadingWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   position: relative;
   top: 25rem;
   width: 100%;
 `;
 const BestMeetTimeWrapper = styled.div<{ $state: boolean }>`
+  display: flex;
+  flex-direction: column;
   width: 100%;
+  align-items: center;
 `;
 const TitleSection = styled.article`
   display: flex;
@@ -158,6 +164,7 @@ const AlternativeSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  width: 100%;
 `;
 const BasicIconContainer = styled.div`
   display: flex;
@@ -168,7 +175,9 @@ const BasicIconContainer = styled.div`
   height: 3rem;
 `;
 const BtnWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
   position: fixed;
   bottom: 1.2rem;
-  border-radius: 50%;
 `;

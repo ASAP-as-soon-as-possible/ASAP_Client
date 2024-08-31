@@ -1,6 +1,6 @@
-import { css, styled } from 'styled-components';
-
 import React from 'react';
+
+import { css, styled } from 'styled-components';
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -27,10 +27,11 @@ const buttonDefaultCSS = {
 
     border-radius: 0.8rem;
     padding: 1.6rem;
-    width: 33.5rem;
+    width: 100%;
+    max-width: 39rem;
     height: 5.4rem;
     letter-spacing: -0.032rem;
-
+    /* margin: 0 2rem; */
     pointer-events: auto;
   `,
 };
@@ -44,19 +45,22 @@ const buttonCSS = {
   halfPrimaryActive: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.main1};
-    width: 15.2rem;
+    width: 100%;
+    max-width: 18.8rem;
     color: ${({ theme }) => theme.colors.white};
   `,
   halfPrimaryDisabled: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.grey7};
-    width: 15.2rem;
+    max-width: 18.8rem;
+    width: 100%;
     color: ${({ theme }) => theme.colors.grey4};
   `,
   primaryDisabled: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.grey7};
     color: ${({ theme }) => theme.colors.grey4};
+    cursor: default;
   `,
   secondaryActive: css`
     ${buttonDefaultCSS.basicCss};
@@ -66,7 +70,7 @@ const buttonCSS = {
   halfSecondaryActive: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.main5};
-    width: 15.2rem;
+    max-width: 18.8rem;
     color: ${({ theme }) => theme.colors.grey9};
   `,
   secondaryDisabled: css`
@@ -74,11 +78,12 @@ const buttonCSS = {
     background: ${({ theme }) => theme.colors.grey7};
     color: ${({ theme }) => theme.colors.grey5};
     pointer-events: none;
+    cursor: default;
   `,
   halfsecondaryDisabled: css`
     ${buttonDefaultCSS.basicCss};
     background: ${({ theme }) => theme.colors.grey7};
-    width: 15.2rem;
+    max-width: 18.8rem;
     color: ${({ theme }) => theme.colors.grey5};
   `,
   tertiaryActive: css`
@@ -91,7 +96,7 @@ const buttonCSS = {
     ${buttonDefaultCSS.basicCss};
     border: 1px solid ${({ theme }) => theme.colors.main3};
     background-color: ${({ theme }) => theme.colors.grey10};
-    width: 15.2rem;
+    max-width: 18.8rem;
     color: ${({ theme }) => theme.colors.main3};
   `,
   tertiaryDisabled: css`

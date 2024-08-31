@@ -4,6 +4,7 @@ import { userNameAtom } from 'atoms/atom';
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
 import TextInput from 'components/common/atomComponents/TextInput';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import Header from 'components/common/moleculesComponents/Header';
 import TitleComponent from 'components/common/moleculesComponents/TitleComponents';
 import { useParams } from 'react-router';
@@ -62,33 +63,30 @@ function MemberComponent({ hostInfo, setHostInfo }: HostProps) {
           />
         </HostNameSection>
       </HostInfoSection>
-      <StyledBtnSection>
+      <BottomBtnSection>
         <Button
           typeState={hostInfo.name ? 'primaryActive' : 'secondaryDisabled'}
           onClick={hostInfo.name ? loginMember : undefined}
         >
           <Text font={'button2'}>나의 가능 시간 입력</Text>
         </Button>
-      </StyledBtnSection>
+      </BottomBtnSection>
     </>
   );
 }
 
 export default MemberComponent;
 
-const StyledBtnSection = styled.section`
-  position: fixed;
-  bottom: 1.2rem;
-  border-radius: 50%;
-`;
-
 const HostNameSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 `;
 const HostInfoSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.4rem;
+
+  width: 100%;
 `;

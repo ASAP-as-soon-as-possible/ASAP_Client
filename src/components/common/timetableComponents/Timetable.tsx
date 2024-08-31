@@ -45,6 +45,7 @@ export default Timetable;
 
 const TimetableWrapper = styled.div`
   display: flex;
+  justify-content: center;
   width: 100%;
   gap: 1.1rem;
 `;

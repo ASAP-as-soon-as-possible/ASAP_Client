@@ -21,7 +21,7 @@ function TextInput({ value, setValue, resetValue, max, placeholder }: ValueProps
     setFocus(false);
   };
   return (
-    <>
+
       <TextInputWrapper>
         <InputSection>
           <StyledTextInput
@@ -46,19 +46,23 @@ function TextInput({ value, setValue, resetValue, max, placeholder }: ValueProps
             </SubTextSection>
           )}
       </TextInputWrapper>
-    </>
+
   );
 }
 
 export default TextInput;
 
-const TextInputWrapper = styled.div``;
+const TextInputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+`;
 
 const InputSection = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-
+width: 100%;
   input:focus + div {
     display: flex;
     svg {
@@ -78,7 +82,8 @@ const StyledTextInput = styled.input<{ $iserror: boolean }>`
   background: ${({ theme }) => theme.colors.grey7};
   padding: 1rem 1.6rem;
 
-  width: 33.5rem;
+  width: 100%;
+  max-width: 39rem;
   height: 5.2rem;
 
   color: ${({ theme }) => theme.colors.white};
