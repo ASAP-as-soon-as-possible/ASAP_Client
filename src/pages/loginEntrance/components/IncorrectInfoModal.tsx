@@ -1,9 +1,8 @@
-import { Link, useParams } from 'react-router-dom';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
+import Text from 'components/common/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
-import Text from 'components/atomComponents/Text';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 interface ModalProps {
@@ -17,7 +16,7 @@ function IncorrectInfoModal({ setIsLoginModalOpen }: ModalProps) {
         <IconCatainer onClick={() => setIsLoginModalOpen(false)}>
           <ExitIc />
         </IconCatainer>
-   
+
         <MentContainer>
           <Text font={`body2`} color={`${theme.colors.white}`}>
             유효하지 않은 사용자 이름
@@ -26,11 +25,11 @@ function IncorrectInfoModal({ setIsLoginModalOpen }: ModalProps) {
             또는 비밀번호 입니다.
           </Text>
         </MentContainer>
-          <ModalBtn onClick={()=> setIsLoginModalOpen(false)}>
-            <Text font={`body2`} color={`${theme.colors.white}`}>
-              다시 입력하기
-            </Text>
-          </ModalBtn>
+        <ModalBtn onClick={() => setIsLoginModalOpen(false)}>
+          <Text font={`body2`} color={`${theme.colors.white}`}>
+            다시 입력하기
+          </Text>
+        </ModalBtn>
       </ModalSection>
     </ReturnModalWrpper>
   );

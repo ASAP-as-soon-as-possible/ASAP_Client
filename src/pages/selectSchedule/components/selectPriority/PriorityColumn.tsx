@@ -1,9 +1,9 @@
-import Text from 'components/atomComponents/Text';
-import { ColumnStructure } from 'components/timetableComponents/types';
+import Text from 'components/common/atomComponents/Text';
+import { ColumnStructure } from 'components/common/timetableComponents/types';
 import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 import { theme } from 'styles/theme';
 
-import Slot from '../../../../components/timetableComponents/parts/Slot';
+import Slot from '../../../../components/common/timetableComponents/parts/Slot';
 
 function PriorityColumn({ date, timeSlots }: ColumnStructure) {
   const { selectedSlots } = useSelectContext();
@@ -24,8 +24,12 @@ function PriorityColumn({ date, timeSlots }: ColumnStructure) {
         throw Error(`올바르지않은 priority ${priority}`);
     }
   };
-  const getPriorityColumnStyle = (priority: number, selectedEntryId: number | null) => {
-    const isSelectedSlot = selectedEntryId;
+  const getPriorityColumnStyle = (
+    slotId: string,
+    priority: number,
+    selectedEntryId: number | null,
+  ) => {
+    const isSelectedSlot = selectedEntryId !== null;
 
     const slotColor =
       priority === 3
@@ -36,12 +40,20 @@ function PriorityColumn({ date, timeSlots }: ColumnStructure) {
             ? theme.colors.main3
             : theme.colors.grey6;
 
+    /**
+     * 우선순위 입력 스타일링
+     * 1. border-top: 선택된 시간이라면 none, 선택되지 않은 시간이라면 30분 단위는 none, 1시간 단위는 실선
+     * 2. background-color: 선택된 시간이라면 우선순위에 따른 slotColor
+     */
+    const borderTopStyle = slotId.endsWith(':30') ? 'none' : 'solid';
+    const borderTop = isSelectedSlot ? 'none' : `1px ${borderTopStyle} ${theme.colors.grey7}`;
+    const backgroundColor = isSelectedSlot ? slotColor : 'transparent';
+    const height = '1.2rem';
+
     return `
-        ${
-          isSelectedSlot !== null
-            ? `background-color:${slotColor}`
-            : `background-color: transparent`
-        }
+        border-top: ${borderTop};
+        background-color: ${backgroundColor};
+        height: ${height};
     `;
   };
 
@@ -66,8 +78,7 @@ function PriorityColumn({ date, timeSlots }: ColumnStructure) {
         return (
           <Slot
             key={slotId}
-            slotId={slotId}
-            slotStyle={getPriorityColumnStyle(priority, selectedEntryId)}
+            customSlotStyle={getPriorityColumnStyle(slotId, priority, selectedEntryId)}
           >
             <Text font="body1" color={theme.colors.white}>
               {isFirstSlot && priority !== 0 ? changePriorityValue(priority) : ''}

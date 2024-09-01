@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import HostComponent from './components/HostComponent';
 import MemberComponent from './components/MemberComponent';
@@ -38,5 +38,6 @@ export default LoginEntrance;
 const LoginEntranceWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
 `;

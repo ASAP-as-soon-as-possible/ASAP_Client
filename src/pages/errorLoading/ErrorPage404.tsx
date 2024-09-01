@@ -1,11 +1,13 @@
 import Error404 from 'assets/images/Error404.png';
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 function ErrorPage404() {
+  const navigate = useNavigate();
   return (
     <ErrorPage404Wrapper>
       <ErrorSection>
@@ -27,13 +29,16 @@ function ErrorPage404() {
           </Text>
         </ErrorMentContainer>
       </ErrorSection>
-      <StyledBtnSection>
-        <Link to={'/'}>
-          <Button typeState={'primaryActive'}>
-            <Text font={'button2'}>홈으로 돌아가기</Text>
-          </Button>
-        </Link>
-      </StyledBtnSection>
+      <BottomBtnSection>
+        <Button
+          typeState={'primaryActive'}
+          onClick={() => {
+            navigate('/');
+          }}
+        >
+          <Text font={'button2'}>홈으로 돌아가기</Text>
+        </Button>
+      </BottomBtnSection>
     </ErrorPage404Wrapper>
   );
 }

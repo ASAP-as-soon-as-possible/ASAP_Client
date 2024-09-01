@@ -1,11 +1,12 @@
 import React from 'react';
 
-import Button from 'components/atomComponents/Button';
-import PasswordInput from 'components/atomComponents/PasswordInput';
-import Text from 'components/atomComponents/Text';
-import TextInput from 'components/atomComponents/TextInput';
+import Button from 'components/common/atomComponents/Button';
+import PasswordInput from 'components/common/atomComponents/PasswordInput';
+import Text from 'components/common/atomComponents/Text';
+import TextInput from 'components/common/atomComponents/TextInput';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
@@ -22,11 +23,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
 
   const passWordOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMeetingInfo((prev: MeetingInfo) => {
-      if (e.target.value.length < 9) {
-        return { ...prev, password: e.target.value };
-      }
-      alert('비밀번호는 8자리 이하로 말해주세요');
-      return { ...prev };
+      return { ...prev, password: e.target.value };
     });
   };
 
@@ -44,6 +41,15 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
     }
   };
 
+  const validateForm = () => {
+    return (
+      meetingInfo.name &&
+      meetingInfo.name.length <= 15 &&
+      meetingInfo.password.length >= 4 &&
+      meetingInfo.password.length <= 8
+    );
+  };
+  
   return (
     <SetHostInfoWrapper>
       <HostInfoSection>
@@ -55,6 +61,7 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             value={meetingInfo.name}
             setValue={hostOnChange}
             resetValue={resetHost}
+            max={8}
             placeholder={'방장 이름'}
           />
         </HostNameSection>
@@ -64,28 +71,20 @@ function SetHostInfo({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           </Text>
           <PasswordInput
             value={meetingInfo.password}
-            placeholder={`숫자 4자리 이상`}
+            placeholder={`숫자 4자리 이상 8자리 이하`}
             passWordOnChange={passWordOnChange}
             page={'createMeeting'}
           />
         </HostNameSection>
       </HostInfoSection>
-      <StyledBtnSection>
+      <BottomBtnSection>
         <Button
-          typeState={
-            meetingInfo.name && meetingInfo.password.length >= 4
-              ? 'primaryActive'
-              : 'primaryDisabled'
-          }
-          onClick={
-            meetingInfo.name && meetingInfo.password.length >= 4
-              ? () => containsNonNumeric(meetingInfo.password)
-              : undefined
-          }
+          typeState={validateForm() ? 'primaryActive' : 'primaryDisabled'}
+          onClick={validateForm() ? () => containsNonNumeric(meetingInfo.password) : undefined}
         >
           <Text font={'button2'}>다음</Text>
         </Button>
-      </StyledBtnSection>
+      </BottomBtnSection>
     </SetHostInfoWrapper>
   );
 }
@@ -98,12 +97,6 @@ const SetHostInfoWrapper = styled.div`
   justify-content: center;
 `;
 
-const StyledBtnSection = styled.section`
-  position: fixed;
-  bottom: 1.2rem;
-  border-radius: 50%;
-`;
-
 const HostNameSection = styled.section`
   display: flex;
   flex-direction: column;
@@ -113,5 +106,4 @@ const HostInfoSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.4rem;
-  padding: 0 2rem;
 `;

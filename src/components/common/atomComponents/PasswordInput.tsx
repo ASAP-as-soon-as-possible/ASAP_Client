@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import { PasswordEyeIc, PasswordOpenEyeIc } from 'components/Icon/icon';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 interface ValueProps {
@@ -25,7 +25,7 @@ function PasswordInput({ value, placeholder, passWordOnChange, page }: ValueProp
           placeholder={placeholder}
           value={value}
           onChange={passWordOnChange}
-          $iserror={value.length < 4}
+          $iserror={value.length < 4 || value.length > 8}
           type={inputType ? 'password' : `number`}
           inputMode="numeric"
         />
@@ -34,15 +34,25 @@ function PasswordInput({ value, placeholder, passWordOnChange, page }: ValueProp
         </IconContainer>
       </InputSection>
       {page === 'createMeeting' ? (
-        <SubTextSection>
-          <Text font={'body4'} color={`${theme.colors.sub1}`}>
-            *
-          </Text>
-          <Text font={'body4'} color={`${theme.colors.sub1}`}>
-            확정 후 비밀번호는 수정할 수 없으며, 비밀번호가 있어야 방장 페이지에 접속할 수 있으니
-            반드시 기억해주세요!
-          </Text>
-        </SubTextSection>
+        <>
+          {value.length > 8 && (
+            <InvalidPWTextSection>
+              <Text font={'body4'} color={theme.colors.red}>
+                최대 8자리까지 입력 가능해요{' '}
+              </Text>
+            </InvalidPWTextSection>
+          )}
+
+          <SubTextSection>
+            <Text font={'body4'} color={`${theme.colors.sub1}`}>
+              *
+            </Text>
+            <Text font={'body4'} color={`${theme.colors.sub1}`}>
+              확정 후 비밀번호는 수정할 수 없으며, 비밀번호가 있어야 방장 페이지에 접속할 수 있으니
+              반드시 기억해주세요!
+            </Text>
+          </SubTextSection>
+        </>
       ) : (
         undefined
       )}
@@ -78,7 +88,7 @@ const StyledPasswordInput = styled.input<{ $iserror: boolean }>`
   background: ${({ theme }) => theme.colors.grey7};
   padding: 1rem 1.6rem;
 
-  width: 33.5rem;
+  width: 100%;
   height: 5.2rem;
 
   caret-color: ${({ theme }) => theme.colors.main1};
@@ -112,6 +122,14 @@ const SubTextSection = styled.div`
   gap: 0.4rem;
   align-items: flex-start;
   margin-top: 1.7rem;
+
+  span {
+    font-weight: 600;
+  }
+`;
+
+const InvalidPWTextSection = styled.div`
+  margin-top: 0.9rem;
 
   span {
     font-weight: 600;

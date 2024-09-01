@@ -1,21 +1,22 @@
 import { Dispatch, SetStateAction, useState } from 'react';
 
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
 import { useScheduleStepContext } from 'pages/selectSchedule/contexts/useScheduleStepContext';
 import { ScheduleStepType } from 'pages/selectSchedule/types';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
-import { notify } from 'utils/toast/copyLink';
+import { notify } from 'utils/toast/copyLinkToast';
 
 import Navigation from './Navigation';
 
+import Tooltip from '../../../pages/completeCreateMeeting/components/Tooltip';
 
 interface HeaderProps {
-  position: string;
+  position?: string;
   setFunnelStep?: Dispatch<SetStateAction<number>>;
   setSelectScheduleStep?: Dispatch<SetStateAction<ScheduleStepType>>;
 }
@@ -24,7 +25,7 @@ function Header({ position, setFunnelStep }: HeaderProps) {
   const { scheduleStep, setScheduleStep } = useScheduleStepContext();
   const navigationOptions = [
     {
-      title: '약속 생성하기',
+      title: '회의 일정 정하기',
       url: '/meet/create',
     },
     {
@@ -79,11 +80,6 @@ function Header({ position, setFunnelStep }: HeaderProps) {
               <IconSection onClick={() => window.history.back()}>
                 <BackIc />
               </IconSection>
-              <CopyToClipboard text={`${import.meta.env.VITE_WEB_IP}/meet/${meetingId}`}>
-                <IconSection onClick={notify}>
-                  <LinkIc />
-                </IconSection>
-              </CopyToClipboard>
             </ConfirmIconSection>
           ) : position === 'schedule' ? (
             <ConfirmIconSection onClick={backToSelectSchedule}>
@@ -94,7 +90,7 @@ function Header({ position, setFunnelStep }: HeaderProps) {
           ) : undefined}
           {position === 'createMeeting' ? (
             <Text font={'title2'} color={`${theme.colors.white}`}>
-              회의정보입력
+              회의 정보 입력
             </Text>
           ) : position === 'confirmMeet' ? (
             <Text font={'title2'} color={`${theme.colors.white}`}>
@@ -107,16 +103,29 @@ function Header({ position, setFunnelStep }: HeaderProps) {
           ) : (
             <EmptyBox />
           )}
+          <IconWrapper>
+          {(position==="completeCreateMeeting" || position==="cueCard" || position==="confirmMeet") &&
+            <LinkIcWrapper>
+             <IconSection onClick={notify}>
+            <CopyToClipboard text={ position==="cueCard" ? `${import.meta.env.VITE_WEB_IP}/q-card/${meetingId}`:`${import.meta.env.VITE_WEB_IP}/meet/${meetingId}` }>
+          <LinkIc/>
+          </CopyToClipboard>
+          </IconSection>
+          {position==="completeCreateMeeting" && <Tooltip tooltipText={"링크 공유하기"}></Tooltip>}
+
+          </LinkIcWrapper>}
           <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
             <HambergerIc />
           </IconSection>
+
+          </IconWrapper>
         </HeaderSection>
         {isNaviOpen ? (
           <NavigationSection>
+            <NavigationContainer>
             <IconContainer onClick={() => setIsNaviOpen((prev) => !prev)}>
               <ExitIc />
             </IconContainer>
-            <NavigationContainer>
               <Navigation navigationOptions={navigationOptions}/>
             </NavigationContainer>
           </NavigationSection>
@@ -128,6 +137,14 @@ function Header({ position, setFunnelStep }: HeaderProps) {
 
 export default Header;
 
+const LinkIcWrapper=styled.div`
+  position:relative;
+`
+
+const IconWrapper= styled.div`
+  display:flex;
+  align-items: center;
+`
 const HeaderWrapper = styled.div`
   width: 100%;
 `;
@@ -153,6 +170,7 @@ const IconSection = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  width:4.2rem;
   height: 4.2rem;
 `;
 
@@ -160,7 +178,7 @@ const NavigationSection = styled.section`
   position: absolute;
   top: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
   background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
   height: 100vh;

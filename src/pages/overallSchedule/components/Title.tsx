@@ -1,4 +1,4 @@
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
@@ -24,7 +24,7 @@ function Title({ memberCount, totalUserNames }: TitleProps) {
       <TotalUserNames>
         {totalUserNames && (
           <Text font={'body4'} color={`${theme.colors.grey5}`}>
-            {totalUserNames.join(',')}
+            {totalUserNames.join(', ')}
           </Text>
         )}
       </TotalUserNames>
@@ -37,7 +37,6 @@ export default Title;
 const TextOneLine = styled.div`
   display: flex;
   flex-wrap: wrap;
-  margin-top: 3.7rem;
   width: 100%;
 `;
 

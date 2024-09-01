@@ -1,6 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 import SetAdditionalInfo from './useFunnel/SetAdditionalInfo';
 import SetDates from './useFunnel/SetDates';
@@ -8,6 +8,7 @@ import SetDuration from './useFunnel/SetDuration';
 import SetHostInfo from './useFunnel/SetHostInfo';
 import SetPlace from './useFunnel/SetPlace';
 import SetTitle from './useFunnel/SetTitle';
+
 import { MeetingInfo } from '../types/useFunnelInterface';
 
 interface BodyProps {

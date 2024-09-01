@@ -1,22 +1,18 @@
-import React, { useState } from 'react';
-
-import Text from 'components/atomComponents/Text';
-import { DropdownWhite, DropupWhite } from 'components/Icon/icon';
+import Text from 'components/common/atomComponents/Text';
+import { Member } from 'components/Icon/icon';
 import { BestDataProps } from 'pages/bestMeetTime/types/meetCardData';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
+import MemberTooltip from './MemberTooltip';
+
 function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps) {
-  const [isMember, setIsMember] = useState(false);
   const checkingCheck = () => {
     chooseMeetime(rank);
   };
   if (carddata) {
     return (
       <BestTimeCardWrapper $rank={rank} $selected={selected}>
-        <IconContainer onClick={() => setIsMember((prev) => !prev)}>
-          {isMember ? <DropupWhite /> : <DropdownWhite />}
-        </IconContainer>
         <Input
           id={`${rank}`}
           type="checkbox"
@@ -32,23 +28,16 @@ function BestTimeCard({ rank, carddata, chooseMeetime, selected }: BestDataProps
               {carddata.startTime} ~ {carddata.endTime}
             </Text>
           </Label>
-          {isMember ? (
-            <MemeberContainer>
-              {carddata.users.map((member, i) => (
-                <Text key={i + member.name} font={'body4'} color={`${theme.colors.grey5}`}>
-                  {member.name}
-                  {i !== carddata.users.length - 1 ? ',' : ''}&nbsp;
-                </Text>
-              ))}
-            </MemeberContainer>
-          ) : (
-            undefined
-          )}
         </InfoContainer>
+        <MemberCountChip>
+          <Member />
+          <Text font="body2" color={theme.colors.white}>
+            {carddata.users.length}
+          </Text>
+        </MemberCountChip>
+        <MemberTooltip members={carddata.users.map((user) => user.name)} />
       </BestTimeCardWrapper>
     );
-  } else {
-    return undefined;
   }
 }
 
@@ -58,11 +47,12 @@ const BestTimeCardWrapper = styled.article<{ $rank: number; $selected: number }>
   display: flex;
   position: relative;
   flex-direction: row;
+  align-items: center;
   border: 1px solid
     ${({ $rank, $selected, theme }) =>
-      $rank === $selected ? theme.colors.main1 : theme.colors.grey5};
+      $rank === $selected ? theme.colors.main1 : theme.colors.grey7};
   border-radius: 10px;
-  padding: 2rem;
+  padding: 1.8rem 1.5rem;
   width: 100%;
   height: fit-content;
 `;
@@ -74,7 +64,7 @@ const InfoContainer = styled.div`
 const Input = styled.input`
   appearance: none;
   margin: 0 2.274rem 0 0;
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='9' stroke='%23D9D9D9' stroke-width='2'/%3E%3C/svg%3E%0A");
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='10' cy='10' r='9' stroke='%23555555' stroke-width='2'/%3E%3C/svg%3E%0A");
   background-repeat: no-repeat;
   cursor: pointer;
   width: 2rem;
@@ -94,25 +84,27 @@ const Label = styled.label`
   cursor: pointer;
 `;
 
-const MemeberContainer = styled.div`
+const MemberCountChip = styled.div`
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin-top: 1.2rem;
-  width: 23rem;
-  height: fit-content;
-`;
-
-const BasicIconContainer = styled.div`
-  display: flex;
-  align-items: center;
   justify-content: center;
-  width: 3rem;
+  align-items: center;
+  min-width: 5.6rem;
   height: 3rem;
-`;
+  padding: 0.6rem 1rem;
+  gap: 0.6rem;
+  border-radius: 10rem;
+  background-color: ${theme.colors.grey8};
+  align-self: flex-end;
+  margin-left: auto;
+  cursor: pointer;
+  &:hover {
+    background-color: ${theme.colors.grey5};
+  }
+  &:focus {
+    background-color: ${theme.colors.grey6};
+  }
 
-const IconContainer = styled(BasicIconContainer)`
-  position: absolute;
-  top: 1.2rem;
-  right: 1.2rem;
+  &:hover + .tooltip {
+    visibility: visible;
+  }
 `;

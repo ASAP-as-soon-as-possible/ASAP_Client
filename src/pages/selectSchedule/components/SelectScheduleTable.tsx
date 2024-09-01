@@ -1,13 +1,14 @@
 import { useState } from 'react';
 
-import Timetable from 'components/timetableComponents/Timetable';
-import { ColumnStructure, TimetableStructure } from 'components/timetableComponents/types';
+import Timetable from 'components/common/timetableComponents/Timetable';
+import { ColumnStructure, TimetableStructure } from 'components/common/timetableComponents/types';
 
 import PriorityColumn from './selectPriority/PriorityColumn';
 import PriorityCta from './selectPriority/PriorityCta';
 import PriorityDropdown from './selectPriority/PriorityDropdown';
 import SelectionColumn from './selectTimeSlot/SelectionColumn';
 import TimeSlotCta from './selectTimeSlot/TimeSlotCta';
+
 import { useScheduleStepContext } from '../contexts/useScheduleStepContext';
 import { SelectContext, SelectedSlotType } from '../contexts/useSelectContext';
 import { StepSlotsType, StepbottomItemsType } from '../types';
@@ -17,6 +18,8 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
   const [selectedSlots, setSelectedSlots] = useState<SelectedSlotType>({});
 
   const { scheduleStep } = useScheduleStepContext();
+
+  const slotUnit = scheduleStep === 'selectTimeSlot' ? 'HALF' : 'HOUR';
 
   const stepColumns: StepSlotsType = {
     selectTimeSlot: ({ date, timeSlots }: ColumnStructure) => (
@@ -48,7 +51,12 @@ function SelectScheduleTable({ timeSlots, availableDates }: TimetableStructure) 
         setSelectedSlots,
       }}
     >
-      <Timetable timeSlots={timeSlots} availableDates={availableDates} bottomItem={bottomItem}>
+      <Timetable
+        timeSlots={timeSlots}
+        availableDates={availableDates}
+        slotUnit={slotUnit}
+        bottomItem={bottomItem}
+      >
         {stepColumn}
       </Timetable>
     </SelectContext.Provider>

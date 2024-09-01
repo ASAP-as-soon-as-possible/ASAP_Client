@@ -1,9 +1,10 @@
-import Button from 'components/atomComponents/Button';
-import PlaceInput from 'components/atomComponents/PlaceInput';
-import Text from 'components/atomComponents/Text';
+import Button from 'components/common/atomComponents/Button';
+import PlaceInput from 'components/common/atomComponents/PlaceInput';
+import Text from 'components/common/atomComponents/Text';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import { placeType } from 'pages/createMeeting/data/meetingInfoData';
 import { FunnelProps } from 'pages/createMeeting/types/useFunnelInterface';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   const setPlaceDetail = (place: string) => {
@@ -12,7 +13,7 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
   return (
     <SetPlaceWrapper>
       <PlaceInfoSection>
-        {placeType.map((type, i) => {
+        {Object.keys(placeType).map((type, i) => {
           return (
             <PlaceSection key={i + type}>
               <Button
@@ -39,7 +40,7 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           );
         })}
       </PlaceInfoSection>
-      <StyledBtnSection>
+      <BottomBtnSection>
         <Button
           typeState={meetingInfo.place ? 'primaryActive' : 'primaryDisabled'}
           onClick={
@@ -56,24 +57,24 @@ function SetPlace({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         >
           <Text font={'button2'}>다음</Text>
         </Button>
-      </StyledBtnSection>
+      </BottomBtnSection>
     </SetPlaceWrapper>
   );
 }
 
 export default SetPlace;
 
-const SetPlaceWrapper = styled.div``;
+const SetPlaceWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 
-const StyledBtnSection = styled.section`
-  position: fixed;
-  bottom: 1.2rem;
-  border-radius: 50%;
+  width: 100%;
 `;
 
 const PlaceInfoSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 `;
 const PlaceSection = styled.section``;

@@ -1,5 +1,5 @@
-import Text from 'components/atomComponents/Text';
-import styled from 'styled-components/macro';
+import Text from 'components/common/atomComponents/Text';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 interface ExplainProps {
@@ -40,5 +40,5 @@ const SubTextSection = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 2.4rem; 
+  margin-top: 2.4rem;
 `;

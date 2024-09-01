@@ -6,20 +6,21 @@ import DateTitle from './parts/ColumnTitle';
 import SlotTitle from './parts/SlotTitle';
 import { ColumnStructure, DateType } from './types';
 
-interface TimetableProps {
+export interface TimetableProps {
   timeSlots: string[];
   availableDates: DateType[];
+  slotUnit: 'HALF' | 'HOUR';
   children: (props: ColumnStructure) => ReactNode;
   bottomItem?: ReactNode;
 }
 
-function Timetable({ timeSlots, availableDates, children, bottomItem }: TimetableProps) {
+function Timetable({ timeSlots, availableDates, slotUnit, children, bottomItem }: TimetableProps) {
   const emptyDates = Array.from({ length: 7 - availableDates.length }, (_, i) => `empty${i + 1}`);
 
   return (
     <>
       <TimetableWrapper>
-        <SlotTitle timeSlots={timeSlots} />
+        <SlotTitle timeSlots={timeSlots} slotUnit={slotUnit} />
         <TableWithDateWrapper>
           <DateTitle availableDates={availableDates} />
           <TableWrapper>
@@ -44,7 +45,9 @@ export default Timetable;
 
 const TimetableWrapper = styled.div`
   display: flex;
-  gap: 0.75rem;
+  justify-content: center;
+  width: 100%;
+  gap: 1.1rem;
 `;
 
 const TableWithDateWrapper = styled.div`

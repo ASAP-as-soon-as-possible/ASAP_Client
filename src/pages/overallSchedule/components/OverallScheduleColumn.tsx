@@ -1,5 +1,5 @@
-import Slot from 'components/timetableComponents/parts/Slot';
-import { ColumnStructure } from 'components/timetableComponents/types';
+import Slot from 'components/common/timetableComponents/parts/Slot';
+import { ColumnStructure } from 'components/common/timetableComponents/types';
 import { theme } from 'styles/theme';
 import { TimeSlot } from 'utils/apis/useGetOverallSchedule';
 
@@ -23,9 +23,19 @@ function OverallScheduleColumn({ date, timeSlots, availableSlotInfo }: OverallSc
       5: theme.colors.level5,
     };
 
+    /**
+     * 종합일정 시간표 스타일링
+     * 1. border-top: 선택된 시간이라면 none, 선택되지 않은 시간이라면 30분 단위는 점선, 1시간 단위는 실선
+     * 2. background-color: 선택된 시간이라면 colorLevel에 따른 색상
+     */
+    const borderTopStyle = slotId.endsWith(':30') ? 'dashed' : 'solid';
+    const borderTop = `1px ${borderTopStyle} ${theme.colors.grey7} `;
     const isClickedSlot = clickedSlot === slotId;
+    const backgroundColor = isClickedSlot && colorLevel !== 0 ? theme.colors.sub1 : COLOR[colorLevel];
+
     return `
-      background-color: ${isClickedSlot && colorLevel!==0 ? theme.colors.sub1 : COLOR[colorLevel]};
+      border-top: ${borderTop};
+      background-color: ${backgroundColor};
       cursor: ${colorLevel !== 0 ? 'pointer' : 'default'};
     `
   }
@@ -36,7 +46,7 @@ function OverallScheduleColumn({ date, timeSlots, availableSlotInfo }: OverallSc
         const { colorLevel = 0, userNames = [] } = availableSlotInfo.find((info) => info.time === timeSlot) ?? {};
         const slotId = `${date}/${timeSlot}`;
 
-        return <Slot key={slotId} slotId={slotId} slotStyle={getTimeSlotStyle(colorLevel, slotId)} onClick={()=>onClickSlot(slotId, userNames)}/>;
+        return <Slot key={slotId} customSlotStyle={getTimeSlotStyle(colorLevel, slotId)} onClick={()=>onClickSlot(slotId, userNames)}/>;
       })}
     </>
   );

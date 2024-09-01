@@ -1,14 +1,15 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
 import { isAxiosError } from 'axios';
-import Button from 'components/atomComponents/Button';
-import PasswordInput from 'components/atomComponents/PasswordInput';
-import Text from 'components/atomComponents/Text';
-import TextInput from 'components/atomComponents/TextInput';
-import Header from 'components/moleculesComponents/Header';
-import TitleComponent from 'components/moleculesComponents/TitleComponents';
+import Button from 'components/common/atomComponents/Button';
+import PasswordInput from 'components/common/atomComponents/PasswordInput';
+import Text from 'components/common/atomComponents/Text';
+import TextInput from 'components/common/atomComponents/TextInput';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
+import Header from 'components/common/moleculesComponents/Header';
+import TitleComponent from 'components/common/moleculesComponents/TitleComponents';
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 import { client } from 'utils/apis/axios';
 
@@ -75,7 +76,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
     }
   };
   return (
-    <>
+    <HostComponentWrapper>
       <Header position={'login'} />
       <TitleComponent main={'방장 정보를 알려주세요'} sub={''} />
       <HostInfoSection>
@@ -87,6 +88,7 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
             value={hostInfo.name}
             setValue={hostOnChange}
             resetValue={resetHostId}
+            max={8}
             placeholder={'방장 이름'}
           />
         </HostNameSection>
@@ -96,13 +98,13 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
           </Text>
           <PasswordInput
             value={hostInfo.password}
-            placeholder={`숫자 4자 이상`}
+            placeholder={`숫자 4자 이상 8자리 이하`}
             passWordOnChange={passWordOnChange}
             page={'entrance'}
           />
         </HostNameSection>
       </HostInfoSection>
-      <StyledBtnSection>
+      <BottomBtnSection>
         <Button
           typeState={
             hostInfo.name && hostInfo.password.length >= 4 ? 'primaryActive' : 'primaryDisabled'
@@ -111,32 +113,37 @@ function HostComponent({ hostInfo, setHostInfo }: HostProps) {
         >
           <Text font={'button2'}>방장 페이지 접속하기</Text>
         </Button>
-      </StyledBtnSection>
+      </BottomBtnSection>
       {ismodalOpen ? <NoAvailableTimeModal setIsModalOpen={setIsModalOpen} /> : undefined}
       {isLoginModalOpen ? (
         <IncorrectInfoModal setIsLoginModalOpen={setIsLoginModalOpen} />
       ) : (
         undefined
       )}
-    </>
+    </HostComponentWrapper>
   );
 }
 
 export default HostComponent;
 
-const StyledBtnSection = styled.section`
-  position: fixed;
-  bottom: 1.2rem;
-  border-radius: 50%;
+const HostComponentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  width: 100%;
 `;
 
 const HostNameSection = styled.section`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  width: 100%;
 `;
 const HostInfoSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.4rem;
+
+  width: 100%;
 `;

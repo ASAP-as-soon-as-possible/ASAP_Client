@@ -1,12 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import stepingCheck from 'assets/images/steppingCheck.png';
 import stepingFinish from 'assets/images/steppingFinish.png';
 import stepingInsert from 'assets/images/steppingInsert.png';
 import stepingPlus from 'assets/images/steppingPlus.png';
-import Text from 'components/atomComponents/Text';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import Text from 'components/common/atomComponents/Text';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 interface BodyType {
@@ -18,15 +16,6 @@ interface BodyType {
 }
 
 const bodyType: BodyType = {
-  meetComplete: {
-    img: <img src={stepingCheck} alt="png" />,
-    main: '회의 생성 완료!',
-    sub: (
-      <Text font={'title2'} color={`${theme.colors.grey4}`}>
-        이제 가능한 시간을 입력하러 가볼까요?
-      </Text>
-    ),
-  },
   hostScheduleComplete: {
     img: <img src={stepingFinish} alt="png" />,
     main: '일정 입력 완료!',
@@ -74,7 +63,7 @@ interface SteppingProps {
 function SteppingBody({ steppingType, meetingTitle }: SteppingProps) {
   const stepInfo = bodyType[steppingType];
   return (
-    <SteppingBodyWrapper>
+    <>
       <ImageSection>{stepInfo.img}</ImageSection>
       <SteppingMentSection>
         <Text font={'head1'} color={`${theme.colors.white}`}>
@@ -82,19 +71,17 @@ function SteppingBody({ steppingType, meetingTitle }: SteppingProps) {
         </Text>
         <SubMentWrapper>{stepInfo.sub}</SubMentWrapper>
       </SteppingMentSection>
-    </SteppingBodyWrapper>
+    </>
   );
 }
 
 export default SteppingBody;
 
-const SteppingBodyWrapper = styled.div``;
-
 const ImageSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 4rem;
+  margin-top: 10.7rem;
   img {
     display: flex;
     flex-direction: center;

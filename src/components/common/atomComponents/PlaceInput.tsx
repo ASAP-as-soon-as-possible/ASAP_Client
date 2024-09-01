@@ -1,8 +1,8 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
 
-import { InputCancelIc ,InputErrorIc } from 'components/Icon/icon';
+import { InputCancelIc, InputErrorIc } from 'components/Icon/icon';
 import { MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 interface ValueProps {
   data: string;
@@ -51,7 +51,9 @@ function PlaceInput({ value, setValue, placeholder }: ValueProps) {
 
 export default PlaceInput;
 
-const PlaceInputWrapper = styled.div``;
+const PlaceInputWrapper = styled.div`
+  width: 100%;
+`;
 
 const InputSection = styled.div`
   display: flex;
@@ -61,9 +63,9 @@ const InputSection = styled.div`
   input:focus + div {
     display: flex;
     svg {
-      cursor: pointer;
       width: 2rem;
       height: 2rem;
+      cursor: pointer;
     }
   }
 `;
@@ -78,7 +80,7 @@ const StyledTextInput = styled.input<{ $iserror: boolean }>`
 
   padding: 1rem 1.6rem;
 
-  width: 33.5rem;
+  width: 100%;
   height: 5.2rem;
 
   color: ${({ theme }) => theme.colors.white};
@@ -87,9 +89,9 @@ const StyledTextInput = styled.input<{ $iserror: boolean }>`
   caret-color: ${({ theme }) => theme.colors.main1};
 
   &:focus {
-    outline: none;
     border-bottom: 2px solid
       ${({ $iserror, theme }) => ($iserror ? theme.colors.red : theme.colors.main1)};
+    outline: none;
   }
 `;
 

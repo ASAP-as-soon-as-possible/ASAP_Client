@@ -3,12 +3,13 @@
 import './SetDates.css';
 
 import { methodStateAtom } from 'atoms/atom';
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
 import { FunnelProps, MeetingInfo } from 'pages/createMeeting/types/useFunnelInterface';
 import { Calendar, DateObject, getAllDatesInRange } from 'react-multi-date-picker';
 import { useRecoilState } from 'recoil';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 const months = [
   '1월',
@@ -27,7 +28,6 @@ const months = [
 const weekDays = ['일', '월', '화', '수', '목', '금', '토'];
 const dateRangeFormat = 'YYYY/MM/DD/ddd';
 function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
-  // const [multiple, setMultiple] = useState(false);
   const [multiple, setMultiple] = useRecoilState(methodStateAtom);
   return (
     <SetDatesWrapper>
@@ -76,6 +76,8 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
             shadow={false}
             showOtherDays
             weekDays={weekDays}
+            headerOrder={['LEFT_BUTTON', 'YEAR_MONTH', 'RIGHT_BUTTON']}
+            monthYearSeparator={'년 '}
             className="bg-dark"
             range={!multiple}
             multiple={multiple}
@@ -117,7 +119,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
           />
         </CalendarWrapper>
       </DateSelectorWrapper>
-      <StyledBtnSection>
+      <BottomBtnSection>
         <Button
           typeState={
             (meetingInfo.availableDates.length > 1 && meetingInfo.availableDates.length < 8) ||
@@ -144,7 +146,7 @@ function SetDates({ meetingInfo, setMeetingInfo, setStep }: FunnelProps) {
         >
           <Text font={'button2'}>다음</Text>
         </Button>
-      </StyledBtnSection>
+      </BottomBtnSection>
     </SetDatesWrapper>
   );
 }
@@ -155,18 +157,15 @@ const SetDatesWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
 `;
 
-const StyledBtnSection = styled.section`
-  position: fixed;
-  bottom: 1.2rem;
-  z-index: 3;
-`;
 const DateSelectorWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 100%;
 `;
 
 const RangeInputBox = styled.div<{ $isClicked: boolean }>`
@@ -177,19 +176,20 @@ const RangeInputBox = styled.div<{ $isClicked: boolean }>`
   border-radius: 0.8rem;
   border-color: ${({ $isClicked, theme }) =>
     $isClicked ? theme.colors.grey5 : theme.colors.main1};
-  width: 33.5rem;
+  width: 100%;
   height: 5.2rem;
 
+  cursor: pointer;
   color: ${({ theme }) => theme.colors.white};
 `;
 const Input = styled.input`
   appearance: none;
-  margin: 1.5rem 0 1.5rem 1.6rem;
   background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='10' stroke='%23D9D9D9' stroke-width='2'/%3E%3C/svg%3E%0A");
   background-repeat: no-repeat;
-  width: 2.2rem;
+  width: 3.2rem;
   height: 2.2rem;
-
+  margin-left: 1.5rem;
+  cursor: pointer;
   &:checked {
     background-image: url("data:image/svg+xml,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='11' fill='%233C49FF'/%3E%3Ccircle cx='11' cy='11' r='4' fill='white'/%3E%3C/svg%3E ");
   }
@@ -200,9 +200,10 @@ const Input = styled.input`
 const Label = styled.label`
   display: flex;
   align-items: center;
-  margin-left: 1.2rem;
+  padding: 0 1.2rem;
   height: 5rem;
-  width: 28rem;
+  width: 100%;
+  cursor: pointer;
   ${({ theme }) => theme.fonts.button1};
   color: ${({ theme }) => theme.colors.grey6};
 `;
@@ -216,7 +217,7 @@ const MultipleInputBox = styled.div<{ $isClicked: boolean }>`
   border-color: ${({ $isClicked, theme }) =>
     $isClicked ? theme.colors.main1 : theme.colors.grey5};
   background-color: transparent;
-  width: 33.5rem;
+  width: 100%;
   height: 5.2rem;
   color: ${({ theme }) => theme.colors.white};
 `;
@@ -224,7 +225,7 @@ const MultipleInputBox = styled.div<{ $isClicked: boolean }>`
 const InputContianer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: left;
+  width: 100%;
   margin-bottom: 3rem;
   div:first-child {
     margin-bottom: 1.1rem;

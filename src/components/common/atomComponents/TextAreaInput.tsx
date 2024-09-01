@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Text from 'components/atomComponents/Text';
-import styled from 'styled-components/macro';
+import Text from 'components/common/atomComponents/Text';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 interface ValueProps {
@@ -24,6 +24,7 @@ function TextAreaInput({ value, setValue, placeholder }: ValueProps) {
 export default TextAreaInput;
 
 const TextAreaWrapper = styled.div`
+  width: 100%;
   position: relative;
 `;
 
@@ -32,7 +33,7 @@ const StyledTextArea = styled.textarea`
   border-radius: 1rem;
   background-color: ${({ theme }) => theme.colors.grey8};
   padding: 1.8rem;
-  width: 33.5rem;
+  width: 100%;
   height: 20.8rem;
   resize: none;
   color: ${({ theme }) => theme.colors.white};

@@ -1,4 +1,4 @@
-import { addMinutes } from 'components/timetableComponents/utils';
+import { addMinutes } from 'components/common/timetableComponents/utils';
 
 import { SelectedSlotType } from './contexts/useSelectContext';
 import { TitlesType } from './types';
@@ -25,6 +25,7 @@ export const TITLES: TitlesType = {
   },
   selectPriority: {
     main: '우선순위를 입력해주세요',
+    sub: '선호하는 회의시간대 최대 3순위까지 입력해주세요',
   },
 } as const;
 

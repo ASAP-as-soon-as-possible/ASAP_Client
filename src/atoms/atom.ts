@@ -1,5 +1,6 @@
 import { ScheduleStates } from 'pages/legacy/selectSchedule/types/Schedule';
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
 
 export const methodStateAtom = atom<boolean>({
   key: 'methodStateAtom',
@@ -29,7 +30,10 @@ export const clickedTimeSlotAtom = atom<string>({
   default: undefined,
 });
 
+const { persistAtom } = recoilPersist();
+
 export const userNameAtom = atom<string>({
   key: 'userNameAtom',
   default: '',
+  effects_UNSTABLE: [persistAtom],
 });

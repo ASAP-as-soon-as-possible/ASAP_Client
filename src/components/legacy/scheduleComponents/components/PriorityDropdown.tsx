@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { scheduleAtom } from 'atoms/atom';
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import { Circle1Ic, Circle2Ic, Circle3Ic, DropDownIc, DropUpIc } from 'components/Icon/icon';
 import { ScheduleStates } from 'pages/legacy/selectSchedule/types/Schedule';
 import { useRecoilState } from 'recoil';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 function PriorityDropdown() {

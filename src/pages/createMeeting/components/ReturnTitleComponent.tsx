@@ -1,4 +1,4 @@
-import TitleComponents from 'components/moleculesComponents/TitleComponents';
+import TitleComponents from 'components/common/moleculesComponents/TitleComponents';
 
 interface FunnelSteps {
   [key: string]: {
@@ -25,7 +25,7 @@ const funnelSteps: FunnelSteps = {
   },
   hostInfo: {
     main: '방장 정보를 입력해주세요',
-    sub: '관리자 페이지에 접속할 때 필요해요',
+    sub: '방장 페이지에 접속할 때 필요해요',
   },
   additionalInfo: {
     main: '더 알리고 싶은 내용이 있나요?',

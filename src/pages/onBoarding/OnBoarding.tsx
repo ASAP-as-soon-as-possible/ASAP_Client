@@ -6,11 +6,12 @@ import CardPng from 'assets/images/card.png';
 import InsertPng from 'assets/images/insert.png';
 import MakePng from 'assets/images/make.png';
 import PointPng from 'assets/images/point.png';
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
-import Header from 'components/moleculesComponents/Header';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
+import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSection';
+import Header from 'components/common/moleculesComponents/Header';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -44,11 +45,14 @@ const slides = [
 ];
 
 function OnBoarding() {
+  const navigate = useNavigate();
+  const handleCreateMeeting = () => {
+    navigate('/meet/create?step=title');
+  };
   return (
     <>
       <OnboardingWrapper>
         <Header position={'onBoarding'} />
-        <SwiperSection>
           <SwiperContext>
             <Swiper
               spaceBetween={30}
@@ -69,21 +73,18 @@ function OnBoarding() {
                   {/* <SvgContainer>{slide.icon}</SvgContainer> */}
                   {/* 로딩 속도로 차선책 png code */}
                   <SvgContainer>{slide.icon}</SvgContainer>
-                  <ExplainContainer>
+                  <>
                     <Explain main={slide.main} sub1={slide.sub1} sub2={slide.sub2} />
-                  </ExplainContainer>
+                  </>
                 </StyledSwiperSlide>
               ))}
             </Swiper>
           </SwiperContext>
-        </SwiperSection>
-        <ButtonSection>
-          <Link to={'/meet/create'}>
-            <Button typeState={'primaryActive'}>
-              <Text font={'button2'}>약속 생성하기</Text>
-            </Button>
-          </Link>
-        </ButtonSection>
+        <BottomBtnSection>
+          <Button typeState={'primaryActive'} onClick={handleCreateMeeting}>
+            <Text font={'button2'}>회의 일정 정하기</Text>
+          </Button>
+        </BottomBtnSection>
       </OnboardingWrapper>
     </>
   );
@@ -92,6 +93,10 @@ function OnBoarding() {
 export default OnBoarding;
 
 const OnboardingWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
   width: 100%;
 `;
 
@@ -99,8 +104,6 @@ const SwiperContext = styled.div`
   width: 100%;
   height: 50rem;
 `;
-
-const SwiperSection = styled.section``;
 
 const StyledSwiperSlide = styled(SwiperSlide)`
   display: flex;
@@ -112,11 +115,4 @@ const SvgContainer = styled.section`
     width: 33rem;
     height: 33rem;
   }
-`;
-
-const ExplainContainer = styled.section``;
-
-const ButtonSection = styled.section`
-  position: fixed;
-  bottom: 1.2rem;
 `;

@@ -1,12 +1,12 @@
 import { userNameAtom } from 'atoms/atom';
 import { isAxiosError } from 'axios';
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import { ExitIc } from 'components/Icon/icon';
 import { useSelectContext } from 'pages/selectSchedule/contexts/useSelectContext';
 import { formatHostScheduleScheme, formatMemberScheduleScheme } from 'pages/selectSchedule/utils';
 import { useNavigate, useParams } from 'react-router';
 import { useRecoilValue } from 'recoil';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 import { hostAvailableApi, userAvailableApi } from 'utils/apis/legacy/createHostAvailableSchedule';
 
@@ -40,6 +40,9 @@ function SelectModal({ setShowModal }: ModalProps) {
       if (isAxiosError(e) && e.response) {
         if (e.response.status === 400) {
           alert(`${e.response.data.message}`);
+        } else if (e.response.status === 409) {
+          alert(`${e.response.data.message}`);
+          navigate(`/host/${meetingId}`);
         } else {
           alert(`${e.response.data.message}`);
           console.error(e);

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
-import Header from 'components/moleculesComponents/Header';
+import Header from 'components/common/moleculesComponents/Header';
 import { useNavigate, useParams } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { client } from 'utils/apis/axios';
 
 import SteppingBody from './components/SteppingBody';
@@ -37,23 +37,12 @@ function SteppingLayout({ steppingType }: SteppingProps) {
     [steppingType],
   );
 
-  const handlePopstate = () => {
-    navigate('/');
-  };
-
-  useEffect(() => {
-    return () => {
-      window.addEventListener('popstate', handlePopstate);
-    };
-  }, []);
-
   return (
     <>
       <SteppingWrapper>
-        <Header position={'stepping'} />
+        <Header />
         <SteppingBody steppingType={steppingType} meetingTitle={meetingTitle} />
         <SteppingBtnSection steppingType={steppingType} />
-        <div />
       </SteppingWrapper>
     </>
   );

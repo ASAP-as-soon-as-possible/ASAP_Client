@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-import Timetable from 'components/timetableComponents/Timetable';
-import { ColumnStructure, TimetableStructure } from 'components/timetableComponents/types';
+import Timetable from 'components/common/timetableComponents/Timetable';
+import { ColumnStructure, TimetableStructure } from 'components/common/timetableComponents/types';
 import {
   AvailableDateTime,
   TimeSlot,
@@ -47,7 +47,12 @@ function OverallScheduleTable({
         setClickedUserNames,
       }}
     >
-      <Timetable timeSlots={timeSlots} availableDates={availableDates} bottomItem={<UserNames />}>
+      <Timetable
+        timeSlots={timeSlots}
+        availableDates={availableDates}
+        slotUnit="HALF"
+        bottomItem={<UserNames />}
+      >
         {({ date, timeSlots }: ColumnStructure) => (
           <OverallScheduleColumn
             date={date}

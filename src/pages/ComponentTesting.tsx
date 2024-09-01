@@ -1,5 +1,5 @@
-import Button from 'components/atomComponents/Button';
-import Text from 'components/atomComponents/Text';
+import Button from 'components/common/atomComponents/Button';
+import Text from 'components/common/atomComponents/Text';
 import {
   BackIc,
   ClockIc,
@@ -21,7 +21,7 @@ import {
   RadioCheckedIc,
   TimeIc,
 } from 'components/Icon/icon';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 const buttonType: string[] = [

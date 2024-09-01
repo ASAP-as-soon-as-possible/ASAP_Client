@@ -1,9 +1,8 @@
-import { Link, useParams } from 'react-router-dom';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
-import { ExitIc } from 'components/Icon/icon';
-import Text from 'components/atomComponents/Text';
-import styled from 'styled-components/macro';
+import Text from 'components/common/atomComponents/Text';
+import { useNavigate, useParams } from 'react-router-dom';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 interface ModalProps {
@@ -12,36 +11,37 @@ interface ModalProps {
 
 function NoAvailableTimeModal({ setIsModalOpen }: ModalProps) {
   const { meetingId } = useParams();
+  const navigate = useNavigate();
+
   return (
-    <ReturnModalWrpper>
+    <ReturnModalWrpper onClick={() => setIsModalOpen(false)}>
       <ModalSection>
-        <IconCatainer onClick={() => setIsModalOpen(false)}>
-          <ExitIc />
-        </IconCatainer>
-        <Text font={`title1`} color={`${theme.colors.sub1}`}>
-          잠깐!
-        </Text>
         <MentContainer>
-          <Text font={`body2`} color={`${theme.colors.white}`}>
-            나의 가능 시간을 입력해야
+          <Text font={'title1'} color={`${theme.colors.white}`}>
+            가능 시간을 입력하지 않으셨나요?
           </Text>
-          <Text font={`body2`} color={`${theme.colors.white}`}>
-            방장 페이지에 접속할 수 있어요!
-          </Text>
+
+          <ModalText>
+            나의 가능 시간을 입력해야 <br />방장 페이지에 접속할 수 있어요
+          </ModalText>
         </MentContainer>
-        <Link to={`/host/select/${meetingId}`}>
-          <ModalBtn>
-            <Text font={`body2`} color={`${theme.colors.white}`}>
-              가능 시간 입력하러 가기
-            </Text>
-          </ModalBtn>
-        </Link>
+
+        <ModalBtn onClick={() => navigate(`/host/select/${meetingId}?step=selectSchedule`)}>
+          <Text font={`body2`} color={`${theme.colors.white}`}>
+            가능 시간 입력하러 가기
+          </Text>
+        </ModalBtn>
       </ModalSection>
     </ReturnModalWrpper>
   );
 }
 
 export default NoAvailableTimeModal;
+
+const ModalText = styled.span`
+  ${({ theme }) => theme.fonts.body2};
+  color: ${({ theme }) => theme.colors.grey3};
+`;
 
 const ReturnModalWrpper = styled.div`
   display: flex;
@@ -57,14 +57,16 @@ const ReturnModalWrpper = styled.div`
 
 const ModalSection = styled.article`
   display: flex;
-  position: relative;
+  /* position: relative; */
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2.4rem;
   border-radius: 0.8rem;
   background-color: ${({ theme }) => theme.colors.grey8};
-  width: 28.8rem;
-  height: 21.2rem;
+  width: 32.4rem;
+  height: 18.4rem;
+  padding: 2.4rem 2rem;
 `;
 
 const IconCatainer = styled.div`
@@ -83,15 +85,17 @@ const MentContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 1.2rem;
+  justify-content: center;
+  gap: 0.8rem;
+  text-align: center;
 `;
 const ModalBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 2.4rem;
+
   border-radius: 0.6rem;
   background-color: ${({ theme }) => theme.colors.main1};
-  width: 17.6rem;
+  width: 100%;
   height: 4.2rem;
 `;

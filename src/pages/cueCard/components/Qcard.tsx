@@ -1,11 +1,11 @@
 import { ForwardedRef, forwardRef } from 'react';
 
-import Text from 'components/atomComponents/Text';
+import Text from 'components/common/atomComponents/Text';
 import { OfflinePlaceIc, OnlinePlaceIc, TimeIc } from 'components/Icon/icon';
 import LoadingPage from 'pages/errorLoading/LoadingPage';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
 import GetQcardDataHooks from '../hooks/getQCardData';

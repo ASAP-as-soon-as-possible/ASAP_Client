@@ -1,14 +1,12 @@
 /**카카오톡 인앱브라우저 종료후 크롬 및 사파리로 오픈하는 utils file */
-import './utils/changeBrowser';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+import './utils/changeBrowser';
 
 import { useEffect } from 'react';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { ThemeProvider } from 'styled-components';
-import styled from 'styled-components/macro';
+import styled, { ThemeProvider } from 'styled-components';
 import ToastContainerBox from 'utils/toast/ToastContainer';
 
 import Router from './Router';
@@ -27,7 +25,7 @@ const MobileWrapper = styled.div`
   padding-right: 2rem;
   padding-left: 2rem;
 
-  max-width: var(--app-max-width, 37.5rem);
+  max-width: var(--app-max-width, 43.5rem);
   min-height: calc(var(--vh, 1vh) * 100);
 `;
 
@@ -37,7 +35,8 @@ function App() {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 
     const windowWidth = window.innerWidth || document.documentElement.clientWidth;
-    const maxWidth = Math.min(37.5, windowWidth);
+
+    const maxWidth = Math.min(43, windowWidth);
     document.documentElement.style.setProperty('--app-max-width', `${maxWidth}rem`);
   };
 
@@ -60,7 +59,7 @@ function App() {
             <Router />
             <ToastContainerBox />
           </MobileWrapper>
-          <ReactQueryDevtools initialIsOpen={false} />
+          {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         </QueryClientProvider>
       </ThemeProvider>
     </>

@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import styled from 'styled-components/macro';
+import styled from 'styled-components';
 
 function ToastContainerBox() {
   return (
@@ -27,22 +27,27 @@ const StyledToastContainer = styled(ToastContainer)`
   bottom: 6rem;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 
-  .Toastify__toast {
+  .Toastify__toast.Toastify__toast {
     width: 19rem;
-    height: 4rem !important;
-    min-height: 0;
-    margin-bottom: 2.4rem;
+
+    min-height: 4rem;
+    margin-bottom: 1.4rem;
     background-color: #2e2e2e;
     border-radius: 5rem;
   }
-
+  .Toastify__toast-body {
+  }
   .Toastify__toast-body div {
     display: flex;
     align-items: center;
     justify-content: center;
     color: #d1ff38;
+    font-weight: 500;
     font-size: 1.2rem;
+    font-family: 'Pretendard Variable';
+    line-height: 1.6;
   }
   svg {
     display: none;
