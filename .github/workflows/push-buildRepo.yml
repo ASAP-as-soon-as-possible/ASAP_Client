@@ -1,8 +1,8 @@
-name: Push Main
+name: Push Main 
 
 on:
   push:
-    branches: [ "main", "feat/#325/webShareAPI" ]
+    branches: [ "main" ]
  
 jobs:
   push_main:
