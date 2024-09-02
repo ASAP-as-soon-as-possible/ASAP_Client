@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
@@ -8,6 +8,7 @@ import html2canvas from 'html2canvas';
 import CueCardTitle from 'pages/cueCard/components/CueCardTitle';
 import useShareLink from 'src/\bhooks/useShareLink';
 import styled from 'styled-components';
+import { checkBrowserForWebShare } from 'utils/checkBrowserForWebShare';
 import { downLoadNotify } from 'utils/toast/copyLinkToast';
 
 import Qcard from './components/Qcard';
@@ -26,21 +27,6 @@ function CueCard() {
       });
     }
   };
-  useEffect(() => {
-    const handleBtnText = async () => {
-      try {
-        const canShare = await navigator.share();
-        if (canShare !== undefined) {
-          throw Error;
-        }
-        setBtnText('링크 공유하기');
-      } catch {
-        setBtnText('링크 복사하기');
-      }
-    };
-
-    handleBtnText();
-  }, []);
 
   return (
     <CueCardWrapper>
@@ -49,7 +35,9 @@ function CueCard() {
       <Qcard ref={imageRef} />
       <BottomBtnSection>
         <Button typeState={'halfTertiaryActive'} onClick={handleWebShare}>
-          <Text font={'button2'}>{btnText}</Text>
+          <Text font={'button2'}>
+            {checkBrowserForWebShare() ? '링크 공유하기' : '링크 복사하기'}
+          </Text>
         </Button>
 
         <Button
