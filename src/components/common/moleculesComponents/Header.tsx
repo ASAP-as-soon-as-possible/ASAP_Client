@@ -4,7 +4,7 @@ import Text from 'components/common/atomComponents/Text';
 import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
 import { useScheduleStepContext } from 'pages/selectSchedule/contexts/useScheduleStepContext';
 import { ScheduleStepType } from 'pages/selectSchedule/types';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import useShareLink from 'src/\bhooks/useShareLink';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
@@ -21,9 +21,7 @@ interface HeaderProps {
 
 function Header({ position, setFunnelStep }: HeaderProps) {
   const { scheduleStep, setScheduleStep } = useScheduleStepContext();
-  const { meetingId } = useParams();
-
-  const { inviteURL, handleWebShare } = useShareLink(position);
+  const { handleWebShare } = useShareLink(position || '');
 
   const navigationOptions = [
     {
