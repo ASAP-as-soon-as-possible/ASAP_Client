@@ -26,12 +26,15 @@ function CueCard() {
       });
     }
   };
-
   useEffect(() => {
     const handleBtnText = async () => {
-      if (navigator.share) {
+      try {
+        const canShare = await navigator.share();
+        if (canShare !== undefined) {
+          throw Error;
+        }
         setBtnText('링크 공유하기');
-      } else {
+      } catch {
         setBtnText('링크 복사하기');
       }
     };
