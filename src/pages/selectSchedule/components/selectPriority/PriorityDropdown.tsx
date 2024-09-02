@@ -132,7 +132,6 @@ function PriorityDropdown() {
       return updatedInput;
     });
   };
-  //test
   return (
     <PriorityDropdownWrapper>
       {isOpenDropDown.map((item, idx) => (

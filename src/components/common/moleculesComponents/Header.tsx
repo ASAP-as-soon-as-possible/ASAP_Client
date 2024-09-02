@@ -5,8 +5,8 @@ import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon
 import { useScheduleStepContext } from 'pages/selectSchedule/contexts/useScheduleStepContext';
 import { ScheduleStepType } from 'pages/selectSchedule/types';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { useParams } from 'react-router';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import useShareLink from 'src/\bhooks/useShareLink';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
@@ -23,6 +23,10 @@ interface HeaderProps {
 
 function Header({ position, setFunnelStep }: HeaderProps) {
   const { scheduleStep, setScheduleStep } = useScheduleStepContext();
+  const { meetingId } = useParams();
+
+  const {inviteURL, handleWebShare} = useShareLink();
+
   const navigationOptions = [
     {
       title: '회의 일정 정하기',
@@ -57,30 +61,8 @@ function Header({ position, setFunnelStep }: HeaderProps) {
       }
     }
   };
+  console.log(window.location.origin);
 
-  const { meetingId } = useParams();
-
-  const shareData = {
-    title: "ASAP",
-    text: "회의 시간을 입력해주세요",
-    url: `${import.meta.env.VITE_WEB_IP}/meet/${meetingId}`,
-  };
-
-  const handleWebShare=async()=>{
-    // if (navigator.share && navigator.canShare(shareData)) {
-    //   console.log("test");
-      try{
-        await navigator.share(shareData);
-      }
-      catch(err){
-        alert(err + "지원하지 않는 브라우저");
-      }
-  //  } else {
-  //    alert("out");
-  //  }
-//test
-
-  }
   return (
     <>
       <HeaderWrapper>
@@ -129,8 +111,9 @@ function Header({ position, setFunnelStep }: HeaderProps) {
           {(position==="completeCreateMeeting" || position==="cueCard" || position==="confirmMeet") &&
             <LinkIcWrapper>
              {/* <IconSection onClick={notify}> */}
-             <IconSection onClick={handleWebShare}>
-            <CopyToClipboard text={ position==="cueCard" ? `${import.meta.env.VITE_WEB_IP}/q-card/${meetingId}`:`${import.meta.env.VITE_WEB_IP}/meet/${meetingId}` }>
+           <IconSection onClick={handleWebShare}>
+
+            <CopyToClipboard text={ position==="cueCard" ? `${import.meta.env.VITE_WEB_IP}/q-card/${meetingId}`:inviteURL }>
           <LinkIc/>
           </CopyToClipboard>
           </IconSection>
