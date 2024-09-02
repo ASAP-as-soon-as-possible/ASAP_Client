@@ -29,16 +29,15 @@ function CueCard() {
 
   useEffect(() => {
     const handleBtnText = async () => {
-      try {
-        await navigator.share();
+      if (navigator.share) {
         setBtnText('링크 공유하기');
-      } catch {
+      } else {
         setBtnText('링크 복사하기');
       }
     };
 
     handleBtnText();
-  });
+  }, []);
 
   return (
     <CueCardWrapper>
