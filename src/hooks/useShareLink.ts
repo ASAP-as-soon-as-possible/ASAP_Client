@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { notify } from 'utils/toast/copyLinkToast';
 
-const useShareLink = (position?: string) => {
+const useShareLink = (position: string) => {
   const { meetingId } = useParams();
   const route = position === 'cueCard' ? 'q-card' : 'meet';
   const inviteURL = `${window.location.origin}/${route}/${meetingId}`;
