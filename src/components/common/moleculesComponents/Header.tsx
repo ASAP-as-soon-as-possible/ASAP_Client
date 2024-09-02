@@ -4,7 +4,6 @@ import Text from 'components/common/atomComponents/Text';
 import { BackIc, ExitIc, HambergerIc, LinkIc, MainLogoIc } from 'components/Icon/icon';
 import { useScheduleStepContext } from 'pages/selectSchedule/contexts/useScheduleStepContext';
 import { ScheduleStepType } from 'pages/selectSchedule/types';
-import CopyToClipboard from 'react-copy-to-clipboard';
 import { useNavigate, useParams } from 'react-router-dom';
 import useShareLink from 'src/\bhooks/useShareLink';
 import styled from 'styled-components';
@@ -20,12 +19,11 @@ interface HeaderProps {
   setSelectScheduleStep?: Dispatch<SetStateAction<ScheduleStepType>>;
 }
 
-
 function Header({ position, setFunnelStep }: HeaderProps) {
   const { scheduleStep, setScheduleStep } = useScheduleStepContext();
   const { meetingId } = useParams();
 
-  const {inviteURL, handleWebShare} = useShareLink();
+  const { inviteURL, handleWebShare } = useShareLink(position);
 
   const navigationOptions = [
     {
@@ -36,7 +34,7 @@ function Header({ position, setFunnelStep }: HeaderProps) {
       title: '피드백 보내기',
       url: 'https://tally.so/r/wL79av',
     },
-  ]
+  ];
 
   const navigate = useNavigate();
   const [isNaviOpen, setIsNaviOpen] = useState(false);
@@ -61,7 +59,6 @@ function Header({ position, setFunnelStep }: HeaderProps) {
       }
     }
   };
-  console.log(window.location.origin);
 
   return (
     <>
@@ -91,7 +88,9 @@ function Header({ position, setFunnelStep }: HeaderProps) {
                 <BackIc />
               </IconSection>
             </ConfirmIconSection>
-          ) : undefined}
+          ) : (
+            undefined
+          )}
           {position === 'createMeeting' ? (
             <Text font={'title2'} color={`${theme.colors.white}`}>
               회의 정보 입력
@@ -108,34 +107,36 @@ function Header({ position, setFunnelStep }: HeaderProps) {
             <EmptyBox />
           )}
           <IconWrapper>
-          {(position==="completeCreateMeeting" || position==="cueCard" || position==="confirmMeet") &&
-            <LinkIcWrapper>
-             {/* <IconSection onClick={notify}> */}
-           <IconSection onClick={handleWebShare}>
-
-            <CopyToClipboard text={ position==="cueCard" ? `${import.meta.env.VITE_WEB_IP}/q-card/${meetingId}`:inviteURL }>
-          <LinkIc/>
-          </CopyToClipboard>
-          </IconSection>
-          {position==="completeCreateMeeting" && <Tooltip tooltipText={"링크 공유하기"}></Tooltip>}
-
-          </LinkIcWrapper>}
-          <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
-            <HambergerIc />
-          </IconSection>
-
+            {(position === 'completeCreateMeeting' ||
+              position === 'cueCard' ||
+              position === 'confirmMeet') && (
+              <LinkIcWrapper>
+                {/* <IconSection onClick={notify}> */}
+                <IconSection onClick={handleWebShare}>
+                  {/* <CopyToClipboard text={ position==="cueCard" ? `${import.meta.env.VITE_WEB_IP}/q-card/${meetingId}`:inviteURL }> */}
+                  <LinkIc />
+                  {/* </CopyToClipboard> */}
+                </IconSection>
+                {position === 'completeCreateMeeting' && <Tooltip tooltipText={'링크 공유하기'} />}
+              </LinkIcWrapper>
+            )}
+            <IconSection onClick={() => setIsNaviOpen((prev) => !prev)}>
+              <HambergerIc />
+            </IconSection>
           </IconWrapper>
         </HeaderSection>
         {isNaviOpen ? (
           <NavigationSection>
             <NavigationContainer>
-            <IconContainer onClick={() => setIsNaviOpen((prev) => !prev)}>
-              <ExitIc />
-            </IconContainer>
-              <Navigation navigationOptions={navigationOptions}/>
+              <IconContainer onClick={() => setIsNaviOpen((prev) => !prev)}>
+                <ExitIc />
+              </IconContainer>
+              <Navigation navigationOptions={navigationOptions} />
             </NavigationContainer>
           </NavigationSection>
-        ) : undefined}
+        ) : (
+          undefined
+        )}
       </HeaderWrapper>
     </>
   );
@@ -143,14 +144,14 @@ function Header({ position, setFunnelStep }: HeaderProps) {
 
 export default Header;
 
-const LinkIcWrapper=styled.div`
-  position:relative;
-`
+const LinkIcWrapper = styled.div`
+  position: relative;
+`;
 
-const IconWrapper= styled.div`
-  display:flex;
+const IconWrapper = styled.div`
+  display: flex;
   align-items: center;
-`
+`;
 const HeaderWrapper = styled.div`
   width: 100%;
 `;
@@ -176,7 +177,7 @@ const IconSection = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width:4.2rem;
+  width: 4.2rem;
   height: 4.2rem;
 `;
 
