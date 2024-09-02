@@ -193,10 +193,10 @@ const PriorityDropdownWrapper = styled.div`
   flex-direction: column;
   gap: 1.2rem;
   justify-content: start;
-
+  align-items: center;
   margin-top: 3rem;
   margin-bottom: 7.5rem;
-  width: 100%;
+  width: 33.5rem;
   height: 18rem;
 `;
 
@@ -254,7 +254,7 @@ const DropdownWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.grey6};
   width: 27.4rem;
   height: fit-content;
-  max-height: 15.6rem;
+  max-height: 18.3rem;
 
   overflow-x: hidden;
   overflow-y: auto;

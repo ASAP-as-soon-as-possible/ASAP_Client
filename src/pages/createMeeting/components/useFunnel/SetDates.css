@@ -29,7 +29,7 @@
 }
 
 .rmdp-calendar {
-  width: 36rem;
+  width: 100%;
   height: 37.9rem;
 }
 
@@ -38,12 +38,12 @@
 }
 
 .rmdp-day-picker > div {
-  width: 36rem;
+  width: 100%;
 }
 
 .rmdp-day-picker > div > div:first-child {
   margin-bottom: 0.7rem;
-  border-bottom: 0.5px solid white;
+  /* border-bottom: 0.5px solid white; */
 }
 
 /* .rmdp-week {
@@ -154,10 +154,10 @@
   pointer-events: none !important;
 }
 .rmdp-day {
-  width: 4rem;
-  height: 4rem;
+  width: 5rem;
+  height: 5rem;
   /*날짜*/
-  padding: 2.5rem 2.5rem;
+  padding: 2.7rem 2.7rem;
 }
 .rmdp-day span {
   font-weight: 400;
@@ -173,7 +173,7 @@
 
 .rmdp-week-day {
   /*요일*/
-  width: 4rem;
+  width: 5.4rem !important;
   height: 4rem;
   padding: 0 0.4rem;
 }
@@ -196,4 +196,8 @@
 
 .rmdp-day.rmdp-disabled.rmdp-deactive {
   color: var(--rmdp-grey10) !important;
+}
+
+.rmdp-header-values.rmdp-header-values span {
+  padding: 0px;
 }

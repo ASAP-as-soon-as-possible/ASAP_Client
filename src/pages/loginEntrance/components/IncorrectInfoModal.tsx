@@ -1,8 +1,7 @@
-import { Link, useParams } from 'react-router-dom';
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
-import { ExitIc } from 'components/Icon/icon';
 import Text from 'components/common/atomComponents/Text';
+import { ExitIc } from 'components/Icon/icon';
 import styled from 'styled-components';
 import { theme } from 'styles/theme';
 
