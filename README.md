@@ -20,7 +20,7 @@ ASAP은 회의를 진행하는 업무시간 외 일련의 사전작업들을 쉽
 |                                                  7️⃣  준비물 등 추가 내용                                                  |
 
 ## 📥 가능 시간 입력하기
-| <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/4b66f45e-1a08-490c-bc0f-04f4517e3c4e" width="300"/> | <img src="https://github.com/ASAP-as-soon-as-possible/ASAP_Client/assets/98143826/d5c089e3-8338-4152-9f2a-d316e87a5dcb" width="300"/> |
+| <img src="https://github.com/user-attachments/assets/27fdc3f9-5944-488f-b7d8-9deb6ed92875" width="300"/> | <img src="https://github.com/user-attachments/assets/0bf1bfd7-2f07-49a8-8b1d-f62c5fcdcf53" width="300"/> |
 | :---: | :---: |
 | 1️⃣ 일정 등록 | 2️⃣ 우선 순위 입력 |
 
