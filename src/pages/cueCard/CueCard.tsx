@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 import Button from 'components/common/atomComponents/Button';
 import Text from 'components/common/atomComponents/Text';
@@ -6,15 +6,17 @@ import BottomBtnSection from 'components/common/moleculesComponents/BottomBtnSec
 import Header from 'components/common/moleculesComponents/Header';
 import html2canvas from 'html2canvas';
 import CueCardTitle from 'pages/cueCard/components/CueCardTitle';
-import CopyToClipboard from 'react-copy-to-clipboard';
+import useShareLink from 'src/\bhooks/useShareLink';
 import styled from 'styled-components';
-import { downLoadNotify, notify } from 'utils/toast/copyLinkToast';
+import { checkBrowserForWebShare } from 'utils/checkBrowserForWebShare';
+import { downLoadNotify } from 'utils/toast/copyLinkToast';
 
 import Qcard from './components/Qcard';
 
 function CueCard() {
   const imageRef = useRef(null);
-
+  const { handleWebShare } = useShareLink('cueCard');
+  const [btnText, setBtnText] = useState('');
   const downLoadImage = () => {
     if (imageRef.current) {
       html2canvas(imageRef.current, { backgroundColor: null }).then((canvas) => {
@@ -26,19 +28,18 @@ function CueCard() {
     }
   };
 
-  const currentURL = window.location.href;
-
   return (
     <CueCardWrapper>
       <Header position={'cueCard'} />
       <CueCardTitle main={'일정 조율 완료!'} sub={'이미 확정된 회의 일정입니다'} />
       <Qcard ref={imageRef} />
       <BottomBtnSection>
-        <CopyToClipboard text={currentURL}>
-          <Button typeState={'halfTertiaryActive'} onClick={notify}>
-            <Text font={'button2'}>링크 복사하기</Text>
-          </Button>
-        </CopyToClipboard>
+        <Button typeState={'halfTertiaryActive'} onClick={handleWebShare}>
+          <Text font={'button2'}>
+            {checkBrowserForWebShare() ? '링크 공유하기' : '링크 복사하기'}
+          </Text>
+        </Button>
+
         <Button
           typeState={'halfPrimaryActive'}
           onClick={() => {

@@ -24,7 +24,8 @@ export default ToastContainerBox;
 const StyledToastContainer = styled(ToastContainer)`
   display: flex;
   position: absolute;
-  bottom: 6rem;
+  bottom: 5rem;
+  height: 10rem;
   align-items: center;
   justify-content: center;
   overflow: hidden;
